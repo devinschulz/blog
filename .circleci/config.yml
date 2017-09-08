@@ -1,0 +1,21 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: devinschulz/node-hugo-docker:latest
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: "Build Hugo"
+          command: HUGO_ENV=production hugo -v
+      - add_ssh_keys
+      - deploy:
+          name: Deploy to S3 if tests pass and branch is Master
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              aws s3 sync ~project/public s3://$AWS_S3_BUCKET_URL --delete
+            else
+              echo "Not master branch so not deploying"
+            fi
