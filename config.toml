@@ -1,3 +1,6 @@
 baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+languageCode = "en"
+title = "Devin Schulz"
+
+[params]
+  description = "The description"
