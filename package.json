@@ -1,0 +1,22 @@
+{
+  "name": "blog.devinschulz",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "repository": "git@github.com:devinschulz/blog.git",
+  "author": "Devin Schulz <devin@devinschulz.com>",
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "normalize.css": "^7.0.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "precss": "^2.0.0",
+    "require-dir": "^0.3.2"
+  },
+  "dependencies": {}
+}
