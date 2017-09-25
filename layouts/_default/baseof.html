@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
   <head>
     <meta charset="utf-8">
-		<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ "main.css" | relURL }}" />
   </head>
   <body>
     {{ block "main" . }} {{ end }}
-  	{{ block "footer" . }} {{ end }}
+    {{ block "footer" . }} {{ end }}
   </body>
 </html>
