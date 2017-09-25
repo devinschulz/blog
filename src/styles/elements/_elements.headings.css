@@ -1,0 +1,33 @@
+/*----------------------------------*\
+    #HEADINGS
+\*----------------------------------*/
+
+/**
+ * Typescale based on the perfect fourth.
+ * http://type-scale.com/?size=18&scale=1.333&text=A%20Visual%20Type%20Scale&webfont=Libre+Baskerville&font-family=--apple-system&font-weight=400&font-family-headers=&font-weight-headers=inherit&background-color=white&font-color=%23333
+ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--base-heading-weight);
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+  color: var(--color-dark);
+
+  a {
+    color: inherit;
+
+    &:--enter {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+  }
+
+}
+
+h1 { font-size: 3.157em; }
+h2 { font-size: 2.639em; }
+h3 { font-size: 1.777em; }
+h4 { font-size: 1.333em; }
+h5 { font-size: 1em; }
+h6 { font-size: 0.75em; }

@@ -1,0 +1,6 @@
+/*----------------------------------*\
+    #SELECTORS
+/*----------------------------------*/
+
+@custom-selector :--enter :hover, :focus, :active;
+@custom-selector :--active  :active, :hover;

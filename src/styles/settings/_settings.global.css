@@ -1,0 +1,16 @@
+/*----------------------------------*\
+    #GLOBAL
+\*----------------------------------*/
+:root {
+
+  /* Fonts */
+
+  --base-font-family: system-ui;
+  --base-font-size: 22px;
+  --base-font-weight: 400;
+  --base-heading-weight: 900;
+
+  /* Spacing */
+
+  --global-spacing-unit: 1.45rem;
+}
