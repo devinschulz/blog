@@ -6,7 +6,9 @@
   "repository": "git@github.com:devinschulz/blog.git",
   "author": "Devin Schulz <devin@devinschulz.com>",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "gulp build"
+  },
   "devDependencies": {
     "cssnano": "^3.10.0",
     "gulp": "^3.9.1",

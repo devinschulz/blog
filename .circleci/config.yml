@@ -8,6 +8,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Install dependencies"
+          command: "yarn --frozen-lockfile && yarn cache clean"
+      - run:
+          name: "Build assets"
+          command: "yarn build"
+      - run:
           name: "Build Hugo"
           command: HUGO_ENV=production hugo -v
       - add_ssh_keys
