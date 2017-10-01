@@ -16,6 +16,9 @@ jobs:
       - run:
           name: "Build Hugo"
           command: HUGO_ENV=production hugo -v
+      - run:
+          name: "Post process assets"
+          command: "yarn build:post"
       - add_ssh_keys
       - deploy:
           name: Deploy to S3 if tests pass and branch is Master
