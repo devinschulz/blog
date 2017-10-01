@@ -1,0 +1,13 @@
+<nav>
+  <a href="/">Devin Schulz</a>
+  {{ $currentPage := . }}
+  {{ range .Site.Menus.main }}
+    <a
+      href="{{ .URL }}"
+      class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{ end }}"
+    >
+      {{ .Name }}
+    </a>
+  {{ end }}
+</nav>
+

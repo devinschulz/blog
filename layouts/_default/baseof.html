@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ "main.css" | relURL }}" />
   </head>
   <body>
+    {{ partial "navigation.html" . }}
     {{ block "main" . }} {{ end }}
     {{ block "footer" . }} {{ end }}
   </body>
