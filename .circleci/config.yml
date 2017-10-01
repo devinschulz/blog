@@ -4,22 +4,35 @@ jobs:
   build:
     docker:
       - image: devinschulz/node-hugo-docker:latest
+        environment:
+          HUGO_ENV: production
     working_directory: ~/project
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - node-cache-{{ arch }}-{{ checksum "package.json" }}
+            - node-cache-{{ arch }}-
       - run:
           name: "Install dependencies"
           command: "yarn --frozen-lockfile && yarn cache clean"
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-cache-{{ arch }}-{{ checksum "package.json" }}
       - run:
           name: "Build assets"
-          command: "yarn build"
+          command: "node_modules/.bin/gulp build"
+          environment:
+            NODE_ENV: production
       - run:
           name: "Build Hugo"
-          command: HUGO_ENV=production hugo -v
+          command: hugo -v
       - run:
           name: "Post process assets"
-          command: "yarn build:post"
-      - add_ssh_keys
+          command: "node_modules/.bin/gulp build:post"
+          environment:
+            NODE_ENV: production
       - deploy:
           name: Deploy to S3 if tests pass and branch is Master
           command: |
