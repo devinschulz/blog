@@ -1,0 +1,12 @@
+<article>
+  <header>
+    <h2><a href="{{ .Permalink }}">{{.Title }}</a></h2>
+  </header>
+  <p>{{ .Summary }}</p>
+  <footer>
+    <p>
+      <time datetime="{{ .Date }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ partial "categories.html" . }}
+    </p>
+  </footer>
+</article>

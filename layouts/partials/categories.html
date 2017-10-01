@@ -1,0 +1,5 @@
+{{ if .Params.Categories }}
+  {{ range .Params.Categories }}
+    <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+  {{ end }}
+{{ end }}

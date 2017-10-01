@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <header>
+    <h1>{{ .Title}}</h1>
+    <p>
+      <time datetime="{{ .Date }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ partial "categories.html" . }}
+    </p>
+  </header>
+  {{ .Content }}
+  <aside>
+    {{ .TableOfContents }}
+  </aside>
+{{ end }}

@@ -1,3 +1,7 @@
 {{ define "main" }}
-	<h1>Home</h1>
+
+{{ range where .Pages "Section" "posts" }}
+  {{ partial "summary" . }}
+{{ end }}
+
 {{ end }}

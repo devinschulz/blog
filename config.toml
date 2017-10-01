@@ -1,6 +1,16 @@
 baseURL = "http://example.org/"
 languageCode = "en"
 title = "Devin Schulz"
+sectionPagesMenu = "main"
 
 [params]
   description = "The description"
+
+[[menu.main]]
+  name = "Posts"
+  identifier = "posts"
+  url = "/posts/"
+  weight = 20
+
+[taxonomies]
+  category = "categories"
