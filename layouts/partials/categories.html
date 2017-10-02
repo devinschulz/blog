@@ -1,5 +1,6 @@
 {{ if .Params.Categories }}
   {{ range .Params.Categories }}
-    <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+    {{ $link := . | urlize | printf "%s%s" "/categories/" | printf "%s/" }}
+    <a href="{{ $link }}">{{ . }}</a>
   {{ end }}
 {{ end }}

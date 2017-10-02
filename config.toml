@@ -2,6 +2,7 @@ baseURL = "http://example.org/"
 languageCode = "en"
 title = "Devin Schulz"
 sectionPagesMenu = "main"
+preserveTaxonomyNames = true
 
 [params]
   description = "The description"

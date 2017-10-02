@@ -2,6 +2,9 @@
 title: "Second Post"
 date: 2017-09-30T20:54:03-04:00
 draft: true
+categories:
+  - Go
+  - JavaScript
 ---
 
 # Circumdata belli diurnis undae

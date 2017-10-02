@@ -1,0 +1,22 @@
+{{ define "main" }}
+  {{ $currentURL := .URL }}
+  <h1> Posts about {{ .Title }}</h1>
+  {{ if eq .Kind "taxonomy" }}
+    <ul>
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories  }}
+        {{ $link := $name | urlize | printf "%s%s" "/categories/" | printf "%s/" }}
+        <li>
+          {{ if eq $currentURL $link }}
+            {{ $name }}
+          {{ else }}
+            <a href="{{ $link }}">{{ $name }}</a>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+
+  {{ range .Data.Pages }}
+    {{ partial "summary.html" . }}
+  {{ end }}
+{{ end }}
