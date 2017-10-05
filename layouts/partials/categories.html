@@ -1,6 +1,7 @@
-{{ if .Params.Categories }}
-  {{ range .Params.Categories }}
-    {{ $link := . | urlize | printf "%s%s" "/categories/" | printf "%s/" }}
-    <a href="{{ $link }}">{{ . }}</a>
-  {{ end }}
-{{ end }}
+{{- if .Params.Categories -}}
+  {{- range $index, $category := .Params.Categories -}}
+    {{- if $index -}}, {{ end }}
+    {{- $link := $category | urlize | printf "%s%s" "/categories/" | printf "%s/" -}}
+    <a href="{{ $link }}">{{ $category }}</a>
+  {{- end -}}
+{{- end -}}
