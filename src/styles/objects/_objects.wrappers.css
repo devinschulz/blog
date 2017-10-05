@@ -1,0 +1,19 @@
+/*----------------------------------*\
+    #WRAPPERS
+\*----------------------------------*/
+
+.o-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: var(--global-spacing-tiny);
+  padding-right: var(--global-spacing-tiny);
+}
+
+@media (--tablet-viewport) {
+
+  .o-wrapper {
+    padding-left: var(--global-spacing-small);
+    padding-right: var(--global-spacing-small);
+  }
+
+}

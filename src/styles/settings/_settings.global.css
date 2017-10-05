@@ -6,11 +6,22 @@
   /* Fonts */
 
   --base-font-family: system-ui;
-  --base-font-size: 22px;
+  --base-font-size: 16px;
   --base-font-weight: 400;
   --base-heading-weight: 900;
+  --base-line-height: 24px;
 
   /* Spacing */
 
+  --global-spacing-unit-tiny: 0.25;
+  --global-spacing-unit-small: 0.5;
+  --global-spacing-unit-large: 2;
+  --global-spacing-unit-huge: 4;
+
   --global-spacing-unit: 1.45rem;
+
+  --global-spacing-tiny: calc(var(--global-spacing-unit) * var(--global-spacing-unit-tiny));
+  --global-spacing-small: calc(var(--global-spacing-unit) * var(--global-spacing-unit-small));
+  --global-spacing-large: calc(var(--global-spacing-unit) * var(--global-spacing-unit-large));
+  --global-spacing-huge: calc(var(--global-spacing-unit) * var(--global-spacing-unit-huge));
 }

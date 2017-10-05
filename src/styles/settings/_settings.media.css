@@ -8,10 +8,14 @@
   --wide: 1300px;
 }
 
+/* TODO: Investigate why setting each value as a variable results in a circular
+ *       definition error.
+ */
+
 @custom-media --tablet-viewport (min-width: 740px);
-@custom-media --only-tablet-viewport (width >= var(--tablet) and width <= var(--desktop));
+@custom-media --only-tablet-viewport (width >= 740px and width < 980px);
 
-@custom-media --desktop-viewport (min-width: var(--desktop));
-@custom-media --only-desktop-viewport (width >= var(--deskop) and width <= var(--wide));
+@custom-media --desktop-viewport (min-width: 980px);
+@custom-media --only-desktop-viewport (width >= 980px and width < 1300px);
 
-@custom-media --wide-viewport (min-width: var(--wide));
+@custom-media --wide-viewport (min-width: 1300px);
