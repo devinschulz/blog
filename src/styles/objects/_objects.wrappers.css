@@ -17,3 +17,11 @@
   }
 
 }
+
+@media (--desktop-viewport) {
+
+  .o-wrapper {
+    max-width: 1000px
+  }
+
+}
