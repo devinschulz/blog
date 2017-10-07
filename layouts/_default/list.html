@@ -1,6 +1,10 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ range .Data.Pages }}
-    {{ partial "summary.html" . }}
-  {{ end }}
+  <div class="o-wrapper">
+    <div class="o-layout">
+      <h1 class="o-layout__item--large">{{ .Title }}</h1>
+    </div>
+    {{ range .Data.Pages }}
+      {{ partial "summary.html" . }}
+    {{ end }}
+  </div>
 {{ end }}

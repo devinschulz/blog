@@ -1,7 +1,9 @@
 {{ define "main" }}
 
-{{ range where .Pages "Section" "posts" }}
-  {{ partial "summary" . }}
-{{ end }}
+  <div class="o-wrapper">
+    {{ range where .Pages "Section" "posts" }}
+      {{ partial "summary" . }}
+    {{ end }}
+  </div>
 
 {{ end }}

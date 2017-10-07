@@ -1,13 +1,22 @@
 {{ define "main" }}
-  <header>
-    <h1>{{ .Title}}</h1>
-    <p>
-      <time datetime="{{ .Date }}">{{ .Date.Format "January 2, 2006" }}</time>
-      {{ partial "categories.html" . }}
-    </p>
-  </header>
-  {{ .Content }}
-  <aside>
-    {{ .TableOfContents }}
-  </aside>
+  <article class="c-article o-wrapper" itemscope itemtype="http://schema.org/BlogPosting">
+    {{ partial "post_meta.html" . }}
+    <div class="o-layout">
+      <header class="c-article__header o-layout__item--large">
+        <h1 class="c-article__title" itemprop="name headline">{{ .Title}}</h1>
+        <p class="c-article__meta">
+          <time class="c-article__date" datetime="{{ .Date }}" itemprop="datePublished">
+            {{- .Date.Format "January 2, 2006" -}}
+          </time>
+          {{ partial "categories.html" . }}
+        </p>
+      </header>
+      <div itemprop="articleBody" class="c-article__content o-layout__item--small">
+        {{ .Content }}
+      </div>
+    </div>
+    <aside>
+      {{ .TableOfContents }}
+    </aside>
+  </article>
 {{ end }}
