@@ -29,7 +29,7 @@
 @media (--tablet-viewport) {
 
   .o-layout__item--small {
-    grid-column: 2 / span 9;
+    grid-column: 2 / span 8;
   }
 
 }
