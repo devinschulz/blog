@@ -1,11 +1,15 @@
 baseURL = "http://example.org/"
+enableRobotsTXT = true
+googleAnalytics = ""
 languageCode = "en"
-title = "Devin Schulz"
-sectionPagesMenu = "main"
+metaDataFormat = "toml"
 preserveTaxonomyNames = true
+sectionPagesMenu = "main"
+title = "Devin Schulz"
 
 [params]
   description = "The description"
+  author = "Devin Schulz"
 
 [[menu.main]]
   name = "Posts"
