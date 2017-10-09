@@ -6,13 +6,15 @@ const postcss = require('gulp-postcss')
 const precss = require('precss')
 const plumber = require('gulp-plumber')
 
+const { isProduction } = require('./env')
+
 const plugins = [
   atImport(),
   precss(),
   cssnext()
 ]
 
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   plugins.push(cssnano())
 }
 
