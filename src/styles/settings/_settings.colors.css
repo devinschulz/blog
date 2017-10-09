@@ -1,10 +1,15 @@
 /*----------------------------------*\
     #COLORS
 \*----------------------------------*/
+
+/**
+ * All color variable names are generated from http://chir.ag/projects/name-that-color
+ */
+
 :root {
-  --color-brand: #0055FF;
-  --color-dark: #2C3645;
-  --color-dark-mid: #4A5669;
-  --color-dark-light: #627792;
-  --color-gray-light: color(#A9ADB3, alpha(-80%));
+  --color-ribbon-blue: #0055FF;
+  --color-ebony-clay: #2C3645;
+  --color-florid: #4A5669;
+  --color-lynch: #627792;
+  --color-aluminium: color(#A9ADB3 alpha(-80%));
 }

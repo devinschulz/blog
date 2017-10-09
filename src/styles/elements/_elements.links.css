@@ -4,7 +4,7 @@
 
 a {
   text-decoration: none;
-  color: var(--color-brand);
+  color: var(--color-ribbon-blue);
   text-decoration-skip: ink;
 
   &:--enter {
