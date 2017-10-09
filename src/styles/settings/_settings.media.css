@@ -12,6 +12,8 @@
  *       definition error.
  */
 
+@custom-media --mobile-viewport-only (max-width: 739px);
+
 @custom-media --tablet-viewport (min-width: 740px);
 @custom-media --only-tablet-viewport (width >= 740px and width < 980px);
 
