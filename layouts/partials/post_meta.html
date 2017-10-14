@@ -1,8 +1,8 @@
 {{- if .FuzzyWordCount }}
   <meta itemprop="wordCount" content="{{ .FuzzyWordCount }}">
 {{- end -}}
-{{- if .Site.Params.Author }}
+{{- with $.Site.Author.name }}
   <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="author" content="{{ .Site.Params.Author }}">
+    <meta itemprop="author" content="{{ . }}">
   </span>
 {{ end }}
