@@ -3,45 +3,14 @@
 \*----------------------------------*/
 
 .o-layout {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-@media (--tablet-viewport) {
-
-  .o-layout {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: 20px;
-  }
-
-}
-
-.o-layout__item {
-  box-sizing: border-box;
-}
-
-.o-layout__item--small {
-
+  lost-flex-container: row;
+  width: 100%;
 }
 
 @media (--tablet-viewport) {
 
   .o-layout__item--small {
-    grid-column: 2 / span 8;
-  }
-
-}
-
-.o-layout__item--large {
-
-}
-
-@media (--tablet-viewport) {
-
-  .o-layout__item--large {
-    grid-column: 2 / span 10;
+    lost-column: 8/10;
   }
 
 }

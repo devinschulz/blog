@@ -1,0 +1,28 @@
+<footer class="footer o-container">
+  <div class="o-layout">
+    {{ block "footer" . }} {{ end }}
+    <ul class="footer__list">
+      {{ range .Site.Menus.footer }}
+        <li class="footer__item">
+          <a
+            class="footer__link t-inverted-link"
+            href="{{ .URL }}"
+            {{ if or (eq .Identifier "rss") (eq .Identifier "sitemap") }}
+              type="application/rss+xml"
+              target="_blank"
+            {{ end }}
+            >
+            {{- .Name -}}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+    <ul class="footer__list">
+      {{ range .Site.Menus.social }}
+        <li class="footer__item">
+          <a class="footer__link t-inverted-link" href="{{ .URL }}">{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</footer>

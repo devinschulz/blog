@@ -1,23 +1,12 @@
 /*----------------------------------*\
     #MEDIA
 \*----------------------------------*/
-:root {
-  --mobile: 320px;
-  --tablet: 740px;
-  --desktop: 980px;
-  --wide: 1300px;
-}
+@custom-media --mobile-viewport-only (max-width: 46.1875rem);
 
-/* TODO: Investigate why setting each value as a variable results in a circular
- *       definition error.
- */
+@custom-media --tablet-viewport (min-width: 46.25rem);
+@custom-media --only-tablet-viewport (width >= 46.25rem and width < 61.25rem);
 
-@custom-media --mobile-viewport-only (max-width: 739px);
+@custom-media --desktop-viewport (min-width: 61.25rem);
+@custom-media --only-desktop-viewport (width >= 61.25rem and width < 81.25rem);
 
-@custom-media --tablet-viewport (min-width: 740px);
-@custom-media --only-tablet-viewport (width >= 740px and width < 980px);
-
-@custom-media --desktop-viewport (min-width: 980px);
-@custom-media --only-desktop-viewport (width >= 980px and width < 1300px);
-
-@custom-media --wide-viewport (min-width: 1300px);
+@custom-media --wide-viewport (min-width: 81.25rem);

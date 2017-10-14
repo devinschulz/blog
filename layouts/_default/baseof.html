@@ -13,7 +13,7 @@
     <main>
       {{ block "main" . }} {{ end }}
     </main>
-    {{ block "footer" . }} {{ end }}
+    {{ partial "footer.html" . }}
     <script src="{{ "scripts.js" | relURL }}"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 <nav class="c-main-nav js-main-nav" role=”navigation”>
-  <div class="c-main-nav__wrapper o-wrapper">
+  <div class="c-main-nav__wrapper o-container">
     <div class="c-main-nav__layout o-layout">
       <a href="/" class="c-main-nav__home">
         <svg class="c-main-nav__logo" width="56" height="19" viewBox="0 0 56 19">
@@ -18,7 +18,7 @@
           {{ $isMenuCurrent := $currentPage.IsMenuCurrent "main" . }}
           {{ $hasMenuCurrent := $currentPage.HasMenuCurrent "main" . }}
           <a
-            class="c-main-nav__link{{ if or $isMenuCurrent $hasMenuCurrent }} c-main-nav__link--active{{ end }}"
+            class="c-main-nav__link{{ if or $isMenuCurrent $hasMenuCurrent }} c-main-nav__link--active t-inverted-link--active{{ end }} t-inverted-link"
             href="{{ .URL }}"
             itemprop="url"
             role="menuitem"

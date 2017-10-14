@@ -7,15 +7,70 @@ preserveTaxonomyNames = true
 sectionPagesMenu = "main"
 title = "Devin Schulz"
 
+[author]
+  name = "Devin Schulz"
+
 [params]
   description = "The description"
-  author = "Devin Schulz"
 
 [[menu.main]]
   name = "Posts"
   identifier = "posts"
   url = "/posts/"
   weight = 20
+
+[[menu.footer]]
+  name = "Posts"
+  identifier = "posts"
+  url = "/posts/"
+  weight = 10
+[[menu.footer]]
+  name = "About"
+  identifier = "about"
+  url = "/about/"
+  weight = 20
+[[menu.footer]]
+  name = "Work"
+  identifier = "work"
+  url = "/work/"
+  weight = 30
+[[menu.footer]]
+  name = "Terms"
+  identifier = "terms"
+  url = "/terms/"
+  weight = 40
+[[menu.footer]]
+  name = "Privacy"
+  identifier = "privacy"
+  url = "/privacy/"
+  weight = 50
+[[menu.footer]]
+  name = "Sitemap"
+  identifier = "sitemap"
+  url = "/sitemap.xml"
+  weight = 60
+[[menu.footer]]
+  name = "RSS"
+  identifier = "rss"
+  url = "/posts/index.xml"
+  weight = 70
+
+[[menu.social]]
+  name = "Github"
+  url = "https://github.com/devinschulz"
+  weight = 10
+[[menu.social]]
+  name = "Twitter"
+  url = "https://twitter.com/devinschulz_"
+  weight = 20
+[[menu.social]]
+  name = "Dribbble"
+  url = "https://dribbble.com/idev"
+  weight = 30
+[[menu.social]]
+  name = "LinkedIn"
+  url = "https://www.linkedin.com/in/devinschulz"
+  weight = 40
 
 [taxonomies]
   category = "categories"

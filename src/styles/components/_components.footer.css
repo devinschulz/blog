@@ -1,0 +1,21 @@
+/*----------------------------------*\
+    #FOOTER
+\*----------------------------------*/
+
+.footer {
+
+}
+
+.footer__list {
+  list-style: none;
+  line-height: calc(var(--base-line-height) * 1.5);
+  lost-column: 2/6;
+}
+
+@media (--tablet-viewport) {
+
+  .footer__list {
+    lost-column: 2/10;
+  }
+
+}

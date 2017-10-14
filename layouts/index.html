@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-  <div class="o-wrapper">
+  <div class="o-container">
     {{ range where .Pages "Section" "posts" }}
       {{ partial "summary" . }}
     {{ end }}

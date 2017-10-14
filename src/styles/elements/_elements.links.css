@@ -6,6 +6,7 @@ a {
   text-decoration: none;
   color: var(--color-ribbon-blue);
   text-decoration-skip: ink;
+  transition: all 200ms cubic-bezier(.165, .84, .44, 1);
 
   &:--enter {
     text-decoration: underline;

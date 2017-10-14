@@ -2,19 +2,13 @@
     #PAGE
 \*----------------------------------*/
 html {
-  font-size: 1em; /* 16px */
-}
-
-@media (--tablet-viewport) {
-
-  html {
-    font-size: 1.125em; /* 18px */
-  }
-
+  font-size: 16px;
 }
 
 body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: var(--color-florid);
   font-family: var(--base-font-family);
   line-height: 1.5;
-  color: var(--color-florid);
 }

@@ -1,0 +1,28 @@
+/*----------------------------------*\
+    #TRUMPS LINKS
+\*----------------------------------*/
+
+.t-default-link {
+  color: var(--color-ribbon-blue);
+
+  &:--active {
+
+  }
+
+}
+
+.t-inverted-link {
+  color: var(--color-cadet-blue);
+
+  &.t-inverted-link--active {
+    color: var(--color-ebony-clay);
+  }
+
+  &:--active {
+    color: var(--color-ebony-clay);
+  }
+
+}
+
+
+

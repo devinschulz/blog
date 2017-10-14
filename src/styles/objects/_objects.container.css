@@ -1,0 +1,24 @@
+/*----------------------------------*\
+    #CONTAINER
+\*----------------------------------*/
+
+.o-container {
+  margin: 0 auto;
+  padding: 0 4vw;
+}
+
+@media (--tablet-viewport) {
+
+  .o-container {
+    padding: 0 8vw;
+  }
+
+}
+
+@media (--desktop-viewport) {
+
+  .o-container {
+    lost-center: 48.75rem 0;
+  }
+
+}
