@@ -1,0 +1,24 @@
+/*----------------------------------*\
+    #MARGINS
+\*----------------------------------*/
+
+.u-margin-bottom-none {
+  margin-bottom: 0;
+}
+
+.u-margin-bottom--tiny {
+  margin-bottom: var(--global-spacing-tiny);
+}
+
+.u-margin-bottom--small {
+  margin-bottom: var(--global-spacing-small);
+}
+
+.u-margin-bottom--large {
+  margin-bottom: var(--global-spacing-large);
+}
+
+.u-margin-bottom--huge {
+  margin-bottom: var(--global-spacing-huge);
+}
+
