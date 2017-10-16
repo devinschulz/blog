@@ -60,7 +60,7 @@
     display: inline-block;
 
     + li {
-      margin-left: var(--global-spacing-small);
+      margin-left: var(--global-spacing-medium);
     }
 
   }
