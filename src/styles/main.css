@@ -65,7 +65,9 @@
  */
 @import "components/_components.navigation";
 @import "components/_components.article";
+@import "components/_components.taxonomy";
 @import "components/_components.footer";
+@import "components/_components.pills";
 
 
 
@@ -84,3 +86,4 @@
  */
 @import "utilities/_utilities.no-scroll";
 @import "utilities/_utilities.margins";
+@import "utilities/_utilities.visually-hidden";

@@ -1,0 +1,28 @@
+/*----------------------------------*\
+    #TAXONOMY
+\*----------------------------------*/
+
+.c-taxonomy__list {
+
+  &:before {
+    background: var(--color-aluminium);
+    content: "";
+    display: block;
+    height: 1px;
+    margin: var(--global-spacing-large) 0;
+    width: 100%;
+  }
+
+}
+
+@media (--tablet-viewport) {
+
+  .c-taxonomy__list {
+
+    &:before {
+      lost-column: 8/10;
+    }
+
+  }
+
+}

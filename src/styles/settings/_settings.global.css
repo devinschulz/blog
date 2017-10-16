@@ -22,6 +22,7 @@
 
   --global-spacing-tiny: calc(var(--global-spacing-unit) * var(--global-spacing-unit-tiny));
   --global-spacing-small: calc(var(--global-spacing-unit) * var(--global-spacing-unit-small));
+  --global-spacing-medium: var(--global-spacing-unit);
   --global-spacing-large: calc(var(--global-spacing-unit) * var(--global-spacing-unit-large));
   --global-spacing-huge: calc(var(--global-spacing-unit) * var(--global-spacing-unit-huge));
 }

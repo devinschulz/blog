@@ -1,27 +1,28 @@
+{{ define "title" }}Posts about {{ .Title }} | {{ .Site.Title }}{{ end }}
 {{ define "main" }}
   {{ $currentURL := .URL }}
-  <div class="o-container">
-    <div class="o-layout">
-      <div class="o-layout__item--large">
-        <h1> Posts about {{ .Title }}</h1>
-        {{ if eq .Kind "taxonomy" }}
-          <ul>
+  <section class="c-taxonomy o-container">
+    <header class="o-layout">
+      <h1> Posts about <span class="u-visually-hidden">{{ .Title }}</span></h1>
+      <div class="o-layout__item--small">
+        <nav role="navigation">
+          <ul class="c-nav-pills u-margin-bottom-none">
             {{ range $name, $taxonomy := .Site.Taxonomies.categories  }}
               {{ $link := $name | urlize | printf "%s%s" "/categories/" | printf "%s/" }}
-              <li>
-                {{ if eq $currentURL $link }}
-                  {{ $name }}
-                {{ else }}
-                  <a href="{{ $link }}">{{ $name }}</a>
-                {{ end }}
+              <li class="c-nav-pills__item">
+                <a class="js-categories c-nav-pills__link{{ if eq $currentURL $link}} c-nav-pills__active{{ end }}" href="{{ $link }}">
+                  {{- $name -}}
+                </a>
               </li>
             {{ end }}
           </ul>
-          {{ end }}
+        </nav>
       </div>
+    </header>
+    <div class="c-taxonomy__list">
+      {{ range .Data.Pages }}
+        {{ partial "summary.html" . }}
+      {{ end }}
     </div>
-    {{ range .Data.Pages }}
-      {{ partial "summary.html" . }}
-    {{ end }}
-  </div>
+  </section>
 {{ end }}
