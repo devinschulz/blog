@@ -135,15 +135,10 @@
 
 }
 
-@media (--tablet-viewport) {
-
-  .c-main-nav__home {
-
-  }
-
+.c-main-nav__home {
+  display: flex;
+  align-items: center;
 }
-
-
 
 .c-main-nav__link {
 
