@@ -161,7 +161,7 @@
   .c-main-nav__link {
 
     + .c-main-nav__link {
-      margin-left: var(--global-spacing-small);
+      margin-left: var(--global-spacing-medium);
     }
 
   }
