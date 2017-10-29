@@ -5,7 +5,7 @@
 .c-taxonomy__list {
 
   &:before {
-    background: var(--color-aluminium);
+    background: var(--color-athens-gray);
     content: "";
     display: block;
     height: 1px;

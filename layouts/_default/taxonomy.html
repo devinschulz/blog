@@ -6,11 +6,11 @@
       <h1> Posts about <span class="u-visually-hidden">{{ .Title }}</span></h1>
       <div class="o-layout__item--small">
         <nav role="navigation">
-          <ul class="c-nav-pills u-margin-bottom-none">
+          <ul class="c-categories u-margin-bottom-none">
             {{ range $name, $taxonomy := .Site.Taxonomies.categories  }}
               {{ $link := $name | urlize | printf "%s%s" "/categories/" | printf "%s/" }}
-              <li class="c-nav-pills__item">
-                <a class="js-categories c-nav-pills__link{{ if eq $currentURL $link}} c-nav-pills__active{{ end }}" href="{{ $link }}">
+              <li class="c-categories__item">
+                <a class="c-categories__link c-categories__link--large{{ if eq $currentURL $link}} c-categories__link--active{{ end }}" href="{{ $link }}">
                   {{- $name -}}
                 </a>
               </li>

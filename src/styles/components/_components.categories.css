@@ -1,0 +1,37 @@
+/*----------------------------------*\
+    #CATEGORIES
+\*----------------------------------*/
+
+.c-categories {
+  list-style: none;
+  margin-left: 0;
+}
+
+.c-categories__item {
+  display: inline-block;
+
+  + .c-categories__item {
+    margin-left: var(--global-spacing-small);
+  }
+
+}
+
+.c-categories__link {
+  background: var(--color-aluminium);
+  border-radius: 5rem;
+  color: var(--color-ebony-clay);
+  padding: var(--global-spacing-tiny) var(--global-spacing-small);
+
+  &.c-categories__link--active,
+  &:--enter {
+    background-color: var(--color-ebony-clay);
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+}
+
+.c-categories__link--large {
+  font-size: 1.2rem;
+  padding: var(--global-spacing-small) var(--global-spacing-medium);
+}

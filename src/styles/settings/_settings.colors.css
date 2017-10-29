@@ -7,12 +7,12 @@
  */
 
 :root {
-  --color-aluminium: color(#A9ADB3 alpha(-80%));
-  --color-athens-gray: #F6F6F7;
+  --color-aluminium: #F4F5F6;
+  --color-athens-gray: #E5E9EE;
   --color-cadet-blue: #9AA8BE;
-  --color-ebony-clay: #2C3645;
-  --color-florid: #4A5669;
-  --color-lynch: #627792;
+  --color-ebony-clay: #3C424F;
+  --color-florid: #686B77;
+  --color-lynch: #969FAD;
   --color-ribbon-blue: #05F;
   --color-white: #FFF;
 }

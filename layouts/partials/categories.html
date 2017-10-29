@@ -1,7 +1,10 @@
 {{- if .Params.Categories -}}
-  {{- range $index, $category := .Params.Categories -}}
-    {{- if $index -}}, {{ end }}
-    {{- $link := $category | urlize | printf "%s%s" "/categories/" | printf "%s/" -}}
-    <a href="{{ $link }}">{{ $category }}</a>
-  {{- end -}}
+  <ul class="c-categories">
+    {{- range sort .Params.Categories -}}
+      <li class="c-categories__item">
+        {{- $link := . | urlize | printf "%s%s" "/categories/" | printf "%s/" -}}
+        <a href="{{ $link }}" class="c-categories__link">{{ . }}</a>
+      </li>
+    {{- end -}}
+  </ul>
 {{- end -}}
