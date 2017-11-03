@@ -6,6 +6,7 @@ metaDataFormat = "toml"
 preserveTaxonomyNames = true
 sectionPagesMenu = "main"
 title = "Devin Schulz"
+summaryLength = 20
 
 [author]
   name = "Devin Schulz"
@@ -71,6 +72,10 @@ title = "Devin Schulz"
   name = "LinkedIn"
   url = "https://www.linkedin.com/in/devinschulz"
   weight = 40
+[[menu.social]]
+  name = "Keybase"
+  url = "https://keybase.io/devinschulz"
+  weight = 50
 
 [taxonomies]
   category = "categories"
