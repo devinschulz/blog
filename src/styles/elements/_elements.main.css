@@ -2,7 +2,7 @@ main {
   margin-bottom: var(--global-spacing-large);
 }
 
-@media (--desktop-viewport) {
+@media (--tablet-viewport) {
 
   main {
     margin-bottom: var(--global-spacing-huge);

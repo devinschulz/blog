@@ -20,15 +20,11 @@
 
 }
 
-@media (--desktop-viewport) {
+@media (--tablet-viewport) {
 
   .c-main-nav {
-    margin-bottom: var(--global-spacing-huge);
+    margin: var(--global-spacing-medium) 0 var(--global-spacing-huge);
   }
-
-}
-
-.c-main-nav__wrapper {
 
 }
 
@@ -40,10 +36,6 @@
 
 }
 
-.c-main-nav__layout {
-
-}
-
 @media (--mobile-viewport-only) {
 
   .c-main-nav__layout {
@@ -51,6 +43,14 @@
     grid-template-columns: 56px auto;
     grid-template-rows: 25px auto;
     height: 100%;
+  }
+
+}
+
+@media (--tablet-viewport) {
+
+  .c-main-nav__layout {
+    lost-column: 8/10;
   }
 
 }
@@ -161,7 +161,7 @@
   .c-main-nav__link {
 
     + .c-main-nav__link {
-      margin-left: var(--global-spacing-medium);
+      margin-left: var(--global-spacing-large);
     }
 
   }

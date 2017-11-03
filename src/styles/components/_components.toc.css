@@ -1,0 +1,15 @@
+/*----------------------------------*\
+    #TABLE OF CONTENTS
+\*----------------------------------*/
+
+.c-toc {
+  background: var(--color-aluminium);
+  width: 100%;
+  margin-bottom: var(--global-spacing-unit);
+  padding: var(--global-spacing-medium);
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+

@@ -1,0 +1,49 @@
+<!-- https://disaev.me/p/blog-engines-and-static-site-generators/#table-of-contents -->
+<!-- https://github.com/gohugoio/hugo/issues/1778 -->
+<!-- ignore empty links with + -->
+{{ $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content }}
+<!-- at least one header to link to -->
+{{ $has_headers := ge (len $headers) 1 }}
+<!-- a post can explicitly disable Table of Contents with toc: false -->
+{{ $show_toc := (ne .Params.toc "false") }}
+{{ if and $has_headers $show_toc }}
+  <aside class="c-toc">
+    <header class="c-toc__header">
+      <h2 class="c-toc__title">Table of Contents</h2>
+    </header>
+    {{ range $i, $header := $headers }}
+      {{ $headerLevel := index (findRE "[1-6]" . ) 0 }}
+      {{ $headerLevel := len (seq $headerLevel ) }}
+
+      {{ $anchorID := ($header | plainify | htmlEscape | urlize) }}
+
+      {{ $prevHeaderLevel := index (findRE "[1-6]" (index $headers (sub $i 1)) 1) 0 }}
+      {{ $prevHeaderLevel := len (seq $prevHeaderLevel) }}
+
+      {{ if gt $headerLevel $prevHeaderLevel }}
+        {{ range seq (sub $headerLevel $prevHeaderLevel) }}
+          <ul class="nav">
+        {{end}}
+      {{end}}
+
+      {{ if lt $headerLevel $prevHeaderLevel }}
+        {{ range seq (sub $prevHeaderLevel $headerLevel) }}
+          </li></ul></li>
+        {{end}}
+      {{end}}
+
+      {{ if eq $headerLevel $prevHeaderLevel }}
+        </li>
+      {{end}}
+
+      <li>
+        <a href="#{{ $anchorID }}">{{ $header | plainify | htmlEscape }}</a>
+
+      {{ if eq $i (sub (len $headers) 1) }}
+        {{ range seq (sub $prevHeaderLevel $headerLevel) }}
+          </li></ul></li>
+        {{end}}
+      {{end}}
+    {{ end }}
+  </aside>
+{{ end }}

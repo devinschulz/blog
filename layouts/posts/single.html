@@ -24,12 +24,10 @@
           </li>
         </ul>
       </header>
+      {{ partial "toc.html" . }}
       <div itemprop="articleBody" class="c-article__content">
         {{ .Content }}
       </div>
     </div>
-    <aside>
-      {{ .TableOfContents }}
-    </aside>
   </article>
 {{ end }}

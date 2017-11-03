@@ -4,20 +4,12 @@
 
 .t-default-link {
   color: var(--color-ribbon-blue);
-
-  &:--active {
-
-  }
-
 }
 
 .t-inverted-link {
-  color: var(--color-cadet-blue);
+  color: var(--color-lynch);
 
-  &.t-inverted-link--active {
-    color: var(--color-ebony-clay);
-  }
-
+  &.t-inverted-link--active,
   &:--active {
     color: var(--color-ebony-clay);
   }
