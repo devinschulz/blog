@@ -7,8 +7,6 @@ categories:
   - HTML
 ---
 
-## Me iactura Erectheus Thoantis bimatrem seposuit fati
-
 Lorem markdownum quoniam *naturae coniuge* fontibus loquendo figuras, nituntur.
 *In pericula*, margine memor tanti incumbens dixi **totosque pars** timuitque.
 Si reque echidnae tellus; globos mihi tota pressit lacrimas *Oceanum*.

@@ -7,10 +7,6 @@ categories:
   - JavaScript
 ---
 
-# Circumdata belli diurnis undae
-
-## Haec quis aurea nebulas
-
 Lorem markdownum rogat volucres tempora, poterit se requiret nomina terras
 lugebitis ardet lutulenta [mater](http://et.org/aera) lacertis pars? Nec apes
 qui amantem, ab haesit vidi. More descenderat Pana varias **quae**. Ibi agros
