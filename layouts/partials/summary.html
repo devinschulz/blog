@@ -1,18 +1,18 @@
 <article class="c-article c-article--summary" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
   {{ partial "post_meta.html" . }}
   <div class="o-layout">
-    <header class="c-article__header o-layout__item--large">
-      <h2 itemprop="headline">
+    <header class="c-article__header">
+      <h2 itemprop="headline" class="c-article__title">
         <a itemprop="url" href="{{ .Permalink }}">
           {{- .Title -}}
         </a>
       </h2>
     </header>
-    <p class="c-article__body o-layout__item--small" itemprop="articleBody">
+    <p class="c-article__body" itemprop="articleBody">
       {{- .Summary -}}
     </p>
-    <footer class="c-article__footer o-layout__item--small">
-      <ul class="c-article__meta u-margin-bottom-none">
+    <footer class="c-article__footer">
+      <ul class="c-article__meta u-small-text u-inline-list">
         <li class="c-article__date">
           <time datetime="{{ .Date }}" itemprop="datePublished">
             {{- .Date.Format "January 2, 2006" -}}

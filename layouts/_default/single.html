@@ -1,12 +1,6 @@
 {{ define "main" }}
   <div class="o-container">
-    <div class="o-layout o-layout__item--large">
-      <h1>{{ .Title}}</h1>
-    </div>
-    <div class="o-layout">
-      <div class="o-layout__item--small">
-        {{- .Content -}}
-      </div>
-    </div>
+    <h1>{{ .Title}}</h1>
+    {{- .Content -}}
   </div>
 {{ end }}

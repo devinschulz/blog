@@ -1,11 +1,10 @@
-<footer class="footer o-container">
-  <div class="o-layout">
-    {{ block "footer" . }} {{ end }}
-    <ul class="footer__list">
+<footer class="c-footer o-container">
+  <div class="c-footer__list-group">
+    <ul class="c-footer__list u-small-text">
       {{ range .Site.Menus.footer }}
-        <li class="footer__item">
+        <li class="c-footer__item">
           <a
-            class="footer__link t-inverted-link"
+            class="c-footer__link t-inverted-link"
             href="{{ .URL }}"
             {{ if or (eq .Identifier "rss") (eq .Identifier "sitemap") }}
               type="application/rss+xml"
@@ -17,12 +16,17 @@
         </li>
       {{ end }}
     </ul>
-    <ul class="footer__list">
+    <ul class="c-footer__list u-small-text">
       {{ range .Site.Menus.social }}
-        <li class="footer__item">
-          <a class="footer__link t-inverted-link" href="{{ .URL }}">{{ .Name }}</a>
+        <li class="c-footer__item">
+          <a class="c-footer__link t-inverted-link" href="{{ .URL }}" target="_blank" rel="nofollow">{{ .Name }}</a>
         </li>
       {{ end }}
     </ul>
   </div>
+  <p class="c-footer__copyright">
+    <small>Devin Schulz</small>
+    <small>&copy; {{ now.Format "2006"}}</small>
+  </p>
+  {{ block "footer" . }} {{ end }}
 </footer>
