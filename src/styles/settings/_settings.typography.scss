@@ -4,12 +4,6 @@ $base-ratio: $base-line-height / $base-font-size;
 
 $base-display-ratio: 1.2;
 
-$font-typefaces: (
-  'Plain-Regular': (family: 'Plain', weight: 400, style: normal),
-  'Plain-Bold': (family: 'Plain', weight: 600, style: normal),
-  'Plain-Extrabold': (family: 'Plain', weight: 800, style: normal)
-);
-
 $font-family-sans-fallback: sans-serif;
 $font-family-sans: Palanquin, $font-family-sans-fallback;
 $font-family-monospace: 'Inconsolata', 'Menlo', 'Consolas',
