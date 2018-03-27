@@ -1,18 +1,9 @@
 <!doctype html>
 <html lang="{{ .Site.LanguageCode }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ "main.css" | relURL }}" />
-  </head>
+  {{ partial "head.html" . }}
   <body>
     {{ partial "navigation.html" . }}
-    <main>
-      {{ block "main" . }} {{ end }}
-    </main>
+    <main>{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
     <script src="{{ "scripts.js" | relURL }}"></script>
   </body>

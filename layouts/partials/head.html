@@ -1,0 +1,55 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {{- $isHome := .IsHome -}}
+  {{- $siteTitle := .Site.Title -}}
+  {{- with .Title | default $siteTitle }}
+    <title>{{ . }}{{ if not $isHome }} - {{ $siteTitle }}{{ end }}</title>
+    <meta property="og:title" content="{{ . }}" />
+    <meta name="twitter:title" content="{{ . }}" />
+    <meta property="og:title" content="{{ . }}">
+    <meta name="apple-mobile-web-app-title" content="{{ . }}">
+  {{- end }}
+  {{- with .Description | default .Site.Params.description}}
+    <meta name="description" content="{{ . }}">
+    <meta property="og:description" content="{{ . }}">
+    <meta name="twitter:description" content="{{ . | truncate 200 }}">
+  {{- end -}}
+  {{- with .URL | absURL -}}
+    <meta property="og:url" content="{{ . }}">
+    <meta name="twitter:url" content="{{ . }}">
+    <link rel="canonical" href="{{ . }}" />
+  {{- end -}}
+  {{- with .Params.share_img | default .Params.image | default .Site.Params.logo -}}
+    <meta property="og:image" content="{{ . | absURL}}">
+    <meta name="twitter:image" content="{{ . | absURL}}">
+  {{- end -}}
+  {{- with .Site.Author.twitter -}}
+    <meta name="twitter:site" content="@{{ . }}">
+    <meta name="twitter:creator" content="@{{ . }}">
+  {{- end -}}
+  <meta name="twitter:card" content="summary">
+
+  <meta property="fb:app_id" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:locale" content="{{ .Site.LanguageCode }}">
+
+  <meta name="theme-color" content="{{ .Site.Params.brandColor }}">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta name="msapplication-config" content="{{ "/browserconfig.xml" | relURL }}">
+
+  {{ .Hugo.Generator }}
+
+  <link href="" rel="icon" type="image/x-icon"/>
+  <link rel="author" href="{{ "humans.txt" | relURL }}">
+  <link href="https://fonts.googleapis.com/css?family=Palanquin:400,700|Montserrat:700|Lora" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ "main.css" | relURL }}" />
+  <link rel="alternate" href="{{ "/posts/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
+</head>
