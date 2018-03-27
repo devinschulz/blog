@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://devinschulz.com/"
 enableRobotsTXT = true
 googleAnalytics = ""
 languageCode = "en"
@@ -8,17 +8,28 @@ sectionPagesMenu = "main"
 title = "Devin Schulz"
 summaryLength = 20
 
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
 [author]
   name = "Devin Schulz"
+  twitter = "devinschulz_"
 
 [params]
   description = "The description"
+  brandColor = "#4285f4"
+  logo = "images/logo.jpg"
 
 [[menu.main]]
   name = "Posts"
   identifier = "posts"
   url = "/posts/"
   weight = 20
+[[menu.main]]
+  name = "Projects"
+  identifier = "projects"
+  url = "/projects/"
+  weight = 30
 
 [[menu.footer]]
   name = "Posts"
@@ -31,9 +42,9 @@ summaryLength = 20
   url = "/about/"
   weight = 20
 [[menu.footer]]
-  name = "Work"
-  identifier = "work"
-  url = "/work/"
+  name = "Projects"
+  identifier = "projects"
+  url = "/projects/"
   weight = 30
 [[menu.footer]]
   name = "Terms"
