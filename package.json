@@ -8,12 +8,15 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp build",
-    "build:post": "gulp build:post"
+    "build:post": "gulp build:post",
+    "format": "prettier --config .prettierrc --write \"src/**/*.{js,css}\""
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
+    "css-mqpacker": "^6.0.2",
     "cssnano": "^3.10.0",
+    "eyeglass": "^1.4.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-cache-bust": "^1.1.0",
@@ -22,13 +25,16 @@
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.2.1",
     "gulp-uglify": "^3.0.0",
     "lost": "^8.2.0",
-    "normalize.css": "^7.0.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "precss": "^2.0.0",
-    "require-dir": "^0.3.2"
+    "prettier": "^1.11.1",
+    "require-dir": "^0.3.2",
+    "sass-mq": "^4.0.2",
+    "typi": "^3.1.2"
   },
   "dependencies": {}
 }

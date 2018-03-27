@@ -1,0 +1,11 @@
+pre {
+  border: 1px solid #e5e9ee;
+  overflow-x: auto;
+  display: block;
+  padding: 0;
+
+  > code {
+    padding: vr(1);
+    display: inline-block;
+  }
+}

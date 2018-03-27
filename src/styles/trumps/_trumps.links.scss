@@ -1,0 +1,15 @@
+/*----------------------------------*\
+    #TRUMPS LINKS
+\*----------------------------------*/
+
+.t-inverted-link {
+  color: $color-link-alt;
+
+  @include hover-focus {
+    color: $color-link-alt-hover;
+  }
+
+  @include active {
+    color: $color-link-alt-active;
+  }
+}

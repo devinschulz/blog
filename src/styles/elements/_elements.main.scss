@@ -1,0 +1,7 @@
+main {
+  margin-bottom: vr(1);
+
+  @include mq(medium) {
+    margin-bottom: vr(2);
+  }
+}

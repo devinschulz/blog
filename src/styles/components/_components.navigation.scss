@@ -1,0 +1,51 @@
+.c-main-nav {
+  margin-bottom: vr(1);
+  padding: vr(0.25) 0;
+
+  @include mq(medium) {
+    margin-top: vr(2);
+    margin-bottom: vr(2);
+  }
+
+  @include mq(large) {
+    margin-top: vr(2);
+    margin-bottom: vr(3);
+  }
+}
+
+.c-main-nav__wrapper {
+  display: flex;
+}
+
+.c-main-nav__logo-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-main-nav__logo {
+  color: inherit;
+  font-family: $font-family-display;
+  font-weight: $font-weight-display;
+  letter-spacing: -0.025em;
+}
+
+.c-main-nav__subtitle {
+  margin-bottom: 0;
+}
+
+.c-main-nav__links {
+  margin-left: auto;
+
+  a + a {
+    margin-left: vr(0.5);
+
+    @include mq(medium) {
+      margin-left: vr(1);
+    }
+  }
+}
+
+.c-main-nav__link--active {
+  color: $color-active !important;
+  font-weight: $font-weight-default-bold;
+}

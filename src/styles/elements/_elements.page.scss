@@ -1,0 +1,15 @@
+@include typi-init;
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: $font-family-default;
+  font-weight: $font-weight-default;
+  color: $color-text;
+}
+
+::selection {
+  background-color: $color-selection;
+  color: inherit;
+  text-shadow: none;
+}

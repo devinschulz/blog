@@ -1,0 +1,30 @@
+.c-footer {
+  margin-bottom: vr(1);
+
+  @include mq(medium) {
+    margin-bottom: vr(2);
+  }
+}
+
+.c-footer__list-group {
+  display: flex;
+  margin-bottom: vr(1);
+}
+
+.c-footer__list {
+  list-style: none;
+  padding-left: 0;
+  line-height: 2;
+  margin-bottom: 0;
+
+  &:not(:first-child) {
+    margin-left: vr(2);
+  }
+}
+
+.c-footer__copyright {
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0;
+}

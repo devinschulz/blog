@@ -1,0 +1,19 @@
+.c-categories {
+  margin-left: vr(0.25);
+
+  > li {
+    display: inline; /* overwrites .u-inline-list */
+  }
+}
+
+.c-categories__item {
+  .c-categories__link:after {
+    content: ', ';
+  }
+
+  &:last-child {
+    .c-categories__link:after {
+      content: '';
+    }
+  }
+}

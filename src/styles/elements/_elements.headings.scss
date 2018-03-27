@@ -1,0 +1,31 @@
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: $font-family-display;
+  font-weight: $font-weight-display;
+  margin-top: vr(1);
+  margin-bottom: vr(1);
+  color: $color-headings;
+
+  a {
+    color: inherit;
+  }
+}
+
+$headings: h1, h2, h3, h4, h5, h6;
+
+@each $heading in $headings {
+  #{$heading},
+  .#{$heading} {
+    @include typi('#{$heading}');
+  }
+}

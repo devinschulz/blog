@@ -1,0 +1,25 @@
+$black: #000;
+$white: #fff;
+$pipi: #fefeca;
+$bright-gray: #3c424f;
+$pale-sky: #676f7e;
+$athens-gray: #e5e9ee;
+$black-pearl: #061027;
+$mariner: #2164bf;
+$fiord: #4a5669;
+$lynch: #627792;
+
+$color-headings: $bright-gray;
+$color-text: $fiord;
+$color-text-light: $lynch;
+$color-active: $fiord;
+
+$color-link: $mariner;
+$color-link-hover: darken($color-link, 15%);
+$color-link-active: darken($color-link, 25%);
+
+$color-link-alt: $lynch;
+$color-link-alt-hover: darken($color-link-alt, 15%);
+$color-link-alt-active: darken($color-link-alt, 25%);
+
+$color-selection: $pipi;

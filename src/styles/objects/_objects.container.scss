@@ -1,0 +1,13 @@
+.o-container {
+  margin: 0 auto;
+  padding: 0 4vw;
+
+  @include mq(medium) {
+    padding: 0 8vw;
+  }
+
+  @include mq(large) {
+    max-width: vr(24);
+    padding: 0;
+  }
+}
