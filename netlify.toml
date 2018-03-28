@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "hugo"
+command = "hugo && gulp netlify"
 
 [context.production.environment]
 HUGO_VERSION = "0.37.1"
