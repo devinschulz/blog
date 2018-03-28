@@ -6,12 +6,7 @@ const eyeglass = require('eyeglass')
 
 const { isProduction } = require('./env')
 
-const plugins = [
-  require('postcss-cssnext')({
-    browsers: '> 1%, last 2 versions, Firefox ESR, Opera 12.1, not ie <= 10',
-  }),
-  // require('css-mqpacker')(),
-]
+const plugins = []
 
 if (isProduction) {
   plugins.push(require('cssnano')())
