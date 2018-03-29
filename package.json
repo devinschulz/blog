@@ -26,7 +26,7 @@
     "gulp-postcss": "7.0.0",
     "gulp-sass": "3.2.1",
     "gulp-uglify": "3.0.0",
-    "lost": "8.2.0",
+    "lost": "8.2.1",
     "postcss-cssnext": "3.0.2",
     "postcss-import": "11.0.0",
     "precss": "2.0.0",
