@@ -28,7 +28,7 @@
     "gulp-uglify": "3.0.0",
     "lost": "8.2.0",
     "postcss-cssnext": "3.0.2",
-    "postcss-import": "11.0.0",
+    "postcss-import": "11.1.0",
     "precss": "2.0.0",
     "prettier": "1.11.1",
     "require-dir": "0.3.2",
