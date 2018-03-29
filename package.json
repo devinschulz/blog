@@ -31,7 +31,7 @@
     "postcss-import": "11.0.0",
     "precss": "2.0.0",
     "prettier": "1.11.1",
-    "require-dir": "0.3.2",
+    "require-dir": "1.0.0",
     "sass-mq": "4.0.2",
     "typi": "3.1.2"
   },
