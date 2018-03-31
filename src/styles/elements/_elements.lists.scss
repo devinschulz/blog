@@ -1,0 +1,31 @@
+ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: li;
+
+  li {
+    counter-increment: li;
+
+    &::before {
+      content: counter(li);
+    }
+  }
+}
+
+ul {
+  list-style: none;
+
+  li::before {
+    content: '•';
+  }
+}
+
+ul,
+ol {
+  li::before {
+    display: inline-block;
+    color: $color-list-counter;
+    width: 1em;
+    margin-left: -1em;
+  }
+}

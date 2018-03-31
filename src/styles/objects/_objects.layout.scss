@@ -1,0 +1,34 @@
+.o-layout {
+}
+
+.o-layout--extended {
+  margin: vr(1.5) -4vw;
+
+  @include mq(medium) {
+    margin: vr(3) -8vw;
+  }
+
+  @include mq(large) {
+    margin: vr(3) vr(-4);
+  }
+
+  @include mq(xlarge) {
+    margin: vr(4) vr(-5);
+  }
+}
+
+.o-layout--inset {
+  padding: 0 4vw;
+
+  @include mq(medium) {
+    padding: 0 8vw;
+  }
+
+  @include mq(large) {
+    padding: 0 vr(4);
+  }
+
+  @include mq(xlarge) {
+    padding: 0 vr(5);
+  }
+}

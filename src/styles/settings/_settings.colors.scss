@@ -8,13 +8,17 @@ $black-pearl: #061027;
 $mariner: #2164bf;
 $fiord: #4a5669;
 $lynch: #627792;
+$athens-gray: #f6f6f7;
+$medium-purple: #7469e7;
 
 $color-headings: $bright-gray;
 $color-text: $fiord;
 $color-text-light: $lynch;
 $color-active: $fiord;
 
-$color-link: $mariner;
+$color-light-background: $athens-gray;
+
+$color-link: $medium-purple;
 $color-link-hover: darken($color-link, 15%);
 $color-link-active: darken($color-link, 25%);
 
@@ -23,3 +27,5 @@ $color-link-alt-hover: darken($color-link-alt, 15%);
 $color-link-alt-active: darken($color-link-alt, 25%);
 
 $color-selection: $pipi;
+
+$color-list-counter: $medium-purple;

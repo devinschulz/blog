@@ -4,5 +4,10 @@
 
   > li {
     display: inline-block;
+
+    &::before {
+      content: '';
+      display: none;
+    }
   }
 }
