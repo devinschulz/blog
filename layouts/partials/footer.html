@@ -1,6 +1,6 @@
 <footer class="c-footer o-container">
   <div class="c-footer__list-group">
-    <ul class="c-footer__list u-small-text">
+    <ul class="c-footer__list u-small-text t-no-bullet">
       {{ range .Site.Menus.footer }}
         <li class="c-footer__item">
           <a
@@ -16,7 +16,7 @@
         </li>
       {{ end }}
     </ul>
-    <ul class="c-footer__list u-small-text">
+    <ul class="c-footer__list u-small-text t-no-bullet">
       {{ range .Site.Menus.social }}
         <li class="c-footer__item">
           <a class="c-footer__link t-inverted-link" href="{{ .URL }}" target="_blank" rel="nofollow">{{ .Name }}</a>
