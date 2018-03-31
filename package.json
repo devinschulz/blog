@@ -13,8 +13,11 @@
   "devDependencies": {
     "babel-core": "6.26.0",
     "babel-preset-es2015": "6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.1.1",
     "css-mqpacker": "6.0.2",
     "cssnano": "3.10.0",
+    "envify": "^4.1.0",
     "eyeglass": "1.4.1",
     "gulp": "3.9.1",
     "gulp-babel": "7.0.0",
@@ -26,14 +29,17 @@
     "gulp-postcss": "7.0.0",
     "gulp-sass": "3.2.1",
     "gulp-uglify": "3.0.0",
-    "lost": "8.2.0",
     "postcss-cssnext": "3.0.2",
-    "postcss-import": "11.0.0",
     "precss": "2.0.0",
     "prettier": "1.11.1",
     "require-dir": "0.3.2",
     "sass-mq": "4.0.2",
-    "typi": "3.1.2"
+    "typi": "3.1.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "turbolinks": "^5.1.1"
+  }
 }
