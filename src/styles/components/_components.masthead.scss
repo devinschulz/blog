@@ -2,20 +2,47 @@
   align-items: center;
   background-color: $color-light-background;
   display: flex;
-  position: relative;
   height: vr(7);
+  position: relative;
 
   @include mq(medium) {
     height: vr(17);
   }
+
+  @include mq(xlarge) {
+    height: vr(16);
+  }
 }
 
 .c-masthead__pic {
-  position: absolute;
   bottom: 0;
+  position: absolute;
   right: 0;
+  z-index: 2;
+
+  @include mq(xlarge) {
+    right: vr(-1);
+  }
 }
 
+$triangle-width: 408px;
+$triangle-height: 487px;
+
 .c-masthead__shape {
+  height: $triangle-height / 3;
   position: absolute;
+  right: vr(-0.5);
+  top: vr(-1);
+  width: $triangle-width / 3;
+  z-index: 1;
+
+  @include mq(medium) {
+    height: $triangle-height;
+    right: vr(-2);
+    width: $triangle-width;
+  }
+
+  @include mq(xlarge) {
+    right: vr(-3);
+  }
 }
