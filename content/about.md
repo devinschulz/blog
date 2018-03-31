@@ -1,6 +1,7 @@
 ---
 title: About
 description: About me
+type: about
 menu:
   main:
     weight: 10
