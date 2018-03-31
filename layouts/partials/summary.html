@@ -12,16 +12,7 @@
       {{- .Summary -}}
     </p>
     <footer class="c-article__footer">
-      <ul class="c-article__meta u-small-text u-inline-list">
-        <li class="c-article__date">
-          <time datetime="{{ .Date }}" itemprop="datePublished">
-            {{- .Date.Format "January 2, 2006" -}}
-          </time>
-        </li>
-        <li class="c-article__tags" itemprop="keywords">
-          {{ partial "categories.html" . }}
-        </li>
-      </ul>
+      {{ partial "article_meta.html" . }}
     </footer>
   </div>
 </article>
