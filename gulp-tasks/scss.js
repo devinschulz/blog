@@ -9,7 +9,18 @@ const { isProduction } = require('./env')
 const plugins = []
 
 if (isProduction) {
-  plugins.push(require('cssnano')())
+  plugins.push(
+    require('cssnano')({
+      preset: [
+        'default',
+        {
+          discardComments: {
+            removeAll: true,
+          },
+        },
+      ],
+    })
+  )
 }
 
 const sassOptions = {
