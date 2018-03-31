@@ -1,0 +1,21 @@
+.c-masthead {
+  align-items: center;
+  background-color: $color-light-background;
+  display: flex;
+  position: relative;
+  height: vr(7);
+
+  @include mq(medium) {
+    height: vr(17);
+  }
+}
+
+.c-masthead__pic {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.c-masthead__shape {
+  position: absolute;
+}

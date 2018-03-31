@@ -1,0 +1,8 @@
+<header class="masthead u-text-center o-layout o-layout--extended">
+  <h1 class="masthead__title" itemprop="name headline">
+    {{- .Title -}}
+  </h1>
+  {{- if and (eq .Type "posts") (ne .Kind "section") -}}
+    {{ partial "article_meta.html" . }}
+  {{- end -}}
+</header>

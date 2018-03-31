@@ -1,23 +1,6 @@
 {{ define "main" }}
-  {{ $currentURL := .URL }}
   <section class="c-taxonomy o-container">
-    <header class="o-layout">
-      <h1> Posts about <span class="u-visually-hidden">{{ .Title }}</span></h1>
-      <div class="o-layout__item--small">
-        <nav role="navigation">
-          <ul class="c-categories u-margin-bottom-none">
-            {{ range $name, $taxonomy := .Site.Taxonomies.categories  }}
-              {{ $link := $name | urlize | printf "%s%s" "/categories/" | printf "%s/" }}
-              <li class="c-categories__item">
-                <a class="c-categories__link c-categories__link--large{{ if eq $currentURL $link}} c-categories__link--active{{ end }}" href="{{ $link }}">
-                  {{- $name -}}
-                </a>
-              </li>
-            {{ end }}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    {{ partial "masthead.html" . }}
     <div class="c-taxonomy__list">
       {{ range .Data.Pages }}
         {{ partial "summary.html" . }}
