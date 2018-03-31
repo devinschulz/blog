@@ -1,4 +1,4 @@
-<nav class="c-main-nav js-main-nav" role=”navigation”>
+<header class="c-main-nav js-main-nav">
   <div class="c-main-nav__wrapper o-container">
     <div class="c-main-nav__logo-wrapper">
       <a href="/" class="c-main-nav__logo" aria-hidden="true" role="presentation">
@@ -6,7 +6,7 @@
       </a>
       <small class="c-main-nav__subtitle">Design + Code</small>
     </div>
-    <div class="c-main-nav__links u-small-text" role="menubar" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+    <nav class="c-main-nav__links u-small-text" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       {{ $currentPage := . }}
       {{ range .Site.Menus.main }}
         {{ $isMenuCurrent := $currentPage.IsMenuCurrent "main" . }}
@@ -15,12 +15,11 @@
           class="c-main-nav__link{{ if or $isMenuCurrent $hasMenuCurrent }} c-main-nav__link--active t-inverted-link--active{{ end }} t-inverted-link"
           href="{{ .URL }}"
           itemprop="url"
-          role="menuitem"
         >
          <span itemprop="name">{{ .Name }}</span>
         </a>
         {{ end }}
-    </div>
+    </nav>
   </div>
-</nav>
+</header>
 
