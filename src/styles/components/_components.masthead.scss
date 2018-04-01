@@ -17,8 +17,12 @@
 .c-masthead__pic {
   bottom: 0;
   position: absolute;
-  right: 0;
+  right: 4vw;
   z-index: 2;
+
+  @include mq(medium) {
+    right: vr(1);
+  }
 
   @include mq(xlarge) {
     right: vr(-1);
@@ -31,15 +35,18 @@ $triangle-height: 487px;
 .c-masthead__shape {
   height: $triangle-height / 3;
   position: absolute;
-  right: vr(-0.5);
+  right: 0;
   top: vr(-1);
   width: $triangle-width / 3;
   z-index: 1;
 
   @include mq(medium) {
     height: $triangle-height;
-    right: vr(-2);
     width: $triangle-width;
+  }
+
+  @include mq(large) {
+    right: vr(-2);
   }
 
   @include mq(xlarge) {

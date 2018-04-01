@@ -1,19 +1,36 @@
 .o-layout {
 }
 
-.o-layout--extended {
-  margin: vr(1.5) -4vw;
+.o-layout--extended-width {
+  margin-left: -4vw;
+  margin-right: -4vw;
 
   @include mq(medium) {
-    margin: vr(3) -8vw;
+    margin-left: -8vw;
+    margin-right: -8vw;
   }
 
   @include mq(large) {
-    margin: vr(3) vr(-4);
+    margin-left: vr(-4);
+    margin-right: vr(-4);
   }
 
   @include mq(xlarge) {
-    margin: vr(4) vr(-5);
+    margin-left: vr(-5);
+    margin-right: vr(-5);
+  }
+}
+
+.o-layout--extended {
+  @extend .o-layout--extended-width;
+  margin-bottom: vr(1);
+
+  @include mq(medium) {
+    margin-bottom: vr(4);
+  }
+
+  @include mq(large) {
+    margin-bottom: vr(3);
   }
 }
 
@@ -30,5 +47,20 @@
 
   @include mq(xlarge) {
     padding: 0 vr(5);
+  }
+}
+
+.o-layout--padded {
+  padding-top: vr(2);
+  padding-bottom: vr(2);
+  margin-bottom: vr(2);
+
+  @include mq(medium) {
+    padding-top: vr(2);
+    margin-bottom: vr(4);
+  }
+
+  @include mq(large) {
+    padding-top: vr(2);
   }
 }

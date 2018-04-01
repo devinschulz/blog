@@ -1,15 +1,10 @@
 .c-main-nav {
   margin-bottom: vr(1);
-  padding: vr(0.25) 0;
+  padding: vr(1) 0;
 
   @include mq(medium) {
     margin-top: vr(2);
     margin-bottom: vr(2);
-  }
-
-  @include mq(large) {
-    margin-top: vr(2);
-    margin-bottom: vr(3);
   }
 }
 

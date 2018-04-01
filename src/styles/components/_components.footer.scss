@@ -1,8 +1,18 @@
 .c-footer {
   margin-bottom: vr(1);
+  margin-top: vr(1.5);
 
   @include mq(medium) {
     margin-bottom: vr(2);
+    margin-top: vr(3);
+  }
+
+  @include mq(xlarge) {
+    margin-bottom: vr(3);
+  }
+
+  @include mq(xlarge) {
+    margin-top: vr(4);
   }
 }
 
