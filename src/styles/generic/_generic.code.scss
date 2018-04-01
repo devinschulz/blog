@@ -1,3 +1,9 @@
+.chroma {
+  .highlight & {
+    @extend .o-layout--extended-width;
+  }
+}
+
 /* LineTableTD */
 .chroma .lntd {
   vertical-align: top;
