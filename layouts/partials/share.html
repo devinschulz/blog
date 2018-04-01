@@ -1,0 +1,19 @@
+<ul class="c-share u-inline-list">
+  <li class="c-share__item">
+    {{- $link := (querify "url" .Permalink "via" .Site.Author.twitter "text" .Title) | safeURL -}}
+    <a class="c-share__link" href="https://twitter.com/intent/tweet?{{ $link }}">Twitter</a>
+  </li>
+  <li class="c-share__item">
+    {{- $link := (querify "u" .Permalink) | safeURL -}}
+    <a class="c-share__link" href="https://www.facebook.com/sharer/sharer.php?{{ $link }}">Facebook</a>
+  </li>
+  <li class="c-share__item">
+    {{- $link := (querify "mini" true "url" .Permalink "title" .Title "summary" .Summary) | safeURL -}}
+    <a class="c-share__link" href="https://www.linkedin.com/shareArticle?{{ $link }}">LinkedIn</a>
+  </li>
+  <li class="c-share__item">
+    {{- $subject := (printf "Check out this article: %s" .Title) -}}
+    {{- $body := (printf "%s\n\n%s" .Summary .Permalink) -}}
+    <a class="c-share__link" href="mailto:?subject={{ $subject }}&amp;body={{ $body }}">Email</a>
+  </li>
+</ul>

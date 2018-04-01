@@ -1,0 +1,5 @@
+.c-share__item {
+  & + & {
+    margin-left: vr(0.5);
+  }
+}
