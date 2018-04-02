@@ -7,6 +7,7 @@ preserveTaxonomyNames = true
 sectionPagesMenu = "main"
 title = "Devin Schulz"
 summaryLength = 20
+enableGitInfo = true
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
@@ -19,6 +20,7 @@ pygmentsUseClasses = true
   description = "The description"
   brandColor = "#4285f4"
   logo = "images/logo.jpg"
+  sentryDSN = "https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767"
 
 [[menu.main]]
   name = "Posts"

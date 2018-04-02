@@ -52,5 +52,20 @@
   <link href="https://fonts.googleapis.com/css?family=Palanquin:400,700|Montserrat:700|Lora" rel="stylesheet" />
   <link rel="stylesheet" href="{{ "main.css" | relURL }}" />
   <link rel="alternate" href="{{ "/posts/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
+
+  {{- with .Site.Params.sentryDSN -}}
+    {{- if eq (getenv "HUGO_ENV") "production" -}}
+      <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+      <script>
+        Raven.config('{{ .Site.Params.sentryDSN | safeURL }}', {
+          {{ with .GitInfo }}
+          tags: {
+            git_commit: '{{ .GitInfo.AbbreviatedHash }}'
+          }
+          {{ end }}
+        }).install()
+      </script>
+    {{- end -}}
+  {{- end -}}
   <script src="{{ "scripts.js" | relURL }}" defer></script>
 </head>
