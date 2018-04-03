@@ -1,0 +1,17 @@
+.u-comma-list {
+  list-style: none;
+  padding-left: 0;
+
+  > li {
+    display: inline;
+
+    &:after {
+      content: ', ';
+      white-space: pre;
+    }
+
+    &:last-child:after {
+      content: '';
+    }
+  }
+}
