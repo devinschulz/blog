@@ -8,11 +8,9 @@
     </div>
     <nav class="c-main-nav__links u-small-text" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       {{ $currentPage := . }}
-      {{ range .Site.Menus.main }}
-        {{ $isMenuCurrent := $currentPage.IsMenuCurrent "main" . }}
-        {{ $hasMenuCurrent := $currentPage.HasMenuCurrent "main" . }}
+      {{ range .Site.Menus.main.ByWeight }}
         <a
-          class="c-main-nav__link{{ if or $isMenuCurrent $hasMenuCurrent }} c-main-nav__link--active t-inverted-link--active{{ end }} t-inverted-link"
+          class="c-main-nav__link{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .) }} c-main-nav__link--active t-inverted-link--active{{ end }} t-inverted-link"
           href="{{ .URL }}"
           itemprop="url"
         >
