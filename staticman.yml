@@ -1,0 +1,15 @@
+comments:
+  allowedFields: ["name", "email", "body"]
+  allowedOrigins: ["localhost", "devinschulz.com"]
+  branch: "master"
+  generatedFields:
+    date:
+      type: date
+  format: "json"
+  moderation: true
+  name: "Devin Schulz"
+  path: "data/comments/{options.entryId}"
+  filename: "{@id}"
+  requiredFields: ["name", "body"]
+  transforms:
+    email: md5

@@ -4,7 +4,9 @@ description: About me
 type: about
 menu:
   main:
-    weight: 10
+    weight: 20
+  footer:
+    weight: 20
 ---
 
 I’m Devin Schulz, a Graphic Designer and Senior Software Engineer in Ottawa, Canada. I share my software development journey with useful articles, tips, tricks, and the lessons I learn along the way to help you get unstuck or provide suggested approaches to particular problems.

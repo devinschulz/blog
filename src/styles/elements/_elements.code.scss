@@ -5,7 +5,15 @@ pre {
   padding: 0;
 
   > code {
-    padding: vr(1);
+    padding: vr(1) 4vw;
     display: inline-block;
+
+    @include mq(medium) {
+      padding: vr(1) 8vw;
+    }
+
+    @include mq(large) {
+      padding: vr(1);
+    }
   }
 }

@@ -26,43 +26,20 @@ pygmentsUseClasses = true
   name = "Posts"
   identifier = "posts"
   url = "/posts/"
-  weight = 20
-[[menu.main]]
-  name = "Projects"
-  identifier = "projects"
-  url = "/projects/"
-  weight = 30
+  weight = 10
 
 [[menu.footer]]
   name = "Posts"
   identifier = "posts"
   url = "/posts/"
   weight = 10
-[[menu.footer]]
-  name = "About"
-  identifier = "about"
-  url = "/about/"
-  weight = 20
-[[menu.footer]]
-  name = "Projects"
-  identifier = "projects"
-  url = "/projects/"
-  weight = 30
-[[menu.footer]]
-  name = "Terms"
-  identifier = "terms"
-  url = "/terms/"
-  weight = 40
-[[menu.footer]]
-  name = "Privacy"
-  identifier = "privacy"
-  url = "/privacy/"
-  weight = 50
+
 [[menu.footer]]
   name = "Sitemap"
   identifier = "sitemap"
   url = "/sitemap.xml"
   weight = 60
+
 [[menu.footer]]
   name = "RSS"
   identifier = "rss"
