@@ -5,7 +5,7 @@ comments:
   generatedFields:
     date:
       type: date
-  format: "json"
+  format: "yml"
   moderation: true
   name: "Devin Schulz"
   path: "data/comments/{options.entryId}"
