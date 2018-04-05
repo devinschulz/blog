@@ -1,0 +1,43 @@
+  {{ $id := .comment._id }}
+  {{ $comments := .comments }}
+  {{ $page := .page }}
+
+  <li class="c-comment" id="comment-{{ $.Scratch.Get "hasComments" }}" itemscope itemprop="http://schema.org/UserComments"> <header class="c-comment__header">
+    {{- $gravatarURL := (printf "https://www.gravatar.com/avatar/%s" .comment.email) -}}
+    {{- $imageSize := 40 -}}
+    <img class="c-comment__avatar" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL}}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
+    {{ if .website }}
+      <h4 class="c-comment__author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+        <a rel="external nofollow" href="{{ .comment.website }}" itemprop="name">{{ .comment.name }}</a>
+      </h4>
+    {{ else }}
+      <h4 class="c-comment__author">{{ .comment.name }}</h4>
+    {{ end }}
+    <div class="c-comment__timestamp">
+      <a href="#comment-{{ .comment._id }}" title="Permalink to this comment">
+        <time datetime="{{ .comment.date }}" itemprop="commentTime">{{ dateFormat ($page.Param "dateFormat") .comment.date }}</time>
+      </a>
+    </div>
+  </header>
+  <div class="c-comment__content" itemprop="commentText">
+    {{- .comment.body | markdownify -}}
+  </div>
+  <a href="#">Reply to {{ .comment.name }}</a>
+
+  {{ $page.Scratch.Set "hasReplies" 0 }}
+  {{ range $comments }}
+    {{ if eq .parent $id }}
+      {{ $page.Scratch.Add "hasReplies" 1 }}
+    {{ end }}
+  {{ end }}
+
+  {{ if ne ($page.Scratch.Get "hasReplies") 0 }}
+    <ul>
+      {{ range sort $comments "date" }}
+        {{ if eq .parent $id }}
+          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page) }}
+        {{ end }}
+      {{ end }}
+    </ul>
+  {{ end }}
+</li>

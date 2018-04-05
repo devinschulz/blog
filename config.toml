@@ -21,6 +21,7 @@ pygmentsUseClasses = true
   brandColor = "#4285f4"
   logo = "images/logo.jpg"
   sentryDSN = "https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767"
+  dateFormat = "January 2, 2006"
 
 [params.staticman]
   endpoint = "https://api.staticman.net/v2/entry/"

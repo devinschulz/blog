@@ -1,7 +1,7 @@
 <ul class="c-article__meta u-small-text u-inline-list">
   <li class="c-article__date">
     <time datetime="{{ .Date }}" itemprop="datePublished">
-      {{- .Date.Format "January 2, 2006" -}}
+      {{- .Date.Format .Site.Params.dateFormat -}}
     </time>
   </li>
   <li class="c-article__tags" itemprop="keywords">

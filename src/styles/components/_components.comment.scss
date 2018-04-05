@@ -1,0 +1,21 @@
+.c-comment {
+}
+
+.c-comment__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: vr(1);
+}
+
+.c-comment__author {
+  margin: 0;
+}
+
+.c-comment__avatar {
+  border-radius: 40px;
+  margin-right: vr(0.5);
+}
+
+.c-comment__timestamp {
+  margin-left: auto;
+}
