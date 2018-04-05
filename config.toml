@@ -22,6 +22,12 @@ pygmentsUseClasses = true
   logo = "images/logo.jpg"
   sentryDSN = "https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767"
 
+[params.staticman]
+  endpoint = "https://api.staticman.net/v2/entry/"
+  username = "devinschulz"
+  repository = "blog"
+  branch = "master"
+
 [[menu.main]]
   name = "Posts"
   identifier = "posts"

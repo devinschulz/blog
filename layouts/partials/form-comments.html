@@ -1,0 +1,8 @@
+<form method="POST" action="https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/comments">
+  <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
+  <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
+  <input name="fields[name]" type="text" placeholder="Your name">
+  <input name="fields[email]" type="email" placeholder="Your email address">
+  <textarea name="fields[body]" placeholder="Your message. Feel free to use Github flavoured Markdown." rows="10"></textarea>
+  <input type="submit" value="Submit">
+</form>
