@@ -1,5 +1,5 @@
 comments:
-  allowedFields: ["name", "email", "body"]
+  allowedFields: ["name", "email", "body", "website", "parent"]
   allowedOrigins: ["localhost", "devinschulz.com"]
   branch: "master"
   generatedFields:
