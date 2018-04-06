@@ -1,3 +1,11 @@
+.c-comments {
+  list-style: none;
+}
+
+.c-comment__depth-0 {
+  padding-left: 0;
+}
+
 .c-comment {
 }
 
@@ -18,4 +26,12 @@
 
 .c-comment__timestamp {
   margin-left: auto;
+  color: $color-text-light;
+}
+
+.c-comment__permalink {
+  svg {
+    width: vr(0.6);
+    height: vr(0.6);
+  }
 }

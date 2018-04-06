@@ -1,21 +1,27 @@
   {{ $id := .comment._id }}
   {{ $comments := .comments }}
   {{ $page := .page }}
+  {{ $depth := .depth }}
 
-  <li class="c-comment" id="comment-{{ $.Scratch.Get "hasComments" }}" itemscope itemprop="http://schema.org/UserComments"> <header class="c-comment__header">
-    {{- $gravatarURL := (printf "https://www.gravatar.com/avatar/%s" .comment.email) -}}
+  <li class="c-comment" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments"> <header class="c-comment__header">
+    {{- $gravatarURL := (printf "https://www.gravatar.com/avatar/%s" .comment.email) | safeURL -}}
     {{- $imageSize := 40 -}}
-    <img class="c-comment__avatar" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL}}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
+    <img class="c-comment__avatar" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL }}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
     {{ if .website }}
       <h4 class="c-comment__author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-        <a rel="external nofollow" href="{{ .comment.website }}" itemprop="name">{{ .comment.name }}</a>
+        <a rel="external nofollow" href="{{ .comment.website }}" itemprop="name">
+          {{- .comment.name -}}
+        </a>
       </h4>
     {{ else }}
       <h4 class="c-comment__author">{{ .comment.name }}</h4>
     {{ end }}
     <div class="c-comment__timestamp">
-      <a href="#comment-{{ .comment._id }}" title="Permalink to this comment">
-        <time datetime="{{ .comment.date }}" itemprop="commentTime">{{ dateFormat ($page.Param "dateFormat") .comment.date }}</time>
+      <time datetime="{{ .comment.date }}" itemprop="commentTime">
+        {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
+      </time>
+      <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">
+        {{- partial "svg/link.svg" -}}
       </a>
     </div>
   </header>
@@ -32,10 +38,11 @@
   {{ end }}
 
   {{ if ne ($page.Scratch.Get "hasReplies") 0 }}
-    <ul>
+    {{ $depth := (add $depth 1) }}
+    <ul class="c-comments is-nested c-comment__depth-{{ $depth }}">
       {{ range sort $comments "date" }}
         {{ if eq .parent $id }}
-          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page) }}
+          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page "depth" $depth) }}
         {{ end }}
       {{ end }}
     </ul>

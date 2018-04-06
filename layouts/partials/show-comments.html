@@ -8,10 +8,12 @@
       <h3>{{ len $comments }} Comments</h3>
     {{ end }}
 
-    <ul>
+    {{ $depth := 0 }}
+
+    <ul class="c-comments c-comment__depth-{{ $depth }}">
       {{ range sort $comments "date" }}
         {{ if not .parent }}
-          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $ ) }}
+          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $ "depth" $depth) }}
         {{ end }}
       {{ end }}
     </ul>
