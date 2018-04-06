@@ -26,7 +26,7 @@
     "gulp-htmlmin": "4.0.0",
     "gulp-if": "2.0.2",
     "gulp-plumber": "1.2.0",
-    "gulp-postcss": "v7.0.1",
+    "gulp-postcss": "7.0.0",
     "gulp-sass": "4.0.0",
     "gulp-uglify": "3.0.0",
     "precss": "3.1.2",
