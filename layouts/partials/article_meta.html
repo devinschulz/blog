@@ -7,4 +7,19 @@
   <li class="c-article__tags" itemprop="keywords">
     {{ partial "categories.html" . }}
   </li>
+  <li class="c-article__comment-count">
+    <a href="{{ .RelPermalink }}#comments">
+      {{ $comments := .Site.Data.comments }}
+      {{ $comments := index $comments .UniqueID }}
+      {{ if $comments }}
+        {{ if eq (len $comments) 1 }}
+          {{ len $comments }} Comment
+        {{ else }}
+          {{ len $comments }} Comments
+        {{ end }}
+      {{ else }}
+        0 Comments
+      {{ end }}
+    </a>
+  </li>
 </ul>
