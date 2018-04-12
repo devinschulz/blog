@@ -39,6 +39,7 @@
     "watchify": "3.11.0"
   },
   "dependencies": {
+    "intl-relativeformat": "^2.1.0",
     "turbolinks": "^5.1.1"
   }
 }

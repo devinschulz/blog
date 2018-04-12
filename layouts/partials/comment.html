@@ -17,7 +17,7 @@
       <h4 class="c-comment__author">{{ .comment.name }}</h4>
     {{ end }}
     <div class="c-comment__timestamp">
-      <time datetime="{{ .comment.date }}" itemprop="commentTime">
+      <time class="js-comment-date" datetime="{{ .comment.date }}" itemprop="commentTime">
         {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
       </time>
       <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">
@@ -28,7 +28,7 @@
   <div class="c-comment__content" itemprop="commentText">
     {{- .comment.body | markdownify -}}
   </div>
-  <a href="#">Reply to {{ .comment.name }}</a>
+  <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}">Reply to {{ .comment.name }}</a>
 
   {{ $page.Scratch.Set "hasReplies" 0 }}
   {{ range $comments }}
@@ -39,7 +39,7 @@
 
   {{ if ne ($page.Scratch.Get "hasReplies") 0 }}
     {{ $depth := (add $depth 1) }}
-    <ul class="c-comments is-nested c-comment__depth-{{ $depth }}">
+    <ul class="c-comments__list is-nested c-comment__depth-{{ $depth }}">
       {{ range sort $comments "date" }}
         {{ if eq .parent $id }}
           {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page "depth" $depth) }}

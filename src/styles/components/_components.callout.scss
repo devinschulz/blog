@@ -1,0 +1,10 @@
+.c-callout {
+  padding: vr(0.5);
+  background-color: $color-callout-background;
+  margin-bottom: vr(1);
+  border-radius: $global-radius;
+}
+
+.c-callout__text {
+  margin-bottom: 0;
+}

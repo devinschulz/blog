@@ -1,0 +1,93 @@
+input[type='email'],
+input[type='text'],
+textarea {
+  border-radius: 0;
+  display: block;
+  padding: vr(0.5);
+  width: 100%;
+  background-color: $color-input-background;
+  border: 1px solid $color-input-border;
+
+  &:focus {
+    outline: none;
+    border-color: $color-input-border-active;
+  }
+
+  &:placeholder {
+    color: $color-input-placeholder;
+    opacity: 1;
+  }
+}
+
+label {
+  margin-bottom: vr(0.5);
+}
+
+fieldset {
+  margin-bottom: vr(0.5);
+}
+
+input[type='checkbox'] {
+  &:checked,
+  &:not(:checked) {
+    position: absolute;
+    left: -9999px;
+
+    + label {
+      position: relative;
+      padding-left: vr(1.25);
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: vr(1);
+        height: vr(1);
+        border: 1px solid $color-input-border;
+        background: $color-input-background;
+        border-radius: $global-radius;
+      }
+
+      &::after {
+        content: '✔';
+        position: absolute;
+        top: 0.2em;
+        left: 0.275em;
+        font-size: 1.4em;
+        line-height: 0.8;
+        color: $white;
+        transition: all 0.2s;
+      }
+    }
+  }
+
+  &:not(:checked) {
+    + label {
+      &::after {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+  }
+
+  &:checked {
+    + label {
+      &::before {
+        background: $black;
+      }
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+/* accessibility */
+[type='checkbox']:checked:focus + label:before,
+[type='checkbox']:not(:checked):focus + label:before {
+  border: 1px dotted $color-active;
+}

@@ -1,0 +1,15 @@
+.c-form {
+  .c-icon__markdown {
+    color: $color-headings;
+    height: auto;
+    margin-right: vr(0.25);
+    width: vr(0.75);
+    display: inline-block;
+  }
+}
+
+.c-form__help {
+  color: $color-text-light;
+  float: right;
+  margin-top: vr(0.25);
+}

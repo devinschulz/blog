@@ -1,5 +1,13 @@
 .c-comments {
+  margin-top: vr(2);
+}
+
+.c-comments__list {
   list-style: none;
+
+  &.is-nested {
+    margin-top: vr(1);
+  }
 }
 
 .c-comment__depth-0 {
@@ -7,6 +15,7 @@
 }
 
 .c-comment {
+  margin-bottom: vr(1);
 }
 
 .c-comment__header {
