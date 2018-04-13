@@ -35,6 +35,10 @@
 }
 
 .c-project__date {
-  margin-bottom: 0;
+  margin-bottom: vr(0.25);
   color: $color-text-light;
+
+  @include mq(xlarge) {
+    margin-bottom: 0;
+  }
 }
