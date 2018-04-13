@@ -20,3 +20,10 @@
 .c-article__body {
   margin-bottom: vr(0.5);
 }
+
+.c-article__content {
+  .c-icon--link {
+    margin-left: 0.25em;
+    @include size(0.75em);
+  }
+}
