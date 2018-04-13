@@ -1,0 +1,11 @@
+.u-inline-dl {
+  dt {
+    float: left;
+    font-weight: $font-weight-default-bold;
+    margin-right: vr(0.25);
+  }
+
+  dd {
+    margin-bottom: 0;
+  }
+}
