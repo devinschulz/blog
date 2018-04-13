@@ -1,0 +1,38 @@
+<div class="c-project">
+  <p class="c-project__date u-small-text">{{ .date | safeHTML }}</p>
+  <h2 class="c-project__title">
+    <a href="{{ .url }}" rel="external nofollow">
+      {{- .title -}}
+      <svg class="c-icon c-icon--external-link">
+        <use xlink:href="#shape-external-link"></use>
+      </svg>
+    </a>
+  </h2>
+  <p class="c-project__body">{{ .body | markdownify }}</p>
+  <dl class="c-project__meta u-inline-dl">
+    {{ with .role }}
+      <dt>Role:</dt>
+      <dd>{{ . }}</dd>
+    {{ end }}
+    {{ if .agency }}
+      <dt>Agency:</dt>
+      {{ if .agencyLink }}
+        <dd>
+          <a href="{{ .agencyLink }}">{{ .agency }}</a>
+        </dd>
+      {{ else }}
+        <dd>{{ .agency }}</dd>
+      {{ end }}
+    {{ end }}
+    {{ with .technologies }}
+      <dt>Technologies:</dt>
+      <dd>
+        <ul class="u-comma-list">
+          {{ range . }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </dd>
+    {{ end }}
+  </dl>
+</div>

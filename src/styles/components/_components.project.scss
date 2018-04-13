@@ -1,0 +1,40 @@
+.c-project {
+  margin-bottom: vr(3);
+
+  &:last-child {
+    margin-bottom: vr(0);
+  }
+}
+
+.c-project__title {
+  margin-top: 0;
+
+  a {
+    @include hover {
+      .c-icon--external-link {
+        opacity: 1;
+      }
+    }
+
+    .c-icon--external-link {
+      opacity: 1;
+      margin-left: 0.25em;
+      @include size(0.75em);
+
+      @media (pointer: fine) {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        will-change: opacity;
+      }
+
+      @include mq(large) {
+        @include size(0.6em);
+      }
+    }
+  }
+}
+
+.c-project__date {
+  margin-bottom: 0;
+  color: $color-text-light;
+}

@@ -1,0 +1,90 @@
+[[projects]]
+title = "InVision"
+url = "//invisionapp.com"
+date = "2014&ndash;present"
+body = """
+I’ve been fortunate to have the opportunity to work across various systems under
+the InVision brand. From the homepage to numerous marketing materials such as
+the [DO UI Kit](https://www.invisionapp.com/do), email templates which are sent
+out to millions of subscribers each week, [Design Disruptors](https://www.designdisruptors.com/),
+[Marketplace](https://marketplace.invisionapp.com), enterprise landing pages,
+and I eventually transitioned to working on the core product. This is where I
+helped bring [Boards](https://www.invisionapp.com/blog/boards-share-design-inspiration-assets),
+[Inspect](https://invisionapp.com/feature/inspect) for flat prototypes and
+document viewer, and [V7](https://www.invisionapp.com/blog/new-invision-v7) to
+life.
+"""
+role = "Front End Engineer and later promoted to Senior Software Engineer"
+technologies = [
+  "JavaScript",
+  "React",
+  "Angular",
+  "Node",
+  "Go",
+  "ColdFusion",
+  "Python",
+  "LESS",
+  "SASS",
+  "SCSS",
+  "Webpack",
+  "Gulp"
+]
+
+[[projects]]
+title = "Algonquin College"
+url = "//algonquincollege.com"
+date = "2013&ndash;2014"
+body = """
+Having graduated from here, Algonquin always has and always will have a special
+place in my heart. I was ecstatic when I had the opportunity to help develop
+their homepage and a theme to define a consistent look and feel.
+"""
+role = "Web Developer"
+agency = "Soshal"
+agencyLink = "//soshal.ca"
+technologies = [
+  "Wordpress",
+  "PHP",
+  "SCSS",
+  "JavaScript"
+]
+
+[[projects]]
+title = "York University"
+url = "//yorku.ca"
+date = "2013&ndash;2014"
+body = """
+I had the chance to work on multiple projects for York University. I helped
+develop the This Is My Time campaign for two years in a row, the university
+homepage, and the [Osgoode website](//osgoode.yorku.ca) which also included an
+[interactive timeline](//osgoode.yorku.ca/about/history) to represent their
+history.
+"""
+role = "Web Developer"
+agency = "Soshal"
+agencyLink = "//soshal.ca"
+technologies = [
+  "Wordpress",
+  "PHP",
+  "SCSS",
+  "JavaScript"
+]
+
+[[projects]]
+title = "Nearest"
+url = "//nearest.com"
+date = "2012&ndash;2013"
+body = """
+Nearest was one of the only projects I have worked on where I took charge of
+both the design and the front-end development. This is a social network with a
+focus on bringing the community together by providing users with search, local
+deals and the option of sponsoring students.
+"""
+role = "Lead Designer and Front End Developer"
+technologies = [
+  "Joomla",
+  "PHP",
+  "Node",
+  "JavaScript",
+  "SCSS"
+]

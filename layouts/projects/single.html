@@ -2,5 +2,8 @@
   <section class="o-container">
     {{ partial "masthead.html" . }}
     {{- .Content -}}
+    {{- range $.Site.Data.projects.projects -}}
+      {{ partial "project.html" . }}
+    {{- end -}}
   </section>
 {{ end }}
