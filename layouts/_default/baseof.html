@@ -2,6 +2,7 @@
 <html lang="{{ .Site.LanguageCode }}">
   {{ partial "head.html" . }}
   <body>
+    {{ partial "svg/svg-sprite.html" . }}
     {{ partial "navigation.html" . }}
     <main>{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
