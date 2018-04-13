@@ -7,7 +7,6 @@
 
     &:after {
       content: ', ';
-      white-space: pre;
     }
 
     &:last-child:after {
