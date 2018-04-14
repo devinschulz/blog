@@ -1,0 +1,46 @@
+.c-btn {
+  display: inline-block;
+  box-shadow: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: vr(0.25) vr(1);
+  color: $color-btn-primary-text;
+  background-color: $color-btn-primary-background;
+  border-radius: $global-radius;
+  will-change: transition;
+  transition: 0.2s ease;
+
+  @include hover {
+    background-color: $color-btn-primary-background-hover;
+  }
+
+  @include focus {
+    outline: 0;
+  }
+
+  @include active {
+    background-color: $color-btn-primary-background-active;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+}
+
+fieldset:disabled a.c-btn,
+a.c-btn:disabled {
+  pointer-events: none;
+}
+
+.c-btn__link {
+  background-color: white;
+  color: currentColor;
+}

@@ -10,6 +10,7 @@ $fiord: #4a5669;
 $lynch: #627792;
 $athens-gray: #f6f6f7;
 $ribbon-blue: #0055ff;
+$orange-red: #e42a00;
 
 $color-headings: $bright-gray;
 $color-text: $fiord;
@@ -34,5 +35,11 @@ $color-input-placeholder: $color-text-light;
 $color-input-background: $athens-gray;
 $color-input-border: $athens-gray;
 $color-input-border-active: darken($athens-gray, 10%);
+$color-input-error: $orange-red;
 
 $color-callout-background: $pipi;
+
+$color-btn-primary-text: $white;
+$color-btn-primary-background: $color-link;
+$color-btn-primary-background-hover: $color-link-hover;
+$color-btn-primary-background-active: $color-link-active;
