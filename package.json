@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "intl-relativeformat": "^2.1.0",
-    "turbolinks": "^5.1.1"
+    "turbolinks": "^5.1.1",
+    "validate": "cferdinandi/validate"
   }
 }

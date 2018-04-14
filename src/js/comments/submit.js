@@ -1,20 +1,22 @@
-export const bindSubmitEventListeners = () => {
-  const forms = document.querySelectorAll('.js-comment-form')
-  for (let form of forms) {
-    form.addEventListener('submit', handleSubmit, false)
-  }
+import validate from 'validate'
+
+export const init = () => {
+  validate.init({
+    fieldClass: 'c-form__error',
+    errorClass: 'c-form__error-message',
+    disableSubmit: true,
+    onSubmit: handleSubmit,
+  })
 }
 
-export const unbindSubmitEventListerners = () => {
-  const forms = document.querySelectorAll('.js-comment-form')
-  for (let form of forms) {
-    form.removeEventListener('submit', handleSubmit)
-  }
+export const deinit = () => {
+  validate.destroy()
 }
 
-export const handleSubmit = event => {
+const handleSubmit = (form, fields) => {
   event.preventDefault()
-  const form = event.target
+  console.log(form, fields)
+  return
   const url = form.getAttribute('action')
   submitForm(url, new FormData(form))
     .then(handleSuccess)

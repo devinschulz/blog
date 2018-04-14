@@ -1,6 +1,7 @@
 import IntlRelativeFormat from 'intl-relativeformat'
-import { handleSubmit } from './submit'
+import validate from 'validate'
 
+import { handleSubmit } from './submit'
 import '../polyfills/after'
 
 const COMMENT_FORM_CLASS = '.js-comment-form'
@@ -42,10 +43,12 @@ const handleReplyClick = event => {
 
   removeReplyform(target)
   const form = document.querySelector(COMMENT_FORM_CLASS).cloneNode(true)
+  form.classList.add('c-form--reply')
   form.onsubmit = handleSubmit
   form.querySelector('.js-parent').value = target.dataset.parent
   form.reset()
   addCancelButton(form)
+  removeFormErrors(form)
 
   target.after(form)
   target.classList.add(IS_DISABLED_CLASS)
@@ -67,13 +70,13 @@ const replyHasForm = target => {
 const addCancelButton = form => {
   const button = document.createElement('button')
   button.innerText = 'Cancel'
-  button.className = 'js-comment-cancel c-form__cancel'
+  button.className = 'js-comment-cancel c-form__cancel c-btn c-btn__link'
   button.onclick = event => {
     event.preventDefault()
     handleCleanup(form)
   }
   const submitButton = form.querySelector('button[type="submit"]')
-  form.insertBefore(button, submitButton)
+  form.querySelector('.c-form__btn-group').insertBefore(button, submitButton)
 }
 
 const handleCleanup = form => {
@@ -93,5 +96,11 @@ const replyIterator = fn => {
   const replies = getCommentingReplies()
   for (let reply of replies) {
     fn && fn(reply)
+  }
+}
+
+const removeFormErrors = form => {
+  for (let field of form.elements) {
+    validate.removeError(field)
   }
 }

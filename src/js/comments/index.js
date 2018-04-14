@@ -3,12 +3,12 @@ import {
   bindReplyToEventListeners,
   unbindReplyToEventListeners,
 } from './reply'
-import { bindSubmitEventListeners, unbindSubmitEventListeners } from './submit'
+import { init as initSubmit, deinit as deinitSubmit } from './submit'
 
 export const init = () => {
+  initSubmit()
   bindReplyToEventListeners()
   formatReplyDates()
-  bindSubmitEventListeners()
 }
 
 export const maybeInit = () => {
@@ -20,7 +20,7 @@ export const maybeInit = () => {
 export const maybeDeInit = () => {
   if (hasCommenting()) {
     unbindReplyToEventListeners()
-    unbindSubmitEventListeners()
+    deinitSubmit()
   }
 }
 
