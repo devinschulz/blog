@@ -12,6 +12,7 @@ const createLinksWithinContainer = (container, level) => {
   const headers = container.getElementsByTagName(`h${level}`)
   for (let header of headers) {
     if (header.id) {
+      header.classList.add('c-article__heading')
       header.appendChild(createAnchorForID(header.id))
     }
   }

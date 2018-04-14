@@ -21,12 +21,14 @@
         {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
       </time>
       <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">
-        {{- partial "svg/link.svg" -}}
+        <svg class="c-icon c-icon--link">
+          <use xlink:href="#shape-link"></use>
+        </svg>
       </a>
     </div>
   </header>
   <div class="c-comment__content" itemprop="commentText">
-    {{- .comment.body | markdownify -}}
+    <p>{{- .comment.body | markdownify -}}</p>
   </div>
   {{ if eq $depth 0 }}
     <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}">Reply to {{ .comment.name }}</a>

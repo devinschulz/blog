@@ -13,3 +13,37 @@
   float: right;
   margin-top: vr(0.25);
 }
+
+.c-form__btn-group {
+  display: flex;
+  align-items: flex-end;
+
+  button {
+    &:first-child {
+      margin-left: auto;
+    }
+  }
+}
+
+.c-form__group {
+  margin-bottom: vr(1);
+}
+
+.c-form__required {
+  color: $color-input-error;
+}
+
+.c-form__error {
+  border-color: $color-input-error !important;
+}
+
+.c-form__error-message {
+  margin-top: vr(0.25);
+  @extend .u-small-text;
+  color: $color-input-error;
+}
+
+.c-form__comment {
+  display: grid;
+  grid-template-rows: auto auto auto;
+}

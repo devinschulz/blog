@@ -39,8 +39,11 @@
 }
 
 .c-comment__permalink {
-  svg {
-    width: vr(0.6);
-    height: vr(0.6);
+  .c-icon--link {
+    @include size(0.9em);
   }
+}
+
+.c-comment__reply + .c-form {
+  margin-top: vr(1);
 }

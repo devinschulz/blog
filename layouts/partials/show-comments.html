@@ -1,17 +1,11 @@
 {{ $allComments := $.Site.Data.comments }}
 <section id="comments" class="c-comments">
+  <h2 class="c-comments__title">Join the discussion</h2>
   {{ if $.Site.Data.comments }}
     {{ $comments := index $.Site.Data.comments .UniqueID }}
     {{ if $comments }}
-     {{ if eq (len $comments) 1  }}
-        <h3>{{ len $comments }} Comment</h3>
-      {{ else }}
-        <h3>{{ len $comments }} Comments</h3>
-      {{ end }}
-
-      {{ $depth := 0 }}
-
       <ul class="c-comments__list c-comment__depth-{{ $depth }}">
+        {{ $depth := 0 }}
         {{ range sort $comments "date" }}
           {{ if not .parent }}
             {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $ "depth" $depth) }}

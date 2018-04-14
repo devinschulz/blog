@@ -5,4 +5,9 @@
 a {
   text-decoration: none;
   transition: all 100ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }

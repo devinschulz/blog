@@ -10,7 +10,7 @@
   margin-top: 0;
 
   a {
-    @include hover {
+    @include hover-focus {
       .c-icon--external-link {
         opacity: 1;
       }

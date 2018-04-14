@@ -1,5 +1,6 @@
 input[type='email'],
 input[type='text'],
+input[type='url'],
 textarea {
   border-radius: 0;
   display: block;
@@ -7,6 +8,7 @@ textarea {
   width: 100%;
   background-color: $color-input-background;
   border: 1px solid $color-input-border;
+  box-shadow: none;
 
   &:focus {
     outline: none;
