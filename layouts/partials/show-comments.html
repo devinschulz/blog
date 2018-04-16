@@ -4,8 +4,8 @@
   {{ if $.Site.Data.comments }}
     {{ $comments := index $.Site.Data.comments .UniqueID }}
     {{ if $comments }}
+      {{ $depth := 0 }}
       <ul class="c-comments__list c-comment__depth-{{ $depth }}">
-        {{ $depth := 0 }}
         {{ range sort $comments "date" }}
           {{ if not .parent }}
             {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $ "depth" $depth) }}

@@ -31,7 +31,9 @@
     <p>{{- .comment.body | markdownify -}}</p>
   </div>
   {{ if eq $depth 0 }}
-    <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}">Reply to {{ .comment.name }}</a>
+    <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}">
+      {{- printf "Reply to %s" .comment.name -}}
+    </a>
   {{ end }}
 
   {{ $page.Scratch.Set "hasReplies" 0 }}
