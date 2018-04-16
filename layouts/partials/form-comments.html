@@ -1,6 +1,6 @@
 <form class="c-form c-form--comments js-comment-form" method="POST" action="https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/comments" data-validate>
   <div class="c-callout">
-    <p class="c-callout__text">Your email address is used to display Gravatar thumbnails and if opted in, to recieve comment replies.</p>
+    <p class="c-callout__text">Your email address is used to display <a href="https://gravatar.com" target="_blank">Gravatar</a> thumbnails and if opted in, to recieve comment replies.</p>
   </div>
   <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
   <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
