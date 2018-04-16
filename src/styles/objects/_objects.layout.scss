@@ -1,23 +1,40 @@
-.o-layout {
-}
+$layout-offset-small: 4vw;
+$layout-offset-medium: 8vw;
+$layout-offset-large: 4;
+$layout-offset-xlarge: 5;
 
 .o-layout--extended-width {
-  margin-left: -4vw;
-  margin-right: -4vw;
+  margin-left: $layout-offset-small * -1;
+  margin-right: $layout-offset-small * -1;
 
   @include mq(medium) {
-    margin-left: -8vw;
-    margin-right: -8vw;
+    margin-left: $layout-offset-medium * -1;
+    margin-right: $layout-offset-medium * -1;
   }
 
   @include mq(large) {
-    margin-left: vr(-4);
-    margin-right: vr(-4);
+    margin-left: vr($layout-offset-large * -1);
+    margin-right: vr($layout-offset-large * -1);
   }
 
   @include mq(xlarge) {
-    margin-left: vr(-5);
-    margin-right: vr(-5);
+    margin-left: vr($layout-offset-xlarge * -1);
+    margin-right: vr($layout-offset-xlarge * -1);
+  }
+}
+
+.o-layout--extended-width-small {
+  margin-left: $layout-offset-small * -1;
+  margin-right: $layout-offset-small * -1;
+
+  @include mq(medium) {
+    margin-left: $layout-offset-medium * -1;
+    margin-right: $layout-offset-medium * -1;
+  }
+
+  @include mq(large) {
+    margin-left: vr($layout-offset-large / 2 * -1);
+    margin-right: vr($layout-offset-large / 2 * -1);
   }
 }
 
@@ -35,18 +52,30 @@
 }
 
 .o-layout--inset {
-  padding: 0 4vw;
+  padding: 0 $layout-offset-small;
 
   @include mq(medium) {
-    padding: 0 8vw;
+    padding: 0 $layout-offset-medium;
   }
 
   @include mq(large) {
-    padding: 0 vr(4);
+    padding: 0 vr($layout-offset-large);
   }
 
   @include mq(xlarge) {
-    padding: 0 vr(5);
+    padding: 0 vr($layout-offset-xlarge);
+  }
+}
+
+.o-layout--inset-small {
+  padding: 0 $layout-offset-small;
+
+  @include mq(medium) {
+    padding: 0 $layout-offset-medium;
+  }
+
+  @include mq(large) {
+    padding: 0 vr(1);
   }
 }
 
