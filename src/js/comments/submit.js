@@ -15,8 +15,6 @@ export const deinit = () => {
 
 const handleSubmit = (form, fields) => {
   event.preventDefault()
-  console.log(form, fields)
-  return
   const url = form.getAttribute('action')
   submitForm(url, new FormData(form))
     .then(handleSuccess)
