@@ -15,12 +15,6 @@
 //    we force a non-overlapping, non-auto-hiding scrollbar to counteract.
 // 6. Change the default tap highlight to be completely transparent in iOS.
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box; // 1
-}
-
 html {
   -webkit-text-size-adjust: 100%; // 4
   -ms-text-size-adjust: 100%; // 4
