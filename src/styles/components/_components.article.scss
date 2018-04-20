@@ -15,6 +15,14 @@
 .c-article__meta {
   margin-bottom: 0;
   color: $color-text-light;
+
+  > li:not(:first-child) {
+    margin-left: vr(0.25);
+
+    @include mq(medium) {
+      margin-left: vr(0.5);
+    }
+  }
 }
 
 .c-article__body {
