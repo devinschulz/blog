@@ -80,16 +80,15 @@ $layout-offset-xlarge: 5;
 }
 
 .o-layout--padded {
-  padding-top: vr(2);
-  padding-bottom: vr(2);
+  padding: vr(2) $layout-offset-small;
   margin-bottom: vr(2);
 
   @include mq(medium) {
-    padding-top: vr(2);
+    padding: vr(2) $layout-offset-medium;
     margin-bottom: vr(4);
   }
 
   @include mq(large) {
-    padding-top: vr(2);
+    padding: vr(2) 0;
   }
 }
