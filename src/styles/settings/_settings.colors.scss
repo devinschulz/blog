@@ -29,13 +29,14 @@ $color-link-alt-active: darken($color-link-alt, 25%);
 
 $color-selection: $pipi;
 
-$color-list-counter: $ribbon-blue;
-
 $color-input-placeholder: $color-text-light;
 $color-input-background: $athens-gray;
 $color-input-border: $athens-gray;
 $color-input-border-active: darken($athens-gray, 10%);
 $color-input-error: $orange-red;
+
+$color-input-radio-background: $color-light-background;
+$color-input-radio-background-active: $color-link;
 
 $color-callout-background: $pipi;
 

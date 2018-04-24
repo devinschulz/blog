@@ -45,22 +45,22 @@ input[type='checkbox'] {
         position: absolute;
         left: 0;
         top: 0;
-        width: vr(1);
-        height: vr(1);
+        @include size(vr(1));
         border: 1px solid $color-input-border;
-        background: $color-input-background;
+        background: $color-input-radio-background;
         border-radius: $global-radius;
+        transition: background 0.4s;
       }
 
       &::after {
-        content: '✔';
+        content: '';
         position: absolute;
-        top: 0.2em;
-        left: 0.275em;
-        font-size: 1.4em;
-        line-height: 0.8;
+        background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+        top: vr(0.25 / 2);
+        left: vr(0.25 / 2);
         color: $white;
-        transition: all 0.2s;
+        transition: transform 0.2s;
+        @include size(vr(0.75));
       }
     }
   }
@@ -77,7 +77,7 @@ input[type='checkbox'] {
   &:checked {
     + label {
       &::before {
-        background: $black;
+        background: $color-input-radio-background-active;
       }
 
       &::after {
@@ -89,7 +89,10 @@ input[type='checkbox'] {
 }
 
 /* accessibility */
-[type='checkbox']:checked:focus + label:before,
+[type='checkbox']:checked:focus + label:before {
+  border: 1px dotted $white;
+}
+
 [type='checkbox']:not(:checked):focus + label:before {
   border: 1px dotted $color-active;
 }
