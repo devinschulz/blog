@@ -21,7 +21,7 @@ const createLinksWithinContainer = (container, level) => {
 const article = document.querySelector('.c-article__content')
 if (article) {
   // h2-h6
-  for (let i = 2; i <= 6; i++) {
+  for (let i = 1; i <= 6; i++) {
     createLinksWithinContainer(article, i)
   }
 }
