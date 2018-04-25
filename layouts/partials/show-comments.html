@@ -1,9 +1,11 @@
 {{ $allComments := $.Site.Data.comments }}
 <section id="comments" class="c-comments">
-  <h2 class="c-comments__title">Join the discussion</h2>
   {{ if $.Site.Data.comments }}
     {{ $comments := index $.Site.Data.comments .UniqueID }}
     {{ if $comments }}
+      <h2 class="c-comments__title">
+        {{ printf " %d Responses" (len $comments) }}
+      </h2>
       {{ $depth := 0 }}
       <ul class="c-comments__list c-comment__depth-{{ $depth }}">
         {{ range sort $comments "date" }}
@@ -13,6 +15,7 @@
         {{ end }}
       </ul>
     {{ else }}
+      <h2 class="c-comments__title">Join the discussion</h2>
       <p>Be the first to comment!</p>
     {{ end }}
   {{ end }}
