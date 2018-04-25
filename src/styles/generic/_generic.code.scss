@@ -1,9 +1,3 @@
-.chroma {
-  .highlight & {
-    @extend .o-layout--extended-width-small;
-    @extend .o-layout--inset-small;
-  }
-}
 /* Background */
 .chroma {
   background-color: #ffffff;
