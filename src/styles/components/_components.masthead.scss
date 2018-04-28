@@ -52,4 +52,8 @@ $triangle-height: 487px;
   @include mq(xlarge) {
     right: vr(-3);
   }
+
+  path {
+    fill: lighten($black, 93%);
+  }
 }

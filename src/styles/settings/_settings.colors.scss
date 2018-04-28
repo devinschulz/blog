@@ -1,38 +1,30 @@
 $black: #000;
 $white: #fff;
 $pipi: #fefeca;
-$bright-gray: #3c424f;
-$pale-sky: #676f7e;
-$athens-gray: #e5e9ee;
-$black-pearl: #061027;
-$mariner: #2164bf;
-$fiord: #4a5669;
-$lynch: #627792;
-$athens-gray: #f6f6f7;
-$ribbon-blue: #0055ff;
+$ribbon-blue: #0201F3;
 $orange-red: #e42a00;
 
-$color-headings: $bright-gray;
-$color-text: $fiord;
-$color-text-light: $lynch;
-$color-active: $fiord;
+$color-headings: lighten($black, 10%);
+$color-text: lighten($black, 20%);
+$color-text-light: lighten($black, 40%);
+$color-active: $color-headings;
 
-$color-light-background: $athens-gray;
+$color-light-background: lighten($black, 96%);
 
 $color-link: $ribbon-blue;
 $color-link-hover: darken($color-link, 15%);
 $color-link-active: darken($color-link, 25%);
 
-$color-link-alt: $lynch;
+$color-link-alt: $color-text-light;
 $color-link-alt-hover: darken($color-link-alt, 15%);
 $color-link-alt-active: darken($color-link-alt, 25%);
 
 $color-selection: $pipi;
 
 $color-input-placeholder: $color-text-light;
-$color-input-background: $athens-gray;
-$color-input-border: $athens-gray;
-$color-input-border-active: darken($athens-gray, 10%);
+$color-input-background: $color-light-background;
+$color-input-border: $color-input-background;
+$color-input-border-active: darken($color-input-background, 10%);
 $color-input-error: $orange-red;
 
 $color-input-radio-background: $color-light-background;
