@@ -1,29 +1,32 @@
 .c-btn {
-  display: inline-block;
-  box-shadow: none;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
   -webkit-appearance: none;
-  border: 0;
-  padding: vr(0.25) vr(1);
-  color: $color-btn-primary-text;
   background-color: $color-btn-primary-background;
   border-radius: $global-radius;
+  border: 0;
+  box-shadow: 0 2px 4px 0 rgba($color-btn-primary-background, 0.11),
+    0 1px 3px 0 rgba($black, 0.1);
+  box-shadow: none;
+  color: $color-btn-primary-text;
+  display: inline-block;
+  padding: vr(0.25) vr(1);
+  text-align: center;
+  transition: all 0.2s ease;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
   will-change: transition;
-  transition: 0.2s ease;
 
-  @include hover {
+  @include hover-focus {
     background-color: $color-btn-primary-background-hover;
-  }
-
-  @include focus {
-    outline: 0;
+    box-shadow: 0 7px 14px 0 rgba($color-btn-primary-background, 0.1),
+      0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
   }
 
   @include active {
     background-color: $color-btn-primary-background-active;
+    box-shadow: none;
+    transform: translateY(0);
   }
 
   &:disabled {
