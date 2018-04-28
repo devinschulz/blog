@@ -4,7 +4,6 @@ googleAnalytics = ""
 languageCode = "en"
 metaDataFormat = "toml"
 preserveTaxonomyNames = true
-sectionPagesMenu = "main"
 title = "Devin Schulz"
 summaryLength = 20
 enableGitInfo = true
@@ -28,12 +27,6 @@ pygmentsUseClasses = true
   username = "devinschulz"
   repository = "blog"
   branch = "master"
-
-[[menu.main]]
-  name = "Posts"
-  identifier = "posts"
-  url = "/posts/"
-  weight = 10
 
 [[menu.footer]]
   name = "Posts"
