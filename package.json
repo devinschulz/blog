@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp",
-    "format": "prettier --config .prettierrc --write \"src/**/*.{js,scss}\""
+    "format": "prettier --config .prettierrc --write \"src/**/*.{js,scss}\"",
+    "predev": "hugo serve -DF&",
+    "dev": "gulp watch"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
