@@ -42,6 +42,7 @@ const handleReplyClick = event => {
   }
 
   removeReplyform(target)
+
   const form = document.querySelector(COMMENT_FORM_CLASS).cloneNode(true)
   form.classList.add('c-form--reply')
   form.onsubmit = handleSubmit
@@ -56,8 +57,8 @@ const handleReplyClick = event => {
   target.setAttribute('aria-disabled', true)
 }
 
-const removeReplyform = target => {
-  const replyForm = replyHasForm(event.target)
+const removeReplyform = form => {
+  const replyForm = replyHasForm(form)
   if (replyForm) {
     replyForm.parentNode.removeChild(replyForm)
   }
@@ -73,7 +74,17 @@ const addCancelButton = form => {
   button.className = 'js-comment-cancel c-form__cancel c-btn c-btn__link'
   button.onclick = event => {
     event.preventDefault()
-    handleCleanup(form)
+
+    if (!isPrestine(form)) {
+      const conf = confirm(
+        'Looks like you started to reply. Are you sure you want to cancel?'
+      )
+      if (conf) {
+        handleCleanup(form)
+      }
+    } else {
+      handleCleanup(form)
+    }
   }
   const submitButton = form.querySelector('button[type="submit"]')
   form.querySelector('.c-form__btn-group').insertBefore(button, submitButton)
@@ -82,6 +93,16 @@ const addCancelButton = form => {
 const handleCleanup = form => {
   removeReplyform(form)
   removeIsDisabled()
+}
+
+const isPrestine = form => {
+  const elements = form.querySelectorAll('.js-input')
+  for (let element of elements) {
+    if (element.value !== '') {
+      return false
+    }
+  }
+  return true
 }
 
 const removeIsDisabled = () => {
