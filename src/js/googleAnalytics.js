@@ -6,7 +6,7 @@ export const init = () => {
   ga('create', analyticsId, 'auto')
 
   if (typeof Turbolinks !== 'undefined' && Turbolinks.supported) {
-    return document.addEventListener('page:change', trackPageview, true)
+    return document.addEventListener('turbolinks:visit', trackPageview, true)
   }
   trackPageview()
 }
