@@ -3,11 +3,13 @@ import {
   maybeInit as maybeInitCommenting,
   maybeDeInit as maybeDeInitCommenting,
 } from './comments'
+import { init as initGoogleAnalytics } from './googleAnalytics'
 
 const init = () => {
   turbolinks.start()
   bindEventListeners()
   maybeInitCommenting()
+  initGoogleAnalytics()
 }
 
 const bindEventListeners = () => {
