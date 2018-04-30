@@ -1,4 +1,5 @@
 import turbolinks from 'turbolinks'
+
 import {
   maybeInit as maybeInitCommenting,
   maybeDeInit as maybeDeInitCommenting,

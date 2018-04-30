@@ -36,7 +36,7 @@ const handleReplyClick = event => {
   const { target } = event
   event.preventDefault()
 
-  // Prevent clicking the links twice and re-rendering the corm multiple times.
+  // Prevent clicking the links twice and re-rendering the form multiple times.
   if (target.classList.contains(IS_DISABLED_CLASS)) {
     return
   }

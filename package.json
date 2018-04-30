@@ -41,6 +41,7 @@
     "watchify": "3.11.0"
   },
   "dependencies": {
+    "core-js": "^2.5.5",
     "intl-relativeformat": "^2.1.0",
     "turbolinks": "^5.1.1",
     "validate": "cferdinandi/validate"
