@@ -1,14 +1,33 @@
 // Based on http://reed.github.io/turbolinks-compatibility/google_analytics.html
-const analyticsId = 'UA-48758540-1'
+const ANALYTICS_ID = 'UA-48758540-1'
+const SEND = 'send'
 
 export const init = () => {
   load()
-  ga('create', analyticsId, 'auto')
+  ga('create', ANALYTICS_ID, 'auto')
 
   if (typeof Turbolinks !== 'undefined' && Turbolinks.supported) {
     return document.addEventListener('turbolinks:visit', trackPageview, true)
   }
   trackPageview()
+}
+
+export const trackPageview = () => {
+  if (!isLocalRequest() && allowTracking()) {
+    ga(SEND, 'pageview')
+  }
+}
+
+export const trackEvent = (eventAction, eventCategory, eventLabel) => {
+  if (!isLocalRequest() && allowTracking()) {
+    ga(SEND, 'event', eventCategory, eventAction, eventLabel)
+  }
+}
+
+export const trackSocialEvent = (socialNetwork, socialAction, socialTarget) => {
+  if (!isLocalRequest() && allowTracking()) {
+    ga(SEND, 'social', socialNetwork, socialAction, socialTarget)
+  }
 }
 
 const load = () => {
@@ -32,11 +51,8 @@ const load = () => {
     'ga'
   )
 }
-
-const trackPageview = () => {
-  if (!isLocalRequest()) {
-    ga('send', 'pageview')
-  }
-}
-
 const isLocalRequest = () => document.domain.includes('local')
+
+const doNotTrack = () => !!window.navigator.doNotTrack
+
+const allowTracking = () => !doNotTrack()
