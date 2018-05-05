@@ -1,0 +1,11 @@
+.c-skip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  padding: vr(0.25) vr(0.5);
+
+  @include focus {
+    opacity: 1;
+  }
+}

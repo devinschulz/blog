@@ -2,9 +2,10 @@
 <html lang="{{ .Site.LanguageCode }}">
   {{ partial "head.html" . }}
   <body>
+    <a href="#maincontent" class="c-skip">Skip to content</a>
     {{ partial "svg/svg-sprite.html" . }}
     {{ partial "navigation.html" . }}
-    <main>{{ block "main" . }}{{ end }}</main>
+    <main id="maincontent">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
   </body>
 </html>
