@@ -30,26 +30,26 @@
 }
 
 .c-article__heading {
-  .c-icon--link {
-    @media (pointer: fine) {
-      opacity: 0.5;
-      transition: opacity 0.2;
+  @include mq(large) {
+    position: relative;
+  }
+}
 
-      @include hover {
-        opacity: 1;
-      }
+.c-article__link {
+  @media (pointer: fine) {
+    opacity: 0.5;
+    transition: opacity 0.2;
+
+    @include hover {
+      opacity: 1;
     }
   }
 
   @include mq(large) {
-    position: relative;
-
-    .c-icon--link {
-      position: absolute;
-      right: 100%;
-      top: 0.2em;
-      margin-right: 10px;
-    }
+    position: absolute;
+    right: 100%;
+    top: 0;
+    margin-right: 10px;
   }
 }
 
