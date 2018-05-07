@@ -1,4 +1,5 @@
 .c-skip {
+  transform: translateY(-100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -7,5 +8,6 @@
 
   @include focus {
     opacity: 1;
+    transform: translateY(0);
   }
 }
