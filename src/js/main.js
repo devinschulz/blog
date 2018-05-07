@@ -7,11 +7,13 @@ import {
 import { init as initGoogleAnalytics } from './googleAnalytics'
 import headerLinks from './headerLinks'
 import share from './share'
+import fonts from './fonts'
 
 const init = () => {
   turbolinks.start()
   bindEventListeners()
   initGoogleAnalytics()
+  fonts()
 }
 
 const bindEventListeners = () => {
@@ -35,4 +37,5 @@ if (turbolinks.supported && process.env.NODE_ENV === 'production') {
   init()
 } else {
   handlePageLoad()
+  fonts()
 }

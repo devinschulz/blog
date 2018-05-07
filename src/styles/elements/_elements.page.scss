@@ -3,10 +3,14 @@
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: $font-family-default;
+  font-family: $font-family-default-fallback;
   font-weight: $font-weight-default;
   color: $color-text;
   background-color: $color-light-background;
+
+  .fonts-loaded & {
+    font-family: $font-family-default;
+  }
 }
 
 ::selection {
