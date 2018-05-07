@@ -55,6 +55,9 @@ const handleReplyClick = event => {
   target.classList.add(IS_DISABLED_CLASS)
   target.setAttribute('disabled', 'disabled')
   target.setAttribute('aria-disabled', true)
+
+  // Focus the first input field
+  form.querySelector('.js-input').focus()
 }
 
 const removeReplyform = form => {
