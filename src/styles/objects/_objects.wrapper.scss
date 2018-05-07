@@ -1,0 +1,16 @@
+.o-wrapper {
+  background-color: $color-background;
+  border-left: 1px solid $color-lines;
+  border-right: 1px solid $color-lines;
+  display: flow-root;
+  margin: 0 auto;
+  max-width: vr(40);
+
+  @supports (display: flow-root) {
+    display: flow-root;
+  }
+
+  @supports not (display: flow-root) {
+    @include clearfix;
+  }
+}
