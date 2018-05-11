@@ -35,8 +35,9 @@
 }
 
 .c-project__date {
-  margin-bottom: vr(0.25);
   color: $color-text-light;
+  font-family: $font-family-monospace;
+  margin-bottom: vr(0.25);
 
   @include mq(xlarge) {
     margin-bottom: 0;

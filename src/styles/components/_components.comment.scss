@@ -36,11 +36,19 @@
 .c-comment__timestamp {
   margin-left: auto;
   color: $color-text-light;
+  font-family: $font-family-monospace;
+  @include typi('small');
 }
 
 .c-comment__permalink {
   .c-icon--link {
     @include size(0.9em);
+    color: $color-text-light;
+    transition: color 0.2;
+
+    @include hover {
+      color: $color-link;
+    }
   }
 }
 

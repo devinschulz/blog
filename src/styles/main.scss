@@ -5,6 +5,7 @@
 
 @import 'typi';
 @import './tools/tools.mixins';
+@import './tools/tools.functions';
 
 @import './generic/generic.box-sizing';
 @import './generic/generic.reset';
@@ -17,6 +18,7 @@
 @import './elements/elements.main';
 @import './elements/elements.code';
 @import './elements/elements.form';
+@import './elements/elements.blockquote';
 
 @import './utilities/utilities.small-text';
 @import './utilities/utilities.visually-hidden';

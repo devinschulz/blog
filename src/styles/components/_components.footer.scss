@@ -1,4 +1,6 @@
 .c-footer {
+  @include typi('small');
+  font-family: $font-family-monospace;
   margin-bottom: vr(1);
   margin-top: vr(1.5);
 

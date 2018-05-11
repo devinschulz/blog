@@ -1,9 +1,19 @@
 import FontFaceObserver from 'fontfaceobserver'
 
 const fontFamilies = {
-  Palanquin: [{ weight: 400 }, { weight: 700 }],
-  Montserrat: [{ weight: 700 }],
-  Lora: [{ weight: 700 }],
+  'Anonymous Pro': [
+    { weight: 400 },
+    { weight: 400, style: 'italic' },
+    { weight: 600 },
+    { weight: 600, style: 'italic' },
+  ],
+  Karla: [
+    { weight: 400 },
+    { weight: 400, style: 'italic' },
+    { weight: 600 },
+    { weight: 600, style: 'italic' },
+  ],
+  Poppins: [{ weight: 800 }],
 }
 
 const fontObservers = Object.keys(fontFamilies).reduce((accumulator, key) => {

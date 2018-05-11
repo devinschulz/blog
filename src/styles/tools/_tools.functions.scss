@@ -13,3 +13,22 @@
 
   @return $ret;
 }
+
+@if variable-exists(fonts) {
+  @each $file, $option in $fonts {
+    @font-face {
+      font-family: map-get(map-get($fonts, $file), family);
+      font-style: map-get(map-get($fonts, $file), style);
+      font-weight: map-get(map-get($fonts, $file), weight);
+      src: url('../fonts/#{$file}.woff2') format('woff2'),
+        url('../fonts/#{$file}.woff') format('woff');
+    }
+
+    @font-face {
+      font-family: '#{map-get(map-get($fonts, $file), family)} Local';
+      font-style: map-get(map-get($fonts, $file), style);
+      font-weight: map-get(map-get($fonts, $file), weight);
+      src: local(map-get(map-get($fonts, $file), family));
+    }
+  }
+}

@@ -10,6 +10,7 @@
 
 .c-main-nav__wrapper {
   display: flex;
+  align-items: center;
 }
 
 .c-main-nav__logo-wrapper {
@@ -19,16 +20,12 @@
 
 .c-main-nav__logo {
   color: inherit;
-  font-family: $font-family-display;
-  font-weight: $font-weight-display;
-  letter-spacing: -0.025em;
-}
-
-.c-main-nav__subtitle {
-  margin-bottom: 0;
+  font: $font-weight-display 1.2rem $font-family-display;
 }
 
 .c-main-nav__links {
+  @include typi('small');
+  font-family: $font-family-monospace;
   margin-left: auto;
 
   a + a {
