@@ -4,28 +4,27 @@ $base-ratio: $base-line-height / $base-font-size;
 
 $base-display-ratio: 1.2;
 
+$font-hk-grotesk: 'HK Grotesk';
+
 $font-family-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
   'Segoe UI Symbol';
-$font-family-sans: Karla, $font-family-sans-fallback;
+$font-family-sans: $font-hk-grotesk, $font-family-sans-fallback;
 
-$font-family-monospace: 'Anonymous Pro', 'Inconsolata', 'Menlo', 'Consolas',
-  'Bitstream Vera Sans Mono', 'Courier', monospace;
+$font-family-monospace: Inconsolata, Menlo, Consolas, Courier, monospace;
 
-$font-family-sans-alt-fallback: 'Poppins Local', $font-family-sans-fallback;
-$font-family-sans-alt: 'Poppins', $font-family-sans-alt-fallback;
-
-$font-family-serif-fallback: sans-serif;
-$font-family-serif: Lora, $font-family-serif-fallback;
+$font-family-sans-alt-fallback: $font-family-sans-fallback;
+$font-family-sans-alt: $font-hk-grotesk, $font-family-sans-alt-fallback;
 
 // Define font stack used for headings
 $font-family-display-fallback: $font-family-sans-alt-fallback;
 $font-family-display: $font-family-sans-alt;
-$font-weight-display: 800;
+$font-weight-display: 600;
 
 // Define font stack used for paragraphs
 $font-family-default-fallback: $font-family-sans-fallback;
 $font-family-default: $font-family-sans;
+
 $font-weight-default: 400;
 $font-weight-default-bold: 700;
 
@@ -48,15 +47,32 @@ $typi: (
 );
 
 $fonts: (
-  'AnonymousPro-Bold': (family: 'Anonymous Pro', weight: 600, style: 'normal'),
-  'AnonymousPro-BoldItalic':
-    (family: 'Anonymous Pro', weight: 600, style: 'italic'),
-  'AnonymousPro-Italic': (family: 'Anonymous Pro', weight: 400, style: 'italic'),
-  'AnonymousPro-Regular':
-    (family: 'Anonymous Pro', weight: 400, style: 'normal'),
-  'Karla-Bold': (family: 'Karla', weight: 600, style: 'normal'),
-  'Karla-BoldItalic': (family: 'Karla', weight: 600, style: 'italic'),
-  'Karla-Italic': (family: 'Karla', weight: 400, style: 'italic'),
-  'Karla-Regular': (family: 'Karla', weight: 400, style: 'normal'),
-  'Poppins-ExtraBold': (family: 'Poppins', weight: 800, style: 'normal')
+  'HKGrotesk-BoldItalic':
+    (
+      family: $font-hk-grotesk,
+      weight: 700,
+      style: 'italic',
+      local: 'HK Grotesk Bold Italic'
+    ),
+  'HKGrotesk-Bold':
+    (
+      family: $font-hk-grotesk,
+      weight: 700,
+      style: 'normal',
+      local: 'HK Grotesk Bold'
+    ),
+  'HKGrotesk-Italic':
+    (
+      family: $font-hk-grotesk,
+      weight: 400,
+      style: 'italic',
+      local: 'HK Grotesk Italic'
+    ),
+  'HKGrotesk-Regular':
+    (
+      family: $font-hk-grotesk,
+      weight: 400,
+      style: 'normal',
+      local: 'HK Grotesk Regular'
+    )
 );

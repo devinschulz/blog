@@ -1,19 +1,12 @@
 import FontFaceObserver from 'fontfaceobserver'
 
 const fontFamilies = {
-  'Anonymous Pro': [
+  'HK Grotesk': [
     { weight: 400 },
     { weight: 400, style: 'italic' },
-    { weight: 600 },
-    { weight: 600, style: 'italic' },
+    { weight: 'bold' },
+    { weight: 'bold', style: 'italic' },
   ],
-  Karla: [
-    { weight: 400 },
-    { weight: 400, style: 'italic' },
-    { weight: 600 },
-    { weight: 600, style: 'italic' },
-  ],
-  Poppins: [{ weight: 800 }],
 }
 
 const fontObservers = Object.keys(fontFamilies).reduce((accumulator, key) => {

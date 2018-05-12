@@ -1,10 +1,13 @@
 $black: #000;
 $white: #fff;
 $pipi: #fefeca;
-$ribbon-blue: #0201F3;
-$orange-red: #e42a00;
+$ribbon-blue: #2026ec;
+$orange-red: #fd193b;
 
-$color-headings: lighten($black, 5%);
+$color-black: lighten($black, 5%);
+$color-white: $white;
+
+$color-headings: $color-black;
 $color-text: lighten($black, 20%);
 $color-text-light: lighten($black, 40%);
 $color-active: $color-headings;
