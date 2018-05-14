@@ -20,12 +20,13 @@
 
 .c-main-nav__logo {
   color: inherit;
-  font: $font-weight-display 1.2rem $font-family-display;
+  font: $font-weight-default-bold 1.2rem $font-family-sans;
 }
 
 .c-main-nav__links {
   @include typi('small');
   margin-left: auto;
+  font-family: $font-family-sans;
 
   a + a {
     margin-left: vr(0.5);
