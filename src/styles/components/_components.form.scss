@@ -38,9 +38,10 @@
 }
 
 .c-form__error-message {
-  margin-top: vr(0.25);
   @extend .u-small-text;
   color: $color-input-error;
+  font-family: $font-family-sans;
+  margin-top: vr(0.25);
 }
 
 .c-form__comment {
