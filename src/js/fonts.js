@@ -1,12 +1,15 @@
 import FontFaceObserver from 'fontfaceobserver'
 
+const sharedFontStyles = [
+  { weight: 400 },
+  { weight: 400, style: 'italic' },
+  { weight: 'bold' },
+  { weight: 'bold', style: 'italic' },
+]
+
 const fontFamilies = {
-  'HK Grotesk': [
-    { weight: 400 },
-    { weight: 400, style: 'italic' },
-    { weight: 'bold' },
-    { weight: 'bold', style: 'italic' },
-  ],
+  'HK Grotesk': sharedFontStyles,
+  'PT Serif': sharedFontStyles,
 }
 
 const fontObservers = Object.keys(fontFamilies).reduce((accumulator, key) => {
