@@ -1,14 +1,9 @@
 pre {
-  border-top: 1px solid $color-lines;
-  border-bottom: 1px solid $color-lines;
+  background-color: $color-light-background;
   overflow-x: auto;
   display: block;
   @extend .o-layout--extended-width-small;
   @extend .o-layout--inset-small;
-
-  @include mq(large) {
-    border: 1px solid $color-lines;
-  }
 
   > code {
     padding: vr(1) 0;
