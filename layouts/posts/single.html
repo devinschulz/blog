@@ -5,8 +5,10 @@
     <div itemprop="articleBody" class="c-article__content">
       {{ .Content }}
     </div>
-    <p>Enjoyed this article? Share it with your friends!</p>
-    {{ partial "share.html" . }}
+    <div class="c-article__share">
+      <p>Enjoyed this article? Share it with your friends!</p>
+      {{ partial "share.html" . }}
+    </div>
     {{ partial "show-comments.html" . }}
     {{ partial "form-comments.html" . }}
   </article>

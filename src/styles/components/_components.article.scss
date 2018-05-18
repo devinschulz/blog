@@ -48,7 +48,7 @@
 }
 
 .c-article__content {
-  margin-bottom: vr(2);
+  margin-bottom: vr(3);
 
   .c-icon--link {
     color: $color-text-light;
@@ -60,4 +60,8 @@
       margin-top: 0.2em;
     }
   }
+}
+
+.c-article__share {
+  margin-bottom: vr(3);
 }
