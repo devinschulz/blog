@@ -80,11 +80,31 @@ $fonts: (
       local: 'HK Grotesk Regular'
     ),
   'PT_Serif-BoldItalic':
-    (family: $font-pt-serif, weight: 700, style: 'italic', local: 'PT Serif'),
+    (
+      family: $font-pt-serif,
+      weight: 700,
+      style: 'italic',
+      local: 'PT Serif Bold Italic'
+    ),
   'PT_Serif-Bold':
-    (family: $font-pt-serif, weight: 700, style: 'normal', local: 'PT Serif'),
+    (
+      family: $font-pt-serif,
+      weight: 700,
+      style: 'normal',
+      local: 'PT Serif Bold'
+    ),
   'PT_Serif-Italic':
-    (family: $font-pt-serif, weight: 400, style: 'italic', local: 'PT Serif'),
+    (
+      family: $font-pt-serif,
+      weight: 400,
+      style: 'italic',
+      local: 'PT Serif Italic'
+    ),
   'PT_Serif-Regular':
-    (family: $font-pt-serif, weight: 400, style: 'normal', local: 'PT Serif')
+    (
+      family: $font-pt-serif,
+      weight: 400,
+      style: 'normal',
+      local: 'PT Serif Regular'
+    )
 );
