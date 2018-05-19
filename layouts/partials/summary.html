@@ -1,15 +1,15 @@
-<article class="c-article c-article--summary" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-  {{ partial "meta.html" . }}
-  <div class="o-layout">
-    <header class="c-article__header">
-      <h2 itemprop="headline" class="c-article__title">
-        <a itemprop="url" href="{{ .RelPermalink }}">
-          {{- .Title -}}
-        </a>
-      </h2>
-    </header>
-    <p class="c-article__body" itemprop="articleBody">
-      {{- .Summary -}}
-    </p>
-  </div>
+<article class="c-repeat" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="c-repeat__header">
+    <div class="c-repeat__meta u-small-text">
+      {{ partial "meta.html" . }}
+    </div>
+    <h2 itemprop="headline" class="c-repeat__title">
+      <a itemprop="url" href="{{ .RelPermalink }}">
+        {{- .Title -}}
+      </a>
+    </h2>
+  </header>
+  <p class="c-repeat__body" itemprop="articleBody">
+    {{- .Summary -}}
+  </p>
 </article>

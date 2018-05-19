@@ -1,5 +1,5 @@
 .c-btn {
-  font-family: $font-family-sans;
+  @extend .u-font-sans;
   -webkit-appearance: none;
   background-color: $color-btn-primary-background;
   border-radius: $global-radius;

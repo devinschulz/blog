@@ -1,7 +1,6 @@
 .c-footer {
   margin-bottom: vr(1);
   margin-top: vr(1.5);
-  font-family: $font-family-sans;
 
   @include mq(medium) {
     margin-bottom: vr(2);

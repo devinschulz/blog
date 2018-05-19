@@ -22,8 +22,8 @@ textarea {
 }
 
 label {
+  @extend .u-font-sans;
   margin-bottom: vr(0.5);
-  font-family: $font-family-sans;
 }
 
 fieldset {

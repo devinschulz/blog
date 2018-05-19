@@ -20,7 +20,8 @@
 
 .c-main-nav__logo {
   color: inherit;
-  font: $font-weight-default-bold 1.2rem $font-family-sans;
+  font-size: 1.2rem;
+  font-weight: $font-weight-default-bold;
 }
 
 .c-main-nav__links {

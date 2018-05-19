@@ -1,7 +1,3 @@
-<div class="c-meta u-small-text">
-  {{ partial "categories.html" . }}
-  &mdash;
-  <time datetime="{{ .Date }}" itemprop="datePublished">
-    {{- .Date.Format .Site.Params.dateFormat -}}
-  </time>
+<div class="u-font-sans u-small-text">
+  {{ partial "categories.html" . }} &mdash; <time datetime="{{ .Date }}" itemprop="datePublished"> {{- .Date.Format .Site.Params.dateFormat -}}</time>
 </div>

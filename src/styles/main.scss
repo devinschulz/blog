@@ -26,13 +26,13 @@
 @import './utilities/utilities.comma-list';
 @import './utilities/utilities.text-alignment';
 @import './utilities/utilities.inline-definition-list';
+@import './utilities/utilities.fonts';
 
 @import './objects/objects.container';
 @import './objects/objects.layout';
 @import './objects/objects.wrapper';
 
 @import './components/components.article';
-@import './components/components.meta';
 @import './components/components.buttons';
 @import './components/components.callout';
 @import './components/components.categories';
@@ -44,6 +44,7 @@
 @import './components/components.project';
 @import './components/components.share';
 @import './components/components.skip';
+@import './components/components.repeat';
 
 @import './trumps/trumps.links';
 @import './trumps/trumps.lists';

@@ -1,0 +1,7 @@
+.u-font-sans {
+  font-family: $font-family-sans-fallback;
+
+  .fonts-loaded & {
+    font-family: $font-family-sans;
+  }
+}

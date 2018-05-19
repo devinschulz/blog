@@ -1,15 +1,14 @@
-<div class="c-project">
-  <p class="c-project__date u-small-text">{{ .date | safeHTML }}</p>
-  <h2 class="c-project__title">
+<div class="c-repeat">
+  <p class="c-repeat__meta u-small-text u-font-sans">
+    {{- .date | safeHTML -}}
+  </p>
+  <h2 class="c-repeat__title">
     <a href="{{ .url }}" rel="external nofollow">
       {{- .title -}}
-      <svg class="c-icon c-icon--external-link">
-        <use xlink:href="#shape-external-link"></use>
-      </svg>
     </a>
   </h2>
-  <p class="c-project__body">{{ .body | markdownify }}</p>
-  <dl class="c-project__meta u-inline-dl">
+  <p class="c-repeat__body">{{ .body | markdownify }}</p>
+  <dl class="u-inline-dl">
     {{ with .role }}
       <dt>Role:</dt>
       <dd>{{ . }}</dd>

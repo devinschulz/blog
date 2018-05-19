@@ -1,0 +1,18 @@
+.c-repeat {
+  & + & {
+    margin-top: vr(2);
+  }
+}
+
+.c-repeat__meta {
+  color: $color-text-light;
+  margin-bottom: 0;
+
+  + .c-repeat__title {
+    margin-top: vr(0.25);
+  }
+}
+
+.c-repeat__title {
+  margin-bottom: vr(0.75);
+}

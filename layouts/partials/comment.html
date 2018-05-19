@@ -17,7 +17,7 @@
       <h4 class="c-comment__author">{{ .comment.name }}</h4>
     {{ end }}
     <div class="c-comment__timestamp">
-      <time class="js-comment-date" datetime="{{ .comment.date }}" itemprop="commentTime">
+      <time class="js-comment-date u-font-sans" datetime="{{ .comment.date }}" itemprop="commentTime">
         {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
       </time>
       <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">
