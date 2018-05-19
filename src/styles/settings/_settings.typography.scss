@@ -47,7 +47,7 @@ $typi: (
   h5: (null: (0.563em, $base-display-ratio), medium: (0.75em), xlarge: (1em)),
   h6:
     (null: (0.422em, $base-display-ratio), medium: (0.563em), xlarge: (0.75em)),
-  small: (null: (0.85em, $base-ratio), medium: (0.75em))
+  small: (null: (0.75em, $base-ratio))
 );
 
 $fonts: (
