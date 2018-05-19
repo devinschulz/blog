@@ -31,7 +31,6 @@ $layout-offset-xlarge: 5;
     margin-left: $layout-offset-medium * -1;
     margin-right: $layout-offset-medium * -1;
   }
-
   @include mq(large) {
     margin-left: vr($layout-offset-large / 2 * -1);
     margin-right: vr($layout-offset-large / 2 * -1);
@@ -43,11 +42,11 @@ $layout-offset-xlarge: 5;
   margin-bottom: vr(1);
 
   @include mq(medium) {
-    margin-bottom: vr(4);
+    margin-bottom: vr(2);
   }
 
   @include mq(large) {
-    margin-bottom: vr(3);
+    margin-bottom: vr(2);
   }
 }
 
@@ -80,15 +79,15 @@ $layout-offset-xlarge: 5;
 }
 
 .o-layout--padded {
-  padding: vr(2) $layout-offset-small;
+  padding: vr(1) $layout-offset-small;
   margin-bottom: vr(2);
 
   @include mq(medium) {
-    padding: vr(2) $layout-offset-medium;
+    padding: vr(1) $layout-offset-medium;
     margin-bottom: vr(4);
   }
 
   @include mq(large) {
-    padding: vr(2) 0;
+    padding: vr(1) 0;
   }
 }

@@ -57,3 +57,9 @@ $triangle-height: 487px;
     fill: lighten($black, 93%);
   }
 }
+
+.c-masthead__hr {
+  width: vr(3);
+  border-bottom: 2px solid $color-lines;
+  margin: 0 auto;
+}
