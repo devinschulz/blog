@@ -1,8 +1,0 @@
-{{- if .FuzzyWordCount }}
-  <meta itemprop="wordCount" content="{{ .FuzzyWordCount }}">
-{{- end -}}
-{{- with $.Site.Author.name }}
-  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="author" content="{{ . }}">
-  </span>
-{{ end }}

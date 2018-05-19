@@ -1,5 +1,5 @@
 <article class="c-article c-article--summary" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-  {{ partial "post_meta.html" . }}
+  {{ partial "meta.html" . }}
   <div class="o-layout">
     <header class="c-article__header">
       <h2 itemprop="headline" class="c-article__title">
@@ -11,8 +11,5 @@
     <p class="c-article__body" itemprop="articleBody">
       {{- .Summary -}}
     </p>
-    <footer class="c-article__footer">
-      {{ partial "article_meta.html" . }}
-    </footer>
   </div>
 </article>

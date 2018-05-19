@@ -5,21 +5,8 @@
 }
 
 .c-article__title {
-  margin-bottom: vr(0.5);
-}
-
-.c-article__meta {
-  color: $color-text-light;
-  font-family: $font-family-sans;
-  margin-bottom: 0;
-
-  > li:not(:first-child) {
-    margin-left: vr(0.25);
-
-    @include mq(medium) {
-      margin-left: vr(0.5);
-    }
-  }
+  margin-top: vr(0.25);
+  margin-bottom: vr(0.75);
 }
 
 .c-article__body {
