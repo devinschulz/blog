@@ -25,9 +25,7 @@ export default () => {
                   break
 
                 case 'redundant':
-                  throw new Error(
-                    'The installing ' + 'service worker became redundant.'
-                  )
+                  throw new Error('The service worker became redundant.')
 
                 default:
                 // Ignore
