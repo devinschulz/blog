@@ -5402,7 +5402,7 @@ workbox-broadcast-cache-update@^3.2.0:
   dependencies:
     workbox-core "^3.2.0"
 
-workbox-build@^3.2.0:
+workbox-build@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-3.2.0.tgz#01f4a4f6fb5a94dadd3f86d04480c84578fa1125"
   dependencies:
