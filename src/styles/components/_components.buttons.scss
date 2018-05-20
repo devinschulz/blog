@@ -45,6 +45,13 @@ a.c-btn:disabled {
 }
 
 .c-btn__link {
-  background-color: white;
+  background-color: transparent;
   color: currentColor;
+  box-shadow: none;
+
+  @include hover-focus-active {
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+  }
 }

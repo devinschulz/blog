@@ -16,11 +16,16 @@
 
 .c-form__btn-group {
   display: flex;
-  align-items: flex-end;
 
-  a {
-    margin-left: auto;
-    margin-right: vr(1);
+  button {
+    &:first-child {
+      margin-left: auto;
+      margin-right: vr(1);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
