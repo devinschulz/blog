@@ -1,4 +1,5 @@
 pre {
+  @include typi('code');
   background-color: $color-light-background;
   overflow-x: auto;
   display: block;
