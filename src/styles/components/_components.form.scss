@@ -52,3 +52,11 @@
   display: grid;
   grid-template-rows: auto auto auto;
 }
+
+.c-form__alert {
+  display: none;
+
+  &:target {
+    display: block;
+  }
+}

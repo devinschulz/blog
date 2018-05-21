@@ -1,0 +1,32 @@
+.c-alert {
+  @include typi('alert');
+  align-items: center;
+  border-radius: $global-radius * 2;
+  color: $color-white;
+  display: flex;
+  margin-bottom: vr(1);
+  padding: vr(0.4) vr(0.75);
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.c-alert__icon {
+  display: flex;
+  flex-basis: 40px;
+  margin-right: vr(0.5);
+}
+
+.c-alert--success {
+  background-image: linear-gradient(-135deg, #3ecf8e 0%, #24b47e 100%);
+  box-shadow: 0 2px 4px 0 rgba(#3ecf8e, 0.11),
+    0 1px 3px 0 rgba($color-black, 0.1);
+}
+
+.c-alert--error {
+  background-image: linear-gradient(-135deg, #f35953 0%, #d8294b 100%);
+  box-shadow: 0 2px 4px 0 rgba(#f35953, 0.11),
+    0 1px 3px 0 rgba($color-black, 0.1);
+}

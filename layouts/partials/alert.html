@@ -1,0 +1,13 @@
+<div class="c-alert c-alert--{{ .type }} u-font-sans" role="alert">
+  <div class="c-alert__icon">
+    {{ if eq .type "error"}}
+      {{ partial "svg/alert-triangle.svg" }}
+    {{ end }}
+    {{ if eq .type "success" }}
+      {{ partial "svg/check-circle.svg" }}
+    {{ end }}
+  </div>
+  <div class="c-alert__message">
+    {{- .message | safeHTML -}}
+  </div>
+</div>

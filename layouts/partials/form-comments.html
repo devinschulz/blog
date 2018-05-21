@@ -1,6 +1,13 @@
-<h3>Post a new comment</h3>
 <form class="c-form c-form--comments js-comment-form" method="POST" action="https://api.staticman.net/v2/entry/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/comments" data-validate>
-  <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
+  <div class="c-form__alert js-form-success" id="comment-success">
+    {{ $success := (printf "Thanks for joining in! All comments are created as a pull request which can be viewed on <a href='%s/pulls'>github</a>." .Site.Params.githubRepo) }}
+    {{ partial "alert.html" (dict "type" "success" "message" $success) }}
+  </div>
+  <div class="c-form__alert js-form-error" id="comment-error">
+    {{ $error := "Oh no! It looks like something went wrong while trying to submit your comment. Please try again." }}
+    {{ partial "alert.html" (dict "type" "error" "message" $error) }}
+  </div>
+  <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-success">
   <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
   <input type="hidden" name="fields[parent]" class="js-parent" value="">
   <div class="c-form__group c-form__comment">
