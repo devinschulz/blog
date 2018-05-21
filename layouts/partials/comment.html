@@ -30,12 +30,9 @@
   <div class="c-comment__content" itemprop="commentText">
     <p>{{- .comment.body | markdownify -}}</p>
   </div>
-  {{ if eq $depth 0 }}
-    <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}">
-      {{- printf "Reply to %s" .comment.name -}}
-    </a>
-  {{ end }}
-
+  <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}" data-name="{{ .comment.name }}">
+    {{- printf "Reply to %s" .comment.name -}}
+  </a>
   {{ $page.Scratch.Set "hasReplies" 0 }}
   {{ range $comments }}
     {{ if eq .parent $id }}
@@ -43,7 +40,7 @@
     {{ end }}
   {{ end }}
 
-  {{ if and (ne ($page.Scratch.Get "hasReplies") 0) (eq $depth 0) }}
+  {{ if ne ($page.Scratch.Get "hasReplies") 0 }}
     {{ $depth := (add $depth 1) }}
     <ul class="c-comments__list is-nested c-comment__depth-{{ $depth }}">
       {{ range sort $comments "date" }}

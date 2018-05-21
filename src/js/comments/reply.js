@@ -42,6 +42,7 @@ const handleReplyClick = event => {
   }
 
   removeReplyform(target)
+  removeIsDisabled()
 
   const form = document.querySelector(COMMENT_FORM_CLASS).cloneNode(true)
   form.classList.add('c-form--reply')
@@ -50,6 +51,11 @@ const handleReplyClick = event => {
   form.reset()
   addCancelButton(form)
   removeFormErrors(form)
+
+  const replyingTo = document.createElement('h3')
+  replyingTo.innerText = `Replying to ${target.dataset.name}`
+  form.before(replyingTo)
+  form.insertBefore(replyingTo, form.firstElementChild)
 
   target.after(form)
   target.classList.add(IS_DISABLED_CLASS)
