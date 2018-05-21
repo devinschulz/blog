@@ -1,4 +1,5 @@
 import validate from 'validate'
+import serialize from 'form-serialize'
 
 export const init = () => {
   validate.init({
@@ -14,30 +15,41 @@ export const deinit = () => {
 }
 
 const handleSubmit = (form, fields) => {
-  event.preventDefault()
-  const url = form.getAttribute('action')
-  submitForm(url, new FormData(form))
-    .then(handleSuccess)
-    .catch(handleError)
+  try {
+    event.preventDefault()
+    const url = form.getAttribute('action')
+    const formData = serialize(form, { hash: true })
+    delete formData.options.redirect
+    submitForm(url, formData, form)
+  } catch (e) {
+    form.submit()
+  }
 }
 
-const submitForm = (url, body) => {
+const submitForm = (url, body, form) => {
   return fetch(url, {
     method: 'POST',
-    body,
+    body: JSON.stringify(body),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    mode: 'cors',
   }).then(response => {
     return response.json().then(data => {
-      return response.ok
-        ? Promise.resolve(data)
-        : Promise.reject({ status: response.status, data })
+      return response.ok && data.success
+        ? handleSuccess(form, data)
+        : handleError(form, data)
     })
   })
 }
 
-const handleError = error => {
-  console.error(error)
+const handleError = form => {
+  showElement(form.querySelector('.js-form-error'))
 }
 
-const handleSuccess = data => {
-  console.log(data)
+const handleSuccess = form => {
+  showElement(form.querySelector('.js-form-success'))
+  form.reset()
 }
+
+const showElement = element => (element.style.display = 'block')
