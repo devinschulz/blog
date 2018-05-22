@@ -1,6 +1,6 @@
 comments:
   allowedFields: ["name", "email", "body", "website", "parent"]
-  allowedOrigins: ["localhost", "devinschulz.com"]
+  allowedOrigins: ["localhost", "devinschulz.netlify.com", "devinschulz.com"]
   branch: "master"
   generatedFields:
     date:
@@ -10,7 +10,7 @@ comments:
   name: "Devin Schulz"
   path: "data/comments/{options.entryId}"
   filename: "{@id}"
-  requiredFields: ["name", "body"]
+  requiredFields: ["body"]
   transforms:
     email: md5
   notifications:

@@ -1,20 +1,22 @@
-  {{ $id := .comment._id }}
-  {{ $comments := .comments }}
-  {{ $page := .page }}
-  {{ $depth := .depth }}
+{{ $id := .comment._id }}
+{{ $comments := .comments }}
+{{ $page := .page }}
+{{ $depth := .depth }}
+{{ $name := default "Anonymous" .comment.name }}
 
-  <li class="c-comment" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments"> <header class="c-comment__header">
+<li class="c-comment" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments">
+  <header class="c-comment__header">
     {{- $gravatarURL := (printf "https://www.gravatar.com/avatar/%s" .comment.email) | safeURL -}}
     {{- $imageSize := 40 -}}
     <img class="c-comment__avatar" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL }}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
     {{ if .website }}
       <h4 class="c-comment__author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
         <a rel="external nofollow" href="{{ .comment.website }}" itemprop="name">
-          {{- .comment.name -}}
+          {{- $name -}}
         </a>
       </h4>
     {{ else }}
-      <h4 class="c-comment__author">{{ .comment.name }}</h4>
+      <h4 class="c-comment__author">{{ $name }}</h4>
     {{ end }}
     <div class="c-comment__timestamp">
       <time class="js-comment-date u-font-sans" datetime="{{ .comment.date }}" itemprop="commentTime">
@@ -30,8 +32,8 @@
   <div class="c-comment__content" itemprop="commentText">
     <p>{{- .comment.body | markdownify -}}</p>
   </div>
-  <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}" data-name="{{ .comment.name }}">
-    {{- printf "Reply to %s" .comment.name -}}
+  <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}" data-name="{{ $name }}">
+    {{- printf "Reply to %s" $name -}}
   </a>
   {{ $page.Scratch.Set "hasReplies" 0 }}
   {{ range $comments }}
