@@ -65,7 +65,7 @@
 .c-comment__reply {
   font-family: $font-family-sans;
 
-  + .c-form {
-    margin-top: vr(1);
+  &.is-disabled {
+    display: none;
   }
 }

@@ -142,6 +142,10 @@ ul ul,
 ol ul,
 ul ol {
   margin-bottom: 0;
+
+  + p {
+    margin-top: vr(1);
+  }
 }
 
 dt {
