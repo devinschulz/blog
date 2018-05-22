@@ -17,3 +17,8 @@ comments:
     enabled: true
     domain: a7yIxQjFf7L+RStX6aIOsCrNQrEuxwk2OJnpRyhvEgE1a3R8ad/aFG4V/6b7T1twVL/6kihsBo5qTwO5nDw7PPW4G5dMGVMSjxOF0DkmYnlR8RT/qnuvdUhoYbMf+uu0yIHVbMDqrO6eL8677B2D5zweWBK74SQlbdTykXkxKLM=
     apiKey: IqNuFiPirxBgvuvtb4qGhQwajYYs9W33jz3MLTSuG+r/nSqfvN9OXVpZMpOT1PUlbcQG/beNx7CoVSKebvSUeYahtDvjek/iQTpjv8PvH3gaKctPGKw4nLBt4pRLVX3kYx7PUJMLMgH3L5O4GhFL5cMZ+FfnU/4K1aEFDCOHIoo=
+  analytics:
+    uaTrackingId: "UA-48758540-1"
+  akismet:
+    site: "devinschulz.com"
+    apiKey: bTCZBhJHvmdMr+djtoZqsyQLyosmTzJSGWoamBspvIoQ58Y39g4RvA7YBOGt5wF0rIDBkDvVxDAOZcA32enDcEGSvGHZgZWTMDNb7L8L3G6G2kUqu330d70WvhW35X4IzPf6apHNmJEBV8BiDZIjYKIPx3ZlOJazS/aqau+/ZZE=
