@@ -22,6 +22,7 @@ pygmentsUseClasses = true
   sentryDSN = "https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767"
   dateFormat = "January 2, 2006"
   githubRepo = "https://github.com/devinschulz/blog"
+  commentsEnabled = true
 
 [params.staticman]
   endpoint = "https://api.staticman.net/v2/entry/"

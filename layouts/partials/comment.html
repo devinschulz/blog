@@ -32,9 +32,11 @@
   <div class="c-comment__content" itemprop="commentText">
     <p>{{- .comment.body | markdownify -}}</p>
   </div>
-  <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}" data-name="{{ $name }}">
-    {{- printf "Reply to %s" $name -}}
-  </a>
+  {{ if .Site.Params.commentsEnabled }}
+    <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}" data-name="{{ $name }}">
+      {{- printf "Reply to %s" $name -}}
+    </a>
+  {{ end }}
   {{ $page.Scratch.Set "hasReplies" 0 }}
   {{ range $comments }}
     {{ if eq .parent $id }}
