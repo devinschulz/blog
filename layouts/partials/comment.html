@@ -3,6 +3,7 @@
 {{ $page := .page }}
 {{ $depth := .depth }}
 {{ $name := default "Anonymous" .comment.name }}
+{{ $commentsEnabled := .commentsEnabled }}
 
 <li class="c-comment" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments">
   <header class="c-comment__header">
@@ -32,8 +33,8 @@
   <div class="c-comment__content" itemprop="commentText">
     <p>{{- .comment.body | markdownify -}}</p>
   </div>
-  {{ if .Site.Params.commentsEnabled }}
-    <a href="#" class="c-comment__reply js-reply" data-parent="{{ .comment._id }}" data-name="{{ $name }}">
+  {{ if $commentsEnabled }}
+    <a href="#" class="c-comment__reply js-reply" data-parent="{{ $id }}" data-name="{{ $name }}">
       {{- printf "Reply to %s" $name -}}
     </a>
   {{ end }}
@@ -49,7 +50,7 @@
     <ul class="c-comments__list is-nested c-comment__depth-{{ $depth }}">
       {{ range sort $comments "date" }}
         {{ if eq .parent $id }}
-          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page "depth" $depth) }}
+          {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page "depth" $depth "commentsEnabled" $commentsEnabled) }}
         {{ end }}
       {{ end }}
     </ul>
