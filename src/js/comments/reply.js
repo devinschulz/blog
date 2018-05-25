@@ -41,28 +41,31 @@ const handleReplyClick = event => {
     return
   }
 
-  removeReplyform(target)
   removeIsDisabled()
 
-  const form = document.querySelector(COMMENT_FORM_CLASS).cloneNode(true)
-  form.classList.add('c-form--reply')
-  form.onsubmit = handleSubmit
-  form.querySelector('.js-parent').value = target.dataset.parent
-  form.reset()
-  addCancelButton(form)
-  removeFormErrors(form)
+  const form = document.querySelector('.js-comment-form')
 
-  const replyingTo = document.createElement('h3')
-  replyingTo.innerText = `Replying to ${target.dataset.name}`
-  form.before(replyingTo)
-  form.insertBefore(replyingTo, form.firstElementChild)
+  // Whenever the user started replying to a comment and now clicked reply to
+  // someone else, clean up the form.
+  handleReplyCleanup(form)
+
+  form.querySelector('.js-parent').value = target.dataset.parent
+
+  const formElement = form.querySelector('.js-form')
+  formElement.classList.add('c-form--reply')
+  formElement.onsubmit = handleSubmit
+
+  removeFormErrors(formElement)
+  addCancelButton(form)
+
+  const heading = form.querySelector('.js-comment-heading')
+  heading.innerText = `Replying to ${target.dataset.name}`
 
   target.after(form)
   target.classList.add(IS_DISABLED_CLASS)
   target.setAttribute('disabled', 'disabled')
   target.setAttribute('aria-disabled', true)
 
-  // Focus the first input field
   form.querySelector('.js-input').focus()
 }
 
@@ -81,27 +84,36 @@ const addCancelButton = form => {
   const button = document.createElement('button')
   button.innerText = 'Cancel'
   button.className = 'js-comment-cancel c-form__cancel c-btn c-btn__link'
-  button.onclick = event => {
-    event.preventDefault()
-
-    if (!isPrestine(form)) {
-      const conf = confirm(
-        'Looks like you started to reply. Are you sure you want to cancel?'
-      )
-      if (conf) {
-        handleCleanup(form)
-      }
-    } else {
-      handleCleanup(form)
-    }
-  }
+  button.onclick = event => handleCancel(event, form)
   const submitButton = form.querySelector('button[type="submit"]')
   form.querySelector('.c-form__btn-group').insertBefore(button, submitButton)
 }
 
+const handleCancel = (event, form) => {
+  event.preventDefault()
+  handleCleanup(form)
+}
+
 const handleCleanup = form => {
-  removeReplyform(form)
   removeIsDisabled()
+  removeFormErrors(form.querySelector('.js-form'))
+  handleReplyCleanup(form)
+  document.querySelector('.c-form__wrapper').appendChild(form)
+}
+
+const handleReplyCleanup = form => {
+  form.querySelector('.js-parent').value = ''
+
+  const heading = form.querySelector('.js-comment-heading')
+  heading.innerText = heading.dataset.default
+
+  removeElement(form.querySelector('.js-comment-cancel'))
+}
+
+const removeElement = element => {
+  if (element) {
+    element.parentNode.removeChild(element)
+  }
 }
 
 const isPrestine = form => {

@@ -1,4 +1,6 @@
 .c-form {
+  margin-bottom: vr(2);
+
   .c-icon--markdown {
     color: $color-headings;
     height: auto;
@@ -10,13 +12,10 @@
 
 .c-form__help {
   color: $color-text-light;
-  float: right;
   margin-top: vr(0.25);
 }
 
 .c-form__btn-group {
-  display: flex;
-
   button {
     &:first-child {
       margin-left: auto;
@@ -59,4 +58,9 @@
   &:target {
     display: block;
   }
+}
+
+.c-form__header {
+  display: flex;
+  align-items: center;
 }

@@ -22,3 +22,7 @@ comments:
   akismet:
     site: "devinschulz.com"
     apiKey: bTCZBhJHvmdMr+djtoZqsyQLyosmTzJSGWoamBspvIoQ58Y39g4RvA7YBOGt5wF0rIDBkDvVxDAOZcA32enDcEGSvGHZgZWTMDNb7L8L3G6G2kUqu330d70WvhW35X4IzPf6apHNmJEBV8BiDZIjYKIPx3ZlOJazS/aqau+/ZZE=
+  recaptcha:
+    enabled: true
+    siteKey: 6LcrGVsUAAAAAP2LKjw2P_y_FW1LVE86RZqcfjfg
+    secret: zV5kYaBUfaIuBGGdSJIEtp8F+6VqWdBcCxUqhI69R4KvfNOw1yTQEGponVJ5uW/VDlSr6UuRmwtCga3+7UwLFnBoh+5Ssl5jlPo7/G6PkFyckd37cCaYtyfXatcIUTSou6O7mBa8DsQnjB569J9tw1VUncGJYPDZEOypGBJ3Ttc=

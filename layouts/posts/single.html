@@ -10,7 +10,6 @@
     </div>
     {{ partial "show-comments.html" . }}
     {{ if .Site.Params.commentsEnabled }}
-      <h3>Post a new comment</h3>
       {{ partial "form-comments.html" . }}
     {{ else }}
       <p>Comments closed.</p>

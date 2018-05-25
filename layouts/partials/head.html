@@ -60,4 +60,5 @@
     {{- end -}}
   {{- end -}}
   <script src="{{ "scripts.js" | relURL }}" defer></script>
+  {{ block "head" . }}{{ end }}
 </head>
