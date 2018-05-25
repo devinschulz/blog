@@ -49,5 +49,16 @@
   </div>
 </div>
 {{ define "head" }}
-  <script src="https://www.google.com/recaptcha/api.js" async></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&explicit=true" defer></script>
+  <script>
+    function recaptchaCallback() {
+      var container = document.getElementById('g-recaptcha-container')
+      container.innerHTML = ''
+      var recaptcha = document.createElement('div')
+      grecaptcha.render(recaptcha, {
+        sitekey: '{{ .Site.Params.recaptcha.siteKey }}'
+      })
+      container.appendChild(recaptcha)
+    }
+</script>
 {{ end }}
