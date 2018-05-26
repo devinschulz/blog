@@ -2,7 +2,7 @@
   <ul class="c-categories u-comma-list">
     {{- range sort .Params.Categories -}}
       {{- $link := . | urlize | printf "%s%s" "/categories/" | printf "%s/" -}}
-      <li class="c-categories__item"><a href="{{ $link }}" class="c-categories__link">{{ . }}</a></li>
+      <li class="c-categories__item"><a href="{{ $link }}" class="c-categories__link t-inverted-link">{{ . }}</a></li>
     {{- end -}}
   </ul>
 {{- end -}}
