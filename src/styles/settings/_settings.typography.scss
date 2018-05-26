@@ -34,7 +34,7 @@ $font-weight-default-bold: 700;
 
 $typi: (
   base: (null: (16px, $base-ratio), medium: (18px), xlarge: (20px)),
-  code: (null: (16px, $base-ratio), medium: (18px)),
+  code: (null: (14px, $base-ratio), medium: (16px)),
   alert: (null: (14px, $base-ratio), medium: (16px)),
   h1:
     (null: (1.77em, $base-display-ratio), medium: (2.369em), xlarge: (3.157em)),
