@@ -1,7 +1,7 @@
 import IntlRelativeFormat from 'intl-relativeformat'
 import validate from 'validate'
 
-import { handleSubmit } from './submit'
+import { handleSubmit, hideAlerts } from './submit'
 import '../polyfills/after'
 
 const COMMENT_FORM_CLASS = '.js-comment-form'
@@ -48,6 +48,7 @@ const handleReplyClick = event => {
   // Whenever the user started replying to a comment and now clicked reply to
   // someone else, clean up the form.
   handleReplyCleanup(form)
+  hideAlerts(form)
 
   form.querySelector('.js-parent').value = target.dataset.parent
 

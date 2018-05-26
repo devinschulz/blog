@@ -20,6 +20,8 @@ const handleSubmit = (form, fields) => {
     const url = form.getAttribute('action')
     const formData = serialize(form, { hash: true })
     delete formData.options.redirect
+
+    setSubmitButtonLoading(form)
     submitForm(url, formData, form)
   } catch (e) {
     form.submit()
@@ -34,22 +36,42 @@ const submitForm = (url, body, form) => {
       'Content-Type': 'application/json',
     }),
     mode: 'cors',
-  }).then(response => {
-    return response.json().then(data => {
-      return response.ok && data.success
+  }).then(response =>
+    response.json().then(data =>
+      response.ok && data.success
         ? handleSuccess(form, data)
         : handleError(form, data)
-    })
-  })
+    )
+  )
 }
 
 const handleError = form => {
+  setSubmitButtonFinished(form)
   showElement(form.querySelector('.js-form-error'))
 }
 
 const handleSuccess = form => {
+  setSubmitButtonFinished(form)
   showElement(form.querySelector('.js-form-success'))
   form.reset()
 }
 
+export const hideAlerts = form => {
+  hideElement(form.querySelector('.js-form-error'))
+  hideElement(form.querySelector('.js-form-success'))
+}
+
 const showElement = element => (element.style.display = 'block')
+const hideElement = element => (element.style.display = 'none')
+
+const setSubmitButtonLoading = form => {
+  const button = form.querySelector('.js-submit')
+  button.setAttribute('disabled', 'disabled')
+  button.classList.add('is-loading')
+}
+
+const setSubmitButtonFinished = form => {
+  const button = form.querySelector('.js-submit')
+  button.removeAttribute('disabled')
+  button.classList.remove('is-loading')
+}
