@@ -31,11 +31,28 @@
   }
 
   &:disabled {
+    background-color: $color-btn-primary-background;
+    box-shadow: none;
     opacity: 0.5;
+    transform: translateY(0);
   }
 
   &:not(:disabled):not(.disabled) {
     cursor: pointer;
+  }
+
+  &.is-loading {
+    .loader {
+      @include loader02(
+        $size: vr(0.45),
+        $color: $color-white,
+        $border-size: 2px,
+        $duration: 0.5s
+      );
+      display: inline-block;
+      margin-right: vr(0.5);
+      margin-top: vr(0.2);
+    }
   }
 }
 

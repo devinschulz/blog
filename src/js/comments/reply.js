@@ -65,8 +65,6 @@ const handleReplyClick = event => {
   const comment = target.closest('.c-comment')
   comment.querySelector('.c-comment__content').after(form)
 
-  // target.after(form)
-
   form.querySelector('.js-input').focus()
 }
 
@@ -87,7 +85,7 @@ const addCancelButton = form => {
   button.className = 'js-comment-cancel c-form__cancel c-btn c-btn__link'
   button.onclick = event => handleCancel(event, form)
   const submitButton = form.querySelector('button[type="submit"]')
-  form.querySelector('.c-form__btn-group').insertBefore(button, submitButton)
+  form.querySelector('.c-form__btn-group').appendChild(button)
 }
 
 const handleCancel = (event, form) => {

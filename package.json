@@ -46,6 +46,7 @@
     "fontfaceobserver": "^2.0.13",
     "form-serialize": "^0.7.2",
     "intl-relativeformat": "^2.1.0",
+    "spinthatshit": "^1.0.4",
     "turbolinks": "^5.1.1",
     "validate": "cferdinandi/validate"
   }

@@ -37,11 +37,14 @@ const submitForm = (url, body, form) => {
     }),
     mode: 'cors',
   }).then(response =>
-    response.json().then(data =>
-      response.ok && data.success
-        ? handleSuccess(form, data)
-        : handleError(form, data)
-    )
+    response
+      .json()
+      .then(
+        data =>
+          response.ok && data.success
+            ? handleSuccess(form, data)
+            : handleError(form, data)
+      )
   )
 }
 
@@ -68,10 +71,12 @@ const setSubmitButtonLoading = form => {
   const button = form.querySelector('.js-submit')
   button.setAttribute('disabled', 'disabled')
   button.classList.add('is-loading')
+  button.innerHTML = '<div class="loader"></div>Loading'
 }
 
 const setSubmitButtonFinished = form => {
   const button = form.querySelector('.js-submit')
   button.removeAttribute('disabled')
   button.classList.remove('is-loading')
+  button.innerText = 'Submit'
 }

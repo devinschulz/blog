@@ -15,19 +15,6 @@
   margin-top: vr(0.25);
 }
 
-.c-form__btn-group {
-  button {
-    &:first-child {
-      margin-left: auto;
-      margin-right: vr(1);
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-}
-
 .c-form__group {
   margin-bottom: vr(1);
 }
