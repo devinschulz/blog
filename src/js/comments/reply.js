@@ -62,10 +62,10 @@ const handleReplyClick = event => {
   const heading = form.querySelector('.js-comment-heading')
   heading.innerText = `Replying to ${target.dataset.name}`
 
-  target.after(form)
-  target.classList.add(IS_DISABLED_CLASS)
-  target.setAttribute('disabled', 'disabled')
-  target.setAttribute('aria-disabled', true)
+  const comment = target.closest('.c-comment')
+  comment.querySelector('.c-comment__content').after(form)
+
+  // target.after(form)
 
   form.querySelector('.js-input').focus()
 }

@@ -12,7 +12,7 @@
 }
 
 .is-nested {
-  border-left: 5px solid $color-lines;
+  border-left: 1px solid $color-lines;
   padding-left: vr(0.5);
 
   @include mq(medium) {
@@ -41,6 +41,12 @@
 .c-comment__avatar {
   border-radius: 40px;
   margin-right: vr(0.5);
+  max-width: 40px;
+  height: auto;
+
+  @include mq(medium) {
+    max-width: 60px;
+  }
 }
 
 .c-comment__timestamp {

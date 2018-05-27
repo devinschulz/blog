@@ -31,10 +31,10 @@ const hasCommenting = () => {
 
 export const initRecaptcha = () => {
   if (hasCommenting()) {
-    const container = document.getElementById('g-recaptcha-container')
-    container.innerHTML = ''
-    const recaptcha = document.createElement('div')
     grecaptcha.ready(() => {
+      const container = document.getElementById('g-recaptcha-container')
+      container.innerHTML = ''
+      const recaptcha = document.createElement('div')
       grecaptcha.render(recaptcha, {
         sitekey: '6LcrGVsUAAAAAP2LKjw2P_y_FW1LVE86RZqcfjfg',
       })

@@ -8,36 +8,36 @@
 <li class="c-comment" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments">
   <header class="c-comment__header">
     {{- $gravatarURL := (printf "https://www.gravatar.com/avatar/%s" .comment.email) | safeURL -}}
-    {{- $imageSize := 40 -}}
+    {{- $imageSize := 50 -}}
     <img class="c-comment__avatar" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL }}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
-    {{ if .website }}
-      <h4 class="c-comment__author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
-        <a rel="external nofollow" href="{{ .comment.website }}" itemprop="name">
-          {{- $name -}}
-        </a>
-      </h4>
-    {{ else }}
-      <h4 class="c-comment__author">{{ $name }}</h4>
-    {{ end }}
-    <div class="c-comment__timestamp">
-      <time class="js-comment-date u-font-sans" datetime="{{ .comment.date }}" itemprop="commentTime">
-        {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
-      </time>
-      <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">
-        <svg class="c-icon c-icon--link">
-          <use xlink:href="#shape-link"></use>
-        </svg>
-      </a>
+    <div class="c-comment__inner">
+      {{ if .website }}
+        <h4 class="c-comment__author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+          <a rel="external nofollow" href="{{ .comment.website }}" itemprop="name">
+            {{- $name -}}
+          </a>
+        </h4>
+      {{ else }}
+        <h4 class="c-comment__author">{{ $name }}</h4>
+      {{ end }}
+      <div class="c-comment__timestamp">
+        <time class="js-comment-date u-font-sans" datetime="{{ .comment.date }}" itemprop="commentTime">
+          {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
+        </time>
+        &nbsp;|&nbsp;
+        <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">Permalink</a>
+        {{ if $commentsEnabled }}
+          &nbsp;|&nbsp;
+          <a href="#" class="c-comment__reply js-reply u-small-text" data-parent="{{ $id }}" data-name="{{ $name }}">
+            Reply
+          </a>
+        {{ end }}
+      </div>
     </div>
   </header>
   <div class="c-comment__content" itemprop="commentText">
     <p>{{- .comment.body | markdownify -}}</p>
   </div>
-  {{ if $commentsEnabled }}
-    <a href="#" class="c-comment__reply js-reply" data-parent="{{ $id }}" data-name="{{ $name }}">
-      {{- printf "Reply to %s" $name -}}
-    </a>
-  {{ end }}
   {{ $page.Scratch.Set "hasReplies" 0 }}
   {{ range $comments }}
     {{ if eq .parent $id }}

@@ -106,6 +106,7 @@ h6 {
 p {
   margin-top: 0;
   margin-bottom: vr(1);
+  font-feature-settings: 'kern', 'onum', 'liga';
 }
 
 // Abbreviations
@@ -173,7 +174,7 @@ strong {
 // stylelint-enable font-weight-notation
 
 small {
-  font-size: 80%; // Add the correct font size in all browsers
+  @include typi('small');
 }
 
 //
