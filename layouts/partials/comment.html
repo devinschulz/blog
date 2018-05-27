@@ -25,7 +25,7 @@
           {{- dateFormat ($page.Param "dateFormat") .comment.date -}}
         </time>
         &nbsp;|&nbsp;
-        <a href="#comment-{{ .comment._id }}" class="c-comment__permalink" title="Permalink to this comment">Permalink</a>
+        <a href="#comment-{{ .comment._id }}" class="c-comment__permalink">Permalink</a>
         {{ if $commentsEnabled }}
           &nbsp;|&nbsp;
           <a href="#" class="c-comment__reply js-reply u-small-text" data-parent="{{ $id }}" data-name="{{ $name }}">
