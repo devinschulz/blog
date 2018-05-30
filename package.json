@@ -34,7 +34,7 @@
     "precss": "3.1.2",
     "prettier": "1.13.2",
     "require-dir": "1.0.0",
-    "sass-mq": "4.0.2",
+    "sass-mq": "5.0.0",
     "typi": "3.2.0",
     "vinyl-buffer": "1.0.1",
     "vinyl-source-stream": "2.0.0",
