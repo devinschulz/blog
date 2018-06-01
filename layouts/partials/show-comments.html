@@ -1,6 +1,6 @@
 {{ $allComments := .Site.Data.comments }}
 {{ $commentsEnabled := .Site.Params.commentsEnabled }}
-<section id="comments" class="c-comments">
+<section id="comments" class="c-comments u-my-l">
   {{ if .Site.Data.comments }}
     {{ $comments := index .Site.Data.comments .UniqueID }}
     {{ if $comments }}

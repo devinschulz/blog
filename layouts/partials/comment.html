@@ -5,11 +5,11 @@
 {{ $name := default "Anonymous" .comment.name }}
 {{ $commentsEnabled := .commentsEnabled }}
 
-<li class="c-comment" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments">
-  <header class="c-comment__header">
+<li class="c-comment u-mb-m" id="comment-{{ .comment._id }}" itemscope itemprop="http://schema.org/UserComments">
+  <header class="c-comment__header u-mb-m">
     {{- $gravatarURL := (printf "https://www.gravatar.com/avatar/%s" .comment.email) | safeURL -}}
     {{- $imageSize := 50 -}}
-    <img class="c-comment__avatar" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL }}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
+    <img class="c-comment__avatar u-mr-xs" width="{{ $imageSize }}" height="{{ $imageSize }}" src="{{ $gravatarURL }}?s={{ $imageSize }}" srcset="{{ $gravatarURL }}?s={{ $imageSize }} 1x, {{ $gravatarURL }}?s={{ mul $imageSize 2 }} 2x" alt="{{ .comment.name }}">
     <div class="c-comment__inner">
       {{ if .website }}
         <h4 class="c-comment__author" itemprop="creator" itemscope itemtype="http://schema.org/Person">
@@ -47,7 +47,7 @@
 
   {{ if ne ($page.Scratch.Get "hasReplies") 0 }}
     {{ $depth := (add $depth 1) }}
-    <ul class="c-comments__list is-nested c-comment__depth-{{ $depth }}">
+    <ul class="c-comments__list is-nested c-comment__depth-{{ $depth }} u-mb-l">
       {{ range sort $comments "date" }}
         {{ if eq .parent $id }}
           {{ partial "comment.html" (dict "comment" . "comments" $comments "page" $page "depth" $depth "commentsEnabled" $commentsEnabled) }}

@@ -14,8 +14,6 @@
 }
 
 .c-article__content {
-  margin-bottom: vr(3);
-
   .c-icon--link {
     color: $color-text-light;
     margin-left: 0.25em;
@@ -35,8 +33,4 @@
   h6 {
     position: relative;
   }
-}
-
-.c-article__share {
-  margin-bottom: vr(3);
 }

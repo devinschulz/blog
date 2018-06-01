@@ -9,7 +9,7 @@
   box-shadow: none;
   color: $color-btn-primary-text;
   display: inline-block;
-  padding: vr(0.25) vr(1);
+  padding: $xxs $m;
   text-align: center;
   transition: all 0.2s ease;
   user-select: none;
@@ -50,7 +50,7 @@
         $duration: 0.5s
       );
       display: inline-block;
-      margin-right: vr(0.5);
+      margin-right: $m;
       margin-top: vr(0.2);
     }
   }

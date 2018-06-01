@@ -21,11 +21,11 @@
   z-index: 2;
 
   @include mq(medium) {
-    right: vr(1);
+    right: $m;
   }
 
   @include mq(xlarge) {
-    right: vr(-1);
+    right: $m;
   }
 }
 
@@ -36,7 +36,7 @@ $triangle-height: 487px;
   height: $triangle-height / 3;
   position: absolute;
   right: 0;
-  top: vr(-1);
+  top: $m * -1;
   width: $triangle-width / 3;
   z-index: 1;
 
@@ -46,11 +46,11 @@ $triangle-height: 487px;
   }
 
   @include mq(large) {
-    right: vr(-2);
+    right: $l * -1;
   }
 
   @include mq(xlarge) {
-    right: vr(-3);
+    right: $xl * -1;
   }
 
   path {
@@ -59,7 +59,7 @@ $triangle-height: 487px;
 }
 
 .c-masthead__hr {
-  width: vr(3);
+  width: $xl;
   border-bottom: 1px solid $color-lines;
   margin: 0 auto;
 }

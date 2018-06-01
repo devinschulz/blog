@@ -1,5 +1,5 @@
 <footer class="c-footer o-container u-font-sans u-small-text">
-  <div class="c-footer__list-group">
+  <div class="c-footer__list-group u-mb-m">
     <ul class="c-footer__list t-no-bullet">
       {{ $currentPage := . }}
       {{ range .Site.Menus.footer.ByWeight }}
@@ -17,7 +17,7 @@
         </li>
       {{ end }}
     </ul>
-    <ul class="c-footer__list t-no-bullet">
+    <ul class="c-footer__list u-ml-l t-no-bullet">
       {{ range .Site.Menus.social.ByWeight }}
         <li class="c-footer__item">
           <a class="c-footer__link t-inverted-link" href="{{ .URL }}" target="_blank" rel="nofollow">{{ .Name }}</a>
@@ -25,7 +25,7 @@
       {{ end }}
     </ul>
   </div>
-  <p class="c-footer__copyright">
+  <p class="c-footer__copyright u-mb">
     <small>Devin Schulz</small>
     <small>&copy; {{ now.Format "2006"}}</small>
   </p>

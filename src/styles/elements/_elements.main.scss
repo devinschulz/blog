@@ -1,7 +1,7 @@
 main {
-  margin-bottom: vr(1);
+  margin-bottom: $m;
 
   @include mq(medium) {
-    margin-bottom: vr(2);
+    margin-bottom: $l;
   }
 }

@@ -1,22 +1,16 @@
 .c-form {
-  margin-bottom: vr(2);
-
   .c-icon--markdown {
     color: $color-headings;
     height: auto;
-    margin-right: vr(0.25);
-    width: vr(0.75);
+    margin-right: $xs;
+    width: $s;
     display: inline-block;
   }
 }
 
 .c-form__help {
   color: $color-text-light;
-  margin-top: vr(0.25);
-}
-
-.c-form__group {
-  margin-bottom: vr(1);
+  margin-top: $xxs;
 }
 
 .c-form__required {

@@ -1,10 +1,12 @@
 .o-wrapper {
   background-color: $color-white;
-  border-left: 1px solid $color-lines;
-  border-right: 1px solid $color-lines;
   display: flow-root;
   margin: 0 auto;
   max-width: vr(40);
+
+  @include mq(large) {
+    max-width: 95vw;
+  }
 
   @supports (display: flow-root) {
     display: flow-root;

@@ -1,6 +1,6 @@
 .c-repeat {
   & + & {
-    margin-top: vr(2);
+    margin-top: $l;
   }
 }
 
@@ -9,10 +9,6 @@
   margin-bottom: 0;
 
   + .c-repeat__title {
-    margin-top: vr(0.25);
+    margin-top: $xxs;
   }
-}
-
-.c-repeat__title {
-  margin-bottom: vr(0.75);
 }

@@ -1,10 +1,10 @@
 .c-main-nav {
-  margin-bottom: vr(1);
-  padding: vr(1) 0;
+  margin-bottom: $m;
+  padding: $m 0;
 
   @include mq(medium) {
-    margin-top: vr(2);
-    margin-bottom: vr(2);
+    margin-top: $l;
+    margin-bottom: $l;
   }
 }
 
@@ -30,10 +30,10 @@
   font-family: $font-family-sans;
 
   a + a {
-    margin-left: vr(0.5);
+    margin-left: $xs;
 
     @include mq(medium) {
-      margin-left: vr(1);
+      margin-left: $m;
     }
   }
 }

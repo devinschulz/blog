@@ -7,15 +7,15 @@ pre {
   @extend .o-layout--inset-small;
 
   > code {
-    padding: vr(1) 0;
+    padding: $m 0;
     display: inline-block;
 
     @include mq(medium) {
-      padding: vr(1) 0;
+      padding: $m 0;
     }
 
     @include mq(large) {
-      padding: vr(1);
+      padding: $m;
     }
   }
 }

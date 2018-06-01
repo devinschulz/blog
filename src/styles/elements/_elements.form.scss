@@ -4,7 +4,7 @@ input[type='url'],
 textarea {
   border-radius: 0;
   display: block;
-  padding: vr(0.5);
+  padding: $xxs;
   width: 100%;
   background-color: $color-input-background;
   border: 1px solid $color-input-border;
@@ -23,11 +23,7 @@ textarea {
 
 label {
   @extend .u-font-sans;
-  margin-bottom: vr(0.5);
-}
-
-fieldset {
-  margin-bottom: vr(0.5);
+  margin-bottom: $xxs;
 }
 
 input[type='checkbox'] {
@@ -46,7 +42,7 @@ input[type='checkbox'] {
         position: absolute;
         left: 0;
         top: 0;
-        @include size(vr(1));
+        @include size($m);
         border: 1px solid $color-input-border;
         background: $color-input-radio-background;
         border-radius: $global-radius;

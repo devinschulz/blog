@@ -3,14 +3,27 @@
     <div class="c-repeat__meta u-small-text">
       {{ partial "meta.html" . }}
     </div>
-    <h2 itemprop="headline" class="c-repeat__title">
+    <h2 itemprop="headline" class="c-repeat__title u-mb-xs">
       <a itemprop="url" href="{{ .RelPermalink }}">
-        {{- .Title -}}
+        <span>{{- .Title -}}</span>
       </a>
     </h2>
   </header>
   <p class="c-repeat__body" itemprop="articleBody">
     {{- .Summary -}}
   </p>
-  <a href="{{ .RelPermalink }}">Read more&hellip;</a>
+  <p>
+    {{- $comments := index .Site.Data.comments .UniqueID -}}
+    {{ if $comments }}
+      {{- if gt (len $comments) 1 -}}
+        <a href="{{ .RelPermalink }}#comments">
+          {{ len $comments }} {{ if eq $comments 1 }}Comment{{ else }}Comments{{ end }}
+        </a>
+        &nbsp;<span>|</span>&nbsp;
+      {{- end -}}
+    {{ end }}
+    <a href="{{ .RelPermalink }}">
+      <span aria-label="Continue reading {{ .Title }}">Read more&hellip;</span>
+    </a>
+  </p>
 </article>

@@ -1,10 +1,10 @@
 {{ define "main" }}
-  <article class="c-article o-container" itemscope itemtype="http://schema.org/BlogPosting">
+  <article class="o-container" itemscope itemtype="http://schema.org/BlogPosting">
     {{ partial "masthead.html" . }}
-    <div itemprop="articleBody" class="c-article__content">
+    <div itemprop="articleBody" class="u-mb-xl">
       {{ .Content }}
     </div>
-    <div class="c-article__share">
+    <div class="u-my-l">
       <p>Enjoyed this article? Share it with your friends!</p>
       {{ partial "share.html" . }}
     </div>

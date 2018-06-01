@@ -1,0 +1,52 @@
+@mixin marginSpacer($unit, $value) {
+  .u-m-#{$unit} {
+    margin: $xxs;
+  }
+  .u-mt-#{$unit} {
+    margin-top: $value;
+  }
+  .u-mr-#{$unit} {
+    margin-right: $value;
+  }
+  .u-mb-#{$unit} {
+    margin-bottom: $value;
+  }
+  .u-ml-#{$unit} {
+    margin-left: $value;
+  }
+  .u-mx-#{$unit} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .u-my-#{$unit} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+}
+
+.u-m {
+  margin: 0;
+}
+.u-mt {
+  margin-top: 0;
+}
+.u-mr {
+  margin-right: 0;
+}
+.u-mb {
+  margin-bottom: 0;
+}
+.u-ml {
+  margin-left: 0;
+}
+.u-mx {
+  margin-left: 0;
+  margin-right: 0;
+}
+.u-my {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+@each $spacer, $value in $spacerMap {
+  @include marginSpacer($spacer, $value);
+}

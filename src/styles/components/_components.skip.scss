@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  padding: vr(0.25) vr(0.5);
+  padding: $xxs $xs;
 
   @include focus {
     opacity: 1;

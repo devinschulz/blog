@@ -1,24 +1,23 @@
 .c-footer {
-  margin-bottom: vr(1);
-  margin-top: vr(1.5);
+  margin-bottom: $m;
+  margin-top: $l;
 
   @include mq(medium) {
-    margin-bottom: vr(2);
-    margin-top: vr(3);
+    margin-bottom: $l;
+    margin-top: $xl;
   }
 
   @include mq(xlarge) {
-    margin-bottom: vr(3);
+    margin-bottom: $xl;
   }
 
   @include mq(xlarge) {
-    margin-top: vr(4);
+    margin-top: $xxl;
   }
 }
 
 .c-footer__list-group {
   display: flex;
-  margin-bottom: vr(1);
 }
 
 .c-footer__list {
@@ -26,17 +25,11 @@
   padding-left: 0;
   line-height: 2;
   margin-bottom: 0;
-
-  &:not(:first-child) {
-    margin-left: vr(2);
-  }
 }
 
 .c-footer__copyright {
-  margin-bottom: 0;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0;
 }
 
 .c-footer__link--active {

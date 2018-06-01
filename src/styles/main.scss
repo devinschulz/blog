@@ -2,8 +2,9 @@
 @import './settings/settings.media';
 @import './settings/settings.colors';
 @import './settings/settings.typography';
-
 @import 'typi';
+@import './settings/settings.spacing';
+
 @import '../../node_modules/spinthatshit/src/loaders';
 @import './tools/tools.mixins';
 @import './tools/tools.functions';
@@ -28,6 +29,7 @@
 @import './utilities/utilities.text-alignment';
 @import './utilities/utilities.inline-definition-list';
 @import './utilities/utilities.fonts';
+@import './utilities/utilities.spacing';
 
 @import './objects/objects.container';
 @import './objects/objects.layout';
@@ -42,7 +44,6 @@
 @import './components/components.form';
 @import './components/components.masthead';
 @import './components/components.navigation';
-@import './components/components.project';
 @import './components/components.share';
 @import './components/components.skip';
 @import './components/components.repeat';

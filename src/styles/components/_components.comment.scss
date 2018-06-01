@@ -1,22 +1,13 @@
-.c-comments {
-  margin-top: vr(2);
-  margin-bottom: vr(2);
-}
-
 .c-comments__list {
   list-style: none;
-
-  &.is-nested {
-    margin-top: vr(2);
-  }
 }
 
 .is-nested {
   border-left: 1px solid $color-lines;
-  padding-left: vr(0.5);
+  padding-left: $xs;
 
   @include mq(medium) {
-    padding-left: vr(1);
+    padding-left: $m;
   }
 }
 
@@ -24,14 +15,9 @@
   padding-left: 0;
 }
 
-.c-comment {
-  margin-bottom: vr(2);
-}
-
 .c-comment__header {
   display: flex;
   align-items: center;
-  margin-bottom: vr(1);
 }
 
 .c-comment__author {
@@ -40,7 +26,6 @@
 
 .c-comment__avatar {
   border-radius: 40px;
-  margin-right: vr(0.5);
   max-width: 40px;
   height: auto;
 
