@@ -6,7 +6,7 @@ body {
   font-family: $font-family-default-fallback;
   font-weight: $font-weight-default;
   color: $color-text;
-  background-color: $color-light-background;
+  background-color: $color-black;
 
   .fonts-loaded & {
     font-family: $font-family-default;

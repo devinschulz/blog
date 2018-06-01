@@ -23,6 +23,25 @@ h6,
 
   a {
     color: inherit;
+
+    @include hover-focus {
+      color: darken($color-headings, 10%);
+
+      span {
+        background-size: 100% 100%;
+      }
+    }
+
+    span {
+      background-image: linear-gradient(
+        transparent 60%,
+        rgba($color-link, 0.2) 1px
+      );
+      background-repeat: no-repeat;
+      background-size: 0 100%;
+      transition: background-size 500ms;
+      width: 100%;
+    }
   }
 }
 
