@@ -5,10 +5,17 @@ pre {
   display: block;
   @extend .o-layout--extended-width-small;
   @extend .o-layout--inset-small;
+  border-top: 1px solid $color-lines;
+  border-bottom: 1px solid $color-lines;
+
+  @include mq(medium) {
+    border: 1px solid $color-lines;
+  }
 
   > code {
     padding: $m 0;
     display: inline-block;
+    border: 0;
 
     @include mq(medium) {
       padding: $m 0;
@@ -18,4 +25,11 @@ pre {
       padding: $m;
     }
   }
+}
+
+code {
+  background-color: $color-light-background;
+  border: 1px solid $color-lines;
+  padding-left: $xxs;
+  padding-right: $xxs;
 }

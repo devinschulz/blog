@@ -10,7 +10,7 @@ categories:
 Lorem markdownum rogat volucres tempora, poterit se requiret nomina terras
 lugebitis ardet lutulenta [mater](http://et.org/aera) lacertis pars? Nec apes
 qui amantem, ab haesit vidi. More descenderat Pana varias **quae**. Ibi agros
-domo vultu vocatur; tandem sed, **adpulit** sed. Solvit indulgent amorem
+domo vultu vocatur; `tandem sed`, **adpulit** sed. Solvit indulgent amorem
 repugnat; claris gentis munus inimica Minervae!
 
 1. Colchi terrigenae collo
