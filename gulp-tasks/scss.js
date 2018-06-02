@@ -6,7 +6,11 @@ const eyeglass = require('eyeglass')
 
 const { isProduction } = require('./env')
 
-const plugins = [require('css-mqpacker')()]
+const plugins = [
+  require('css-mqpacker')({
+    sort: true,
+  }),
+]
 
 if (isProduction) {
   plugins.push(
