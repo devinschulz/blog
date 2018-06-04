@@ -4,10 +4,8 @@
   <body>
     {{ partial "svg/svg-sprite.html" . }}
     <a href="#maincontent" class="c-skip">Skip to content</a>
-    <div class="o-wrapper">
-      {{ partial "navigation.html" . }}
-      <main id="maincontent">{{ block "main" . }}{{ end }}</main>
-      {{ partial "footer.html" . }}
-    </div>
+    {{ partial "navigation.html" . }}
+    <main id="maincontent">{{ block "main" . }}{{ end }}</main>
+    {{ partial "footer.html" . }}
   </body>
 </html>

@@ -7,10 +7,6 @@ body {
   font-weight: $font-weight-default;
   color: $color-text;
 
-  @include mq(large) {
-    background-color: $color-black;
-  }
-
   .fonts-loaded & {
     font-family: $font-family-default;
   }
