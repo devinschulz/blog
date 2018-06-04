@@ -1,20 +1,12 @@
-<article class="c-repeat" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="c-repeat c-repeat--post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="c-repeat__header">
     <div class="c-repeat__meta u-small-text">
       {{ partial "meta.html" . }}
     </div>
-    <h2 itemprop="headline" class="c-repeat__title u-mb-xs">
+    <h2 itemprop="headline" class="c-repeat__title u-mb">
       <a itemprop="url" href="{{ .RelPermalink }}">
         <span>{{- .Title -}}</span>
       </a>
     </h2>
   </header>
-  <p class="c-repeat__body" itemprop="articleBody">
-    {{- .Summary -}}
-  </p>
-  <p>
-    <a href="{{ .RelPermalink }}">
-      <span aria-label="Continue reading {{ .Title }}">Read more&hellip;</span>
-    </a>
-  </p>
 </article>
