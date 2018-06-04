@@ -7,6 +7,7 @@ preserveTaxonomyNames = true
 title = "Devin Schulz"
 summaryLength = 20
 enableGitInfo = true
+disqusShortname = "devinschulz"
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true

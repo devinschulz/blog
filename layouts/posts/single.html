@@ -5,12 +5,12 @@
       {{ .Content }}
     </div>
     <div class="u-my-l">
-      <p>Enjoyed this article? Share it with your friends!</p>
-      {{ partial "share.html" . }}
+      <h4>Enjoyed this post? Share it with your friends!</h4>
+      <div class="addthis_inline_share_toolbox"></div>
+      <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b1487d012bc2f2a"></script>
     </div>
-    {{ partial "show-comments.html" . }}
     {{ if .Site.Params.commentsEnabled }}
-      {{ partial "form-comments.html" . }}
+      {{ template "_internal/disqus.html" . }}
     {{ else }}
       <p>Comments closed.</p>
     {{ end }}
