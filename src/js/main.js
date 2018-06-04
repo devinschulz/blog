@@ -2,6 +2,7 @@ import turbolinks from 'turbolinks'
 
 import { init as initGoogleAnalytics } from './googleAnalytics'
 import headerLinks from './headerLinks'
+import share from './share'
 import fonts from './fonts'
 import sw from './sw'
 
@@ -19,6 +20,7 @@ const bindEventListeners = () => {
 
 const handlePageLoad = event => {
   headerLinks()
+  share()
 }
 
 // Hugo live reload has some issues with turbolinks enabled in development mode

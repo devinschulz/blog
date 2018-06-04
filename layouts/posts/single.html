@@ -6,11 +6,29 @@
     </div>
     <div class="u-my-l">
       <h4>Enjoyed this post? Share it with your friends!</h4>
-      <div class="addthis_inline_share_toolbox"></div>
-      <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b1487d012bc2f2a"></script>
+      {{ partial "share.html" . }}
     </div>
     {{ if .Site.Params.commentsEnabled }}
-      {{ template "_internal/disqus.html" . }}
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        if(typeof DISQUS === "undefined"){
+          var disqus_shortname = '{{ .Site.DisqusShortname }}';
+
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        } else {
+          DISQUS.reset({
+            reload: true,
+            config: function () {
+              this.page.identifier = document.title;
+              this.page.url = location.href;
+            }
+          });
+        }
+      </script>
     {{ else }}
       <p>Comments closed.</p>
     {{ end }}
