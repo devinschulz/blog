@@ -32,7 +32,7 @@
     "gulp-sass": "4.0.1",
     "gulp-uglify": "3.0.0",
     "precss": "3.1.2",
-    "prettier": "1.13.2",
+    "prettier": "1.13.5",
     "require-dir": "1.0.0",
     "sass-mq": "5.0.0",
     "typi": "3.2.0",
