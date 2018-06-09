@@ -4,17 +4,21 @@ $pipi: #fefeca;
 $ribbon-blue: #2026ec;
 $orange-red: #fd193b;
 
+$base-hue: 216;
+$base-shade: 31%;
+
 $color-black: lighten($black, 5%);
 $color-white: $white;
 
-$color-headings: $color-black;
-$color-text: lighten($black, 20%);
-$color-text-light: lighten($black, 40%);
+$color-headings: hsl($base-hue, $base-shade, 14%);
+$color-text: hsl($base-hue, $base-shade, 20%);
+$color-text-light: hsl($base-hue, $base-shade, 40%);
 $color-active: $color-headings;
 
-$color-lines: darken($white, 15%);
-$color-background: darken($white, 1%);
-$color-light-background: darken($white, 4%);
+$color-lines: hsl($base-hue, $base-shade, 85%);
+$color-background: hsl($base-hue, $base-shade, 99%);
+$color-light-background: hsl($base-hue, $base-shade, 97%);
+$color-dark-background: hsl($base-hue, $base-shade, 95%);
 
 $color-link: $ribbon-blue;
 $color-link-hover: darken($color-link, 15%);
