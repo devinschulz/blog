@@ -1,7 +1,7 @@
 {{ define "main" }}
   <article class="o-container" itemscope itemtype="http://schema.org/BlogPosting">
     {{ partial "masthead.html" . }}
-    <div itemprop="articleBody" class="u-mb-xl">
+    <div itemprop="articleBody" class="u-mb-l">
       {{ .Content }}
     </div>
     <div class="u-my-l">
@@ -26,11 +26,18 @@
               this.page.identifier = document.title;
               this.page.url = location.href;
             }
-          });
+          })
         }
       </script>
+      <noscript>
+        Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+          comments powered by Disqus.
+        </a>
+      </noscript>
     {{ else }}
       <p>Comments closed.</p>
     {{ end }}
   </article>
 {{ end }}
+
