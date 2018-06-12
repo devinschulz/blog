@@ -63,3 +63,20 @@ $triangle-height: 487px;
   border-bottom: 1px solid $color-lines;
   margin: 0 auto;
 }
+
+.c-masthead__image {
+  display: block;
+  margin: $m -4vw 0;
+
+  @include mq(medium) {
+    margin: $m 0 0;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    @include mq(medium) {
+      border-radius: $global-radius;
+    }
+  }
+}

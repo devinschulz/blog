@@ -12,3 +12,24 @@
     margin-top: $xxs;
   }
 }
+
+.c-repeat__image {
+  display: block;
+  margin-left: -4vw;
+  margin-right: -4vw;
+
+  @include mq(medium) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+
+    @include mq(medium) {
+      border-radius: $global-radius;
+    }
+  }
+}
