@@ -3,9 +3,4 @@ figcaption {
   @extend .u-font-sans;
   color: $color-text-light;
   margin-top: $xs;
-
-  a {
-    font-weight: bold;
-    color: inherit;
-  }
 }
