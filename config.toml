@@ -12,6 +12,9 @@ disqusShortname = "devinschulz"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
+[permalinks]
+  posts = ":title/"
+
 [author]
   name = "Devin Schulz"
   twitter = "devinschulz_"
