@@ -16,7 +16,7 @@ h6,
   margin-top: vr(1);
   margin-bottom: vr(1);
   color: $color-headings;
-  letter-spacing: -1px;
+  letter-spacing: -0.005em;
 
   .fonts-loaded & {
     font-family: $font-family-display;

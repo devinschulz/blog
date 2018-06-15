@@ -6,7 +6,11 @@
 
 .c-repeat__meta {
   color: $color-text-light;
-  margin-bottom: 0;
+  margin-bottom: $xxs;
+
+  @include mq(medium) {
+    margin-bottom: 0;
+  }
 
   + .c-repeat__title {
     margin-top: $xxs;
@@ -32,4 +36,9 @@
       border-radius: $global-radius;
     }
   }
+}
+
+.c-repeat__summary,
+.c-repeat__title {
+  margin-bottom: $s;
 }

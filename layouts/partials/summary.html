@@ -29,12 +29,12 @@
     <div class="c-repeat__meta u-small-text">
       {{ partial "meta.html" . }}
     </div>
-    <h2 itemprop="headline" class="c-repeat__title u-mb-s">
+    <h2 itemprop="headline" class="c-repeat__title">
       <a itemprop="url" href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h2>
   </header>
-  <p>{{ .Summary }}</p>
-  <p>
-    <a class="c-repeat__more" href="{{ .RelPermalink }}" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
+  <p class="c-repeat__summary">{{ .Summary }}</p>
+  <p class="c-repeat__more u-mb">
+    <a href="{{ .RelPermalink }}" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
   </p>
 </article>
