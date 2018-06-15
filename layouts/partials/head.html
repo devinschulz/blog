@@ -31,10 +31,12 @@
     <meta name="twitter:image" content="{{ $twitter.Permalink }}">
     <meta name="twitter:card" content="summary_large_image">
   {{ else }}
-    {{ with .Params.share_img | default .Params.image | default .Site.Params.logo }}
-      <meta property="og:image" content="{{ . | absURL}}">
+    {{ with .Params.twitterShareImage | default .Params.twitterShare }}
       <meta name="twitter:image" content="{{ . | absURL}}">
       <meta name="twitter:card" content="summary">
+    {{ end }}
+    {{ with .Params.facebookShareImage | default .Params.facebookShare }}
+      <meta property="og:image" content="{{ . | absURL}}">
     {{ end }}
   {{ end }}
   {{- with .Site.Author.twitter -}}
@@ -49,6 +51,7 @@
 
   <meta name="theme-color" content="{{ .Site.Params.brandColor }}">
   <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="white">

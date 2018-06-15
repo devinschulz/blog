@@ -22,11 +22,12 @@ pygmentsUseClasses = true
 [params]
   description = "The description"
   brandColor = "#3455db"
-  logo = "images/logo.jpg"
   sentryDSN = "https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767"
   dateFormat = "January 2, 2006"
   githubRepo = "https://github.com/devinschulz/blog"
   commentsEnabled = true
+  twitterShare = "/images/share/twitter-share.jpg"
+  facebookShare = "/images/share/facebook-share.jpg"
 
 [params.staticman]
   endpoint = "https://api.staticman.net/v2/entry/"
