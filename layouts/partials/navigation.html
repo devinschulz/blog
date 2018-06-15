@@ -8,14 +8,15 @@
     <nav class="c-main-nav__links u-small-text" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       {{ $currentPage := . }}
       {{ range .Site.Menus.main.ByWeight }}
+        {{ $isActive := (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
         <a
-          class="c-main-nav__link{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .) }} c-main-nav__link--active t-inverted-link--active{{ end }} t-inverted-link"
+          class="c-main-nav__link t-inverted-link{{ if $isActive }} c-main-nav__link--active{{ end }}"
           href="{{ .URL }}"
           itemprop="url"
         >
          <span itemprop="name">{{ .Name }}</span>
         </a>
-        {{ end }}
+      {{ end }}
     </nav>
   </div>
 </header>

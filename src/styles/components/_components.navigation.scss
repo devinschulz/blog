@@ -3,7 +3,7 @@
   padding: $m 0;
 
   @include mq(medium) {
-    margin-top: $l;
+    margin-top: $m;
     margin-bottom: $l;
   }
 }
@@ -22,6 +22,11 @@
   color: inherit;
   font-size: 1.2rem;
   font-weight: $font-weight-default-bold;
+  background-image: none;
+
+  @include hover-focus-active {
+    background-image: none;
+  }
 }
 
 .c-main-nav__links {
@@ -36,6 +41,11 @@
       margin-left: $m;
     }
   }
+}
+
+.c-main-nav__link {
+  background-image: none;
+  color: inherit;
 }
 
 .c-main-nav__link--active {

@@ -4,13 +4,14 @@
 
 .t-inverted-link {
   color: $color-link-alt;
+  background-image: none;
 
   @include hover-focus {
-    color: $color-link-alt-hover;
+    color: $color-link-hover;
   }
 
   @include active {
-    color: $color-link-alt-active;
+    color: $color-link-active;
   }
 }
 

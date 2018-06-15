@@ -1,7 +1,7 @@
 $black: #000;
 $white: #fff;
 $pipi: #fefeca;
-$ribbon-blue: #2026ec;
+$ribbon-blue: #3455db;
 $orange-red: #fd193b;
 
 $base-hue: 216;
@@ -18,11 +18,12 @@ $color-active: $color-headings;
 $color-lines: hsl($base-hue, $base-shade, 85%);
 $color-background: hsl($base-hue, $base-shade, 99%);
 $color-light-background: hsl($base-hue, $base-shade, 97%);
-$color-dark-background: hsl($base-hue, $base-shade, 95%);
+$color-dark-background: hsl($base-hue, $base-shade, 92%);
 
 $color-link: $ribbon-blue;
 $color-link-hover: darken($color-link, 15%);
 $color-link-active: darken($color-link, 25%);
+$color-link-lines: lighten($color-link, 30%);
 
 $color-link-alt: $color-text-light;
 $color-link-alt-hover: darken($color-link-alt, 15%);

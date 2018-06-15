@@ -3,9 +3,7 @@
     {{- .date | safeHTML -}}
   </p>
   <h2 class="c-repeat__title">
-    <a href="{{ .url }}" rel="external nofollow">
-      <span>{{- .title -}}</span>
-    </a>
+    <a href="{{ .url }}" rel="external nofollow">{{ .title }}</a>
   </h2>
   <p class="c-repeat__body">{{ .body | markdownify }}</p>
   <dl class="u-inline-dl">

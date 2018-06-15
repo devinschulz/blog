@@ -30,13 +30,11 @@
       {{ partial "meta.html" . }}
     </div>
     <h2 itemprop="headline" class="c-repeat__title u-mb-s">
-      <a itemprop="url" href="{{ .RelPermalink }}">
-        <span>{{- .Title -}}</span>
-      </a>
+      <a itemprop="url" href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h2>
   </header>
   <p>{{ .Summary }}</p>
   <p>
-    <a href="{{ .RelPermalink }}" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
+    <a class="c-repeat__more" href="{{ .RelPermalink }}" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
   </p>
 </article>
