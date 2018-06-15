@@ -2,9 +2,7 @@
   <p class="c-repeat__meta u-small-text u-font-sans">
     {{- .date | safeHTML -}}
   </p>
-  <h2 class="c-repeat__title">
-    <a href="{{ .url }}" rel="external nofollow">{{ .title }}</a>
-  </h2>
+  <h2 class="c-repeat__title">{{ .title }}</h2>
   <p class="c-repeat__body">{{ .body | markdownify }}</p>
   <dl class="u-inline-dl">
     {{ with .role }}
@@ -15,7 +13,7 @@
       <dt>Agency:</dt>
       {{ if .agencyLink }}
         <dd>
-          <a href="{{ .agencyLink }}">{{ .agency }}</a>
+          <a href="{{ .agencyLink }}" rel="external nofollow">{{ .agency }}</a>
         </dd>
       {{ else }}
         <dd>{{ .agency }}</dd>
@@ -32,4 +30,9 @@
       </dd>
     {{ end }}
   </dl>
+  {{ with .url }}
+    <p class="c-repeat__url">
+      <a href="{{ .}}" rel="external nofollow">Visit {{ $.title }}</a>
+    </p>
+  {{ end }}
 </div>
