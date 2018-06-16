@@ -10,7 +10,7 @@
     </div>
     {{ if .Site.Params.commentsEnabled }}
       <div id="disqus_thread"></div>
-      <script type="text/javascript">
+      <script>
         if (typeof DISQUS === "undefined") {
           var disqus_shortname = '{{ .Site.DisqusShortname }}';
           (function() {
