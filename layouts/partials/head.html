@@ -10,7 +10,7 @@
     <meta property="og:title" content="{{ . }}">
     <meta name="apple-mobile-web-app-title" content="{{ . }}">
   {{- end }}
-  {{- with .Description }}
+  {{- with .Description | default .Site.Params.description -}}
     <meta name="description" content="{{ . }}">
     <meta property="og:description" content="{{ . }}">
     <meta name="twitter:description" content="{{ . | truncate 200 }}">
