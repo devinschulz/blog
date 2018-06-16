@@ -1,9 +1,10 @@
 {
   "name": "Devin Schulz",
-  "theme_color": "#2196f3",
+  "short_name": "Devin Schulz",
+  "theme_color": "#3455db",
   "background_color": "#ffffff",
   "display": "minimal-ui",
-  "start_url": "/",
+  "start_url": ".",
   "icons": [
     {
       "src": "/images/icons/icon-72x72.png",
