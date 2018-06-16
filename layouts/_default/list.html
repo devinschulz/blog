@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <section class="o-container">
+  <section class="o-container" itemscope itemtype="http://schema.org/Blog">
     {{ partial "masthead.html" . }}
     {{ range .Data.Pages }}
       {{ partial "summary.html" . }}
