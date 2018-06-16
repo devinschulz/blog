@@ -1,5 +1,13 @@
 {{ define "main" }}
   <article class="o-container" itemscope itemtype="http://schema.org/BlogPosting">
+    <span class="u-hidden">
+      {{ with .Site.Author.name }}
+        <meta itemprop="author" content="{{ . }}">
+        <span itemprop="publisher" itemscope itemtype="https://schema.org/Person">
+          <meta itemprop="name" content="{{ . }}">
+        </span>
+      {{ end }}
+    </span>
     {{ partial "masthead.html" . }}
     <div itemprop="articleBody" class="u-mb-l">
       {{ .Content }}
