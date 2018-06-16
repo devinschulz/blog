@@ -1,9 +1,12 @@
----
-title: Welcome Readers
-date: 2018-06-10T20:46:49-04:00
-draft: true
-featured_image_credit: '[world](https://thenounproject.com/search/?q=world&i=26949) by Juan Pablo Bravo from [the Noun Project](https://thenounproject.com)'
----
++++
+title = "Welcome Readers"
+date = "2018-06-10T20:46:49-04:00"
+draft = "false"
+caption = "[world](https://thenounproject.com/search/?q=world&i=26949) by Juan Pablo Bravo from [the Noun Project](https://thenounproject.com)"
+imageAltText = "A graphic of the earth's cartography made up as large dots"
+description = ""
++++
+
 I'm a designer turned web developer that specializes in front-end applications. As an advocate for best practices and proper schematics, I believe that the web should be open and accessible for everyone.
 
 I’ve struggled for years to get a decent blog up and running. It wasn’t because of the lack of content, on the contrary, it was the design aspect that was the obstacle. I designed countless mockups and developed fully functioning prototypes but they never entirely made the cut. I was so critical of everything I designed; I always found something that I didn’t like, and then found myself rejecting each concept.
