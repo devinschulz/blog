@@ -20,7 +20,7 @@ pygmentsUseClasses = true
   twitter = "devinschulz_"
 
 [params]
-  description = "The description"
+  description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
   brandColor = "#3455db"
   sentryDSN = "https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767"
   dateFormat = "January 2, 2006"

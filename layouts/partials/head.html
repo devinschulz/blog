@@ -10,7 +10,7 @@
     <meta property="og:title" content="{{ . }}">
     <meta name="apple-mobile-web-app-title" content="{{ . }}">
   {{- end }}
-  {{- with .Description | default .Site.Params.description -}}
+  {{- with .Description | default .Summary | default .Site.Params.description -}}
     <meta name="description" content="{{ . }}">
     <meta property="og:description" content="{{ . }}">
     <meta name="twitter:description" content="{{ . | truncate 200 }}">
@@ -51,7 +51,6 @@
   <meta name="theme-color" content="{{ .Site.Params.brandColor }}">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="format-detection" content="telephone=no">
-
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="white">
   <meta name="format-detection" content="telephone=no">
