@@ -80,11 +80,11 @@ $layout-offset-xlarge: 5;
 
 .o-layout--padded {
   padding: vr(1) $layout-offset-small;
-  margin-bottom: vr(2);
+  margin-bottom: vr(1);
 
   @include mq(medium) {
     padding: vr(1) $layout-offset-medium;
-    margin-bottom: vr(4);
+    margin-bottom: vr(2);
   }
 
   @include mq(large) {
