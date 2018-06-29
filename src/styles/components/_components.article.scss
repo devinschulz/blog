@@ -15,9 +15,15 @@
 
 .c-article__content {
   .c-icon--link {
-    color: $color-text-light;
+    color: $color-link;
+    opacity: 0.5;
     margin-left: 0.25em;
     @include size(0.75em);
+    transition: opacity 0.2s;
+
+    @include hover-focus {
+      opacity: 1;
+    }
 
     @include mq(xlarge) {
       @include size(0.5em);

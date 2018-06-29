@@ -1,10 +1,12 @@
+const svg =
+  '<svg class="c-icon c-icon--link"><use xlink:href="#shape-link"></use></svg>'
+
 // based on https://github.com/gohugoio/hugo/blame/master/docs/themes/gohugoioTheme/src/js/anchorforid.js
 const createAnchorForID = id => {
   const anchor = document.createElement('a')
   anchor.className = 'c-article__link'
   anchor.href = `#${id}`
-  anchor.innerHTML =
-    '<svg class="c-icon c-icon--link"><use xlink:href="#shape-link"></use></svg>'
+  anchor.innerHTML = svg
   return anchor
 }
 
@@ -24,6 +26,17 @@ export default function() {
     // h2-h6
     for (let i = 1; i <= 6; i++) {
       createLinksWithinContainer(article, i)
+    }
+
+    const toc = document.querySelectorAll('.c-toc a')
+    if (toc) {
+      for (let link of toc) {
+        console.log(link)
+        const icon = document.createElement('span')
+        icon.className = 'c-toc__icon'
+        icon.innerHTML = svg
+        link.appendChild(icon)
+      }
     }
   }
 }

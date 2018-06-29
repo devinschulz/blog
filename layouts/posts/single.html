@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <article class="o-container" itemscope itemtype="http://schema.org/BlogPosting">
+  <article class="c-article o-container" itemscope itemtype="http://schema.org/BlogPosting">
     <span class="u-hidden">
       {{ with .Site.Author.name }}
         <meta itemprop="author" content="{{ . }}">
@@ -10,39 +10,15 @@
       <meta itemprop="dateModified" content="{{ .Lastmod.Format "2006-01-02" }}">
     </span>
     {{ partial "masthead.html" . }}
-    <div itemprop="articleBody" class="u-mb-l">
+    <div itemprop="articleBody" class="c-article__content u-mb-l">
       {{- .Content -}}
     </div>
-    <div class="u-my-l">
-      <h4>Enjoyed this post? Share it with the world!</h4>
+    <div class="c-article__share u-my-l">
+      <h4 class="c-article__share-title">Enjoyed this post? Share it with the world!</h4>
       {{ partial "share.html" . }}
     </div>
     {{ if .Site.Params.commentsEnabled }}
-      <div id="disqus_thread"></div>
-      <script>
-        if (typeof DISQUS === "undefined") {
-          var disqus_shortname = '{{ .Site.DisqusShortname }}';
-          (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        } else {
-          DISQUS.reset({
-            reload: true,
-            config: function () {
-              this.page.identifier = document.title;
-              this.page.url = location.href;
-            }
-          })
-        }
-      </script>
-      <noscript>
-        Please enable JavaScript to view the
-        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-          comments powered by Disqus.
-        </a>
-      </noscript>
+      {{ template "_internal/disqus.html" . }}
     {{ else }}
       <p>Comments closed.</p>
     {{ end }}
