@@ -25,9 +25,11 @@
     </h2>
   </header>
   <p class="c-repeat__summary" itemprop="description">{{ .Summary }}</p>
-  <p class="c-repeat__more u-mb">
-    <a href="{{ .RelPermalink }}" itemprop="url" rel="bookmark" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
-  </p>
+  {{ if .Truncated }}
+    <p class="c-repeat__more u-mb">
+      <a href="{{ .RelPermalink }}" itemprop="url" rel="bookmark" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
+    </p>
+  {{ end }}
   <span class="u-hidden">
     {{ with .Site.Author.name }}
       <meta itemprop="author" content="{{ . }}">
