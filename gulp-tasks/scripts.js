@@ -18,6 +18,10 @@ gulp.task('scripts', () => {
     )
     .transform('babelify', { presets: ['es2015'] })
     .bundle()
+    .on('error', function(error) {
+      console.error(error.toString())
+      this.emit('end')
+    })
     .pipe(source('scripts.js'))
     .pipe(buffer())
     .pipe(gulpIf(isProduction, uglify()))
