@@ -32,7 +32,7 @@ To enhance the overall user experience, I use plain JavaScript with a few librar
 
 ### Fonts
 
-After numerous font pairings, I decided to pair [HK Grotesk](//fontsquirrel.com/fonts/hk-grotesk) for headings and accent text, and [PT Serif](//fonts.google.com/specimen/PT+Serif) for the body copy.
+After numerous font pairings, I decided to pair [Roboto](https://fonts.google.com/specimen/Roboto) for headings and accent text, and [Droid Serif](https://www.fontsquirrel.com/fonts/droid-serif) for the body copy.
 
 ### Build
 

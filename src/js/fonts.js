@@ -8,8 +8,8 @@ const sharedFontStyles = [
 ]
 
 const fontFamilies = {
-  'HK Grotesk': sharedFontStyles,
-  'PT Serif': sharedFontStyles,
+  'Roboto': sharedFontStyles,
+  'Droid Serif': sharedFontStyles,
 }
 
 const fontObservers = Object.keys(fontFamilies).reduce((accumulator, key) => {

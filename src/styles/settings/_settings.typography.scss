@@ -4,21 +4,18 @@ $base-ratio: $base-line-height / $base-font-size;
 
 $base-display-ratio: 1.2;
 
-$font-hk-grotesk: 'HK Grotesk';
-$font-pt-serif: 'PT Serif';
+$font-roboto: 'Roboto';
+$font-droid-serif: 'Droid Serif';
 
 $font-family-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
   'Segoe UI Symbol';
-$font-family-sans: $font-hk-grotesk, $font-family-sans-fallback;
-
+$font-family-sans: $font-roboto, $font-family-sans-fallback;
 $font-family-monospace: Inconsolata, Menlo, Consolas, Courier, monospace;
-
-$font-family-serif: 'PT Serif', serif;
+$font-family-serif: $font-droid-serif, serif;
 
 $font-family-sans-alt-fallback: $font-family-sans-fallback;
-$font-family-sans-alt: $font-hk-grotesk, $font-hk-grotesk,
-  $font-family-sans-alt-fallback;
+$font-family-sans-alt: $font-roboto, $font-family-sans-alt-fallback;
 
 // Define font stack used for headings
 $font-family-display-fallback: $font-family-sans-alt-fallback;
@@ -53,60 +50,60 @@ $typi: (
 );
 
 $fonts: (
-  'HKGrotesk-BoldItalic':
+  'Roboto-BoldItalic':
     (
-      family: $font-hk-grotesk,
-      weight: 700,
+      family: $font-roboto,
+      weight: bold,
       style: 'italic',
-      local: 'HK Grotesk Bold Italic'
+      local: 'Roboto Bold Italic'
     ),
-  'HKGrotesk-Bold':
+  'Roboto-Bold':
     (
-      family: $font-hk-grotesk,
-      weight: 700,
+      family: $font-roboto,
+      weight: bold,
       style: 'normal',
-      local: 'HK Grotesk Bold'
+      local: 'Roboto Bold'
     ),
-  'HKGrotesk-Italic':
+  'Roboto-Italic':
     (
-      family: $font-hk-grotesk,
+      family: $font-roboto,
       weight: 400,
       style: 'italic',
-      local: 'HK Grotesk Italic'
+      local: 'Roboto Italic'
     ),
-  'HKGrotesk-Regular':
+  'Roboto-Regular':
     (
-      family: $font-hk-grotesk,
+      family: $font-roboto,
       weight: 400,
       style: 'normal',
-      local: 'HK Grotesk Regular'
+      local: 'Roboto Regular'
     ),
-  'PT_Serif-BoldItalic':
+  'DroidSerif-BoldItalic':
     (
-      family: $font-pt-serif,
+      family: $font-droid-serif,
       weight: 700,
       style: 'italic',
-      local: 'PT Serif Bold Italic'
+      local: 'Droid Serif Bold Italic'
     ),
-  'PT_Serif-Bold':
+  'DroidSerif-Bold':
     (
-      family: $font-pt-serif,
+      family: $font-droid-serif,
       weight: 700,
       style: 'normal',
-      local: 'PT Serif Bold'
+      local: 'Droid Serif Bold'
     ),
-  'PT_Serif-Italic':
+  'DroidSerif-Italic':
     (
-      family: $font-pt-serif,
+      family: $font-droid-serif,
       weight: 400,
       style: 'italic',
-      local: 'PT Serif Italic'
+      local: 'Droid Serif Italic'
     ),
-  'PT_Serif-Regular':
+  'DroidSerif-Regular':
     (
-      family: $font-pt-serif,
+      family: $font-droid-serif,
       weight: 400,
       style: 'normal',
-      local: 'PT Serif Regular'
+      local: 'Droid Serif Regular'
     )
 );
