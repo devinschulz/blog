@@ -2,7 +2,7 @@
   {{- if and (eq .Type "posts") (ne .Kind "section") -}}
     {{ partial "meta.html" . }}
   {{- end -}}
-  <h1 class="c-masthead__title" itemprop="name headline">
+  <h1 class="c-masthead__title u-mt-m" itemprop="name headline">
     {{- .Title -}}
   </h1>
   {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}

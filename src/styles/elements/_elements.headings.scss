@@ -13,8 +13,8 @@ h6,
   font-family: $font-family-display-fallback;
   font-weight: $font-weight-display;
   font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
-  margin-top: vr(1);
-  margin-bottom: vr(1);
+  margin-top: $l;
+  margin-bottom: $m;
   color: $color-headings;
   letter-spacing: -0.005em;
 
