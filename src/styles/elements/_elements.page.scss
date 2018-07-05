@@ -11,7 +11,7 @@ body {
     font-family: $font-family-default;
   }
 
-  &.theme-dark {
+  .theme-dark & {
     background-color: $color-dark-background;
     color: $color-dark-text;
   }
