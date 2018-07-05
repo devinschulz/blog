@@ -5,7 +5,6 @@
 @import 'typi';
 @import './settings/settings.spacing';
 
-// @import '../../node_modules/spinthatshit/src/loaders';
 @import './tools/tools.mixins';
 @import './tools/tools.functions';
 
@@ -50,6 +49,7 @@
 // @import './components/components.alert';
 @import './components/components.meta';
 @import './components/components.toc';
+@import './components/components.toggle';
 
 @import './trumps/trumps.links';
 @import './trumps/trumps.lists';

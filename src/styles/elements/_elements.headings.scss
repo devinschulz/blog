@@ -13,8 +13,8 @@ h6,
   font-family: $font-family-display-fallback;
   font-weight: $font-weight-display;
   font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
-  margin-top: vr(1);
-  margin-bottom: vr(1);
+  margin-top: $l;
+  margin-bottom: $m;
   color: $color-headings;
   letter-spacing: -0.005em;
 
@@ -22,13 +22,25 @@ h6,
     font-family: $font-family-display;
   }
 
+  .theme-dark & {
+    color: $color-dark-headings;
+  }
+
   a {
     color: inherit;
-    background-image: none;
+    background-image: none !important;
+    text-shadow: none;
+
+    .theme-dark & {
+      color: $color-dark-headings;
+    }
 
     @include hover-focus {
-      background-image: none;
       color: darken($color-headings, 10%);
+
+      .theme-dark & {
+        color: lighten($color-dark-headings, 10%);
+      }
     }
   }
 }

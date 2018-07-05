@@ -1,6 +1,7 @@
 .c-footer {
   margin-bottom: $m;
   margin-top: $l;
+  color: $color-text-light;
 
   @include mq(medium) {
     margin-bottom: $l;
@@ -13,6 +14,10 @@
 
   @include mq(xlarge) {
     margin-top: $xxl;
+  }
+
+  .theme-dark & {
+    color: $color-dark-text-light;
   }
 }
 

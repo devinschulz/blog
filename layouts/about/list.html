@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <section class="o-container">
+    <header class="c-masthead o-layout--extended o-layout--inset">
+      <h1 class="c-masthead__title">Hello there.</h1>
+      {{ $img := (.Resources.ByType "image").GetMatch "*portrait*" }}
+      {{ with $img }}
+        {{ $mobile := .Resize "140x"}}
+        {{ $mobileRetina := .Resize "280x" }}
+        {{ $tablet := .Resize "304x"}}
+        {{ $tabletRetina := .Resize "608x" }}
+        {{ $desktop := .Resize "388x"}}
+        {{ $desktopRetina := .Resize "776x" }}
+        <picture class="c-masthead__pic u-mb" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
+          <source media="(max-width: 81.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+          <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+          <img src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="A portrait of me, standing with my arms crossed" />
+        </picture>
+      {{ end }}
+      <svg class="c-masthead__shape" viewbox="0 0 408 487">
+        <path d="M.794 0l406.793 268.587L30 486.587z" />
+      </svg>
+    </header>
+    {{- .Content -}}
+  </section>
+{{ end }}

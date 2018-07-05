@@ -4,12 +4,12 @@ $base-ratio: $base-line-height / $base-font-size;
 
 $base-display-ratio: 1.2;
 
-$font-roboto: 'Roboto';
+$font-roboto: Roboto;
 $font-droid-serif: 'Droid Serif';
 
-$font-family-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-  Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-  'Segoe UI Symbol';
+$font-family-sans-fallback: $font-roboto, -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
 $font-family-sans: $font-roboto, $font-family-sans-fallback;
 $font-family-monospace: Inconsolata, Menlo, Consolas, Courier, monospace;
 $font-family-serif: $font-droid-serif, serif;
@@ -30,80 +30,134 @@ $font-weight-default: 400;
 $font-weight-default-bold: 700;
 
 $typi: (
-  base: (null: (16px, $base-ratio), medium: (18px), xlarge: (20px)),
-  code: (null: (14px, $base-ratio), medium: (16px)),
-  alert: (null: (14px, $base-ratio), medium: (16px)),
-  h1:
-    (null: (1.77em, $base-display-ratio), medium: (2.369em), xlarge: (3.157em)),
-  h2:
-    (
-      null: (1.333em, $base-display-ratio),
-      medium: (1.777em),
-      xlarge: (2.369em, 1.3)
+  base: (
+    null: (
+      16px,
+      $base-ratio,
     ),
-  h3: (null: (1em, $base-display-ratio), medium: (1.333em), xlarge: (1.777em)),
-  h4: (null: (0.75em, $base-display-ratio), medium: (1em), xlarge: (1.333em)),
-  h5: (null: (0.563em, $base-display-ratio), medium: (0.75em), xlarge: (1em)),
-  h6:
-    (null: (0.422em, $base-display-ratio), medium: (0.563em), xlarge: (0.75em)),
-  small: (null: (0.75em, $base-ratio))
+    medium: 18px,
+    xlarge: 20px,
+  ),
+  code: (
+    null: (
+      14px,
+      $base-ratio,
+    ),
+    medium: 16px,
+  ),
+  alert: (
+    null: (
+      14px,
+      $base-ratio,
+    ),
+    medium: 16px,
+  ),
+  h1: (
+    null: (
+      1.77em,
+      $base-display-ratio,
+    ),
+    medium: 2.369em,
+    xlarge: 3.157em,
+  ),
+  h2: (
+    null: (
+      1.333em,
+      $base-display-ratio,
+    ),
+    medium: 1.777em,
+    xlarge: (
+      2.369em,
+      1.3,
+    ),
+  ),
+  h3: (
+    null: (
+      1em,
+      $base-display-ratio,
+    ),
+    medium: 1.333em,
+    xlarge: 1.777em,
+  ),
+  h4: (
+    null: (
+      0.75em,
+      $base-display-ratio,
+    ),
+    medium: 1em,
+    xlarge: 1.333em,
+  ),
+  h5: (
+    null: (
+      0.563em,
+      $base-display-ratio,
+    ),
+    medium: 0.75em,
+    xlarge: 1em,
+  ),
+  h6: (
+    null: (
+      0.422em,
+      $base-display-ratio,
+    ),
+    medium: 0.563em,
+    xlarge: 0.75em,
+  ),
+  small: (
+    null: (
+      0.75em,
+      $base-ratio,
+    ),
+  ),
 );
 
 $fonts: (
-  'Roboto-BoldItalic':
-    (
-      family: $font-roboto,
-      weight: bold,
-      style: 'italic',
-      local: 'Roboto Bold Italic'
-    ),
-  'Roboto-Bold':
-    (
-      family: $font-roboto,
-      weight: bold,
-      style: 'normal',
-      local: 'Roboto Bold'
-    ),
-  'Roboto-Italic':
-    (
-      family: $font-roboto,
-      weight: 400,
-      style: 'italic',
-      local: 'Roboto Italic'
-    ),
-  'Roboto-Regular':
-    (
-      family: $font-roboto,
-      weight: 400,
-      style: 'normal',
-      local: 'Roboto Regular'
-    ),
-  'DroidSerif-BoldItalic':
-    (
-      family: $font-droid-serif,
-      weight: 700,
-      style: 'italic',
-      local: 'Droid Serif Bold Italic'
-    ),
-  'DroidSerif-Bold':
-    (
-      family: $font-droid-serif,
-      weight: 700,
-      style: 'normal',
-      local: 'Droid Serif Bold'
-    ),
-  'DroidSerif-Italic':
-    (
-      family: $font-droid-serif,
-      weight: 400,
-      style: 'italic',
-      local: 'Droid Serif Italic'
-    ),
-  'DroidSerif-Regular':
-    (
-      family: $font-droid-serif,
-      weight: 400,
-      style: 'normal',
-      local: 'Droid Serif Regular'
-    )
+  'Roboto-BoldItalic': (
+    family: $font-roboto,
+    weight: bold,
+    style: 'italic',
+    local: 'Roboto Bold Italic',
+  ),
+  'Roboto-Bold': (
+    family: $font-roboto,
+    weight: bold,
+    style: 'normal',
+    local: 'Roboto Bold',
+  ),
+  'Roboto-Italic': (
+    family: $font-roboto,
+    weight: 400,
+    style: 'italic',
+    local: 'Roboto Italic',
+  ),
+  'Roboto-Regular': (
+    family: $font-roboto,
+    weight: 400,
+    style: 'normal',
+    local: 'Roboto Regular',
+  ),
+  'DroidSerif-BoldItalic': (
+    family: $font-droid-serif,
+    weight: 700,
+    style: 'italic',
+    local: 'Droid Serif Bold Italic',
+  ),
+  'DroidSerif-Bold': (
+    family: $font-droid-serif,
+    weight: 700,
+    style: 'normal',
+    local: 'Droid Serif Bold',
+  ),
+  'DroidSerif-Italic': (
+    family: $font-droid-serif,
+    weight: 400,
+    style: 'italic',
+    local: 'Droid Serif Italic',
+  ),
+  'DroidSerif-Regular': (
+    family: $font-droid-serif,
+    weight: 400,
+    style: 'normal',
+    local: 'Droid Serif Regular',
+  ),
 );

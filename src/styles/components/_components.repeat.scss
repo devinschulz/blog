@@ -15,6 +15,10 @@
   + .c-repeat__title {
     margin-top: $xxs;
   }
+
+  .theme-dark & {
+    color: $color-dark-text-light;
+  }
 }
 
 .c-repeat__image {

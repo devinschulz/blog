@@ -15,19 +15,38 @@ $color-text: hsl($base-hue, $base-shade, 20%);
 $color-text-light: hsl($base-hue, $base-shade, 40%);
 $color-active: $color-headings;
 
+$color-dark-headings: hsl($base-hue, $base-shade, 80%);
+$color-dark-text: hsl($base-hue, $base-shade, 75%);
+$color-dark-text-light: hsl($base-hue, $base-shade, 60%);
+$color-dark-active: $color-dark-headings;
+
 $color-lines: hsl($base-hue, $base-shade, 85%);
 $color-background: hsl($base-hue, $base-shade, 99%);
 $color-light-background: hsl($base-hue, $base-shade, 97%);
-$color-dark-background: hsl($base-hue, $base-shade, 92%);
+$color-lighter-background: hsl($base-hue, $base-shade, 94%);
+
+$color-dark-lines: hsl($base-hue, $base-shade, 20%);
+$color-dark-background: hsl($base-hue, $base-shade, 10%);
+$color-dark-light-background: hsl($base-hue, $base-shade, 15%);
+$color-dark-lighter-background: hsl($base-hue, $base-shade, 20%);
 
 $color-link: $ribbon-blue;
 $color-link-hover: darken($color-link, 15%);
-$color-link-active: darken($color-link, 25%);
+$color-link-active: $color-link;
 $color-link-lines: lighten($color-link, 30%);
+
+$color-dark-link: hsl($base-hue, 80%, 60%);
+$color-dark-link-hover: lighten($color-dark-link, 15%);
+$color-dark-link-active: $color-dark-link;
+$color-dark-link-lines: darken($color-dark-link, 15%);
 
 $color-link-alt: $color-text-light;
 $color-link-alt-hover: darken($color-link-alt, 15%);
 $color-link-alt-active: darken($color-link-alt, 25%);
+
+$color-dark-link-alt: $color-dark-text-light;
+$color-dark-link-alt-hover: lighten($color-dark-link-alt, 15%);
+$color-dark-link-alt-active: lighten($color-dark-link-alt, 25%);
 
 $color-selection: $pipi;
 
@@ -46,3 +65,8 @@ $color-btn-primary-text: $white;
 $color-btn-primary-background: $color-link;
 $color-btn-primary-background-hover: $color-link-hover;
 $color-btn-primary-background-active: $color-link-active;
+
+$color-toggle: $color-white;
+$color-toggle-inverse: $color-text-light;
+$color-dark-toggle: $color-dark-headings;
+$color-dark-toggle-inverse: $color-dark-background;

@@ -1,3 +1,7 @@
 .c-meta {
   color: $color-text-light;
+
+  .theme-dark & {
+    color: $color-dark-text-light;
+  }
 }

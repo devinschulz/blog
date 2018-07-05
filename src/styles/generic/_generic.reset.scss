@@ -214,6 +214,18 @@ a {
   @include active {
     color: $color-link-active;
   }
+
+  .theme-dark & {
+    color: $color-dark-link;
+
+    @include hover-focus {
+      color: $color-dark-link-hover;
+    }
+
+    @include active {
+      color: $color-dark-link-active;
+    }
+  }
 }
 
 // And undo these styles for placeholder links/named anchors (without href)
