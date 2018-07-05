@@ -23,12 +23,12 @@ $color-dark-active: $color-dark-headings;
 $color-lines: hsl($base-hue, $base-shade, 85%);
 $color-background: hsl($base-hue, $base-shade, 99%);
 $color-light-background: hsl($base-hue, $base-shade, 97%);
-$color-lighter-background: hsl($base-hue, $base-shade, 92%);
+$color-lighter-background: hsl($base-hue, $base-shade, 94%);
 
 $color-dark-lines: hsl($base-hue, $base-shade, 20%);
 $color-dark-background: hsl($base-hue, $base-shade, 10%);
 $color-dark-light-background: hsl($base-hue, $base-shade, 15%);
-$color-dark-lighter-background: hsl($base-hue, $base-shade, 10%);
+$color-dark-lighter-background: hsl($base-hue, $base-shade, 20%);
 
 $color-link: $ribbon-blue;
 $color-link-hover: darken($color-link, 15%);
@@ -67,6 +67,6 @@ $color-btn-primary-background-hover: $color-link-hover;
 $color-btn-primary-background-active: $color-link-active;
 
 $color-toggle: $color-white;
-$color-toggle-inverse: $color-dark-background;
+$color-toggle-inverse: $color-text-light;
 $color-dark-toggle: $color-dark-headings;
 $color-dark-toggle-inverse: $color-dark-background;

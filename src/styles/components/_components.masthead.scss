@@ -33,18 +33,16 @@
   }
 }
 
-$triangle-width: 408px;
-$triangle-height: 487px;
-
 .c-masthead__shape {
   height: auto;
   position: absolute;
   right: 0;
-  top: $m * -1;
-  max-width: $triangle-width / 3;
+  top: $xs * -1;
+  max-width: vr(5);
   z-index: 1;
 
   @include mq(medium) {
+    top: $m * -1;
     max-width: vr(11);
   }
 
@@ -54,6 +52,7 @@ $triangle-height: 487px;
 
   @include mq(xlarge) {
     right: $xl * -1;
+    max-width: vr(14);
   }
 
   path {
