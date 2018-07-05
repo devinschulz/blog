@@ -8,8 +8,14 @@ pre {
   border-top: 1px solid $color-lines;
   border-bottom: 1px solid $color-lines;
 
-  @include mq(medium) {
+  .theme-dark & {
+    background-color: $color-dark-light-background;
+    border-color: $color-dark-lines;
+  }
+
+  @include mq(large) {
     border: 1px solid $color-lines;
+    border-radius: $global-radius;
   }
 
   > code {
@@ -32,4 +38,9 @@ code {
   border: 1px solid $color-lines;
   padding-left: $xxs;
   padding-right: $xxs;
+
+  .theme-dark & {
+    background-color: $color-dark-light-background;
+    border-color: $color-dark-lines;
+  }
 }

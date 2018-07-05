@@ -4,7 +4,7 @@
 
 a {
   text-decoration: none;
-  transition: all 100ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: color 100ms cubic-bezier(0.165, 0.84, 0.44, 1);
   background-image: linear-gradient(
     to bottom,
     transparent 50%,
@@ -16,12 +16,33 @@ a {
   text-shadow: 0.1rem 0 $color-white, 0.15rem 0 $color-white,
     -0.1rem 0 $color-white, -0.15rem 0 $color-white;
 
+  .theme-dark & {
+    color: $color-dark-link;
+    text-shadow: 0.1rem 0 $color-dark-background,
+      0.15rem 0 $color-dark-background, -0.1rem 0 $color-dark-background,
+      -0.15rem 0 $color-dark-background;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 50%,
+      $color-dark-link-lines 50%
+    );
+  }
+
   @include hover-focus {
     background-image: linear-gradient(
       to bottom,
       transparent 50%,
       $color-link-hover 50%
     );
+
+    .theme-dark & {
+      color: $color-dark-link-hover;
+      background-image: linear-gradient(
+        to bottom,
+        transparent 50%,
+        $color-dark-link-hover 50%
+      );
+    }
   }
 
   @include active {
@@ -30,6 +51,10 @@ a {
       transparent 50%,
       $color-link-active 50%
     );
+
+    .theme-dark & {
+      color: $color-dark-link-active;
+    }
   }
 
   &.is-disabled {

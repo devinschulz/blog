@@ -22,13 +22,25 @@ h6,
     font-family: $font-family-display;
   }
 
+  .theme-dark & {
+    color: $color-dark-headings;
+  }
+
   a {
     color: inherit;
-    background-image: none;
+    background-image: none !important;
+    text-shadow: none;
+
+    .theme-dark & {
+      color: $color-dark-headings;
+    }
 
     @include hover-focus {
-      background-image: none;
       color: darken($color-headings, 10%);
+
+      .theme-dark & {
+        color: lighten($color-dark-headings, 10%);
+      }
     }
   }
 }

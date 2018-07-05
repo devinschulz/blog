@@ -13,8 +13,25 @@
   @include active {
     color: $color-link-active;
   }
+
+  .theme-dark & {
+    color: $color-dark-link-alt;
+    background-image: none;
+
+    @include hover-focus {
+      color: $color-dark-link-alt-hover;
+    }
+
+    @include active {
+      color: $color-dark-link-alt-active;
+    }
+  }
 }
 
 .t-inverted-link--active {
   color: $color-link-alt-active;
+
+  .theme-dark & {
+    color: $color-dark-link-alt-active;
+  }
 }

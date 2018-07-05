@@ -5,8 +5,12 @@
   height: vr(7);
   position: relative;
 
+  .theme-dark & {
+    background-color: $color-dark-light-background;
+  }
+
   @include mq(medium) {
-    height: vr(17);
+    height: vr(13);
   }
 
   @include mq(xlarge) {
@@ -33,16 +37,15 @@ $triangle-width: 408px;
 $triangle-height: 487px;
 
 .c-masthead__shape {
-  height: $triangle-height / 3;
+  height: auto;
   position: absolute;
   right: 0;
   top: $m * -1;
-  width: $triangle-width / 3;
+  max-width: $triangle-width / 3;
   z-index: 1;
 
   @include mq(medium) {
-    height: $triangle-height;
-    width: $triangle-width;
+    max-width: vr(11);
   }
 
   @include mq(large) {
@@ -54,7 +57,11 @@ $triangle-height: 487px;
   }
 
   path {
-    fill: $color-dark-background;
+    fill: $color-lighter-background;
+
+    .theme-dark & {
+      fill: $color-dark-lighter-background;
+    }
   }
 }
 
@@ -62,6 +69,10 @@ $triangle-height: 487px;
   width: $xl;
   border-bottom: 1px solid $color-lines;
   margin: 0 auto;
+
+  .theme-dark & {
+    border-color: $color-dark-lines;
+  }
 }
 
 .c-masthead__image {

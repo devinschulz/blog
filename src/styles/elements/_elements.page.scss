@@ -10,6 +10,11 @@ body {
   .fonts-loaded & {
     font-family: $font-family-default;
   }
+
+  &.theme-dark {
+    background-color: $color-dark-background;
+    color: $color-dark-text;
+  }
 }
 
 ::selection {
