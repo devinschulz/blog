@@ -1,7 +1,3 @@
-export default () => {}
-
-const getToggle = () => document.querySelector('.js-day-night')
-
 export const init = () => {
   const isDark = loadFromStorage()
   if (isDark === 'true') {
@@ -22,6 +18,8 @@ export const unbindEventListeners = () => {
     toggle.removeEventListener('click', handleToggleEvent, false)
   }
 }
+
+const getToggle = () => document.querySelector('.js-day-night')
 
 const handleToggleEvent = () => {
   const isDark = document.documentElement.classList.contains('theme-dark')
