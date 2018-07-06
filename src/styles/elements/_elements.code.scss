@@ -5,16 +5,12 @@ pre {
   display: block;
   @extend .o-layout--extended-width-small;
   @extend .o-layout--inset-small;
-  border-top: 1px solid $color-lines;
-  border-bottom: 1px solid $color-lines;
 
   .theme-dark & {
     background-color: $color-dark-light-background;
-    border-color: $color-dark-lines;
   }
 
   @include mq(large) {
-    border: 1px solid $color-lines;
     border-radius: $global-radius;
   }
 
@@ -35,12 +31,10 @@ pre {
 
 code {
   background-color: $color-light-background;
-  border: 1px solid $color-lines;
   padding-left: $xxs;
   padding-right: $xxs;
 
   .theme-dark & {
     background-color: $color-dark-light-background;
-    border-color: $color-dark-lines;
   }
 }
