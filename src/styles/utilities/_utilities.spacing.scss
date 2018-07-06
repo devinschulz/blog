@@ -1,27 +1,35 @@
+@mixin spacer($prefix, $type, $unit, $value) {
+  .u-#{$prefix}-#{$unit} {
+    #{$type}: $xxs;
+  }
+  .u-#{$prefix}t-#{$unit} {
+    #{$type}-top: $value;
+  }
+  .u-#{$prefix}r-#{$unit} {
+    #{$type}-right: $value;
+  }
+  .u-#{$prefix}b-#{$unit} {
+    #{$type}-bottom: $value;
+  }
+  .u-#{$prefix}l-#{$unit} {
+    #{$type}-left: $value;
+  }
+  .u-#{$prefix}x-#{$unit} {
+    #{$type}-left: $value;
+    #{$type}-right: $value;
+  }
+  .u-#{$prefix}y-#{$unit} {
+    #{$type}-top: $value;
+    #{$type}-bottom: $value;
+  }
+}
+
 @mixin marginSpacer($unit, $value) {
-  .u-m-#{$unit} {
-    margin: $xxs;
-  }
-  .u-mt-#{$unit} {
-    margin-top: $value;
-  }
-  .u-mr-#{$unit} {
-    margin-right: $value;
-  }
-  .u-mb-#{$unit} {
-    margin-bottom: $value;
-  }
-  .u-ml-#{$unit} {
-    margin-left: $value;
-  }
-  .u-mx-#{$unit} {
-    margin-left: $value;
-    margin-right: $value;
-  }
-  .u-my-#{$unit} {
-    margin-top: $value;
-    margin-bottom: $value;
-  }
+  @include spacer(m, margin, $unit, $value);
+}
+
+@mixin paddingSpacer($unit, $value) {
+  @include spacer(p, padding, $unit, $value);
 }
 
 .u-m {
@@ -47,6 +55,33 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.u-p {
+  padding: 0;
+}
+.u-pt {
+  padding-top: 0;
+}
+.u-pr {
+  padding-right: 0;
+}
+.u-pb {
+  padding-bottom: 0;
+}
+.u-pl {
+  padding-left: 0;
+}
+.u-px {
+  padding-left: 0;
+  padding-right: 0;
+}
+.u-py {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 @each $spacer, $value in $spacerMap {
   @include marginSpacer($spacer, $value);
+  @include paddingSpacer($spacer, $value);
 }
+
