@@ -3,4 +3,8 @@ figcaption {
   @extend .u-font-sans;
   color: $color-text-light;
   margin-top: $xs;
+
+  .theme-dark & {
+    color: $color-dark-text-light;
+  }
 }
