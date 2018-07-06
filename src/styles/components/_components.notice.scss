@@ -1,0 +1,23 @@
+.c-notice {
+  align-items: center;
+  background-color: $color-notice-background;
+  border-radius: $global-radius;
+  color: $color-notice-text;
+  display: flex;
+
+  .theme-dark & {
+    background-color: $color-dark-notice-background;
+    color: $color-dark-notice-text;
+  }
+}
+
+.c-notice__icon {
+  align-items: center;
+  color: $color-notice-warning;
+  display: flex;
+
+  .c-icon {
+    height: auto;
+    width: vr(1);
+  }
+}

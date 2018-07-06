@@ -10,6 +10,9 @@
       <meta itemprop="dateModified" content="{{ .Lastmod.Format "2006-01-02" }}">
     </span>
     {{ partial "masthead.html" . }}
+    {{ with .Params.notice }}
+      {{ partial "notice.html" . }}
+    {{ end }}
     <div itemprop="articleBody" class="c-article__content u-mb-l">
       {{- .Content -}}
     </div>

@@ -3,6 +3,8 @@ $white: #fff;
 $pipi: #fefeca;
 $ribbon-blue: #3455db;
 $orange-red: #fd193b;
+$orange: #f19617;
+$orange-darker: #292724;
 
 $base-hue: 216;
 $base-shade: 31%;
@@ -70,3 +72,9 @@ $color-toggle: $color-white;
 $color-toggle-inverse: $color-text-light;
 $color-dark-toggle: $color-dark-headings;
 $color-dark-toggle-inverse: $color-dark-background;
+
+$color-notice-background: rgba($orange, 0.05);
+$color-notice-warning: $orange;
+$color-notice-text: $orange-darker;
+$color-dark-notice-background: rgba($orange, 0.15);
+$color-dark-notice-text: lighten($orange, 25%);
