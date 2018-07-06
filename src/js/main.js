@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import turbolinks from 'turbolinks'
 
 import { init as initGoogleAnalytics } from './googleAnalytics'
