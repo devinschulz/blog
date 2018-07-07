@@ -1,3 +1,5 @@
+import { trackEvent } from './googleAnalytics'
+
 export const init = () => {
   const isDark = loadFromStorage()
   if (isDark === 'true') {
@@ -30,6 +32,11 @@ const handleToggleEvent = () => {
   const toggle = getToggle()
   toggle.classList.toggle('is-active')
   toggle.setAttribute('aria-checked', !isDark)
+
+  trackEvent(
+    'Day night toggle',
+    isDark ? 'From dark to light' : 'From light to dark'
+  )
 }
 
 const saveToStorage = isDark => localStorage.setItem('isDark', isDark)
