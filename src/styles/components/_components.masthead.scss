@@ -24,6 +24,10 @@
   right: 4vw;
   z-index: 2;
 
+  img {
+    float: right;
+  }
+
   @include mq(medium) {
     right: $m;
   }
