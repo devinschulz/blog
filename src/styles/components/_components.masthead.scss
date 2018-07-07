@@ -26,6 +26,16 @@
 
   img {
     float: right;
+    height: auto;
+    width: 140px;
+
+    @include mq(medium) {
+      width: 304px;
+    }
+
+    @include mq(xlarge) {
+      width: 388px;
+    }
   }
 
   @include mq(medium) {
