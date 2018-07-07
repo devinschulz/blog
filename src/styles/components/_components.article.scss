@@ -15,7 +15,7 @@
 
 .c-article__content {
   p {
-    &:first-child {
+    &:first-of-type {
       &:first-letter {
         color: $color-headings;
         display: block;
