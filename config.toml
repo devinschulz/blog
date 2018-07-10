@@ -3,7 +3,6 @@ enableRobotsTXT = true
 googleAnalytics = ""
 languageCode = "en"
 metaDataFormat = "toml"
-preserveTaxonomyNames = true
 title = "Devin Schulz"
 summaryLength = 20
 enableGitInfo = true
@@ -78,5 +77,3 @@ pygmentsUseClasses = true
   url = "https://keybase.io/devinschulz"
   weight = 50
 
-[taxonomies]
-  category = "categories"
