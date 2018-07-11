@@ -3,10 +3,9 @@ import { trackSocialEvent } from './googleAnalytics'
 const MAILTO_RE = /^mailto/i
 
 export default function() {
-  const shareLinks = document.querySelectorAll('.js-share')
-  for (let link of shareLinks) {
+  Array.from(document.querySelectorAll('.js-share')).forEach(link => {
     link.addEventListener('click', onClick, false)
-  }
+  })
 }
 
 const onClick = event => {

@@ -11,13 +11,10 @@ const createAnchorForID = id => {
 }
 
 const createLinksWithinContainer = (container, level) => {
-  const headers = container.getElementsByTagName(`h${level}`)
-  for (let header of headers) {
-    if (header.id) {
-      header.classList.add('c-article__heading')
-      header.appendChild(createAnchorForID(header.id))
-    }
-  }
+  Array.from(container.getElementsByTagName(`h${level}`)).forEach(header => {
+    header.classList.add('c-article__heading')
+    header.appendChild(createAnchorForID(header.id))
+  })
 }
 
 export default function() {
@@ -26,17 +23,6 @@ export default function() {
     // h2-h6
     for (let i = 1; i <= 6; i++) {
       createLinksWithinContainer(article, i)
-    }
-
-    const toc = document.querySelectorAll('.c-toc a')
-    if (toc) {
-      for (let link of toc) {
-        console.log(link)
-        const icon = document.createElement('span')
-        icon.className = 'c-toc__icon'
-        icon.innerHTML = svg
-        link.appendChild(icon)
-      }
     }
   }
 }
