@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="{{ .Site.LanguageCode }}" class="no-js">
-  {{ partial "head.html" . }}
-  <body itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {{ partial "head.html" . }}
+    {{ block "head" . }}{{ end }}
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" class="{{ if .Page.IsHome }}is-home {{ end }}is-{{ .Page.Type | urlize }}">
     {{ partial "svg/svg-sprite.html" . }}
     <a href="#maincontent" class="c-skip">Skip to content</a>
     {{ partial "navigation.html" . }}
