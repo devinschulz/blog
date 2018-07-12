@@ -10,7 +10,7 @@ const isLocalhost = Boolean(
 export default () => {
   if (
     'serviceWorker' in navigator &&
-    (window.location.protocol === 'https:' || isLocalhost)
+    (window.location.protocol === 'https:' || !isLocalhost)
   ) {
     navigator.serviceWorker
       .register('/service-worker.js')
