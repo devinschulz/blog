@@ -1,5 +1,15 @@
+{{ define "head" }}
+  <script>
+    var disqus_config = function () {
+      this.page.url = '{{ .Page.Permalink | absURL }}';
+      this.page.identifier = '{{ .UniqueID }}';
+      this.page.title = '{{ .Title }}';
+    };
+  </script>
+{{ end }}
+
 {{ define "main" }}
-  <article class="c-article o-container" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="c-article o-container js-article" itemscope itemtype="http://schema.org/BlogPosting" data-id="{{ .UniqueID }}" data-title="{{ .Title }}">
     <span class="u-hidden">
       {{ with .Site.Author.name }}
         <meta itemprop="author" content="{{ . }}">
@@ -20,11 +30,6 @@
       <h2 class="c-article__share-title h4">Enjoyed this post? Share it with the world!</h2>
       {{ partial "share.html" . }}
     </div>
-    {{ if .Site.Params.commentsEnabled }}
-      {{ template "_internal/disqus.html" . }}
-    {{ else }}
-      <p>Comments closed.</p>
-    {{ end }}
+    <div id="disqus_thread"></div>
   </article>
 {{ end }}
-
