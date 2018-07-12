@@ -118,7 +118,8 @@ const addItemToCart = id => (dispatch, getState) => {
   dispatch(saveCartRequest(id))
 }
 
-// Can’t forget to update the `addToCart` action to use the `item` instead of the `id`
+// Can’t forget to update the `addToCart` action to use
+// the `item` instead of the `id`
 const addToCart = item => ({
   type: 'ADD_TO_CART',
   payload: item
@@ -148,10 +149,14 @@ describe('actions', () => {
   describe('addItemToCart', () => {
     it('should dispatch all the correct actions', () => {
       const id = 5
+      // 1: Get the dispatch spy and mocked state
       const { dispatch, getState } = setup()
 
+      // 2: Call the thunk action
       addItemToCart(id)(dispatch, getState)
 
+      // 3: Test that the dispatch was called with the
+      //    correct arguments
       expect(dispatch).toHaveBeenCalledTimes(3)
       expect(dispatch).toHaveBeenCalledWith({
         type: 'ADD_TO_CART',
