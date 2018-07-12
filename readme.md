@@ -7,7 +7,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You will need to have `Node > 8.x.x`, `Yarn`, and `Hugo >= v0.41` installed locally.
+You will need to have `Node > 8.x.x`, `Yarn`, and `Hugo >= v0.43.1` installed locally.
 
 ### Steps to get it running
 
