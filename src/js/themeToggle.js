@@ -9,16 +9,12 @@ export const init = () => {
 
 export const bindEventListeners = () => {
   const toggle = getToggle()
-  if (toggle) {
-    toggle.addEventListener('click', handleToggleEvent, false)
-  }
+  if (toggle) toggle.addEventListener('click', handleToggleEvent, false)
 }
 
 export const unbindEventListeners = () => {
   const toggle = getToggle()
-  if (toggle) {
-    toggle.removeEventListener('click', handleToggleEvent, false)
-  }
+  if (toggle) toggle.removeEventListener('click', handleToggleEvent, false)
 }
 
 const getToggle = () => document.querySelector('.js-day-night')

@@ -11,6 +11,7 @@ import {
   unbindEventListeners as unbindToggleEventListeners,
   bindEventListeners as bindToggleEventListeners,
 } from './themeToggle'
+import disqus from './disqus'
 
 const init = () => {
   removeNoJS()
@@ -38,10 +39,11 @@ const removeNoJS = () => {
   document.documentElement.classList.remove('no-js')
 }
 
-const handlePageLoad = () => {
+const handlePageLoad = event => {
   headerLinks()
   share()
   bindToggleEventListeners()
+  disqus()
 }
 
 // Hugo live reload has some issues with turbolinks enabled in development mode
