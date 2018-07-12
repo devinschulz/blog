@@ -63,7 +63,7 @@ const AddToCart = ({ addToCart, id, openSidebar }) => (
 
 This button component would generally be a nested deep within the application hierarchy. In the future, you might want to have this same functionality in a completely separate component. This would be problematic since you now have two areas of your application which are performing the same set of logic.
 
-You can see how this defeats the <abbr title=”Don’t Repeat Yourself”>DRY</abbr> principles of software development. Instead of dispatching several actions from within a component, try separating them into a thunk action.
+You can see how this defeats the <abbr title='Don&apos;t Repeat Yourself'>DRY</abbr> principles of software development. Instead of dispatching several actions from within a component, try separating them into a thunk action.
 
 Here I’ll update the button to fire a single action, which also gives you the benefit of one less property to pass down.
 
