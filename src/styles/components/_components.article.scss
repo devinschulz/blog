@@ -60,4 +60,19 @@
   h6 {
     position: relative;
   }
+
+  img {
+    border: 1px solid $color-lines;
+    margin: $m 0;
+
+    .theme-dark & {
+      border-color: $color-dark-lines;
+    }
+  }
+
+  li:last-child {
+    & img:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
