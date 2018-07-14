@@ -1,6 +1,6 @@
 +++
 title = "Copy React props to your clipboard in Google Chrome"
-date = "2018-07-14T20:26:27-04:00"
+date = "2018-07-14T12:26:27-04:00"
 caption = "[copy](https://thenounproject.com/term/copy/1519351) by Bambaleq from [the Noun Project](https://thenounproject.com)"
 imageAltText = "Two rounded squares which overlap to signify copying to your clipboard"
 description = "Learn how to copy React props to your clipboard using Google Chrome and the React Developer Tools."
