@@ -2,10 +2,10 @@
   {{- if and (eq .Type "posts") (ne .Kind "section") -}}
     {{ partial "meta.html" . }}
   {{- end -}}
-  <h1 class="c-masthead__title u-mt-m" itemprop="name headline">
+  {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+  <h1 class="c-masthead__title u-mt-m{{ if $img}} u-mb-l{{ end }}" itemprop="name headline">
     {{- .Title -}}
   </h1>
-  {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
   {{ with $img }}
     {{ $mobile := .Resize "400x"}}
     {{ $mobileRetina := .Resize "800x" }}
