@@ -36,10 +36,10 @@ h6,
     }
 
     @include hover-focus {
-      color: darken($color-headings, 10%);
+      color: $color-headings-hover;
 
       .theme-dark & {
-        color: lighten($color-dark-headings, 10%);
+        color: $color-dark-headings-hover;
       }
     }
   }

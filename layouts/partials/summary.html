@@ -1,21 +1,4 @@
 <article class="c-repeat c-repeat--post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-  {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
-  {{ with $img }}
-    {{ $mobile := .Resize "300x"}}
-    {{ $mobileRetina := .Resize "600x" }}
-    {{ $tablet := .Resize "750x"}}
-    {{ $tabletRetina := .Resize "1500x" }}
-    {{ $desktop := .Resize "600x"}}
-    {{ $desktopRetina := .Resize "1200x" }}
-    <a href="{{ $.RelPermalink }}">
-      <picture class="c-repeat__image u-mb-m" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-        <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
-        <source media="(max-width: 61.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
-        <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
-        <img src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ .Params.imageAltText }}" />
-      </picture>
-    </a>
-  {{ end }}
   <header class="c-repeat__header">
     <div class="c-repeat__meta u-small-text">
       {{ partial "meta.html" . }}
@@ -25,11 +8,6 @@
     </h2>
   </header>
   <p class="c-repeat__summary" itemprop="description">{{ .Summary }}</p>
-  {{ if .Truncated }}
-    <p class="c-repeat__more u-mb">
-      <a href="{{ .RelPermalink }}" itemprop="url" rel="bookmark" aria-label="Read more about {{ .Title }}">Read more&hellip;</a>
-    </p>
-  {{ end }}
   <span class="u-hidden">
     {{ with .Site.Author.name }}
       <meta itemprop="author" content="{{ . }}">
