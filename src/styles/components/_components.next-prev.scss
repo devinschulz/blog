@@ -1,0 +1,44 @@
+.c-next-prev {
+  bottom: 0;
+  display: none;
+  opacity: 0;
+
+  @include mq(medium) {
+    display: block;
+    position: fixed;
+  }
+}
+
+.c-next-prev--next {
+  animation: fadeInUpNext 0.3s ease-in 1s forwards;
+  right: $s;
+  transform-origin: top right;
+}
+
+.c-next-prev--prev {
+  animation: fadeInUpPrev 0.3s ease-in 1s forwards;
+  left: $s;
+  transform-origin: top left;
+}
+
+@keyframes fadeInUpNext {
+  0% {
+    opacity: 0;
+    transform: translateY($m) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes fadeInUpPrev {
+  0% {
+    opacity: 0;
+    transform: translateY($m) rotate(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(-90deg);
+  }
+}

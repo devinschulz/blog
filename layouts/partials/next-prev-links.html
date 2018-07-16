@@ -1,0 +1,6 @@
+{{ with .NextInSection }}
+  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--next" href="{{ .Permalink }}">Next Article</a>
+{{ end }}
+{{ with .PrevInSection }}
+  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--prev" href="{{ .Permalink }}">Previous Article</a>
+{{ end }}
