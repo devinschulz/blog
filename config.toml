@@ -27,15 +27,7 @@ pygmentsUseClasses = true
   twitterShare = "/images/share/twitter-share.jpg"
   facebookShare = "/images/share/facebook-share.jpg"
 
-[params.staticman]
-  endpoint = "https://api.staticman.net/v2/entry/"
-  username = "devinschulz"
-  repository = "blog"
-  branch = "master"
 
-[params.recaptcha]
-  siteKey = "6LcrGVsUAAAAAP2LKjw2P_y_FW1LVE86RZqcfjfg"
-  secret = "zV5kYaBUfaIuBGGdSJIEtp8F+6VqWdBcCxUqhI69R4KvfNOw1yTQEGponVJ5uW/VDlSr6UuRmwtCga3+7UwLFnBoh+5Ssl5jlPo7/G6PkFyckd37cCaYtyfXatcIUTSou6O7mBa8DsQnjB569J9tw1VUncGJYPDZEOypGBJ3Ttc="
 
 [[menu.footer]]
   name = "Posts"
