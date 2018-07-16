@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import turbolinks from 'turbolinks'
+import raven from 'raven-js'
 
 import { init as initGoogleAnalytics } from './googleAnalytics'
 import headerLinks from './headerLinks'
@@ -13,7 +14,15 @@ import {
 } from './themeToggle'
 import disqus from './disqus'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
+const installSentry = () =>
+  raven
+    .config('https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767')
+    .install()
+
 const init = () => {
+  installSentry()
   removeNoJS()
   turbolinks.start()
   bindEventListeners()
@@ -48,7 +57,7 @@ const handlePageLoad = event => {
 
 // Hugo live reload has some issues with turbolinks enabled in development mode
 // so it's best to only run it in production.
-if (turbolinks.supported && process.env.NODE_ENV === 'production') {
+if (turbolinks.supported && isProduction) {
   init()
 } else {
   removeNoJS()
