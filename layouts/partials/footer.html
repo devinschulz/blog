@@ -20,7 +20,7 @@
     <ul class="c-footer__list u-ml-l t-no-bullet">
       {{ range .Site.Menus.social.ByWeight }}
         <li class="c-footer__item">
-          <a class="c-footer__link t-inverted-link" href="{{ .URL }}" target="_blank" rel="nofollow">{{ .Name }}</a>
+          <a class="c-footer__link t-inverted-link" href="{{ .URL }}" target="_blank" rel="nofollow noopener">{{ .Name }}</a>
         </li>
       {{ end }}
     </ul>
