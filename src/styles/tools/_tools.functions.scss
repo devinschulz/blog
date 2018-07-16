@@ -17,6 +17,7 @@
 @if variable-exists(fonts) {
   @each $file, $option in $fonts {
     @font-face {
+      font-display: swap;
       font-family: map-get(map-get($fonts, $file), family);
       font-style: map-get(map-get($fonts, $file), style);
       font-weight: map-get(map-get($fonts, $file), weight);

@@ -7,9 +7,9 @@ $base-display-ratio: 1.2;
 $font-roboto: Roboto;
 $font-droid-serif: 'Droid Serif';
 
-$font-family-sans-fallback: $font-roboto, -apple-system, BlinkMacSystemFont,
-  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-  'Segoe UI Emoji', 'Segoe UI Symbol';
+$font-family-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Helvetica, Arial, sans-serif;
+$font-family-serif-fallback: Georgia, 'Times New Roman', Times, serif;
 $font-family-sans: $font-roboto, $font-family-sans-fallback;
 $font-family-monospace: Inconsolata, Menlo, Consolas, Courier, monospace;
 $font-family-serif: $font-droid-serif, serif;
@@ -23,7 +23,7 @@ $font-family-display: $font-family-sans-alt;
 $font-weight-display: 600;
 
 // Define font stack used for paragraphs
-$font-family-default-fallback: $font-family-sans-fallback;
+$font-family-default-fallback: $font-family-serif-fallback;
 $font-family-default: $font-family-serif;
 
 $font-weight-default: 400;
