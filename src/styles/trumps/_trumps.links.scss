@@ -20,10 +20,20 @@
 
     @include hover-focus {
       color: $color-dark-link-alt-hover;
+      background-image: linear-gradient(
+        to bottom,
+        transparent 50%,
+        $color-dark-link-alt-hover 50%
+      );
     }
 
     @include active {
       color: $color-dark-link-alt-active;
+      background-image: linear-gradient(
+        to bottom,
+        transparent 50%,
+        $color-dark-link-alt-active 50%
+      );
     }
   }
 }
