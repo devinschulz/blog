@@ -35,6 +35,7 @@ pre {
 }
 
 code {
+  @include typi('code');
   background-color: $color-light-background;
   padding: $xxs / 2 $xxs;
   color: $color-link;

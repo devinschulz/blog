@@ -5,3 +5,11 @@
     font-family: $font-family-sans;
   }
 }
+
+.u-font-mono {
+  font-family: monospace;
+
+  .fonts-loaded & {
+    font-family: $font-family-monospace;
+  }
+}
