@@ -1,11 +1,27 @@
 .c-next-prev {
-  bottom: 0;
   display: none;
   opacity: 0;
+  top: 50%;
 
   @include mq(medium) {
     display: block;
     position: fixed;
+  }
+
+  svg {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, $m * -1);
+    transition: all 0.2s $ease;
+  }
+
+  @include hover-focus {
+    svg {
+      transform: translate(-50%, $s * -1);
+      opacity: 1;
+    }
   }
 }
 
@@ -24,21 +40,21 @@
 @keyframes fadeInUpNext {
   0% {
     opacity: 0;
-    transform: translateY($m) rotate(90deg);
+    transform: translate($m, -50%) rotate(90deg);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotate(90deg);
+    transform: translate(0, -50%) rotate(90deg);
   }
 }
 
 @keyframes fadeInUpPrev {
   0% {
     opacity: 0;
-    transform: translateY($m) rotate(-90deg);
+    transform: translate($m * -1, -50%) rotate(-90deg);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotate(-90deg);
+    transform: translate(0, -50%) rotate(-90deg);
   }
 }
