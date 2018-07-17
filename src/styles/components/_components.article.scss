@@ -50,6 +50,10 @@
       @include size(0.5em);
       margin-top: 0.2em;
     }
+
+    .theme-dark & {
+      opacity: 1;
+    }
   }
 
   h1,
