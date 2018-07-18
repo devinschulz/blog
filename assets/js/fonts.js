@@ -8,16 +8,18 @@ const sharedFontStyles = [
 ]
 
 const fontFamilies = {
-  'Roboto': sharedFontStyles,
+  Roboto: sharedFontStyles,
   'Droid Serif': sharedFontStyles,
+  'Roboto Mono': sharedFontStyles,
 }
 
-const fontObservers = Object.keys(fontFamilies).reduce((accumulator, key) => {
-  accumulator.push(
-    fontFamilies[key].map(config => new FontFaceObserver(key, config).load())
-  )
-  return accumulator
-}, [])
+const fontObservers = Object.keys(fontFamilies).reduce(
+  (accumulator, key) =>
+    accumulator.concat(
+      fontFamilies[key].map(config => new FontFaceObserver(key, config).load())
+    ),
+  []
+)
 
 const fontsLoaded = () => {
   document.documentElement.classList.add('fonts-loaded')

@@ -17,9 +17,7 @@ import disqus from './disqus'
 const isProduction = process.env.NODE_ENV === 'production'
 
 const installSentry = () =>
-  raven
-    .config('https://6be3214d8335461caeb4c6e4ef667158@sentry.io/300767')
-    .install()
+  raven.config('{{ .Site.Params.sentryDSN }}').install()
 
 const init = () => {
   installSentry()

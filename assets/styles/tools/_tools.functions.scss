@@ -16,13 +16,15 @@
 
 @if variable-exists(fonts) {
   @each $file, $option in $fonts {
+    $font: map-get($fonts, $file);
+    $ext: map-get($font, ext);
     @font-face {
       font-display: swap;
-      font-family: map-get(map-get($fonts, $file), family);
-      font-style: map-get(map-get($fonts, $file), style);
-      font-weight: map-get(map-get($fonts, $file), weight);
-      src: local(map-get(map-get($fonts, $file), local)), local($file),
-        url('../fonts/#{$file}.woff') format('woff');
+      font-family: map-get($font, family);
+      font-style: map-get($font, style);
+      font-weight: map-get($font, weight);
+      src: local(map-get($font, local)), local($file),
+        url('../fonts/#{$file}.#{$ext}') format($ext);
     }
   }
 }

@@ -5,13 +5,15 @@ $base-ratio: $base-line-height / $base-font-size;
 $base-display-ratio: 1.2;
 
 $font-roboto: Roboto;
+$font-roboto-mono: 'Roboto Mono';
 $font-droid-serif: 'Droid Serif';
 
 $font-family-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Helvetica, Arial, sans-serif;
 $font-family-serif-fallback: Georgia, 'Times New Roman', Times, serif;
 $font-family-sans: $font-roboto, $font-family-sans-fallback;
-$font-family-monospace: Inconsolata, Menlo, Consolas, Courier, monospace;
+$font-family-monospace: $font-roboto-mono, Inconsolata, Menlo, Consolas, Courier,
+  monospace;
 $font-family-serif: $font-droid-serif, serif;
 
 $font-family-sans-alt-fallback: $font-family-sans-fallback;
@@ -43,7 +45,6 @@ $typi: (
       14px,
       $base-ratio,
     ),
-    medium: 16px,
   ),
   alert: (
     null: (
@@ -117,47 +118,82 @@ $fonts: (
     weight: bold,
     style: 'italic',
     local: 'Roboto Bold Italic',
+    ext: 'woff'
   ),
   'Roboto-Bold': (
     family: $font-roboto,
     weight: bold,
     style: 'normal',
     local: 'Roboto Bold',
+    ext: 'woff'
   ),
   'Roboto-Italic': (
     family: $font-roboto,
     weight: 400,
     style: 'italic',
     local: 'Roboto Italic',
+    ext: 'woff'
   ),
   'Roboto-Regular': (
     family: $font-roboto,
     weight: 400,
     style: 'normal',
     local: 'Roboto Regular',
+    ext: 'woff'
   ),
   'DroidSerif-BoldItalic': (
     family: $font-droid-serif,
     weight: 700,
     style: 'italic',
     local: 'Droid Serif Bold Italic',
+    ext: 'woff'
   ),
   'DroidSerif-Bold': (
     family: $font-droid-serif,
     weight: 700,
     style: 'normal',
     local: 'Droid Serif Bold',
+    ext: 'woff'
   ),
   'DroidSerif-Italic': (
     family: $font-droid-serif,
-    weight: 400,
-    style: 'italic',
+    weight: 400, style: 'italic',
     local: 'Droid Serif Italic',
+    ext: 'woff'
   ),
   'DroidSerif-Regular': (
     family: $font-droid-serif,
     weight: 400,
     style: 'normal',
     local: 'Droid Serif Regular',
+    ext: 'woff'
+  ),
+  'RobotoMono-BoldItalic': (
+    family: $font-roboto-mono,
+    weight: 700,
+    style: 'italic',
+    local: 'Roboto Mono Bold Italic',
+    ext: 'woff'
+  ),
+  'RobotoMono-Bold': (
+    family: $font-roboto-mono,
+    weight: 700,
+    style: 'normal',
+    local: 'Roboto Mono Bold',
+    ext: 'woff'
+  ),
+  'RobotoMono-Italic': (
+    family: $font-roboto-mono,
+    weight: 400,
+    style: 'italic',
+    local: 'Roboto Mono Italic',
+    ext: 'woff'
+  ),
+  'RobotoMono-Regular': (
+    family: $font-roboto-mono,
+    weight: 400,
+    style: 'normal',
+    local: 'Roboto Mono Regular',
+    ext: 'woff'
   ),
 );
