@@ -60,8 +60,20 @@
 
 <link href="/images/icons/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="author" href="{{ "humans.txt" | relURL }}">
-<link rel="stylesheet" href="{{ "main.css" | relURL }}" />
+
+{{ if .Site.IsServer }}
+  {{ $cssOpts := (dict "targetPath" "styles/main.css" "enableSourceMap" true ) }}
+  {{ $styles := resources.Get "styles/main.scss" | toCSS $cssOpts | postCSS | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}" />
+{{ else }}
+  {{ $cssOpts := (dict "targetPath" "styles/main.css" ) }}
+  {{ $styles := resources.Get "styles/main.scss" | toCSS $cssOpts | postCSS | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}" />
+{{ end }}
+
 <link rel="alternate" href="{{ "/posts/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
-<script src="{{ "scripts.js" | relURL }}" defer></script>
+{{ $scripts := resources.Get "scripts.js" | resources.ExecuteAsTemplate "scripts.js" . | minify | fingerprint }}
+<script src="{{ $scripts.RelPermalink }}" defer></script>
+
