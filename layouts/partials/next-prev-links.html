@@ -1,11 +1,11 @@
 {{ with .NextInSection }}
-  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--next" href="{{ .Permalink }}">
+  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--next" href="{{ .RelPermalink }}">
     {{ partial "svg/chevron-up.svg" }}
     <span class="c-next-prev__text">Next Article</span>
   </a>
 {{ end }}
 {{ with .PrevInSection }}
-  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--prev" href="{{ .Permalink }}">
+  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--prev" href="{{ .RelPermalink }}">
     {{ partial "svg/chevron-up.svg" }}
     <span class="c-next-prev__text">Previous Article</span>
   </a>
