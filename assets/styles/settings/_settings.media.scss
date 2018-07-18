@@ -7,4 +7,4 @@ $mq-breakpoints: (
 
 $breakpoints: $mq-breakpoints;
 
-@import 'sass-mq';
+@import '../../../node_modules/sass-mq/mq';

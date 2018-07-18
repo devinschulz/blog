@@ -21,7 +21,7 @@ export default () => {
 
 const loadDisqus = () => {
   const disqus = document.createElement('script')
-  disqus.src = '//devinschulz.disqus.com/embed.js'
+  disqus.src = '//{{ .Site.DisqusShortname }}.disqus.com/embed.js'
   disqus.async = true
   ;(
     document.getElementsByTagName('head')[0] ||

@@ -1,7 +1,7 @@
 import 'core-js/fn/array/includes'
 
 // Based on http://reed.github.io/turbolinks-compatibility/google_analytics.html
-const ANALYTICS_ID = 'UA-48758540-1'
+const ANALYTICS_ID = '{{ .Site.GoogleAnalytics }}'
 const SEND = 'send'
 
 export const init = () => {

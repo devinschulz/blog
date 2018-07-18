@@ -1,5 +1,4 @@
 public
 node_modules
-static/main.css
-static/scripts.js
 .DS_Store
+/assets/scripts.js

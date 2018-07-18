@@ -1,9 +1,10 @@
 [build]
   publish = "public"
-  command = "gulp netlify && hugo -D && gulp post-process"
+  # TODO: Remove global install once hugo addresses the local node modules folder issue
+  command = "yarn global add postcss-cli cssnano autoprefixer && gulp netlify && hugo -D && gulp post-process"
 
 [build.environment]
-  HUGO_VERSION = "0.43"
+  HUGO_VERSION = "0.44"
   HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
   NODE_ENV = "production"

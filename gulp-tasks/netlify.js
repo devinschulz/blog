@@ -1,3 +1,3 @@
 const gulp = require('gulp')
 
-gulp.task('netlify', ['scss', 'scripts'])
+gulp.task('netlify', ['scripts'])
