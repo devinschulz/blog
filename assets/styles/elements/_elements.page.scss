@@ -6,6 +6,7 @@ body {
   font-family: $font-family-default-fallback;
   font-weight: $font-weight-default;
   color: $color-text;
+  letter-spacing: -0.035em;
 
   .fonts-loaded & {
     font-family: $font-family-default;
