@@ -1,10 +1,8 @@
 {{- if .Params.Categories -}}
-  <ul class="c-categories u-comma-list">
+  <ul class="c-categories u-inline-list">
     {{- range sort .Params.Categories -}}
       {{- $link := . | urlize | printf "%s%s" "/categories/" | printf "%s/" -}}
-      <li itemprop="keywords" class="c-categories__item">
-        <a href="{{ $link }}" class="c-categories__link">{{ . }}</a>
-      </li>
+      <li itemprop="keywords" class="c-categories__item"><a href="{{ $link }}" class="c-categories__link">{{ . }}</a></li>
     {{- end -}}
   </ul>
 {{- end -}}
