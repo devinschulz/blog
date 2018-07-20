@@ -1,11 +1,11 @@
-<header class="c-main-nav js-main-nav u-py-m">
+<header class="c-main-nav js-main-nav u-py-m u-small-text">
   <div class="c-main-nav__wrapper o-container u-font-sans">
     <div class="c-main-nav__logo-wrapper">
       <a href="/" class="c-main-nav__logo">
-        devin.
+       Devin Schulz
       </a>
     </div>
-    <nav class="c-main-nav__links u-small-text" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+    <nav class="c-main-nav__links" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       {{ $currentPage := . }}
       {{ range .Site.Menus.main.ByWeight }}
         {{ $isActive := (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
