@@ -4,7 +4,7 @@ googleAnalytics = ""
 languageCode = "en"
 metaDataFormat = "toml"
 title = "Devin Schulz"
-summaryLength = 20
+summaryLength = 40
 enableGitInfo = true
 disqusShortname = "devinschulz"
 
