@@ -10,7 +10,7 @@ const envify = require('envify/custom')
 const { isProduction } = require('./env')
 
 gulp.task('scripts', () => {
-  return browserify({ entries: './src/js/main.js', debug: true })
+  return browserify({ entries: 'assets/js/main.js', debug: true })
     .transform(
       envify({
         NODE_ENV: isProduction ? 'production' : 'development',
@@ -25,5 +25,5 @@ gulp.task('scripts', () => {
     .pipe(source('scripts.js'))
     .pipe(buffer())
     .pipe(gulpIf(isProduction, uglify()))
-    .pipe(gulp.dest('static'))
+    .pipe(gulp.dest('assets'))
 })

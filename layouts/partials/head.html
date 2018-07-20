@@ -58,10 +58,13 @@
 
 {{ .Hugo.Generator }}
 
+{{ $styles := resources.Get "main.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+
 <link href="/images/icons/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="author" href="{{ "humans.txt" | relURL }}">
-<link rel="stylesheet" href="{{ "main.css" | relURL }}" />
 <link rel="alternate" href="{{ "/posts/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
-<script src="{{ "scripts.js" | relURL }}" defer></script>
+{{ $scripts := resources.Get "scripts.js" | fingerprint }}
+<script src="{{ $scripts.RelPermalink }}" defer></script>

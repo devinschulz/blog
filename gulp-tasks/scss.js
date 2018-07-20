@@ -36,9 +36,9 @@ const sassOptions = {
 
 gulp.task('scss', () =>
   gulp
-    .src('src/styles/main.scss')
+    .src('assets/styles/main.scss')
     .pipe(plumber())
     .pipe(sass(eyeglass(sassOptions)).on('error', sass.logError))
     .pipe(postcss(plugins))
-    .pipe(gulp.dest('./static'))
+    .pipe(gulp.dest('assets'))
 )
