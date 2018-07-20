@@ -1,4 +1,18 @@
 .c-categories {
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: 0;
+
+  li {
+    &:after {
+      content: '•';
+      opacity: 0.5;
+      margin: 0 $xxs;
+      display: inline-block;
+    }
+    &:last-child {
+      &:after {
+        content: '';
+      }
+    }
+  }
 }

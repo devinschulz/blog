@@ -4,32 +4,26 @@ $base-ratio: $base-line-height / $base-font-size;
 
 $base-display-ratio: 1.2;
 
-$font-roboto: Roboto;
-$font-roboto-mono: 'Roboto Mono';
-$font-droid-serif: 'Droid Serif';
+$font-karla: Karla;
+$font-hack: Hack;
 
 $font-family-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-  Helvetica, Arial, sans-serif;
-$font-family-serif-fallback: Georgia, 'Times New Roman', Times, serif;
-$font-family-sans: $font-roboto, $font-family-sans-fallback;
-$font-family-monospace: $font-roboto-mono, Inconsolata, Menlo, Consolas, Courier,
-  monospace;
-$font-family-serif: $font-droid-serif, serif;
+  Roboto, Helvetica, Arial, sans-serif;
+$font-family-sans: $font-karla, $font-family-sans-fallback;
 
-$font-family-sans-alt-fallback: $font-family-sans-fallback;
-$font-family-sans-alt: $font-roboto, $font-family-sans-alt-fallback;
+$font-family-monospace-fallback: Inconsolata, Menlo, Consolas, Courier,
+  monospace;
+$font-family-monospace: $font-hack, $font-family-monospace-fallback;
 
 // Define font stack used for headings
-$font-family-display-fallback: $font-family-sans-alt-fallback;
-$font-family-display: $font-family-sans-alt;
-$font-weight-display: 600;
+$font-weight-display: bold;
 
 // Define font stack used for paragraphs
-$font-family-default-fallback: $font-family-serif-fallback;
-$font-family-default: $font-family-serif;
+$font-family-default-fallback: $font-family-sans-fallback;
+$font-family-default: $font-family-sans;
 
 $font-weight-default: 400;
-$font-weight-default-bold: 700;
+$font-weight-default-bold: bold;
 
 $typi: (
   base: (
@@ -106,94 +100,59 @@ $typi: (
   ),
   small: (
     null: (
-      0.75em,
+      0.8em,
       $base-ratio,
     ),
   ),
 );
 
 $fonts: (
-  'Roboto-BoldItalic': (
-    family: $font-roboto,
+  'Karla-BoldItalic': (
+    family: $font-karla,
     weight: bold,
     style: 'italic',
-    local: 'Roboto Bold Italic',
-    ext: 'woff'
+    local: '#{$font-karla} Bold Italic',
   ),
-  'Roboto-Bold': (
-    family: $font-roboto,
+  'Karla-Bold': (
+    family: $font-karla,
     weight: bold,
     style: 'normal',
-    local: 'Roboto Bold',
-    ext: 'woff'
+    local: '#{$font-karla} Bold',
   ),
-  'Roboto-Italic': (
-    family: $font-roboto,
+  'Karla-Italic': (
+    family: $font-karla,
     weight: 400,
     style: 'italic',
-    local: 'Roboto Italic',
-    ext: 'woff'
+    local: '#{$font-karla} Italic',
   ),
-  'Roboto-Regular': (
-    family: $font-roboto,
+  'Karla-Regular': (
+    family: $font-karla,
     weight: 400,
     style: 'normal',
-    local: 'Roboto Regular',
-    ext: 'woff'
+    local: '#{$font-karla} Regular',
   ),
-  'DroidSerif-BoldItalic': (
-    family: $font-droid-serif,
-    weight: 700,
+  'Hack-BoldItalic': (
+    family: $font-hack,
+    weight: bold,
     style: 'italic',
-    local: 'Droid Serif Bold Italic',
-    ext: 'woff'
+    local: '#{$font-hack} Bold Italic',
   ),
-  'DroidSerif-Bold': (
-    family: $font-droid-serif,
-    weight: 700,
+  'Hack-Bold': (
+    family: $font-hack,
+    weight: bold,
     style: 'normal',
-    local: 'Droid Serif Bold',
-    ext: 'woff'
+    local: '#{$font-hack} Bold',
   ),
-  'DroidSerif-Italic': (
-    family: $font-droid-serif,
-    weight: 400, style: 'italic',
-    local: 'Droid Serif Italic',
-    ext: 'woff'
-  ),
-  'DroidSerif-Regular': (
-    family: $font-droid-serif,
-    weight: 400,
-    style: 'normal',
-    local: 'Droid Serif Regular',
-    ext: 'woff'
-  ),
-  'RobotoMono-BoldItalic': (
-    family: $font-roboto-mono,
-    weight: 700,
-    style: 'italic',
-    local: 'Roboto Mono Bold Italic',
-    ext: 'woff'
-  ),
-  'RobotoMono-Bold': (
-    family: $font-roboto-mono,
-    weight: 700,
-    style: 'normal',
-    local: 'Roboto Mono Bold',
-    ext: 'woff'
-  ),
-  'RobotoMono-Italic': (
-    family: $font-roboto-mono,
+  'Hack-Italic': (
+    family: $font-hack,
     weight: 400,
     style: 'italic',
-    local: 'Roboto Mono Italic',
-    ext: 'woff'
+    local: '#{$font-hack} Italic',
   ),
-  'RobotoMono-Regular': (
-    family: $font-roboto-mono,
+  'Hack-Regular': (
+    family: $font-hack,
     weight: 400,
     style: 'normal',
-    local: 'Roboto Mono Regular',
-    ext: 'woff'
+    local: '#{$font-hack} Regular',
   ),
 );

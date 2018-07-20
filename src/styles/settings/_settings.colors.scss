@@ -36,7 +36,7 @@ $color-dark-lighter-background: hsl($base-hue, $base-shade, 20%);
 
 $color-link: $ribbon-blue;
 $color-link-hover: darken($color-link, 15%);
-$color-link-active: $color-link;
+$color-link-active: darken($color-link, 25%);
 $color-link-lines: lighten($color-link, 30%);
 
 $color-dark-link: hsl($base-hue, 80%, 60%);

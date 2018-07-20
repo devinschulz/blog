@@ -1,26 +1,9 @@
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  font-family: $font-family-display-fallback;
-  font-weight: $font-weight-display;
-  font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
-  margin-top: $l;
-  margin-bottom: $m;
+%heading {
   color: $color-headings;
-  letter-spacing: -0.005em;
-
-  .fonts-loaded & {
-    font-family: $font-family-display;
-  }
+  font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
+  letter-spacing: -0.035em;
+  margin-bottom: $m;
+  margin-top: $l;
 
   .theme-dark & {
     color: $color-dark-headings;
@@ -28,8 +11,7 @@ h6,
 
   a {
     color: inherit;
-    background-image: none !important;
-    text-shadow: none;
+    text-decoration: none;
 
     .theme-dark & {
       color: $color-dark-headings;
@@ -50,6 +32,7 @@ $headings: h1, h2, h3, h4, h5, h6;
 @each $heading in $headings {
   #{$heading},
   .#{$heading} {
+    @extend %heading;
     @include typi('#{$heading}');
   }
 }

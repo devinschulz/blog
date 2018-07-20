@@ -1,30 +1,14 @@
-@function pow($x, $y) {
-  $ret: 1;
-
-  @if $y > 0 {
-    @for $i from 1 through $y {
-      $ret: $ret * $x;
-    }
-  } @else {
-    @for $i from $y to 0 {
-      $ret: $ret / $x;
-    }
-  }
-
-  @return $ret;
-}
-
 @if variable-exists(fonts) {
   @each $file, $option in $fonts {
     $font: map-get($fonts, $file);
-    $ext: map-get($font, ext);
     @font-face {
       font-display: swap;
       font-family: map-get($font, family);
       font-style: map-get($font, style);
       font-weight: map-get($font, weight);
       src: local(map-get($font, local)), local($file),
-        url('../fonts/#{$file}.#{$ext}') format($ext);
+        url('../fonts/#{$file}.woff2') format('woff2'),
+        url('../fonts/#{$file}.woff') format('woff');
     }
   }
 }

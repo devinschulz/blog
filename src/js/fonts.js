@@ -8,9 +8,8 @@ const sharedFontStyles = [
 ]
 
 const fontFamilies = {
-  Roboto: sharedFontStyles,
-  'Droid Serif': sharedFontStyles,
-  'Roboto Mono': sharedFontStyles,
+  Karla: sharedFontStyles,
+  Hack: sharedFontStyles,
 }
 
 const fontObservers = Object.keys(fontFamilies).reduce(
