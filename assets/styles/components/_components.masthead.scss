@@ -57,16 +57,17 @@
 
   @include mq(medium) {
     top: $m * -1;
-    max-width: vr(11);
+    max-width: vr(9);
   }
 
   @include mq(large) {
-    right: $l * -1;
+    right: $m * -1;
+    max-width: vr(10);
   }
 
   @include mq(xlarge) {
-    right: $xl * -1;
-    max-width: vr(14);
+    right: $l * -1;
+    max-width: vr(12);
   }
 
   path {
