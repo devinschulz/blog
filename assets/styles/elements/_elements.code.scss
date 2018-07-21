@@ -3,8 +3,6 @@ pre {
   background-color: $color-light-background;
   overflow-x: auto;
   display: block;
-  @extend .o-layout--extended-width-small;
-  @extend .o-layout--inset-small;
 
   .theme-dark & {
     background-color: $color-dark-light-background;
