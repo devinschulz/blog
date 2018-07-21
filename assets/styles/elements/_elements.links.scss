@@ -24,6 +24,7 @@ a {
 
   @include active {
     color: $color-link-active;
+    text-decoration-color: currentColor;
 
     .theme-dark & {
       color: $color-dark-link-active;
