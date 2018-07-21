@@ -14,20 +14,12 @@ pre {
 
   > code {
     color: inherit;
-    padding: $m 0;
+    padding: $m;
     display: inline-block;
     border: 0;
 
     .theme-dark & {
       color: inherit;
-    }
-
-    @include mq(medium) {
-      padding: $m 0;
-    }
-
-    @include mq(large) {
-      padding: $m;
     }
   }
 }
