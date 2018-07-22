@@ -4,7 +4,7 @@
   "theme_color": "#3455db",
   "background_color": "#ffffff",
   "display": "minimal-ui",
-  "start_url": ".",
+  "start_url": "index.html",
   "icons": [
     {
       "src": "/images/icons/icon-72x72.png",
