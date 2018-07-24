@@ -21,7 +21,7 @@
   }
 
   .theme-dark & {
-    background-color: $color-dark-lighter-background;
+    background-color: $color-dark-light-background;
 
     @include hover-focus-active {
       background-color: $color-link;
