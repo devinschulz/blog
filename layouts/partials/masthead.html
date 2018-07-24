@@ -3,7 +3,7 @@
     {{ partial "meta.html" . }}
   {{- end -}}
   {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
-  <h1 class="c-masthead__title u-mt-m{{ if $img}} u-mb-l{{ end }}" itemprop="name headline">
+  <h1 class="c-masthead__title u-mt-m{{ if $img }} u-mb-l{{ end }}" itemprop="name headline">
     {{- .Title -}}
   </h1>
   {{ with $img }}

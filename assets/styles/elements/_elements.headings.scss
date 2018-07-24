@@ -2,15 +2,14 @@
   color: $color-headings;
   font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
   letter-spacing: -0.035em;
-  margin-bottom: $m;
-  margin-top: $l;
+  margin-bottom: $xxs;
+  margin-top: $m;
 
   .theme-dark & {
     color: $color-dark-headings;
   }
 
-  a {
-    color: inherit;
+  a { color: inherit;
     text-decoration: none;
 
     .theme-dark & {
