@@ -50,6 +50,12 @@ pygmentsUseClasses = true
   twitterShare = "/images/share/twitter-share.jpg"
   facebookShare = "/images/share/facebook-share.jpg"
 
+[[menu.main]]
+  name = "Projects"
+  identifier = "projects"
+  url = "/projects/"
+  weight = 10
+
 [[menu.footer]]
   name = "Posts"
   identifier = "posts"

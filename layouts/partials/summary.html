@@ -1,23 +1,44 @@
 {{ $heading := .heading | default "h2" }}
 <article class="c-repeat c-repeat--post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-  <header class="c-repeat__header">
-    <div class="c-repeat__meta">
-      {{ partial "meta" .context }}
-    </div>
-    {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"c-repeat__title\">" $heading }}
-    {{ $endTag := printf "</%s>" $heading }}
-    {{ $startTag | safeHTML }}
-      <a rel="bookmark" href="{{ .context.RelPermalink }}">{{ .context.Title }}</a>
-    {{ $endTag | safeHTML }}
-  </header>
-  <p class="c-repeat__summary" itemprop="description">{{ .context.Summary }}</p>
-  <span class="u-hidden">
-    {{ with .context.Site.Author.name }}
-      <meta itemprop="author" content="{{ . }}">
-      <span itemprop="publisher" itemscope itemtype="https://schema.org/Person">
-        <meta itemprop="name" content="{{ . }}">
-      </span>
+  <div class="o-grid__item">
+    {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+    {{ with $img }}
+      {{ $mobile := .Resize "300x"}}
+      {{ $mobileRetina := .Resize "600x" }}
+      {{ $tablet := .Resize "750x"}}
+      {{ $tabletRetina := .Resize "1500x" }}
+      {{ $desktop := .Resize "600x"}}
+      {{ $desktopRetina := .Resize "1200x" }}
+      <a href="{{ $.RelPermalink }}">
+        <picture class="c-repeat__image" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
+          <source media="(max-width: 61.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+          <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+          <img src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ .Params.imageAltText }}" />
+        </picture>
+      </a>
     {{ end }}
-    <meta itemprop="dateModified" content="{{ .context.Lastmod.Format "2006-01-02" }}">
-  </span>
+  </div>
+  <div class="o-grid__item c-repeat__main">
+    <header class="c-repeat__header">
+      <div class="c-repeat__meta">
+        {{ partial "meta" .context }}
+      </div>
+      {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"c-repeat__title\">" $heading }}
+      {{ $endTag := printf "</%s>" $heading }}
+      {{ $startTag | safeHTML }}
+        <a rel="bookmark" href="{{ .context.RelPermalink }}">{{ .context.Title }}</a>
+      {{ $endTag | safeHTML }}
+    </header>
+    <p class="c-repeat__summary" itemprop="description">{{ .context.Summary }}</p>
+    <span class="u-hidden">
+      {{ with .context.Site.Author.name }}
+        <meta itemprop="author" content="{{ . }}">
+        <span itemprop="publisher" itemscope itemtype="https://schema.org/Person">
+          <meta itemprop="name" content="{{ . }}">
+        </span>
+      {{ end }}
+      <meta itemprop="dateModified" content="{{ .context.Lastmod.Format "2006-01-02" }}">
+    </span>
+  </div>
 </article>

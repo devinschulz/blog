@@ -38,6 +38,7 @@
 
 @import './objects/objects.container';
 @import './objects/objects.layout';
+@import './objects/objects.grid';
 
 @import './components/components.article';
 // @import './components/components.buttons';
@@ -57,6 +58,7 @@
 @import './components/components.next-prev';
 @import './components/components.tag';
 @import './components/components.related';
+@import './components/components.projects';
 
 @import './trumps/trumps.links';
 @import './trumps/trumps.lists';

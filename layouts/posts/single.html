@@ -9,7 +9,7 @@
 {{ end }}
 
 {{ define "main" }}
-  <article class="c-article o-container js-article" itemscope itemtype="http://schema.org/BlogPosting" data-id="{{ .UniqueID }}" data-title="{{ .Title }}">
+  <article class="c-article o-container o-container--small js-article" itemscope itemtype="http://schema.org/BlogPosting" data-id="{{ .UniqueID }}" data-title="{{ .Title }}">
     <span class="u-hidden">
       {{ with .Site.Author.name }}
         <meta itemprop="author" content="{{ . }}">

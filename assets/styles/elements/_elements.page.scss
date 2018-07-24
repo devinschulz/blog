@@ -3,6 +3,7 @@
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   font-family: $font-family-default-fallback;
   font-weight: $font-weight-default;
   color: $color-text;
