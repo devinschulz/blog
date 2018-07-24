@@ -1,3 +1,3 @@
 <div class="c-meta u-small-text">
-  <time datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format .Site.Params.dateFormat }}</time>{{ if .Params.categories }} &mdash; {{ partial "categories.html" . }}{{ end }}
+  <time class="u-mr-xs" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format .Site.Params.dateFormat }}</time>{{ if .Params.categories }}{{ partial "categories.html" . }}{{ end }}
 </div>

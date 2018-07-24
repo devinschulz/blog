@@ -1,17 +1,31 @@
 .c-categories {
   display: inline-flex;
   margin-bottom: 0;
+}
 
-  li {
-    &:after {
-      content: '•';
-      opacity: 0.5;
-      margin: 0 $xxs;
-    }
-    &:last-child {
-      &:after {
-        content: '';
-      }
+.c-categories__item {
+  & + & {
+    margin-left: $xxs;
+  }
+}
+
+.c-categories__link {
+  background-color: lighten($color-link, 45%);
+  border-radius: $l;
+  padding: 0.2em $xs;
+  text-decoration: none;
+
+  @include hover-focus-active {
+    background-color: $color-link;
+    color: $color-white;
+  }
+
+  .theme-dark & {
+    background-color: $color-dark-lighter-background;
+
+    @include hover-focus-active {
+      background-color: $color-link;
+      color: $color-white;
     }
   }
 }
