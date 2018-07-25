@@ -10,14 +10,14 @@
             {{ $image := .Resize "400x" }}
             <img class="c-next-prev__image u-mr-xxs" src="{{ $image.RelPermalink }}" itemprop="contentUrl url" alt="{{ $alt }}" />
           {{ end }}
-          <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h3>
+          <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h2>
         </div>
       </a>
     {{ end }}
     {{ with .NextInSection }}
       <a class="c-next-prev__link c-next-prev--next t-inverted-link u-flex u-content-center" href="{{ .RelPermalink }}">
         <div class="u-flex u-content-center c-next-prev__label">
-        <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h3>
+        <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h2>
           {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
           {{ $alt := .Params.imageAltText }}
           {{ with $img }}
