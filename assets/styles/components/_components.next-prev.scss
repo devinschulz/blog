@@ -1,60 +1,140 @@
 .c-next-prev {
-  display: none;
-  opacity: 0;
-  bottom: 0;
+  border-top: 1px solid $color-lines;
+  border-bottom: 1px solid $color-lines;
 
-  @include mq(medium) {
-    display: block;
-    position: fixed;
+  @include mq(large) {
+    border: 0;
   }
 
   svg {
-    left: 50%;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transform: translate(-50%, $m * -1);
-    transition: all 0.2s $ease;
-  }
-
-  @include hover-focus {
-    svg {
-      transform: translate(-50%, $s * -1);
-      opacity: 1;
-    }
+    flex-shrink: 0;
   }
 }
 
 .c-next-prev--next {
-  animation: fadeInUpNext 0.3s ease-in 1s forwards;
-  right: $s;
-  transform-origin: top right;
+  margin-left: auto;
+  text-align: right;
+  padding-left: $xs;
+
+  @include mq(large) {
+    right: 0;
+    padding: 0;
+  }
+
+  svg {
+    margin-left: $xxs;
+
+    @include mq(large) {
+      margin-left: 0;
+    }
+  }
 }
 
 .c-next-prev--prev {
-  animation: fadeInUpPrev 0.3s ease-in 1s forwards;
-  left: $s;
-  transform-origin: top left;
+  padding-right: $xs;
+
+  @include mq(large) {
+    left: 0;
+    padding: 0;
+  }
+
+  svg {
+    margin-right: $xxs;
+
+    @include mq(large) {
+      margin-right: 0;
+    }
+  }
 }
 
-@keyframes fadeInUpNext {
-  0% {
-    opacity: 0;
-    transform: translate($m, -50%) rotate(90deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, -50%) rotate(90deg);
+.c-next-prev__link {
+  padding-bottom: $s;
+  padding-top: $s;
+  width: 50%;
+
+  @include mq(large) {
+    @include size($l);
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+
+    svg {
+      transition: transform 0.3s $ease, opacity 0.3s $ease;
+    }
+
+
+    @include hover-focus-active {
+      &.c-next-prev--prev {
+        svg {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+
+        .c-next-prev__label {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      &.c-next-prev--next {
+        svg {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+
+        .c-next-prev__label {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    }
   }
 }
 
-@keyframes fadeInUpPrev {
-  0% {
+.c-next-prev__label {
+  @include mq(large) {
+    background-color: $color-white;
     opacity: 0;
-    transform: translate($m * -1, -50%) rotate(-90deg);
+    padding-bottom: $xxs;
+    padding-top: $xxs;
+    position: absolute;
+    width: vr(12);
+    transition: transform 0.3s $ease, opacity 0.3s $ease 0.1s;
+
+    .theme-dark & {
+      background-color: $color-dark-background;
+    }
+
+    .c-next-prev--prev & {
+      left: $xxs;
+      transform: translateX(-100%);
+    }
+
+    .c-next-prev--next & {
+      right: $xxs;
+      transform: translateX(100%);
+    }
   }
-  100% {
-    opacity: 1;
-    transform: translate(0, -50%) rotate(-90deg);
+}
+
+.c-next-prev__image {
+  display: none;
+
+  @include mq(medium) {
+    border-radius: $global-radius;
+    display: block;
+    max-width: 20%;
+  }
+
+  @include mq(large) {
+    max-width: vr(3);
+  }
+}
+
+.c-next-prev__text {
+  @include mq(large) {
+
+    @include typi('h5');
   }
 }

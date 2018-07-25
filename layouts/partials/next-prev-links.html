@@ -1,12 +1,32 @@
-{{ with .NextInSection }}
-  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--next" href="{{ .RelPermalink }}">
-    {{ partial "svg/chevron-up.svg" }}
-    <span class="c-next-prev__text">Next Article</span>
-  </a>
-{{ end }}
-{{ with .PrevInSection }}
-  <a class="u-font-sans u-small-text t-inverted-link c-next-prev c-next-prev--prev" href="{{ .RelPermalink }}">
-    {{ partial "svg/chevron-up.svg" }}
-    <span class="c-next-prev__text">Previous Article</span>
-  </a>
+{{ if or .PrevInSection .NextInSection }}
+  <div class="c-next-prev u-small-text u-flex u-content-center u-mb-l">
+    {{ with .PrevInSection }}
+      <a class="c-next-prev__link c-next-prev--prev t-inverted-link u-flex u-content-center" href="{{ .RelPermalink }}">
+        {{ partial "svg/chevron-left.svg" }}
+        <div class="u-flex u-content-center c-next-prev__label">
+          {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+          {{ $alt := .Params.imageAltText }}
+          {{ with $img }}
+            {{ $image := .Resize "400x" }}
+            <img class="c-next-prev__image u-mr-xxs" src="{{ $image.RelPermalink }}" itemprop="contentUrl url" alt="{{ $alt }}" />
+          {{ end }}
+          <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h3>
+        </div>
+      </a>
+    {{ end }}
+    {{ with .NextInSection }}
+      <a class="c-next-prev__link c-next-prev--next t-inverted-link u-flex u-content-center" href="{{ .RelPermalink }}">
+        <div class="u-flex u-content-center c-next-prev__label">
+        <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h3>
+          {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+          {{ $alt := .Params.imageAltText }}
+          {{ with $img }}
+            {{ $image := .Resize "400x" }}
+            <img class="c-next-prev__image u-ml-xxs" src="{{ $image.RelPermalink }}" itemprop="contentUrl url" alt="{{ $alt }}" />
+          {{ end }}
+        </div>
+        {{ partial "svg/chevron-right.svg" }}
+      </a>
+    {{ end }}
+  </div>
 {{ end }}
