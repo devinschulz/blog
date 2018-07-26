@@ -19,14 +19,19 @@
       {{ end }}
       <meta itemprop="dateModified" content="{{ .Lastmod.Format "2006-01-02" }}">
     </span>
-    {{ partial "masthead.html" . }}
+    {{ partial "masthead" . }}
     {{ with .Params.notice }}
-      {{ partial "notice.html" . }}
+      {{ partial "notice" . }}
     {{ end }}
-    <div itemprop="articleBody" class="c-article__content u-mb-l">
+    <div itemprop="articleBody" class="c-article__content">
       {{- .Content -}}
     </div>
-    {{ partial "next-prev-links.html" . }}
+    {{ if .Params.Tags }}
+      <div class="c-article__tags {{ if or .NextInSection .PrevInSection }}u-mb-m{{ else }}u-mb-l{{ end }}">
+        {{ partial "tags" . }}
+      </div>
+    {{ end }}
+    {{ partial "next-prev-links" . }}
     <div id="disqus_thread"></div>
   </article>
 {{ end }}

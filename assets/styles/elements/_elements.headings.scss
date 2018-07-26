@@ -9,19 +9,17 @@
     color: $color-dark-headings;
   }
 
-  a { color: inherit;
+  a {
+    color: inherit;
     text-decoration: none;
 
     .theme-dark & {
       color: $color-dark-headings;
     }
 
-    @include hover-focus {
-      color: $color-headings-hover;
-
-      .theme-dark & {
-        color: $color-dark-headings-hover;
-      }
+    @include hover-focus-active {
+      color: inherit;
+      text-decoration: underline;
     }
   }
 }

@@ -4,7 +4,7 @@ date = "2018-07-09T16:20:02-04:00"
 caption = "[Multiply Into More](//thenounproject.com/term/multiply-into-more/319382) by Ben Davis from [the Noun Project](https://thenounproject.com)"
 imageAltText = "A single point which splits into many"
 description = "Learn how to use Redux Thunk for handling several synchronous actions at once to modify different areas of the application state."
-categories = ["Redux"]
+tags = ["Redux", "JavaScript", "Unit Testing"]
 +++
 
 ## The problem

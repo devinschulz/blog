@@ -1,0 +1,8 @@
+{{- if .Params.Tags -}}
+  <ul class="c-tags u-inline-list u-small-text">
+    {{- range $key, $value := (sort .Params.Tags) -}}
+      {{- $link := $value | urlize | printf "%s%s" "/tags/" | printf "%s/" -}}
+      <li itemprop="keywords" class="c-tags__item"><a href="{{ $link }}" class="c-tag">{{ $value }}</a></li>
+    {{- end -}}
+  </ul>
+{{- end -}}

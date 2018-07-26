@@ -1,15 +1,14 @@
-.c-categories {
+.c-tags {
   display: inline-flex;
+  flex-wrap: wrap;
   margin-bottom: 0;
 }
 
-.c-categories__item {
-  & + & {
-    margin-left: $xxs;
-  }
+.c-tags__item {
+  margin: 0 $xxs $xxs 0;
 }
 
-.c-categories__link {
+.c-tag {
   background-color: lighten($color-link, 45%);
   border-radius: $l;
   padding: 0.2em $xs;

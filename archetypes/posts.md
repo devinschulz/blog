@@ -5,6 +5,6 @@ draft = true
 caption = ""
 imageAltText = ""
 description = ""
-notice = ""
+tags = []
 +++
 

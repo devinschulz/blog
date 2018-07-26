@@ -63,7 +63,6 @@
       transition: transform 0.3s $ease, opacity 0.3s $ease;
     }
 
-
     @include hover-focus-active {
       &.c-next-prev--prev {
         svg {
@@ -134,7 +133,6 @@
 
 .c-next-prev__text {
   @include mq(large) {
-
     @include typi('h5');
   }
 }

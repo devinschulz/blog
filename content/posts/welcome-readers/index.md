@@ -5,6 +5,7 @@ draft = "false"
 caption = "[world](https://thenounproject.com/search/?q=world&i=26949) by Juan Pablo Bravo from [the Noun Project](https://thenounproject.com)"
 imageAltText = "A graphic of the earth's cartography made up as large dots"
 description = ""
+tags = []
 +++
 
 I'm a designer turned web developer that specializes in front-end applications. As an advocate for best practices and proper schematics, I believe that the web should be open and accessible for everyone.

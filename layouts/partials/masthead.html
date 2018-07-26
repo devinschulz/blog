@@ -4,7 +4,25 @@
   {{- end -}}
   {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
   <h1 class="c-masthead__title u-mt-m{{ if $img }} u-mb-l{{ end }}" itemprop="name headline">
-    {{- .Title -}}
+    {{ $title := .Title | lower }}
+    {{/* Awkward lookup since Hugo titlecases tags by default. This results in */}}
+    {{/* incorrect casing with words like JavaScript. */}}
+    {{ if eq .Type "tags" }}
+      {{ range .Pages }}
+        {{ range .Params.tags }}
+          {{ if eq (. | lower) $title }}
+            {{ $.Scratch.Set "title" . }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ with .Scratch.Get "title" }}
+        {{ . }}
+      {{ else }}
+        {{ .Title }}
+      {{ end }}
+    {{ else }}
+      {{ .Title }}
+    {{ end }}
   </h1>
   {{ with $img }}
     {{ $mobile := .Resize "400x"}}
