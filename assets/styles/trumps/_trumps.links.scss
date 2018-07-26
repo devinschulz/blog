@@ -37,6 +37,16 @@
   }
 }
 
+.t-inverted-link--dark {
+  @include hover-focus-active {
+    text-decoration-color: $color-headings;
+
+    .theme-dark & {
+      text-decoration-color: $color-dark-headings;
+    }
+  }
+}
+
 .t-inverted-link--active {
   color: $color-link-alt-active;
 

@@ -1,7 +1,7 @@
 {{ if or .PrevInSection .NextInSection }}
   <div class="c-next-prev u-small-text u-flex u-content-center u-mb-l">
     {{ with .PrevInSection }}
-      <a class="c-next-prev__link c-next-prev--prev t-inverted-link u-flex u-content-center" href="{{ .RelPermalink }}">
+      <a class="c-next-prev__link c-next-prev--prev t-inverted-link t-inverted-link--dark u-flex u-content-center" href="{{ .RelPermalink }}">
         {{ partial "svg/chevron-left.svg" }}
         <div class="u-flex u-content-center c-next-prev__label">
           {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
@@ -15,7 +15,7 @@
       </a>
     {{ end }}
     {{ with .NextInSection }}
-      <a class="c-next-prev__link c-next-prev--next t-inverted-link u-flex u-content-center" href="{{ .RelPermalink }}">
+      <a class="c-next-prev__link c-next-prev--next t-inverted-link t-inverted-link--dark u-flex u-content-center" href="{{ .RelPermalink }}">
         <div class="u-flex u-content-center c-next-prev__label">
         <h2 class="c-next-prev__text h4 u-mt u-mb">{{ .Title }}</h2>
           {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}

@@ -11,10 +11,11 @@
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration-color: $color-white;
 
     .theme-dark & {
       color: $color-dark-headings;
+      text-decoration-color: $color-dark-background;
     }
 
     @include hover-focus-active {
