@@ -1,6 +1,6 @@
 baseURL = "https://devinschulz.com/"
 enableRobotsTXT = true
-googleAnalytics = ""
+googleAnalytics = "UA-48758540-1"
 languageCode = "en"
 metaDataFormat = "toml"
 title = "Devin Schulz"

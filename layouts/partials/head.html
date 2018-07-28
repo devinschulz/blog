@@ -66,5 +66,11 @@
 <link rel="alternate" href="{{ "/posts/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
-{{ $scripts := resources.Get "scripts.js" | fingerprint }}
+{{ $scripts := resources.Get "scripts.js" | fingerprint | }}
 <script src="{{ $scripts.RelPermalink }}" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>

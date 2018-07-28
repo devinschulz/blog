@@ -2,7 +2,7 @@ import 'babel-polyfill'
 import turbolinks from 'turbolinks'
 import raven from 'raven-js'
 
-import { init as initGoogleAnalytics } from './googleAnalytics'
+import { trackPageview } from './googleAnalytics'
 import headerLinks from './headerLinks'
 import share from './share'
 import fonts from './fonts'
@@ -26,7 +26,6 @@ const init = () => {
   removeNoJS()
   turbolinks.start()
   bindEventListeners()
-  initGoogleAnalytics()
   fonts()
   sw()
   initTheme()
@@ -53,6 +52,7 @@ const handlePageLoad = event => {
   share()
   bindToggleEventListeners()
   disqus()
+  trackPageview()
 }
 
 // Hugo live reload has some issues with turbolinks enabled in development mode
