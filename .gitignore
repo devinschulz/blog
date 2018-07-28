@@ -1,7 +1,6 @@
 public
 node_modules
-static/main.css
-static/scripts.js
 .DS_Store
 /resources/_gen/assets
 /assets/main.css
+/assets/scripts.js
