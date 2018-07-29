@@ -29,10 +29,11 @@ const handleToggleEvent = () => {
   toggle.classList.toggle('is-active')
   toggle.setAttribute('aria-checked', !isDark)
 
-  trackEvent(
-    'Day night toggle',
-    isDark ? 'From dark to light' : 'From light to dark'
-  )
+  trackEvent('theme_switcher', {
+    event_label: 'Day/night theme switcher',
+    event_category: 'engagement',
+    method: isDark ? 'dark_to_light' : 'light_to_dark',
+  })
 }
 
 const saveToStorage = isDark => localStorage.setItem('isDark', isDark)
