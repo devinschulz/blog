@@ -7,9 +7,13 @@ title = "Devin Schulz"
 summaryLength = 40
 enableGitInfo = true
 disqusShortname = "devinschulz"
+preserveTaxonomyNames = true
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
+
+[taxonomies]
+  tag = "tags"
 
 [permalinks]
   posts = ":title/"

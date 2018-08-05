@@ -1,19 +1,11 @@
 {{ define "main" }}
   <section class="o-container" itemscope itemtype="http://schema.org/Blog">
     {{ partial "masthead.html" . }}
-
     {{ if eq .Kind "taxonomyTerm" }}
-      {{ range .Data.Pages }}
-        {{ range .Data.tag }}
-          {{ range .Params.Tags }}
-            {{ $.Scratch.SetInMap "tags" . . }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
       <ul class="c-tags u-inline-list u-small-text">
-        {{ range .Scratch.Get "tags" }}
-          {{ $link := . | urlize | printf "%s%s" "/tags/" | printf "%s/" }}
-          <li itemprop="keywords" class="c-tags__item"><a href="{{ $link }}" class="c-tag">{{ . }}</a></li>
+        {{ range sort .Site.Taxonomies.tags.ByCount }}
+          {{- $link := .Name | urlize | printf "%s%s" "/tags/" | printf "%s/" -}}
+          <li itemprop="keywords" class="c-tags__item"><a href="{{ $link }}" class="c-tag">{{ .Name }}</a></li>
         {{ end }}
       </ul>
     {{ else }}
