@@ -1,6 +1,6 @@
 @mixin spacer($prefix, $type, $unit, $value) {
   .u-#{$prefix}-#{$unit} {
-    #{$type}: $xxs;
+    #{$type}: $value;
   }
   .u-#{$prefix}t-#{$unit} {
     #{$type}-top: $value;
@@ -84,4 +84,3 @@
   @include marginSpacer($spacer, $value);
   @include paddingSpacer($spacer, $value);
 }
-
