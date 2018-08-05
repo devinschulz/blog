@@ -1,0 +1,2 @@
+{{ $tag := .Get "tag" | default "div" }}
+{{ (printf "<%s class=\"c-callout u-p-m\">%s</%s>" $tag (.Inner | markdownify) $tag) | safeHTML }}
