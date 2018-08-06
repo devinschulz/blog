@@ -3,7 +3,7 @@
     {{ partial "meta.html" . }}
   {{- end -}}
   {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
-  <h1 class="c-masthead__title u-mt-m{{ if $img }} u-mb-l{{ end }}" itemprop="name headline">{{ .Title }}</h1>
+  <h1 class="c-masthead__title u-mt-m{{ if $img }} u-mb-l{{ else }} u-mb-m{{ end }}" itemprop="name headline">{{ .Title }}</h1>
   {{ with $img }}
     {{ $mobile := .Resize "400x"}}
     {{ $mobileRetina := .Resize "800x" }}
