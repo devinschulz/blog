@@ -46,6 +46,7 @@
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.5.5",
     "fontfaceobserver": "^2.0.13",
+    "gulp-purgecss": "^1.0.0",
     "raven-js": "^3.26.3",
     "spinthatshit": "^1.0.4",
     "turbolinks": "^5.1.1"
