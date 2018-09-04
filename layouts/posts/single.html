@@ -27,11 +27,12 @@
       {{- .Content -}}
     </div>
     {{ if .Params.Tags }}
-      <div class="c-article__tags {{ if or .NextInSection .PrevInSection }}u-mb-m{{ else }}u-mb-l{{ end }}">
+      <div class="c-article__tags u-mb-l">
         {{ partial "tags" . }}
       </div>
     {{ end }}
     {{ partial "next-prev-links" . }}
+    {{ partial "related" . }}
     <div id="disqus_thread"></div>
   </article>
 {{ end }}

@@ -22,6 +22,25 @@ pygmentsUseClasses = true
   name = "Devin Schulz"
   twitter = "devinschulz_"
 
+[related]
+  threshold = 20
+  includeNewer = true
+  toLower = true
+[[related.indices]]
+  name = "keywords"
+  weight = 150
+[[related.indices]]
+  name = "tags"
+  weight = 100
+[[related.indices]]
+  name = "author"
+  toLower = true
+  weight = 30
+[[related.indices]]
+  name = "date"
+  weight = 10
+  pattern = "2006"
+
 [params]
   description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
   brandColor = "#3455db"

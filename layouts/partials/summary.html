@@ -1,20 +1,23 @@
+{{ $heading := .heading | default "h2" }}
 <article class="c-repeat c-repeat--post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="c-repeat__header">
     <div class="c-repeat__meta">
-      {{ partial "meta" . }}
+      {{ partial "meta" .context }}
     </div>
-    <h2 itemprop="name headline" class="c-repeat__title">
-      <a rel="bookmark" href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
+    {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"c-repeat__title\">" $heading }}
+    {{ $endTag := printf "</%s>" $heading }}
+    {{ $startTag | safeHTML }}
+      <a rel="bookmark" href="{{ .RelPermalink }}">{{ .context.Title }}</a>
+    {{ $endTag | safeHTML }}
   </header>
-  <p class="c-repeat__summary" itemprop="description">{{ .Summary }}</p>
+  <p class="c-repeat__summary" itemprop="description">{{ .context.Summary }}</p>
   <span class="u-hidden">
-    {{ with .Site.Author.name }}
+    {{ with .context.Site.Author.name }}
       <meta itemprop="author" content="{{ . }}">
       <span itemprop="publisher" itemscope itemtype="https://schema.org/Person">
         <meta itemprop="name" content="{{ . }}">
       </span>
     {{ end }}
-    <meta itemprop="dateModified" content="{{ .Lastmod.Format "2006-01-02" }}">
+    <meta itemprop="dateModified" content="{{ .context.Lastmod.Format "2006-01-02" }}">
   </span>
 </article>
