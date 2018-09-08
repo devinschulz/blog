@@ -10,7 +10,7 @@
       </ul>
     {{ else }}
       {{ range .Data.Pages }}
-        {{ partial "summary" . }}
+        {{ partial "summary.html" (dict "context" .) }}
       {{ end }}
     {{ end }}
   </section>
