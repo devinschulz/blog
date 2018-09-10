@@ -7,6 +7,7 @@ gulp.task('css', () =>
     .pipe(
       purgecss({
         content: ['public/**/*.html'],
+        whitelist: ['fonts-loaded', 'theme-dark'],
       })
     )
     .pipe(gulp.dest('public/'))
