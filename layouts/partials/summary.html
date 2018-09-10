@@ -7,7 +7,7 @@
     {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"c-repeat__title\">" $heading }}
     {{ $endTag := printf "</%s>" $heading }}
     {{ $startTag | safeHTML }}
-      <a rel="bookmark" href="{{ .RelPermalink }}">{{ .context.Title }}</a>
+      <a rel="bookmark" href="{{ .context.RelPermalink }}">{{ .context.Title }}</a>
     {{ $endTag | safeHTML }}
   </header>
   <p class="c-repeat__summary" itemprop="description">{{ .context.Summary }}</p>
