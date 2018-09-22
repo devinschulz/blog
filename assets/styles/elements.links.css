@@ -1,0 +1,15 @@
+a {
+  @apply text-blue;
+
+  &:hover {
+    @apply text-blue-darker;
+  }
+
+  &:focus {
+    @apply text-blue-darker;
+  }
+
+  &:active {
+    @apply text-blue-darkest;
+  }
+}

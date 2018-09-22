@@ -9,8 +9,8 @@
 {{ end }}
 
 {{ define "main" }}
-  <article class="c-article o-container o-container--small js-article" itemscope itemtype="http://schema.org/BlogPosting" data-id="{{ .UniqueID }}" data-title="{{ .Title }}">
-    <span class="u-hidden">
+  <article class=" container" itemscope itemtype="http://schema.org/BlogPosting" data-id="{{ .UniqueID }}" data-title="{{ .Title }}">
+    <span class="hidden">
       {{ with .Site.Author.name }}
         <meta itemprop="author" content="{{ . }}">
         <span itemprop="publisher" itemscope itemtype="https://schema.org/Person">
@@ -23,16 +23,15 @@
     {{ with .Params.notice }}
       {{ partial "notice" . }}
     {{ end }}
-    <div itemprop="articleBody" class="c-article__content">
+    <div itemprop="articleBody" class="md:w-3/4 lg:w-1/2 md:mx-auto markdown mb-12">
       {{- .Content -}}
     </div>
-    {{ if .Params.Tags }}
-      <div class="c-article__tags u-mb-l">
+    <div class="md:w-3/4 lg:w-1/2 md:mx-auto">
+      {{ if .Params.Tags }}
         {{ partial "tags" . }}
-      </div>
-    {{ end }}
-    {{ partial "next-prev-links" . }}
-    {{ partial "related" . }}
-    <div id="disqus_thread"></div>
+      {{ end }}
+      <!-- {{ partial "next-prev-links" . }} -->
+      {{ partial "related" . }}
+    </div>
   </article>
 {{ end }}

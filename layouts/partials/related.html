@@ -1,9 +1,9 @@
 {{ $related := .Site.RegularPages.Related . | first 2 }}
 {{ with $related }}
-  <section class="c-related u-py-l u-mb-l">
-    <h2 class="c-related__title u-visually-hidden">You may also like:</h2>
+  <section class="py-l mb-l">
+    <h2 class="mb-4 mt-12">You may also like:</h2>
     {{ range . }}
-      {{ partial "summary" (dict "context" . "heading" "h3") }}
+      {{ partial "summary" (dict "context" . "heading" "h3" "small" true) }}
     {{ end }}
   </section>
 {{ end }}

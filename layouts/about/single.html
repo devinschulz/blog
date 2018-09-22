@@ -1,11 +1,25 @@
 {{ define "main" }}
-  <section class="o-container">
-    <header class="c-masthead u-mb-l"></header>
-    <div class="o-grid o-grid--swapped">
-      <div class="o-grid__item">{{ .Content }}</div>
-      <div class="o-grid__item">
-        <p class="u-mb"><strong>A few clients I've worked with:</strong></p>
-        <ul>
+  <section class="container">
+    {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+    {{ with $img }}
+      {{ $mobile := .Resize "300x"}}
+      {{ $mobileRetina := .Resize "600x" }}
+      {{ $tablet := .Resize "750x"}}
+      {{ $tabletRetina := .Resize "1500x" }}
+      {{ $desktop := .Resize "615x"}}
+      {{ $desktopRetina := .Resize "1230x" }}
+      <picture class="mb-4 lg:mb-12 w-full h-auto block" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+        <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
+        <source media="(max-width: 61.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+        <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+        <img class="w-full block rounded" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ $.Params.imageAltText }}" />
+      </picture>
+    {{ end }}
+    <div class="lg:flex lg:-mx-2">
+      <div class="w-full lg:w-1/2 lg:px-2 about-content">{{ .Content }}</div>
+      <div class="w-full lg:w-1/2 lg:px-2 about-companies">
+        <h3 class="mb-2 text-base leading-normal"><strong>A few amazing companies I've worked with:</strong></h3>
+        <ul class="list-reset">
           <li>Algonquin College</li>
           <li>Bullfrog Power</li>
           <li><abbr title="Children's Hospital of Eastern Ontario">CHEO</abbr></li>

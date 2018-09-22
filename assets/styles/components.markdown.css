@@ -1,0 +1,29 @@
+.markdown {
+  > *:first-child {
+    @apply mt-0;
+  }
+
+  > *:last-child {
+    @apply mb-0;
+  }
+
+  h2 {
+    @apply mt-12 mb-4 leading-none;
+  }
+
+  ul, ol {
+    @apply mb-4;
+  }
+
+  p,
+  ul li {
+    code {
+      @apply text-sm  bg-grey-lightest leading-normal p-1 rounded;
+    }
+  }
+
+  ol li > img,
+  ul li > img {
+    @apply my-4;
+  }
+}

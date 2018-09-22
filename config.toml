@@ -8,6 +8,7 @@ summaryLength = 40
 enableGitInfo = true
 disqusShortname = "devinschulz"
 preserveTaxonomyNames = true
+disableKinds = ["projects"]
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
@@ -49,12 +50,6 @@ pygmentsUseClasses = true
   commentsEnabled = true
   twitterShare = "/images/share/twitter-share.jpg"
   facebookShare = "/images/share/facebook-share.jpg"
-
-[[menu.main]]
-  name = "Projects"
-  identifier = "projects"
-  url = "/projects/"
-  weight = 10
 
 [[menu.footer]]
   name = "Posts"

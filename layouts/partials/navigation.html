@@ -1,16 +1,14 @@
-<header class="c-main-nav js-main-nav u-py-m u-small-text">
-  <div class="c-main-nav__wrapper o-container u-font-sans">
-    <div class="c-main-nav__logo-wrapper">
-      <a href="/" class="c-main-nav__logo">
-       Devin Schulz
-      </a>
-    </div>
-    <nav class="c-main-nav__links" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+<header class="container py-4 lg:pt-6 lg:pb-12">
+  <div class="flex content-between">
+    <h2 class="text-sm font-bold">
+      <a href="/" class="text-black no-underline">Devin Schulz</a>
+    </h2>
+    <nav class="text-sm ml-auto" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       {{ $currentPage := . }}
       {{ range .Site.Menus.main.ByWeight }}
         {{ $isActive := (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
         <a
-          class="c-main-nav__link t-inverted-link{{ if $isActive }} c-main-nav__link--active{{ end }}"
+          class="no-underline hover:underline ml-3 md:ml-6 {{ if $isActive }}font-bold text-black{{ else }}text-grey-dark hover:text-grey-darkest{{ end }}"
           href="{{ .URL }}"
           itemprop="url"
         >
@@ -18,10 +16,6 @@
         </a>
       {{ end }}
     </nav>
-    <button class="c-toggle js-day-night" role="switch" aria-checked="false" aria-label="Toggle between day and night mode">
-      <div class="c-toggle__item"></div>
-      <div class="c-toggle__item"></div>
-    </button>
   </div>
 </header>
 

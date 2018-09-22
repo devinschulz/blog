@@ -1,0 +1,15 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  @media(--lg-viewport) {
+    font-size: 18px;
+  }
+}
+
+body {
+  @apply leading-normal text-grey-darker font-sans;
+}

@@ -1,8 +1,10 @@
 {{- if .Params.Tags -}}
-  <ul class="c-tags u-inline-list u-small-text">
+  <ul class="list-reset text-sm">
     {{- range sort .Params.Tags -}}
       {{- $link := . | urlize | printf "%s%s" "/tags/" | printf "%s/" -}}
-      <li itemprop="keywords" class="c-tags__item"><a href="{{ $link }}" class="c-tag">{{ . }}</a></li>
+      <li itemprop="keywords" class="tag inline-block">
+        <a href="{{ $link }}" class="tag-link text-xs">{{ . }}</a>
+      </li>
     {{- end -}}
   </ul>
 {{- end -}}

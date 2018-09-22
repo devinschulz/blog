@@ -1,6 +1,39 @@
 {{ define "main" }}
-  <section class="o-container o-container--small">
+  <section class="container">
     {{ partial "masthead.html" . }}
-    {{ .Content }}
+    <div class="md:w-3/4 lg:w-1/2 md:mx-auto markdown mb-12">
+      {{ .Content }}
+      <dl>
+        {{ with .Params.role }}
+          <dt class="float-left font-semibold mr-1">Role:</dt>
+          <dd class="mb-0">{{ . }}</dd>
+        {{ end }}
+        {{ with .Params.agency }}
+          <dt class="float-left font-semibold mr-1">Agency:</dt>
+          {{ if $.Params.agencyLink }}
+            <dd class="mb-0">
+              <a href="{{ $.Params.agencyLink }}" rel="external nofollow">{{ . }}</a>
+            </dd>
+          {{ else }}
+            <dd>{{ .}}</dd>
+          {{ end }}
+        {{ end }}
+        {{ with .Params.technologies }}
+          <dt class="float-left font-semibold mr-1">Technologies:</dt>
+          <dd class="mb-0">
+            <ul class="list-reset comma-list">
+              {{ range . }}
+                <li class="inline">{{ . }}</li>
+              {{ end }}
+            </ul>
+          </dd>
+        {{ end }}
+      </dl>
+      {{ with .Params.Website }}
+        <p>
+          <a href="{{ .}}" rel="external nofollow">Visit {{ $.Title }}</a>
+        </p>
+      {{ end }}
+    </div>
   </section>
 {{ end }}

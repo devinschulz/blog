@@ -1,0 +1,7 @@
+code {
+  @apply text-sm font-mono;
+}
+
+.chroma {
+  @apply p-4 bg-grey-lightest border-solid border-grey-light border mb-4 rounded block overflow-x-auto;
+}

@@ -1,37 +1,34 @@
 {{ $heading := .heading | default "h2" }}
-<article class="c-repeat c-repeat--post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="o-grid__item">
-    {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
-    {{ with $img }}
+{{ $small := .small | default false }}
+<article class="summary mb-8{{ if not $small }} md:mb-0{{ end }}" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+  {{ $img := (.context.Resources.ByType "image").GetMatch "*featured*" }}
+  {{ with $img }}
       {{ $mobile := .Resize "300x"}}
       {{ $mobileRetina := .Resize "600x" }}
       {{ $tablet := .Resize "750x"}}
       {{ $tabletRetina := .Resize "1500x" }}
       {{ $desktop := .Resize "600x"}}
       {{ $desktopRetina := .Resize "1200x" }}
-      <a href="{{ $.RelPermalink }}">
-        <picture class="c-repeat__image" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+      <a href="{{ $.context.RelPermalink }}" class="summary-image block w-full">
+        <picture itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
           <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
           <source media="(max-width: 61.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
           <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
-          <img src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ .Params.imageAltText }}" />
+          <img class="h-auto w-full mb-2 rounded" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ $.context.Params.imageAltText }}" />
         </picture>
       </a>
-    {{ end }}
-  </div>
-  <div class="o-grid__item c-repeat__main">
-    <header class="c-repeat__header">
-      <div class="c-repeat__meta">
-        {{ partial "meta" .context }}
-      </div>
-      {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"c-repeat__title\">" $heading }}
+  {{ end }}
+  <div class="w-full">
+    <header class="mb-4">
+      <time class="text-sm text-gray-dark" datetime="{{ .context.Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .context.Date.Format .context.Site.Params.dateFormat }}</time>
+      {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"summary-title text-2xl\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
-        <a rel="bookmark" href="{{ .context.RelPermalink }}">{{ .context.Title }}</a>
+        <a class="no-underline" rel="bookmark" href="{{ .context.RelPermalink }}">{{ .context.Title }}</a>
       {{ $endTag | safeHTML }}
     </header>
-    <p class="c-repeat__summary" itemprop="description">{{ .context.Summary }}</p>
-    <span class="u-hidden">
+    <p itemprop="description">{{ .context.Summary }}</p>
+    <span class="hidden">
       {{ with .context.Site.Author.name }}
         <meta itemprop="author" content="{{ . }}">
         <span itemprop="publisher" itemscope itemtype="https://schema.org/Person">

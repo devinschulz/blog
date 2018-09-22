@@ -1,3 +1,3 @@
 const gulp = require('gulp')
 
-gulp.task('default', ['scss', 'scripts'])
+gulp.task('default', ['css', 'scripts'])
