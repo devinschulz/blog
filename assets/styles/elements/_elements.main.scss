@@ -1,7 +1,0 @@
-main {
-  margin-bottom: $m;
-
-  @include mq(medium) {
-    margin-bottom: $l;
-  }
-}
