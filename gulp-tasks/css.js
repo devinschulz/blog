@@ -11,13 +11,14 @@ const plugins = [
   require('postcss-import')(),
   require('postcss-nested')(),
   require('tailwindcss')(path.join(__dirname, '../tailwind.config.js')),
+  require('postcss-preset-env')({
+    autoprefixer: { grid: true },
+    browsers: 'last 2 versions, > 1%',
+    stage: 0,
+  }),
   require('css-mqpacker')({
     sort: true,
   }),
-  require('autoprefixer')({
-    browsers: ['last 2 versions', '> 1%'],
-  }),
-  require('postcss-preset-env')(),
 ]
 
 if (isProduction) {
