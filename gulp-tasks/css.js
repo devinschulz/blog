@@ -3,17 +3,14 @@ const purgecss = require('gulp-purgecss')
 const path = require('path')
 const plumber = require('gulp-plumber')
 const postcss = require('gulp-postcss')
-const eyeglass = require('eyeglass')
 const tailwind = require('tailwindcss')
 
 const { isProduction } = require('./env')
 
 const plugins = [
   require('postcss-import')(),
-  require('postcss-mixins')(),
   require('postcss-nested')(),
   require('tailwindcss')(path.join(__dirname, '../tailwind.config.js')),
-  require('precss')(),
   require('css-mqpacker')({
     sort: true,
   }),
