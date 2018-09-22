@@ -5,7 +5,7 @@
 }
 
 html {
-  @media(--lg-viewport) {
+  @media (--lg-viewport) {
     font-size: 18px;
   }
 }

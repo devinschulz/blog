@@ -14,7 +14,7 @@
     }
 
     &::after {
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
     }
 
     .project-image {
@@ -32,7 +32,7 @@
 
   &::after {
     content: '';
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     position: absolute;
     top: 0;
     left: 0;
@@ -43,7 +43,7 @@
 }
 
 .project-title {
-  @media(--md-viewport) {
+  @media (--md-viewport) {
     transform: translateY(1rem);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;

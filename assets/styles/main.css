@@ -1,19 +1,19 @@
-@import "settings.tailwind";
-@import "settings.vars";
+@import 'settings.tailwind';
+@import 'settings.vars';
 
-@import "generic.code";
+@import 'generic.code';
 
-@import "elements.page";
-@import "elements.headings";
-@import "elements.paragraph";
-@import "elements.links";
-@import "elements.code";
+@import 'elements.page';
+@import 'elements.headings';
+@import 'elements.paragraph';
+@import 'elements.links';
+@import 'elements.code';
 
-@import "components.tags";
-@import "components.markdown";
-@import "components.projects";
-@import "components.skip";
-@import "components.about";
-@import "components.summary";
+@import 'components.tags';
+@import 'components.markdown';
+@import 'components.projects';
+@import 'components.skip';
+@import 'components.about';
+@import 'components.summary';
 
-@import "utilities.comma-list";
+@import 'utilities.comma-list';
