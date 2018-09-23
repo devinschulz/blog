@@ -1,0 +1,55 @@
+.project {
+  @apply relative mb-4 flex w-full rounded;
+}
+
+.project-inner {
+  @apply no-underline relative flex justify-center items-center bg-grey-lighter w-full h-full overflow-hidden;
+
+  &:hover,
+  &:focus,
+  &:active {
+    .project-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &::after {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .project-image {
+      filter: blur(5px) grayscale(80%);
+    }
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 0;
+    padding-bottom: 100%;
+  }
+
+  &::after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s;
+  }
+}
+
+.project-title {
+  @media (--md-viewport) {
+    transform: translateY(1rem);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+}
+
+.project-image {
+  transition: filter 0.2s;
+}

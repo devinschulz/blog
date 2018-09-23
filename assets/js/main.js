@@ -5,7 +5,6 @@ import raven from 'raven-js'
 import { trackPageView, trackPageLoad } from './googleAnalytics'
 import headerLinks from './headerLinks'
 import share from './share'
-import fonts from './fonts'
 import sw from './sw'
 import {
   init as initTheme,
@@ -26,7 +25,6 @@ const init = () => {
   removeNoJS()
   turbolinks.start()
   bindEventListeners()
-  fonts()
   sw()
   initTheme()
   trackPageLoad()
@@ -64,6 +62,5 @@ if (turbolinks.supported && isProduction) {
   removeNoJS()
   initTheme()
   handlePageLoad()
-  fonts()
   sw()
 }

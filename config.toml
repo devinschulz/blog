@@ -8,6 +8,7 @@ summaryLength = 40
 enableGitInfo = true
 disqusShortname = "devinschulz"
 preserveTaxonomyNames = true
+disableKinds = ["projects"]
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true

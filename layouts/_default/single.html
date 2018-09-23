@@ -1,6 +1,8 @@
 {{ define "main" }}
-  <section class="o-container">
+  <section class="container">
     {{ partial "masthead.html" . }}
-    {{- .Content -}}
+    <div class="md:w-3/4 lg:w-3/5 xl:w-1/2 md:mx-auto markdown mb-12">
+      {{- .Content -}}
+    </div>
   </section>
 {{ end }}

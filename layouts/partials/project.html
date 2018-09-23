@@ -1,25 +1,23 @@
 <div class="c-repeat">
-  <p class="c-repeat__meta u-small-text">
-    {{- .date | safeHTML -}}
-  </p>
-  <h2 class="c-repeat__title">{{ .title }}</h2>
-  <p class="c-repeat__body">{{ .body | markdownify }}</p>
+  <p class="c-repeat__meta u-small-text">{{ .Params.workDate }}</p>
+  <h2 class="c-repeat__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <p class="c-repeat__body">{{ .Content }}</p>
   <dl class="u-inline-dl">
-    {{ with .role }}
+    {{ with .Params.role }}
       <dt>Role:</dt>
       <dd>{{ . }}</dd>
     {{ end }}
-    {{ if .agency }}
+    {{ with .Params.agency }}
       <dt>Agency:</dt>
-      {{ if .agencyLink }}
+      {{ if $.Params.agencyLink }}
         <dd>
-          <a href="{{ .agencyLink }}" rel="external nofollow">{{ .agency }}</a>
+          <a href="{{ $.Params.agencyLink }}" rel="external nofollow">{{ . }}</a>
         </dd>
       {{ else }}
-        <dd>{{ .agency }}</dd>
+        <dd>{{ .}}</dd>
       {{ end }}
     {{ end }}
-    {{ with .technologies }}
+    {{ with .Params.technologies }}
       <dt>Technologies:</dt>
       <dd>
         <ul class="u-comma-list">
@@ -30,9 +28,9 @@
       </dd>
     {{ end }}
   </dl>
-  {{ with .url }}
+  {{ with .Params.Website }}
     <p class="c-repeat__url">
-      <a href="{{ .}}" rel="external nofollow">Visit {{ $.title }}</a>
+      <a href="{{ .}}" rel="external nofollow">Visit {{ $.Title }}</a>
     </p>
   {{ end }}
 </div>

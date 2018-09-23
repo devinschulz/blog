@@ -1,8 +1,10 @@
 {{ define "main" }}
-  <section class="o-container" itemscope itemtype="http://schema.org/Blog">
+  <section class="container" itemscope itemtype="http://schema.org/Blog">
     {{ partial "masthead.html" . }}
-    {{ range .Data.Pages }}
-      {{ partial "summary.html" (dict "context" .) }}
-    {{ end }}
+    <div class="summaries">
+      {{ range .Data.Pages }}
+        {{ partial "summary.html" (dict "context" .) }}
+      {{ end }}
+    </div>
   </section>
 {{ end }}

@@ -1,3 +1,3 @@
 const gulp = require('gulp')
 
-gulp.task('post-process', ['html', 'css', 'generate-service-worker'])
+gulp.task('post-process', ['html', 'css:post', 'generate-service-worker'])

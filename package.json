@@ -8,11 +8,12 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp",
-    "format": "prettier --config .prettierrc --write \"src/**/*.{js,scss}\"",
+    "format": "prettier --config .prettierrc --write \"assets/**/*.{js,css}\"",
     "predev": "hugo serve -DF&",
     "dev": "gulp watch"
   },
   "devDependencies": {
+    "autoprefixer": "^9.1.5",
     "babel-core": "6.26.3",
     "babel-preset-es2015": "6.24.1",
     "babelify": "8.0.0",
@@ -20,7 +21,6 @@
     "css-mqpacker": "7.0.0",
     "cssnano": "4.1.0",
     "envify": "4.1.0",
-    "eyeglass": "1.5.0",
     "gulp": "3.9.1",
     "gulp-babel": "8.0.0",
     "gulp-cache-bust": "1.4.0",
@@ -29,12 +29,16 @@
     "gulp-if": "2.0.2",
     "gulp-plumber": "1.2.0",
     "gulp-postcss": "8.0.0",
-    "gulp-sass": "4.0.1",
+    "gulp-purgecss": "^1.1.1",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "3.0.1",
-    "precss": "3.1.2",
+    "postcss-import": "^12.0.0",
+    "postcss-nested": "^4.1.0",
+    "postcss-preset-env": "^6.0.3",
     "prettier": "1.14.2",
     "require-dir": "1.0.0",
     "sass-mq": "5.0.0",
+    "tailwindcss": "^0.6.5",
     "typi": "3.2.0",
     "vinyl-buffer": "1.0.1",
     "vinyl-source-stream": "2.0.0",
@@ -42,13 +46,9 @@
     "workbox-build": "3.5.0"
   },
   "dependencies": {
-    "autoprefixer": "^9.0.0",
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.5.5",
-    "fontfaceobserver": "^2.0.13",
-    "gulp-purgecss": "^1.0.0",
     "raven-js": "^3.26.3",
-    "spinthatshit": "^1.0.4",
     "turbolinks": "^5.1.1"
   }
 }

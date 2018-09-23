@@ -1,0 +1,13 @@
+.tag {
+  + .tag {
+    @apply ml-2 mb-2;
+  }
+}
+
+.tag-link {
+  @apply text-blue px-4 py-1 rounded-full no-underline bg-blue-lightest block;
+
+  &:hover {
+    @apply text-white bg-blue;
+  }
+}

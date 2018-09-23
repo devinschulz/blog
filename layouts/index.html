@@ -1,7 +1,9 @@
 {{ define "main" }}
-  <div class="o-container" itemscope itemtype="http://schema.org/Blog">
-    {{ range where .Pages "Section" "posts" }}
-      {{ partial "summary" (dict "context" .) }}
-    {{ end }}
+  <div class="container" itemscope itemtype="http://schema.org/Blog">
+    <div class="summaries has-featured">
+      {{ range where .Pages "Section" "posts" }}
+        {{ partial "summary" (dict "context" .) }}
+      {{ end }}
+    </div>
   </div>
 {{ end }}

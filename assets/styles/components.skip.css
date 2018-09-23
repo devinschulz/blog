@@ -1,0 +1,7 @@
+.skip {
+  transform: translateY(-100%);
+
+  &:focus {
+    transform: translate(0);
+  }
+}

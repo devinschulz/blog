@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <section class="container">
+    <div class="md:flex md:flex-wrap md:-m-2">
+      {{ range where .Pages "Section" "projects" }}
+        <div class="project md:mb-0 md:w-1/2 md:p-2 ">
+          <a class="project-inner" href="{{ .RelPermalink }}">
+            {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+            {{ with $img }}
+              {{ $mobile := .Resize "300x"}}
+              {{ $mobileRetina := .Resize "600x" }}
+              {{ $tablet := .Resize "360x"}}
+              {{ $tabletRetina := .Resize "720x" }}
+              {{ $desktop := .Resize "600x"}}
+              {{ $desktopRetina := .Resize "1200x" }}
+              <picture  itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
+                <source media="(max-width: 61.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+                <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+                <img class="project-image w-full absolute h-auto pin" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ .Params.imageAltText }}" />
+              </picture>
+            {{ end }}
+            <h2 class="project-title relative text-white z-10">{{ .Title }}</h2>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

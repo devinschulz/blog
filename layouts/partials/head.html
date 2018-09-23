@@ -65,6 +65,7 @@
 <link rel="author" href="{{ "humans.txt" | relURL }}">
 <link rel="alternate" href="{{ "/posts/index.xml" | absURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600" rel="stylesheet">
 
 {{ $scripts := resources.Get "scripts.js" | fingerprint | }}
 <script src="{{ $scripts.RelPermalink }}" defer></script>

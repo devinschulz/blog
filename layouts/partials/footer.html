@@ -1,11 +1,11 @@
-<footer class="c-footer o-container u-font-sans u-small-text">
-  <div class="c-footer__list-group u-mb-m">
-    <ul class="c-footer__list t-no-bullet">
+<footer class="container mt-12">
+  <div class="flex leading-loose mb-4 text-sm">
+    <ul class="list-reset">
       {{ $currentPage := . }}
       {{ range .Site.Menus.footer.ByWeight }}
-        <li class="c-footer__item">
+        <li>
           <a
-            class="c-footer__link t-inverted-link{{ if or ($currentPage.HasMenuCurrent "footer" .) ($currentPage.IsMenuCurrent "footer" .) }} c-footer__link--active t-inverted-link--active{{ end }}"
+            class="nav-link{{ if or ($currentPage.HasMenuCurrent "footer" .) ($currentPage.IsMenuCurrent "footer" .) }} active{{ end }}"
             href="{{ .URL }}"
             {{ if or (eq .Identifier "rss") (eq .Identifier "sitemap") }}
               type="application/rss+xml"
@@ -17,17 +17,17 @@
         </li>
       {{ end }}
     </ul>
-    <ul class="c-footer__list u-ml-l t-no-bullet">
+    <ul class="list-reset ml-8 lg:ml-12">
       {{ range .Site.Menus.social.ByWeight }}
-        <li class="c-footer__item">
-          <a class="c-footer__link t-inverted-link" href="{{ .URL }}" target="_blank" rel="nofollow noopener">{{ .Name }}</a>
+        <li>
+          <a class="nav-link" href="{{ .URL }}" target="_blank" rel="nofollow noopener">{{ .Name }}</a>
         </li>
       {{ end }}
     </ul>
   </div>
-  <p class="c-footer__copyright u-mb">
-    <small>Devin Schulz</small>
-    <small>&copy; {{ now.Format "2006"}}</small>
+  <p class="text-grey-darker flex mb-4">
+    <small class="text-xs">Devin Schulz</small>
+    <small class="text-xs ml-auto">&copy; {{ now.Format "2006"}}</small>
   </p>
   {{ block "footer" . }} {{ end }}
 </footer>

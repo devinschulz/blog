@@ -1,0 +1,11 @@
+code {
+  @apply text-sm font-mono;
+}
+
+:not(pre) > code {
+  @apply p-1 text-blue bg-grey-lightest border-solid border-grey-light border rounded inline;
+}
+
+pre {
+  @apply p-4 bg-grey-lightest border-solid border-grey-light border my-8 rounded block overflow-x-auto;
+}

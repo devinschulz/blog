@@ -1,0 +1,11 @@
+.about-content {
+  @media (--md-viewport) {
+    order: 1;
+  }
+}
+
+.about-companies {
+  @media (--md-viewport) {
+    order: 0;
+  }
+}

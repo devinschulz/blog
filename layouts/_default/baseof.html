@@ -6,7 +6,7 @@
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" class="{{ if .Page.IsHome }}is-home {{ end }}is-{{ .Page.Type | urlize }}">
     {{ partial "svg/svg-sprite.html" . }}
-    <a href="#maincontent" class="c-skip">Skip to content</a>
+    <a href="#maincontent" class="skip absolute pin-t pin-l px-4 py-2 opacity-0 focus:opacity-100">Skip to content</a>
     {{ partial "navigation.html" . }}
     <main id="maincontent">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
