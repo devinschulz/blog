@@ -15,5 +15,6 @@
 @import 'components.skip';
 @import 'components.about';
 @import 'components.summary';
+@import 'components.nav';
 
 @import 'utilities.comma-list';

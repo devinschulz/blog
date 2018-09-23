@@ -1,0 +1,15 @@
+.nav-link {
+  @apply no-underline text-grey-darker;
+
+  &.active {
+    @apply font-bold text-black;
+  }
+
+  &:not(.active) {
+    &:active,
+    &:focus,
+    &:hover {
+      @apply text-black underline;
+    }
+  }
+}

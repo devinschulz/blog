@@ -1,4 +1,5 @@
 :root {
+  --light-yellow: #fee8a5;
 }
 
 @custom-media --sm-viewport (min-width: 576px);

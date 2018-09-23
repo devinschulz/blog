@@ -5,7 +5,7 @@
       {{ range .Site.Menus.footer.ByWeight }}
         <li>
           <a
-            class="no-underline hover:underline {{ if or ($currentPage.HasMenuCurrent "footer" .) ($currentPage.IsMenuCurrent "footer" .) }}font-bold text-black{{ else }}text-grey-dark hover:text-grey-darkest{{ end }}"
+            class="nav-link{{ if or ($currentPage.HasMenuCurrent "footer" .) ($currentPage.IsMenuCurrent "footer" .) }} active{{ end }}"
             href="{{ .URL }}"
             {{ if or (eq .Identifier "rss") (eq .Identifier "sitemap") }}
               type="application/rss+xml"
@@ -20,14 +20,14 @@
     <ul class="list-reset ml-8 lg:ml-12">
       {{ range .Site.Menus.social.ByWeight }}
         <li>
-          <a class="no-underline text-grey-dark hover:text-grey-darkest" href="{{ .URL }}" target="_blank" rel="nofollow noopener">{{ .Name }}</a>
+          <a class="nav-link" href="{{ .URL }}" target="_blank" rel="nofollow noopener">{{ .Name }}</a>
         </li>
       {{ end }}
     </ul>
   </div>
-  <p class="text-grey-dark flex mb-4">
-    <small>Devin Schulz</small>
-    <small class="ml-auto">&copy; {{ now.Format "2006"}}</small>
+  <p class="text-grey-darker flex mb-4">
+    <small class="text-xs">Devin Schulz</small>
+    <small class="text-xs ml-auto">&copy; {{ now.Format "2006"}}</small>
   </p>
   {{ block "footer" . }} {{ end }}
 </footer>

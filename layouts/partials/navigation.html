@@ -1,4 +1,4 @@
-<header class="container py-4 lg:pt-6 lg:pb-12">
+<header class="container pb-8 pt-4 lg:pt-6 lg:pb-12">
   <div class="flex content-between">
     <h2 class="text-sm font-bold">
       <a href="/" class="text-black no-underline">Devin Schulz</a>
@@ -8,7 +8,7 @@
       {{ range .Site.Menus.main.ByWeight }}
         {{ $isActive := (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
         <a
-          class="no-underline hover:underline ml-3 md:ml-6 {{ if $isActive }}font-bold text-black{{ else }}text-grey-dark hover:text-grey-darkest{{ end }}"
+          class="nav-link ml-3 md:ml-6{{ if $isActive }} active{{ end }}"
           href="{{ .URL }}"
           itemprop="url"
         >

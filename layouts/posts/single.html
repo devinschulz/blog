@@ -23,10 +23,10 @@
     {{ with .Params.notice }}
       {{ partial "notice" . }}
     {{ end }}
-    <div itemprop="articleBody" class="md:w-3/4 lg:w-1/2 md:mx-auto markdown mb-12">
+    <div itemprop="articleBody" class="md:w-3/4 lg:w-3/5 xl:w-1/2 md:mx-auto markdown mb-12">
       {{- .Content -}}
     </div>
-    <div class="md:w-3/4 lg:w-1/2 md:mx-auto">
+    <div class="md:w-3/4 lg:w-3/5 xl:w-1/2 md:mx-auto">
       {{ if .Params.Tags }}
         {{ partial "tags" . }}
       {{ end }}

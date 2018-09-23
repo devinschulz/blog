@@ -1,9 +1,9 @@
 <header class="text-center mb-12">
   {{- if and (eq .Type "posts") (ne .Kind "section") -}}
-    {{ partial "meta.html" . }}
+    <time class="text-sm text-gray-dark mb-2 block" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format .Site.Params.dateFormat }}</time>
   {{- end -}}
   {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
-  <h1 class="lg:text-5xl max-w-lg mx-auto {{ if $img }}mb-6{{ else }}mb-4{{ end }}" itemprop="name headline">{{ .Title }}</h1>
+  <h1 class="lg:text-5xl max-w-lg mx-auto {{ if $img }}mb-6 lg:mb-12{{ else }}mb-4{{ end }}" itemprop="name headline">{{ .Title }}</h1>
   {{ with $img }}
     {{ $mobile := .Resize "400x"}}
     {{ $mobileRetina := .Resize "800x" }}
