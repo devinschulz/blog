@@ -36,7 +36,7 @@
 }
 /* Keyword */
 .chroma .k {
-  color: #0000ff;
+  @apply text-blue;
 }
 /* KeywordConstant */
 .chroma .kc {
@@ -140,11 +140,11 @@
 }
 /* CommentSingle */
 .chroma .c1 {
-  color: #008000;
+  @apply text-green-dark;
 }
 /* CommentSpecial */
 .chroma .cs {
-  color: #008000;
+  @apply text-green-dark;
 }
 /* CommentPreproc */
 .chroma .cp {

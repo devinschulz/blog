@@ -1,6 +1,8 @@
 <header class="text-center mb-12">
   {{- if and (eq .Type "posts") (ne .Kind "section") -}}
-    <time class="text-sm text-gray-dark mb-2 block" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format .Site.Params.dateFormat }}</time>
+  <div class="text-sm text-grey-darker mb-2 block">
+    <time datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format .Site.Params.dateFormat }}</time><span class="mx-2">&bull;</span><span>{{ .ReadingTime }} min read</span>
+  </div>
   {{- end -}}
   {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
   <h1 class="lg:text-5xl max-w-lg mx-auto {{ if $img }}mb-6 lg:mb-12{{ else }}mb-4{{ end }}" itemprop="name headline">{{ .Title }}</h1>
@@ -21,7 +23,7 @@
         <img class="w-full h-auto lg:w-auto" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ $.Params.imageAltText }}" />
       </picture>
     {{ with $.Params.caption }}
-      <figcaption class="text-sm text-grey markdown">{{ . | markdownify }}</figcaption>
+      <figcaption class="text-sm text-grey-darkest markdown">{{ . | markdownify }}</figcaption>
     {{ end }}
     {{ if $.Params.caption }}
       </figure>

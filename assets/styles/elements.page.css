@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @apply leading-normal text-grey-darker font-sans;
+  @apply leading-normal text-grey-darkest font-sans;
 }
 
 ::selection {
