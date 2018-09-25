@@ -17,7 +17,7 @@
     "babel-core": "6.26.3",
     "babel-preset-es2015": "6.24.1",
     "babelify": "8.0.0",
-    "browserify": "16.2.2",
+    "browserify": "16.2.3",
     "css-mqpacker": "7.0.0",
     "cssnano": "4.1.3",
     "envify": "4.1.0",
