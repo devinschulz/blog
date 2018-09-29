@@ -2,7 +2,7 @@
   @apply no-underline text-grey-darkest;
 
   &.active {
-    @apply font-bold text-black;
+    @apply font-semibold text-black;
   }
 
   &:not(.active) {
