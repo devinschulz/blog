@@ -1,16 +1,9 @@
-import 'babel-polyfill'
 import turbolinks from 'turbolinks'
 import raven from 'raven-js'
 
 import { trackPageView, trackPageLoad } from './googleAnalytics'
 import headerLinks from './headerLinks'
-import share from './share'
 import sw from './sw'
-import {
-  init as initTheme,
-  unbindEventListeners as unbindToggleEventListeners,
-  bindEventListeners as bindToggleEventListeners,
-} from './themeToggle'
 import disqus from './disqus'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -26,7 +19,6 @@ const init = () => {
   turbolinks.start()
   bindEventListeners()
   sw()
-  initTheme()
   trackPageLoad()
 }
 
@@ -38,18 +30,12 @@ const unbindEventListeners = () => {
   document.addEventListener('turbolinks:before-render', handleBeforeRender)
 }
 
-const handleBeforeRender = () => {
-  unbindToggleEventListeners()
-}
-
 const removeNoJS = () => {
   document.documentElement.classList.remove('no-js')
 }
 
 const handlePageLoad = event => {
   headerLinks()
-  share()
-  bindToggleEventListeners()
   disqus()
   trackPageView()
 }
@@ -60,7 +46,6 @@ if (turbolinks.supported && isProduction) {
   init()
 } else {
   removeNoJS()
-  initTheme()
   handlePageLoad()
   sw()
 }
