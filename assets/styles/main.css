@@ -8,6 +8,7 @@
 @import 'elements.paragraph';
 @import 'elements.links';
 @import 'elements.code';
+@import 'elements.figure';
 
 @import 'components.tags';
 @import 'components.markdown';

@@ -43,4 +43,8 @@
   ul li > img {
     @apply my-4;
   }
+
+  figure {
+    @apply my-8;
+  }
 }

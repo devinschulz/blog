@@ -1,0 +1,10 @@
+figure {
+  img {
+    @apply border-grey-light border;
+  }
+}
+
+figcaption {
+  @apply text-sm text-grey-darker;
+  text-align: center;
+}
