@@ -11,8 +11,6 @@ Location:           Ottawa, Canada
 /* SITE */
 Doctype:            HTML5
 Standards:          HTML5, CSS3, SVG, ES6, Service Worker
-Components:         Hugo, PostCSS, SCSS, Yarn, Gulp.js, Babel, Markdown,
-                    Turbolinks, Font Face Observer, Intl Relative Format,
-                    Validate
-Software:           Vim, Sketch, iTerm 2, tmux, Git, Chrome Developer Tools
+Components:         Hugo, PostCSS, Yarn, Gulp.js, Babel, Markdown, Turbolinks
+Software:           Vim, Adobe XD, iTerm 2, tmux, Git, Chrome Developer Tools
 Source code:        https://github.com/devinschulz/blog
