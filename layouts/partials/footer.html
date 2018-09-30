@@ -24,8 +24,19 @@
         </li>
       {{ end }}
     </ul>
+    <ul class="list-reset ml-8 lg:ml-12">
+      <li>
+        <button class="nav-link js-top">Back to top</button>
+      </li>
+      <li>
+        <label class="nav-theme cursor-pointer hover:underline">
+          <input type="checkbox" class="js-themer absolute">
+          Dark theme: <span aria-hidden="true"></span>
+        </label>
+      </li>
+    </ul>
   </div>
-  <p class="text-grey-darker flex mb-4">
+  <p class="text-grey-darker flex pb-4 mb-0">
     <small class="text-xs">Devin Schulz</small>
     <small class="text-xs ml-auto">&copy; {{ now.Format "2006"}}</small>
   </p>

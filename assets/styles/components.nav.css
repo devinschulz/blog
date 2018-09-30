@@ -13,3 +13,17 @@
     }
   }
 }
+
+.nav-theme {
+  [type='checkbox'] {
+    left: -9999px;
+
+    + span::before {
+      content: 'off';
+    }
+
+    &:checked + span::before {
+      content: 'on';
+    }
+  }
+}

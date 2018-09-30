@@ -5,6 +5,12 @@ import { trackPageView, trackPageLoad } from './googleAnalytics'
 import headerLinks from './headerLinks'
 import sw from './sw'
 import disqus from './disqus'
+import { initScroll, deinitScroll } from './scroll'
+import {
+  init as initTheme,
+  bindEventListeners as bindThemeEventListeners,
+  unbindEventListeners as unbindThemeEventListeners,
+} from './themeToggle'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -15,18 +21,22 @@ const installSentry = () =>
 
 const init = () => {
   installSentry()
+  initTheme()
   removeNoJS()
   turbolinks.start()
   bindEventListeners()
   sw()
   trackPageLoad()
+  initScroll()
+}
+
+const handleBeforeRender = () => {
+  deinitScroll()
+  unbindThemeEventListeners()
 }
 
 const bindEventListeners = () => {
   document.addEventListener('turbolinks:load', handlePageLoad)
-}
-
-const unbindEventListeners = () => {
   document.addEventListener('turbolinks:before-render', handleBeforeRender)
 }
 
@@ -38,6 +48,7 @@ const handlePageLoad = event => {
   headerLinks()
   disqus()
   trackPageView()
+  bindThemeEventListeners()
 }
 
 // Hugo live reload has some issues with turbolinks enabled in development mode
@@ -45,7 +56,9 @@ const handlePageLoad = event => {
 if (turbolinks.supported && isProduction) {
   init()
 } else {
+  initTheme()
   removeNoJS()
   handlePageLoad()
   sw()
+  initScroll()
 }
