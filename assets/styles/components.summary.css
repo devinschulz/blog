@@ -12,6 +12,10 @@
   @media (--lg-viewport) {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  @media (--xl-viewport) {
+    gap: 2rem;
+  }
 }
 
 .summary {
