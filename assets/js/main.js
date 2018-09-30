@@ -49,6 +49,7 @@ const handlePageLoad = event => {
   disqus()
   trackPageView()
   bindThemeEventListeners()
+  initScroll()
 }
 
 // Hugo live reload has some issues with turbolinks enabled in development mode
@@ -60,5 +61,4 @@ if (turbolinks.supported && isProduction) {
   removeNoJS()
   handlePageLoad()
   sw()
-  initScroll()
 }

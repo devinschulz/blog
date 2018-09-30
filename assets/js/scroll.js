@@ -1,3 +1,5 @@
+import { trackEvent } from './googleAnalytics'
+
 const getSelector = () => document.querySelector('.js-top')
 
 const handleClick = e => {
@@ -7,6 +9,7 @@ const handleClick = e => {
     left: 0,
     behavior: 'smooth',
   })
+  trackEvent('scroll_top')
 }
 
 export const initScroll = () => {
