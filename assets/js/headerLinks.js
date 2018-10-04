@@ -1,28 +1,23 @@
-const svg =
-  '<svg class="c-icon c-icon--link"><use xlink:href="#shape-link"></use></svg>'
-
-// based on https://github.com/gohugoio/hugo/blame/master/docs/themes/gohugoioTheme/src/js/anchorforid.js
-const createAnchorForID = id => {
+const createAnchor = (id, text) => {
   const anchor = document.createElement('a')
-  anchor.className = 'c-article__link'
   anchor.href = `#${id}`
-  anchor.innerHTML = svg
+  anchor.innerHTML = text
   return anchor
 }
 
-const createLinksWithinContainer = (container, level) => {
-  Array.from(container.getElementsByTagName(`h${level}`)).forEach(header => {
-    header.classList.add('c-article__heading')
-    header.appendChild(createAnchorForID(header.id))
-  })
+const linkify = header => {
+  const child = createAnchor(header.id, header.textContent)
+  header.innerHTML = ''
+  header.appendChild(child)
 }
 
-export default function() {
-  const article = document.querySelector('.c-article__content')
-  if (article) {
-    // h2-h6
-    for (let i = 1; i <= 6; i++) {
-      createLinksWithinContainer(article, i)
-    }
-  }
-}
+const createLinksWithinArticle = article => level =>
+  Array.from(article.getElementsByTagName(`h${level}`)).forEach(linkify)
+
+const HEADER_LEVELS = [2, 3, 4, 5, 6]
+
+const linkifyHeadings = article =>
+  HEADER_LEVELS.forEach(createLinksWithinArticle(article))
+
+export default () =>
+  Array.from(document.querySelectorAll('.markdown')).forEach(linkifyHeadings)
