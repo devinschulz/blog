@@ -22,7 +22,7 @@
   p,
   ul li {
     code {
-      @apply text-sm bg-grey-lightest leading-normal p-1 rounded;
+      @apply text-sm bg-grey-lightest leading-normal px-1 py-0 rounded;
     }
   }
 
