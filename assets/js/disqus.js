@@ -2,13 +2,11 @@ export default () => {
   const disqusThread = document.getElementById('disqus_thread')
   if (disqusThread) {
     if (window.DISQUS) {
-      const { identifier, title } = document.querySelector(
-        '.js-article'
-      ).dataset
+      const { id, title } = document.querySelector('.js-article').dataset
       window.DISQUS.reset({
         reload: true,
         config: function() {
-          this.page.identifier = identifier
+          this.page.identifier = id
           this.page.url = window.location.href
           this.page.title = title
         },
