@@ -22,7 +22,7 @@
   {{ end }}
   <div class="w-full">
     <header class="mb-4">
-      <div class="text-sm text-grey-darker mb-1 block">
+      <div class="text-xs text-grey-darker mb-1 block">
         <time datetime="{{ .context.Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .context.Date.Format .context.Site.Params.dateFormat }}</time><span class="mx-2">&bull;</span><span>{{ .context.ReadingTime }} min read</span>
       </div>
       {{ $startTag := printf "<%s itemprop=\"name headline\" class=\"summary-title text-2xl\">" $heading }}
