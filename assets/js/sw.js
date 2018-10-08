@@ -7,35 +7,37 @@ const isLocalhost = Boolean(
     )
 )
 
-export default () => {
-  if (
-    'serviceWorker' in navigator &&
-    (window.location.protocol === 'https:' || !isLocalhost)
-  ) {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then(registration => {
-        registration.onupdatefound = () => {
-          if (navigator.serviceWorker.controller) {
+export default () =>
+  new Promise((resolve, reject) => {
+    if (
+      'serviceWorker' in navigator &&
+      (window.location.protocol === 'https:' || !isLocalhost)
+    ) {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(registration => {
+          registration.onupdatefound = () => {
             const installingWorker = registration.installing
-
             installingWorker.onstatechange = () => {
               switch (installingWorker.state) {
                 case 'installed':
+                  if (navigator.serviceWorker.controller) {
+                    console.log('New content is available; please refresh.')
+                    resolve(true)
+                  } else {
+                    console.log('Content is cached for offline use.')
+                    resolve(false)
+                  }
                   break
-
-                case 'redundant':
-                  throw new Error('The service worker became redundant.')
-
-                default:
-                // Ignore
               }
             }
           }
-        }
-      })
-      .catch(e => {
-        console.error('Error during service worker registration:', e) // eslint-disable-line no-console
-      })
-  }
-}
+        })
+        .catch(e => {
+          console.error('Error during service worker registration:', e) // eslint-disable-line no-console
+          resolve(false)
+        })
+    } else {
+      resolve(false)
+    }
+  })

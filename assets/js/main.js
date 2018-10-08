@@ -25,7 +25,11 @@ const init = () => {
   removeNoJS()
   turbolinks.start()
   bindEventListeners()
-  sw()
+  sw().then(updateAvailable => {
+    if (updateAvailable) {
+      document.querySelector('.js-update').classList.remove('hidden')
+    }
+  })
   trackPageLoad()
   initScroll()
 }
@@ -60,5 +64,4 @@ if (turbolinks.supported && isProduction) {
   initTheme()
   removeNoJS()
   handlePageLoad()
-  sw()
 }
