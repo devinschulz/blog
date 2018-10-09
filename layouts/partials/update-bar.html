@@ -1,6 +1,8 @@
-<div role="status" aria-live="polite" class="js-update hidden bg-blue-lightest text-blue leading-tight">
+<div role="status" aria-live="polite" class="js-update hidden bg-blue-lightest text-blue leading-tight" data-turbolinks-permanent>
   <div class="container py-2 flex items-center justify-center">
-    <div class="w-4 h-4">{{ partial "svg/info-outline.svg" }}</div>
+    <div class="w-4 h-4">
+      {{ partial "svg/info-outline.svg" }}
+    </div>
     <p class="mb-0 ml-2 text-sm text-blue"><strong>New Update available!</strong> Reload the page to see the latest changes.</p>
   </div>
 </div>
