@@ -47,6 +47,6 @@
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.5.5",
     "raven-js": "^3.26.3",
-    "turbolinks": "^5.1.1"
+    "turbolinks": "5.2.0"
   }
 }
