@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "gulp netlify && hugo -D && gulp post-process"
+  command = "yarn build:full"
 
 [build.environment]
   HUGO_VERSION = "0.47.1"
