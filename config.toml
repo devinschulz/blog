@@ -50,6 +50,7 @@ pygmentsUseClasses = true
   commentsEnabled = true
   twitterShare = "/images/share/twitter-share.jpg"
   facebookShare = "/images/share/facebook-share.jpg"
+  pinterestClaimId  = "e3bcb69d2d6d3d289136e8c9302e6dcd"
 
 [[menu.footer]]
   name = "Posts"

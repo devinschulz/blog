@@ -46,6 +46,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <meta property="og:locale" content="{{ .Site.LanguageCode }}">
+{{ with .Site.Params.pinterestClaimId }}
+  <meta name="p:domain_verify" content="{{ . }}" />
+{{ end }}
 
 <meta name="theme-color" content="{{ .Site.Params.brandColor }}">
 <meta name="mobile-web-app-capable" content="yes">
