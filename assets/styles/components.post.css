@@ -1,0 +1,17 @@
+.post-sidebar {
+  @media (--md-viewport) {
+    order: 0;
+  }
+}
+
+.post-sidebar-inner {
+  @media (--md-viewport) {
+    top: 4rem;
+  }
+}
+
+.post-content {
+  @media (--md-viewport) {
+    order: 1;
+  }
+}

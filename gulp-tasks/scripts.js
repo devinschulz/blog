@@ -16,7 +16,10 @@ gulp.task('scripts', () => {
         NODE_ENV: isProduction ? 'production' : 'development',
       })
     )
-    .transform('babelify', { presets: ['@babel/preset-env'] })
+    .transform('babelify', {
+      presets: ['@babel/preset-env'],
+      plugins: ['@babel/plugin-transform-runtime'],
+    })
     .bundle()
     .on('error', function(error) {
       console.error(error.toString())

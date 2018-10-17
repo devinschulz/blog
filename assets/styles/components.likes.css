@@ -1,0 +1,25 @@
+.like {
+  svg {
+    transition: transform 0.15s;
+  }
+
+  &:hover,
+  &:focus {
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    svg {
+      transform: scale(1);
+    }
+  }
+}
+
+.liked {
+  svg {
+    fill: #c33838 !important;
+    stroke: #9a2323 !important;
+  }
+}

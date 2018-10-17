@@ -10,6 +10,7 @@ import {
   bindEventListeners as bindThemeEventListeners,
   unbindEventListeners as unbindThemeEventListeners,
 } from './themeToggle'
+import { maybeLikes } from './likes'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -52,6 +53,7 @@ const handlePageLoad = event => {
   trackPageView()
   bindThemeEventListeners()
   initScroll()
+  maybeLikes()
 }
 
 // Hugo live reload has some issues with turbolinks enabled in development mode

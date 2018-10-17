@@ -17,5 +17,8 @@
 @import 'components.about';
 @import 'components.summary';
 @import 'components.nav';
+@import 'components.share';
+@import 'components.likes';
+@import 'components.post.css';
 
 @import 'utilities.comma-list';
