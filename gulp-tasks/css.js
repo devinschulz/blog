@@ -66,6 +66,7 @@ gulp.task('css:post', () =>
             extensions: ['html'],
           },
         ],
+        whitelist: ['liked'],
       })
     )
     .pipe(gulp.dest('public/'))
