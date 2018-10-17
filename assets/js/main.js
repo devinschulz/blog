@@ -4,7 +4,6 @@ import raven from 'raven-js'
 import { trackPageView, trackPageLoad } from './googleAnalytics'
 import headerLinks from './headerLinks'
 import sw from './sw'
-import disqus from './disqus'
 import { initScroll, deinitScroll } from './scroll'
 import {
   init as initTheme,
@@ -50,7 +49,6 @@ const removeNoJS = () => {
 
 const handlePageLoad = event => {
   headerLinks()
-  disqus()
   trackPageView()
   bindThemeEventListeners()
   initScroll()

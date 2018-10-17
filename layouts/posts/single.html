@@ -1,13 +1,3 @@
-{{ define "head" }}
-  <script>
-    var disqus_config = function () {
-      this.page.url = '{{ .Page.Permalink | absURL }}';
-      this.page.identifier = '{{ .UniqueID }}';
-      this.page.title = '{{ .Title }}';
-    };
-  </script>
-{{ end }}
-
 {{ define "main" }}
   <article class="js-article container" itemscope itemtype="http://schema.org/BlogPosting" data-id="{{ .UniqueID }}" data-title="{{ .Title }}">
     <span class="hidden">
@@ -32,7 +22,6 @@
       {{ end }}
       <!-- {{ partial "next-prev-links" . }} -->
       {{ partial "related" . }}
-      <div class="my-12" id="disqus_thread"></div>
     </div>
   </article>
 {{ end }}
