@@ -9,7 +9,9 @@ const handleClick = e => {
     left: 0,
     behavior: 'smooth',
   })
-  trackEvent('scroll_top')
+  trackEvent('scroll_top', {
+    event_category: 'engagement',
+  })
 }
 
 export const initScroll = () => {

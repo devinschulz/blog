@@ -4,16 +4,19 @@ export const trackPageView = () =>
   !isLocalRequest() &&
   gtag('config', ANALYTICS_ID, { page_path: window.location.pathname })
 
-export const trackEvent = (type, payload) =>
-  !isLocalRequest() && gtag('event', type, payload)
+export const trackEvent = (action, args = {}) => {
+  !isLocalRequest() &&
+    gtag('event', action, {
+      ...args,
+    })
+}
 
 export const trackPageLoad = () => {
   if (window.performance) {
     const timeSincePageLoad = Math.round(performance.now())
-    trackEvent('timing_complete', {
-      name: 'load',
+    trackEvent('page_load', {
+      event_category: 'performance',
       value: timeSincePageLoad,
-      event_category: 'JS Dependencies',
     })
   }
 }

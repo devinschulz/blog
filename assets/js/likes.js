@@ -42,8 +42,9 @@ const increment = async e => {
 
   setLikeCount(newCount + 1)
   saveLike(id)
-  trackEvent('like_post')
-
+  trackEvent('like_post', {
+    event_category: 'engagement',
+  })
   await putById(id)
 }
 

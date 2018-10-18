@@ -23,10 +23,9 @@ export const handleChange = () => {
   const isDark = checkbox.checked
   saveToStorage(isDark)
   setDarkMode(isDark)
-  trackEvent('theme_switcher', {
-    event_label: 'Day/night theme switcher',
+  trackEvent('theme', {
     event_category: 'engagement',
-    method: isDark ? 'dark_to_light' : 'light_to_dark',
+    value: isDark ? 'dark' : 'light',
   })
 }
 
