@@ -7,6 +7,7 @@
     @apply mb-0;
   }
 
+  /* purgecss start ignore */
   :--heading {
     @apply mt-12 mb-4 leading-none;
 
@@ -14,6 +15,7 @@
       @apply mt-0;
     }
   }
+  /* purgecss end ignore */
 
   ol {
     @apply mb-4;

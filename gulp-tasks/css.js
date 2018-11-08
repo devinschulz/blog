@@ -5,37 +5,6 @@ const plumber = require('gulp-plumber')
 const postcss = require('gulp-postcss')
 const tailwind = require('tailwindcss')
 
-const { isProduction } = require('./env')
-
-const plugins = [
-  require('postcss-import')(),
-  require('postcss-nested')(),
-  require('tailwindcss')(path.join(__dirname, '../tailwind.config.js')),
-  require('postcss-preset-env')({
-    autoprefixer: { grid: true },
-    browsers: 'last 2 versions, > 1%',
-    stage: 0,
-  }),
-  require('css-mqpacker')({
-    sort: true,
-  }),
-]
-
-if (isProduction) {
-  plugins.push(
-    require('cssnano')({
-      preset: [
-        'default',
-        {
-          discardComments: {
-            removeAll: true,
-          },
-        },
-      ],
-    })
-  )
-}
-
 // Custom PurgeCSS extractor for Tailwind that allows special characters in
 // class names.
 //
@@ -50,7 +19,21 @@ gulp.task('css', () =>
   gulp
     .src('assets/styles/main.css')
     .pipe(plumber())
-    .pipe(postcss(plugins))
+    .pipe(
+      postcss([
+        require('postcss-import')(),
+        require('postcss-nested')(),
+        require('tailwindcss')(path.join(__dirname, '../tailwind.config.js')),
+        require('postcss-preset-env')({
+          autoprefixer: { grid: true },
+          browsers: 'last 2 versions, > 1%',
+          stage: 0,
+        }),
+        require('css-mqpacker')({
+          sort: true,
+        }),
+      ])
+    )
     .pipe(gulp.dest('assets'))
 )
 
@@ -66,8 +49,22 @@ gulp.task('css:post', () =>
             extensions: ['html'],
           },
         ],
-        whitelist: ['liked'],
+        whitelist: ['liked', 'h4', 'h5', 'h6'],
       })
+    )
+    .pipe(
+      postcss([
+        require('cssnano')({
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true,
+              },
+            },
+          ],
+        }),
+      ])
     )
     .pipe(gulp.dest('public/'))
 )
