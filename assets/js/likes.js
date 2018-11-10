@@ -1,17 +1,22 @@
-import axios from 'axios'
 import { trackEvent } from './googleAnalytics'
+import 'whatwg-fetch'
+import toJSON from './utils/toJson'
 
-const instance = axios.create({
-  baseURL: 'https://us-central1-devin-schulz.cloudfunctions.net/likes',
-})
+const baseUrl = 'https://us-central1-devin-schulz.cloudfunctions.net/likes'
+const options = { mode: 'cors' }
+
+const routes = {
+  byId: id => `${baseUrl}/${id}`,
+  getAll: () => `${baseUrl}/`,
+}
 
 const qs = selector => document.querySelector(selector)
 
-const getAll = () => instance.get('/')
+const getAll = () => fetch(routes.getAll(), options).then(toJSON)
 
-const getById = id => instance.get(`/${id}`)
+const getById = id => fetch(routes.byId(id), options).then(toJSON)
 
-const putById = id => instance.put(`/${id}`)
+const putById = id => fetch(routes.byId(id), { ...options, method: 'PUT' })
 
 const getLikeButton = () => qs('.js-like')
 
@@ -19,14 +24,16 @@ const getLikeText = () => qs('.js-like-text')
 
 const getArticle = () => qs('.js-article')
 
+const handleError = error => {
+  console.error(error)
+}
+
 export const maybeLikes = async () => {
   const article = document.querySelector('.js-article')
   if (article) {
     bindEventListeners()
     const { id } = article.dataset
-    const {
-      data: { count },
-    } = await getById(id)
+    const { count } = await getById(id).catch(handleError)
     setLikeCount(count)
 
     const likes = loadFromStorage()
@@ -45,7 +52,7 @@ const increment = async e => {
   trackEvent('like_post', {
     event_category: 'engagement',
   })
-  await putById(id)
+  await putById(id).catch(handleError)
 }
 
 const bindEventListeners = () => {
