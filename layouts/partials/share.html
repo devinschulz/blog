@@ -1,4 +1,4 @@
-<ul class="share list-reset flex ml-auto md:ml-0 md:flex-col md:items-center">
+<ul class="share list-reset flex ml-auto">
   <li class="share-item">
     {{- $link := (querify "url" .Permalink "via" .Site.Author.twitter "text" .Title) | safeURL -}}
     <a class="share-link js-share" data-share="twitter" href="https://twitter.com/intent/tweet?{{ $link }}">

@@ -13,19 +13,21 @@
     {{ with .Params.notice }}
       {{ partial "notice" . }}
     {{ end }}
-    <div class="md:flex">
-      <div class="post-content md:w-3/5 xl:w-1/2">
+    <div class="md:w-3/4 lg:w-3/5 xl:w-1/2 md:mx-auto mb-12">
+      <div class="post-content">
         <div itemprop="articleBody" class="markdown mb-12">
           {{ .Content }}
         </div>
         {{ if .Params.Tags }}
-          {{ partial "tags" . }}
+          <div class="mb-12">
+            {{ partial "tags" . }}
+          </div>
         {{ end }}
       </div>
-      <aside class="post-sidebar flex md:flex-col md:mb-1 md:items-center md:w-1/5 xl:w-1/4 relative py-6 md:py-0">
-        <div class="post-sidebar-inner flex w-full md:w-auto md:block md:sticky pin-t xl:ml-auto xl:mr-12">
-          <button class="js-like like flex items-center rounded-full p-2 md:mb-2 mr:auto md:mx-auto text-sm md:flex-col" data-id="{{ .UniqueID }}">
-            <svg class="mr-1 md:mr-0 w-5 h-5 md:mb-1"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <aside class="post-sidebar flex pt-4 border-t border-grey-light">
+        <div class="post-sidebar-inner flex w-full text-grey">
+          <button class="js-like like flex items-center rounded-full p-2 mr:auto text-sm" data-id="{{ .UniqueID }}">
+            <svg class="mr-1 w-5 h-5"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             <span class="js-like-text text-grey-darker">0</span>
           </button>
           {{ partial "share" . }}
