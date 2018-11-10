@@ -1,11 +1,13 @@
 const ANALYTICS_ID = 'UA-48758540-1'
 
+const isLocalRequest = document.domain.includes('local')
+
 export const trackPageView = () =>
-  !isLocalRequest() &&
+  !isLocalRequest &&
   gtag('config', ANALYTICS_ID, { page_path: window.location.pathname })
 
 export const trackEvent = (action, args = {}) => {
-  !isLocalRequest() &&
+  !isLocalRequest &&
     gtag('event', action, {
       ...args,
     })
@@ -20,5 +22,3 @@ export const trackPageLoad = () => {
     })
   }
 }
-
-const isLocalRequest = () => document.domain.includes('local')
