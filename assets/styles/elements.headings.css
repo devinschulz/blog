@@ -8,7 +8,7 @@
     &:focus,
     &:hover,
     &:active {
-      @apply underline text-blue;
+      @apply underline text-black;
     }
   }
 }

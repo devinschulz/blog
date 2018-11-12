@@ -5,9 +5,18 @@
 }
 
 .tag-link {
-  @apply text-blue px-4 py-1 rounded-full no-underline bg-blue-lightest block;
+  @apply text-black rounded no-underline bg-grey-lighter block;
 
+  &:focus,
   &:hover {
-    @apply text-white bg-blue;
+    @apply text-white bg-black;
+  }
+
+  .text-xs & {
+    @apply px-2 py-0;
+  }
+
+  .text-sm & {
+    @apply px-4 py-1;
   }
 }

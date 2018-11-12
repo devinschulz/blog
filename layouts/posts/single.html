@@ -20,7 +20,7 @@
         </div>
         {{ if .Params.Tags }}
           <div class="mb-12">
-            {{ partial "tags" . }}
+            {{ partial "tags" (dict "context" .) }}
           </div>
         {{ end }}
       </div>
