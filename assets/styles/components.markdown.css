@@ -41,9 +41,18 @@
     }
   }
 
-  ol li > img,
-  ul li > img {
-    @apply my-4;
+  ol,
+  ul {
+    li {
+      > img {
+        @apply my-4;
+      }
+
+      > ul,
+      > ol {
+        @apply mt-4;
+      }
+    }
   }
 
   figure {
