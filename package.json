@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
+    "@babel/polyfill": "^7.0.0",
     "core-js": "^2.5.5",
     "raven-js": "^3.26.3",
     "turbolinks": "5.2.0",
