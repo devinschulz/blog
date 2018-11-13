@@ -64,7 +64,8 @@ export const unbindEventListeners = () => {
 }
 
 const setLikeCount = count => {
-  getLikeText().innerText = count
+  const element = getLikeText()
+  if (element) element.innerText = count
 }
 
 const saveLike = id => {
