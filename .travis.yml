@@ -1,0 +1,24 @@
+language: node_js
+cache: yarn
+node_js:
+- 10.9.0
+env:
+  matrix:
+  - HUGO_VERSION=0.51
+install:
+- mkdir bin
+- export PATH="${TRAVIS_BUILD_DIR}/bin:${PATH}"
+- wget -O "hugo_${HUGO_VERSION}.tar.gz" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz"
+- tar xfvz "./hugo_${HUGO_VERSION}.tar.gz" --exclude "*.md" --exclude "LICENSE" -C
+  bin
+- yarn
+script: yarn build:full
+deploy:
+  provider: firebase
+  token:
+    secure: W29mNiZjzYkB/EMgRo0tofhVWu1Vvi8QcsKfOrV8zZrHYIDFl05eUk9jdoJhmTeKuH8ct1bKYRhmD5ImrZq9OWMaJ7Mxqa+KBNdtVL6kxVbqnBfDOYe5WZG/scipqhf3bHmpfkOmq0f1L037Vl9oS3u9q79qEDchBhFfWMl1gMIj82rKDS8tdPuBw9vEvag4KLXdNVRX7p3MA2yFCXs1RQTjbl55GcBQDvdrVZOsHmbMJTrT317FlkH3irPnKCBIwyhvX5oMgKNMp8inUUgO1ukem+u5Ccv+NJcimSjc5f9qYDQE7JV/nOctM3hkeAL571FnAczwTLtSNz/Kvie6kaaaDufCICi1uAtsK0hN2ZFGBOzj7hiVzNP9K4EBTHYOso5K5DrYAOuxZFVHc0hv4DPiK5MTTepk3F0gHsridN5WXWb1yThS60Gm6czxi9Ov8OfoE9ezBFtnWKyq3AIKemDi/xnQC9zWI5N+DrlCbzmI/GrbZUf2noCWE/56HSl+GH1KRw3XivE4ARy9vbDDvqUY1JMI42+oxT/lPz/uIA2BDqBd29htapMDMcolG1kTIy0VBxlmML7zCwFz7wAfL0bKXauMIdhGF0J3m1EFBQFj0OpLIuji+6mk7DjFW4ZoYotmWVRnTfawf8ozOBaNMbt5Vp3cpJ/+TwA9fOUGqbU=
+after_deploy:
+- curl "http://www.google.com/ping?sitemap=https://devinschulz.com/sitemap.xml"
+# branches:
+#   only:
+#   - master
