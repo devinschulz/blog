@@ -39,7 +39,7 @@
     "postcss-preset-env": "6.3.0",
     "prettier": "1.14.3",
     "require-dir": "1.1.0",
-    "tailwindcss": "0.7.0",
+    "tailwindcss": "0.7.2",
     "vinyl-buffer": "1.0.1",
     "vinyl-source-stream": "2.0.0",
     "watchify": "3.11.0",
