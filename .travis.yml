@@ -12,14 +12,12 @@ install:
 - tar xfvz "./hugo_${HUGO_VERSION}.tar.gz" --exclude "*.md" --exclude "LICENSE" -C
   bin
 - yarn
-script: yarn build:full
-deploy:
-  provider: firebase
-  token:
-    secure: "kvXPl7DSGLHMMtrDZigpOWUMcpoI+2fItI3+GbxBL91aOUF/XD5y6XbyID4pmmZXb3gHjcj7Osjb0Dc+kPJE/Tvcwfdzr2X/tiEusOjH2i2wERCtJn1FL3f7X0uLLaef7uCvcCdmwlb4b42qtkTF3HOLSVhwKivMNUe9bqwAjA2gHv71pBGy/InfSauMjFhZGXxPP2euBPpi8UwxCZmibAnFy9PJlXwO0IXxJ4Qs3jTrKUh1FFV3nl1o1XV7pcxNIn5Ib0RdmqZwP3jyYWEkdAgHxf/qBJtI6wUc0TKwMtog0szKd3McN1UxhWjtVXZCRj+dYgSRXLf+KdG7M28ZSk6lvoNY8uj0C9hxjp+egSqPorRB2GxpknIKbDcCgkVTRnw5dvx/zXFZgtTM9F06mZ07GfVSeFSVxffadONd1rGrysvRN6jrq8ofwr1nPTioX8llwvr+GXT/2p5Ss1u+9Btqs0BIKHbNle5PqOp572ePub5AOQD5E8qnodn5mSy+VuhCkmK2UVEGMs117AdQ45zsr6to1Mo0uvuv8eLe7kfNgGzpYMrji9jZ9tvW0+sxSljsRxC+zCT0TGLd31dU7rrYkjhRKYT2CYGcfJMWbn43uDiVJUns2bcMS1tXuhz3nAeBU2Qkfr5OhzKH+3wpwl+s56/84gOikWCk95RcPrI="
-  skip_cleanup: true
-after_deploy:
+- yarn --cwd functions
+- yarn global add firebase-tools
+script:
+- NODE_ENV=production yarn build:full
+- echo $FIREBASE_PROJECT
+- firebase use $FIREBASE_PROJECT --token $FIREBASE_TOKEN
+- export COMMIT_HASH=$(echo $TRAVIS_COMMIT | cut -b -6)
+- firebase deploy -m "build $TRAVIS_BUILD_NUMBER $TRAVIS_BRANCH/$COMMIT_HASH" --non-interactive --token $FIREBASE_TOKEN
 - curl "http://www.google.com/ping?sitemap=https://devinschulz.com/sitemap.xml"
-# branches:
-#   only:
-#   - master
