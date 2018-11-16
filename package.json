@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp",
-    "build:full": "gulp && hugo -D && gulp post-process",
+    "build:full": "gulp && hugo && gulp post-process",
     "format": "prettier --config .prettierrc --write \"assets/**/*.{js,css}\"",
     "predev": "hugo serve -DF&",
     "dev": "gulp watch"
