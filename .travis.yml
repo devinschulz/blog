@@ -16,8 +16,9 @@ install:
 - yarn global add firebase-tools
 script:
 - NODE_ENV=production yarn build:full
-- echo $FIREBASE_PROJECT
-- firebase use $FIREBASE_PROJECT --token $FIREBASE_TOKEN
+- if [ $TRAVIS_BRANCH == "master" ]; then export PROJECT=$FIREBASE_PROJECT; else export PROJECT=$FIREBASE_PROJECT_STAGING fi
+- echo $PROJECT
+- firebase use $PROJECT --token $FIREBASE_TOKEN
 - export COMMIT_HASH=$(echo $TRAVIS_COMMIT | cut -b -6)
 - firebase deploy -m "build $TRAVIS_BUILD_NUMBER $TRAVIS_BRANCH/$COMMIT_HASH" --non-interactive --token $FIREBASE_TOKEN
 - curl "http://www.google.com/ping?sitemap=https://devinschulz.com/sitemap.xml"
