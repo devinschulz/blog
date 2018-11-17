@@ -21,4 +21,5 @@ script:
 - firebase use $PROJECT --token $FIREBASE_TOKEN
 - export COMMIT_HASH=$(echo $TRAVIS_COMMIT | cut -b -6)
 - firebase deploy -m "build $TRAVIS_BUILD_NUMBER $TRAVIS_BRANCH/$COMMIT_HASH" --non-interactive --token $FIREBASE_TOKEN
+after_success:
 - curl "http://www.google.com/ping?sitemap=https://devinschulz.com/sitemap.xml"
