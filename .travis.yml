@@ -16,7 +16,7 @@ install:
 - yarn global add firebase-tools
 script:
 - NODE_ENV=production yarn build:full
-- if [ $TRAVIS_BRANCH == "master" ]; then export PROJECT=$FIREBASE_PROJECT; else export PROJECT=$FIREBASE_PROJECT_STAGING fi
+- if [ "$TRAVIS_BRANCH" == "master" ]; then export PROJECT=$FIREBASE_PROJECT; else export PROJECT=$FIREBASE_PROJECT_STAGING; fi
 - echo $PROJECT
 - firebase use $PROJECT --token $FIREBASE_TOKEN
 - export COMMIT_HASH=$(echo $TRAVIS_COMMIT | cut -b -6)
