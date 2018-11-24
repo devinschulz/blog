@@ -1,7 +1,7 @@
 +++
 title = "Combining synchronous actions using Redux Thunk"
 date = "2018-07-09T16:20:02-04:00"
-caption = "[Multiply Into More](//thenounproject.com/term/multiply-into-more/319382) by Ben Davis from [the Noun Project](https://thenounproject.com)"
+caption = "[Multiply Into More](//thenounproject.com/term/multiply-into-more/319382) by Ben Davis / [the Noun Project](https://thenounproject.com)"
 imageAltText = "A single point which splits into many"
 description = "Learn how to use Redux Thunk for handling several synchronous actions at once to modify different areas of the application state."
 tags = ["Redux", "JavaScript", "Unit Testing"]
@@ -38,12 +38,12 @@ Imagine you have a sidebar which slides out from the side of the screen whenever
 ```javascript
 // actions.js
 const openSidebar = () => ({
-  type: 'OPEN_SIDEBAR'
+  type: 'OPEN_SIDEBAR',
 })
 
 const addToCart = id => ({
   type: 'ADD_TO_CART',
-  payload: id
+  payload: id,
 })
 ```
 
@@ -70,9 +70,7 @@ Here I’ll update the button to fire a single action, which also gives you the 
 ```javascript
 // AddToCart.jsx
 const AddToCart = ({ addItemToCart, id }) => (
-  <button onClick={() => addItemToCart(id) }>
-    Add to cart
-  </button>
+  <button onClick={() => addItemToCart(id)}>Add to cart</button>
 )
 ```
 
@@ -122,11 +120,12 @@ const addItemToCart = id => (dispatch, getState) => {
 // the `item` instead of the `id`
 const addToCart = item => ({
   type: 'ADD_TO_CART',
-  payload: item
+  payload: item,
 })
 ```
 
 ## Testing a thunk action
+
 Testing thunk actions are a little bit different than testing regular actions. The main difference is we are no longer testing the returned value of an action, and instead of testing whether the dispatch is called with the correct values.
 
 ```javascript
@@ -178,17 +177,18 @@ describe('actions', () => {
 ```
 
 ## Conclusion
+
 What I love the most about this approach is that all the logic is contained within a specific area of the application. It’s entirely out of a component, which helps keep them “dumb”. Luckily, thunk actions are super simple to test, which gives you no reason not to test them. Whether you have thoughts of using this solution now or in the future, know that it will be able to handle your challenging workflows.
 
 ## Versions
+
 This article has been written and updated to support the following versions:
 
-* **Redux:** 4.0.0
-* **Redux Thunk:** 2.3.0
-* **Jest:** 23.2.0
+- **Redux:** 4.0.0
+- **Redux Thunk:** 2.3.0
+- **Jest:** 23.2.0
 
 ## Additional Resources
-* [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
-* [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)
 
-
+- [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
+- [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)

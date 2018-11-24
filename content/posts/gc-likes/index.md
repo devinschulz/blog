@@ -4,13 +4,13 @@ date = "2018-11-05T21:41:18-04:00"
 draft = false
 caption = ""
 imageAltText = "A solid filled heart with a like count below it"
-description = ""
+description = "Learn how to use Google Cloud Functions to build a likes API with Node"
 tags = ["Google Cloud", "Firebase", "Node"]
 +++
 
 I took the challenge to build a likes button into this blog. Since the site is compiled and then deployed as flat files, there is no backend or database to manage. From a security aspect, there is no safer way to develop a website, but it does add a bit of complexity to incorporate dynamic content.
 
-My first attempt was to add firebase as a dependency and wire it up to the likes button. This worked great as it gave me real-time updates across multiple browser sessions whenever I clicked the button. However, looking at the compiled, minified bundle, I noticed it had added over 220 KB!
+My first attempt was to add Firebase as a dependency and wire it up to the likes button. This worked great as it gave me real-time updates across multiple browser sessions whenever I clicked the button. However, looking at the compiled, minified bundle, I noticed it had added over 220 KB!
 
 With that in mind, I don’t think the trade-off for that much code for such a simple likes button makes any sense. This led me to explore other options and decided that cloud functions might be a great fit for this. I’ve seen coworkers use AWS lambda functions for various things, but I’ve never had to the opportunity to try them out myself. The thought of using cloud functions excited me since I get the benefits of an API server, without managing an API server.
 

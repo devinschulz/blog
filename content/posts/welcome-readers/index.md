@@ -2,7 +2,7 @@
 title = "Welcome Readers"
 date = "2018-06-17T16:00:00-04:00"
 draft = "false"
-caption = "[world](https://thenounproject.com/search/?q=world&i=26949) by Juan Pablo Bravo from [the Noun Project](https://thenounproject.com)"
+caption = "[world](https://thenounproject.com/search/?q=world&i=26949) by Juan Pablo Bravo / [the Noun Project](https://thenounproject.com)"
 imageAltText = "A graphic of the earth's cartography made up as large dots"
 description = ""
 tags = []
