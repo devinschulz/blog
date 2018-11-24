@@ -1,10 +1,15 @@
 .like {
+  @apply text-red-lighter;
+  transition: color 0.2s;
+
   svg {
     transition: transform 0.15s;
   }
 
   &:hover,
   &:focus {
+    @apply text-red-light;
+
     svg {
       transform: scale(1.1);
     }
@@ -18,8 +23,12 @@
 }
 
 .liked {
-  svg {
-    fill: #c33838 !important;
-    stroke: #9a2323 !important;
+  @apply text-red;
+  transition: color 0.2s;
+
+  &:hover,
+  &:focus,
+  &:active {
+    @apply text-red-dark;
   }
 }

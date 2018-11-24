@@ -3,14 +3,11 @@
 
 .share-item {
   display: inline-block;
-
-  & + & {
-    @apply ml-1;
-  }
 }
 
 .share-link {
   @apply no-underline text-grey-darker font-semibold text-sm p-2 block;
+  transition: color 0.2s;
 
   svg {
     @apply w-5 h-5;
@@ -19,6 +16,8 @@
 
   &:hover,
   &:focus {
+    @apply text-grey-darker;
+
     svg {
       transform: scale(1.1);
     }

@@ -23,7 +23,7 @@
         <img class="w-full h-auto lg:w-auto rounded" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ $.Params.imageAltText }}" />
       </picture>
     {{ with $.Params.caption }}
-      <figcaption class="text-sm text-grey-darkest markdown">{{ . | markdownify }}</figcaption>
+      <figcaption class="text-sm markdown">{{ . | markdownify }}</figcaption>
     {{ end }}
     {{ if $.Params.caption }}
       </figure>
