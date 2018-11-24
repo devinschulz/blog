@@ -4,3 +4,4 @@ node_modules
 /resources/_gen/assets
 /assets/main.css
 /assets/scripts.js
+/.firebase
