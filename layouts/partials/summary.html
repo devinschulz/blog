@@ -3,7 +3,7 @@
 <article class="summary mb-12{{ if not $small }} md:mb-0{{ end }}" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
   {{ $img := (.context.Resources.ByType "image").GetMatch "*featured*" }}
   {{ with $img }}
-    <div class="mb-2">
+    <div class="mb-4">
       {{ $mobile := .Resize "300x"}}
       {{ $mobileRetina := .Resize "600x" }}
       {{ $tablet := .Resize "750x"}}
@@ -15,7 +15,7 @@
           <source media="(max-width: 46.25em)" srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
           <source media="(max-width: 61.25em)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
           <source srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
-          <img class="w-full rounded" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ $.context.Params.imageAltText }}" />
+          <img class="w-full block" src="{{ $desktop.RelPermalink }}" itemprop="contentUrl url" alt="{{ $.context.Params.imageAltText }}" />
         </picture>
       </a>
     </div>
