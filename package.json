@@ -29,7 +29,7 @@
     "gulp-concat": "2.6.1",
     "gulp-htmlmin": "5.0.1",
     "gulp-if": "2.0.2",
-    "gulp-plumber": "1.2.0",
+    "gulp-plumber": "1.2.1",
     "gulp-postcss": "8.0.0",
     "gulp-purgecss": "1.1.1",
     "gulp-sourcemaps": "2.6.4",
