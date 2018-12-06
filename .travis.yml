@@ -4,7 +4,7 @@ node_js:
 - 10.9.0
 env:
   matrix:
-  - HUGO_VERSION=0.51
+  - HUGO_VERSION=0.52
 install:
 - mkdir bin
 - export PATH="${TRAVIS_BUILD_DIR}/bin:${PATH}"
