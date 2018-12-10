@@ -23,7 +23,7 @@
     "css-mqpacker": "7.0.0",
     "cssnano": "4.1.7",
     "envify": "4.1.0",
-    "gulp": "3.9.1",
+    "gulp": "4.0.0",
     "gulp-babel": "8.0.0",
     "gulp-cache-bust": "1.4.0",
     "gulp-concat": "2.6.1",
