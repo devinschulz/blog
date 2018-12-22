@@ -35,7 +35,7 @@
     "gulp-sourcemaps": "2.6.4",
     "gulp-uglify": "3.0.1",
     "postcss-import": "12.0.1",
-    "postcss-nested": "4.1.0",
+    "postcss-nested": "4.1.1",
     "postcss-preset-env": "6.4.0",
     "prettier": "1.15.2",
     "require-dir": "1.1.0",
