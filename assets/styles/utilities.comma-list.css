@@ -1,9 +1,0 @@
-.comma-list {
-  li + li {
-    @apply -ml-1;
-
-    &:before {
-      content: ', ';
-    }
-  }
-}

@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
+{{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+{{ $section_count := len $section }}
+
+{{ if ge $section_count 1 }}
+  {{ $section_name := index (.Site.Params.mainSections) 0 }}
+  <div class="container">
+    {{ with .Site.GetPage "section" $section_name }}
+    <h1>Recent {{ .Title }}</h1>
+    {{ end }}
+
+    {{ $n_posts := $.Param "recent_posts_number" | default 3 }}
+
+    <section>
+      {{ range (first $n_posts $section) }}
+      <div>
+        {{ partial "summary.html" . }}
+      </div>
+      {{ end }}
+    </section>
+
+    {{ if ge $section_count (add $n_posts 1) }}
+      <section>
+        <h1>More</h1>
+        {{ range (first 4 (after $n_posts $section)) }}
+        <h2>
+          <a href="{{ .URL }}">
+            {{ .Title }}
+          </a>
+        </h2>
+        {{ end }}
+
+        {{/* As above, Use $section_name to get the section title, and URL. Use "with" to only show it if it exists */}}
+        {{ with .Site.GetPage "section" $section_name }}
+        <a href="{{ .URL }}">All {{.Title }}</a>
+        {{ end }}
+      </section>
+    {{ end }}
+  </div>
+  {{ end }}
+{{ end }}

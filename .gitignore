@@ -5,3 +5,6 @@ node_modules
 /assets/main.css
 /assets/scripts.js
 /.firebase
+site/data/webpack.json
+dist
+.tern-port

@@ -1,2 +1,0 @@
-{{ $tag := .Get "tag" | default "div" }}
-{{ (printf "<%s class=\"mb-4 border-solid border-l-8 border-blue p-4 bg-grey-lightest\">%s</%s>" $tag (.Inner | markdownify) $tag) | safeHTML }}
