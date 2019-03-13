@@ -2,11 +2,13 @@ const path = require('path')
 
 module.exports = {
   plugins: {
-    "postcss-import": {},
-    "postcss-preset-env": {
-      browsers: "last 2 versions"
-    },
+    'postcss-import': {},
+    'postcss-nested': {},
     autoprefixer: {},
-    tailwindcss: path.join(__dirname, './tailwind.js')
-  }
-};
+    tailwindcss: path.join(__dirname, './tailwind.js'),
+    'postcss-preset-env': {
+      browsers: 'last 3 versions',
+    },
+    'postcss-custom-media': {},
+  },
+}
