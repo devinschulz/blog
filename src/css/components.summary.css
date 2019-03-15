@@ -1,0 +1,5 @@
+.c-summary {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

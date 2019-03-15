@@ -5,9 +5,7 @@
 	</section>
 	<section>
 		{{ range .Paginator.Pages }}
-		<div>
-			{{- partial "summary.html" . -}}
-		</div>
+		  {{ partial "summary.html" (dict "ctx" .) }}
 		{{ end }}
 	</section>
 	{{- template "_internal/pagination.html" . -}}

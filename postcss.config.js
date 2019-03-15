@@ -7,7 +7,7 @@ module.exports = {
     autoprefixer: {},
     tailwindcss: path.join(__dirname, './tailwind.js'),
     'postcss-preset-env': {
-      browsers: 'last 3 versions',
+      browsers: 'last 2 versions',
     },
     'postcss-custom-media': {},
   },

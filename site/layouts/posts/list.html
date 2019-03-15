@@ -1,0 +1,11 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+  <article>
+    <section class="container">
+      {{ range .Paginator.Pages }}
+        {{ partial "summary" (dict "ctx" . "condensed" true )}}
+      {{ end }}
+    </section>
+    {{ template "_internal/pagination.html" . }}
+  </article>
+{{ end }}

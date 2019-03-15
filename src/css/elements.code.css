@@ -1,0 +1,14 @@
+code {
+}
+
+pre {
+  margin-bottom: var(--m-4);
+  overflow: auto;
+  border: 1px solid var(--color-grey-lighter);
+  border-radius: var(--rounded);
+
+  code {
+    display: inline-block;
+    padding: var(--p-4);
+  }
+}

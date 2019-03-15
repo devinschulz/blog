@@ -1,0 +1,49 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+<div class="c-post container">
+	<article class="o-layout">
+    <header class="o-layout--full py-12 text-center">
+      <div class="text-grey-darker font-sans mb-4">
+        {{ with .Params.categories }}
+          {{ range .}}
+            <strong class="mr-1">
+              <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="u-plain-link text-grey-darker no-underline">{{ . }}</a>
+            </strong>
+          {{ end }}
+        {{ end }}
+        <time datetime="{{ .Date }}">
+          {{- .Date.Format "January 2, 2006" -}}
+        </time>
+      </div>
+      <h1 class="text-5xl md:text-6xl leading-none text-center mb-4">{{ .Title }}</h1>
+      {{ partial "tags.html" . }}
+    </header>
+    <div class="o-layout--center">
+      {{ .Content }}
+    </div>
+	</article>
+</div>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "BlogPosting",
+    "datePublished": "{{ .Date.Format "2006-01-02"}}",
+    "headline": "{{ .Title }}",
+    "description": "{{ .Description }}",
+    "image": [],
+    "wordCount": {{ .WordCount }},
+    "publisher": {
+      "@type": "Person",
+      "name": "Devin Schulz"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Devin Schulz"
+    },
+    "mainEntityOfPage": {
+      "@type": "webpage",
+      "@id": "{{ .URL }}"
+    }
+  }
+</script>
+{{ end }}

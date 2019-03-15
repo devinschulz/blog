@@ -1,22 +1,22 @@
 <nav role="navigation">
-	<div class="container">
-		<a href="{{ .Site.BaseURL }}">
-			{{ .Site.Title }}
-		</a>
-		<div>
-			{{ partial "i18nlist.html" . }}
-			{{ if .Site.Menus.main }}
-			<ul>
-				{{ range .Site.Menus.main }}
-				<li>
-					<a href="{{ .URL }}" title="{{ .Name }} page">
-						{{ .Name }}
-					</a>
-				</li>
-				{{ end }}
-			</ul>
-			{{ end }}
-			{{ partial "social-follow.html" . }}
-		</div>
-	</div>
+  <div class="container">
+    <a href="{{ .Site.BaseURL }}">
+      {{ .Site.Title }}
+    </a>
+    <div>
+      {{ partial "i18nlist.html" . }}
+      {{ if .Site.Menus.main }}
+      <ul>
+        {{ range .Site.Menus.main }}
+        <li>
+          <a href="{{ .URL }}">
+            {{ .Name }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+      {{ partial "social-follow.html" . }}
+    </div>
+  </div>
 </nav>

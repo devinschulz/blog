@@ -1,42 +1,61 @@
+{{ define "prefetch"}}
+  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
+  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+  {{ $sectionCount := len $section }}
+  {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
+
+  {{ range (first $nPosts $section) }}
+    <link rel="prefetch" href="{{ .URL }}" />
+  {{ end }}
+{{ end }}
+
 {{ define "main" }}
-{{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
-{{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
-{{ $section_count := len $section }}
+  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
+  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+  {{ $sectionCount := len $section }}
 
-{{ if ge $section_count 1 }}
-  {{ $section_name := index (.Site.Params.mainSections) 0 }}
-  <div class="container">
-    {{ with .Site.GetPage "section" $section_name }}
-    <h1>Recent {{ .Title }}</h1>
-    {{ end }}
+  {{ partial "intro" . }}
 
-    {{ $n_posts := $.Param "recent_posts_number" | default 3 }}
+  {{ if ge $sectionCount 1 }}
+    {{ $sectionName := index (.Site.Params.mainSections) 0 }}
+    <div class="container">
 
-    <section>
-      {{ range (first $n_posts $section) }}
-      <div>
-        {{ partial "summary.html" . }}
-      </div>
+      {{ with .Site.GetPage "section" $sectionName }}
+        <header class="o-layout">
+          <div class="o-layout--center">
+            <h2 class="text-4xl">Recent {{ .Title }}</h2>
+          </div>
+        </header>
       {{ end }}
-    </section>
 
-    {{ if ge $section_count (add $n_posts 1) }}
-      <section>
-        <h1>More</h1>
-        {{ range (first 4 (after $n_posts $section)) }}
-        <h2>
-          <a href="{{ .URL }}">
-            {{ .Title }}
-          </a>
-        </h2>
-        {{ end }}
+      {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
 
-        {{/* As above, Use $section_name to get the section title, and URL. Use "with" to only show it if it exists */}}
-        {{ with .Site.GetPage "section" $section_name }}
-        <a href="{{ .URL }}">All {{.Title }}</a>
+      <section class="mb-12">
+        {{ range (first $nPosts $section) }}
+          {{ partial "summary.html" (dict "ctx" . "heading" "h3") }}
         {{ end }}
       </section>
-    {{ end }}
-  </div>
+
+      {{ if ge $sectionCount (add $nPosts 1) }}
+        <section class="">
+          <header class="o-layout">
+            <div class="o-layout--center">
+              <h2 class="text-4xl">More</h2>
+            </div>
+          </header>
+            {{ range (first 4 (after $nPosts $section)) }}
+              {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+            {{ end }}
+
+            {{ with .Site.GetPage "section" $sectionName }}
+              <div class="o-layout">
+                <div class="o-layout--center">
+                  <a href="{{ .URL }}" class="font-sans">All {{.Title }} &#x2192</a>
+                </div>
+              </div>
+            {{ end }}
+        </section>
+      {{ end }}
+    </div>
   {{ end }}
 {{ end }}

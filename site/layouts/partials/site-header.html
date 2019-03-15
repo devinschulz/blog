@@ -1,11 +1,13 @@
-<header>
-	<div class="container">
-		{{ partial "site-navigation.html" . }}
-		<div>
-			<h1>{{ .Title | default .Site.Title }}</h1>
-			{{ with .Params.description }}
-			<h2>{{ . }}</h2>
-			{{ end }}
-		</div>
-	</div>
-</header>
+{{ if not .Site.Home }}
+  <header>
+    <div class="container">
+      <div class="o-layout">
+        <div class="o-layout--center">
+          <a href="/">
+            devin Schulz
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+{{ end }}

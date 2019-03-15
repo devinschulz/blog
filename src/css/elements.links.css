@@ -1,0 +1,14 @@
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: var(--color-blue-dark);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: var(--color-blue-darker);
+  }
+}

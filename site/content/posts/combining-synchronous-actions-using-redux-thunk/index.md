@@ -4,12 +4,13 @@ date = "2018-07-09T16:20:02-04:00"
 caption = "[Multiply Into More](//thenounproject.com/term/multiply-into-more/319382) by Ben Davis / [the Noun Project](https://thenounproject.com)"
 imageAltText = "A single point which splits into many"
 description = "Learn how to use Redux Thunk for handling several synchronous actions at once to modify different areas of the application state."
+categories = ["Article"]
 tags = ["Redux", "JavaScript", "Unit Testing"]
 +++
 
-## The problem
-
 Simple front-end applications I’ve worked with have one event (click, keypress, input change, etc.), which dispatches a single action to modify part of the application state tree. At the time your application scales in complexity, that single event may need to perform several actions at once and perform some sort business logic before they are dispatched.
+
+<!--more-->
 
 ## A potential solution
 
@@ -27,7 +28,7 @@ Now let’s pretend you have an e-commerce store, and your application state loo
     {
       id: 1,
       price: 24.99,
-      type: ‘shirt’
+      type: 'shirt'
     }
   ]
 }
@@ -91,8 +92,8 @@ This is a pretty simple example, so let’s make it a little more complicated. Y
 ```javascript
 // actions.js
 const saveCartRequest = id => ({
-  type: ‘SAVE_CART_REQUEST,’
-  payload: id
+  type: 'SAVE_CART_REQUEST',
+  payload: id,
 })
 
 const addItemToCart = id => dispatch => {
@@ -132,15 +133,17 @@ Testing thunk actions are a little bit different than testing regular actions. T
 // test.actions.js
 const setup = () => {
   const cart = []
-  const merchandise = [{
-    id: 5,
-    type: 'shirt',
-  }]
+  const merchandise = [
+    {
+      id: 5,
+      type: 'shirt',
+    },
+  ]
   const store = { merchandise, cart }
   const getState = () => store
   return {
     dispatch: jest.fn(),
-    getState
+    getState,
   }
 }
 
@@ -161,15 +164,15 @@ describe('actions', () => {
         type: 'ADD_TO_CART',
         payload: {
           id: 5,
-          type: ‘shirt’
-        }
+          type: 'shirt',
+        },
       })
       expect(dispatch).toHaveBeenCalledWith({
-        type: 'OPEN_SIDEBAR'
+        type: 'OPEN_SIDEBAR',
       })
       expect(dispatch).toHaveBeenLastCalledWith({
-          type: ‘SAVE_CART_REQUEST,’
-          payload: id
+        type: 'SAVE_CART_REQUEST',
+        payload: id,
       })
     })
   })
@@ -184,11 +187,11 @@ What I love the most about this approach is that all the logic is contained with
 
 This article has been written and updated to support the following versions:
 
-- **Redux:** 4.0.0
-- **Redux Thunk:** 2.3.0
-- **Jest:** 23.2.0
+* **Redux:** 4.0.0
+* **Redux Thunk:** 2.3.0
+* **Jest:** 23.2.0
 
 ## Additional Resources
 
-- [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
-- [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)
+* [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
+* [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)
