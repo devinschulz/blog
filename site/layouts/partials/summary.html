@@ -3,17 +3,24 @@
 <article class="c-summary o-layout {{ if .condensed }}c-summary--condensed{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
     <header class="c-summary__header mb-4">
-      <div class="text-grey-darker font-sans">
+      <div class="text-grey-darker font-sans text-sm">
         {{ with .ctx.Params.categories }}
-          {{ range .}}
-            <strong class="mr-1">
+          {{ range . }}
+            <strong>
               <a href="/categories/{{ . | urlize}}" class="text-grey-darker u-plain-link no-underline">{{ . }}</a>
             </strong>
+            <span>&middot;</span>
           {{ end }}
         {{ end }}
         <time datetime="{{ .ctx.Date }}">
-          {{- .ctx.Date.Format "January 2, 2006" -}}
+          {{ if .shortDate }}
+            {{- .ctx.Date.Format "January 2" -}}
+          {{ else }}
+            {{- .ctx.Date.Format "January 2, 2006" -}}
+          {{ end }}
         </time>
+        <span>&middot;</span>
+        <span>{{ .ctx.ReadingTime }} min read</span>
       </div>
       {{ $startTag := printf "<%s class=\"mb-0 text-3xl\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
