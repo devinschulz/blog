@@ -15,10 +15,6 @@
   @media (--md-viewport) {
     grid-column: 3 / span 8;
   }
-
-  @media (--lg-viewport) {
-    grid-column: 3 / span 8;
-  }
 }
 
 .o-layout--full {
@@ -26,5 +22,17 @@
 
   @media (--md-viewport) {
     grid-column: 1 / span 12;
+  }
+}
+
+.o-layout--semi {
+  grid-column: 1 / span 6;
+
+  @media (--md-viewport) {
+    grid-column: 3 / span 8;
+  }
+
+  @media (--lg-viewport) {
+    grid-column: 3 / span 7;
   }
 }

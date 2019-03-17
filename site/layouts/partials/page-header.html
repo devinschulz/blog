@@ -1,8 +1,10 @@
-<header class="bg-grey-lightest py-4 mb-12">
+<header class="bg-white py-2{{ if not .IsHome }} mb-12{{ end }}">
   <div class="container">
     <div class="o-layout">
       <div class="o-layout--center">
-        <a href="/">Devin Schulz </a>
+        <a href="{{ .Site.BaseURL }}" class="bg-grey-lightest rounded-full w-16 h-16 inline-flex items-center justify-center">
+          <img class="c-site-header__face absolute" src="{{ .Site.BaseURL }}me-small.png" srcset="{{.Site.BaseURL}}me-small@2x.png 2x" alt="">
+        </a>
       </div>
     </div>
   </div>
