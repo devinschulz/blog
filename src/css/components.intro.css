@@ -4,33 +4,9 @@
   }
 }
 
-.c-intro__frame {
-  width: 224px;
-
-  &::after {
-    content: '';
-    display: block;
-    padding-bottom: 100%;
-  }
-
-  @media (--md-viewport) {
-    width: 100%;
-    grid-column: 1 / span 3;
-  }
-}
-
-.c-intro__image {
-  animation: wiggle 12s var(--ease-in-out) infinite;
-  backface-visibility: hidden;
-  transform-origin: bottom center;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
-.c-intro__content {
-  @media (--md-viewport) {
-    grid-column: 4 / span 7;
+.c-intro__wrapper {
+  @media (--sm-viewport-only) {
+    display: flex;
+    flex-direction: column;
   }
 }
