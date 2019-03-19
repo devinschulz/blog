@@ -5,3 +5,4 @@ Disallow:
 {{ else }}
 Disallow: /
 {{ end }}
+Sitemap: https://devinschulz.com/sitemap.xml
