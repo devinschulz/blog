@@ -1,0 +1,19 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  <article>
+    <section class="container">
+      {{ range (.Data.Pages.GroupByDate "2006") }}
+        <div class="o-layout">
+          <div class="o-layout--center">
+            <h2>{{ .Key}}</h2>
+          </div>
+        </div>
+        {{ range .Pages }}
+          {{ partial "summary" (dict "ctx" . "heading" "h3" "condensed" true )}}
+        {{ end }}
+      {{ end }}
+    </section>
+    {{ template "_internal/pagination.html" . }}
+  </article>
+{{ end }}

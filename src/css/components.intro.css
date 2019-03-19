@@ -1,0 +1,12 @@
+.c-intro {
+  @media (--sm-viewport-only) {
+    display: flex;
+  }
+}
+
+.c-intro__wrapper {
+  @media (--sm-viewport-only) {
+    display: flex;
+    flex-direction: column;
+  }
+}

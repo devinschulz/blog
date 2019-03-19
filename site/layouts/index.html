@@ -1,0 +1,63 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+
+{{ define "prefetch"}}
+  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
+  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+  {{ $sectionCount := len $section }}
+  {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
+
+  {{ range (first $nPosts $section) }}
+    <link rel="prefetch" href="{{ .URL }}" />
+  {{ end }}
+{{ end }}
+
+{{ define "main" }}
+  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
+  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+  {{ $sectionCount := len $section }}
+
+  {{ partial "intro" . }}
+
+  {{ if ge $sectionCount 1 }}
+    {{ $sectionName := index (.Site.Params.mainSections) 0 }}
+    <div class="container">
+
+      {{ with .Site.GetPage "section" $sectionName }}
+        <header class="o-layout">
+          <div class="o-layout--center">
+            <h2>Recent {{ .Title }}</h2>
+          </div>
+        </header>
+      {{ end }}
+
+      {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
+
+      <section class="mb-12">
+        {{ range (first $nPosts $section) }}
+          {{ partial "summary.html" (dict "ctx" . "heading" "h3") }}
+        {{ end }}
+      </section>
+
+      {{ if ge $sectionCount (add $nPosts 1) }}
+        <section class="">
+          <header class="o-layout">
+            <div class="o-layout--center">
+              <h2>More</h2>
+            </div>
+          </header>
+            {{ range (first 4 (after $nPosts $section)) }}
+              {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+            {{ end }}
+
+            {{ with .Site.GetPage "section" $sectionName }}
+              <div class="o-layout">
+                <div class="o-layout--center">
+                  <a href="{{ .URL }}" class="font-sans py-2 px-4 bg-blue-lightest hover:no-underline hover:bg-blue hover:text-white focus:bg-blue focus:text-white">All {{.Title }} <span>&#x2192</span></a>
+                </div>
+              </div>
+            {{ end }}
+        </section>
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}

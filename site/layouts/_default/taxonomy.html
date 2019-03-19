@@ -1,0 +1,17 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  <article class="container o-layout">
+    <div class="o-layout--center">
+      <h1>Articles tagged "{{ .Title }}"</h1>
+      <!-- <p>Below you will find pages that utilize the taxonomy term “{{ .Title }}”</p> -->
+    </div>
+  </article>
+  <div>
+    <section class="container">
+      {{ range .Pages }}
+        {{ partial "summary.html" (dict "ctx" .) }}
+      {{ end }}
+    </section>
+  </div>
+{{ end }}

@@ -1,0 +1,42 @@
+{{ $heading := .heading | default "h2" }}
+
+<article class="c-summary o-layout {{ if .condensed }}c-summary--condensed{{ else }}mb-12{{ end }}">
+  <div class="o-layout--center">
+    <header class="c-summary__header mb-4">
+      <div class="text-grey-darker font-sans text-sm">
+        {{ with .ctx.Params.categories }}
+          {{ range . }}
+            <strong>
+              <a href="/categories/{{ . | urlize}}" class="text-grey-darker u-plain-link no-underline">{{ . }}</a>
+            </strong>
+            <span>&middot;</span>
+          {{ end }}
+        {{ end }}
+        <time datetime="{{ .ctx.Date }}">
+          {{ if .shortDate }}
+            {{- .ctx.Date.Format "January 2" -}}
+          {{ else }}
+            {{- .ctx.Date.Format "January 2, 2006" -}}
+          {{ end }}
+        </time>
+        <span>&middot;</span>
+        <span>{{ .ctx.ReadingTime }} min read</span>
+      </div>
+      {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
+      {{ $endTag := printf "</%s>" $heading }}
+      {{ $startTag | safeHTML }}
+        <a href="{{ .ctx.URL }}">{{ .ctx.Title }}</a>
+      {{ $endTag | safeHTML }}
+    </header>
+    {{ if not .condensed }}
+      <div class="c-summary__intro">
+        {{ if in .ctx.RawContent "<!--more-->" }}
+          {{ .ctx.Summary | safeHTML }}
+        {{ else }}
+          <p>{{ .ctx.Summary }}</p>
+        {{ end }}
+      </div>
+      {{ partial "tags.html" .ctx }}
+    {{ end }}
+  </div>
+</article>

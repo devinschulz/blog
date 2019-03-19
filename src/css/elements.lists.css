@@ -1,0 +1,10 @@
+ul,
+ol {
+  margin-bottom: var(--m-4);
+
+  > li {
+    > img {
+      margin: var(--m-4) 0;
+    }
+  }
+}
