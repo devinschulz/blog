@@ -22,12 +22,12 @@
     "purge": "purgecss --config ./purgecss.config.js --out dist",
     "minify:html": "html-minifier --input-dir dist --output-dir dist --collapse-whitespace --file-ext html --remove-comments",
     "minify:xml": "html-minifier --input-dir dist --output-dir dist --collapse-whitespace --file-ext xml --remove-comments",
-    "postprocess": "npm run minify:html && npm run minify:xml && npm run purge"
+    "critical": "node ./scripts/critical.js",
+    "postprocess": "npm run critical npm run minify:html && npm run minify:xml && npm run purge"
   },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.2",
-  "author": "",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
@@ -37,6 +37,7 @@
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^5.0.0",
+    "critical": "^1.3.4",
     "cross-env": "^5.2.0",
     "css-loader": "^2.0.0",
     "cssnano": "^4.1.10",
@@ -78,5 +79,8 @@
   },
   "resolutions": {
     "natives": "1.1.6"
+  },
+  "dependencies": {
+    "instant.page": "^1.2.2"
   }
 }
