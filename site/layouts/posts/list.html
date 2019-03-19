@@ -10,7 +10,7 @@
           </div>
         </div>
         {{ range .Pages }}
-          {{ partial "summary" (dict "ctx" . "heading" "h3" "shortDate" true )}}
+          {{ partial "summary" (dict "ctx" . "heading" "h3" "condensed" true )}}
         {{ end }}
       {{ end }}
     </section>

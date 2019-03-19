@@ -26,25 +26,25 @@ h6 {
 }
 
 h1 {
-  font-size: var(--text-4xl);
+  font-size: var(--text-5xl);
 }
 
 h2 {
-  font-size: var(--text-3xl);
+  font-size: var(--text-4xl);
 }
 
 h3 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
 }
 
 h4 {
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
 }
 
 h5 {
-  font-size: var(--text-l);
+  font-size: var(--text-xl);
 }
 
 h6 {
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
 }

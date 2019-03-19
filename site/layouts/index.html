@@ -25,7 +25,7 @@
       {{ with .Site.GetPage "section" $sectionName }}
         <header class="o-layout">
           <div class="o-layout--center">
-            <h2 class="text-4xl">Recent {{ .Title }}</h2>
+            <h2>Recent {{ .Title }}</h2>
           </div>
         </header>
       {{ end }}
@@ -42,7 +42,7 @@
         <section class="">
           <header class="o-layout">
             <div class="o-layout--center">
-              <h2 class="text-4xl">More</h2>
+              <h2>More</h2>
             </div>
           </header>
             {{ range (first 4 (after $nPosts $section)) }}

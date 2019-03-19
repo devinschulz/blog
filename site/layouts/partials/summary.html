@@ -22,7 +22,7 @@
         <span>&middot;</span>
         <span>{{ .ctx.ReadingTime }} min read</span>
       </div>
-      {{ $startTag := printf "<%s class=\"mb-0 text-3xl\">" $heading }}
+      {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
         <a href="{{ .ctx.URL }}">{{ .ctx.Title }}</a>
