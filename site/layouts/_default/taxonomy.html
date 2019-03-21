@@ -9,9 +9,15 @@
   </article>
   <div>
     <section class="container">
+      <div class="o-layout">
+      <ul class="o-layout--center">
       {{ range .Pages }}
-        {{ partial "summary.html" (dict "ctx" .) }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        <!-- {{ partial "summary.html" (dict "ctx" . "condensed" true) }} -->
       {{ end }}
+      </ul>
+      </div>
     </section>
+
   </div>
 {{ end }}

@@ -3,16 +3,18 @@
 {{ define "main" }}
   <article>
     <section class="container">
-      {{ range (.Data.Pages.GroupByDate "2006") }}
-        <div class="o-layout">
-          <div class="o-layout--center">
+      <div class="o-layout">
+        <div class="o-layout--center">
+          {{ range (.Data.Pages.GroupByDate "2006") }}
             <h2>{{ .Key}}</h2>
-          </div>
+            <ul>
+              {{ range .Pages }}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            </ul>
+          {{ end }}
         </div>
-        {{ range .Pages }}
-          {{ partial "summary" (dict "ctx" . "heading" "h3" "condensed" true )}}
-        {{ end }}
-      {{ end }}
+      </div>
     </section>
     {{ template "_internal/pagination.html" . }}
   </article>
