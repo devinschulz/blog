@@ -1,0 +1,43 @@
+baseurl: /
+languageCode: en
+title: Devin Schulz
+titleCaseStyle: AP
+googleAnalytics: UA-48758540-1
+
+pygmentsCodeFences: true
+pygmentsOptions: ''
+pygmentsUseClasses: true
+pygmentsUseClassic: false
+
+params:
+  github: 'https://github.com/devinschulz'
+  twitter: 'https://twitter.com/devinschulz_'
+  linkedin: 'https://www.linkedin.com/in/devinschulz'
+
+disableKinds:
+  - RSS
+enableRobotsTxt: true
+enableGitInfo: true
+
+blackfriday:
+  plainIDAnchors: true
+  hrefTargetBlank: false
+  angledQuotes: false
+  latexDashes: true
+
+related:
+  threshold: 80
+  includeNewer: false
+  toLower: false
+  indices:
+    - name: keywords
+      weight: 100
+    - name: tags
+      weight: 200
+    - name: categories
+      weight: 10
+
+permalinks:
+  posts: ':title'
+
+

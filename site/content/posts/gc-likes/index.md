@@ -1,13 +1,17 @@
-+++
-title = "Building a likes API with Google Cloud Functions"
-date = "2018-11-05T21:41:18-04:00"
-draft = false
-caption = ""
-imageAltText = "A solid filled heart with a like count below it"
-description = "Learn how to use Google Cloud Functions to build a likes API with Node"
-tags = ["Google Cloud", "Firebase", "Node", "Serverless"]
-categories = ["Article"]
-+++
+---
+title: Building a likes API with Google Cloud Functions
+date: 2018-11-05T21:41:18-04:00
+draft: false
+description: >-
+  Learn how to use Google Cloud Functions to build a likes API with Node
+tags:
+- Google Cloud
+- Firebase
+- Node
+- Serverless
+categories: 
+- Article
+---
 
 I took the challenge to build a likes button into this blog. Since the site is compiled and then deployed as flat files, there is no backend or database to manage. From a security aspect, there is no safer way to develop a website, but it does add a bit of complexity to incorporate dynamic content.
 
@@ -30,11 +34,11 @@ Based on those two user stories, we can create two endpoints to satisfy the requ
 
 Lets first start with some of the boilerplate. We’ll create a new directory and create an index file which can house our function. In the root folder of this project run the following commands:
 
-```
+```shell
 mkdir -p functions/likes && `# Create a new directory called functions/likes` \
-  cd functions/likes &&       `# Move into the new directory` \
-  touch index.js &&           `# Create a new file called index.js` \
-  npm init -y                 `# Create a basic package.json file without any configuration`
+  cd functions/likes &&     `# Move into the new directory` \
+  touch index.js &&         `# Create a new file called index.js` \
+  npm init -y               `# Create a basic package.json file without any configuration`
 ```
 
 Next, you’ll need to install some of the project's dependencies. For this cloud function, I have chosen to install Express, Firebase admin and the Firebase functions packages by running the following `npm` install command:
@@ -51,7 +55,7 @@ yarn add express firebase-admin firebase-functions
 
 That takes care of the project's dependencies and the now for actual function. Open up `index.js` and insert the following boilerplate:
 
-```js
+```javascript
 // index.js
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
@@ -163,11 +167,11 @@ Now to test out this code in production! You need to have the [gcloud](https://c
 
 ```
 gcloud functions deploy likes `# likes is the name of the Google Cloud Function` \
-  --entry-point likes           `# Is referring to the exported module `exports.likes` \
-  --runtime nodejs8             `# Use the Node 8 runtime` \
-  --trigger-http                `# Since this is an API, an HTTP request triggers this function` \
-  --source ./likes              `# The directory of the likes button` \
-  --project devin-schulz        `# The name of the project you are deploying. May not be required`
+  --entry-point likes         `# Is referring to the exported module `exports.likes` \
+  --runtime nodejs8           `# Use the Node 8 runtime` \
+  --trigger-http              `# Since this is an API, an HTTP request triggers this function` \
+  --source ./likes            `# The directory of the likes button` \
+  --project devin-schulz      `# The name of the project you are deploying. May not be required`
 ```
 
 Once complete, you should get back a payload containing all the necessary information about your function. Look for `httpsTrigger.url`, this is the endpoint you need to hit to invoke the function. In my case, the URL I get back is `https://us-central1-devin-schulz.cloudfunctions.net/likes`.
@@ -190,4 +194,4 @@ There you have it, a small single cloud function that acts as an API server to r
 
 This was my first time experimenting with cloud functions, and I think they have the potential to enhance the overall developer experience when it comes to creating easy CRUD operations or form submissions. I'll be incorporating them into more and more side projects and experiment with the [serverless](https://serverless.com/) framework in the future.
 
-You can view the source of the function on [Github](https://github.com/devinschulz/blog/blob/master/functions/likes/index.js).
+You can view the source of the function on [Github](https://github.com/devinschulz/blog/blob/master/functions/likes.js).

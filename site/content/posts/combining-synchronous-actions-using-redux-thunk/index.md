@@ -1,12 +1,16 @@
-+++
-title = "Combining synchronous actions using Redux Thunk"
-date = "2018-07-09T16:20:02-04:00"
-caption = "[Multiply Into More](//thenounproject.com/term/multiply-into-more/319382) by Ben Davis / [the Noun Project](https://thenounproject.com)"
-imageAltText = "A single point which splits into many"
-description = "Learn how to use Redux Thunk for handling several synchronous actions at once to modify different areas of the application state."
-categories = ["Article"]
-tags = ["Redux", "JavaScript", "Unit Testing"]
-+++
+---
+title: Combining synchronous actions using Redux Thunk
+date: 2018-07-09T16:20:02-04:00
+description: >- 
+  Learn how to use Redux Thunk for handling several synchronous actions at once
+  to modify different areas of the application state.
+categories: 
+- Article
+tags: 
+- Redux 
+- JavaScript
+- Unit Testing
+---
 
 Simple front-end applications I’ve worked with have one event (click, keypress, input change, etc.), which dispatches a single action to modify part of the application state tree. At the time your application scales in complexity, that single event may need to perform several actions at once and perform some sort business logic before they are dispatched.
 

@@ -1,17 +1,14 @@
 ---
 title: Reflecting on four years of remote work
-slug: "reflecting-on-four-years-of-remote-work"
+slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12
-draft: true
+description: ""
 categories: 
   - Article
 tags:
   - Career
   - Life
   - Remote
-imageAltText: ""
-description: ""
-caption: ""
 ---
 
 Throughout the past four years, I've had the opportunity to work for a unique, design focused company called [InVision](https://invisionapp.com). For those not familiar with InVision, it is growing to be the operating system for digital product design. Its product line provides tools for designers, developers, and stakeholders to collaborate on designing and building websites, mobile applications, and almost anything else that is displayed on a screen.
@@ -100,6 +97,6 @@ I see remote work as the future since the goods outweigh the bads by a long shot
 
 **Get out and exercise.** I’m not sure I can include this since I’ve been lacking in this department for the past little while. I used to exercise on a regular basis until my son was born; however, it’s something I want to get back in to. Being cooped up in the house all day takes a toll on your body, and you should be exercising regularly. Not only for your body's sake but also your mind.
 
-<BulletedDivider />
+{{< divider >}}
 
 I hope this article has shed some light on the life of remote working. For the foreseeable future, I see myself continuing down this path. With the right mindset, I definitely believe that remote work can be an option for anyone.
