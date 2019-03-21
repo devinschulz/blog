@@ -1,8 +1,10 @@
-<footer role="contentinfo">
-	<div class="container">
-		<a href="{{ .Site.BaseURL }}">
-			&copy; {{ now.Format "2006" }} {{ .Site.Title }}
-		</a>
-		<div>{{ partial "social-follow.html" . }}</div>
-	</div>
+<footer role="contentinfo" class="container pt-12 pb-6">
+  <div class="o-layout font-sans text-sm">
+    <div class="o-layout--center">
+      <div>
+        {{ partial "social-follow" . }}
+      </div>
+      <small class="font-xs">&copy;{{ now.Format "2006" }} {{ .Site.Title }}</small>
+    </div>
+  </div>
 </footer>
