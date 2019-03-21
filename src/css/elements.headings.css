@@ -17,7 +17,7 @@ h6 {
   + h4,
   + h5,
   + h6 {
-    margin-top: calc(var(--m-2) * -1);
+    margin-top: calc(var(--m-2) * -1) !important;
   }
 
   a {

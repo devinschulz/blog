@@ -1,0 +1,8 @@
+.c-divider {
+}
+
+.c-divider__bullet {
+  @apply bg-grey rounded-full inline-block mx-1;
+  width: 5px;
+  height: 5px;
+}

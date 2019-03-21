@@ -6,6 +6,7 @@ pre {
   overflow: auto;
   border: 1px solid var(--color-grey-lighter);
   border-radius: var(--rounded);
+  font-size: var(--text-sm);
 
   code {
     display: inline-block;

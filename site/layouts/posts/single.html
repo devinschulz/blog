@@ -15,11 +15,12 @@
           {{- .Date.Format "January 2, 2006" -}}
         </time>
       </div>
-      <h1 class="text-5xl md:text-6xl leading-none text-center mb-4">{{ .Title }}</h1>
-      {{ partial "tags.html" . }}
+      <h1 class="text-5xl md:text-6xl leading-none text-center mb-12">{{ .Title }}</h1>
+      <div class="w-10 border-blue border-2 mx-auto"></div>
     </header>
-    <div class="o-layout--center">
+    <div class="c-post__content o-layout--center">
       {{ .Content }}
+      {{ partial "tags.html" . }}
     </div>
 	</article>
 </div>
