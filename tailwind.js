@@ -49,7 +49,7 @@ let colors = {
   'grey-darkest': '#313130',
   'grey-darker': '#626261',
   'grey-dark': '#929291',
-  grey: '#ababa',
+  grey: '#ababab',
   'grey-light': '#c3c3c2',
   'grey-lighter': '#dcdcda',
   'grey-lightest': '#f4f4f2',
@@ -69,7 +69,11 @@ let colors = {
   'blue-lighter': '#8aa9eb',
   'blue-lightest': '#e8eefb',
 
+  'green-darker': '#5c8202',
+  'green-dark': '#7aae02',
   green: '#99D903',
+  'green-light': '#ade135',
+  'green-lighter': '#c2e868',
 
   purple: '#52018f',
   'purple-lightest': '#eee6f4',
@@ -894,7 +898,8 @@ module.exports = {
       padding: '1rem',
     }),
     require('tailwind-css-variables')({
-      // modules
+      zIndex: false,
+      shadows: false,
     }),
   ],
 
