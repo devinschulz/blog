@@ -1,12 +1,16 @@
-code {
+p > code {
+  border-radius: var(--rounded);
+  border: 1px solid var(--color-grey-lighter);
+  font-size: var(--text-sm);
+  padding: 0 var(--m-1);
 }
 
 pre {
+  border-radius: var(--rounded);
+  border: 1px solid var(--color-grey-lighter);
+  font-size: var(--text-sm);
   margin-bottom: var(--m-4);
   overflow: auto;
-  border: 1px solid var(--color-grey-lighter);
-  border-radius: var(--rounded);
-  font-size: var(--text-sm);
 
   code {
     display: inline-block;
