@@ -10,7 +10,6 @@ html {
 }
 
 body {
-  /* background-color: var(--color-grey-lightest); */
   color: var(--color-grey-darkest);
   font-family: var(--font-serif);
   font-weight: var(--font-normal);

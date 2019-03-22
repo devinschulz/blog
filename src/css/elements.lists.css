@@ -1,10 +1,23 @@
 ul,
 ol {
   margin-bottom: var(--m-4);
+  padding-left: var(--m-4);
 
   > li {
     > img {
       margin: var(--m-4) 0;
+    }
+  }
+
+  li {
+    list-style: none;
+
+    &:before {
+      color: var(--color-black);
+      content: '-';
+      display: inline-block;
+      margin-left: -15px;
+      position: absolute;
     }
   }
 }
