@@ -17,6 +17,8 @@ The entire company is dispersed across the globe with people across all continen
 
 <!--more-->
 
+{{< toc >}}
+
 When I had started back in December 2014, I was number seventy-six, and at the time of writing this article, there are well over eight hundred. Many things have since changed, and as an organization, it has matured. The company is broken down into small teams, each with the responsibility of handling a specific area of the product. Whether that's boards, inspect, or conversations (I’ve worked on all three products), we all have a sense of ownership to what we deliver to the customer.
 
 Side note: [we're hiring!](https://boards.greenhouse.io/invision)

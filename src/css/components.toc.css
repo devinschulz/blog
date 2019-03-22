@@ -1,0 +1,20 @@
+.c-toc {
+  nav > ul {
+    list-style: none;
+    padding-left: 0;
+
+    > li:first-child {
+      &::before {
+        content: '';
+      }
+    }
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+.c-toc__title {
+  margin-top: 0 !important;
+}

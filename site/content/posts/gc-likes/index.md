@@ -19,6 +19,8 @@ My first attempt was to add Firebase as a dependency and wire it up to the likes
 
 <!--more-->
 
+{{< toc >}}
+
 With that in mind, I don’t think the trade-off for that much code for such a simple likes button makes any sense. This led me to explore other options and decided that cloud functions might be a great fit for this. I’ve seen coworkers use AWS lambda functions for various things, but I’ve never had to the opportunity to try them out myself. The thought of using cloud functions excited me since I get the benefits of an API server, without managing an API server.
 
 ## Planning the API

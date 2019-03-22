@@ -16,6 +16,8 @@ Simple front-end applications I’ve worked with have one event (click, keypress
 
 <!--more-->
 
+{{< toc >}}
+
 ## A potential solution
 
 Recently I’ve been using [Redux Thunk](https://github.com/reduxjs/redux-thunk) for dispatching a single thunk action, and in turn, it dispatches several actions to modify independent areas of the application state. Think Redux Thunk is only for asynchronous actions? Think again! Never heard of Redux Thunk or the term thunk? No worries, I will go a bit more in-depth about how it works below.
