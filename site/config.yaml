@@ -13,6 +13,9 @@ params:
   github: 'https://github.com/devinschulz'
   twitter: 'https://twitter.com/devinschulz_'
   linkedin: 'https://www.linkedin.com/in/devinschulz'
+  description: >-
+    Articles about React, JavaScript, testing, best practices, performance, and
+    everything else related to front-end development.
 
 disableKinds:
   - RSS
