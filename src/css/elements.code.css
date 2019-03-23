@@ -1,15 +1,20 @@
 p > code {
   border-radius: var(--rounded);
-  border: 1px solid var(--color-grey-lighter);
+  border: 0;
   font-size: var(--text-sm);
   padding: 0 var(--m-1);
+  background-color: var(--color-grey-lightest);
+  box-shadow: var(--shadows);
 }
 
 pre {
+  background-color: var(--color-grey-lightest);
   border-radius: var(--rounded);
-  border: 1px solid var(--color-grey-lighter);
+  border: 0;
+  box-shadow: var(--shadows);
   font-size: var(--text-sm);
-  margin-bottom: var(--m-4);
+  margin-bottom: var(--m-8);
+  margin-top: var(--m-8);
   overflow: auto;
 
   code {

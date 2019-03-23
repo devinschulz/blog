@@ -8,7 +8,7 @@
   <meta name="description" content="{{ default .Site.Params.description .Description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   {{ .Hugo.Generator }}
-  {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production") }}
+  {{ if or (eq (getenv "HUGO_ENV") "production") (eq (getenv "NODE_ENV") "production") }}
     <meta name="robots" content="index,follow">
   {{ else }}
     <meta name="robots" content="noindex,nofollow">
@@ -50,7 +50,7 @@
 </head>
 
 <body>
-  {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
+  {{ block "header" . }}{{ partial "page-header.html" .}}{{ end }}
   <main role="main">
     {{ block "main" . }}{{ end }}
   </main>

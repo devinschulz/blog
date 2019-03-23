@@ -52,7 +52,7 @@ let colors = {
   grey: '#ababab',
   'grey-light': '#c3c3c2',
   'grey-lighter': '#dcdcda',
-  'grey-lightest': '#f4f4f2',
+  'grey-lightest': '#f8f8f8',
   white: '#ffffff',
 
   'yellow-darker': '#f1b601',
@@ -713,7 +713,7 @@ module.exports = {
   */
 
   shadows: {
-    default: '0 2px 4px 0 rgba(0,0,0,0.10)',
+    default: '0 1px 2px 0 rgba(0,0,0,0.125)',
     md: '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     lg: '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
@@ -899,7 +899,6 @@ module.exports = {
     }),
     require('tailwind-css-variables')({
       zIndex: false,
-      shadows: false,
     }),
   ],
 
