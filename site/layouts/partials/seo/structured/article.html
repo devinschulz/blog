@@ -1,0 +1,33 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "{{ .Params.author }}"
+  },
+  "headline": "{{ .Title }}",
+  "description": "{{ default .Params.description .Description }}",
+  "wordCount": {{ .WordCount }},
+  "datePublished" : "{{ .PublishDate.Format "2006-01-02T15:04:05" }}",
+  "dateModified" : "{{ .Date.Format "2006-01-02T15:04:05"  }}",
+  {{- with .Params.image -}}
+    "image" : {
+      "@context": "http://schema.org",
+      "@type": "ImageObject",
+      "author": "{{ .Params.image.author }}",
+      "url": "{{ .Params.image.src }}",
+      "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05" }}",
+      "name": "{{ .Params.image.title }}",
+      "height" : {{ .Params.image.height }},
+      "width" : {{ .Params.image.width }},
+      "license" : "{{ .Params.image.license_link }}",
+      "isBasedOn" : "{{ .Params.image.link }}"
+    },
+  {{- end -}}
+  "mainEntityOfPage" : "{{ .Permalink }}",
+  "publisher" : {
+    "@type": "Person",
+    "name" : "Devin Schulz",
+  }
+}
+</script>
