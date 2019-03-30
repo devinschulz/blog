@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'generic.fonts';
 @import 'generic.chroma';
 
 @import 'elements.body';

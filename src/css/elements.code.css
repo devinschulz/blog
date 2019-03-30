@@ -13,6 +13,7 @@ pre {
   border-radius: var(--rounded);
   border: 0;
   box-shadow: var(--shadows);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
   overflow: auto;
 
