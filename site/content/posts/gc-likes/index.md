@@ -36,7 +36,7 @@ Based on those two user stories, we can create two endpoints to satisfy the requ
 
 Lets first start with some of the boilerplate. We’ll create a new directory and create an index file which can house our function. In the root folder of this project run the following commands:
 
-```shell
+```sh
 mkdir -p functions/likes && `# Create a new directory called functions/likes` \
   cd functions/likes &&     `# Move into the new directory` \
   touch index.js &&         `# Create a new file called index.js` \
@@ -167,7 +167,7 @@ document.update({ count: 2 })
 
 Now to test out this code in production! You need to have the [gcloud](https://cloud.google.com/sdk/gcloud/) CLI tools installed locally to run any of the deployment commands.
 
-```
+```sh
 gcloud functions deploy likes `# likes is the name of the Google Cloud Function` \
   --entry-point likes         `# Is referring to the exported module `exports.likes` \
   --runtime nodejs8           `# Use the Node 8 runtime` \
