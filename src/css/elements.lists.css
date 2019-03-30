@@ -8,7 +8,9 @@ ol {
       margin: var(--m-4) 0;
     }
   }
+}
 
+ul {
   li {
     list-style: none;
 
