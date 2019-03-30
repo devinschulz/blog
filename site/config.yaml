@@ -21,6 +21,11 @@ params:
   description: >-
     Articles about React, JavaScript, testing, best practices, performance, and
     everything else related to front-end development.
+  socialShareEmail: true
+  socialShareFacebook: true
+  socialShareLinkedin: true
+  socialShareReddit: true
+  socialShareTwitter: true
 
 disableKinds:
   - RSS
