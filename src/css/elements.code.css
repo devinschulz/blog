@@ -2,19 +2,18 @@ p > code {
   border-radius: var(--rounded);
   border: 0;
   font-size: var(--text-sm);
-  padding: 0 var(--m-1);
-  background-color: var(--color-grey-lightest);
-  box-shadow: var(--shadows);
+  padding: var(--m-1);
+  background-color: var(--color-green-lightest);
+  color: var(--color-green-darkest);
+  hyphens: none;
 }
 
 pre {
-  background-color: var(--color-grey-lightest);
+  background-color: var(--color-black);
   border-radius: var(--rounded);
   border: 0;
   box-shadow: var(--shadows);
   font-size: var(--text-sm);
-  margin-bottom: var(--m-8);
-  margin-top: var(--m-8);
   overflow: auto;
 
   code {
