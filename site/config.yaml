@@ -6,7 +6,7 @@ googleAnalytics: UA-48758540-1
 baseURL: https://devinschulz.com
 
 pygmentsCodeFences: true
-pygmentsOptions: ''
+pygmentsOptions: 'linenos=1'
 pygmentsUseClasses: true
 pygmentsUseClassic: false
 
