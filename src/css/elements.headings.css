@@ -22,6 +22,32 @@ h6 {
 
   a {
     color: inherit;
+    background-image: none;
+    text-shadow: -1px -1px 0 var(--color-white), 1px -1px 0 var(--color-white),
+      -1px 1px 0 var(--color-white), 1px 1px 0 var(--color-white);
+
+    &:focus,
+    &:hover {
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0) 2px,
+        var(--color-blue-light) 2px,
+        var(--color-blue-light) 3px,
+        rgba(0, 0, 0, 0) 3px
+      );
+
+      @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0) 2px,
+          var(--color-blue-light) 2px,
+          var(--color-blue-light) 2.5px,
+          rgba(0, 0, 0, 0) 2.5px
+        );
+      }
+    }
   }
 }
 

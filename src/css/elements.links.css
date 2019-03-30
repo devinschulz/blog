@@ -1,11 +1,58 @@
 a {
   color: var(--color-blue);
   text-decoration: none;
+  position: relative;
 
   &:focus,
   &:hover {
     color: var(--color-blue-dark);
-    text-decoration: underline;
+  }
+
+  &:not(.u-unstyled-link) {
+    text-shadow: -1px -1px 0 var(--color-white), 1px -1px 0 var(--color-white),
+      -1px 1px 0 var(--color-white), 1px 1px 0 var(--color-white);
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 2px,
+      var(--color-blue-lighter) 2px,
+      var(--color-blue-lighter) 3px,
+      rgba(0, 0, 0, 0) 3px
+    );
+
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0) 2px,
+        var(--color-blue-lighter) 2px,
+        var(--color-blue-lighter) 2.5px,
+        rgba(0, 0, 0, 0) 2.5px
+      );
+    }
+
+    &:focus,
+    &:hover {
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0) 2px,
+        var(--color-blue-light) 2px,
+        var(--color-blue-light) 3px,
+        rgba(0, 0, 0, 0) 3px
+      );
+
+      @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0) 2px,
+          var(--color-blue-light) 2px,
+          var(--color-blue-light) 2.5px,
+          rgba(0, 0, 0, 0) 2.5px
+        );
+      }
+    }
   }
 
   &:active {

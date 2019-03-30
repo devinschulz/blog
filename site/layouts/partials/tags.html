@@ -1,9 +1,9 @@
 {{ with .Params.tags }}
-  <ul class="list-reset font-sans text-sm mb-2">
+  <ul class="list-reset text-xs mb-2">
     {{ range . }}
       <li class="c-tag inline-block mr-2">
-        <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="c-tag__link block mb-2 no-underline text-blue bg-blue-lightest hover:text-white hover:bg-blue hover:no-underline focus:no-underline focus:bg-blue focus:text-white py-0 px-2 rounded-full">
-          {{- . -}}
+        <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="c-tag__link u-unstyled-link relative block mb-2 no-underline text-blue bg-blue-lightest hover:text-white hover:bg-blue hover:no-underline focus:no-underline focus:bg-blue focus:text-white py-0 px-2 rounded-full">
+          <span class="relative block">{{- . -}}</span>
         </a>
       </li>
     {{ end }}
