@@ -35,17 +35,17 @@ blackfriday:
 
 related:
   threshold: 80
-  includeNewer: false
+  includeNewer: true
   toLower: false
   indices:
     - name: keywords
-      weight: 100
+      weight: 20
     - name: tags
-      weight: 200
+      weight: 100
     - name: categories
-      weight: 10
+      weight: 80
 
 permalinks:
-  posts: ':title'
+  posts: :title
 
 
