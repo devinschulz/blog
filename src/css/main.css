@@ -23,3 +23,5 @@
 @import 'components.post';
 @import 'components.divider';
 @import 'components.toc';
+
+@import 'utilities.hyphen';
