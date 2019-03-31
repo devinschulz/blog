@@ -1,17 +1,12 @@
 .c-toc {
-  nav > ul {
-    list-style: none;
+  nav > ul,
+  nav > ul > li > ul {
     padding-left: 0;
-
-    > li:first-child {
-      &::before {
-        content: '';
-      }
-    }
   }
 
   ul {
     margin-bottom: 0;
+    list-style: none;
   }
 }
 
