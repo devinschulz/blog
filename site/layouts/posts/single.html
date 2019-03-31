@@ -4,48 +4,48 @@
   <article class=" mb-12">
     <div class="o-layout">
       <header class="o-layout--full py-12 text-center">
-        <div class="text-grey-darker mb-4">
+        <div class="text-grey-darker mb-4 text-sm">
           {{ with .Params.categories }}
             {{ range .}}
-              <strong class="mr-1">
-                <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="u-plain-link text-grey-darker no-underline">{{ . }}</a>
-              </strong>
+              <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="font-bold inline-block">{{ . }}</a>
             {{ end }}
           {{ end }}
+          &middot;
           <time datetime="{{ .Date }}">
             {{- .Date.Format "January 2, 2006" -}}
           </time>
         </div>
-        <h1 class="text-5xl md:text-6xl text-center mb-8">{{ .Title }}</h1>
-        <div class="w-10 border-blue border-2 mx-auto"></div>
+        <h1 class="text-3xl md:text-6xl text-center mb-4 md:mb-8">{{ .Title }}</h1>
+        {{ if .Params.tags }}
+          {{ partial "tags.html" . }}
+        {{ else }}
+          <div class="w-10 border-blue border-2 mx-auto"></div>
+        {{ end }}
       </header>
       <div class="c-post__content o-layout--center">
-        <div class="mb-8">
-          {{ .Content }}
-        </div>
-        {{ partial "tags.html" . }}
+        {{ .Content }}
+        {{ if .Lastmod }}
+          <p class="italic">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
+        {{ end }}
       </div>
     </div>
-
-    <div class="o-layout">
-      <div class="o-layout--center">
-        <h2 class="mb-8 mt-12">About the author</h2>
-      </div>
-    </div>
-  </article>
-  {{ $related := .Site.RegularPages.Related . | first 3 }}
-  {{ with $related }}
-    <div class="mb-12">
-      <div class="o-layout">
+    {{ $related := .Site.RegularPages.Related . | first 3 }}
+    {{ with $related }}
+      <aside class="o-layout">
         <div class="o-layout--center">
-          <h2 class="mb-8 mt-12">Further reading</h2>
+          <hr class="border-b border-grey-lighter mb-12 mt-12" />
+          <h2 class="text-base">If you enjoyed this post, you might also like:</h2>
+          <ul class="list-reset leading-loose">
+            {{ range . }}
+              <li>
+                <a href="{{ .URL }}">{{ .Title }}</a>
+              </li>
+            {{ end }}
+          </ul>
         </div>
-      </div>
-      {{ range . }}
-        {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h3") }}
-      {{ end }}
-    </div>
-  {{ end }}
+      </aside>
+    {{ end }}
+  </article>
 </div>
 {{ partial "seo/structured/article.html" . }}
 {{ end }}
