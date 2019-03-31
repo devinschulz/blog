@@ -9,17 +9,3 @@ ol {
     }
   }
 }
-
-ul {
-  li {
-    list-style: none;
-
-    &:before {
-      color: var(--color-black);
-      content: '-';
-      display: inline-block;
-      margin-left: -15px;
-      position: absolute;
-    }
-  }
-}
