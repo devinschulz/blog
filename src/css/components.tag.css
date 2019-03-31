@@ -1,5 +1,9 @@
 .c-tag {
-  &::before {
-    content: '';
+  &:not(:last-of-type) {
+    &::after {
+      content: ',';
+      display: inline-block;
+      margin-left: -0.2em;
+    }
   }
 }
