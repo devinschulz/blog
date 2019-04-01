@@ -20,5 +20,9 @@ pre {
   code {
     display: inline-block;
     padding: var(--p-4);
+
+    @media print {
+      padding: 0.25cm;
+    }
   }
 }

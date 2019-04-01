@@ -9,6 +9,10 @@
   h5,
   h6 {
     margin-top: var(--m-12);
+
+    @media print {
+      margin-top: 0.5cm;
+    }
   }
 
   p {

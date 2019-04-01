@@ -26,6 +26,10 @@
   overflow: auto;
   display: block;
 
+  @media print {
+    margin: 0;
+  }
+
   .lntd:last-child {
     code {
       padding-left: 0;

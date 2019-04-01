@@ -8,6 +8,10 @@
     margin-bottom: 0;
     list-style: none;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .c-toc__title {

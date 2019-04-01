@@ -6,6 +6,7 @@
 
 @import 'generic.fonts';
 @import 'generic.chroma';
+@import 'generic.print';
 
 @import 'elements.body';
 @import 'elements.code';
