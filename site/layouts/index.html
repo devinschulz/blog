@@ -45,17 +45,9 @@
               <h2 class="mb-8 mt-12">More</h2>
             </div>
           </header>
-            {{ range (first 4 (after $nPosts $section)) }}
-              {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
-            {{ end }}
-
-            {{ with .Site.GetPage "section" $sectionName }}
-              <div class="o-layout mt-4">
-                <div class="o-layout--center">
-                  <a href="{{ .URL }}" class="u-unstyled-link font-sans py-2 px-4 bg-blue-lightest rounded-full hover:no-underline hover:bg-blue hover:text-white focus:bg-blue focus:text-white">All {{.Title }}</a>
-                </div>
-              </div>
-            {{ end }}
+          {{ range (first 4 (after $nPosts $section)) }}
+            {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+          {{ end }}
         </section>
       {{ end }}
     </div>
