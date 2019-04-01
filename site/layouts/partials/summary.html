@@ -3,12 +3,10 @@
 <article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-2{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
     <header class="c-summary__header mb-4">
-      <div class="text-grey-darker text-sm">
+      <div class="text-grey-darker text-sm mb-1">
         {{ with .ctx.Params.categories }}
           {{ range . }}
-            <strong>
-              <a href="/categories/{{ . | urlize}}" class="inline-block text-grey-darker u-plain-link no-underline">{{ . }}</a>
-            </strong>
+              <a href="/categories/{{ . | urlize}}" class="font-bold inline-block">{{ . }}</a>
             <span>&middot;</span>
           {{ end }}
         {{ end }}
