@@ -1,7 +1,6 @@
 ---
 title: Building a likes API with Google Cloud Functions
 date: 2018-11-05T21:41:18-04:00
-draft: false
 description: >-
   Learn how to use Google Cloud Functions to build a likes API with Node
 tags:
@@ -10,7 +9,7 @@ tags:
 - Node
 - Serverless
 categories: 
-- Article
+- Programming
 ---
 
 I took the challenge to build a likes button into this blog. Since the site is compiled and then deployed as flat files, there is no backend or database to manage. From a security aspect, there is no safer way to develop a website, but it does add a bit of complexity to incorporate dynamic content.
@@ -150,17 +149,17 @@ Let’s take this line by line since a lot is going on here. First, we start a t
 Knowing when to call set over update is important since set overwrites the existing document entirely. Calling `update` only updates the values you pass in. Take a look at the following example:
 
 ```js
-document.set({ default: true, count: 1 })
-document.set({ count: 2 })
+doc.set({ active: true, count: 1 })
+doc.set({ count: 2 })
 //=> { count: 2 }
 ```
 
-`default: true` would be removed entirely. You can see how this would be a problem if your object contained more than just `count`. Instead, calling `update` would only update the `count` and leave `default` intact.
+`active: true` would be removed entirely. You can see how this would be a problem if your object contained more than just `count`. Instead, calling `update` would only update the `count` and leave `active` intact.
 
 ```js
-document.set({ default: true, count: 1 })
-document.update({ count: 2 })
-//=> { default: true, count: 2 }
+doc.set({ active: true, count: 1 })
+doc.update({ count: 2 })
+//=> { active: true, count: 2 }
 ```
 
 ## Deployment
