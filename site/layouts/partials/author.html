@@ -4,13 +4,30 @@
     <div class="flex">
       <img src="/portrait.jpg" srcset="/portrait@2x.jpg 2x" class="w-24 h-24 flex-no-shrink rounded-full" />
       <div class="ml-4">
-        <h2 class="text-base mb-1">Devin Schulz</h2>
-        <p class="mb-0">
-          Hey there, I'm Devin, the creator of this blog. Outside the digital world,  my
-          time is well spent with my wife and two children. Whenever I get the chance,
-          I enjoy listening to music or audiobooks, reading business books, and playing
-          mobile games.
+        <h2 class="text-base mb-2">Devin Schulz</h2>
+        <p class="mb-2">
+          Hey there, I'm Devin, the creator of this blog. Outside the digital
+          world, my time is well spent with my wife and two children. Whenever
+          I get the chance, I enjoy listening to music or audiobooks, reading
+          business books, and playing mobile games.
         </p>
+        <ul class="list-reset">
+          <li class="inline-block">
+            <a href="{{ .Site.Params.twitter }}" class="u-unstyled-link flex items-center">
+              {{ partial "svg/twitter.svg" (dict "class" "w-4 h-4") }}
+            </a>
+          </li>
+          <li class="inline-block ml-2">
+            <a href="{{ .Site.Params.github }}" class="u-unstyled-link flex items-center">
+              {{ partial "svg/github.svg" (dict "class" "w-4 h-4") }}
+            </a>
+          </li>
+          <li class="inline-block ml-2">
+            <a href="{{ .Site.Params.linkedin }}" class="u-unstyled-link flex items-center">
+              {{ partial "svg/linkedin.svg" (dict "class" "w-4 h-4") }}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
