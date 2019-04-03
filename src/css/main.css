@@ -22,6 +22,7 @@
 @import 'components.summary';
 @import 'components.tag';
 @import 'components.site-header';
+@import 'components.site-footer';
 @import 'components.post';
 @import 'components.divider';
 @import 'components.toc';

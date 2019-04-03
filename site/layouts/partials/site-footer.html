@@ -1,4 +1,4 @@
-<footer role="contentinfo" class="container pt-12 pb-6">
+<footer role="contentinfo" class="c-site-footer container pt-12 pb-6">
   <div class="o-layout text-sm">
     <div class="o-layout--center">
       <div>
@@ -7,4 +7,7 @@
       <small class="font-xs">&copy;{{ now.Format "2006" }} {{ .Site.Title }}</small>
     </div>
   </div>
+  <a title="Back to top" href="#top" class="c-site-footer__scroll-top js-scroll-top u-unstyled-link fixed w-12 h-12 shadow-md hover:shadow-lg rounded-full z-30 bg-white text-green flex items-center justify-center" style="bottom: 20px; right: 20px;">
+    {{ partial "svg/arrow.svg" (dict "size" 18) }}
+  </a>
 </footer>

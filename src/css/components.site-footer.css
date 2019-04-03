@@ -1,0 +1,10 @@
+.c-site-footer__scroll-top {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.2s var(--ease-in-out);
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

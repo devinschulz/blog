@@ -1,23 +1,27 @@
 const path = require('path')
 
-module.exports = {
-  plugins: {
-    'postcss-import': {},
-    'postcss-nested': {},
-    tailwindcss: path.join(__dirname, './tailwind.js'),
-    'postcss-preset-env': {
+module.exports = env => ({
+  plugins: [
+    require('postcss-mixins'),
+    require('postcss-simple-vars'),
+    require('postcss-import'),
+    require('postcss-nested'),
+    require('tailwindcss')(path.join(__dirname, './tailwind.js')),
+    require('postcss-preset-env')({
       browsers: 'last 2 versions',
-    },
-    'postcss-custom-media': {},
-    cssnano: {
-      preset: [
-        'default',
-        {
-          discardComments: {
-            removeAll: true,
-          },
-        },
-      ],
-    },
-  },
-}
+    }),
+    require('postcss-custom-media'),
+    env === 'production'
+      ? require('cssnano')({
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true,
+              },
+            },
+          ],
+        })
+      : false,
+  ],
+})
