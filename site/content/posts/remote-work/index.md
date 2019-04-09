@@ -1,4 +1,5 @@
 ---
+id: e33ea876-a73d-4759-97d4-9859b791841a
 title: Reflecting on four years of remote work
 slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12

@@ -1,4 +1,5 @@
 ---
+id: 73d1a8f1b7d7dda1b16a237b7bb63983
 title: Combining synchronous actions using Redux Thunk
 date: 2018-07-09T16:20:02-04:00
 description: >- 
