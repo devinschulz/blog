@@ -15,6 +15,7 @@
   {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
   {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
   {{ $sectionCount := len $section }}
+  {{ $likes := getJSON "https://us-central1-devin-schulz.cloudfunctions.net/likes/" }}
 
   {{ partial "intro" . }}
 
@@ -34,7 +35,7 @@
 
       <section class="mb-12">
         {{ range (first $nPosts $section) }}
-          {{ partial "summary.html" (dict "ctx" . "heading" "h3") }}
+          {{ partial "summary.html" (dict "ctx" . "heading" "h3" "likes" $likes) }}
         {{ end }}
       </section>
 
@@ -46,7 +47,7 @@
             </div>
           </header>
           {{ range (first 4 (after $nPosts $section)) }}
-            {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+            {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true "likes" $likes) }}
           {{ end }}
         </section>
       {{ end }}

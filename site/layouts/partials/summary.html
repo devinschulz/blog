@@ -19,6 +19,13 @@
         </time>
         <span>&middot;</span>
         <span>{{ .ctx.ReadingTime }} min read</span>
+        {{ if .likes }}
+          {{ $id := (default .ctx.UniqueID .ctx.Params.id) }}
+          {{ with (index .likes $id) }}
+            <span>&middot;</span>
+            <span><span class="js-likes" id="{{ $id }}">{{ .count }}</span> {{ if eq .count 1 }}like{{ else }}likes{{ end }}</span>
+          {{ end }}
+        {{ end }}
       </div>
       {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
