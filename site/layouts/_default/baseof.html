@@ -48,7 +48,7 @@
   {{ block "prefetch" . }}{{ end }}
 </head>
 
-<body>
+<body class="font-normal leading-normal text-grey-darkest text-left m-0 {{ .Kind }}">
   <div id="top" tabindex="-1" class="outline-none"></div>
   {{ block "header" . }}{{ partial "page-header.html" .}}{{ end }}
   <main role="main">

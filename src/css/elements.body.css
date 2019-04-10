@@ -10,12 +10,7 @@ html {
 }
 
 body {
-  color: var(--color-grey-darkest);
   font-family: var(--font-sans);
-  font-weight: var(--font-normal);
-  line-height: var(--leading-normal);
-  margin: 0;
-  text-align: left;
   letter-spacing: -0.004em;
 
   @supports (font-variation-settings: normal) {
