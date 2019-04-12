@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: /node_modules\/instant.page/,
+        include: /node_modules(?:\/|\\)(instant.page)/,
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env'],
