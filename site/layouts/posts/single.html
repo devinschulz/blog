@@ -6,14 +6,12 @@
       <header class="o-layout--full py-12 text-center">
         <div class="text-grey-darker mb-4 text-sm">
           {{ with .Params.categories }}
-            {{ range .}}
+            {{ range . }}
               <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="font-bold inline-block">{{ . }}</a>
             {{ end }}
           {{ end }}
           &middot;
-          <time datetime="{{ .Date }}">
-            {{- .Date.Format "January 2, 2006" -}}
-          </time>
+          {{ partial "datetime.html" . }}
         </div>
         <h1 class="text-3xl md:text-6xl text-center mb-4 md:mb-8">{{ .Title }}</h1>
         {{ if .Params.tags }}
@@ -24,9 +22,12 @@
       </header>
       <div class="c-post__content o-layout--center">
         {{ .Content }}
-        {{ if .Lastmod }}
-          <p class="italic">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
-        {{ end }}
+        <footer class="mt-12">
+          {{ if .Lastmod }}
+            <p class="italic">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
+          {{ end }}
+          {{ partial "likes-button.html" . }}
+        </footer>
       </div>
     </div>
     {{ partial "author.html" . }}

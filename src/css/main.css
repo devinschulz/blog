@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'balloon-css';
+
 @import 'generic.fonts';
 @import 'generic.chroma';
 @import 'generic.print';
@@ -26,5 +28,6 @@
 @import 'components.post';
 @import 'components.divider';
 @import 'components.toc';
+@import 'components.likes-button';
 
 @import 'utilities.hyphen';

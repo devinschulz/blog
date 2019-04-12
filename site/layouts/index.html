@@ -15,7 +15,7 @@
   {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
   {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
   {{ $sectionCount := len $section }}
-  {{ $likes := getJSON "https://us-central1-devin-schulz.cloudfunctions.net/likes/" }}
+  {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
 
   {{ partial "intro" . }}
 

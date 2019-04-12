@@ -64,7 +64,14 @@ let colors = {
 
   orange: '#ff8e05',
   cyan: '#3bdbbb',
-  red: '#fe1930',
+
+  'red-darkest': '#4c0b0b',
+  'red-darker': '#731010',
+  'red-dark': '#991616',
+  red: '#e23737',
+  'red-light': '#cc4949',
+  'red-lighter': '#d97676',
+  'red-lightest': '#f9e8e8',
 
   'blue-darker': '#0d3181',
   'blue-dark': '#1142ac',

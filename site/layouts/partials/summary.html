@@ -1,4 +1,5 @@
 {{ $heading := .heading | default "h2" }}
+{{ $id := (default .ctx.UniqueID .ctx.Params.id) }}
 
 <article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-2{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
@@ -10,21 +11,21 @@
             <span>&middot;</span>
           {{ end }}
         {{ end }}
-        <time datetime="{{ .ctx.Date }}">
-          {{- if .shortDate -}}
-            {{- .ctx.Date.Format "January 2" -}}
-          {{- else -}}
-            {{- .ctx.Date.Format "January 2, 2006" -}}
-          {{- end -}}
-        </time>
+        {{ partial "datetime.html" .ctx }}
         <span>&middot;</span>
         <span>{{ .ctx.ReadingTime }} min read</span>
         {{ if .likes }}
-          {{ $id := (default .ctx.UniqueID .ctx.Params.id) }}
           {{ with (index .likes $id) }}
-            <span>&middot;</span>
-            <span><span class="js-likes" id="{{ $id }}">{{ .count }}</span> {{ if eq .count 1 }}like{{ else }}likes{{ end }}</span>
+            <span class="js-likes-wrapper">
+              <span>&middot;</span>
+              <span><span class="js-likes" id="{{ $id }}">{{ .count }}</span> {{ if eq .count 1 }}like{{ else }}likes{{ end }}</span>
+            </span>
           {{ end }}
+        {{ else }}
+          <span class="js-likes-wrapper hidden">
+            <span>&middot;</span>
+            <span><span class="js-likes" id="{{ $id }}">0</span> likes</span>
+          </span>
         {{ end }}
       </div>
       {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
