@@ -4,7 +4,7 @@ const BASE_URL = 'https://us-central1-devin-schulz.cloudfunctions.net'
 
 const toJSON = response => response.json()
 
-const expandPath = id => `${BASE_URL}/likes/${id}`
+const expandPath = (id = '') => `${BASE_URL}/likes/${id}`
 
 export const getLikes = () => window.fetch(expandPath()).then(toJSON)
 
