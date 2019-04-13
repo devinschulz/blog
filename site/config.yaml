@@ -30,8 +30,6 @@ params:
   socialShareTwitter: true
   cloudFunctionsEndpoint: https://us-central1-devin-schulz.cloudfunctions.net/likes
 
-disableKinds:
-  - RSS
 enableRobotsTxt: true
 enableGitInfo: true
 
