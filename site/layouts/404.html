@@ -1,8 +1,24 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
-<article>
-	<h1>
-		This is not the page you were looking for
-	</h1>
-</article>
+  <article class="container">
+    <div class="o-layout mb-8">
+      <div class="o-layout--center">
+        <figure class="mb-12">
+          {{ partial "svg/not-found.svg" }}
+          <figcaption class="text-center color-grey-darker text-xs mt-4">Illustration by <a href="https://undraw.co">unDraw</a></figcaption>
+        </figure>
+        <h1>Page not found</h1>
+        <p>It looks like you are trying to access a page that has either been deleted or never existed in the first place.</p>
+        <p>Maybe you would like to read a post or two, or <a href="/">go back home</a>.</p>
+      </div>
+    </div>
+    {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
+    {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+    {{ $sectionCount := len $section }}
+    {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
+
+    {{ range (first $nPosts $section) }}
+      {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h4") }}
+    {{ end }}
+  </article>
 {{ end }}
