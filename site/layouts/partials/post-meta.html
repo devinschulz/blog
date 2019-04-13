@@ -1,0 +1,24 @@
+<div class="text-grey-darker text-sm mb-1">
+  {{ with .Params.categories }}
+    {{ range . }}
+        <a href="/categories/{{ . | urlize}}" class="font-bold inline-block">{{ . }}</a>
+      <span>&middot;</span>
+    {{ end }}
+  {{ end }}
+  <time datetime="{{ .Date }}">
+    {{- if .shortDate -}}
+      {{- .ctx.Date.Format "January 2" -}}
+    {{- else -}}
+      {{- .ctx.Date.Format "January 2, 2006" -}}
+    {{- end -}}
+  </time>
+  <span>&middot;</span>
+  <span>{{ .ctx.ReadingTime }} min read</span>
+  {{ if .likes }}
+    {{ $id := (default .ctx.File.UniqueID .ctx.Params.id) }}
+    {{ with (index .likes $id) }}
+      <span>&middot;</span>
+      <span><span class="js-likes" id="{{ $id }}">{{ .count }}</span> {{ if eq .count 1 }}like{{ else }}likes{{ end }}</span>
+    {{ end }}
+  {{ end }}
+</div>
