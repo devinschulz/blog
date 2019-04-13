@@ -1,4 +1,4 @@
-{{ $id := (default .UniqueID .Params.id) }}
+{{ $id := (default .File.UniqueID .Params.id) }}
 {{ $likes := getJSON (printf "%s/%s" .Site.Params.cloudFunctionsEndpoint $id) }}
 {{ $count := default 0 $likes.count }}
 

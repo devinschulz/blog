@@ -9,7 +9,7 @@
       <ul>
         {{ range .Site.Menus.main }}
         <li>
-          <a href="{{ .URL }}">
+          <a href="{{ .RelPermalink }}">
             {{ .Name }}
           </a>
         </li>

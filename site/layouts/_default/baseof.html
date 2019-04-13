@@ -11,7 +11,6 @@
   <meta name="p:domain_verify" content="e3bcb69d2d6d3d289136e8c9302e6dcd" />
   <meta name="theme-color" content="#313130">
 
-  {{ .Hugo.Generator }}
   {{ if or (eq (getenv "HUGO_ENV") "production") (eq (getenv "NODE_ENV") "production") }}
     <meta name="robots" content="index,follow">
   {{ else }}
@@ -32,9 +31,9 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
   <link rel="manifest" href="/manifest.json" />
 
-  {{ if .RSSLink }}
-    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-    <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
+  {{ with .OutputFormats.Get "RSS" }}
+    <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+    <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
   {{ end }}
 
   {{ if or (eq (getenv "HUGO_ENV") "production") (eq (getenv "NODE_ENV") "production") }}

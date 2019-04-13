@@ -1,5 +1,5 @@
 {{ $heading := .heading | default "h2" }}
-{{ $id := (default .ctx.UniqueID .ctx.Params.id) }}
+{{ $id := (default .ctx.File.UniqueID .ctx.Params.id) }}
 
 <article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-2{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
@@ -31,7 +31,7 @@
       {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
-        <a href="{{ .ctx.URL }}" class="u-unstyled-link">{{ .ctx.Title }}</a>
+      <a href="{{ .ctx.RelPermalink }}" class="u-unstyled-link">{{ .ctx.Title }}</a>
       {{ $endTag | safeHTML }}
     </header>
     {{ if not .condensed }}

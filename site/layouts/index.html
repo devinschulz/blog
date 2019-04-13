@@ -7,7 +7,7 @@
   {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
 
   {{ range (first $nPosts $section) }}
-    <link rel="prefetch" href="{{ .URL }}" />
+    <link rel="prefetch" href="{{ .RelPermalink }}" />
   {{ end }}
 {{ end }}
 
