@@ -5,6 +5,16 @@ const KEY = 'likes'
 
 const getStorage = () => JSON.parse(localStorage.getItem(KEY)) || {}
 
+const track = count => {
+  try {
+    ga('send', 'event', {
+      eventCategory: 'Likes',
+      eventAction: 'increment',
+      eventValue: count,
+    })
+  } catch (error) {}
+}
+
 const setLikes = id => {
   const likes = getStorage()
   likes[id] = (likes[id] || 0) + 1
@@ -43,6 +53,7 @@ const onClick = (id, updater, counter) => () => {
     putLike(id)
     setLikes(id)
     updater(counter)
+    track(counter)
   }
 }
 ;(async () => {

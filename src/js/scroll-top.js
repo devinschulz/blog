@@ -12,6 +12,10 @@ import debounce from 'debounce'
       0
     )
     element.classList[top ? 'add' : 'remove']('visible')
+
+    try {
+      ga('send', 'event', 'Scroll to top', 'click')
+    } catch (error) {}
   }, 100)
 
   window.addEventListener('scroll', onScroll, false)
