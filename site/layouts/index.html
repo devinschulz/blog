@@ -21,7 +21,7 @@
 
   {{ if ge $sectionCount 1 }}
     {{ $sectionName := index (.Site.Params.mainSections) 0 }}
-    <div class="container">
+    <div class="container js-likes-list">
 
       {{ with .Site.GetPage "section" $sectionName }}
         <header class="o-layout">

@@ -33,7 +33,7 @@
       {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
-      <a href="{{ .ctx.RelPermalink }}" class="u-unstyled-link">{{ .ctx.Title }}</a>
+      <a href="{{ .ctx.RelPermalink }}" class="u-unstyled-link">{{ .ctx.Title | title }}</a>
       {{ $endTag | safeHTML }}
     </header>
     {{ if not .condensed }}

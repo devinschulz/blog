@@ -1,6 +1,6 @@
 import { getLikes } from './api'
 ;(async () => {
-  if (document.body.classList.contains('home')) {
+  if (document.querySelector('.js-likes-list')) {
     const response = await getLikes()
     Array.from(document.querySelectorAll('.js-likes')).forEach(element => {
       if (response[element.id]) {

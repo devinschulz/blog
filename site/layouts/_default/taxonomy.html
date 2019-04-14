@@ -1,22 +1,17 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
-  <article class="container o-layout">
+  <article class="container o-layout js-likes-list">
     <div class="o-layout--center">
-      <h1>Articles tagged "{{ .Title }}"</h1>
-      <!-- <p>Below you will find pages that utilize the taxonomy term “{{ .Title }}”</p> -->
+      <h1 class="mb-12">Articles tagged "{{ .Title }}"</h1>
     </div>
   </article>
   <div>
     <section class="container">
-      <div class="o-layout">
-      <ul class="o-layout--center">
+      {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
       {{ range .Pages }}
-      <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-        <!-- {{ partial "summary.html" (dict "ctx" . "condensed" true) }} -->
+        {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes) }}
       {{ end }}
-      </ul>
-      </div>
     </section>
 
   </div>
