@@ -12,8 +12,10 @@
           {{ end }}
         {{ end }}
         {{ partial "datetime.html" .ctx }}
-        <span>&middot;</span>
-        <span>{{ .ctx.ReadingTime }} min read</span>
+        {{ with .ctx.ReadingTime }}
+          <span>&middot;</span>
+          <span>{{ . }} min read</span>
+        {{ end }}
         {{ if .likes }}
           {{ with (index .likes $id) }}
             <span class="js-likes-wrapper">
