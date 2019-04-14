@@ -5,13 +5,12 @@
     <section class="container">
       <div class="o-layout">
         <div class="o-layout--center">
+          {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
           {{ range (.Data.Pages.GroupByDate "2006") }}
             <h2>{{ .Key}}</h2>
-            <ul>
-              {{ range .Pages }}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-              {{ end }}
-            </ul>
+            {{ range .Pages }}
+              {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes "heading" "h3") }}
+            {{ end }}
           {{ end }}
         </div>
       </div>
