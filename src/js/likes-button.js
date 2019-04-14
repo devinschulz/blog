@@ -64,7 +64,7 @@ const onClick = (id, updater, counter) => () => {
 
   const { count, id } = element.dataset
   const like = await getLike(id)
-  const counter = +count || 0
+  const counter = like.count || count
   const updater = update(element, id)
   updater(counter)
 
