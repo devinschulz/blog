@@ -1,11 +1,13 @@
-p > code {
-  border-radius: var(--rounded);
-  border: 0;
-  font-size: var(--text-sm);
-  padding: var(--m-1);
-  background-color: var(--color-green-lightest);
-  color: var(--color-green-darkest);
-  hyphens: none;
+*:not(pre) {
+  > code {
+    border-radius: var(--rounded);
+    border: 0;
+    font-size: var(--text-sm);
+    padding: var(--m-1);
+    background-color: var(--color-green-lightest);
+    color: var(--color-green-darkest);
+    hyphens: none;
+  }
 }
 
 pre {
