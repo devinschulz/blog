@@ -1,16 +1,15 @@
 {{ $related := .Site.RegularPages.Related . | first 3 }}
 {{ with $related }}
-  <aside class="o-layout">
-    <div class="o-layout--center">
-      <hr class="border-b border-grey-lighter mb-12 mt-12" />
-      <h2 class="text-base">If you enjoyed this post, you might also like:</h2>
-      <ul class="list-reset leading-loose">
-        {{ range . }}
-          <li>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </li>
-        {{ end }}
-      </ul>
+  <aside class="js-likes-list">
+    <div class="o-layout">
+      <div class="o-layout--center">
+        <hr class="border-b border-grey-lighter mb-12 mt-12" />
+        <h3 class="mb-8">Related Post{{ if gt (len .) 1 }}s{{ end }}</h3>
+      </div>
     </div>
+    {{ $likes := getJSON (printf "%s/" $.Site.Params.cloudFunctionsEndpoint) }}
+    {{ range . }}
+      {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h4" "likes" $likes) }}
+    {{ end }}
   </aside>
 {{ end }}
