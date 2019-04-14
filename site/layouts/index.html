@@ -51,7 +51,11 @@
               {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true "likes" $likes) }}
             {{ end }}
           </div>
-          <a href="/posts" class="bg-blue-lightest rounded px-4 py-2 u-unstyled-link hover:text-white focus:text-white hover:bg-blue focus:bg-blue">All posts</a>
+          <footer class="o-layout">
+            <div class="o-layout--center">
+              <a href="/posts" class="bg-blue-lightest rounded px-4 py-2 u-unstyled-link hover:text-white focus:text-white hover:bg-blue focus:bg-blue">All posts</a>
+            </div>
+          </footer>
         </section>
       {{ end }}
     </div>
