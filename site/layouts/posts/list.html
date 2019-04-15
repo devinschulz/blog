@@ -1,19 +1,19 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
+  {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
   <article>
     <section class="container">
-      <div class="o-layout">
-        <div class="o-layout--center">
-          {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
-          {{ range (.Data.Pages.GroupByDate "2006") }}
+      {{ range (.Data.Pages.GroupByDate "2006") }}
+        <div class="o-layout">
+          <div class="o-layout--center">
             <h2>{{ .Key}}</h2>
-            {{ range .Pages }}
-              {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes "heading" "h3") }}
-            {{ end }}
-          {{ end }}
+          </div>
         </div>
-      </div>
+        {{ range .Pages }}
+          {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes "heading" "h3") }}
+        {{ end }}
+      {{ end }}
     </section>
     {{ template "_internal/pagination.html" . }}
   </article>
