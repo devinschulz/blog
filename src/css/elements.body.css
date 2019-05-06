@@ -17,3 +17,9 @@ body {
     font-family: var(--font-alt);
   }
 }
+
+::selection {
+  background-color: #ffa;
+  color: var(--color-black);
+  text-shadow: none !important;
+}

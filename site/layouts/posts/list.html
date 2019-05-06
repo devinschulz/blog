@@ -3,7 +3,7 @@
 {{ define "main" }}
   {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
   <article>
-    <section class="container">
+    <section class="container" data-controller="likes">
       {{ range (.Data.Pages.GroupByDate "2006") }}
         <div class="o-layout">
           <div class="o-layout--center">

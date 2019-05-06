@@ -11,22 +11,31 @@
             <span>&middot;</span>
           {{ end }}
         {{ end }}
+
         {{ partial "datetime.html" .ctx }}
+
         {{ with .ctx.ReadingTime }}
           <span>&middot;</span>
           <span>{{ . }} min read</span>
         {{ end }}
+
         {{ if .likes }}
-          {{ with (index .likes $id) }}
-            <span class="js-likes-wrapper">
+          {{ $like := (index .likes $id ) }}
+          {{ if $like }}
+            <span>
               <span>&middot;</span>
-              <span><span class="js-likes" id="{{ $id }}">{{ .count }}</span> {{ if eq .count 1 }}like{{ else }}likes{{ end }}</span>
+              <span><span data-target="likes.like" id="{{ $id }}">{{ $like.count }}</span> {{ if eq $like.count 1 }}like{{ else }}likes{{ end }}</span>
+            </span>
+          {{ else }}
+            <span>
+              <span>&middot;</span>
+              <span><span data-target="likes.like" id="{{ $id }}">0</span> likes</span>
             </span>
           {{ end }}
         {{ else }}
-          <span class="js-likes-wrapper hidden">
+          <span>
             <span>&middot;</span>
-            <span><span class="js-likes" id="{{ $id }}">0</span> likes</span>
+            <span><span data-target="likes.like" id="{{ $id }}">0</span> likes</span>
           </span>
         {{ end }}
       </div>

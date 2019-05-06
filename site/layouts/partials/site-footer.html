@@ -7,7 +7,7 @@
       <small class="font-xs">&copy;{{ now.Format "2006" }} {{ .Site.Title }}</small>
     </div>
   </div>
-  <a title="Back to top" href="#top" class="c-site-footer__scroll-top js-scroll-top u-unstyled-link fixed w-12 h-12 shadow-md hover:shadow-lg rounded-full z-30 bg-white text-green flex items-center justify-center">
+  <a data-controller="scroll-top" data-action="scroll@window->scroll-top#checkPosition" title="Back to top" href="#top" class="c-site-footer__scroll-top u-unstyled-link fixed w-12 h-12 shadow-md hover:shadow-lg rounded-full z-30 bg-white text-green flex items-center justify-center">
     <span class="u-visually-hidden">Back to top</span>
     {{ partial "svg/chevron-top.svg" (dict "size" 18) }}
   </a>

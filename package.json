@@ -28,6 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.4.3",
@@ -85,6 +86,7 @@
   "dependencies": {
     "balloon-css": "^0.5.0",
     "debounce": "^1.2.0",
-    "instant.page": "^1.2.2"
+    "stimulus": "^1.1.1",
+    "turbolinks": "^5.2.0"
   }
 }

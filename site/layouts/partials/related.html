@@ -1,6 +1,6 @@
 {{ $related := .Site.RegularPages.Related . | first 3 }}
 {{ with $related }}
-  <aside class="js-likes-list">
+  <aside data-controller="likes">
     <div class="o-layout">
       <div class="o-layout--center">
         <hr class="border-b border-grey-lighter mb-12 mt-12" />
