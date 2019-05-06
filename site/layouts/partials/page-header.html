@@ -1,8 +1,8 @@
-<header class="c-site-header py-2{{ if not .IsHome }} mb-12{{ end }}">
+<header data-controller="page-header" class="c-site-header py-2{{ if not .IsHome }} mb-12{{ end }}">
   <div class="container">
     <div class="o-layout">
       <div class="o-layout--center">
-        <a href="/" class="bg-grey-lightest u-unstyled-link hover:bg-grey-lighter js-site-header-logo rounded-full w-16 h-16 inline-flex items-center justify-center">
+        <a data-action="mouseenter->page-header#animate focus->page-header#animate animationend->page-header#cleanup" href="/" class="bg-grey-lightest u-unstyled-link hover:bg-grey-lighter rounded-full w-16 h-16 inline-flex items-center justify-center">
           <img class="c-site-header__img" src="/me-small.png" srcset="/me-small@2x.png 2x" alt="Illustration of Devin Schulz's face">
         </a>
       </div>

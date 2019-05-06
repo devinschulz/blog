@@ -2,17 +2,22 @@
 {{ $likes := getJSON (printf "%s/%s" .Site.Params.cloudFunctionsEndpoint $id) }}
 {{ $count := default 0 $likes.count }}
 
-<div class="c-likes-button flex space-between">
+<div
+  class="c-likes-button flex space-between"
+  data-controller="likes-button"
+  data-likes-button-count="{{ $count }}"
+  data-likes-button-id="{{ $id }}"
+>
   <div class="flex-no-shrink">
     <button
       aria-label="Like this post"
       class="c-likes-button__cta js-likes-button bg-red-lightest px-4 py-2 text-red-dark rounded flex items-center flex-no-shrink hover:bg-red hover:text-white"
-      data-count="{{ $count }}"
-      data-id="{{ $id }}"
+      data-action="click->likes-button#onClick"
+      data-target="likes-button.button"
     >
       {{ partial "svg/heart.svg" (dict "size" 13) }}
-      <span class="js-likes-button-text ml-2">{{ $count }} like{{ if ne $count 1 }}s{{ end }}</span>
+      <span data-target="likes-button.count" class="ml-2">{{ $count }} like{{ if ne $count 1 }}s{{ end }}</span>
     </button>
   </div>
-  <p class="js-likes-button-max hidden text-red mb-0 ml-4">Woah there! Thanks for all the love, but you've hit the maximum likes allowed for this post.</p>
+  <p data-target="likes-button.max" class="js-likes-button-max hidden text-red mb-0 ml-4">Woah there! Thanks for all the love, but you've hit the maximum likes allowed for this post.</p>
 </div>

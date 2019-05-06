@@ -10,7 +10,4 @@ export const getLikes = () => window.fetch(expandPath()).then(toJSON)
 
 export const getLike = id => window.fetch(expandPath(id)).then(toJSON)
 
-export const putLike = id =>
-  window.fetch(expandPath(id), {
-    method: 'PUT',
-  })
+export const putLike = id => window.fetch(expandPath(id), { method: 'PUT' })

@@ -1,9 +1,11 @@
-import 'instant.page'
+import turbolinks from 'turbolinks'
+import { Application } from 'stimulus'
+import { definitionsFromContext } from 'stimulus/webpack-helpers'
 
 import './css/main.css'
-import './js/likes'
-import './js/likes-button'
-import './js/scroll-top'
-import './js/site-header'
-import './js/smooth-scroll'
-import './js/table-of-contents'
+
+const application = Application.start()
+const context = require.context('./js', true, /\.js$/)
+application.load(definitionsFromContext(context))
+
+turbolinks.start()

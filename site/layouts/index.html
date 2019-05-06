@@ -1,19 +1,8 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
-{{ define "prefetch"}}
-  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
-  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
-  {{ $sectionCount := len $section }}
-  {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
-
-  {{ range (first $nPosts $section) }}
-    <link rel="prefetch" href="{{ .RelPermalink }}" />
-  {{ end }}
-{{ end }}
-
 {{ define "main" }}
-  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
-  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
+  {{ $mainSections := .Site.Params.mainSections | default (slice "posts") }}
+  {{ $section := where .Site.RegularPages "Section" "posts" }}
   {{ $sectionCount := len $section }}
   {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
 
@@ -21,7 +10,7 @@
 
   {{ if ge $sectionCount 1 }}
     {{ $sectionName := index (.Site.Params.mainSections) 0 }}
-    <div class="container js-likes-list">
+    <div class="container js-likes-list" data-controller="likes">
 
       {{ with .Site.GetPage "section" $sectionName }}
         <header class="o-layout">

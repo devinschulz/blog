@@ -1,13 +1,13 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
-  <article class="container o-layout js-likes-list">
+  <article class="container o-layout">
     <div class="o-layout--center">
       <h1 class="mb-12">Articles tagged "{{ .Title }}"</h1>
     </div>
   </article>
   <div>
-    <section class="container">
+    <section class="container" data-controller="likes">
       {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
       {{ range .Pages }}
         {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes) }}
