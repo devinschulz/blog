@@ -42,7 +42,7 @@ export default class extends Controller {
   }
 
   text() {
-    return `${this.count} like${this.count === 1 ? '' : ''}`
+    return `${this.count} like${this.count === 1 ? '' : 's'}`
   }
 
   async getLikes() {
