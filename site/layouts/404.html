@@ -1,6 +1,6 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
-  <article class="container" data-controller="likes">
+  <article class="container">
     <div class="o-layout mb-8">
       <div class="o-layout--center">
         <figure class="mb-24">
@@ -12,14 +12,13 @@
         <p>Maybe you would like to read a post or two, or <a href="/">go back home</a>.</p>
       </div>
     </div>
-    {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
     {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
     {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
     {{ $sectionCount := len $section }}
     {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
 
     {{ range (first $nPosts $section) }}
-      {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h4" "likes" $likes) }}
+      {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h4") }}
     {{ end }}
   </article>
 {{ end }}

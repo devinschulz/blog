@@ -1,15 +1,14 @@
 {{ $related := .Site.RegularPages.Related . | first 3 }}
 {{ with $related }}
-  <aside data-controller="likes">
+  <aside>
     <div class="o-layout">
       <div class="o-layout--center">
         <hr class="border-b border-grey-lighter mb-12 mt-12" />
         <h3 class="mb-8">Related Post{{ if gt (len .) 1 }}s{{ end }}</h3>
       </div>
     </div>
-    {{ $likes := getJSON (printf "%s/" $.Site.Params.cloudFunctionsEndpoint) }}
     {{ range . }}
-      {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h4" "likes" $likes) }}
+      {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h4") }}
     {{ end }}
   </aside>
 {{ end }}

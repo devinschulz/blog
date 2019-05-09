@@ -30,7 +30,6 @@
           {{ if .Lastmod }}
             <p class="italic">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
           {{ end }}
-          {{ partial "likes-button.html" . }}
         </footer>
       </div>
     </div>

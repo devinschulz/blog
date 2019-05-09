@@ -14,11 +14,4 @@
   </time>
   <span>&middot;</span>
   <span>{{ .ctx.ReadingTime }} min read</span>
-  {{ if .likes }}
-    {{ $id := (default .ctx.File.UniqueID .ctx.Params.id) }}
-    {{ with (index .likes $id) }}
-      <span>&middot;</span>
-      <span><span class="js-likes" id="{{ $id }}">{{ .count }}</span> {{ if eq .count 1 }}like{{ else }}likes{{ end }}</span>
-    {{ end }}
-  {{ end }}
 </div>

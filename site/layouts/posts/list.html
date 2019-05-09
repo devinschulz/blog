@@ -1,9 +1,8 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
-  {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
   <article>
-    <section class="container" data-controller="likes">
+    <section class="container">
       {{ range (.Data.Pages.GroupByDate "2006") }}
         <div class="o-layout">
           <div class="o-layout--center">
@@ -11,7 +10,7 @@
           </div>
         </div>
         {{ range .Pages }}
-          {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes "heading" "h3") }}
+          {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h3") }}
         {{ end }}
       {{ end }}
     </section>

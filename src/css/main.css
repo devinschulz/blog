@@ -28,7 +28,6 @@
 @import 'components.post';
 @import 'components.divider';
 @import 'components.toc';
-@import 'components.likes-button';
 
 @import 'utilities.hyphen';
 @import 'utilities.visually-hidden';

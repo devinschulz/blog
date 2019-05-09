@@ -3,7 +3,7 @@
 <div class="container">
   <article>
     <header>
-      <p>{{ humanize .Section | upper }}</p>
+      {{ with .Section }}<p>{{ humanize . | upper }}</p>{{ end }}
       <h1>{{ .Title }}</h1>
     </header>
     <div>

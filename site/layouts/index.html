@@ -4,13 +4,12 @@
   {{ $mainSections := .Site.Params.mainSections | default (slice "posts") }}
   {{ $section := where .Site.RegularPages "Section" "posts" }}
   {{ $sectionCount := len $section }}
-  {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
 
   {{ partial "intro" . }}
 
   {{ if ge $sectionCount 1 }}
     {{ $sectionName := index (.Site.Params.mainSections) 0 }}
-    <div class="container js-likes-list" data-controller="likes">
+    <div class="container">
 
       {{ with .Site.GetPage "section" $sectionName }}
         <header class="o-layout">
@@ -24,7 +23,7 @@
 
       <section class="mb-12">
         {{ range (first $nPosts $section) }}
-          {{ partial "summary.html" (dict "ctx" . "heading" "h3" "likes" $likes) }}
+          {{ partial "summary.html" (dict "ctx" . "heading" "h3") }}
         {{ end }}
       </section>
 
@@ -37,7 +36,7 @@
           </header>
           <div class="mb-8">
             {{ range (first 4 (after $nPosts $section)) }}
-              {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true "likes" $likes) }}
+              {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
             {{ end }}
           </div>
           <footer class="o-layout">

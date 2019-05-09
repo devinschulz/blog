@@ -18,26 +18,6 @@
           <span>&middot;</span>
           <span>{{ . }} min read</span>
         {{ end }}
-
-        {{ if .likes }}
-          {{ $like := (index .likes $id ) }}
-          {{ if $like }}
-            <span>
-              <span>&middot;</span>
-              <span><span data-target="likes.like" id="{{ $id }}">{{ $like.count }}</span> {{ if eq $like.count 1 }}like{{ else }}likes{{ end }}</span>
-            </span>
-          {{ else }}
-            <span>
-              <span>&middot;</span>
-              <span><span data-target="likes.like" id="{{ $id }}">0</span> likes</span>
-            </span>
-          {{ end }}
-        {{ else }}
-          <span>
-            <span>&middot;</span>
-            <span><span data-target="likes.like" id="{{ $id }}">0</span> likes</span>
-          </span>
-        {{ end }}
       </div>
       {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}

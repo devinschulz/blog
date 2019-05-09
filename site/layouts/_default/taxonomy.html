@@ -7,10 +7,9 @@
     </div>
   </article>
   <div>
-    <section class="container" data-controller="likes">
-      {{ $likes := getJSON (printf "%s/" .Site.Params.cloudFunctionsEndpoint) }}
+    <section class="container">
       {{ range .Pages }}
-        {{ partial "summary.html" (dict "ctx" . "condensed" true "likes" $likes) }}
+        {{ partial "summary.html" (dict "ctx" . "condensed" true) }}
       {{ end }}
     </section>
   </div>
