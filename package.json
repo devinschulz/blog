@@ -23,7 +23,7 @@
     "minify:html": "html-minifier --input-dir dist --output-dir dist --collapse-whitespace --file-ext html --remove-comments",
     "minify:xml": "html-minifier --input-dir dist --output-dir dist --collapse-whitespace --file-ext xml --remove-comments",
     "critical": "node ./scripts/critical.js",
-    "postprocess": "npm run critical npm run minify:html && npm run minify:xml && npm run purge"
+    "postprocess": "npm run critical && npm run minify:html && npm run minify:xml && npm run purge"
   },
   "license": "MIT",
   "devDependencies": {
