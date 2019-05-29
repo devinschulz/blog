@@ -1,0 +1,5 @@
+.c-project {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

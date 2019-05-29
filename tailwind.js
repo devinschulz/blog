@@ -214,6 +214,7 @@ module.exports = {
   */
 
   textSizes: {
+    xxs: '.6rem',
     xs: '.75rem', // 12px
     sm: '.875rem', // 14px
     base: '1rem', // 16px

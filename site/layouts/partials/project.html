@@ -1,0 +1,94 @@
+{{ $sm := 546 }}
+{{ $md := 768 }}
+{{ $lg := 840 }}
+{{ $images := .Resources.ByType "image" }}
+{{ $hasMultipleImages := gt (len $images) 1 }}
+<div class="c-project mb-24" id="{{ .Title | urlize }}">
+  <div class="c-browser w-full mb-8" {{ if $hasMultipleImages }}data-controller="browser" data-browser-index="0"{{ end }}>
+    <div class="c-browser__frame border">
+      <div class="c-browser__menu bg-white h-8 flex items-center relative">
+        <div class="flex ml-2 browser__controls absolute">
+          <div class="c-browser__control"></div>
+          <div class="c-browser__control"></div>
+          <div class="c-browser__control"></div>
+        </div>
+        {{ with .Params.external }}
+          <div class="c-browser__input hidden md:block text-xxs bg-grey-lightest border border-grey-lighter px-4 mx-auto rounded text-grey-darker">
+            <a href="{{ . }}" rel="noreferrer" class="text-grey-darker u-unstyled-link">{{ . }}</a>
+          </div>
+        {{ end }}
+      </div>
+      <div class="c-browser__viewport bg-white" data-target="browser.viewport">
+        {{ range $images }}
+          <picture class="c-browser__image flex lozad" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
+            {{ $resource := . }}
+            {{ $desktop := $resource.Resize (printf "%dx" $lg) }}
+            {{ $desktopRetina := $resource.Resize (printf "%dx" (mul $lg 2)) }}
+            <source media="(min-width: {{ $lg }}px)" srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+            {{ $tablet := $resource.Resize (printf "%dx" $md) }}
+            {{ $tabletRetina := $resource.Resize (printf "%dx" (mul $md 2)) }}
+            <source media="(min-width: {{ $md }}px)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+            {{ $mobile := $resource.Resize (printf "%dx" $sm) }}
+            {{ $mobileRetina := $resource.Resize (printf "%dx" (mul $sm 2)) }}
+            <source  srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
+              <noscript><img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktopRetina.RelPermalink }} 2x" class="w-full" /></noscript>
+          </picture>
+        {{ end }}
+      </div>
+    </div>
+    {{ if $hasMultipleImages}}
+      <div class="c-browser__controls flex items-center py-4 text-grey-darker">
+        <p class="text-sm mb-0"><span data-target="browser.index">01</span><span class="mx-2">/</span>0{{ len $images}}</p>
+        <div class="ml-auto flex">
+          <button data-target="browser.previous" data-action="browser#previous" class="c-browser__button c-browser__button--previous inline-flex items-center">
+            <span class="u-visually-hidden">Previous</span>
+            {{ partial "svg/arrow-right.svg" (dict "size" 18) }}
+          </button>
+          <button data-target="browser.next" data-action="browser#next" class="c-browser__button c-browser__button--next ml-4 inline-flex items-center">
+            <span class="u-visually-hidden">Next</span>
+            {{ partial "svg/arrow-right.svg" (dict "size" 18) }}
+          </button>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+  <div class="o-layout">
+    <div class="o-layout--center">
+      <p class="text-grey-darker text-sm mb-1">
+        {{ if .Params.range }}
+          {{ .Params.range | htmlUnescape }}
+        {{ else }}
+          {{ .Params.date }}
+        {{ end }}
+      </p>
+      <h2>{{ .Title }}</h2>
+      <ul class="list-reset">
+        {{ with .Params.role }}
+          <li><strong>Role:</strong> {{ . }}</li>
+        {{ end }}
+        {{ with .Params.technologies }}
+          <li>
+            <strong>Technologies:</strong>
+            <ul class="list-reset mb-0 u-comma-list">
+              {{ range . }}
+                <li>{{ . | markdownify }}</li>
+              {{ end }}
+            </ul>
+          </li>
+        {{ end }}
+        {{ with .Params.agency }}
+          <li><strong>Agency:</strong> <a href="{{ $.Params.agencyLink }}" rel="noreferrer">{{ . }}</a></li>
+        {{ end }}
+        {{ with .Params.goal }}
+          <li><strong>Goal:</strong> {{ . }}</li>
+        {{ end }}
+      </ul>
+      {{ with .Content }}
+        {{ . }}
+      {{ end }}
+      {{ with .Params.external }}
+        <a href="{{ . }}" rel="noreferrer">View Website</a>
+      {{ end }}
+    </div>
+  </div>
+</div>
