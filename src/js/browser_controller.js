@@ -72,7 +72,7 @@ export default class extends Controller {
     this.index = index
     this.slides.forEach((el, i) => {
       el.classList.toggle('hidden', index !== i)
-      el.classList.toggle('flex', index === i)
+      el.classList.toggle('block', index === i)
     })
     this.scrollTop()
     this.data.set('index', this.index)

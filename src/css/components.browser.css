@@ -20,21 +20,19 @@
 }
 
 .c-browser__image {
-  opacity: 0;
-  transition: opacity 0.3s;
-
-  .no-js &,
-  &[data-loaded='true'] {
-    opacity: 1;
+  .no-js & {
+    &.lazy {
+      display: none;
+    }
   }
 }
 
 .c-browser__viewport {
-  height: 300px;
+  max-height: 300px;
   overflow: auto;
 
   @media (--md-viewport) {
-    height: 500px;
+    max-height: 500px;
   }
 }
 
@@ -54,5 +52,6 @@
 
   .no-js & {
     opacity: 0;
+    display: none;
   }
 }

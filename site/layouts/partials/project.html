@@ -20,18 +20,20 @@
       </div>
       <div class="c-browser__viewport bg-white" data-target="browser.viewport">
         {{ range $images }}
-          <picture class="c-browser__image flex lozad" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
+          <picture class="" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
             {{ $resource := . }}
             {{ $desktop := $resource.Resize (printf "%dx" $lg) }}
             {{ $desktopRetina := $resource.Resize (printf "%dx" (mul $lg 2)) }}
-            <source media="(min-width: {{ $lg }}px)" srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+            <source media="(min-width: {{ $lg }}px)" data-srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
             {{ $tablet := $resource.Resize (printf "%dx" $md) }}
             {{ $tabletRetina := $resource.Resize (printf "%dx" (mul $md 2)) }}
-            <source media="(min-width: {{ $md }}px)" srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+            <source media="(min-width: {{ $md }}px)" data-srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
             {{ $mobile := $resource.Resize (printf "%dx" $sm) }}
             {{ $mobileRetina := $resource.Resize (printf "%dx" (mul $sm 2)) }}
-            <source  srcset="{{ $mobile.RelPermalink }}, {{ $mobileRetina.RelPermalink }} 2x" />
-              <noscript><img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktopRetina.RelPermalink }} 2x" class="w-full" /></noscript>
+            <img data-src="{{ $mobile.RelPermalink }}" data-srcset="{{ $mobile.RelPermalink }} 2x" class="w-full m-auto lazy c-browser__image" />
+            <noscript>
+              <img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktop.RelPermalink }} 2x" class="w-full m-auto" />
+            </noscript>
           </picture>
         {{ end }}
       </div>

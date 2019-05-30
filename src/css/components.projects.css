@@ -38,11 +38,9 @@
 }
 
 .c-projects__thumbnail__image {
-  opacity: 0;
-  transition: opacity 0.3s;
-
-  .no-js &,
-  &[data-loaded='true'] {
-    opacity: 1;
+  .no-js & {
+    &.lazy {
+      display: none;
+    }
   }
 }
