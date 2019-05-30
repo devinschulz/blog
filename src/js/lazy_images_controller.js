@@ -1,14 +1,12 @@
 import { Controller } from 'stimulus'
-import lozad from 'lozad'
+import LazyLoad from 'vanilla-lazyload'
 
 export default class extends Controller {
   initialize() {
-    this.observer = lozad('.lozad', {
-      threshold: 0.8,
-    })
+    this.lazy = new LazyLoad()
   }
 
   connect() {
-    this.observer.observe()
+    this.lazy.update()
   }
 }
