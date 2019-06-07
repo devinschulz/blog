@@ -4,7 +4,7 @@
 {{ $images := .Resources.ByType "image" }}
 {{ $hasMultipleImages := gt (len $images) 1 }}
 <div class="c-project mb-24" id="{{ .Title | urlize }}">
-  <div class="c-browser w-full mb-8" {{ if $hasMultipleImages }}data-controller="browser" data-browser-index="0"{{ end }}>
+  <div class="c-browser w-full mb-8 loading" {{ if $hasMultipleImages }}data-controller="browser browser-image-loader" data-browser-index="0"{{ else }}data-controller="browser-image-loader"{{ end }}>
     <div class="c-browser__frame border">
       <div class="c-browser__menu bg-white h-8 flex items-center relative">
         <div class="flex ml-2 browser__controls absolute">
@@ -19,9 +19,9 @@
         {{ end }}
       </div>
       <div class="c-browser__viewport bg-white" data-target="browser.viewport">
-        {{ range $images }}
-          <picture class="" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
-            {{ $resource := . }}
+        {{ range $index, $value := $images }}
+          <picture class="c-browser__image-wrapper relative w-full" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
+            {{ $resource := $value }}
             {{ $desktop := $resource.Resize (printf "%dx" $lg) }}
             {{ $desktopRetina := $resource.Resize (printf "%dx" (mul $lg 2)) }}
             <source media="(min-width: {{ $lg }}px)" data-srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
@@ -30,9 +30,9 @@
             <source media="(min-width: {{ $md }}px)" data-srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
             {{ $mobile := $resource.Resize (printf "%dx" $sm) }}
             {{ $mobileRetina := $resource.Resize (printf "%dx" (mul $sm 2)) }}
-            <img data-src="{{ $mobile.RelPermalink }}" data-srcset="{{ $mobile.RelPermalink }} 2x" class="w-full m-auto lazy c-browser__image" />
+            <img data-src="{{ $mobile.RelPermalink }}" data-srcset="{{ $mobile.RelPermalink }} 2x" class="w-full m-auto lazy block c-browser__image" alt="{{ $.Title }} {{ add 1 $index }}" />
             <noscript>
-              <img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktop.RelPermalink }} 2x" class="w-full m-auto" />
+              <img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktop.RelPermalink }} 2x" class="w-full m-auto block" alt="{{ $.Title }} {{ add 1 $index }}" />
             </noscript>
           </picture>
         {{ end }}
