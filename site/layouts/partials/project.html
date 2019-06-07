@@ -18,24 +18,29 @@
           </div>
         {{ end }}
       </div>
-      <div class="c-browser__viewport bg-white" data-target="browser.viewport">
+      <div class="c-browser__viewport bg-white relative" data-target="browser.viewport">
         {{ range $index, $value := $images }}
-          <picture class="c-browser__image-wrapper relative w-full" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
-            {{ $resource := $value }}
-            {{ $desktop := $resource.Resize (printf "%dx" $lg) }}
-            {{ $desktopRetina := $resource.Resize (printf "%dx" (mul $lg 2)) }}
-            <source media="(min-width: {{ $lg }}px)" data-srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
-            {{ $tablet := $resource.Resize (printf "%dx" $md) }}
-            {{ $tabletRetina := $resource.Resize (printf "%dx" (mul $md 2)) }}
-            <source media="(min-width: {{ $md }}px)" data-srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
-            {{ $mobile := $resource.Resize (printf "%dx" $sm) }}
-            {{ $mobileRetina := $resource.Resize (printf "%dx" (mul $sm 2)) }}
-            <img data-src="{{ $mobile.RelPermalink }}" data-srcset="{{ $mobile.RelPermalink }} 2x" class="w-full m-auto lazy block c-browser__image" alt="{{ $.Title }} {{ add 1 $index }}" />
-            <noscript>
-              <img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktop.RelPermalink }} 2x" class="w-full m-auto block" alt="{{ $.Title }} {{ add 1 $index }}" />
-            </noscript>
-          </picture>
+          <div class="w-full" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
+            <picture>
+              {{ $resource := $value }}
+              {{ $desktop := $resource.Resize (printf "%dx" $lg) }}
+              {{ $desktopRetina := $resource.Resize (printf "%dx" (mul $lg 2)) }}
+              <source media="(min-width: {{ $lg }}px)" data-srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
+              {{ $tablet := $resource.Resize (printf "%dx" $md) }}
+              {{ $tabletRetina := $resource.Resize (printf "%dx" (mul $md 2)) }}
+              <source media="(min-width: {{ $md }}px)" data-srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
+              {{ $mobile := $resource.Resize (printf "%dx" $sm) }}
+              {{ $mobileRetina := $resource.Resize (printf "%dx" (mul $sm 2)) }}
+              <img data-src="{{ $mobile.RelPermalink }}" data-srcset="{{ $mobile.RelPermalink }} 2x" class="w-full m-auto lazy block c-browser__image" alt="{{ $.Title }} {{ add 1 $index }}" />
+              <noscript>
+                <img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktop.RelPermalink }} 2x" class="w-full m-auto block" alt="{{ $.Title }} {{ add 1 $index }}" />
+              </noscript>
+            </picture>
+          </div>
         {{ end }}
+        <div class="c-browser__spinner absolute pin-t pin-l z-10 w-full h-full flex items-center justify-center bg-white">
+          <img src="/spinner.svg" alt="Loading spinner">
+        </div>
       </div>
     </div>
     {{ if $hasMultipleImages}}

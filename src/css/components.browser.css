@@ -29,11 +29,25 @@
 
 .c-browser__viewport {
   height: 300px;
-  overflow: auto;
+  overflow: hidden;
+
+  &:not(.loading) {
+    overflow: auto;
+  }
+
+  &.loading {
+    .c-browser__spinner {
+      display: flex;
+    }
+  }
 
   @media (--md-viewport) {
     height: 500px;
   }
+}
+
+.c-browser__spinner {
+  display: none;
 }
 
 .c-browser__input {
