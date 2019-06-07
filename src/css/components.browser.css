@@ -28,11 +28,11 @@
 }
 
 .c-browser__viewport {
-  max-height: 300px;
+  height: 300px;
   overflow: auto;
 
   @media (--md-viewport) {
-    max-height: 500px;
+    height: 500px;
   }
 }
 
