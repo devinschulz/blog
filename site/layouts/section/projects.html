@@ -4,37 +4,10 @@
   {{ $sm := 546 }}
   {{ $md := 768 }}
   {{ $lg := 840 }}
-  <article class="c-projects container" data-controller="lazy-images">
-    <header class="o-layout">
-      <div class="o-layout--center mb-24">
-        <h1 class="text-3xl md:text-6xl">Projects</h1>
-        <p>Here lies a selection of my favourite projects over the past couple years.</p>
-      </div>
+  <article class="c-projects container pt-12" data-controller="lazy-images">
+      <h1 class="u-visually-hidden">Projects</h1>
     </header>
     {{ with .Site.GetPage "section" "projects" }}
-      <div class="o-layout c-projects__thumbnails mb-24" data-controller="project-thumbnails">
-        {{ range .Pages }}
-          <a href="#{{ .Title | urlize }}" class="c-projects__thumbnail w-full border border-grey-lighter rounded u-unstyled-link flex" data-title="{{ .Title }}" data-action="project-thumbnails#onClick">
-            {{ range first 1 (.Resources.ByType "image") }}
-              <picture class="w-full" data-target="browser.slide">
-                {{ $resource := . }}
-                {{ $desktop := $resource.Fill "190x110 Top" }}
-                {{ $desktopRetina := $resource.Fill "380x220 Top" }}
-                <source media="(min-width: {{ $lg }}px)" data-srcset="{{ $desktop.RelPermalink }}, {{ $desktopRetina.RelPermalink }} 2x" />
-                {{ $tablet := $resource.Fill "170x100 Top" }}
-                {{ $tabletRetina := $resource.Fill "340x200 Top" }}
-                <source media="(min-width: {{ $md }}px)" data-srcset="{{ $tablet.RelPermalink }}, {{ $tabletRetina.RelPermalink }} 2x" />
-                {{ $mobile := $resource.Fill "170x85 Top" }}
-                {{ $mobileRetina := $resource.Fill "340x170 Top" }}
-                <img data-src="{{ $mobile.RelPermalink }}" data-srcset="{{ $mobile.RelPermalink }} 2x" class="c-projects__thumbnail__image m-auto w-full lazy" />
-                <noscript>
-                  <img src="{{ $desktop.RelPermalink }}" srcset="{{ $desktop.RelPermalink }} 2x" class="c-projects__thumbnail__image m-auto w-full loaded" />
-                </noscript>
-              </picture>
-            {{ end }}
-          </a>
-        {{ end }}
-      </div>
       {{ range .Pages }}
         {{ partial "project.html" . }}
       {{ end }}
