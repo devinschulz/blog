@@ -44,6 +44,14 @@
   @media (--md-viewport) {
     height: 500px;
   }
+
+  .no-js & {
+    &.loading {
+      .c-browser__spinner {
+        display: none;
+      }
+    }
+  }
 }
 
 .c-browser__spinner {

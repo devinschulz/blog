@@ -18,7 +18,7 @@
           </div>
         {{ end }}
       </div>
-      <div class="c-browser__viewport bg-white relative" data-target="browser.viewport">
+      <div class="c-browser__viewport bg-white loading relative" data-target="browser.viewport">
         {{ range $index, $value := $images }}
           <div class="w-full" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>
             <picture>
