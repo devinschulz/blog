@@ -53,4 +53,9 @@ related:
 permalinks:
   posts: :title
 
+menus:
+  main:
+    - identifier: projects
+      name: Projects
+      url: /projects/
 

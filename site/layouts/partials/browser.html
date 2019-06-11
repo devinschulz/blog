@@ -1,0 +1,19 @@
+<div class="c-browser w-full mb-8">
+  <div class="c-browser__frame border">
+    <div class="c-browser__menu bg-white h-8 flex items-center">
+      <div class="flex ml-2 browser__controls">
+        <div class="c-browser__control"></div>
+        <div class="c-browser__control"></div>
+        <div class="c-browser__control"></div>
+      </div>
+      {{ with .ctx.Params.external }}
+        <div class="c-browser__input hidden md:block text-xxs bg-grey-lightest border border-grey-lighter px-4 mx-auto rounded text-grey-darker">
+          <a href="{{ . }}" class="text-grey-darker u-unstyled-link">{{ . }}</a>
+        </div>
+      {{ end }}
+    </div>
+    <div class="c-browser__viewport bg-white">
+
+    </div>
+  </div>
+</div>

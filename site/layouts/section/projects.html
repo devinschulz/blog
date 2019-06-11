@@ -1,0 +1,16 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{ $sm := 546 }}
+  {{ $md := 768 }}
+  {{ $lg := 840 }}
+  <article class="c-projects container pt-12" data-controller="lazy-images">
+      <h1 class="u-visually-hidden">Projects</h1>
+    </header>
+    {{ with .Site.GetPage "section" "projects" }}
+      {{ range .Pages }}
+        {{ partial "project.html" . }}
+      {{ end }}
+    {{ end }}
+  </article>
+{{ end }}
