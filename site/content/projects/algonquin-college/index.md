@@ -7,7 +7,7 @@ role: Full-stack development
 technologies:
 - JavaScript
 - PHP
-- SASS
+- Sass
 - Wordpress
 agency: Soshal
 agencyLink: https://soshal.ca

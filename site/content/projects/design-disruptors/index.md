@@ -6,7 +6,7 @@ range: 2015
 role: Full-stack development
 technologies:
 - JavaScript
-- SASS
+- Sass
 - ColdFusion
 goal: >-
   To build an eye catching landing page to help promote a film about the design

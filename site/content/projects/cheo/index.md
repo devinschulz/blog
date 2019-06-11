@@ -6,7 +6,7 @@ role: Front-end development
 technologies:
 - JavaScript
 - Angular
-- SASS
+- Sass
 agency: Soshal
 agencyLink: https://soshal.ca
 goal: To create a fun and interactive superhero character builder that helps

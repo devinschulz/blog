@@ -7,7 +7,7 @@ external: https://www.osgoode.yorku.ca
 technologies: 
 - JavaScript
 - Angular
-- SASS
+- Sass
 - Wordpress
 agency: Soshal
 agencyLink: https://soshal.ca

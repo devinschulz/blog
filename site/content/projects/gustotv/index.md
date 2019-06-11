@@ -7,7 +7,7 @@ role: Full-stack development
 technologies:
 - JavaScript
 - PHP
-- SASS
+- Sass
 - Wordpress
 goal: >- 
   To provide a new TV network, Gusto with a custom Wordpress theme which they

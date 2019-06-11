@@ -6,6 +6,6 @@ range: 2015
 role: Front-end development
 technologies:
 - JavaScript
-- SASS
 - Liquid template language
+- Sass
 ---
