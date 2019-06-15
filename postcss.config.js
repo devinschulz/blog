@@ -6,7 +6,7 @@ module.exports = env => ({
     require('postcss-simple-vars'),
     require('postcss-import'),
     require('postcss-nested'),
-    require('tailwindcss')(path.join(__dirname, './tailwind.js')),
+    require('tailwindcss')(path.join(__dirname, './tailwind.config.js')),
     require('postcss-preset-env')({
       browsers: 'last 2 versions',
     }),

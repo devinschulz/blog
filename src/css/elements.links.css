@@ -1,22 +1,22 @@
 a {
-  color: var(--color-blue);
+  color: theme('colors.blue');
   text-decoration: none;
   position: relative;
 
   &:focus,
   &:hover {
-    color: var(--color-blue-dark);
+    color: theme('colors.blue-dark');
   }
 
   &:not(.u-unstyled-link) {
-    text-shadow: -1px -1px 0 var(--color-white), 1px -1px 0 var(--color-white),
-      -1px 1px 0 var(--color-white), 1px 1px 0 var(--color-white);
+    text-shadow: -1px -1px 0 theme('colors.white'), 1px -1px 0 theme('colors.white'),
+      -1px 1px 0 theme('colors.white'), 1px 1px 0 theme('colors.white');
     background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0) 2px,
-      var(--color-blue-lighter) 2px,
-      var(--color-blue-lighter) 3px,
+      theme('colors.blue-lighter') 2px,
+      theme('colors.blue-lighter') 3px,
       rgba(0, 0, 0, 0) 3px
     );
 
@@ -25,8 +25,8 @@ a {
         to top,
         rgba(0, 0, 0, 0),
         rgba(0, 0, 0, 0) 2px,
-        var(--color-blue-lighter) 2px,
-        var(--color-blue-lighter) 2.5px,
+        theme('colors.blue-lighter') 2px,
+        theme('colors.blue-lighter') 2.5px,
         rgba(0, 0, 0, 0) 2.5px
       );
     }
@@ -37,8 +37,8 @@ a {
         to top,
         rgba(0, 0, 0, 0),
         rgba(0, 0, 0, 0) 2px,
-        var(--color-blue-dark) 2px,
-        var(--color-blue-dark) 3px,
+        theme('colors-blue-dark') 2px,
+        theme('colors-blue-dark') 3px,
         rgba(0, 0, 0, 0) 3px
       );
 
@@ -47,8 +47,8 @@ a {
           to top,
           rgba(0, 0, 0, 0),
           rgba(0, 0, 0, 0) 2px,
-          var(--color-blue-dark) 2px,
-          var(--color-blue-dark) 2.5px,
+          theme('colors-blue-dark') 2px,
+          theme('colors-blue-dark') 2.5px,
           rgba(0, 0, 0, 0) 2.5px
         );
       }
@@ -56,6 +56,6 @@ a {
   }
 
   &:active {
-    color: var(--color-blue-darker);
+    color: theme('colors-blue-darker');
   }
 }

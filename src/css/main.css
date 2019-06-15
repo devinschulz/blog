@@ -1,6 +1,6 @@
 @import 'settings.vars';
 
-@tailwind preflight;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -30,7 +30,6 @@
 @import 'components.toc';
 @import 'components.browser';
 @import 'components.project';
-@import 'components.projects';
 @import 'components.chevron';
 
 @import 'utilities.hyphen';

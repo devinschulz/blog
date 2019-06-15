@@ -1,5 +1,5 @@
 {{ with .Params.tags }}
-  <ul class="list-reset text-xs mb-2">
+  <ul class="text-xs mb-2 pl-0">
     {{ range . }}
       <li class="c-tag inline-block mr-1">
         <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="inline-block font-bold uppercase">

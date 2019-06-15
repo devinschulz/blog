@@ -1,8 +1,8 @@
 /* Background */
 .chroma {
-  color: var(--color-grey-lightest);
-  background-color: var(--color-grey-darkest);
-  border-radius: var(--rounded);
+  color: theme('colors.grey-lightest');
+  background-color: theme('colors.grey-darkest');
+  border-radius: theme('borderRadius.sm');
 }
 /* Error */
 .chroma .err {
@@ -44,7 +44,7 @@
 }
 /* LineNumbersTable */
 .chroma .lnt {
-  color: #999999;
+  color: theme('colors.grey-dark');
 }
 /* LineNumbers */
 .chroma .ln {
@@ -53,36 +53,36 @@
 }
 /* Keyword */
 .chroma .k {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* KeywordConstant */
 .chroma .kc {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* KeywordDeclaration */
 .chroma .kd {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* KeywordNamespace */
 .chroma .kn {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* KeywordPseudo */
 .chroma .kp {
-  color: var(--color-green);
+  color: theme('colors.green');
 }
 /* KeywordReserved */
 .chroma .kr {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* KeywordType */
 .chroma .kt {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* NameAttribute */
@@ -91,7 +91,7 @@
 }
 /* NameBuiltin */
 .chroma .nb {
-  color: var(--color-cyan);
+  color: theme('colors.cyan');
 }
 /* NameClass */
 .chroma .nc {
@@ -121,7 +121,7 @@
 }
 /* NameTag */
 .chroma .nt {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* NameVariable */
@@ -130,43 +130,43 @@
 }
 /* LiteralString */
 .chroma .s {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringAffix */
 .chroma .sa {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringBacktick */
 .chroma .sb {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringChar */
 .chroma .sc {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringDelimiter */
 .chroma .dl {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringDoc */
 .chroma .sd {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringDouble */
 .chroma .s2 {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringEscape */
 .chroma .se {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringHeredoc */
 .chroma .sh {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringInterpol */
 .chroma .si {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringOther */
 .chroma .sx {
@@ -174,15 +174,15 @@
 }
 /* LiteralStringRegex */
 .chroma .sr {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringSingle */
 .chroma .s1 {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralStringSymbol */
 .chroma .ss {
-  color: var(--color-orange);
+  color: theme('colors.orange');
 }
 /* LiteralNumber */
 .chroma .m {
@@ -214,7 +214,7 @@
 }
 /* OperatorWord */
 .chroma .ow {
-  color: var(--color-green);
+  color: theme('colors.green');
   font-weight: bold;
 }
 /* Comment */
@@ -267,20 +267,20 @@
 }
 /* GenericHeading */
 .chroma .gh {
-  color: #ffffff;
+  color: theme('colors.white');
   font-weight: bold;
 }
 /* GenericInserted */
 .chroma .gi {
-  color: #589819;
+  color: theme('colors.green-darker');
 }
 /* GenericOutput */
 .chroma .go {
-  color: #cccccc;
+  color: theme('colors.grey-light');
 }
 /* GenericPrompt */
 .chroma .gp {
-  color: #aaaaaa;
+  color: theme('colors.grey');
 }
 /* GenericStrong */
 .chroma .gs {
@@ -288,7 +288,7 @@
 }
 /* GenericSubheading */
 .chroma .gu {
-  color: #ffffff;
+  color: theme('colors.white');
   text-decoration: underline;
 }
 /* GenericTraceback */
@@ -301,5 +301,5 @@
 }
 /* TextWhitespace */
 .chroma .w {
-  color: #666666;
+  color: theme('colors.grey-darker');
 }

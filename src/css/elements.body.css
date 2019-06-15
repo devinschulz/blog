@@ -10,16 +10,16 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: theme('fontFamily.sans');
   letter-spacing: -0.004em;
 
   @supports (font-variation-settings: normal) {
-    font-family: var(--font-alt);
+    font-family: theme('fontFamily.alt');
   }
 }
 
 ::selection {
   background-color: #ffa;
-  color: var(--color-black);
+  color: theme('colors.black');
   text-shadow: none !important;
 }

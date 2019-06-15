@@ -1,8 +1,8 @@
-.c-divider {
-}
-
 .c-divider__bullet {
-  @apply bg-grey rounded-full inline-block mx-1;
+  background-color: theme('colors.grey');
+  border-radius: theme('borderRadius.full');
+  display: inline-block;
   width: 5px;
   height: 5px;
+  margin: 0 theme('margin.1')
 }

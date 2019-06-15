@@ -4,11 +4,11 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--color-black);
-  font-weight: var(--font-bold);
+  color: theme('colors.black');
+  font-weight: theme('fontWeight.bold');
   letter-spacing: -0.02em;
-  line-height: var(--leading-tight);
-  margin-bottom: var(--m-4);
+  line-height: theme('lineHeight.tight');
+  margin-bottom: theme('margin.4');
   margin-top: 0;
 
   + h1,
@@ -17,14 +17,14 @@ h6 {
   + h4,
   + h5,
   + h6 {
-    margin-top: calc(var(--m-2) * -1) !important;
+    margin-top: theme('margin.-2') !important;
   }
 
   a {
     color: inherit;
     background-image: none;
-    text-shadow: -1px -1px 0 var(--color-white), 1px -1px 0 var(--color-white),
-      -1px 1px 0 var(--color-white), 1px 1px 0 var(--color-white);
+    text-shadow: -1px -1px 0 theme('colors.white'), 1px -1px 0 theme('colors.white'),
+      -1px 1px 0 theme('colors.white'), 1px 1px 0 theme('colors.white');
 
     &:focus,
     &:hover {
@@ -32,8 +32,8 @@ h6 {
         to top,
         rgba(0, 0, 0, 0),
         rgba(0, 0, 0, 0) 2px,
-        var(--color-blue-light) 2px,
-        var(--color-blue-light) 3px,
+        theme('colors.blue-lighter') 2px,
+        theme('colors.blue-lighter') 3px,
         rgba(0, 0, 0, 0) 3px
       );
 
@@ -42,8 +42,8 @@ h6 {
           to top,
           rgba(0, 0, 0, 0),
           rgba(0, 0, 0, 0) 2px,
-          var(--color-blue-light) 2px,
-          var(--color-blue-light) 2.5px,
+          theme('colors.blue-lighter') 2px,
+          theme('colors.blue-lighter') 2.5px,
           rgba(0, 0, 0, 0) 2.5px
         );
       }
@@ -52,25 +52,25 @@ h6 {
 }
 
 h1 {
-  font-size: var(--text-4xl);
+  font-size: theme('fontSize.4xl');
 }
 
 h2 {
-  font-size: var(--text-3xl);
+  font-size: theme('fontSize.3xl');
 }
 
 h3 {
-  font-size: var(--text-2xl);
+  font-size: theme('fontSize.2xl');
 }
 
 h4 {
-  font-size: var(--text-xl);
+  font-size: theme('fontSize.xl');
 }
 
 h5 {
-  font-size: var(--text-lg);
+  font-size: theme('fontSize.lg');
 }
 
 h6 {
-  font-size: var(--text-md);
+  font-size: theme('fontSize.md');
 }

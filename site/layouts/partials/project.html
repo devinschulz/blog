@@ -69,14 +69,14 @@
         {{ end }}
       </p>
       <h2>{{ .Title }}</h2>
-      <ul class="list-reset">
+      <ul>
         {{ with .Params.role }}
           <li><strong>Role:</strong> {{ . }}</li>
         {{ end }}
         {{ with .Params.technologies }}
           <li>
             <strong>Technologies:</strong>
-            <ul class="list-reset mb-0 u-comma-list">
+            <ul class="mb-0 u-comma-list">
               {{ range . }}
                 <li>{{ . | markdownify }}</li>
               {{ end }}

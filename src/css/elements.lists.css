@@ -1,11 +1,11 @@
 ul,
 ol {
-  margin-bottom: var(--m-4);
-  padding-left: var(--m-4);
+  margin-bottom: theme('margin.4');
+  padding-left: theme('margin.4');
 
   > li {
     > img {
-      margin: var(--m-4) 0;
+      margin: theme('margin.4') 0;
     }
   }
 }
