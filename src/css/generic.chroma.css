@@ -20,7 +20,7 @@
 .chroma .lntable {
   border-spacing: 0;
   padding: 0;
-  margin: var(--m-8) 0;
+  margin: theme('margin.8') 0;
   border: 0;
   width: auto;
   overflow: auto;

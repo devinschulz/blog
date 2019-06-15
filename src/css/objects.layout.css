@@ -7,6 +7,14 @@
   @media (--md-viewport) {
     grid-template-columns: repeat(12, 1fr);
   }
+
+  /*
+   * 1. Firefox seems to blow the content out. Read more about it here:
+   *    https://css-tricks.com/preventing-a-grid-blowout
+   */
+  > [class*='o-layout-'] {
+    min-width: 0;
+  }
 }
 
 .o-layout--center {
