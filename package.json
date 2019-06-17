@@ -84,7 +84,7 @@
     "natives": "1.1.6"
   },
   "dependencies": {
-    "balloon-css": "^0.5.0",
+    "balloon-css": "^1.0.0",
     "core-js": "^2.6.9",
     "debounce": "^1.2.0",
     "stimulus": "^1.1.1",
