@@ -1,9 +1,5 @@
 .c-tag {
-  &:not(:last-of-type) {
-    &::after {
-      content: ',';
-      display: inline-block;
-      margin-left: -0.2em;
-    }
-  }
+  background-color: theme('colors.grey-lighter');
+  padding: theme('padding.1') theme('padding.2');
+  color: theme('color-black');
 }

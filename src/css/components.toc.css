@@ -1,4 +1,6 @@
 .c-toc {
+  font-size: theme('fontSize.sm');
+
   nav > ul,
   nav > ul > li > ul {
     padding-left: 0;

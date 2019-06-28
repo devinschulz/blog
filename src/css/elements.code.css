@@ -4,8 +4,8 @@
     border: 0;
     font-size: theme('fontSize.sm');
     padding: theme('padding.1');
-    background-color: theme('colors.green-lightest');
-    color: theme('colors.green-darkest');
+    background-color: theme('colors.grey-lightest');
+    color: theme('colors.black');
     hyphens: none;
   }
 }

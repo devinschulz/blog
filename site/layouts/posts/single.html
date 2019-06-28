@@ -3,33 +3,18 @@
 <div class="c-post container">
   <article class=" mb-12">
     <div class="o-layout">
-      <header class="o-layout--full py-12 text-center">
-        <div class="text-grey-darker mb-4 text-sm">
-          {{ with .Params.categories }}
-            {{ range . }}
-              <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="font-bold inline-block">{{ . }}</a>
-            {{ end }}
-          {{ end }}
-        {{ with .ReadingTime }}
-          <span>&middot;</span>
-          <span>{{ . }} min read</span>
-        {{ end }}
-          &middot;
-          {{ partial "datetime.html" . }}
-        </div>
-        <h1 class="text-3xl md:text-6xl text-center mb-4 md:mb-8">{{ .Title | title }}</h1>
-        {{ if .Params.tags }}
-          {{ partial "tags.html" . }}
-        {{ else }}
-          <div class="w-10 border-blue border-2 mx-auto"></div>
-        {{ end }}
+      <header class="py-12 o-layout--pushed">
+        {{ partial "post-meta.html" (dict "single" true "ctx" .) }}
+        <h1 class="text-3xl md:text-6xl mb-4 md:mb-8">{{ .Title | title }}</h1>
+        <div class="w-10 border-blue border-2"></div>
       </header>
       <div class="c-post__content o-layout--center">
         {{ .Content }}
-        <footer class="mt-12">
+        <footer class="mt-12 text-sm">
           {{ if .Lastmod }}
             <p class="italic">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
           {{ end }}
+          {{ partial "tags.html" . }}
         </footer>
       </div>
     </div>

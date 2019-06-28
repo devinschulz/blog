@@ -33,6 +33,14 @@
   }
 }
 
+.o-layout--pushed {
+  grid-column: 1 / span 6;
+
+  @media (--md-viewport) {
+    grid-column: 3 / span 10;
+  }
+}
+
 .o-layout--semi {
   grid-column: 1 / span 6;
 

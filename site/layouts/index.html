@@ -10,37 +10,17 @@
   {{ if ge $sectionCount 1 }}
     {{ $sectionName := index (.Site.Params.mainSections) 0 }}
     <div class="container">
-
-      {{ with .Site.GetPage "section" $sectionName }}
-        <header class="o-layout">
-          <div class="o-layout--center">
-            <h2 class="mb-8">Recent {{ .Title }}</h2>
-          </div>
-        </header>
-      {{ end }}
-
-      {{ $nPosts := $.Param "recent_posts_number" | default 3 }}
-
+      {{- $nPosts := $.Param "recent_posts_number" | default 3 -}}
       <section class="mb-12">
         {{ range (first $nPosts $section) }}
           {{ partial "summary.html" (dict "ctx" . "heading" "h3") }}
         {{ end }}
+        {{ if ge $sectionCount (add $nPosts 1) }}
+          {{ range (first 100 (after $nPosts $section)) }}
+            {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+          {{ end }}
+        {{ end }}
       </section>
-
-      {{ if ge $sectionCount (add $nPosts 1) }}
-        <section class="mb-12">
-          <header class="o-layout">
-            <div class="o-layout--center">
-              <h2 class="mb-8 mt-12">More</h2>
-            </div>
-          </header>
-          <div class="mb-8">
-            {{ range (first 4 (after $nPosts $section)) }}
-              {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
-            {{ end }}
-          </div>
-        </section>
-      {{ end }}
     </div>
   {{ end }}
 {{ end }}

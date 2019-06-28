@@ -1,17 +1,13 @@
-<div class="text-grey-darker text-sm mb-1">
-  {{ with .Params.categories }}
-    {{ range . }}
-        <a href="/categories/{{ . | urlize}}" class="font-bold inline-block">{{ . }}</a>
-      <span>&middot;</span>
-    {{ end }}
+<div class="text-grey-darker {{ if .single }}mb-4{{ else }}mb-1{{ end }} text-sm flex items-center">
+  {{ with .ctx.Params.categories }}
+    {{ $category := index . 0 }}
+    {{ partial "category-icon.html" (dict "icon" ($category | urlize) "class" "inline-block mr-2" "size" 18) }}
+    <a href="/categories/{{ $category | urlize}}" class="inline-block u-unstyled-link text-grey-darker">{{ $category }}</a>
+    <span class="mx-2">&middot;</span>
   {{ end }}
-  <time datetime="{{ .Date }}">
-    {{- if .shortDate -}}
-      {{- .ctx.Date.Format "January 2" -}}
-    {{- else -}}
-      {{- .ctx.Date.Format "January 2, 2006" -}}
-    {{- end -}}
-  </time>
-  <span>&middot;</span>
-  <span>{{ .ctx.ReadingTime }} min read</span>
+  {{ partial "datetime.html" .ctx }}
+  <span class="mx-2">&middot;</span>
+  {{ with .ctx.ReadingTime }}
+    <span>{{ . }} min read</span>
+  {{ end }}
 </div>

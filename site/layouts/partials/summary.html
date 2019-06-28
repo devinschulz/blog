@@ -1,28 +1,14 @@
 {{ $heading := .heading | default "h2" }}
 {{ $id := (default .ctx.File.UniqueID .ctx.Params.id) }}
 
-<article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-2{{ else }}mb-12{{ end }}">
+<article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-4{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
     <header class="c-summary__header mb-4">
-      <div class="text-grey-darker text-sm mb-1">
-        {{ with .ctx.Params.categories }}
-          {{ range . }}
-              <a href="/categories/{{ . | urlize}}" class="font-bold inline-block">{{ . }}</a>
-            <span>&middot;</span>
-          {{ end }}
-        {{ end }}
-
-        {{ partial "datetime.html" .ctx }}
-
-        {{ with .ctx.ReadingTime }}
-          <span>&middot;</span>
-          <span>{{ . }} min read</span>
-        {{ end }}
-      </div>
+      {{ partial "post-meta.html" (dict "single" false "ctx" .ctx) }}
       {{ $startTag := printf "<%s class=\"mb-0\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
-      <a href="{{ .ctx.RelPermalink }}" class="u-unstyled-link">{{ .ctx.Title | title }}</a>
+      <a href="{{ .ctx.RelPermalink }}" class="">{{ .ctx.Title | title }}</a>
       {{ $endTag | safeHTML }}
     </header>
     {{ if not .condensed }}
@@ -33,7 +19,10 @@
           <p>{{ .ctx.Summary }}</p>
         {{ end }}
       </div>
-      {{ partial "tags.html" .ctx }}
+    {{ else }}
+      {{ with .ctx.Description }}
+        <p>{{ . }}</p>
+      {{ end }}
     {{ end }}
   </div>
 </article>
