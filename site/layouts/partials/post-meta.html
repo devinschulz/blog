@@ -1,8 +1,27 @@
-<div class="text-grey-darker {{ if .single }}mb-4{{ else }}mb-1{{ end }} text-sm flex items-center">
+<div class="text-grey-darker {{ if .single }}mb-4{{ else }}mb-2{{ end }} text-sm flex items-center">
   {{ with .ctx.Params.categories }}
     {{ $category := index . 0 }}
-    {{ partial "category-icon.html" (dict "icon" ($category | urlize) "class" "inline-block mr-2" "size" 18) }}
-    <a href="/categories/{{ $category | urlize}}" class="inline-block u-unstyled-link text-grey-darker">{{ $category }}</a>
+    {{ $scratch := newScratch }}
+    {{ if eq $category "Static Sites" }}
+      {{ $scratch.Set "color" "blue" }}
+      {{ $scratch.Set "text" "white" }}
+    {{ else if eq $category "JavaScript" }}
+      {{ $scratch.Set "color" "yellow" }}
+      {{ $scratch.Set "text" "black" }}
+    {{ else if eq $category "Node" }}
+      {{ $scratch.Set "color" "green" }}
+      {{ $scratch.Set "text" "white" }}
+    {{ else }}
+      {{ $scratch.Set "color" "purple" }}
+      {{ $scratch.Set "text" "white" }}
+    {{ end }}
+    {{ $color := $scratch.Get "color" }}
+    {{ $textColor := $scratch.Get "text" }}
+    <div class="w-5 h-5 bg-{{ $color }} text-{{ $textColor }} font-bold inline-flex justify-center items-center text-sm leading-none">
+      {{- upper (substr $category 0 1) -}}
+    </div>
+    <span class="text-sm text-grey-darker mx-1">&mdash;</span>
+    <a href="/categories/{{ $category | urlize}}" class="inline-block u-unstyled-link text-sm text-grey-darker">{{ $category }}</a>
     <span class="mx-2">&middot;</span>
   {{ end }}
   {{ partial "datetime.html" .ctx }}

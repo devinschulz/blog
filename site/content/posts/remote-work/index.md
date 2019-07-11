@@ -5,7 +5,7 @@ slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12
 description: ""
 categories: 
-  - Life
+  - Remote Work
 tags:
   - Career
   - Remote

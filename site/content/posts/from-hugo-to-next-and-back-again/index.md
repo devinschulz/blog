@@ -2,7 +2,7 @@
 title: From Hugo to Next JS and Back Again
 date: 2019-05-18
 categories: 
-  - Programming
+  - Static Sites
 tags:
   - Static Site Generators
   - Performance

@@ -7,10 +7,9 @@ description: >-
 tags:
 - Google Cloud
 - Firebase
-- Node
 - Serverless
 categories: 
-- Programming
+- Node
 ---
 
 I took the challenge to build a likes button into this blog. Since the site is compiled and then deployed as flat files, there is no backend or database to manage. From a security aspect, there is no safer way to develop a website, but it does add a bit of complexity to incorporate dynamic content.

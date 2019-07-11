@@ -2,8 +2,6 @@
 id: 32779e118e414d84746d8775451f6de8
 title: Welcome Readers
 date: 2018-06-17
-categories:
-- Life
 ---
 
 I'm a designer turned web developer that specializes in front-end applications. As an advocate for best practices and proper schematics, I believe that the web should be open and accessible for everyone.

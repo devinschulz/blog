@@ -1,7 +1,7 @@
 {{ with .Params.tags }}
   <ul class="mb-2 pl-0">
     {{ range . }}
-      <li class="inline-block">
+      <li class="inline-block mr-2">
         <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="c-tag inline-block u-unstyled-link">
           {{- . -}}
         </a>
