@@ -5,8 +5,23 @@
   bottom: theme('margin.8');
   right: theme('margin.8');
 
+  &:active {
+    transform: translateY(100%) scale(0.95);
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: theme('colors.white');
+    background-color: theme('colors.black');
+  }
+
   &.visible {
     transform: translateY(0);
     opacity: 1;
+
+    &:active {
+      transform: translateY(0) scale(0.95);
+    }
   }
 }
