@@ -1,5 +1,6 @@
 a {
   color: theme('colors.black');
+  font-weight: theme('fontWeight.semibold');
   text-decoration: none;
   position: relative;
 

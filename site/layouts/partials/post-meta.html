@@ -21,7 +21,7 @@
       {{- upper (substr $category 0 1) -}}
     </div>
     <span class="text-sm text-grey-darker mx-1">&mdash;</span>
-    <a href="/categories/{{ $category | urlize}}" class="inline-block u-unstyled-link text-sm text-grey-darker">{{ $category }}</a>
+    <a href="/categories/{{ $category | urlize}}" class="font-normal inline-block u-unstyled-link text-sm text-grey-darker">{{ $category }}</a>
     <span class="mx-2">&middot;</span>
   {{ end }}
   {{ partial "datetime.html" .ctx }}
