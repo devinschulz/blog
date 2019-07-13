@@ -5,6 +5,7 @@
         {{ partial "social-follow" . }}
       </div>
       <small class="font-xs">&copy;{{ now.Format "2006" }} {{ .Site.Title }}</small>
+      <small data-target="loaded-in.time"></small>
     </div>
   </div>
   <a data-controller="scroll-top" data-action="scroll@window->scroll-top#checkPosition" href="#top" class="c-site-footer__scroll-top u-unstyled-link fixed shadow-md hover:shadow-lg rounded z-30 bg-grey-darkest py-2 px-4 text-sm text-white flex items-center justify-center">Back to top</a>
