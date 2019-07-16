@@ -20,21 +20,13 @@ export default class extends Controller {
       this.showSlide(this.index + 1)
     }
     this.enableOrDisable()
-
-    try {
-      ga('send', 'event', 'Project slider', 'next')
-    } catch (error) {}
   }
 
-  previous({ target }) {
+  previous() {
     if (this.hasPrevious()) {
       this.showSlide(this.index - 1)
     }
     this.enableOrDisable()
-
-    try {
-      ga('send', 'event', 'Project slider', 'previous')
-    } catch (error) {}
   }
 
   enableOrDisable() {

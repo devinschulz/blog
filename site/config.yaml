@@ -2,7 +2,6 @@ baseurl: /
 languageCode: en
 title: Devin Schulz
 titleCaseStyle: AP
-googleAnalytics: UA-48758540-1
 baseURL: https://devinschulz.com
 
 pygmentsCodeFences: true

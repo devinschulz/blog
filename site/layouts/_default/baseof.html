@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{ $.Site.LanguageCode | default "en" }}" data-controller="page-view js-loader">
+<html class="no-js" lang="{{ $.Site.LanguageCode | default "en" }}" data-controller="js-loader">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -45,15 +45,6 @@
   {{ $script := .Site.Data.webpack.main }}
   {{ with $script.js }}
     <script src="{{ relURL . }}" defer></script>
-  {{ end }}
-
-  {{ if or (eq (getenv "HUGO_ENV") "production") (eq (getenv "NODE_ENV") "production") }}
-    <script>
-      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-      ga('create', '{{ .Site.GoogleAnalytics }}', 'auto');
-      ga('set','transport','beacon');
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
   {{ end }}
 </head>
 
