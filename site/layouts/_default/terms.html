@@ -6,16 +6,20 @@
   </div>
 </article>
 <div>
-  <section>
+  <section class="container">
     {{ range $key, $value := .Data.Terms }}
-    <h2>
-      <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">
-        {{ $.Data.Singular | humanize }}: {{ $key }}
-      </a>
-    </h2>
-    {{ range $value.Pages }}
-      {{ partial "summary.html" (dict "ctx" .) }}
-    {{ end }}
+      <div class="o-layout">
+        <div class="o-layout--center">
+          <h2 class="mb-8">
+            <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">
+              {{ $.Data.Singular | humanize }}: {{ $key }}
+            </a>
+          </h2>
+        </div>
+      </div>
+      {{ range $value.Pages }}
+        {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+      {{ end }}
     {{ end }}
   </section>
 </div>

@@ -35,6 +35,10 @@
     <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
   {{ end }}
 
+  {{ with .Params.canonical }}
+    <link href="{{ . }}" rel="canonical" />
+  {{ end }}
+
   {{ $stylesheet := .Site.Data.webpack.main }}
   {{ with $stylesheet.css }}
     <link href="{{ relURL . }}" rel="stylesheet">

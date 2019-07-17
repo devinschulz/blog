@@ -1,5 +1,6 @@
 {{ with .Params.tags }}
-  <ul class="mb-2 pl-0">
+  <p class="inline mr-2">Tags:</p>
+  <ul class="mb-2 pl-0 inline">
     {{ range . }}
       <li class="inline-block mr-2">
         <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="inline-block u-unstyled-link rounded bg-grey-lightest hover:bg-black text-black hover:text-white text-sm py-1 px-2 hover:text-black font-normal">

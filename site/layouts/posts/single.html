@@ -12,7 +12,11 @@
         {{ .Content }}
         <footer class="mt-12 text-sm">
           {{ if .Lastmod }}
-            <p class="italic">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
+            <p class="italic{{ if .Params.canonical }} mb-0{{ end }}">Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time></p>
+          {{ end }}
+          {{ with .Params.canonical }}
+            {{ $url := urls.Parse . }}
+            <p class="italic">Originally published at <a href="{{ . }}">{{ $url.Host }}</a></p>
           {{ end }}
           {{ partial "tags.html" . }}
         </footer>
