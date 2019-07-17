@@ -33,7 +33,7 @@ thinking about how I could break a single piece of functionality down into
 independent pieces. If you think about it, there are really only two main
 pieces: the logic, and then the view.
 
-## Breaking down the task at hand
+## Breaking down the Task at Hand
 
 By breaking down a task into several smaller tickets, you immediately reap in
 all these benefits: You can give better estimates on how long a single ticket
@@ -49,7 +49,7 @@ I created a ticket to deal with outlining what values should be passed from the
 tickets have been created from what was originally one and can now be
 tracked and dealt with independently.
 
-## The outline
+## The Outline
 
 Every problem gives you better results if you sit down and think about how to
 approach it before execution. This step is a great time to bounce ideas off your
@@ -154,7 +154,7 @@ type Measurement {
 type Measurements Measurement[]
 ```
 
-## The business logic
+## The Business Logic
 
 The higher-order component contains all our business logic which is the heart of
 this functionality. Its job is to take the hover and selected layer and
@@ -297,7 +297,7 @@ const layerOverlapsLayer = overlaps(selected, highlighted)
 const cardinal = getDirection(selected, highlighted)
 ```
 
-### Layers which overlap
+### Layers Which Overlap
 
 Overlapping layers is the easier option of the two paths to calculate. The first
 step I chose to do here was to calculate all four sides of the selected layer
@@ -463,7 +463,7 @@ if (layer1.x < layer2.x) {
 return measurements
 ```
 
-### Non-overlapping layers
+### Non-Overlapping Layers
 
 Non-overlapping layers are when two layers do not intersect in any way. They are
 a bit more complicated to calculate since there are many more variables to
@@ -538,7 +538,7 @@ if (overlapsMiddleX || layer2.x >= layer1.x || x2Width > layer1.x) {
 }
 ```
 
-### Putting it all together
+### Putting It All Together
 
 So far I have thrown example after example at you but haven’t given you an idea
 how it all fits together. In the next example, I put together a super stripped
@@ -612,7 +612,7 @@ I skipped intentionally in this article since it’s already getting pretty
 long. There are two main things I didn’t cover so I’ll give you a brief
 synopsis.
 
-#### Zoom level
+#### Zoom Level
 
 Inspect allows users to adjust the zoom level from 13% to 800% which gets them
 up and close with the design. Since static measurements are used throughout,
@@ -623,7 +623,7 @@ measurement x, y, width, and height by the zoom level.
 const displayScale = (scale: number, value: number): number => value * scale
 ```
 
-#### Dotted helper lines
+#### Dotted Helper Lines
 
 Throughout the examples in this article, you may have noticed dotted lines which
 start in a corner of the selected layer. These lines are calculated similarly
@@ -634,7 +634,7 @@ measurements component. They are simply an array of positions.
 type Dotted []Position
 ```
 
-## The view
+## The View
 
 Now with the complicated part out of the way, I now needed to display the
 resulting measurements within the view. I try to use stateless components as

@@ -1,10 +1,10 @@
 ---
 id: e33ea876-a73d-4759-97d4-9859b791841a
-title: Reflecting on four years of remote work
+title: Reflecting on Four Years of Remote Work
 slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12
-description: ""
-categories: 
+description: ''
+categories:
   - Remote Work
 tags:
   - Career
@@ -23,25 +23,25 @@ When I had started back in December 2014, I was number seventy-six, and at the t
 
 Side note: [we're hiring!](https://boards.greenhouse.io/invision)
 
-## Take the good with the bad
+## Take the Good with the Bad
 
 Working the remote life is a tad different than most people imagine. When I tell people I work remotely, they always ask how I find the motivation to do the work. This is still an easy one to answer for me because if you love what you’re doing, it doesn't feel like work at all. Most of the time I'm sincere answering this, but remote life isn't always as glamorous as it seems. First, let us go over some of the goods before getting to some of the not so greats.
 
-## The goods
+## The Goods
 
-### Increased flexibility
+### Increased Flexibility
 
 It goes without saying that remote work gives way more flexibility than having to be in an office all day. You have the option to work from anywhere really, but I found the only places I’ve worked from are either my office, couch, or a nearby coffee shop. I know many people prefer having an office outside of home, and many people commute to their local co-working space. I may try this option in the future just to get out more.
 
 Have appointment midday? No problem! Just let your team know you’ll be back in a bit. Kids are home sick from daycare, and you have to watch them for a couple of hours while working? No problem! Never have I ever had any of my managers question or seem put off by the fact that life sometimes gets in the way. I can’t express how great this is! To be able to watch the kiddo for an hour or two in the middle of the day has done wonders. If it weren't for this flexibility, my wife and I would of either had to find someone to watch him or one of us would have to take part of the day off.
 
-### Reap in all the productivity
+### Reap in All the Productivity
 
 Nothing is worse when you finally get in the groove, and someone taps you on the shoulder to ask you some nonsensical question. When working remotely, you have the benefits of isolating yourself and blocking out all people and distractions. If I really want to get into the zone, I turn on “do not disturb” mode in Slack for an hour or two. Everyone on the team respects interrupting you whenever you are in this mode; unless it’s critical of course.
 
 Honestly, I feel like some of the best work I’ve done is in a remote setting. With no one around you are left alone with your thoughts. No people, notifications, and some great tunes = programmers bliss.
 
-### Transportation is a thing of the past
+### Transportation Is a Thing of the Past
 
 My commute to work in the morning and evening is a quick walk up or down stairs to and from my office. It didn't always use to be like this as I used to take two or three buses to get to work. This was not only time consuming (about an hour and a half one way), but incredibly dull and repetitive each day. Most days you finish work, and just want to get home as quickly as possible. Unfortunately, this is everyone else’s mentality too.
 
@@ -51,21 +51,21 @@ Since I no longer need to travel, there's no need to worry about the extra gas, 
 
 As contradictory as this sounds, I do occasionally miss the commute. While riding the bus, I got to take some time and do the smaller things that I enjoy, like reading, playing games on my phone or just mindlessly browsing Reddit while listening to music. Mind you I can do this all at home, but other priorities take precedence.
 
-### Less sick days
+### Less Sick Days
 
 One significant upside is catching way fewer colds. No longer do you have to come in close contact with other people from either the office, bus, or just about anyone else you bump into during your day. Before working from home, I used to get sick a couple of times a year (almost always during the fall), and if you know me in real life, I hate taking sick days. In these past four years, I’ve taken maybe 5 days off total.
 
 This was recently true until my toddler started going to daycare. Any parents that have children in daycare know that they seem to bring back most colds that go around. It feels like he brings back a cold every month or two and I seem to have a 50-50 chance of catching it.
 
-### Clothing: partially optional
+### Clothing: Partially Optional
 
 Lots of people that work remotely tout the fact that you only need to be presentable from the waist up. Personally, I feel incomplete if I’m half dressed. I do own at least 10 or more pairs of sweatpants and a couple of pairs of sweat shorts more than the average person, but I have never gone to work in my pyjamas.
 
 **Fun fact:** one guy on my team only wears shirts when we have a meeting because he lives in a tropical area. It’s funny to hear him say one second I need to put a shirt on when a spontaneous meeting is scheduled.
 
-## The not so greats
+## The Not so Greats
 
-### More responsibilities
+### More Responsibilities
 
 You often feel like you take on more responsibility and are held more accountable to what you say and do. It's not uncommon for me to work outside of office hours because my computer is literally a room away. You put in a couple extra hours after dinner, and before you know it, you’ve worked a 10 hour day.
 
@@ -77,17 +77,17 @@ The number one productivity killer for me is distractions. It’s all too easy t
 
 I can see how this sounds terrible from a management standpoint and that no one is there to tell you what you can and can’t do. Is this any worse than having random, pointless conversations at the office or having a group of people going out and grabbing a coffee? I can see how some people might need supervision to stay productive though, and remote work may not be the best option for them.
 
-### Visiting the outside world
+### Visiting the outside World
 
 Leaving the house usually requires a bit more effort, and in the winter months, it's even harder. I can easily go the entire week without leaving my house except for driving down the street to grab some coffee, sometimes multiple times a day. I used to go out running a couple nights a week and exercise more outside the house, but that motivation comes and goes.
 
-### Your mental state
+### Your Mental State
 
 After the initial hype of working remote sets in, you begin to realize your only face to face interactions become limited to your family, friends, and your pets. You do start to feel lonely sitting there, every day by yourself in your office and begin to doubt the choices you've made choosing a job where all coworker interactions are virtual.
 
 We as people try so hard to keep work and home separate, but working remotely wholly changed that for me. Once your day is done, it’s almost impossible to just switch from work mode to being a dad and not bring any emotions or troubles over from your day. At least with a commute home from work, I had the chance to decompress and put work aside before I got home.
 
-## Making remote life work for you
+## Making Remote Life Work for You
 
 I see remote work as the future since the goods outweigh the bads by a long shot. You have more freedom and flexibility than you would have in a traditional office, but there are a couple of things you should keep in mind before making the jump.
 

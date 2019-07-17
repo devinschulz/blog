@@ -2,14 +2,14 @@
 id: 73d1a8f1b7d7dda1b16a237b7bb63983
 title: Combining synchronous actions using Redux Thunk
 date: 2018-07-09T16:20:02-04:00
-description: >- 
+description: >-
   Learn how to use Redux Thunk for handling several synchronous actions at once
   to modify different areas of the application state.
-categories: 
-- JavaScript
-tags: 
-- Redux 
-- Unit Testing
+categories:
+  - JavaScript
+tags:
+  - Redux
+  - Unit Testing
 ---
 
 Simple front-end applications I’ve worked with have one event (click, keypress, input change, etc.), which dispatches a single action to modify part of the application state tree. At the time your application scales in complexity, that single event may need to perform several actions at once and perform some sort business logic before they are dispatched.
@@ -18,7 +18,7 @@ Simple front-end applications I’ve worked with have one event (click, keypress
 
 {{< toc >}}
 
-## A potential solution
+## A Potential Solution
 
 Recently I’ve been using [Redux Thunk](https://github.com/reduxjs/redux-thunk) for dispatching a single thunk action, and in turn, it dispatches several actions to modify independent areas of the application state. Think Redux Thunk is only for asynchronous actions? Think again! Never heard of Redux Thunk or the term thunk? No worries, I will go a bit more in-depth about how it works below.
 
@@ -81,7 +81,7 @@ const AddToCart = ({ addItemToCart, id }) => (
 )
 ```
 
-## Building a thunk action
+## Building a Thunk Action
 
 ```javascript
 // actions.js
@@ -131,7 +131,7 @@ const addToCart = item => ({
 })
 ```
 
-## Testing a thunk action
+## Testing a Thunk Action
 
 Testing thunk actions are a little bit different than testing regular actions. The main difference is we are no longer testing the returned value of an action, and instead of testing whether the dispatch is called with the correct values.
 
@@ -193,11 +193,11 @@ What I love the most about this approach is that all the logic is contained with
 
 This article has been written and updated to support the following versions:
 
-* **Redux:** 4.0.0
-* **Redux Thunk:** 2.3.0
-* **Jest:** 23.2.0
+- **Redux:** 4.0.0
+- **Redux Thunk:** 2.3.0
+- **Jest:** 23.2.0
 
 ## Additional Resources
 
-* [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
-* [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)
+- [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
+- [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)

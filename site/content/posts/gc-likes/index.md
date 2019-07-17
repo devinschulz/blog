@@ -5,11 +5,11 @@ date: 2018-11-05T21:41:18-04:00
 description: >-
   Learn how to use Google Cloud Functions to build a likes API with Node
 tags:
-- Google Cloud
-- Firebase
-- Serverless
-categories: 
-- Node
+  - Google Cloud
+  - Firebase
+  - Serverless
+categories:
+  - Node
 ---
 
 I took the challenge to build a likes button into this blog. Since the site is compiled and then deployed as flat files, there is no backend or database to manage. From a security aspect, there is no safer way to develop a website, but it does add a bit of complexity to incorporate dynamic content.
@@ -76,9 +76,9 @@ exports.likes = functions.https.onRequest(app)
 
 This is a bare-bones function and doesn't do much at this point. We are importing a few required packages, configuring the Firebase connection, and then spinning up an Express server to handle each request. If you were to deploy this as is and make a request to the functions endpoint, you would get back an `OK` message from Express.
 
-### Configuring the routes
+### Configuring the Routes
 
-#### GET a document
+#### GET a Document
 
 Starting with the GET request handler, let’s try and think for a second what this endpoint is going to do. A request from the client hits the Express server and then matches a specific route. The route needs to include the post ID to identify which document to query from the database. One caveat here is if the document doesn’t exist, we should return a default count instead of returning a 404 not found error.
 
@@ -106,7 +106,7 @@ We are using the [Express routing](https://expressjs.com/en/guide/routing.html) 
 
 The request comes in; we’ll look up a specific document in the likes collection using the ID. The Firebase API returns an `exists` property we can use to check if the document was previously in the collection. If the document exists, return the data by calling `doc.data()` or return a default value of zero.
 
-#### PUT to create or update a document
+#### Put to Create or Update a Document
 
 Without knowing much about the Firebase API, some developers may make the mistake of fetching a document using the `get` method and then calling `set` to increment the value.
 
@@ -144,7 +144,7 @@ const put = (req, res) =>
 
 Let’s take this line by line since a lot is going on here. First, we start a transaction against the database and then get the current document by ID. Firebase returns an object containing two main properties, exists and data. If the document exists, we’ll increment the current count by one or return a default value of one. Again, if the document exists, we’ll have to call the transaction update method to update the existing value. If the document does not exist, call set instead.
 
-#### Set vs update
+#### Set vs Update
 
 Knowing when to call set over update is important since set overwrites the existing document entirely. Calling `update` only updates the values you pass in. Take a look at the following example:
 

@@ -1,7 +1,7 @@
 ---
 title: From Hugo to Next JS and Back Again
 date: 2019-05-18
-categories: 
+categories:
   - Static Sites
 tags:
   - Static Site Generators
@@ -23,7 +23,7 @@ voice my own experience.
 
 {{< toc >}}
 
-## Choosing a static site generator
+## Choosing a Static Site Generator
 
 Since I'm primarily front-end focused and quite confident building almost
 anything with React, I figured it would be a great idea to rebuild my blog using
@@ -66,7 +66,7 @@ and exploring the framework and enjoyed how it was coming together. This
 experimental phase gave me confidence that is framework would be an excellent
 choice.
 
-## Building the blog with Next JS
+## Building the Blog with Next JS
 
 After going through the basic tutorials on the Next site, I was able to quickly
 build something that worked. One area where I got stuck was creating dynamic
@@ -120,7 +120,7 @@ A couple of months went by, and I decided to redesign my blog once again. This
 time I kept in mind of my past experiences and decided it would be best to build
 it again using Hugo.
 
-## Rebuilding the blog with Hugo again
+## Rebuilding the Blog with Hugo Again
 
 Now the question you might be wondering it is why I would switch back to Hugo?
 Simply put, Hugo has all the functionality I need at the present moment out of
@@ -156,7 +156,7 @@ of all, the CSS and JavaScript files are minuscule compared to what I had built
 with Next JS. At the time of writing this article, the main CSS file is
 a whopping 6.6 KB gzipped, and 34.4 KB gzipped for the JavaScript file.
 
-## Lessons learned
+## Lessons Learned
 
 One of the core recitations I learned was to pick the right tool for the job. As
 much as I love using React, it just didn't suit my needs for this one website.
