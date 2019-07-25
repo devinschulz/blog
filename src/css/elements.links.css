@@ -1,63 +1,20 @@
 a {
-  color: theme('colors.black');
-  font-weight: theme('fontWeight.semibold');
-  text-decoration: none;
-  position: relative;
+  color: theme('colors.blue.500');
+  text-decoration-skip-ink: auto;
+  text-decoration: underline theme('colors.blue.100');
 
   &:focus,
   &:hover {
-    color: theme('colors.blue-dark');
+    text-decoration-color: currentColor;
   }
 
-  &:not(.u-unstyled-link) {
-    text-shadow: -1px -1px 0 theme('colors.white'),
-      1px -1px 0 theme('colors.white'), -1px 1px 0 theme('colors.white'),
-      1px 1px 0 theme('colors.white');
-    background-image: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0) 2px,
-      theme('colors.grey') 2px,
-      theme('colors.grey') 3px,
-      rgba(0, 0, 0, 0) 3px
-    );
-
-    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-      background-image: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 0) 2px,
-        theme('colors.grey') 2px,
-        theme('colors.grey') 2.5px,
-        rgba(0, 0, 0, 0) 2.5px
-      );
-    }
+  .mode-dark & {
+    color: theme('colors.white');
+    text-decoration-color: theme('colors.grey.300');
 
     &:focus,
     &:hover {
-      background-image: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 0) 2px,
-        theme('colors-black') 2px,
-        theme('colors-black') 3px,
-        rgba(0, 0, 0, 0) 3px
-      );
-
-      @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-        background-image: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0) 2px,
-          theme('colors-black') 2px,
-          theme('colors-black') 2.5px,
-          rgba(0, 0, 0, 0) 2.5px
-        );
-      }
+      text-decoration-color: currentColor;
     }
-  }
-
-  &:active {
-    color: theme('colors-blue-darker');
   }
 }

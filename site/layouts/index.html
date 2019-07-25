@@ -13,11 +13,11 @@
       {{- $nPosts := $.Param "recent_posts_number" | default 3 -}}
       <section class="mb-12">
         {{ range (first $nPosts $section) }}
-          {{ partial "summary.html" (dict "ctx" . "heading" "h3") }}
+          {{ partial "summary.html" (dict "ctx" . "heading" "h2") }}
         {{ end }}
         {{ if ge $sectionCount (add $nPosts 1) }}
           {{ range (first 100 (after $nPosts $section)) }}
-            {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
+            {{ partial "summary.html" (dict "ctx" . "heading" "h2" "condensed" true) }}
           {{ end }}
         {{ end }}
       </section>

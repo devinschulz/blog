@@ -1,30 +1,38 @@
 .c-browser__menu {
   border-radius: theme('borderRadius.sm') theme('borderRadius.sm') 0 0;
-  border-bottom: 1px solid theme('colors.grey-lighter');
+  border-bottom: 1px solid theme('colors.grey.300');
+
+  .mode-dark & {
+    border-bottom: 1px solid theme('colors.grey.700');
+  }
 }
 
 .c-browser__frame {
-  border: 1px solid theme('colors.grey-lighter');
+  border: 1px solid theme('colors.grey.300');
   border-radius: theme('borderRadius.sm');
+
+  .mode-dark & {
+    border: 1px solid theme('colors.grey.700');
+  }
 }
 
 .c-browser__control {
-  background-color: theme('colors.grey-lighter');
+  background-color: theme('colors.grey.300');
   border-radius: theme('borderRadius.full');
   width: 10px;
   height: 10px;
+
+  .mode-dark & {
+    background-color: theme('colors.grey.700');
+  }
 
   & + & {
     margin-left: 5px;
   }
 }
 
-.c-browser__image {
-  .no-js & {
-    &.lazy {
-      display: none;
-    }
-  }
+.no-js .c-browser__image.lazy {
+  display: none;
 }
 
 .c-browser__viewport {

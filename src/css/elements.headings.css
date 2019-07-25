@@ -11,6 +11,10 @@ h6 {
   margin-bottom: theme('margin.4');
   margin-top: 0;
 
+  .mode-dark & {
+    color: theme('colors.grey.100');
+  }
+
   + h1,
   + h2,
   + h3,
@@ -23,6 +27,11 @@ h6 {
   a {
     color: inherit;
     font-weight: theme('fontWeight.bold');
+    text-decoration-color: theme('colors.grey.100');
+
+    .mode-dark & {
+      text-decoration-color: theme('colors.grey.500');
+    }
   }
 }
 

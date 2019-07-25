@@ -3,10 +3,10 @@
 <div class="c-post container">
   <article class=" mb-12">
     <div class="o-layout">
-      <header class="py-12 o-layout--pushed">
+      <header class="py-12 o-layout--center">
         {{ partial "post-meta.html" (dict "single" true "ctx" .) }}
-        <h1 class="text-3xl md:text-6xl mb-4 md:mb-8">{{ .Title | title }}</h1>
-        <div class="w-10 border-blue border-2"></div>
+        <h1 class="text-3xl md:text-5xl mb-4 md:mb-8">{{ .Title | title }}</h1>
+        <div class="w-10 border-blue-500 border-2"></div>
       </header>
       <div class="c-post__content o-layout--center">
         {{ .Content }}

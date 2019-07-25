@@ -5,20 +5,20 @@
 <div class="c-project mb-24" id="{{ .Title | urlize }}">
   <div class="c-browser w-full mb-8 loading" {{ if $hasMultipleImages }}data-controller="browser browser-image-loader" data-browser-index="0"{{ else }}data-controller="browser-image-loader"{{ end }}>
     <div class="c-browser__frame border">
-      <div class="c-browser__menu bg-white h-8 flex items-center relative">
+      <div class="c-browser__menu bg-white dark:bg-grey-850 h-8 flex items-center relative">
         <div class="flex ml-2 browser__controls absolute">
           <div class="c-browser__control"></div>
           <div class="c-browser__control"></div>
           <div class="c-browser__control"></div>
         </div>
         {{ with .Params.external }}
-          <div class="c-browser__input hidden md:block text-xxs bg-grey-lightest border border-grey-lighter px-4 mx-auto rounded text-grey-darker">
-            <a href="{{ . }}" rel="noreferrer" class="text-grey-darker u-unstyled-link">{{ . }}</a>
+          <div class="c-browser__input hidden md:block text-xxs bg-grey-50 dark:bg-grey-900 border border-grey-200 dark:border-grey-700 px-4 mx-auto rounded text-grey-700">
+            <a href="{{ . }}" rel="noreferrer" class="text-grey-700 dark:text-grey-300 no-underline">{{ . }}</a>
           </div>
         {{ end }}
       </div>
       {{ $projects := $.Site.GetPage "section" "projects" }}
-      <div class="c-browser__viewport bg-white relative loading" data-target="browser.viewport">
+      <div class="c-browser__viewport bg-white dark:bg-850 relative loading" data-target="browser.viewport">
         {{ .Scratch.Set "index" 0 }}
         {{ range .Params.images }}
           <div class="w-full" data-target="browser.slide" {{ if $hasMultipleImages }}data-action="swipeleft->browser#next swiperight->browser#previous"{{ end }}>

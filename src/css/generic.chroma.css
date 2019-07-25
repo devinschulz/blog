@@ -1,8 +1,13 @@
 /* Background */
 .chroma {
-  color: theme('colors.grey-lightest');
-  background-color: theme('colors.grey-darkest');
+  color: theme('colors.grey.100');
+  background-color: theme('colors.grey.900');
   border-radius: theme('borderRadius.sm');
+
+  .mode-dark & {
+    background-color: theme('colors.grey.850');
+    color: theme('colors.grey.100');
+  }
 }
 /* Error */
 .chroma .err {
@@ -44,7 +49,7 @@
 }
 /* LineNumbersTable */
 .chroma .lnt {
-  color: theme('colors.grey-dark');
+  color: theme('colors.grey.400');
 }
 /* LineNumbers */
 .chroma .ln {
@@ -186,31 +191,31 @@
 }
 /* LiteralNumber */
 .chroma .m {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* LiteralNumberBin */
 .chroma .mb {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* LiteralNumberFloat */
 .chroma .mf {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* LiteralNumberHex */
 .chroma .mh {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* LiteralNumberInteger */
 .chroma .mi {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* LiteralNumberIntegerLong */
 .chroma .il {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* LiteralNumberOct */
 .chroma .mo {
-  color: var(--color-blue-lighter);
+  color: theme('colors.blue.300');
 }
 /* OperatorWord */
 .chroma .ow {
@@ -276,7 +281,7 @@
 }
 /* GenericOutput */
 .chroma .go {
-  color: theme('colors.grey-light');
+  color: theme('colors.grey.300');
 }
 /* GenericPrompt */
 .chroma .gp {
@@ -301,5 +306,5 @@
 }
 /* TextWhitespace */
 .chroma .w {
-  color: theme('colors.grey-darker');
+  color: theme('colors.grey.700');
 }

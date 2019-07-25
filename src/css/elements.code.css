@@ -4,9 +4,14 @@
     border: 0;
     font-size: theme('fontSize.sm');
     padding: theme('padding.1');
-    background-color: theme('colors.grey-lightest');
+    background-color: theme('colors.grey.100');
     color: theme('colors.black');
     hyphens: none;
+
+    .mode-dark & {
+      background-color: theme('colors.grey.850');
+      color: theme('colors.grey.100');
+    }
   }
 }
 
@@ -18,6 +23,10 @@ pre {
   font-family: theme('fontFamily.mono');
   font-size: theme('fontSize.sm');
   overflow: auto;
+
+  .mode-dark & {
+    background-color: theme('colors.grey.850');
+  }
 
   code {
     display: inline-block;

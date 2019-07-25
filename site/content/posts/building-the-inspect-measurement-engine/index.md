@@ -166,8 +166,8 @@ typically what a developer is most interested in to set the position, margin or
 padding of an element. There are two main paths which the logic can follow,
 either the selected and hover layer are overlapping each other, or they are not.
 
-{{< figure src="./overlapping.png" alt="Two layers which intersect" caption="Two layers which intersect" >}}
-{{< figure src="./relation.png" alt="Two layers in relation to eachother" caption="Two layers in relation to eachother" >}}
+{{< figure src="./overlapping.png" caption="Two layers which intersect" >}}
+{{< figure src="./relation.png" caption="Two layers in relation to eachother" >}}
 
 Before I dive into both paths, there are a couple of checks which need to
 happen. First, I need to determine if only selected layers are passed in or both
@@ -222,7 +222,7 @@ starts at zero and increments in a clockwise fashion. Starting from the middle,
 eight, I need to determine where the second layer is in relation to the first
 one.
 
-{{< figure src="./directions.png" alt="Each direction numbered from one to eight in relation to the center" caption="Each direction numbered from one to eight in relation to the center" >}}
+{{< figure src="./directions.png" caption="Each direction numbered from one to eight in relation to the center" >}}
 
 ```js
 const BOTTOM = 5
@@ -252,7 +252,7 @@ the cardinal direction between the two layers. This can be accomplished by
 determining the absolute center of both layers and then calculating the angle
 between the two.
 
-{{< figure src="./angle.png" alt="Two shapes with their centers marked and a line drawn between the two to demonstrate the angle" caption="Two shapes with their centers marked and a line drawn between the two to demonstrate the angle" >}}
+{{< figure src="./angle.png" caption="Two shapes with their centers marked and a line drawn between the two to demonstrate the angle" >}}
 
 ```js
 const getDirection = (layer1: Layer, layer2: Layer): number => {
@@ -320,7 +320,7 @@ below determines the central intersection point between two layers. This
 function is essential to center the line vertically or horizontally between two
 facing sides.
 
-{{< figure src="./intersection.png" alt="Two layers which intersect" caption="Two layers which intersect" >}}
+{{< figure src="./intersection.png" caption="Two layers which intersect" >}}
 
 ```js
 const intersection = (layer1: Layer, layer2: Layer): Point => {
@@ -513,8 +513,8 @@ that some cases did not display what I had expected to see. Whenever a layer is
 in-between two directions, lets say `TOP` and `TOP_LEFT`, it would fall into the
 `TOP_LEFT` case.
 
-{{< figure src="./actual.png" alt="Actual result" caption="Actual result" >}}
-{{< figure src="./expected.png" alt="Expected" caption="Expected" >}}
+{{< figure src="./actual.png"  caption="Actual result" >}}
+{{< figure src="./expected.png" caption="Expected" >}}
 
 I added an if statement to all four corners (sides 0, 2, 4, and 6) to check if
 either the hover layer overlaps the selected layer or the hover layer extends

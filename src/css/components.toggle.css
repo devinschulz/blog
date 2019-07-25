@@ -1,0 +1,18 @@
+.toggle {
+  svg {
+    width: 100%;
+    height: auto;
+  }
+  .i-sun {
+    display: none;
+  }
+}
+
+.mode-dark {
+  .i-moon {
+    display: none;
+  }
+  .i-sun {
+    display: block;
+  }
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{ $.Site.LanguageCode | default "en" }}" data-controller="js-loader">
+<html class="no-js" lang="{{ $.Site.LanguageCode | default "en" }}" data-controller="js-loader theme">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -52,7 +52,7 @@
   {{ end }}
 </head>
 
-<body class="font-normal leading-normal text-grey-darkest text-left m-0 {{ .Kind }}" data-controller="smooth-scroll loaded-in">
+<body class="font-normal leading-normal text-grey-900 text-left m-0 dark:bg-grey-900 dark:text-grey-200 {{ .Kind }}" data-controller="smooth-scroll loaded-in">
   <div id="top" tabindex="-1" class="outline-none"></div>
   {{ block "header" . }}{{ partial "page-header.html" .}}{{ end }}
   <main role="main">
