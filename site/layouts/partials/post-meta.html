@@ -6,19 +6,24 @@
       {{ $scratch.Set "color" "blue-500" }}
       {{ $scratch.Set "text" "white" }}
     {{ else if eq $category "JavaScript" }}
-      {{ $scratch.Set "color" "yellow" }}
-      {{ $scratch.Set "text" "black" }}
+      {{ $scratch.Set "logo" "js-logo" }}
     {{ else if eq $category "Node" }}
-      {{ $scratch.Set "color" "green" }}
-      {{ $scratch.Set "text" "black" }}
+      {{ $scratch.Set "logo" "node-logo" }}
+    {{ else if eq $category "React" }}
+      {{ $scratch.Set "logo" "react-logo" }}
     {{ else }}
       {{ $scratch.Set "color" "purple" }}
       {{ $scratch.Set "text" "white" }}
     {{ end }}
     {{ $color := $scratch.Get "color" }}
     {{ $textColor := $scratch.Get "text" }}
-    <div class="w-5 h-5 bg-{{ $color }} text-{{ $textColor }} font-bold inline-flex justify-center items-center text-sm leading-none">
-      {{- upper (substr $category 0 1) -}}
+    {{ $logo := $scratch.Get "logo" }}
+    <div class="{{ if not $logo }}bg-{{ $color }} text-{{ $textColor }} {{ end }}w-5 h-5 inline-flex justify-center items-center leading-none">
+      {{ if $scratch.Get "logo" }}
+        {{ partial (printf "svg/%s.svg" ($scratch.Get "logo")) }}
+      {{ else }}
+        {{- upper (substr $category 0 1) -}}
+      {{ end  }}
     </div>
     <span class="text-sm mx-1">&mdash;</span>
     <a href="/categories/{{ $category | urlize}}" class="font-normal inline-block text-sm text-grey-700 dark:text-grey-300 no-underline hover:underline">{{ $category }}</a>

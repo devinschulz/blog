@@ -7,7 +7,6 @@ tags:
   - Static Site Generators
   - Performance
   - Hugo
-  - React
 description: Learn about why I choose Hugo over a React based static site generator for my blog.
 ---
 
