@@ -4,12 +4,12 @@
     border: 0;
     font-size: theme('fontSize.sm');
     padding: theme('padding.1');
-    background-color: theme('colors.grey.100');
+    background-color: theme('colors.grey.50');
     color: theme('colors.black');
     hyphens: none;
 
     .mode-dark & {
-      background-color: theme('colors.grey.850');
+      background-color: theme('colors.grey.700');
       color: theme('colors.grey.100');
     }
   }
