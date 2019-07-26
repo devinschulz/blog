@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
-  <meta name="description" content="{{ default .Site.Params.description .Description }}">
+
+  <meta name="description" content="{{ (default .Site.Params.description .Description) }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="msapplication-TileColor" content="#da532c" />
   <meta name="p:domain_verify" content="e3bcb69d2d6d3d289136e8c9302e6dcd" />
