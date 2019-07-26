@@ -3,12 +3,14 @@ id: e33ea876-a73d-4759-97d4-9859b791841a
 title: Reflecting on Four Years of Remote Work
 slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12
-description: ''
 categories:
   - Remote Work
 tags:
   - Career
   - Remote
+description: >-
+  Learn about the good and bads I've experienced while working
+  remotely over the past four years.
 ---
 
 Throughout the past four years, I've had the opportunity to work for a unique, design focused company called [InVision](https://invisionapp.com). For those not familiar with InVision, it is growing to be the operating system for digital product design. Its product line provides tools for designers, developers, and stakeholders to collaborate on designing and building websites, mobile applications, and almost anything else that is displayed on a screen.
