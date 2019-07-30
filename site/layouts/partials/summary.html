@@ -1,7 +1,7 @@
 {{ $heading := .heading | default "h2" }}
 {{ $id := (default .ctx.File.UniqueID .ctx.Params.id) }}
 
-<article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-4{{ else }}mb-12{{ end }}">
+<article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-6{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
     <header class="c-summary__header mb-4">
       {{ partial "post-meta.html" (dict "single" false "ctx" .ctx) }}
