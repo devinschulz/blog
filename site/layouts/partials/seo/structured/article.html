@@ -5,8 +5,8 @@
   "author": {
     "name" : "{{ .Params.author }}"
   },
-  "headline": "{{ .Title }}",
-  "description": "{{ default .Params.description .Description }}",
+  "headline": "{{ .Title | safeJS }}",
+  "description": {{ printf "\"%s\"" .Params.Description | safeJS }},
   "wordCount": {{ .WordCount }},
   "datePublished" : "{{ .PublishDate.Format "2006-01-02T15:04:05" }}",
   {{ if .Lastmod }}
