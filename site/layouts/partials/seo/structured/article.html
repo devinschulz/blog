@@ -3,7 +3,7 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : "{{ .Params.author }}"
+    "name" : "Devin Schulz"
   },
   "headline": "{{ .Title | safeJS }}",
   "description": {{ printf "\"%s\"" .Params.Description | safeJS }},
@@ -31,7 +31,7 @@
   "mainEntityOfPage" : "{{ .Permalink }}",
   "publisher" : {
     "@type": "Person",
-    "name" : "Devin Schulz",
+    "name" : "Devin Schulz"
   }
 }
 </script>
