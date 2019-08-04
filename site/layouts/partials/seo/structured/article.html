@@ -6,7 +6,7 @@
     "name" : "Devin Schulz"
   },
   "headline": "{{ .Title | safeJS }}",
-  "description": {{ printf "\"%s\"" .Params.Description | safeJS }},
+  "description": "{{ .Params.Description | safeJS }}",
   "wordCount": {{ .WordCount }},
   "datePublished" : "{{ .PublishDate.Format "2006-01-02T15:04:05" }}",
   {{ if .Lastmod }}
