@@ -8,3 +8,14 @@ node_modules
 site/data/webpack.json
 dist
 .tern-port
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
