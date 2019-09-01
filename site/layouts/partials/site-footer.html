@@ -1,8 +1,12 @@
 <footer role="contentinfo" class="c-site-footer container pt-12 pb-6">
   <div class="o-layout text-sm dark:text-grey-300">
     <div class="o-layout--center">
-      <div>
+      <div class="lowercase">
         {{ partial "social-follow" . }}
+        &middot;
+        <a href="/posts/index.xml">RSS</a>
+        &middot;
+        <a href="/privacy">Privacy</a>
       </div>
       <small class="font-xs">&copy;{{ now.Format "2006" }} {{ .Site.Title }}</small>
       <small data-target="loaded-in.time"></small>

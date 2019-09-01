@@ -1,14 +1,16 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
 <div class="container">
-  <article>
-    <header>
-      {{ with .Section }}<p>{{ humanize . | upper }}</p>{{ end }}
-      <h1>{{ .Title }}</h1>
-    </header>
-    <div>
-      {{ .Content }}
-    </div>
-  </article>
+  <div class="o-layout">
+    <article class="o-layout--center">
+      <header>
+        {{ with .Section }}<p>{{ humanize . | upper }}</p>{{ end }}
+        <h1>{{ .Title }}</h1>
+      </header>
+      <div>
+        {{ .Content }}
+      </div>
+    </article>
+  </div>
 </div>
 {{ end }}
