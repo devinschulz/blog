@@ -1,6 +1,9 @@
 import { Controller } from 'stimulus'
 import 'tocca'
 
+const ENABLE = 'enable'
+const DISABLE = 'disable'
+
 export default class extends Controller {
   static targets = ['slide', 'next', 'previous', 'viewport', 'index']
 
@@ -43,12 +46,12 @@ export default class extends Controller {
   }
 
   enableOrDisablePrevious() {
-    const method = this.hasPrevious() ? 'enable' : 'disable'
+    const method = this.hasPrevious() ? ENABLE : DISABLE
     this.previousButton.forEach(this[method])
   }
 
   enableOrDisableNext() {
-    const method = this.hasNext() ? 'enable' : 'disable'
+    const method = this.hasNext() ? ENABLE : DISABLE
     this.nextButton.forEach(this[method])
   }
 
