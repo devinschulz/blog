@@ -1,36 +1,11 @@
 <div class="text-grey-700 {{ if .single }}mb-4{{ else }}mb-2{{ end }} text-sm flex items-center dark:text-grey-300">
   {{ with .ctx.Params.categories }}
     {{ $category := index . 0 }}
-    {{ $scratch := newScratch }}
-    {{ if eq $category "Static Sites" }}
-      {{ $scratch.Set "color" "blue-500" }}
-      {{ $scratch.Set "text" "white" }}
-    {{ else if eq $category "JavaScript" }}
-      {{ $scratch.Set "logo" "js-logo" }}
-    {{ else if eq $category "Node" }}
-      {{ $scratch.Set "logo" "node-logo" }}
-    {{ else if eq $category "React" }}
-      {{ $scratch.Set "logo" "react-logo" }}
-    {{ else }}
-      {{ $scratch.Set "color" "purple" }}
-      {{ $scratch.Set "text" "white" }}
-    {{ end }}
-    {{ $color := $scratch.Get "color" }}
-    {{ $textColor := $scratch.Get "text" }}
-    {{ $logo := $scratch.Get "logo" }}
-    <div class="{{ if not $logo }}bg-{{ $color }} text-{{ $textColor }} {{ end }}w-5 h-5 inline-flex justify-center items-center leading-none">
-      {{ if $scratch.Get "logo" }}
-        {{ partial (printf "svg/%s.svg" ($scratch.Get "logo")) }}
-      {{ else }}
-        {{- upper (substr $category 0 1) -}}
-      {{ end  }}
-    </div>
-    <span class="text-sm mx-1">&mdash;</span>
-    <a href="/categories/{{ $category | urlize}}" class="font-normal inline-block text-sm text-grey-700 dark:text-grey-300 no-underline hover:underline">{{ $category }}</a>
-    <span class="mx-2">&middot;</span>
+    <a href="/categories/{{ $category | urlize}}" class="font-normal inline-block text-sm no-underline hover:underline">{{ $category }}</a>
+    <span class="mx-1">/</span>
   {{ end }}
   {{ partial "datetime.html" .ctx }}
-  <span class="mx-2">&middot;</span>
+  <span class="mx-1">/</span>
   {{ with .ctx.ReadingTime }}
     <span>{{ . }} min read</span>
   {{ end }}
