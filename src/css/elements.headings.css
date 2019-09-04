@@ -26,7 +26,6 @@ h6 {
 
   a {
     color: inherit;
-    font-weight: theme('fontWeight.bold');
     text-decoration-color: theme('colors.grey.100');
 
     .mode-dark & {
@@ -36,19 +35,19 @@ h6 {
 }
 
 h1 {
-  font-size: theme('fontSize.3xl');
+  font-size: theme('fontSize.4xl');
 }
 
 h2 {
-  font-size: theme('fontSize.2xl');
+  font-size: theme('fontSize.3xl');
 }
 
 h3 {
-  font-size: theme('fontSize.xl');
+  font-size: theme('fontSize.2xl');
 }
 
 h4 {
-  font-size: theme('fontSize.l');
+  font-size: theme('fontSize.1xl');
 }
 
 h5 {
