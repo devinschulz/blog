@@ -87,7 +87,7 @@
     "balloon-css": "^1.0.3",
     "core-js": "^2.6.9",
     "debounce": "^1.2.0",
-    "eslint-config-standard": "^13.0.1",
+    "eslint-config-standard": "^14.1.0",
     "stimulus": "^1.1.1",
     "tailwindcss-dark-mode": "^1.0.3",
     "tocca": "^2.0.4",
