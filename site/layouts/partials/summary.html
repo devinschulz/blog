@@ -4,7 +4,7 @@
 <article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-6{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
     <header class="c-summary__header mb-4">
-      {{ $startTag := printf "<%s class=\"mb-1\">" $heading }}
+      {{ $startTag := printf "<%s class=\"mb-2\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
       <a href="{{ .ctx.RelPermalink }}">{{ .ctx.Title | title }}</a>
