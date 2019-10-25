@@ -44,18 +44,15 @@
         <footer class="mt-12 text-sm">
           {{ partial "tags.html" . }}
           {{ if .Lastmod }}
-          <p class="italic mb-0 mt-4">
-            Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
-          </p>
+            <p class="italic mb-0 mt-4">
+              Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
+            </p>
           {{ end }}
           {{ with .Params.canonical }}
             {{ $url := urls.Parse . }}
-            <p class="italic">Originally published at <a href="{{ . }}">{{ $url.Host }}</a></p>
-            {{ end }}
-            <p class="">
-            Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/site/content/{{ .File.Path }}">Edit on Github</a>
-          </p>
-
+            <p>Originally published at <a href="{{ . }}">{{ $url.Host }}</a></p>
+          {{ end }}
+          <p>Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/site/content/{{ .File.Path }}">Edit on Github</a></p>
         </footer>
       </div>
     </div>
