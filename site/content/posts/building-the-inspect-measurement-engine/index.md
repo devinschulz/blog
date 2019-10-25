@@ -1,6 +1,7 @@
 ---
 title: Building the Inspect Measurement Engine
 date: 2019-07-17
+credit: Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on [Unsplash](https://unsplash.com)
 categories:
   - React
 tags:

@@ -2,6 +2,7 @@
 id: e33ea876-a73d-4759-97d4-9859b791841a
 title: Reflecting on Four Years of Remote Work
 slug: reflecting-on-four-years-of-remote-work
+credit: Photo by [Drew Coffman](https://unsplash.com/@drewcoffman) on [Unsplash](https://unsplash.com)
 date: 2019-03-12
 categories:
   - Remote Work

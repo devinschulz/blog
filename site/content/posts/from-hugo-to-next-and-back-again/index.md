@@ -1,6 +1,7 @@
 ---
 title: From Hugo to Next JS and Back Again
 date: 2019-05-18
+credit: Photo by [_M_V_](https://unsplash.com/@_m_v_) on [Unsplash](https://unsplash.com)
 categories:
   - Static Sites
 tags:
