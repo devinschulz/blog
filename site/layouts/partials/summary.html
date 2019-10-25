@@ -4,12 +4,12 @@
 <article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-6{{ else }}mb-12{{ end }}">
   <div class="o-layout--center">
     <header class="c-summary__header mb-4">
+      {{ partial "post-meta.html" (dict "single" false "ctx" .ctx) }}
       {{ $startTag := printf "<%s class=\"mb-2\">" $heading }}
       {{ $endTag := printf "</%s>" $heading }}
       {{ $startTag | safeHTML }}
       <a href="{{ .ctx.RelPermalink }}">{{ .ctx.Title | title }}</a>
       {{ $endTag | safeHTML }}
-      {{ partial "post-meta.html" (dict "single" false "ctx" .ctx) }}
     </header>
     {{ if not .condensed }}
       <div class="c-summary__intro u-hyphen">

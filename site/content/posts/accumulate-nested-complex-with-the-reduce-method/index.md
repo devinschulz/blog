@@ -1,6 +1,7 @@
 ---
 title: Accumulate Complex Objects With the Reduce Method
 date: 2019-07-29
+credit: Photo by [Jonathan Borba](https://unsplash.com/@jonathanborba) on [Unsplash](https://unsplash.com)
 description: >-
   Learn how to recursively reduce a nested data structure by harnessing the power
   of the Array.reduce method.
