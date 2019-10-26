@@ -72,6 +72,10 @@
   text-align: center;
 }
 
+.c-browser__button[disabled] {
+  opacity: 0.5;
+}
+
 .c-browser__button--previous {
   transform: scaleX(-1);
 }
