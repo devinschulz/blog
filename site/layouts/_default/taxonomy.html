@@ -1,16 +1,10 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
-  <article class="container o-layout">
+  <section class="container o-layout">
     <div class="o-layout--center">
       <h1 class="mb-12">Articles tagged "{{ .Title }}"</h1>
+      {{ partial "summaries" .Pages }}
     </div>
-  </article>
-  <div>
-    <section class="container">
-      {{ range .Pages }}
-        {{ partial "summary.html" (dict "ctx" . "condensed" true) }}
-      {{ end }}
-    </section>
-  </div>
+  </section>
 {{ end }}

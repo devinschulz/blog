@@ -1,26 +1,15 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
-  {{ $mainSections := .Site.Params.mainSections | default (slice "posts") }}
   {{ $section := where .Site.RegularPages "Section" "posts" }}
-  {{ $sectionCount := len $section }}
-
   {{ partial "intro" . }}
 
-  {{ if ge $sectionCount 1 }}
-    {{ $sectionName := index (.Site.Params.mainSections) 0 }}
-    <div class="container">
-      {{- $nPosts := $.Param "recent_posts_number" | default 3 -}}
-      <section class="mb-12">
-        {{ range (first $nPosts $section) }}
-          {{ partial "summary.html" (dict "ctx" . "heading" "h2") }}
-        {{ end }}
-        {{ if ge $sectionCount (add $nPosts 1) }}
-          {{ range (first 100 (after $nPosts $section)) }}
-            {{ partial "summary.html" (dict "ctx" . "heading" "h2" "condensed" true) }}
-          {{ end }}
-        {{ end }}
-      </section>
+  <section class="container">
+    <div class="o-layout">
+      <div class="o-layout--center">
+        <h3>Latest Posts</h3>
+        {{ partial "summaries.html" $section }}
+      </div>
     </div>
-  {{ end }}
+  </section>
 {{ end }}

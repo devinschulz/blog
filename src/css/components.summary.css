@@ -1,3 +1,34 @@
-.c-summary:last-child {
-  margin-bottom: 0;
+.c-summaries {
+  &:hover {
+    .c-summary:not(:hover) {
+      opacity: 0.6;
+    }
+  }
+}
+
+.c-summary {
+  transition: opacity 0.1s ease;
+
+  &:hover {
+    transition: none;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+
+  &:visited {
+    .c-summary__visited {
+      color: theme('colors.blue.500');
+    }
+  }
+}
+
+.c-summary__visited {
+  color: white;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  outline: none;
 }

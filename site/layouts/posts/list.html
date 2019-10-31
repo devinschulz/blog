@@ -9,9 +9,7 @@
             <h2>{{ $value.Key }}</h2>
           </div>
         </div>
-        {{ range $value.Pages }}
-          {{ partial "summary.html" (dict "ctx" . "condensed" true "heading" "h3") }}
-        {{ end }}
+        {{ partial "summaries.html" $value.Pages }}
       {{ end }}
     </section>
     {{ template "_internal/pagination.html" . }}

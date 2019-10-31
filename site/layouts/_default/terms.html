@@ -7,20 +7,18 @@
 </article>
 <div>
   <section class="container">
-    {{ range $key, $value := .Data.Terms }}
-      <div class="o-layout">
-        <div class="o-layout--center">
+    <div class="o-layout">
+      <div class="o-layout--center">
+        {{ range $key, $value := .Data.Terms }}
           <h2 class="mb-8">
             <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">
-              {{ $.Data.Singular | humanize }}: {{ $key }}
+              {{ $.Data.Singular | humanize }}: {{ $key | humanize | title }}
             </a>
           </h2>
-        </div>
+          {{ partial "summaries.html" $value.Pages }}
+        {{ end }}
       </div>
-      {{ range $value.Pages }}
-        {{ partial "summary.html" (dict "ctx" . "heading" "h3" "condensed" true) }}
-      {{ end }}
-    {{ end }}
+    </div>
   </section>
 </div>
 {{ end }}

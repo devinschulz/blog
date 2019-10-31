@@ -1,28 +1,10 @@
-{{ $heading := .heading | default "h2" }}
-{{ $id := (default .ctx.File.UniqueID .ctx.Params.id) }}
-
-<article class="c-summary o-layout {{ if .condensed }}c-summary--condensed mb-6{{ else }}mb-12{{ end }}">
-  <div class="o-layout--center">
-    <header class="c-summary__header mb-4">
-      {{ partial "post-meta.html" (dict "single" false "ctx" .ctx) }}
-      {{ $startTag := printf "<%s class=\"mb-2\">" $heading }}
-      {{ $endTag := printf "</%s>" $heading }}
-      {{ $startTag | safeHTML }}
-      <a href="{{ .ctx.RelPermalink }}">{{ .ctx.Title | title }}</a>
-      {{ $endTag | safeHTML }}
-    </header>
-    {{ if not .condensed }}
-      <div class="c-summary__intro u-hyphen">
-        {{ if in .ctx.RawContent "<!--more-->" }}
-          {{ .ctx.Summary | safeHTML }}
-        {{ else }}
-          <p>{{ .ctx.Summary }}</p>
-        {{ end }}
-      </div>
-    {{ else }}
-      {{ with .ctx.Description }}
-        <p>{{ . }}</p>
-      {{ end }}
-    {{ end }}
-  </div>
-</article>
+<li>
+  <a
+    href="{{ .RelPermalink }}"
+    class="c-summary relative flex justify-between p-2 -mx-2 no-underline hover:bg-grey-50 dark-hover:bg-grey-800 rounded text-black dark:text-grey-200 dark-hover:text-white"
+  >
+    {{ partial "svg/check.svg" (dict "size" 16 "class" "c-summary__visited absolute text-white dark:text-grey-900" "hidden" true) }}
+    <span class="c-summary__title mr-4">{{- .Title -}}</span>
+    {{- partial "datetime.html" . -}}
+  </a>
+</li>

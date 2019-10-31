@@ -13,10 +13,6 @@ body {
   font-family: theme('fontFamily.sans');
   letter-spacing: -0.004em;
   transition: color 0.3s, background-color 0.3s;
-
-  @supports (font-variation-settings: normal) {
-    font-family: theme('fontFamily.alt');
-  }
 }
 
 ::selection {
