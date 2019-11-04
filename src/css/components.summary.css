@@ -17,7 +17,6 @@
     margin-bottom: 0;
   }
 
-
   &:visited {
     .c-summary__visited {
       color: theme('colors.blue.500');
@@ -26,9 +25,14 @@
 }
 
 .c-summary__visited {
-  color: white;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  outline: none;
+  display: none;
+
+  @media (--md-viewport) {
+    color: white;
+    display: block;
+    left: -20px;
+    outline: none;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
