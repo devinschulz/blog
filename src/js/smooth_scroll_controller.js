@@ -1,11 +1,11 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  connect() {
+  connect () {
     this.bindSmoothScroll()
   }
 
-  smoothScroll() {
+  smoothScroll (event) {
     const link = event.target.closest('a')
     if (!link) {
       return
@@ -14,13 +14,13 @@ export default class extends Controller {
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'smooth'
       })
       event.preventDefault()
     }
   }
 
-  bindSmoothScroll() {
+  bindSmoothScroll () {
     Array.from(document.querySelectorAll('a'))
       .filter(element => element.getAttribute('href').startsWith('#'))
       .forEach(link => {

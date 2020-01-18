@@ -1,8 +1,8 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  initialize() {
-    this.dark = JSON.parse(localStorage.getItem('theme'))
+  initialize () {
+    this.dark = JSON.parse(window.localStorage.getItem('theme'))
     if (this.dark === null) {
       this.dark = window.matchMedia('(prefers-color-scheme: dark)').matches
     }
@@ -15,17 +15,17 @@ export default class extends Controller {
     this.setMode(this.dark, document.body)
   }
 
-  toggle() {
+  toggle () {
     this.dark = !this.dark
-    localStorage.setItem('theme', JSON.stringify(this.dark))
+    window.localStorage.setItem('theme', JSON.stringify(this.dark))
     this.setMode(this.dark, document.body)
   }
 
-  handleBeforeRender(event) {
+  handleBeforeRender (event) {
     this.setMode(this.dark, event.data.newBody)
   }
 
-  setMode(isDark, body) {
+  setMode (isDark, body) {
     document.documentElement.classList.toggle('mode-dark', isDark)
     body
       .querySelector('.toggle')

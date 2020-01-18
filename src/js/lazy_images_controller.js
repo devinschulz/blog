@@ -2,9 +2,9 @@ import { Controller } from 'stimulus'
 import LazyLoad from 'vanilla-lazyload'
 
 export default class extends Controller {
-  initialize() {
+  initialize () {
     this.lazy = new LazyLoad({
-      callback_reveal(element) {
+      callback_reveal (element) {
         // Code smell, refactor
         if (element.classList.contains('c-browser__image')) {
           const vp = element.closest('.c-browser__viewport')
@@ -13,7 +13,7 @@ export default class extends Controller {
           }
         }
       },
-      callback_loaded(element) {
+      callback_loaded (element) {
         // Code smell, refactor
         if (element.classList.contains('c-browser__image')) {
           const vp = element.closest('.c-browser__viewport')
@@ -21,11 +21,11 @@ export default class extends Controller {
             vp.classList.remove('loading')
           }
         }
-      },
+      }
     })
   }
 
-  connect() {
+  connect () {
     this.lazy.update()
   }
 }

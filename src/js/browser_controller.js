@@ -7,7 +7,7 @@ const DISABLE = 'disable'
 export default class extends Controller {
   static targets = ['slide', 'next', 'previous', 'viewport', 'index']
 
-  initialize() {
+  initialize () {
     const fn = element => this.element.contains(element)
     this.slides = this.slideTargets.filter(fn)
     this.nextButton = this.nextTargets.filter(fn)
@@ -18,52 +18,52 @@ export default class extends Controller {
     this.enableOrDisable()
   }
 
-  next() {
+  next () {
     if (this.hasNext()) {
       this.showSlide(this.index + 1)
     }
     this.enableOrDisable()
   }
 
-  previous() {
+  previous () {
     if (this.hasPrevious()) {
       this.showSlide(this.index - 1)
     }
     this.enableOrDisable()
   }
 
-  enableOrDisable() {
+  enableOrDisable () {
     this.enableOrDisableNext()
     this.enableOrDisablePrevious()
   }
 
-  hasPrevious() {
+  hasPrevious () {
     return this.slides[this.index - 1]
   }
 
-  hasNext() {
+  hasNext () {
     return this.slides[this.index + 1]
   }
 
-  enableOrDisablePrevious() {
+  enableOrDisablePrevious () {
     const method = this.hasPrevious() ? ENABLE : DISABLE
     this.previousButton.forEach(this[method])
   }
 
-  enableOrDisableNext() {
+  enableOrDisableNext () {
     const method = this.hasNext() ? ENABLE : DISABLE
     this.nextButton.forEach(this[method])
   }
 
-  enable(target) {
+  enable (target) {
     target.removeAttribute('disabled')
   }
 
-  disable(target) {
+  disable (target) {
     target.setAttribute('disabled', 'disabled')
   }
 
-  showSlide(index) {
+  showSlide (index) {
     this.index = index
     this.slides.forEach((el, i) => {
       el.classList.toggle('hidden', index !== i)
@@ -74,7 +74,7 @@ export default class extends Controller {
     this.clientIndex.innerText = `${this.index + 1}`.padStart(2, '0')
   }
 
-  scrollTop() {
+  scrollTop () {
     this.viewport.forEach(viewport => (viewport.scrollTop = 0))
   }
 }

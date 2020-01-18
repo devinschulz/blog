@@ -1,11 +1,11 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  animate(event) {
+  animate (event) {
     event.target.classList.add('o-wobble')
   }
 
-  cleanup() {
+  cleanup (event) {
     event.target.classList.remove('o-wobble')
   }
 }

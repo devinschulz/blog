@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  initialize() {
+  initialize () {
     this.element.classList.remove('no-js')
   }
 }
