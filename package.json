@@ -86,7 +86,7 @@
   },
   "dependencies": {
     "balloon-css": "^1.0.4",
-    "core-js": "^2.6.11",
+    "core-js": "^3.6.4",
     "debounce": "^1.2.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-promise": "^4.2.1",
