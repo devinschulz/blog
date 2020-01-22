@@ -92,7 +92,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "stimulus": "^1.1.1",
-    "tailwindcss-dark-mode": "^1.1.1",
+    "tailwindcss-dark-mode": "^1.1.2",
     "tocca": "^2.0.9",
     "turbolinks": "^5.2.0",
     "vanilla-lazyload": "^12.4.0"
