@@ -51,7 +51,7 @@
     "file-loader": "^5.0.2",
     "glob": "^7.1.6",
     "html-minifier": "^4.0.0",
-    "hugo-bin": "^0.50.2",
+    "hugo-bin": "^0.51.1",
     "imports-loader": "^0.8.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
