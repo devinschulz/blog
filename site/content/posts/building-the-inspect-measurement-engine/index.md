@@ -1,13 +1,16 @@
 ---
 title: Building the Inspect Measurement Engine
 date: 2019-07-17
-credit: Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on [Unsplash](https://unsplash.com)
+credit:
+  Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on
+  [Unsplash](https://unsplash.com)
 categories:
   - React
 tags:
   - Design Patterns
 canonical: https://engineering.invisionapp.com/post/building-the-inspect-measurement-engine
-description: Thoughts and learnings I had while building the Inspect measurement engine.
+description:
+  Thoughts and learnings I had while building the Inspect measurement engine.
 ---
 
 Not too long ago I had the opportunity to construct a measurement system inside
@@ -16,11 +19,11 @@ In-between each layer, a line is drawn with a label that displays the distance.
 Supporting lines are added to the nearest edges of the hovered layer to help
 give the user an idea where the measurement lines reach.
 
-In this article, I’ll explain some of my ideas and how I managed to take
-a fairly complex problem, break it down, and deliver something of value to an
-end user. I hope by you reading through this article; you'll have a better
-understanding of how to dissect a problem you may be encountering. I know when
-I was handed the ticket to implement this functionality, it was intimidating.
+In this article, I’ll explain some of my ideas and how I managed to take a
+fairly complex problem, break it down, and deliver something of value to an end
+user. I hope by you reading through this article; you'll have a better
+understanding of how to dissect a problem you may be encountering. I know when I
+was handed the ticket to implement this functionality, it was intimidating.
 
 <!--more-->
 
@@ -42,12 +45,12 @@ multiple smaller tickets in a single sprint versus a giant one.
 
 At InVision, our team uses [JIRA](https://www.atlassian.com/software/jira) to
 manage bugs, new features and everything that needs to be tracked or accounted
-for. By separating the view from the business logic, not only can I now split
-a single ticket into two smaller tickets, but was able to go one step further.
-I created a ticket to deal with outlining what values should be passed from the
+for. By separating the view from the business logic, not only can I now split a
+single ticket into two smaller tickets, but was able to go one step further. I
+created a ticket to deal with outlining what values should be passed from the
 <abbr title="Higher-order component">HOC</abbr> to the child component. Three
-tickets have been created from what was originally one and can now be
-tracked and dealt with independently.
+tickets have been created from what was originally one and can now be tracked
+and dealt with independently.
 
 ## The Outline
 
@@ -176,8 +179,8 @@ the properties from the artboard and create the hovered layer manually. This
 allows me to calculate the position of the layer in relation to the artboard
 itself without adding additional checks whether the layer is an artboard or not.
 
-The properties I worry about for each layer are the width, height, and x,
-y coordinates. Here is a simplification of the layer shape, but it gives you an
+The properties I worry about for each layer are the width, height, and x, y
+coordinates. Here is a simplification of the layer shape, but it gives you an
 idea of some basic properties it contains.
 
 ```js
@@ -190,9 +193,9 @@ type Layer = {
 }
 ```
 
-To figure out which path I can take, I started by determining if the
-layers are overlapping by both the x and y-axis. If both of these return true,
-I know which path I’ll need to follow.
+To figure out which path I can take, I started by determining if the layers are
+overlapping by both the x and y-axis. If both of these return true, I know which
+path I’ll need to follow.
 
 ```js
 // Determine if the x axis plus width overlap
@@ -200,7 +203,7 @@ const xIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.x + layer1.width, layer2.x + layer2.width) -
-      Math.max(layer1.x, layer2.x)
+      Math.max(layer1.x, layer2.x),
   ) > 0
 
 // Determine if the y axis plus height overlap
@@ -208,7 +211,7 @@ const yIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.y + layer1.height, layer2.y + layer2.height) -
-      Math.max(layer1.y, layer2.y)
+      Math.max(layer1.y, layer2.y),
   ) > 0
 
 // Determine if both x and y-axis plus width and height overlap
@@ -332,14 +335,14 @@ const intersection = (layer1: Layer, layer2: Layer): Point => {
       xMax +
       Math.max(
         0,
-        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax
+        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax,
       ) /
         2,
     y:
       yMax +
       Math.max(
         0,
-        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax
+        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax,
       ) /
         2,
   }
@@ -508,10 +511,10 @@ const distance = (cardinal, layer1, layer2) => {
 
 Each measurement would be calculated independently and similarly as the
 overlapping layers. On paper, this seemed to work well and would account for
-most cases I would expect. After some initial testing, I noticed
-that some cases did not display what I had expected to see. Whenever a layer is
-in-between two directions, lets say `TOP` and `TOP_LEFT`, it would fall into the
-`TOP_LEFT` case.
+most cases I would expect. After some initial testing, I noticed that some cases
+did not display what I had expected to see. Whenever a layer is in-between two
+directions, lets say `TOP` and `TOP_LEFT`, it would fall into the `TOP_LEFT`
+case.
 
 {{< figure src="./actual.png"  caption="Actual result" >}}
 {{< figure src="./expected.png" caption="Expected" >}}
@@ -607,16 +610,15 @@ export default (ComposedComponent: React.ComponentType<*>) =>
 ```
 
 Again this is a super simplified version of the component but works to
-illustrate my thinking around how it works. There are a couple of areas that
-I skipped intentionally in this article since it’s already getting pretty
-long. There are two main things I didn’t cover so I’ll give you a brief
-synopsis.
+illustrate my thinking around how it works. There are a couple of areas that I
+skipped intentionally in this article since it’s already getting pretty long.
+There are two main things I didn’t cover so I’ll give you a brief synopsis.
 
 #### Zoom Level
 
 Inspect allows users to adjust the zoom level from 13% to 800% which gets them
-up and close with the design. Since static measurements are used throughout,
-I needed to account for the scale. This is easily obtainable by multiplying each
+up and close with the design. Since static measurements are used throughout, I
+needed to account for the scale. This is easily obtainable by multiplying each
 measurement x, y, width, and height by the zoom level.
 
 ```js
@@ -626,8 +628,8 @@ const displayScale = (scale: number, value: number): number => value * scale
 #### Dotted Helper Lines
 
 Throughout the examples in this article, you may have noticed dotted lines which
-start in a corner of the selected layer. These lines are calculated similarly
-as the measurement lines and are passed down as another property to the
+start in a corner of the selected layer. These lines are calculated similarly as
+the measurement lines and are passed down as another property to the
 measurements component. They are simply an array of positions.
 
 ```js
@@ -639,9 +641,9 @@ type Dotted []Position
 Now with the complicated part out of the way, I now needed to display the
 resulting measurements within the view. I try to use stateless components as
 much as possible because I like the functional aspect of it. You have the
-guarantee that the result is the same with the same input. With that in mind,
-I wrapped a stateless component in the composite component created in the
-business logic section.
+guarantee that the result is the same with the same input. With that in mind, I
+wrapped a stateless component in the composite component created in the business
+logic section.
 
 ```js
 // components/measurements.js

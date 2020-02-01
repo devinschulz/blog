@@ -33,13 +33,13 @@ const put = (req, res) =>
         const method = doc.exists ? 'update' : 'set'
         t[method](likes.doc(req.params.id), { count })
         return Promise.resolve(count)
-      })
+      }),
     )
     .then(count => res.status(200).json({ count }))
     .catch(error =>
       res
         .status(500)
-        .json({ status: 500, message: 'Failed to update count', error })
+        .json({ status: 500, message: 'Failed to update count', error }),
     )
 
 const all = (req, res) =>
@@ -55,7 +55,7 @@ const all = (req, res) =>
     .catch(error =>
       res
         .status(500)
-        .json({ status: 500, message: 'Failed to fetch all likes' })
+        .json({ status: 500, message: 'Failed to fetch all likes' }),
     )
 
 app.get('/:id', get)

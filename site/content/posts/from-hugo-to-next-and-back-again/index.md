@@ -1,21 +1,25 @@
 ---
 title: From Hugo to Next JS and Back Again
 date: 2019-05-18
-credit: Photo by [_M_V_](https://unsplash.com/@_m_v_) on [Unsplash](https://unsplash.com)
+credit:
+  Photo by [_M_V_](https://unsplash.com/@_m_v_) on
+  [Unsplash](https://unsplash.com)
 categories:
   - Static Sites
 tags:
   - Static Site Generators
   - Performance
   - Hugo
-description: Learn about why I choose Hugo over a React based static site generator for my blog.
+description:
+  Learn about why I choose Hugo over a React based static site generator for my
+  blog.
 ---
 
 This post features my challenges, frustrations, and why I ultimately landed on
 using Hugo as a static site generator to build my blog. The past three
 iterations of this website were written using Hugo, Next JS, and then back to
-Hugo again. Hugo gave me so much out of the box, and practically everything
-I needed, whereas Next JS, required me to write the functionality I wanted
+Hugo again. Hugo gave me so much out of the box, and practically everything I
+needed, whereas Next JS, required me to write the functionality I wanted
 explicitly. This article is not meant to hate on any frameworks and instead
 voice my own experience.
 
@@ -32,8 +36,8 @@ static site generators and managed to narrow it down to three possibilities:
 React Static, Gatsby, and Next JS.
 
 **React Static:** Looked interesting and was built to solve some of the problems
-that Gatsby and Next JS had. [Here is an
-article](https://medium.com/@tannerlinsley/%EF%B8%8F-introducing-react-static-a-progressive-static-site-framework-for-react-3470d2a51ebc)
+that Gatsby and Next JS had.
+[Here is an article](https://medium.com/@tannerlinsley/%EF%B8%8F-introducing-react-static-a-progressive-static-site-framework-for-react-3470d2a51ebc)
 about why Nozzle built React static in the first place. After digging in and
 playing around with a sample project, I felt as though the documentation and
 examples were not enough for me to feel productive. Therefore I decided to pass
@@ -44,9 +48,9 @@ you so much out of the box, and there is almost a plugin for any functionality
 you need. I loved that Gatsby is built in a way that puts performance first by
 rendering what the user needs right away and aggressively prefetching the rest.
 
-What ended up turning me away from Gatsby was the stability of the framework.
-I had numerous occasions where I had to restart the development server because
-of an unknown error, or the livereload would suddenly stop working. I also found
+What ended up turning me away from Gatsby was the stability of the framework. I
+had numerous occasions where I had to restart the development server because of
+an unknown error, or the livereload would suddenly stop working. I also found
 that there was not enough information while trying to debug why a particular
 GraphQL query wasn't working as expected or remark properties were randomly
 missing from the schema.
@@ -78,11 +82,11 @@ generate pages based on that. Not quite as easy and straightforward as Hugo, but
 it wasn't that bad.
 
 The stack I used to build this blog on top of Next was
-[MDX](https://github.com/mdx-js/mdx), TypeScript, Emotion, Redux, [Typesafe
-Actions](https://github.com/piotrwitek/typesafe-actions), and Redux observables.
-Most of the inspiration on how to lay out the directory structure and generate
-posts using MDX was directly from [Next's
-site](https://github.com/zeit/next-site).
+[MDX](https://github.com/mdx-js/mdx), TypeScript, Emotion, Redux,
+[Typesafe Actions](https://github.com/piotrwitek/typesafe-actions), and Redux
+observables. Most of the inspiration on how to lay out the directory structure
+and generate posts using MDX was directly from
+[Next's site](https://github.com/zeit/next-site).
 
 1. I had fun building the blog using Next JS, but there were a few points which
    made me wish I had gone a different route.
@@ -105,11 +109,11 @@ site](https://github.com/zeit/next-site).
    using it for managing the likes button state, which could have easily been
    replaced by the React context API. In my defence, I had plans of expanding
    the functionality and making the website more interactive and state driven.
-1. I learned that using Emotion was not as joyful as I thought it would be.
-   I love the component approach to every single element, but in practice,
-   I feel like this made the code partially unreadable. It added confusion about
-   the element and hierarchy instead of simplifying it. I was frequently
-   examining each element to see if it was a `div`, `span`, or a `header`.
+1. I learned that using Emotion was not as joyful as I thought it would be. I
+   love the component approach to every single element, but in practice, I feel
+   like this made the code partially unreadable. It added confusion about the
+   element and hierarchy instead of simplifying it. I was frequently examining
+   each element to see if it was a `div`, `span`, or a `header`.
 
 By the time I had completed an MVP and deployed it to production, I was left not
 quite as happy as I thought I would be. Yes, the user experience and performance
@@ -127,10 +131,10 @@ Simply put, Hugo has all the functionality I need at the present moment out of
 the box. These days my time is limited, and I want to work on other things than
 my blog, so I opted to keep it simple and live within Hugo's constraints.
 
-I began by using the [Victor
-framework](https://github.com/netlify-templates/victor-hugo) by Netlify to give
-me an excellent foundation to build upon. It has everything you need to get
-started with Hugo, modern JavaScript, and any CSS configuration you need.
+I began by using the
+[Victor framework](https://github.com/netlify-templates/victor-hugo) by Netlify
+to give me an excellent foundation to build upon. It has everything you need to
+get started with Hugo, modern JavaScript, and any CSS configuration you need.
 
 This time around I decided to use Tailwind CSS, BEM, and the ITCSS methodology
 to style my website. I had used Tailwind on the first iteration of this blog and
@@ -150,11 +154,11 @@ changes. Stimulus removing that overhead was a nice change.
 To make things a tad faster, I run the CSS through Purgecss (which is pretty
 much required when using Tailwind), then inline critical CSS, minify HTML, and
 defer loading CSS and JavaScript files. By applying these performance
-enhancements, the website feels fast on all browsers and devices I tested, and
-I was able to achieve 100s in all categories when using Google lighthouse. Best
-of all, the CSS and JavaScript files are minuscule compared to what I had built
-with Next JS. At the time of writing this article, the main CSS file is
-a whopping 6.6 KB gzipped, and 34.4 KB gzipped for the JavaScript file.
+enhancements, the website feels fast on all browsers and devices I tested, and I
+was able to achieve 100s in all categories when using Google lighthouse. Best of
+all, the CSS and JavaScript files are minuscule compared to what I had built
+with Next JS. At the time of writing this article, the main CSS file is a
+whopping 6.6 KB gzipped, and 34.4 KB gzipped for the JavaScript file.
 
 ## Lessons Learned
 

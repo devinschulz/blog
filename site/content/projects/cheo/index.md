@@ -10,8 +10,9 @@ technologies:
   - Sass
 agency: Soshal
 agencyLink: https://soshal.ca
-goal: To create a fun and interactive superhero character builder that helps
-  promote the yearly Telethon fundraiser.
+goal:
+  To create a fun and interactive superhero character builder that helps promote
+  the yearly Telethon fundraiser.
 images:
   - cheo/image-0.png
   - cheo/image-1.png

@@ -1,11 +1,11 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  connect () {
+  connect() {
     this.bindLinks()
   }
 
-  bindLinks () {
+  bindLinks() {
     Array.from(this.element.querySelectorAll('a')).forEach(link => {
       link.addEventListener('click', this.onClick, false)
     })

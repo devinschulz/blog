@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: /node_modules(?:\/|\\)(instant.page)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.(sa|sc|c)ss$/,
