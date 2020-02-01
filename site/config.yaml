@@ -27,6 +27,7 @@ params:
   socialShareLinkedin: true
   socialShareReddit: true
   socialShareTwitter: true
+  twitter_handle: devinschulz
 
 enableRobotsTxt: true
 enableGitInfo: true
