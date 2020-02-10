@@ -65,7 +65,7 @@
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^1.19.1",
     "purgecss": "^1.4.2",
-    "purgecss-webpack-plugin": "^1.6.0",
+    "purgecss-webpack-plugin": "^2.0.6",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
