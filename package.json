@@ -64,7 +64,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^1.19.1",
-    "purgecss": "^1.4.2",
+    "purgecss": "^2.0.6",
     "purgecss-webpack-plugin": "^1.6.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
