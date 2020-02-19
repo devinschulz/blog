@@ -1,6 +1,8 @@
 ---
 title: Restrictions while styling visited links
-description: Learn about what the :visited pseudo-class selector is and its limitations while styling them.
+description:
+  Learn about what the :visited pseudo-class selector is and its limitations
+  while styling them.
 date: 2020-02-18
 categories: [CSS]
 tags: [Today I learned]
@@ -33,7 +35,7 @@ color.
 ❌ Does **not** work. The visited link will **not** have a background
 
 ```css
-.link {i
+.link {
   background-color: red;
 }
 
@@ -58,11 +60,11 @@ When styling visited links, you are limited to these color declarations:
 
 Any color can be used, except the alpha channel is ignored when present.
 
-- ❌ `rgba(255,255,5,.5)` Works, but opacity is ignored 
-- ✅ `rgb(255,255,5,1)` 
-- ❌ `#ff663350` Works, but opacity is ignored 
-- ✅ `#ff6633` 
-- ❌ `hsla(20, 0%, 0%, 50%)` Works, but opacity is ignored 
+- ❌ `rgba(255,255,5,.5)` Works, but opacity is ignored
+- ✅ `rgb(255,255,5,1)`
+- ❌ `#ff663350` Works, but opacity is ignored
+- ✅ `#ff6633`
+- ❌ `hsla(20, 0%, 0%, 50%)` Works, but opacity is ignored
 - ✅ `hsl(20, 0%, 0%)`
 
 The browser ignores all other CSS declarations.
