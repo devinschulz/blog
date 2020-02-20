@@ -21,8 +21,6 @@ not have a background color, but the visited one does, it will **not** apply
 that background color. If your unvisited link has a background color and you
 change that color for visited links, it **will** work.
 
-color.
-
 ```css
 .link {
 }
