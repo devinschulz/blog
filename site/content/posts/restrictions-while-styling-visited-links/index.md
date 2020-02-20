@@ -30,7 +30,7 @@ change that color for visited links, it **will** work.
 }
 ```
 
-❌ Does **not** work. The visited link will **not** have a background
+❌ Does **not** work. The visited link will **not** have a background color.
 
 ```css
 .link {
