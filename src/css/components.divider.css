@@ -1,8 +1,0 @@
-.c-divider__bullet {
-  background-color: theme('colors.grey');
-  border-radius: theme('borderRadius.full');
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin: 0 theme('margin.1');
-}

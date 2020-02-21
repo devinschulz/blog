@@ -1,0 +1,59 @@
+<head>
+  <meta charset="utf-8">
+  <title>
+    {{ block "title" . }}
+    {{ if not .IsHome }}
+    {{ .Title }} | {{ .Site.Title }}
+    {{ else }}
+    {{ .Site.Title }}
+    {{ end }}
+    {{ end }}
+  </title>
+
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafa">
+
+  {{ if and (eq (getenv "HUGO_ENV") "production") (not .Params.robotsdisallow) }}
+  <meta name="robots" content="index, follow"/>
+  <meta name="googlebot" content="index,follow">
+  {{ else }}
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="googlebot" content="noindex,nofollow">
+  {{ end }}
+
+  {{ with .OutputFormats.Get "RSS" }}
+  <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  {{ end }}
+
+  {{ with .Params.prev }}
+  <link rel="prev" href="{{ . | absURL }}">
+  {{ end }}
+  {{ with .Params.next }}
+  <link rel="next" href="{{ . | absURL }}">
+  {{ end }}
+
+  {{/* Attempt to prefetch and prerender the next page the user might visit */}}
+  {{ if not .IsHome }}
+  <link rel="prerender" href="{{ .Site.BaseURL | absURL }}">
+  {{ end }}
+
+  {{ if .IsPage }}
+  {{ if .NextInSection }}
+  <link rel="prefetch" href="{{ .NextInSection.Permalink }}">
+  {{ end }}
+
+  {{ if .PrevInSection }}
+  <link rel="prefetch" href="{{ .PrevInSection.Permalink }}">
+  {{ end }}
+  {{ end }}
+
+  {{ if .Site.IsServer }}
+  {{ $css := resources.Get "css/main.css" | toCSS }}
+  <link rel="stylesheet" href="{{ $css.Permalink }}" media="screen">
+  {{ else }}
+  {{ $css := resources.Get "css/main.css" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}" media="screen">
+  {{ end }}
+</head>

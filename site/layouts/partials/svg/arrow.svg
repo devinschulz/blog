@@ -1,3 +1,0 @@
-<svg width="{{ default 24 .size }}" height="{{ default 24 .size }}" viewBox="0 0 24 24">
-  <path fill="currentColor" transform="rotate(-90 12 12)" d="M24 12l-12-9v5h-12v8h12v5l12-9z"/>
-</svg>

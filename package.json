@@ -1,99 +1,22 @@
 {
-  "name": "blog.devinschulz",
+  "name": "blog",
   "version": "1.0.0",
-  "description": "My personal website",
+  "description": "My personal blog",
   "main": "index.js",
-  "repository": "git@github.com:devinschulz/blog.git",
-  "author": "Devin Schulz <devin@devinschulz.com>",
   "scripts": {
-    "start": "run-p start:**",
-    "start:hugo": "hugo -d ../dist -s site -vw -D",
-    "start:webpack": "webpack-dev-server --config webpack.dev.js",
-    "preview": "run-p preview:**",
-    "preview:hugo": "npm run start:hugo -- -D -F",
-    "preview:webpack": "npm run start:webpack",
-    "prebuild": "rimraf dist",
-    "build": "npm run build:webpack && npm run build:hugo && npm run postprocess",
-    "build:preview": "npm run build:webpack && npm run build:hugo:preview && npm run postprocess",
-    "build:hugo": "hugo -d ../dist -s site -v",
-    "build:hugo:preview": "npm run build:hugo -- -D -F",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.prod.js --hot --inline",
-    "purge": "purgecss --config ./purgecss.config.js --out dist",
-    "minify:html": "html-minifier --input-dir dist --output-dir dist --collapse-whitespace --file-ext html --remove-comments",
-    "minify:xml": "html-minifier --input-dir dist --output-dir dist --collapse-whitespace --file-ext xml --remove-comments",
-    "critical": "node ./scripts/critical.js",
-    "postprocess": "npm run minify:html && npm run minify:xml && npm run purge",
-    "format": "prettier --write \"**/*.+(js|json|yml|yaml|css|md)\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devinschulz/blog.git"
+  },
+  "author": "Devin Schulz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devinschulz/blog/issues"
+  },
+  "homepage": "https://github.com/devinschulz/blog#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/register": "^7.8.3",
-    "assets-webpack-plugin": "^3.9.10",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.0.6",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "critical": "^1.3.9",
-    "cross-env": "^6.0.3",
-    "css-loader": "^3.4.2",
-    "cssnano": "^4.1.10",
-    "exports-loader": "^0.7.0",
-    "fancy-log": "^1.3.2",
-    "file-loader": "^5.0.2",
-    "glob": "^7.1.6",
-    "html-minifier": "^4.0.0",
-    "hugo-bin": "^0.50.2",
-    "imports-loader": "^0.8.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.1",
-    "npm-run-all": "^4.1.5",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "plugin-error": "^1.0.1",
-    "postcss-at-rules-variables": "^0.1.10",
-    "postcss-custom-media": "^7.0.8",
-    "postcss-each": "^0.10.0",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-mixins": "^6.2.3",
-    "postcss-nested": "^4.2.1",
-    "postcss-preset-env": "^6.7.0",
-    "postcss-simple-vars": "^5.0.2",
-    "prettier": "^1.19.1",
-    "purgecss": "^1.4.2",
-    "purgecss-webpack-plugin": "^1.6.0",
-    "rimraf": "^3.0.2",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.3",
-    "tailwindcss": "^1.1.4",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "url-loader": "^3.0.0",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.2.2",
-    "whatwg-fetch": "^3.0.0"
-  },
-  "resolutions": {
-    "natives": "1.1.6"
-  },
-  "dependencies": {
-    "balloon-css": "^1.0.4",
-    "core-js": "^3.6.4",
-    "debounce": "^1.2.0",
-    "stimulus": "^1.1.1",
-    "tailwindcss-dark-mode": "^1.1.2",
-    "tocca": "^2.0.9",
-    "turbolinks": "^5.2.0",
-    "vanilla-lazyload": "^12.4.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "postcss-cli": "^7.1.0"
   }
 }
