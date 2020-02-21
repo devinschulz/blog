@@ -1,0 +1,4 @@
+node_modules
+.log
+
+resources/_gen/assets/css/css

@@ -1,6 +1,7 @@
 [build.environment]
   HUGO_VERSION = "0.64.1"
   NPM_VERSION = "6.13.7"
+  NODE_ENV = "production"
 
 [context.production.environment]
   HUGO_ENV = "production"
