@@ -18,11 +18,24 @@
   "homepage": "https://github.com/devinschulz/blog#readme",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.0.6",
+    "cssnano": "^4.1.10",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
     "postcss-cli": "^7.1.0",
     "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0"
+    "postcss-nested": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^1.19.1"
   },
   "dependencies": {
     "tailwindcss": "^1.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
