@@ -89,7 +89,7 @@
     "tailwindcss-dark-mode": "^1.1.2",
     "tocca": "^2.0.9",
     "turbolinks": "^5.2.0",
-    "vanilla-lazyload": "^12.4.0"
+    "vanilla-lazyload": "^12.5.0"
   },
   "husky": {
     "hooks": {
