@@ -12,7 +12,8 @@
   background-position: left 85%;
   text-shadow: 0.1em 0 #fff, 0.15em 0 #fff, -0.1em 0 #fff, -0.15em 0 #fff;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-size: 100% 0.1em;
   }
 }
