@@ -25,7 +25,7 @@ change that color for visited links, it **will** work.
 .link {
 }
 
-.link:visted {
+.link:visited {
   background-color: blue;
 }
 ```
@@ -37,7 +37,7 @@ change that color for visited links, it **will** work.
   background-color: red;
 }
 
-.link:visted {
+.link:visited {
   background-color: blue;
 }
 ```
