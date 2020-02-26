@@ -11,6 +11,8 @@ links that a user has navigated to. This state behaves similarly to other
 pseudo-classes like `:hover`, `:focus`, and `:active`, but comes with a few
 limitations.
 
+<!--more-->
+
 ## Limitations
 
 First and foremost, you can only change the CSS properties of a visited link if

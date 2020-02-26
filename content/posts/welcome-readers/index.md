@@ -8,14 +8,14 @@ I'm a designer turned web developer that specializes in front-end applications.
 As an advocate for best practices and proper schematics, I believe that the web
 should be open and accessible for everyone.
 
+<!--more-->
+
 I’ve struggled for years to get a decent blog up and running. It wasn’t because
 of the lack of content, on the contrary, it was the design aspect that was the
 obstacle. I designed countless mockups and developed fully functioning
 prototypes but they never entirely made the cut. I was so critical of everything
 I designed; I always found something that I didn’t like, and then found myself
 rejecting each concept.
-
-<!--more-->
 
 You might be asking, why not just use a premade template to get it off the
 ground? Oh, believe me, looking back I wish I had gone this route. Being a

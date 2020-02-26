@@ -14,7 +14,7 @@ needed, whereas Next JS, required me to write the functionality I wanted
 explicitly. This article is not meant to hate on any frameworks and instead
 voice my own experience.
 
-<!-- more -->
+<!--more-->
 
 ## Choosing a Static Site Generator
 

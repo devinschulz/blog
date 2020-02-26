@@ -15,6 +15,8 @@ popular, and features are used most often. If a particular article is more
 popular than others, I'll make sure to write more about that subject in the
 future. If a specific feature is rarely used, I'll most likely remove it.
 
+<!--more-->
+
 My confidence in client-side analytics all changed the day I enabled
 [Netlify's server-side analytics](https://www.netlify.com/products/analytics/)
 on my website. After 20 or so minutes, I started seeing the data flow in, and I
