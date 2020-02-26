@@ -1,6 +1,8 @@
-/* purgecss start ignore */
-@tailwind base;
-@tailwind components;
-/* purgecss end ignore */
+@import './tailwind.css';
+@import './global.css';
+@import './fonts.css';
+@import './typography.css';
 
-@tailwind utilities;
+@import './elements.code.css';
+@import './components.summary.css';
+@import './components.hover-line.css';

@@ -4,7 +4,15 @@ module.exports = {
       sans: ['Inter', 'sans-serif'],
       alt: ['Inter var', 'sans-serif'],
     },
-    extend: {},
+    screens: {
+      sm: '668px',
+      md: '668px',
+    },
+    extend: {
+      colors: {
+        blue: '#3849DC',
+      },
+    },
   },
   variants: {},
   plugins: [],

@@ -11,5 +11,5 @@ features = []
 min_version = "0.41"
 
 [author]
-  name = "Devin Schulz"
-  homepage = "https://devinschulz.com"
+name = "Devin Schulz"     
+homepage = "https://devinschulz.com"  

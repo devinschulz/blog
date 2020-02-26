@@ -1,0 +1,5 @@
+.summary-content {
+  p:last-child {
+    @apply mb-2;
+  }
+}

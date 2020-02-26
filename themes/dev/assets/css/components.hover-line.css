@@ -1,0 +1,18 @@
+.hover-line {
+  transition: background-size 0.4s cubic-bezier(0.19, 1, 0.155, 1.01);
+  display: inline;
+  padding-bottom: 0.15em;
+  background: linear-gradient(
+    to right,
+    theme('colors.black') 0%,
+    theme('colors.black') 98%
+  );
+  background-size: 0px 0.1em;
+  background-repeat: no-repeat;
+  background-position: left 85%;
+  text-shadow: 0.1em 0 #fff, 0.15em 0 #fff, -0.1em 0 #fff, -0.15em 0 #fff;
+
+  &:hover {
+    background-size: 100% 0.1em;
+  }
+}

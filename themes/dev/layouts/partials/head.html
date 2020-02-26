@@ -1,13 +1,9 @@
 <head>
   <meta charset="utf-8">
   <title>
-    {{ block "title" . }}
-    {{ if not .IsHome }}
-    {{ .Title }} | {{ .Site.Title }}
-    {{ else }}
-    {{ .Site.Title }}
-    {{ end }}
-    {{ end }}
+    {{- block "title" . -}}
+    {{- if not .IsHome -}}{{ .Title }} | {{ .Site.Title }}{{ else }}{{- .Site.Title -}}{{- end -}}
+    {{- end -}}
   </title>
 
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}"/>
@@ -52,9 +48,9 @@
   {{ $postCSSConfig := (dict "config" "postcss.config.js") }}
   {{ if .Site.IsServer }}
   {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}" media="screen">
+  <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
   {{ else }}
   {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}" media="screen">
+  <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
   {{ end }}
 </head>

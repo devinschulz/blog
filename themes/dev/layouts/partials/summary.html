@@ -1,0 +1,22 @@
+{{ with .post }}
+  <article{{ if ne $.lastIndex $.index }} class="mb-12"{{ end }}>
+    {{ with .Params.category }}
+      <a href="/categories/{{ . | urlize }}" class="hover:underline text-blue mb-2 font-bold text-xs block uppercase">{{ . }}</a>
+    {{ end }}
+     <h2 class="mb-2 text-lg {{ if eq 0 $.index }} md:text-4xl{{ end }}">
+       <a href="{{ .Permalink }}" class="hover-line">{{ .Title }}</a>
+     </h2>
+     <div class="summary-content">
+     {{ if eq 0 $.index}}
+       {{ .Summary }}
+     {{ else }}
+       {{ with .Description }}
+         <p>{{ . }}</p>
+       {{ else }}
+         {{ .Summary }}
+       {{ end }}
+       {{ end }}
+     </div>
+     {{ partial "post-metadata" . }}
+   </article>
+{{ end }}

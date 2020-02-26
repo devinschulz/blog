@@ -1,3 +1,9 @@
 {{ define "main" }}
-hello
+  <section class="container mx-auto px-4">
+    {{ $posts := where .Site.RegularPages "Section" "posts" }}
+    {{ $lastIndex := sub (len $posts) 1 }}
+    {{ range $i, $v := $posts }}
+      {{ partial "summary" (dict "post" $v "index" $i "lastIndex" $lastIndex) }}
+    {{ end }}
+  </section>
 {{ end }}

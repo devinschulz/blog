@@ -1,4 +1,22 @@
-baseURL = "http://example.org/"
+baseURL = "https://devinschulz.com"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Devin Schulz"
+description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
 theme = "dev"
+titleCaseStyle = "AP"
+
+[taxonomies]
+category = "categories"
+tags = "tags"
+
+[permalinks]
+posts = ":title"
+
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = false
+angledQuotes = false
+
+[params]
+timeFormatRFC3339 = "2006-01-02T15:04:05Z07:00"
+timeFormatDefault = "January 2, 2006"

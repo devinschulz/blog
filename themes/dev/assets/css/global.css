@@ -1,0 +1,22 @@
+html {
+  font-size: 18px;
+
+  @screen sm {
+    font-size: 20px;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  @apply font-sans;
+}
+
+@supports (font-variation-settings: normal) {
+  body {
+    @apply font-alt;
+  }
+}

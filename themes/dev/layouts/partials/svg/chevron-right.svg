@@ -1,0 +1,3 @@
+<svg viewBox="0 0 24 24" width="{{ default 24 .size }}" height="{{ default 24 .size }}"{{ with .class }} class="{{ . }}"{{ end }}>
+  <path fill="currentColor" d="M9.11,16.1a1,1,0,0,0,1.51,1.32l4.22-4.85a1.21,1.21,0,0,0,0-1.62l-4.19-4.4a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l3.53,3.71a.25.25,0,0,1,0,.33Z"/>
+</svg>
