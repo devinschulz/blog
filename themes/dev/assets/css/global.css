@@ -1,7 +1,9 @@
 html {
   font-size: 18px;
+}
 
-  @screen sm {
+@screen md {
+  html {
     font-size: 20px;
   }
 }
