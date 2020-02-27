@@ -2,7 +2,7 @@
 title: Combining synchronous actions using Redux Thunk
 date: 2018-07-09T16:20:02-04:00
 description: Learn how to use Redux Thunk for handling several synchronous actions at once to modify different areas of the application state.
-category: Redux
+categories: [Redux]
 tags: [testing]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: From Hugo to Next JS and Back Again
 date: 2019-05-18
-category: Static Sites
+Categories: [Static Sites]
 tags: [Performance, Hugo]
 description: Learn about why I choose Hugo over a React based static site generator for my blog.
 ---

@@ -1,7 +1,7 @@
 ---
 title: Building the Inspect Measurement Engine
 date: 2019-07-17
-category: React
+categories: [React]
 canonical: https://engineering.invisionapp.com/post/building-the-inspect-measurement-engine
 description: Thoughts and learnings I had while building the Inspect measurement engine.
 ---
@@ -194,7 +194,7 @@ const xIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.x + layer1.width, layer2.x + layer2.width) -
-      Math.max(layer1.x, layer2.x),
+      Math.max(layer1.x, layer2.x)
   ) > 0
 
 // Determine if the y axis plus height overlap
@@ -202,7 +202,7 @@ const yIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.y + layer1.height, layer2.y + layer2.height) -
-      Math.max(layer1.y, layer2.y),
+      Math.max(layer1.y, layer2.y)
   ) > 0
 
 // Determine if both x and y-axis plus width and height overlap
@@ -326,14 +326,14 @@ const intersection = (layer1: Layer, layer2: Layer): Point => {
       xMax +
       Math.max(
         0,
-        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax,
+        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax
       ) /
         2,
     y:
       yMax +
       Math.max(
         0,
-        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax,
+        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax
       ) /
         2,
   }

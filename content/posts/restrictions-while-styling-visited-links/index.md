@@ -2,7 +2,7 @@
 title: Restrictions while styling visited links
 description: Learn about what the :visited pseudo-class selector is and its limitations while styling them.
 date: 2020-02-18
-category: CSS
+categories: [CSS]
 tags: [Today I learned]
 ---
 
@@ -25,7 +25,7 @@ change that color for visited links, it **will** work.
 .link {
 }
 
-.link:visted {
+.link:visited {
   background-color: blue;
 }
 ```
@@ -37,7 +37,7 @@ change that color for visited links, it **will** work.
   background-color: red;
 }
 
-.link:visted {
+.link:visited {
   background-color: blue;
 }
 ```

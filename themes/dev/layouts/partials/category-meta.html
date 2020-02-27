@@ -1,0 +1,7 @@
+{{ with .Params.categories}}
+  <ul class="mb-2 text-blue uppercase text-xs font-bold">
+    {{ range . }}
+      <li class="inline-block"><a href="/categories/{{ . | urlize }}" class="hover:underline inline-block">{{ . }}</a></li>
+    {{ end }}
+  </ul>
+{{ end }}

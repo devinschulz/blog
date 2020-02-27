@@ -3,7 +3,7 @@ title: Building a likes API with Google Cloud Functions
 date: 2018-11-05T21:41:18-04:00
 description: Learn how to use Google Cloud Functions to build a likes API with Node
 tags: [Google Cloud, Firebase, Serverless]
-category: Node
+categories: [Node]
 ---
 
 I took the challenge to build a likes button into this blog. Since the site is
@@ -121,7 +121,7 @@ app.get('/:id', (req, res) =>
       } else {
         res.status(200).send(doc.data())
       }
-    }),
+    })
 )
 ```
 
@@ -166,13 +166,13 @@ const put = (req, res) =>
         const method = doc.exists ? 'update' : 'set'
         transaction[method](likes.doc(req.params.id), { count })
         return Promise.resolve(count)
-      }),
+      })
     )
     .then(count => res.status(200).json({ count }))
     .catch(error =>
       res
         .status(500)
-        .json({ status: 500, message: 'Failed to update count', error }),
+        .json({ status: 500, message: 'Failed to update count', error })
     )
 ```
 

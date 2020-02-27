@@ -1,17 +1,9 @@
 {{ define "main" }}
 <div class="container mx-auto px-4">
-  <h1 class="text-2xl sm:text-3xl md:text-5xl mb-4 md:mb-8 mx-4">{{ .Title }}</h1>
+  {{ partial "category-meta" . }}
+  <h1 class="text-2xl sm:text-3xl md:text-5xl mb-4 md:mb-8">{{ .Title }}</h1>
   <div class="">
-    <aside>
-      <ul>
-        <li>{{ .Date }}</li>
-        <li>{{.Params.category}}</li>
-        <li>{{ .ReadingTime }} min read</li>
-      </ul>
-    </aside>
-    <div>
-      {{ .Content }}
-    </div>
+    {{ .Content }}
   </div>
 </div>
 {{ end }}
