@@ -1,0 +1,27 @@
+.post-content {
+  ul,
+  ol {
+    @apply pl-4 mb-4;
+  }
+
+  ul {
+    list-style-type: disc;
+    list-style-position: outside;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-8;
+
+    + h2,
+    + h3,
+    + h4,
+    + h5,
+    + h6 {
+      @apply -mt-2;
+    }
+  }
+}
