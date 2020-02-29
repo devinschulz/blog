@@ -14,13 +14,7 @@ body {
 }
 
 body {
-  @apply font-sans;
-}
-
-@supports (font-variation-settings: normal) {
-  body {
-    @apply font-alt;
-  }
+  background-color: #fbfbfb;
 }
 
 ::selection {

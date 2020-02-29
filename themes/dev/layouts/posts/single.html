@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="container mx-auto px-4">
+  <header class="mb-12">
+    {{ partial "category-meta" . }}
+    <h1 class="text-4xl md:text-5xl mb-4 md:mb-8">{{ .Title }}</h1>
+    {{ partial "post-metadata" . }}
+  </header>
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+  {{ partial "tags.html" . }}
+</div>
+{{ end }}

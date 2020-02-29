@@ -1,8 +1,8 @@
 module.exports = {
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-      alt: ['Inter var', 'sans-serif'],
+      display: ['Poppins', 'sans-serif'],
+      body: ['Lora', 'serif'],
     },
     screens: {
       sm: '668px',
@@ -11,6 +11,9 @@ module.exports = {
     extend: {
       colors: {
         blue: '#3849DC',
+      },
+      fontSize: {
+        xxs: '0.65rem',
       },
     },
   },

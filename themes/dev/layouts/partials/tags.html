@@ -1,0 +1,7 @@
+{{ with .Params.tags }}
+<ul class="font-display uppercase tracking-wide text-white text-xxs my-12">
+  {{ range . }}
+    <li><a href="/tags/{{ . | urlize }}" class="px-3 py-2 bg-black">{{ . }}</a></li>
+  {{ end }}
+</ul>
+{{ end }}

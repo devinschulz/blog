@@ -1,7 +1,7 @@
 {{ with .Params.categories}}
-  <ul class="mb-2 text-blue uppercase text-xs font-bold">
+  <ul class="mb-2 text-blue uppercase text-xs font-bold font-display font-medium tracking-wide md:text-xxs">
     {{ range . }}
-      <li class="inline-block"><a href="/categories/{{ . | urlize }}" class="hover:underline inline-block">{{ . }}</a></li>
+      <li class="inline-block"><a href="/categories/{{ . | urlize }}" class="inline-block text-blue">{{ . }}</a></li>
     {{ end }}
   </ul>
 {{ end }}
