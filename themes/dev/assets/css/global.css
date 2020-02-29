@@ -22,3 +22,9 @@ body {
     @apply font-alt;
   }
 }
+
+::selection {
+  @apply text-black;
+  text-shadow: none !important;
+  background-color: #FFF7B6;
+}
