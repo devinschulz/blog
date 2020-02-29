@@ -2,7 +2,7 @@ html {
   font-size: 18px;
 }
 
-@screen md {
+@screen sm {
   html {
     font-size: 20px;
   }
