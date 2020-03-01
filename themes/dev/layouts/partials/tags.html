@@ -1,7 +1,9 @@
 {{ with .Params.tags }}
-<ul class="font-display uppercase tracking-wide text-white text-xxs my-12">
+<ul class="font-display uppercase tracking-wide text-white text-xxs my-12 inline-flex flex-wrap">
   {{ range . }}
-    <li><a href="/tags/{{ . | urlize }}" class="px-3 py-2 bg-black">{{ . }}</a></li>
+  <li class="mr-2 mb-2">
+    <a href="/tags/{{ . | urlize }}" class="px-3 py-2 bg-black block">{{ . }}</a>
+  </li>
   {{ end }}
 </ul>
 {{ end }}
