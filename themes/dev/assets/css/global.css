@@ -13,10 +13,6 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  background-color: #fbfbfb;
-}
-
 ::selection {
   @apply text-black;
   text-shadow: none !important;
