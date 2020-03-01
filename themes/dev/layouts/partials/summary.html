@@ -1,5 +1,5 @@
 {{ with .post }}
-  <article{{ if ne $.lastIndex $.index }} class="mb-12 md:mb-16"{{ end }}>
+  <article{{ if ne $.lastIndex $.index }} class="mb-12 sm:mb-16"{{ end }}>
     {{ partial "category-meta" . }}
      <h2 class="mb-2{{ if eq 0 $.index }} sm:text-4xl{{ end }}">
        <a href="{{ .Permalink | relURL }}" class="hover-line">{{ .Title }}</a>

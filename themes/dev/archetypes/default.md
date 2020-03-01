@@ -2,9 +2,7 @@
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date.Format "2006-02-01" }}
 description:
-category:
+categories: []
 tags: []
 draft: true
 ---
-
-
