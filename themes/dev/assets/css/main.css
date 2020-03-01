@@ -3,7 +3,10 @@
 @import './fonts.css';
 @import './typography.css';
 
+@import './generic.syntax.css';
+
 @import './elements.code.css';
+
 @import './components.summary.css';
 @import './components.hover-line.css';
 @import './components.post.css';

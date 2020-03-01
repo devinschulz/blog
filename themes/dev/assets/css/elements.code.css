@@ -1,7 +1,3 @@
 *:not(pre) > code {
   @apply text-sm rounded bg-gray-200 py-1 px-2;
 }
-
-pre {
-  @apply mb-4 p-4 rounded text-sm;
-}

@@ -4,6 +4,7 @@ title = "Devin Schulz"
 description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
 theme = "dev"
 titleCaseStyle = "AP"
+pygmentsUseClasses = true
 
 [taxonomies]
 category = "categories"

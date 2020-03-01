@@ -1,0 +1,105 @@
+/* Background */
+.chroma {
+  @apply overflow-scroll bg-gray-200 rounded text-xs p-4 mb-4;
+
+  .chroma {
+    @apply p-0 mb-0;
+  }
+
+  /* LineTableTD */
+  .lntd {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+  /* LineTable */
+  .lntable {
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: auto;
+    overflow: auto;
+    display: block;
+  }
+  /* LineHighlight */
+  .hl {
+    display: block;
+    width: 100%;
+    background-color: theme('colors.gray.300');
+  }
+  /* LineNumbersTable */
+  .lnt,
+  .ln {
+    margin-right: 0.4em;
+    padding: 0 0.4em 0 0.4em;
+    color: theme('colors.gray.700');
+  }
+  .k,
+  .kc,
+  .kn,
+  .kp,
+  .kr,
+  .kt {
+    font-weight: bold;
+  }
+  .kd,
+  .nb,
+  .bp {
+    font-weight: bold;
+    font-style: italic;
+  }
+  /* NameClass */
+  .nc,
+  .no,
+  .nf,
+  .nn,
+  .nv {
+    color: theme('colors.gray.900');
+    font-weight: bold;
+    font-style: italic;
+  }
+  /* LiteralString */
+  .s,
+  .sa {
+    color: theme('colors.gray.900');
+    font-style: italic;
+  }
+  /* LiteralStringBacktick */
+  .sb,
+  .sc,
+  .dl,
+  .sd,
+  .s2,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .sr,
+  .s1,
+  .ss {
+    color: theme('colors.gray.900');
+    font-style: italic;
+  }
+
+  /* OperatorWord */
+  .ow {
+    font-weight: bold;
+  }
+  /* Comment */
+  .c,
+  .ch,
+  .cm,
+  .c1 {
+    color: theme('colors.gray.600');
+    font-style: italic;
+  }
+  /* CommentSpecial */
+  .cs,
+  .cp,
+  .cpf {
+    color: theme('colors.gray.600');
+    font-weight: bold;
+  }
+}
