@@ -9,6 +9,10 @@
     list-style-position: outside;
   }
 
+  ol {
+    list-style-type: decimal;
+  }
+
   h2,
   h3,
   h4,
