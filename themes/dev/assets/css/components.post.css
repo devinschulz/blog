@@ -2,6 +2,10 @@
   ul,
   ol {
     @apply pl-4 mb-4;
+
+    img {
+      @apply mt-4;
+    }
   }
 
   ul {
@@ -26,6 +30,28 @@
     + h5,
     + h6 {
       @apply -mt-2;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0.75em 0;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-size: 100% 1.5px;
+    background-position: center bottom 29%;
+    background-origin: padding-box;
+    text-shadow: 3px 0 #fff, 2px 0 #fff, 1px 0 #fff, -1px 0 #fff, -2px 0 #fff,
+      -3px 0 #fff;
+    @apply text-blue-500;
+
+    &:hover,
+    &:focus {
+      @apply text-blue-300;
+    }
+
+    &:active {
+      @apply text-blue-700;
     }
   }
 }
