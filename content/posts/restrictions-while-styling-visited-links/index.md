@@ -22,10 +22,10 @@ that background color. If your unvisited link has a background color and you
 change that color for visited links, it **will** work.
 
 ```css
-.link {
+a {
 }
 
-.link:visited {
+a:visited {
   background-color: blue;
 }
 ```
@@ -33,11 +33,11 @@ change that color for visited links, it **will** work.
 ❌ Does **not** work. The visited link will **not** have a background color.
 
 ```css
-.link {
+a {
   background-color: red;
 }
 
-.link:visited {
+a:visited {
   background-color: blue;
 }
 ```
@@ -48,12 +48,12 @@ change that color for visited links, it **will** work.
 
 When styling visited links, you are limited to these color declarations:
 
-- background-color
-- border-color (border-top-color, border-right-color, border-bottom-color,
-  border-left-color)
-- color
-- column-rule-color
-- outline-color
+- `background-color`
+- `border-color` (`border-top-color`, `border-right-color`, `border-bottom-color`,
+  `border-left-color`)
+- `color`
+- `column-rule-color`
+- `outline-color`
 - SVG attributes allow for fill and stroke colors
 
 Any color can be used, except the alpha channel is ignored when present.

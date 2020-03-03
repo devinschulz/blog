@@ -14,6 +14,8 @@ approved and merged into Create React App. In this case, you may
 [eject](https://create-react-app.dev/docs/available-scripts/#npm-run-eject) the
 app, but there are several reasons why you don't want to do that.
 
+<!--more-->
+
 For this article, we're going to add both the nullish coalescing operator and
 optional chaining syntax babel plugins. These plugins are both excluded from
 Create React App at the time of writing.
