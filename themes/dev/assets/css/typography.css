@@ -8,27 +8,27 @@ h6 {
 }
 
 h1 {
-  @apply text-4xl;
-}
-
-h2 {
   @apply text-3xl;
 }
 
-h3 {
+h2 {
   @apply text-2xl;
 }
 
-h4 {
+h3 {
   @apply text-xl;
 }
 
-h5 {
+h4 {
   @apply text-lg;
 }
 
 h5 {
   @apply text-base;
+}
+
+h5 {
+  @apply text-sm;
 }
 
 p {
