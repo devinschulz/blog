@@ -8,11 +8,6 @@ html {
   }
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
-
 ::selection {
   @apply text-black;
   text-shadow: none !important;

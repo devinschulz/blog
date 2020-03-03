@@ -1,6 +1,6 @@
 /* Background */
 .chroma {
-  @apply overflow-scroll bg-gray-200 rounded text-xs p-4 mb-4;
+  @apply overflow-scroll bg-gray-200 rounded text-xs p-4 mb-4 leading-relaxed;
 
   .chroma {
     @apply p-0 mb-0;
