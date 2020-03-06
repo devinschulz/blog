@@ -1,18 +1,13 @@
 {{ with .post }}
   <article{{ if ne $.lastIndex $.index }} class="mb-12 sm:mb-16"{{ end }}>
-    {{ partial "category-meta" . }}
-     <h2 class="mb-2{{ if eq 0 $.index }} sm:text-4xl{{ end }}">
-       <a href="{{ .Permalink | relURL }}" class="text-black hover-line">{{ .Title }}</a>
+     <h2 class="mb-4">
+       <a href="{{ .Permalink | relURL }}" class="text-black hover:text-orange-500 hover-line">{{ .Title }}</a>
      </h2>
      <div class="summary-content">
-       {{ if eq 0 $.index}}
-         {{ .Summary }}
+       {{ with .Description }}
+       <p>{{ . }}</p>
        {{ else }}
-         {{ with .Description }}
-           <p>{{ . }}</p>
-         {{ else }}
-           {{ .Summary }}
-         {{ end }}
+       {{ .Summary }}
        {{ end }}
      </div>
      {{ partial "post-metadata" . }}

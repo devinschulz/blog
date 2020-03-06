@@ -2,8 +2,7 @@
 title: Restrictions while styling visited links
 description: Learn about what the :visited pseudo-class selector is and its limitations while styling them.
 date: 2020-02-18
-categories: [CSS]
-tags: [Today I learned]
+tags: [CSS, Today I learned]
 ---
 
 The `:visited` pseudo-class is a unique state which provides visible feedback on

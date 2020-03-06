@@ -9,7 +9,6 @@ html {
 }
 
 ::selection {
-  @apply text-black;
+  @apply text-white bg-orange-500;
   text-shadow: none !important;
-  background-color: #fff7b6;
 }

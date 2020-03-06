@@ -1,3 +1,4 @@
+@import './global.vars.css';
 @import './tailwind.css';
 @import './global.css';
 @import './fonts.css';
@@ -7,6 +8,7 @@
 
 @import './elements.code.css';
 
-@import './components.summary.css';
 @import './components.hover-line.css';
 @import './components.post.css';
+
+@import './utilities.comma-list.css';

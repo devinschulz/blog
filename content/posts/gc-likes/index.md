@@ -2,8 +2,7 @@
 title: Building a likes API with Google Cloud Functions
 date: 2018-11-05T21:41:18-04:00
 description: Learn how to use Google Cloud Functions to build a likes API with Node
-tags: [Google Cloud, Firebase, Serverless]
-categories: [Node]
+tags: [Node, Google Cloud, Firebase, Serverless]
 ---
 
 I took the challenge to build a likes button into this blog. Since the site is

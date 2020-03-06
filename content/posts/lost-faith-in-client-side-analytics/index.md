@@ -2,8 +2,7 @@
 title: I've Lost Faith in Client-Side Analytics
 slug: ive-lost-faith-in-client-side-analytics
 date: 2019-08-31
-categories: [Analytics]
-tags: [Opinion]
+tags: [Analytics, Opinion]
 description: Since switching to Netlify's server-side analytics, I learned how different the data is when compared to Google Analytics.
 ---
 

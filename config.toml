@@ -7,7 +7,6 @@ titleCaseStyle = "AP"
 pygmentsUseClasses = true
 
 [taxonomies]
-category = "categories"
 tag = "tags"
 
 [permalinks]

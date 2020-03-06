@@ -2,7 +2,7 @@
 title: Accumulate Complex Objects With the Reduce Method
 date: 2019-07-29
 description: Learn how to recursively reduce a nested data structure by harnessing the power of the Array.reduce method.
-categories: [JavaScript]
+categories: [JavaScript, Array]
 ---
 
 Many people don't realize the power and potential of the `Array.reduce`

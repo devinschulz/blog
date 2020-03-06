@@ -1,7 +1,7 @@
-{{ with .Params.categories}}
-  <ul class="mb-2 uppercase text-xs font-bold font-display font-medium tracking-wide sm:text-xxs">
+{{ with .Params.tags }}
+  <ul class="inline text-xxs font-medium font-display tracking-wide comma-list">
     {{ range . }}
-      <li class="inline-block"><a href="/categories/{{ . | urlize }}" class="inline-block text-blue-500">{{ . }}</a></li>
+      <li class="inline-block"><a href="/tags/{{ . | urlize }}" class="inline-block text-orange-500 hover:underline">{{ . }}</a></li>
     {{ end }}
   </ul>
 {{ end }}

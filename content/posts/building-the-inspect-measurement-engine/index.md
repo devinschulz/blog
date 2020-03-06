@@ -1,7 +1,7 @@
 ---
 title: Building the Inspect Measurement Engine
 date: 2019-07-17
-categories: [React]
+tags: [React, JavaScript, Flow]
 canonical: https://engineering.invisionapp.com/post/building-the-inspect-measurement-engine
 description: Thoughts and learnings I had while building the Inspect measurement engine.
 ---
