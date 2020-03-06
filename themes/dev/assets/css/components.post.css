@@ -34,24 +34,28 @@
   }
 
   a {
-    text-decoration: none;
-    padding: 0.75em 0;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-size: 100% 1.5px;
-    background-position: center bottom 29%;
-    background-origin: padding-box;
-    text-shadow: 3px 0 #fff, 2px 0 #fff, 1px 0 #fff, -1px 0 #fff, -2px 0 #fff,
-      -3px 0 #fff;
-    @apply text-blue-500;
+    text-shadow: #fff -1px -1px 0, #fff 1px -1px 0, #fff -1px 1px 0,
+      #fff 1px 1px 0;
+    background-image: linear-gradient(
+      0deg,
+      hsla(0, 0%, 100%, 0),
+      hsla(0, 0%, 100%, 0) 1px,
+      theme('colors.gray.500') 0,
+      theme('colors.gray.500') 2px,
+      hsla(0, 0%, 100%, 0) 0
+    );
 
     &:hover,
     &:focus {
-      @apply text-blue-300;
-    }
-
-    &:active {
-      @apply text-blue-700;
+      @apply text-orange-500;
+      background-image: linear-gradient(
+        0deg,
+        hsla(0, 0%, 100%, 0),
+        hsla(0, 0%, 100%, 0) 1px,
+        theme('colors.orange.300') 0,
+        theme('colors.orange.300') 2px,
+        hsla(0, 0%, 100%, 0) 0
+      );
     }
   }
 }
