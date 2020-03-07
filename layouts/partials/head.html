@@ -54,8 +54,8 @@
   {{ $postCSSConfig := (dict "config" "postcss.config.js") }}
 
   {{ if .Site.IsServer }}
-  {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig  }}
-  <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
+    {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig  }}
+    <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
   {{ else }}
     {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">

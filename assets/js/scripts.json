@@ -1,5 +1,6 @@
 {
   "scripts": [
-    "dependencies/instantpage.js"
+    "dependencies/instantpage.js",
+    "js/main.js"
   ]
 }
