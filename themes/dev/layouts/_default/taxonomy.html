@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="container mx-auto px-4">
-  <h1 class="text-4xl sm:text-5xl mb-12"><small class="text-base text-gray-800 tracking-normal font-body font-normal">Articles tagged with:</small><br />{{ .Title }}</h1>
+  <h1 class="text-4xl sm:text-5xl mb-12">Articles Tagged <span class="text-primary">{{ .Title | title }}</span></h1>
   {{ $lastIndex := sub (len .Pages) 1 }}
   {{ range $i, $v := .Pages }}
     {{ partial "summary" (dict "post" $v "index" $i "lastIndex" $lastIndex) }}

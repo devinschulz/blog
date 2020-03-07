@@ -5,6 +5,7 @@ description = "Articles about React, JavaScript, testing, best practices, perfor
 theme = "dev"
 titleCaseStyle = "AP"
 pygmentsUseClasses = true
+disableKinds = ["section"]
 
 [taxonomies]
 tag = "tags"
@@ -23,3 +24,15 @@ timeFormatDefault = "January 2, 2006"
 
 [params.author]
 twitterHandle = "devinschulz_"
+
+[menu]
+  [[menu.main]]
+  name = "All topics"
+  weight = 1
+  url = "/tags"
+
+  [[menu.main]]
+  name = "About Me"
+  weight = 0
+  url = "/about"
+

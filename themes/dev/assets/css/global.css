@@ -9,6 +9,6 @@ html {
 }
 
 ::selection {
-  @apply text-white bg-orange-500;
+  @apply text-black bg-secondary;
   text-shadow: none !important;
 }

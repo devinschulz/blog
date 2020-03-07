@@ -1,10 +1,27 @@
+{{ $current := . }}
 <header class="container mx-auto p-4 mb-12 sm:mb-24 flex items-center font-display">
-  <a class="mb-0 tracking-tight text-black font-bold hover:text-orange-500" href="/">Dev.</a>
+  {{ if not .IsHome }}
+    <a class="mb-0 tracking-tight text-black font-bold hover:text-primary" href="/">Dev.</a>
+  {{ else }}
+    <div class="mb-0 tracking-tight text-black font-bold">Dev.</div>
+  {{ end }}
   <nav role="presentation">
     <ul class="text-xs sm:text-xxs flex tracking-wide">
-      <li class="ml-4"><a href="/tags" class="text-gray-600 hover:text-orange-500 hover:underline">All Topics</a></li>
-      <li class="ml-4"><a href="/about" class="text-gray-600 hover:text-orange-500 hover:underline">About Me</a></li>
-      <li class="ml-4"><a href="/projects" class="text-gray-600 hover:text-orange-500 hover:underline">Projects</a></li>
+      {{ range .Site.Menus.main }}
+        {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
+        {{ $active = or $active (eq .Name $current.Title) }}
+        {{ $active = or $active (and (eq .Name "All topics") (eq $current.Section "tags")) }}
+        <li class="ml-4">
+          <a
+            href="{{ .URL }}"
+            {{ if $active }}
+              class="text-primary hover:underline"
+            {{ else }}
+              class="text-gray-600 hover:text-primary hover:underline"
+            {{ end }}
+          >{{ .Name }}</a>
+        </li>
+      {{ end }}
     </ul>
   </nav>
 </header>

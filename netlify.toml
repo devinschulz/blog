@@ -26,3 +26,8 @@
   from = "/categories/*"
   to = "/tags/:splat"
   status = 301
+
+[[redirects]]
+  from = "/posts"
+  to = "/"
+  status = 301

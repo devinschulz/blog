@@ -12,7 +12,6 @@
 <section class="container mx-auto px-4">
   <header class="mb-12">
     <h1 class="text-4xl sm:text-5xl">All Topics</h1>
-    <p>a Blurb needs to go here about tags or something</p>
   </header>
 
   {{ range $char := (slice "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z") }}
@@ -23,7 +22,7 @@
         </header>
         <ul class="inline text-xs font-medium font-display tracking-wide comma-list">
           {{ range sort (uniq ($scratch.Get $char)) }}
-          <li class="inline-block"><a href="/tags/{{ . | urlize }}" class="inline-block text-orange-500 hover:underline">{{ . }}</a></li>
+          <li class="inline-block"><a href="/tags/{{ . | urlize }}" class="inline-block text-primary hover:underline">{{ . }}</a></li>
           {{ end }}
         </ul>
       </div>
