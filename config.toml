@@ -38,8 +38,3 @@ twitterHandle = "devinschulz_"
   name = "About Me"
   weight = 0
   url = "/about"
-
-[module]
-  [[module.mounts]]
-  source = "./node_modules/instant.page/instantpage.js"
-  target = "assets/js/instantpage.js"

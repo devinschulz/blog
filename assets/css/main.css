@@ -1,11 +1,12 @@
 @import './global.vars.css';
-@import './tailwind.css';
-@import './global.css';
-@import './fonts.css';
-@import './typography.css';
 
+@import './generic.tailwind.css';
+
+@import './generic.fonts.css';
 @import './generic.syntax.css';
 
+@import './elements.html.css';
+@import './elements.typography.css';
 @import './elements.code.css';
 
 @import './components.hover-line.css';

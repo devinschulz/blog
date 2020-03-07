@@ -54,10 +54,10 @@
   {{ $postCSSConfig := (dict "config" "postcss.config.js") }}
 
   {{ if .Site.IsServer }}
-    {{ $css := resources.Get "css/main.css" | toCSS | postCSS }}
-    <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
+  {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig  }}
+  <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
   {{ else }}
-    {{ $css := resources.Get "css/main.css" | toCSS | postCSS | minify | fingerprint }}
+    {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
   {{ end }}
 
@@ -70,9 +70,9 @@
 
   {{ if .Site.IsServer }}
     {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" }}
-    <script src="{{ $js.Permalink }}" async></script>
+    <script src="{{ $js.Permalink }}" defer></script>
   {{ else }}
     {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" | resources.Minify | fingerprint }}
-    <script src="{{ $js.Permalink }}"></script>
+    <script src="{{ $js.Permalink }}" defer></script>
   {{ end }}
 </head>
