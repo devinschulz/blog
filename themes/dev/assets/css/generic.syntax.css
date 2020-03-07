@@ -1,4 +1,4 @@
-/* Background */
+/* purgecss start ignore */
 .chroma {
   @apply overflow-scroll bg-gray-100 rounded text-xs p-4 mb-4 leading-relaxed;
 
@@ -103,3 +103,4 @@
     font-weight: bold;
   }
 }
+/* purgecss end ignore */
