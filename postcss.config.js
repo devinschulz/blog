@@ -4,7 +4,7 @@ module.exports = {
   plugins: [
     require('postcss-import'),
     require('postcss-nested'),
-    require('tailwindcss')(path.join(__dirname, './tailwind.config.js')),
+    require('tailwindcss'),
     require('postcss-preset-env'),
     ...(process.env.NODE_ENV === 'production'
       ? [

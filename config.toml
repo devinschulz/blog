@@ -2,7 +2,6 @@ baseURL = "https://devinschulz.com"
 languageCode = "en-us"
 title = "Devin Schulz"
 description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
-theme = "dev"
 titleCaseStyle = "AP"
 pygmentsUseClasses = true
 disableKinds = ["section"]
@@ -22,6 +21,10 @@ angledQuotes = false
 timeFormatRFC3339 = "2006-01-02T15:04:05Z07:00"
 timeFormatDefault = "January 2, 2006"
 
+[author]
+name = "Devin Schulz"     
+homepage = "https://devinschulz.com"
+
 [params.author]
 twitterHandle = "devinschulz_"
 
@@ -36,3 +39,7 @@ twitterHandle = "devinschulz_"
   weight = 0
   url = "/about"
 
+[module]
+  [[module.mounts]]
+  source = "./node_modules/instant.page/instantpage.js"
+  target = "assets/js/instantpage.js"

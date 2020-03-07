@@ -4,7 +4,7 @@
   "description": "My personal blog",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./scripts/dependencies.sh"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
+    "instant.page": "^3.0.0",
     "tailwindcss": "^1.2.0"
   },
   "husky": {

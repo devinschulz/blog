@@ -52,11 +52,27 @@
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Poppins:500,700&display=swap" rel="stylesheet">
 
   {{ $postCSSConfig := (dict "config" "postcss.config.js") }}
+
   {{ if .Site.IsServer }}
-  {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig }}
-  <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
+    {{ $css := resources.Get "css/main.css" | toCSS | postCSS }}
+    <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" media="screen">
   {{ else }}
-  {{ $css := resources.Get "css/main.css" | toCSS | postCSS $postCSSConfig | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
+    {{ $css := resources.Get "css/main.css" | toCSS | postCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
+  {{ end }}
+
+  {{/*  https://discourse.gohugo.io/t/bundle-many-resources/13497/10  */}}
+  {{ $scripts := getJSON "./assets/js/scripts.json" }}
+  {{ $.Scratch.Set "jslibs" slice }}
+  {{ range $scripts.scripts }}
+    {{ $.Scratch.Add "jslibs" (resources.Get . ) }}
+  {{ end }}
+
+  {{ if .Site.IsServer }}
+    {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" }}
+    <script src="{{ $js.Permalink }}" async></script>
+  {{ else }}
+    {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" | resources.Minify | fingerprint }}
+    <script src="{{ $js.Permalink }}"></script>
   {{ end }}
 </head>
