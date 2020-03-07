@@ -1,5 +1,5 @@
 [build]
-  command = "NODE_ENV=production hugo --gc --minify"  
+  command = "NODE_ENV=production npm run postinstall && hugo --gc --minify"  
   publish = "public"
 
 [build.environment]
@@ -11,7 +11,7 @@
   HUGO_ENV = "production"
 
 [context.deploy-preview]
-  command = "NODE_ENV=production hugo --gc --minify --buildFuture"
+  command = "NODE_ENV=production npm run postinstall && hugo --gc --minify --buildFuture"
 
 [context.deploy-preview.environment]
   HUGO_ENV = "preview"
