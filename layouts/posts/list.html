@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="container mx-auto px-4">
+  <header class="mb-12">
+    <h1 class="text-3xl sm:text-5xl mb-4 sm:mb-8">Archive</h1>
+  </header>
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ $lastIndex := sub (len $posts) 1 }}
+  {{ range $i, $v := $posts }}
+    {{ partial "summary" (dict "post" $v "index" $i "lastIndex" $lastIndex) }}
+  {{ end }}
+</section>
+{{ end }}

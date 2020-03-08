@@ -4,7 +4,6 @@ title = "Devin Schulz"
 description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
 titleCaseStyle = "AP"
 pygmentsUseClasses = true
-disableKinds = ["section"]
 enableGitInfo = true
 
 [taxonomies]
