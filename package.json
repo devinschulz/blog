@@ -4,7 +4,8 @@
   "description": "My personal blog",
   "main": "index.js",
   "scripts": {
-    "postinstall": "./scripts/dependencies.sh"
+    "postinstall": "./scripts/dependencies.sh",
+    "minify-js": "node ./scripts/minify.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,8 @@
   },
   "dependencies": {
     "instant.page": "^3.0.0",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "terser": "^4.6.6"
   },
   "husky": {
     "hooks": {
