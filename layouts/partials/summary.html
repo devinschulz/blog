@@ -5,9 +5,9 @@
      </h2>
      <div class="summary-content">
        {{ with .Description }}
-       <p>{{ . }}</p>
+         <p>{{ . }}</p>
        {{ else }}
-       {{ .Summary }}
+         {{ .Summary }}
        {{ end }}
      </div>
      {{ partial "post-metadata" . }}
