@@ -700,8 +700,8 @@ shippable pieces instead of an entire thing all at once. If you don't already do
 this, try bouncing ideas off your coworkers to help validate your own. You may
 even work out a more appropriate solution to your problem.
 
-I want to give a shout out to my manager at the time Ryan Scheuermann
-([@rscheuermann](https://twitter.com/rscheuermann)) for helping me work through
-some of the challenges, and both [Jeremy Wight](https://twitter.com/JeremyWight)
-and Blake Walters ([@markupboy](https://twitter.com/markupboy)) for helping
-review this post.
+I want to give a shout out to my manager at the time [Ryan
+Scheuermann](https://twitter.com/rscheuermann) for helping me work
+through some of the challenges, and both [Jeremy
+Wight](https://twitter.com/JeremyWight) and [Blake
+Walters](https://twitter.com/markupboy) for helping review this post.

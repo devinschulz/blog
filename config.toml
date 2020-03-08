@@ -5,6 +5,7 @@ description = "Articles about React, JavaScript, testing, best practices, perfor
 titleCaseStyle = "AP"
 pygmentsUseClasses = true
 disableKinds = ["section"]
+enableGitInfo = true
 
 [taxonomies]
 tag = "tags"
