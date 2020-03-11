@@ -1,6 +1,7 @@
 {
   "scripts": [
     "dependencies/instantpage.js",
-    "js/related.js"
+    "js/related.js",
+    "js/perf.js"
   ]
 }
