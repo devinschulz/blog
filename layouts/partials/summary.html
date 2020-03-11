@@ -1,8 +1,9 @@
+{{ $level := .level }}
 {{ with .post }}
   <article{{ if ne $.lastIndex $.index }} class="mb-12 sm:mb-16"{{ end }}>
-     <h2 class="mb-4">
-       <a href="{{ .Permalink | relURL }}" class="text-black hover:text-primary hover-line">{{ .Title | title }}</a>
-     </h2>
+    {{ printf "<%s class='mb-4'>" $level | safeHTML }}
+      <a href="{{ .Permalink | relURL }}" class="text-black hover:text-primary hover-line">{{ .Title | title }}</a>
+    {{ printf "</%s>" $level | safeHTML }}
      <div class="summary-content">
        {{ with .Description }}
          <p>{{ . }}</p>

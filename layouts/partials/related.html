@@ -1,23 +1,25 @@
-{{ $related := .Site.RegularPages.Related . | first 2 }}
-{{ with $related }}
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ $posts := where (where $.Site.RegularPages "Section" "posts") ".Params.title" "!=" .Title }}
+{{ $posts := $posts | complement $related }}
+
 <aside class="mt-24">
-  <header class="border-b mb-8">
-    <h2>Related Post{{ if gt (len .) 1 }}s{{ end }}</h3>
+  <header class="mb-8">
+    <h2>Keep Reading</h2>
   </header>
-  <div class="mb-8">
-    {{ $lastIndex := sub (len .) 1 }}
-    {{ range $i, $v := . }}
-      {{ partial "summary" (dict "post" $v "index" $i "lastIndex" $lastIndex) }}
-    {{ end }}
-  </div>
-  <div class="hidden mt-12 sm:mt-16 js-all">
-    {{ $posts := where $.Site.RegularPages "Section" "posts" }}
-    {{ $posts := $posts | complement $related }}
-    {{ $lastIndex := sub (len $posts) 1 }}
-    {{ range $i, $v := $posts }}
-      {{ partial "summary" (dict "post" $v "index" $i "lastIndex" $lastIndex) }}
-    {{ end }}
-  </div>
+  {{ with $related }}
+    <div class="mb-8">
+      {{ partial "summary-list" (dict "posts" . "level" "h3") }}
+    </div>
+    <div class="hidden mt-12 sm:mt-16 js-all">
+      {{ partial "summary-list" (dict "posts" $posts "level" "h3") }}
+    </div>
+  {{ else }}
+    <div class="mb-8">
+      {{ partial "summary-list" (dict "posts" (first 2 $posts) "level" "h3") }}
+    </div>
+    <div class="hidden mt-12 sm:mt-16 js-all">
+      {{ partial "summary-list" (dict "posts" (after 2 $posts) "level" "h3") }}
+    </div>
+  {{ end }}
   <a href="/" class="js-view-all">View all articles</a>
 </aside>
-{{ end }}
