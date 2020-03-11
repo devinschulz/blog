@@ -1,14 +1,14 @@
-@import './global.vars.css';
+@import './settings.vars.css';
 
 @import './generic.tailwind.css';
-
 @import './generic.syntax.css';
 
 @import './elements.html.css';
 @import './elements.typography.css';
 @import './elements.code.css';
 
-@import './components.hover-line.css';
+@import './objects.hover-line.css';
+
 @import './components.post.css';
 
 @import './utilities.comma-list.css';

@@ -48,7 +48,6 @@
 
     &:hover,
     &:focus {
-      @apply text-primary;
       background-image: linear-gradient(
         0deg,
         hsla(0, 0%, 100%, 0),
