@@ -1,6 +1,12 @@
 {{ define "main" }}
-  <section class="container mx-auto px-4">
-    <h1 class="text-4xl sm:text-5xl mb-12">Articles Tagged <span class="text-primary">{{ .Title | title }}</span></h1>
-    {{ partial "summary-list" (dict "posts" .Pages) }}
-  </section>
+<section class="container mx-auto px-4">
+  <header class="mb-12">
+    <h1 class="text-4xl sm:text-5xl mb-4">{{ .Title | title }}</h1>
+    <div class="flex font-alt text-xs sm:text-xxs text-gray-600 font-display font-medium tracking-wide">
+      <p class="mb-0">Found <strong>{{ len .Pages }}</strong> post{{ if gt (len .Pages) 1 }}s{{ end }} tagged with <strong>{{ .Title | title }}</strong>.</p>
+      <a href="/posts" class="o-styled-link ml-auto hidden sm:block">View all posts</a>
+    </div>
+  </header>
+  {{ partial "summary-list" (dict "posts" .Pages) }}
+</section>
 {{ end }}
