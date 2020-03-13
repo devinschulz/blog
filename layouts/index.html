@@ -1,6 +1,6 @@
 {{ define "main" }}
   <section class="container mx-auto px-4">
     {{ $posts := where .Site.RegularPages "Section" "posts" }}
-    {{ partial "summary-list" (dict "posts" $posts) }}
+    {{ partial "summary-list" (dict "posts" $posts "hasFeatured" true) }}
   </section>
 {{ end }}

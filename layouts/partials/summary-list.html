@@ -1,7 +1,8 @@
 {{ $posts := .posts }}
 {{ $level := default "h2" .level }}
+{{ $hasFeatured := .hasFeatured }}
 {{ $lastIndex := sub (len $posts) 1 }}
 {{ range $i, $v := $posts }}
-  {{ $params := (dict "post" $v "index" $i "lastIndex" $lastIndex "level" $level) }}
+  {{ $params := (dict "post" $v "index" $i "lastIndex" $lastIndex "level" $level "hasFeatured" $hasFeatured) }}
   {{ partial "summary" $params }}
 {{ end }}

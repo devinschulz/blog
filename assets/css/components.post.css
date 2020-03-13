@@ -34,6 +34,7 @@
   }
 
   a {
-    @mixin link var(--colors-gray-500), var(--colors-primary);
+    @mixin link var(--colors-gray-500), var(--colors-gray-900);
+    @apply font-bold;
   }
 }

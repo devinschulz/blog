@@ -30,7 +30,7 @@ twitterHandle = "devinschulz_"
 
 [menu]
   [[menu.main]]
-  name = "All topics"
+  name = "All Tags"
   weight = 1
   url = "/tags"
 
@@ -38,3 +38,17 @@ twitterHandle = "devinschulz_"
   name = "About Me"
   weight = 0
   url = "/about"
+
+[related]
+threshold = 80
+includeNewer = true
+toLower = true
+
+  [[related.indices]]
+  name = "tags"
+  weight = 100
+
+  [[related.indices]]
+  name = "keywords"
+  weight = 80
+

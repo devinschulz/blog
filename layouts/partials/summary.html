@@ -1,16 +1,22 @@
 {{ $level := .level }}
+{{ $hasFeatured := and (default false .hasFeatured) (eq .index 0) }}
+{{ $featuredClasses := (cond $hasFeatured " sm:text-4xl" "") }}
 {{ with .post }}
   <article{{ if ne $.lastIndex $.index }} class="mb-12 sm:mb-16"{{ end }}>
-    {{ printf "<%s class='mb-4'>" $level | safeHTML }}
-      <a href="{{ .Permalink | relURL }}" class="text-black hover:text-primary hover-line">{{ .Title | title }}</a>
+    {{ printf "<%s class='mb-4%s'>" $level $featuredClasses | safeHTML }}
+      <a href="{{ .Permalink | relURL }}" class="text-black hover:text-primary o-hover-line">{{ .Title | title }}</a>
     {{ printf "</%s>" $level | safeHTML }}
-     <div class="summary-content">
-       {{ with .Description }}
-         <p>{{ . }}</p>
-       {{ else }}
-         {{ .Summary }}
-       {{ end }}
-     </div>
-     {{ partial "post-metadata" . }}
-   </article>
+    <div class="summary-content">
+      {{ if $hasFeatured }}
+        {{ .Summary }}
+      {{ else }}
+        {{ with .Description }}
+          <p>{{ . }}</p>
+        {{ else }}
+          {{ .Summary }}
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ partial "post-metadata" . }}
+  </article>
 {{ end }}

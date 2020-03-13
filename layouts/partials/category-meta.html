@@ -2,7 +2,7 @@
   <ul class="inline font-medium font-display tracking-wide comma-list">
     {{ range . }}
       <li class="inline-block">
-        <a href="/tags/{{ . | urlize }}" class="inline-block text-primary hover:underline">{{ . | title }}</a>
+        <a href="/tags/{{ . | urlize }}" class="o-styled-link">{{ . | title }}</a>
       </li>
     {{ end }}
   </ul>
