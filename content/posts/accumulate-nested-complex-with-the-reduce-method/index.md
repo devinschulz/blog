@@ -65,7 +65,7 @@ collect(data, {})
 // => undefined
 ```
 
-Now take the list argument and call reduces to return a value other than
+Now take the list argument and call `reduce` to return a value other than
 `undefined`.
 
 <!-- prettier-ignore -->
