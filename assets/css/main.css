@@ -8,6 +8,7 @@
 @import './elements.html.css';
 @import './elements.typography.css';
 @import './elements.code.css';
+@import './elements.figure.css';
 
 @import './objects.hover-line.css';
 @import './objects.styled-link.css';

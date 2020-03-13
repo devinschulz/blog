@@ -1,0 +1,3 @@
+figcaption {
+  @apply text-xs font-display font-medium tracking-wide text-center text-gray-600 mt-4;
+}
