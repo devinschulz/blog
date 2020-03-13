@@ -34,28 +34,6 @@
   }
 
   a {
-    color: var(--colors-primary);
-    background-image: linear-gradient(
-      0deg,
-      hsla(0, 0%, 100%, 0),
-      hsla(0, 0%, 100%, 0) 1px,
-      theme('colors.gray.500') 0,
-      theme('colors.gray.500') 2px,
-      hsla(0, 0%, 100%, 0) 0
-    );
-    text-shadow: #fff -1px -1px 0, #fff 1px -1px 0, #fff -1px 1px 0,
-      #fff 1px 1px 0;
-
-    &:hover,
-    &:focus {
-      background-image: linear-gradient(
-        0deg,
-        hsla(0, 0%, 100%, 0),
-        hsla(0, 0%, 100%, 0) 1px,
-        theme('colors.primary') 0,
-        theme('colors.primary') 2px,
-        hsla(0, 0%, 100%, 0) 0
-      );
-    }
+    @mixin link var(--colors-gray-500), var(--colors-primary);
   }
 }

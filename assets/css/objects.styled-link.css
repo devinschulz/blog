@@ -1,0 +1,11 @@
+.o-styled-link {
+  @mixin link var(--colors-gray-300), var(--colors-primary);
+}
+
+.o-styled-link__inverted {
+  @mixin link var(--colors-white), var(--colors-gray-600);
+
+  &--active {
+    @mixin link var(--colors-primary), var(--colors-primary);
+  }
+}

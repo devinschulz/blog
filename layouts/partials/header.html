@@ -15,9 +15,9 @@
           <a
             href="{{ .URL }}"
             {{ if $active }}
-              class="text-primary hover:underline"
+              class="o-styled-link__inverted o-styled-link__inverted--active"
             {{ else }}
-              class="text-gray-600 hover:text-primary hover:underline"
+              class="o-styled-link__inverted"
             {{ end }}
           >{{ .Name }}</a>
         </li>
