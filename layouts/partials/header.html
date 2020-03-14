@@ -10,7 +10,7 @@
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $current.Title) }}
-        {{ $active = or $active (and (eq .Name "All topics") (eq $current.Section "tags")) }}
+        {{ $active = or $active (and (eq .Name "All Tags") (eq $current.Section "tags")) }}
         <li class="ml-4">
           <a
             href="{{ .URL }}"

@@ -31,13 +31,24 @@ twitterHandle = "devinschulz_"
 [menu]
   [[menu.main]]
   name = "All Tags"
-  weight = 1
+  weight = 0
   url = "/tags"
 
   [[menu.main]]
   name = "About Me"
-  weight = 0
+  weight = 1
   url = "/about"
+
+  [[menu.footer]]
+  name = "Privacy"
+  weight = 1
+  url = "/privacy"
+
+  [[menu.footer]]
+  name = "RSS"
+  weight = 0
+  url = "/"
+
 
 [related]
 threshold = 80
