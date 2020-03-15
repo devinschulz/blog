@@ -46,9 +46,23 @@ twitterHandle = "devinschulz_"
 
   [[menu.footer]]
   name = "RSS"
-  weight = 0
+  weight = 2
   url = "/posts/index.xml"
+  
+  [[menu.footer]]
+  name = "Github"
+  weight = 5
+  url = "https://github.com/devinschulz"
 
+  [[menu.footer]]
+  name = "LinkedIn"
+  weight = 4
+  url = "https://linkedin.com/in/devinschulz"
+  
+  [[menu.footer]]
+  name = "Twitter"
+  weight = 3
+  url = "https://twitter.com/devinschulz_"
 
 [related]
 threshold = 80
