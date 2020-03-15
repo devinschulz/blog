@@ -47,7 +47,7 @@ twitterHandle = "devinschulz_"
   [[menu.footer]]
   name = "RSS"
   weight = 0
-  url = "/"
+  url = "/posts/index.xml"
 
 
 [related]
