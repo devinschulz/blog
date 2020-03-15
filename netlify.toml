@@ -15,19 +15,3 @@
 
 [context.deploy-preview.environment]
   HUGO_ENV = "preview"
-
-[[redirects]]
-  from = "/categories"
-  to = "/tags"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/categories/*"
-  to = "/tags/:splat"
-  status = 301
-
-[[redirects]]
-  from = "/posts"
-  to = "/"
-  status = 301
