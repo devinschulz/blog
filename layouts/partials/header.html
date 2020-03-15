@@ -1,13 +1,13 @@
 {{ $current := . }}
-{{ $faceOptions := (dict "class" "w-12 sm:w-16 h-auto") }}
 <header class="container mx-auto p-4 mb-12 sm:mb-24 flex items-center font-display">
-  {{ if not .IsHome }}
-    <a class="mb-0 tracking-tight text-black font-bold hover:text-primary" href="/">{{ partial "svg/face.svg" $faceOptions }}</a>
-  {{ else }}
-    <div class="mb-0 tracking-tight text-black font-bold">{{ partial "svg/face.svg" $faceOptions }}</div>
-  {{ end }}
+  <div class="mb-0 tracking-tight text-black font-bold">
+    {{ partial "svg/face.svg" (dict "class" "w-12 sm:w-12 h-auto") }}
+  </div>
   <nav role="presentation">
     <ul class="text-xs sm:text-xxs flex tracking-wide">
+      <li class="ml-4">
+        <a href="/" class="o-styled-link__inverted">Home</a>
+      </li>
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $current.Title) }}
