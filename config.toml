@@ -1,7 +1,6 @@
 baseURL = "https://devinschulz.com"
 languageCode = "en-us"
 title = "Devin Schulz"
-description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
 titleCaseStyle = "AP"
 pygmentsUseClasses = true
 enableGitInfo = true
@@ -20,6 +19,7 @@ angledQuotes = false
 [params]
 timeFormatRFC3339 = "2006-01-02T15:04:05Z07:00"
 timeFormatDefault = "January 2, 2006"
+description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
 
 [author]
 name = "Devin Schulz"     
