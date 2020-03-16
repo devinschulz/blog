@@ -1,13 +1,10 @@
 {{ $current := . }}
 <header class="container mx-auto p-4 mb-12 sm:mb-24 flex items-center font-display">
-  <div class="mb-0 tracking-tight text-black font-bold">
-    {{ partial "svg/face.svg" (dict "class" "w-12 sm:w-12 h-auto") }}
-  </div>
+  <a class="mb-0 rounded-full bg-secondary w-16 h-16 flex items-center justify-center group" href="/">
+    <img src="/me.png" alt="Me" srcset="/me@2x.png 2x" class="w-8 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
+  </a>
   <nav role="presentation">
     <ul class="text-xs sm:text-xxs flex tracking-wide">
-      <li class="ml-4">
-        <a href="/" class="o-styled-link__inverted">Home</a>
-      </li>
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $current.Title) }}
