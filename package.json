@@ -21,7 +21,7 @@
     "@fullhuman/postcss-purgecss": "^2.0.6",
     "cssnano": "^4.1.10",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
+    "lint-staged": "^10.0.8",
     "postcss-cli": "^7.1.0",
     "postcss-import": "^12.0.1",
     "postcss-mixins": "^6.2.3",
