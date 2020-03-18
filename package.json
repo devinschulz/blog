@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "./scripts/dependencies.sh",
-    "minify-js": "node ./scripts/minify.js"
+    "minify-js": "node ./scripts/minify.js",
+    "start": "cross-env NODE_ENV=development hugo server",
+    "build": "cross-env NODE_ENV=production hugo --gc --minify",
+    "postbuild": "npm run minify-js",
+    "build:preview": "cross-env NODE_ENV=production hugo --gc --minify --buildFuture",
+    "postbuild:preview": "npm run minify-js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +24,7 @@
   "homepage": "https://github.com/devinschulz/blog#readme",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.0",
+    "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
@@ -31,6 +37,7 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
+    "hugo-bin": "^0.55.1",
     "instant.page": "^3.0.0",
     "tailwindcss": "^1.2.0",
     "terser": "^4.6.6"
