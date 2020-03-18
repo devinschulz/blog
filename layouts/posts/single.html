@@ -17,7 +17,7 @@
         Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
       </p>
       {{ end }}
-      <p>Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/site/content/{{ .File.Path }}">Edit on Github</a></p>
+      <p>Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/content/{{ .File.Path }}">Edit on Github</a></p>
     </footer>
   </div>
   {{ partial "related.html" . }}
