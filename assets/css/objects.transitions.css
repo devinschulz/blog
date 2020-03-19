@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 .o-transition-fade {
   @apply transition duration-300 ease-out transform opacity-100 translate-y-0;
 
@@ -17,3 +18,4 @@
     @apply opacity-0;
   }
 }
+/* purgecss end ignore */
