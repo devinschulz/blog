@@ -1,0 +1,19 @@
+.o-transition-fade {
+  @apply transition duration-300 ease-out transform opacity-100 translate-y-0;
+
+  html.is-animating & {
+    @apply transform -translate-y-8 opacity-0;
+  }
+
+  html.is-leaving & {
+    @apply transform translate-y-8 opacity-0;
+  }
+}
+
+.o-transition-fade-out {
+  @apply transition duration-300 ease-out opacity-100;
+
+  html.is-animating & {
+    @apply opacity-0;
+  }
+}

@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
   {{- partial "head.html" . -}}
-  <body class="text-gray-800 font-body overflow-x-hidden">
+  <body class="text-gray-800 font-body overflow-x-hidden antialiased">
     {{- partial "header.html" . -}}
-    <main>
+    <main id="content" class="o-transition-fade" aria-live="polite">
       {{- block "main" . }}{{- end -}}
     </main>
     {{- partial "footer.html" . -}}
 
     <script>
-     (function(f, a, t, h, o, m){
+     (function(f, a, t, h, o, m) {
        a[h]=a[h]||function(){
          (a[h].q=a[h].q||[]).push(arguments)
        };
@@ -19,6 +19,7 @@
        m.parentNode.insertBefore(o,m)
      })(document, window, 'https://cdn.usefathom.com/tracker.js', 'fathom');
      fathom('set', 'siteId', 'IRYBDMMH');
+     fathom('set', 'spa', 'pushstate');
      fathom('trackPageview');
     </script>
   </body>

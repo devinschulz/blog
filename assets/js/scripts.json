@@ -1,7 +1,10 @@
 {
   "scripts": [
-    "dependencies/instantpage.js",
-    "js/related.js",
+    "dependencies/swup.js",
+    "dependencies/SwupPreloadPlugin.js",
+    "dependencies/SwupHeadPlugin.js",
+    "dependencies/SwupScrollPlugin.js",
+    "js/main.js",
     "js/perf.js"
   ]
 }
