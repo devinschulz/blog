@@ -1,7 +1,7 @@
 {{ $current := . }}
 <footer class="container mx-auto px-4 text-xs sm:text-xxs font-display mt-24 mb-12 tracking-wide">
   <nav class="mb-1">
-    <ul class="text-xs sm:text-xxs flex tracking-wide">
+    <ul class="text-xs sm:text-xxs flex tracking-wide" id="secondary-nav">
       {{ range .Site.Menus.footer }}
       {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
       {{ $active = or $active (eq .Name $current.Title) }}
@@ -18,5 +18,7 @@
       {{ end }}
     </ul>
   </nav>
-  <p class="text-gray-600"><small>&copy;{{ now.Format "2006" }} {{ .Site.Title }} <span class="js-loaded-in"></span></small></p>
+  <p class="text-gray-600">
+    <small>&copy;{{ now.Format "2006" }} {{ .Site.Title }} <span class="js-loaded-in"></span></small>
+  </p>
 </footer>

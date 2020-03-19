@@ -3,7 +3,7 @@
   <a class="mb-0 rounded-full bg-secondary w-12 h-12 flex items-center justify-center group" href="/">
     <img src="/me.png" alt="Me" srcset="/me@2x.png 2x" class="w-6 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
   </a>
-  <nav role="presentation" id="main-nav" class="o-transition-fade-out" aria-live="polite">
+  <nav role="presentation" id="main-nav" aria-live="polite">
     <ul class="text-xs sm:text-xxs flex tracking-wide">
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}

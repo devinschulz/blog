@@ -16,7 +16,7 @@ function init() {
 const swup = new Swup({
   animateHistoryBrowsing: true,
   animationSelector: '[class*="o-transition-"]',
-  containers: ['#main-nav', '#content'],
+  containers: ['#main-nav', '#content', '#secondary-nav'],
   plugins: [
     new SwupPreloadPlugin(),
     new SwupHeadPlugin(),
