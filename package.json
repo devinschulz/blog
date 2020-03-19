@@ -7,8 +7,10 @@
     "postinstall": "./scripts/dependencies.sh",
     "minify-js": "node ./scripts/minify.js",
     "start": "cross-env NODE_ENV=development hugo server",
+    "prebuild": "npm run postinstall",
     "build": "cross-env NODE_ENV=production hugo --gc --minify",
     "postbuild": "npm run minify-js",
+    "prebuild:preview": "npm run postinstall",
     "build:preview": "cross-env NODE_ENV=production hugo --gc --minify --buildFuture",
     "postbuild:preview": "npm run minify-js"
   },
