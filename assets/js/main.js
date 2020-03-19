@@ -20,9 +20,7 @@ const swup = new Swup({
   plugins: [
     new SwupPreloadPlugin(),
     new SwupHeadPlugin(),
-    new SwupScrollPlugin({
-      doScrollingRightAway: true,
-    }),
+    new SwupScrollPlugin(),
   ],
 })
 
