@@ -1,0 +1,15 @@
+tr {
+  @apply border-b;
+}
+
+td {
+  @apply py-1 px-2;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
