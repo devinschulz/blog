@@ -27,7 +27,7 @@ thinking about how I could break a single piece of functionality down into
 independent pieces. If you think about it, there are really only two main
 pieces: the logic, and then the view.
 
-## Breaking down the Task at Hand
+## Breaking Down the Task at Hand
 
 By breaking down a task into several smaller tickets, you immediately reap in
 all these benefits: You can give better estimates on how long a single ticket
