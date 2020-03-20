@@ -1,13 +1,23 @@
 /* purgecss start ignore */
 .o-transition-fade {
-  @apply transition duration-300 ease-out transform opacity-100 translate-y-0;
+  @apply opacity-100;
 
   html.is-animating & {
-    @apply transform -translate-y-8 opacity-0;
+    @apply opacity-0;
   }
+}
 
-  html.is-leaving & {
-    @apply transform translate-y-8 opacity-0;
+@screen sm {
+  .o-transition-fade {
+    @apply translate-y-0;
+
+    html.is-animating & {
+      @apply -translate-y-8;
+    }
+
+    html.is-leaving & {
+      @apply translate-y-8;
+    }
   }
 }
 /* purgecss end ignore */
