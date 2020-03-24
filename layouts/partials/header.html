@@ -1,7 +1,11 @@
 {{ $current := . }}
 <header class="container mx-auto p-4 mb-12 sm:mb-24 flex items-center font-display">
   <a class="mb-0 rounded-full bg-secondary w-12 h-12 flex items-center justify-center group" href="/">
-    <img src="/me.png" alt="Me" srcset="/me@2x.png 2x" class="w-6 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
+    <picture>
+      <source type="image/webp" srcset="/me.webp 1x, /me@2x.webp 2x">
+      <source type="image/png" srcset="/me.png 1x, /me@2x.png 2x">
+      <img src="/me.png" alt="Me" class="w-6 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
+    </picture>
   </a>
   <nav role="presentation" id="main-nav" aria-live="polite">
     <ul class="text-xs sm:text-xxs flex tracking-wide">
