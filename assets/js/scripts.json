@@ -4,6 +4,7 @@
     "dependencies/SwupPreloadPlugin.js",
     "dependencies/SwupHeadPlugin.js",
     "dependencies/SwupScrollPlugin.js",
+    "dependencies/webfontloader.js",
     "js/main.js",
     "js/perf.js"
   ]

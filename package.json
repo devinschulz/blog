@@ -46,7 +46,8 @@
     "instant.page": "^3.0.0",
     "swup": "^2.0.9",
     "tailwindcss": "^1.2.0",
-    "terser": "^4.6.7"
+    "terser": "^4.6.7",
+    "webfontloader": "^1.6.28"
   },
   "husky": {
     "hooks": {
