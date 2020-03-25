@@ -12,7 +12,7 @@ function relatedPosts() {
 function loadFonts() {
   WebFont.load({
     google: {
-      families: ['Lora:400,400i,700,700i', 'Poppins:500,700&display=swap'],
+      families: ['Lora:400,400i,700,700i', 'Poppins:500,700'],
     },
   })
 }
