@@ -4,6 +4,7 @@ title = "Devin Schulz"
 titleCaseStyle = "AP"
 pygmentsUseClasses = true
 enableGitInfo = true
+enableRobotsTXT = true
 
 [taxonomies]
 tag = "tags"
