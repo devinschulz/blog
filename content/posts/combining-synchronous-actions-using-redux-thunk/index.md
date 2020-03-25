@@ -51,7 +51,7 @@ const openSidebar = () => ({
   type: 'OPEN_SIDEBAR',
 })
 
-const addToCart = id => ({
+const addToCart = (id) => ({
   type: 'ADD_TO_CART',
   payload: id,
 })
@@ -95,7 +95,7 @@ const AddToCart = ({ addItemToCart, id }) => (
 
 ```javascript
 // actions.js
-const addItemToCart = id => (dispatch, getState) => {
+const addItemToCart = (id) => (dispatch, getState) => {
   dispatch(addToCart(id))
   dispatch(openSidebar())
 }
@@ -113,12 +113,12 @@ sessions.
 
 ```javascript
 // actions.js
-const saveCartRequest = id => ({
+const saveCartRequest = (id) => ({
   type: 'SAVE_CART_REQUEST',
   payload: id,
 })
 
-const addItemToCart = id => dispatch => {
+const addItemToCart = (id) => (dispatch) => {
   dispatch(addToCart(id))
   dispatch(openSidebar())
   dispatch(saveCartRequest(id))
@@ -136,9 +136,9 @@ you need to send.
 
 ```javascript
 // actions.js
-const addItemToCart = id => (dispatch, getState) => {
+const addItemToCart = (id) => (dispatch, getState) => {
   const { merchandise } = getState()
-  const item = merchandise.find(item => item.id === id)
+  const item = merchandise.find((item) => item.id === id)
   dispatch(addToCart(item))
   dispatch(openSidebar())
   dispatch(saveCartRequest(id))
@@ -146,7 +146,7 @@ const addItemToCart = id => (dispatch, getState) => {
 
 // Can’t forget to update the `addToCart` action to use
 // the `item` instead of the `id`
-const addToCart = item => ({
+const addToCart = (item) => ({
   type: 'ADD_TO_CART',
   payload: item,
 })

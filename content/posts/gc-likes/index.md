@@ -114,7 +114,7 @@ app.get('/:id', (req, res) =>
   likes
     .doc(req.params.id)
     .get()
-    .then(doc => {
+    .then((doc) => {
       if (!doc.exists) {
         res.status(200).json({ count: 0 })
       } else {
@@ -145,7 +145,7 @@ increment the value.
 likes
   .doc(req.params.id)
   .get()
-  .then(doc => {
+  .then((doc) => {
     const count = doc.exists ? doc.data().count + 1 : 1
     likes.doc(req.params.id).set({ count })
   })
@@ -159,16 +159,16 @@ while guaranteeing that you are incrementing the latest value.
 ```js
 const put = (req, res) =>
   db
-    .runTransaction(transaction =>
-      transaction.get(likes.doc(req.params.id)).then(doc => {
+    .runTransaction((transaction) =>
+      transaction.get(likes.doc(req.params.id)).then((doc) => {
         const count = doc.exists ? doc.data().count + 1 : 1
         const method = doc.exists ? 'update' : 'set'
         transaction[method](likes.doc(req.params.id), { count })
         return Promise.resolve(count)
       })
     )
-    .then(count => res.status(200).json({ count }))
-    .catch(error =>
+    .then((count) => res.status(200).json({ count }))
+    .catch((error) =>
       res
         .status(500)
         .json({ status: 500, message: 'Failed to update count', error })

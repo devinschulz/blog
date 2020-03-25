@@ -22,8 +22,5 @@ function withPath(file) {
 
 fs.readdir(path.join(__dirname, '../public/js'), (err, files) => {
   if (err) throw new Error('Unable to parse directory /public/js', err)
-  files
-    .filter(isJavaScript)
-    .map(withPath)
-    .forEach(minifyFile)
+  files.filter(isJavaScript).map(withPath).forEach(minifyFile)
 })

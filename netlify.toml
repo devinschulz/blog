@@ -1,15 +1,15 @@
 [build]
-  command = "npm run build"
-  publish = "public"
+command = "npm run build"
+publish = "public"
 
 [build.environment]
-  HUGO_ENABLEGITINFO = "true"
+HUGO_ENABLEGITINFO = "true"
 
 [context.production.environment]
-  HUGO_ENV = "production"
+HUGO_ENV = "production"
 
 [context.deploy-preview]
-  command = "npm run build:preview"
+command = "npm run build:preview"
 
 [context.deploy-preview.environment]
-  HUGO_ENV = "preview"
+HUGO_ENV = "preview"

@@ -12,7 +12,8 @@
     "postbuild": "npm run minify-js",
     "prebuild:preview": "npm run postinstall",
     "build:preview": "cross-env NODE_ENV=production hugo --gc --minify --buildFuture",
-    "postbuild:preview": "npm run minify-js"
+    "postbuild:preview": "npm run minify-js",
+    "format": "prettier --write assets/**/*.{js,css} {content,archetypes}/**/*.md tailwind.config.js postcss.config.js ./**/*.toml"
   },
   "repository": {
     "type": "git",
@@ -36,7 +37,8 @@
     "postcss-nested": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
-    "prettier": "^2.0.2"
+    "prettier": "^2.0.2",
+    "prettier-plugin-toml": "0.3.1"
   },
   "dependencies": {
     "@swup/head-plugin": "^1.0.2",
@@ -54,6 +56,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,css,md,toml}": "prettier --write"
   }
 }

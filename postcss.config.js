@@ -15,7 +15,8 @@ module.exports = {
             content: [path.join(__dirname, './layouts/**/*.html')],
 
             // Include any special characters you're using in this regular expression
-            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+            defaultExtractor: (content) =>
+              content.match(/[\w-/:]+(?<!:)/g) || [],
           }),
           require('cssnano')({
             preset: ['default', { discardComments: { removeAll: true } }],

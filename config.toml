@@ -22,74 +22,79 @@ timeFormatDefault = "January 2, 2006"
 description = "Articles about React, JavaScript, testing, best practices, performance, and everything else related to front-end development."
 
 [params.author]
-name = "Devin Schulz"     
+name = "Devin Schulz"
 homepage = "https://devinschulz.com"
 twitterHandle = "devinschulz_"
 
 [menu]
-  [[menu.main]]
-  name = "All Tags"
-  weight = 0
-  url = "/tags"
 
-  [[menu.main]]
-  name = "About Me"
-  weight = 1
-  url = "/about"
+[[menu.main]]
+name = "All Tags"
+weight = 0
+url = "/tags"
 
-  [[menu.footer]]
-  name = "Privacy"
-  weight = 1
-  url = "/privacy"
+[[menu.main]]
+name = "About Me"
+weight = 1
+url = "/about"
 
-  [[menu.footer]]
-  name = "RSS"
-  weight = 2
-  url = "/posts/index.xml"
-  
-  [[menu.footer]]
-  name = "Github"
-  weight = 5
-  url = "https://github.com/devinschulz"
+[[menu.footer]]
+name = "Privacy"
+weight = 1
+url = "/privacy"
 
-  [[menu.footer]]
-  name = "LinkedIn"
-  weight = 4
-  url = "https://linkedin.com/in/devinschulz"
-  
-  [[menu.footer]]
-  name = "Twitter"
-  weight = 3
-  url = "https://twitter.com/devinschulz_"
+[[menu.footer]]
+name = "RSS"
+weight = 2
+url = "/posts/index.xml"
+
+[[menu.footer]]
+name = "Github"
+weight = 5
+url = "https://github.com/devinschulz"
+
+[[menu.footer]]
+name = "LinkedIn"
+weight = 4
+url = "https://linkedin.com/in/devinschulz"
+
+[[menu.footer]]
+name = "Twitter"
+weight = 3
+url = "https://twitter.com/devinschulz_"
 
 [related]
 threshold = 80
 includeNewer = true
 toLower = true
 
-  [[related.indices]]
-  name = "tags"
-  weight = 100
+[[related.indices]]
+name = "tags"
+weight = 100
 
-  [[related.indices]]
-  name = "keywords"
-  weight = 80
+[[related.indices]]
+name = "keywords"
+weight = 80
 
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.extensions]
-      definitionList = true
-      footnote = true
-      linkify = true
-      strikethrough = true
-      table = true
-      taskList = true
-      typographer = true
-    [markup.goldmark.parser]
-      attribute = true
-      autoHeadingID = true
-      autoHeadingIDType = "github"
-    [markup.goldmark.renderer]
-      hardWraps = false
-      unsafe = false
-      xHTML = false
+
+[markup.goldmark]
+
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+
+[markup.goldmark.parser]
+attribute = true
+autoHeadingID = true
+autoHeadingIDType = "github"
+
+[markup.goldmark.renderer]
+hardWraps = false
+unsafe = false
+xHTML = false

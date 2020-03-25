@@ -1,4 +1,4 @@
-;(function() {
+;(function () {
   const getLoadTime = () =>
     (window.performance.timing.domContentLoadedEventEnd -
       window.performance.timing.navigationStart) /
