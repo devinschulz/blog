@@ -28,7 +28,7 @@ What's going on here? To me, this seems pretty evident that adblockers are
 pretty damn popular, and most of my traffic clearly uses one. I'm guilty of this
 too since I use an ad blocker system-wide on both my computer and phone. For
 those that are interested, my computer blocks ads by modifying the systems
-[hosts file](<[https://github.com/StevenBlack/hosts](https://github.com/StevenBlack/hosts)>),
+[hosts file](https://github.com/StevenBlack/hosts),
 and my phone uses [Blokada](https://blokada.org). Blocking system-wide is the
 only way to prevent tracking through all applications.
 
