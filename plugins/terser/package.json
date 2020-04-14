@@ -1,0 +1,11 @@
+{
+  "name": "netlify-terser-plugin",
+  "version": "1.0.0",
+  "description": "A Netlify terser plugin",
+  "main": "terser.js",
+  "author": "Devin Schulz",
+  "license": "MIT",
+  "dependencies": {
+    "terser": "^4.6.11"
+  }
+}

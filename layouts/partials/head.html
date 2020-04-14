@@ -94,7 +94,7 @@
     {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" }}
     <script src="{{ $js.Permalink | relURL }}" defer></script>
   {{ else }}
-    {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" | resources.Minify | fingerprint }}
+    {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" | fingerprint }}
     <script src="{{ $js.Permalink | relURL }}" defer></script>
   {{ end }}
 
