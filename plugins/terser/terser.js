@@ -25,7 +25,7 @@ function withPath(pluginConfig) {
 module.exports = function () {
   return {
     name: 'terser',
-    onBuild({ pluginConfig, utils }) {
+    onPostBuild({ pluginConfig, utils }) {
       if (!pluginConfig.src) {
         return utils.build.failPlugin('No pluginConfig.src found')
       }
