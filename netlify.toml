@@ -18,9 +18,9 @@ HUGO_ENV = "preview"
 id = "terser"
 package = "./plugins/terser/terser.js"
 
-[plugins.config]
+[plugins.inputs]
 src = "/public/js"
 
 # debugMode = true
-[plugins.config.options]
+[plugins.inputs.options]
 toplevel = true
