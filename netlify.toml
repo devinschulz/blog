@@ -24,11 +24,3 @@ src = "/public/js"
 # debugMode = true
 [plugins.inputs.options]
 toplevel = true
-
-[[plugins]]
-package = "netlify-plugin-subfont"
-
-[plugins.inputs]
-entryPoints = ["*.html"]
-recursive = true
-fontDisplay = "swap"
