@@ -1,9 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
   {{- partial "head.html" . -}}
-  <body class="text-gray-800 font-body overflow-x-hidden antialiased">
+  <body
+    class="text-gray-800 font-body overflow-x-hidden antialiased border-t-8 border-secondary"
+  >
     {{- partial "header.html" . -}}
-    <main id="content" class="o-transition-fade transition duration-300 ease-out transform" aria-live="polite">
+    <main
+      id="content"
+      class="o-transition-fade transition duration-300 ease-out transform"
+      aria-live="polite"
+    >
       {{- block "main" . }}{{- end -}}
     </main>
     {{- partial "footer.html" . -}}
