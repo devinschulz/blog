@@ -15,6 +15,8 @@ and return a single object you can use to reference any entry by ID.
 
 <!--more-->
 
+{{< toc >}}
+
 ## Building out the Function
 
 First, we'll start with the data, an object with a structure that looks like

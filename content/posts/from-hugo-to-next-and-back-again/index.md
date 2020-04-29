@@ -15,6 +15,8 @@ voice my own experience.
 
 <!--more-->
 
+{{< toc >}}
+
 ## Choosing a Static Site Generator
 
 Since I'm primarily front-end focused and quite confident building almost

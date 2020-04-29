@@ -20,6 +20,8 @@ meetings take place on Zoom.
 
 <!--more-->
 
+{{< toc >}}
+
 When I had started back in December 2014, I was number seventy-six, and at the
 time of writing this article, there are well over eight hundred. Many things
 have since changed, and as an organization, it has matured. The company is

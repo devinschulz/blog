@@ -13,6 +13,8 @@ business logic before they are dispatched.
 
 <!--more-->
 
+{{< toc >}}
+
 ## A Potential Solution
 
 Recently I’ve been using [Redux Thunk](https://github.com/reduxjs/redux-thunk)

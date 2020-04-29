@@ -20,6 +20,8 @@ was handed the ticket to implement this functionality, it was intimidating.
 
 <!--more-->
 
+{{< toc >}}
+
 After sitting down and thinking about how to approach this problem, I concluded
 that a higher-order component would handle the business logic and then pass the
 required data down to a stateless component. I came to this conclusion by
