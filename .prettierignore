@@ -1,4 +1,4 @@
 public
 dist
 .DS_Store
-.html
+*.html
