@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="container mx-auto px-4">
+  {{ $posts := where .Site.RegularPages "Section" "today-i-learned" }}
+  {{ $scratch := newScratch }}
+  {{ range $posts}}
+    {{ $s := default (dict .Params.category (slice)) ($scratch.Get "til") }}
+    {{ $collection := (slice) }}
+    {{ range $key, $value := $s }}
+      {{ $collection = $collection | append $value }}
+    {{ end }}
+    {{ $collection = $collection | append . }}
+    {{ $scratch.SetInMap "til" .Params.category $collection }}
+  {{ end }}
+
+  <header class="mb-12">
+    <h1 class="text-3xl sm:text-5xl">Today I Learned</h1>
+  </header>
+  {{ range $key, $pages := $scratch.Get "til" }}
+    <div class="w-full border-b mb-2">
+      <h2 class="mb-0">{{ $key | title }}</h2>
+    </div>
+    <ul class="text-xs font-medium font-display tracking wide mb-8 space-y-2">
+      {{ range $pages }}
+      <li>
+        <a href="{{ .Permalink | relURL }}" class="o-styled-link">{{ .Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}

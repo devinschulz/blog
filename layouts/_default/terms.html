@@ -3,9 +3,7 @@
 {{ $scratch := newScratch }}
 {{ range .Pages }}
   {{ $char := (lower (slicestr .Title 0 1))}}
-  {{ $s := default ($scratch.Get $char) (slice) }}
-  {{ $s = $s | append .Title }}
-  {{ $scratch.Set $char $s }}
+  {{ $scratch.Add $char (slice .Title) }}
 {{ end }}
 <section class="container mx-auto px-4">
   <header class="mb-12">

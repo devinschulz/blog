@@ -11,6 +11,7 @@ tag = "tags"
 
 [permalinks]
 posts = ":title"
+today-i-learned = "today-i-learned/:title"
 
 [blackfriday]
 plainIDAnchors = true
@@ -38,6 +39,11 @@ url = "/tags"
 name = "About Me"
 weight = 1
 url = "/about"
+
+[[menu.main]]
+name = "Today I Learned"
+weight = 1
+url = "/today-i-learned"
 
 [[menu.footer]]
 name = "Privacy"
