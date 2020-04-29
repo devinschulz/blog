@@ -16,6 +16,7 @@
 @import './objects.transitions.css';
 
 @import './components.post.css';
+@import './components.multi-column-list.css';
 @import './components.toc.css';
 
 @import './utilities.comma-list.css';
