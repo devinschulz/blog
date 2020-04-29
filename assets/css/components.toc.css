@@ -1,0 +1,9 @@
+.c-toc {
+  > nav > ul {
+    padding-left: 0 !important;
+  }
+  ul {
+    @apply list-none;
+    margin-bottom: 0 !important;
+  }
+}
