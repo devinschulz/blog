@@ -44,7 +44,7 @@
     "hugo-bin": "^0.57.2",
     "instant.page": "^3.0.0",
     "swup": "^2.0.9",
-    "tailwindcss": "^1.3.5"
+    "tailwindcss": "^1.4.4"
   },
   "husky": {
     "hooks": {
