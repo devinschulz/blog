@@ -1,7 +1,7 @@
 ---
 title: Filter out multiple console messages in Google Chrome
 description:
-date: 2020-04-28
+date: 2020-05-01
 category: Devtools
 ---
 
