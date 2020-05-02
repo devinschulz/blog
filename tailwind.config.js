@@ -1,5 +1,6 @@
 module.exports = {
   theme: {
+    purge: false,
     fontFamily: {
       display: ['Poppins', 'sans-serif'],
       body: ['Lora', 'serif'],
