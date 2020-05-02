@@ -7,13 +7,14 @@
       <img src="/me.png" alt="Me" class="w-6 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
     </picture>
   </a>
-  <nav role="presentation" id="main-nav" aria-live="polite">
-    <ul class="text-xs sm:text-xxs flex tracking-wide">
+  <nav role="presentation" id="main-nav" aria-live="polite" class="ml-4">
+    <ul class="text-xs sm:text-xxs flex tracking-wide space-x-4">
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $current.Title) }}
         {{ $active = or $active (and (eq .Name "All Tags") (eq $current.Section "tags")) }}
-        <li class="ml-4">
+        {{ $active = or $active (and (eq .Name "Today I Learned") (eq $current.Section "today-i-learned")) }}
+        <li>
           <a
             href="{{ .URL }}"
             {{ if $active }}
@@ -21,7 +22,14 @@
             {{ else }}
               class="o-styled-link__inverted"
             {{ end }}
-          >{{ .Name }}</a>
+          >
+            {{ if eq .Name "Today I Learned" }}
+            <span class="sm:hidden">TIL</span>
+            <span class="hidden sm:inline">{{ .Name }}</span>
+            {{ else }}
+            {{ .Name }}
+            {{ end }}
+          </a>
         </li>
       {{ end }}
     </ul>

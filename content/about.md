@@ -16,6 +16,45 @@ I'm happy to have you along for the ride!
 
 &mdash; Devin
 
+## Current technology stack
+
+{{< multi-column-list >}}
+
+- Apollo
+- Create React App
+- Go
+- GraphQL
+- JavaScript
+- Node.js
+- React
+- Redux
+- Rollup
+- Tailwind CSS
+- Webpack
+  {{</ multi-column-list >}}
+
+## Technologies I have used
+
+{{< multi-column-list >}}
+
+- Angular JS
+- ERB
+- Grunt
+- Gulp
+- HAML
+- Jade/Pug
+- Jekyll
+- LESS
+- Mobx
+- PHP
+- Ruby
+- Ruby on Rails
+- Sass/Scss
+- Shopify Themes
+- Wordpress
+- jQuery
+  {{</ multi-column-list >}}
+
 ## Tools of the Trade
 
 |             |                                                                                                                                                                                                                                                                                                        |

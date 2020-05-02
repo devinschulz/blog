@@ -1,4 +1,7 @@
+const path = require('path')
+
 module.exports = {
+  purge: [path.join(__dirname, './layouts/**/*.html')],
   theme: {
     fontFamily: {
       display: ['Poppins', 'sans-serif'],
