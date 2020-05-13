@@ -1,3 +1,4 @@
+/* purgecss ignore */
 .c-post-content {
   ul,
   ol {
@@ -38,3 +39,4 @@
     @apply font-bold;
   }
 }
+/* purgecss end ignore */
