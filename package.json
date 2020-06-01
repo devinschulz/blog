@@ -40,7 +40,7 @@
     "@swup/head-plugin": "^1.0.2",
     "@swup/preload-plugin": "^1.0.3",
     "@swup/scroll-plugin": "^1.0.6",
-    "hugo-bin": "^0.57.2",
+    "hugo-bin": "^0.60.0",
     "instant.page": "^5.0.1",
     "swup": "^2.0.9",
     "tailwindcss": "^1.4.6"
