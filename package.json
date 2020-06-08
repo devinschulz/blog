@@ -42,7 +42,7 @@
     "@swup/scroll-plugin": "^1.0.6",
     "hugo-bin": "^0.57.2",
     "instant.page": "^5.0.1",
-    "swup": "^2.0.9",
+    "swup": "^2.0.10",
     "tailwindcss": "^1.4.6"
   },
   "husky": {
