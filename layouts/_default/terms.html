@@ -16,7 +16,7 @@
         <header class="w-full border-b mb-2">
           <h2 class="mb-0">{{ $char | upper }}</h2>
         </header>
-        <ul class="block text-xs font-medium font-display tracking-wide comma-list">
+        <ul class="block text-xs font-medium tracking-wide comma-list">
           {{ range sort (uniq ($scratch.Get $char)) }}
             <li class="inline-block">
               <a href="/tags/{{ . | urlize }}" class="inline-block o-styled-link">{{ . }}</a>

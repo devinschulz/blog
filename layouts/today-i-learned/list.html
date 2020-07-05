@@ -21,11 +21,11 @@
         <div class="w-full border-b mb-2">
           <h2 class="mb-0">{{ $key | title }}</h2>
         </div>
-        <ul class="block text-xs font-medium font-display tracking wide space-y-1">
+        <ul class="block text-xs font-medium tracking wide space-y-1">
           {{ range $pages }}
-          <li>
-            <a href="{{ .Permalink | relURL }}" class="o-styled-link inline-block">{{ .Title }}</a>
-          </li>
+            <li>
+              <a href="{{ .Permalink | relURL }}" class="o-styled-link inline-block">{{ .Title }}</a>
+            </li>
           {{ end }}
         </ul>
       </div>

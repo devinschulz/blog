@@ -4,8 +4,20 @@ module.exports = {
   purge: [path.join(__dirname, './layouts/**/*.html')],
   theme: {
     fontFamily: {
-      display: ['Poppins', 'sans-serif'],
-      body: ['Lora', 'serif'],
+      body: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Helvetica Neue',
+        'Arial',
+        'Noto Sans',
+        'sans-serif',
+        'Apple Color Emoji',
+        'Segoe UI',
+        'Roboto',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji',
+      ],
     },
     screens: {
       sm: '668px',
