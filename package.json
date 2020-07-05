@@ -25,8 +25,9 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
+    "hugo-bin": "^0.57.2",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.6",
+    "lint-staged": "^10.2.11",
     "postcss-cli": "^7.1.1",
     "postcss-import": "^12.0.1",
     "postcss-mixins": "^6.2.3",
@@ -40,9 +41,7 @@
     "@swup/head-plugin": "^1.0.2",
     "@swup/preload-plugin": "^1.0.3",
     "@swup/scroll-plugin": "^1.0.6",
-    "hugo-bin": "^0.57.2",
-    "instant.page": "^5.0.1",
-    "swup": "^2.0.9",
+    "swup": "^2.0.10",
     "tailwindcss": "^1.4.6"
   },
   "husky": {
