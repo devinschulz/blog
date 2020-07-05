@@ -25,7 +25,7 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
-    "hugo-bin": "^0.57.2",
+    "hugo-bin": "^0.61.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "postcss-cli": "^7.1.1",
