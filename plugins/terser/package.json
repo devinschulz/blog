@@ -6,6 +6,6 @@
   "author": "Devin Schulz",
   "license": "MIT",
   "dependencies": {
-    "terser": "^4.6.11"
+    "terser": "^4.8.0"
   }
 }

@@ -15,11 +15,7 @@ command = "npm run build:preview"
 HUGO_ENV = "preview"
 
 [[plugins]]
-package = "./plugins/terser/terser.js"
+package = "/plugins/terser"
 
 [plugins.inputs]
 src = "/public/js"
-
-# debugMode = true
-[plugins.inputs.options]
-toplevel = true
