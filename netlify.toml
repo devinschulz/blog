@@ -15,7 +15,6 @@ command = "npm run build:preview"
 HUGO_ENV = "preview"
 
 [[plugins]]
-id = "terser"
 package = "./plugins/terser/terser.js"
 
 [plugins.inputs]
