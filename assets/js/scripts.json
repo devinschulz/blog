@@ -1,10 +1,7 @@
 {
   "scripts": [
-    "dependencies/swup.js",
-    "dependencies/SwupPreloadPlugin.js",
-    "dependencies/SwupHeadPlugin.js",
-    "dependencies/SwupScrollPlugin.js",
-    "js/main.js",
-    "js/perf.js"
+    "dependencies/instantpage.js",
+    "js/perf.js",
+    "js/post.js"
   ]
 }

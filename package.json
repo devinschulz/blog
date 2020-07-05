@@ -35,14 +35,11 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^2.0.5",
-    "prettier-plugin-toml": "0.3.1"
+    "prettier-plugin-toml": "0.3.1",
+    "tailwindcss": "^1.4.6"
   },
   "dependencies": {
-    "@swup/head-plugin": "^1.0.2",
-    "@swup/preload-plugin": "^1.0.3",
-    "@swup/scroll-plugin": "^1.0.6",
-    "swup": "^2.0.10",
-    "tailwindcss": "^1.4.6"
+    "instant.page": "^5.1.0"
   },
   "husky": {
     "hooks": {
