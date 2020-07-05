@@ -1,5 +1,0 @@
-name: terser
-inputs:
-  - name: src
-    description: The source directory which terser will run against
-    required: true

@@ -13,9 +13,3 @@ command = "npm run build:preview"
 
 [context.deploy-preview.environment]
 HUGO_ENV = "preview"
-
-[[plugins]]
-package = "/plugins/terser"
-
-[plugins.inputs]
-src = "/public/js"
