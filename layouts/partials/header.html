@@ -7,7 +7,7 @@
       <img src="/me.png" alt="Me" class="w-6 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
     </picture>
   </a>
-  <nav role="presentation" id="main-nav" aria-live="polite" class="ml-4">
+  <nav id="main-nav" class="ml-4">
     <ul class="text-xs sm:text-xxs flex tracking-wide space-x-4">
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
