@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="container mx-auto px-4">
   <header class="mb-12">
-    <h1 class="text-4xl sm:text-5xl mb-4">{{ .Title }}</h1>
+    <h1 class="text-4xl sm:text-5xl mb-4">{{ .Title | title }}</h1>
     {{ partial "post-metadata" . }}
   </header>
   <div class="c-post-content">
