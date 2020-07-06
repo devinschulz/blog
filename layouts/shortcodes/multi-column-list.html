@@ -1,5 +1,5 @@
 <ul class="c-multi-column-list list-none">
-  {{ range split .Inner "- " }} {{ if gt (len .) 1 }}
+  {{ range split .Inner "- " }} {{ if and (gt (len .) 1) (ne "\n\n" . )  }}
   <li>
     {{ . }}
   </li>
