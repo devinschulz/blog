@@ -14,7 +14,7 @@ Aliases allow you to rename a single field to whatever you want it to be. They a
 Imagine requesting data using the following query from an API:
 
 ```graphql
-query AllEntries {
+query GetEntries {
   entries {
     id
     updated_at
@@ -38,7 +38,7 @@ You will get the following JSON response:
 The `id` here is fine, but the `updated_at` doesn’t quite conform to the camel case convention in JavaScript. Let’s change it by using an alias.
 
 ```graphql
-query AllEntries {
+query GetEntries {
   entries {
     id
     updated_at: updatedAt
