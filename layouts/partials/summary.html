@@ -3,9 +3,6 @@
 {{ $featuredClasses := (cond $hasFeatured " sm:text-4xl" "") }}
 {{ with .post }}
   <article{{ if ne $.lastIndex $.index }} class="mb-12 sm:mb-16"{{ end }}>
-    <div class="mb-2">
-      {{ partial "post-metadata" . }}
-    </div>
     {{ printf "<%s class='mb-4%s'>" $level $featuredClasses | safeHTML }}
       <a href="{{ .Permalink | relURL }}" class="text-black hover:text-primary o-hover-line">{{ .Title | title }}</a>
     {{ printf "</%s>" $level | safeHTML }}
@@ -20,6 +17,6 @@
         {{ end }}
       {{ end }}
     </div>
-  {{ partial "category-meta" . }}
-</article>
+    {{ partial "post-metadata" . }}
+  </article>
 {{ end }}

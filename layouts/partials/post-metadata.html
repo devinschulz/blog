@@ -5,4 +5,7 @@
     </time>
   </li>
   <li class="inline-block mb-2 sm:mb-0 ml-4">{{ .ReadingTime }} min read</li>
+  {{ if .Params.tags }}
+    <li class="inline-block sm:inline w-full sm:w-auto ml-0">{{ partial "category-meta" . }}</li>
+  {{ end }}
 </ul>
