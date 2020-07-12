@@ -1,12 +1,11 @@
 {{ define "main" }}
 <article class="container mx-auto px-4">
   <header class="mb-12">
-    <h1 class="text-4xl sm:text-5xl mb-4">{{ .Title | title }}</h1>
     {{ partial "post-metadata" . }}
+    <h1 class="text-4xl sm:text-5xl mt-2">{{ .Title | title }}</h1>
   </header>
   <div class="c-post-content">
     {{ .Content }}
-
     <footer class="mt-12 text-sm">
       {{ with .Params.canonical }}
       {{ $url := urls.Parse . }}
@@ -20,6 +19,7 @@
       <p>Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/content/{{ .File.Path }}">Edit on Github</a></p>
     </footer>
   </div>
-  {{ partial "related.html" . }}
+  {{ partial "category-meta" . }}
+  {{ partial "related" . }}
 </article>
 {{ end }}

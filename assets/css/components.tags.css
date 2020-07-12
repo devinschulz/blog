@@ -1,0 +1,181 @@
+.c-tag {
+  @apply py-1 px-2 bg-gray-200 text-black rounded;
+
+  &:hover {
+    @apply bg-gray-300;
+  }
+
+  &-graphql {
+    background-color: color(#e10098 l(90%));
+    color: color(#e10098 blackness(60%));
+    &:hover {
+      background-color: #e10098;
+      color: var(--colors-white);
+    }
+  }
+
+  &-firebase {
+    background-color: color(#f5820b l(90%));
+    color: color(#f5820b blackness(60%));
+    &:hover {
+      background-color: #f5820b;
+      color: var(--colors-white);
+    }
+  }
+
+  &-flow {
+    background-color: color(#e8bd36 l(90%));
+    color: color(#e8bd36 blackness(90%));
+    &:hover {
+      background-color: #e8bd36;
+      color: var(--colors-black);
+    }
+  }
+
+  &-map {
+    background-color: color(#f4511e l(90%));
+    color: color(#f4511e blackness(90%));
+    &:hover {
+      background-color: #f4511e;
+      color: var(--colors-white);
+    }
+  }
+
+  &-google-cloud {
+    background-color: color(#4285f4 l(90%));
+    color: color(#4285f4 blackness(90%));
+    &:hover {
+      background-color: #4285f4;
+      color: var(--colors-white);
+    }
+  }
+
+  &-node {
+    background-color: color(#026e00 l(90%));
+    color: color(#026e00 blackness(90%));
+    &:hover {
+      background-color: #026e00;
+      color: var(--colors-white);
+    }
+  }
+
+  &-testing {
+    background-color: color(#ea4335 l(90%));
+    color: color(#ea4335 blackness(90%));
+    &:hover {
+      background-color: #ea4335;
+      color: var(--colors-white);
+    }
+  }
+
+  &-remote,
+  &-career {
+    background-color: color(#34a853 l(90%));
+    color: color(#34a853 blackness(90%));
+    &:hover {
+      background-color: #34a853;
+      color: var(--colors-white);
+    }
+  }
+
+  &-serverless,
+  &-array {
+    background-color: color(#039be5 l(90%));
+    color: color(#039be5 blackness(60%));
+    &:hover {
+      background-color: #039be5;
+      color: var(--colors-white);
+    }
+  }
+
+  &-javascript {
+    background-color: color(#f7df1e l(90%));
+    &:hover {
+      background-color: #f7df1e;
+    }
+  }
+
+  &-performance,
+  &-analytics {
+    background-color: color(#f24e1e l(90%));
+    color: color(#f24e1e blackness(60%));
+    &:hover {
+      background-color: #f24e1e;
+      color: var(--colors-white);
+    }
+  }
+
+  &-react {
+    background-color: color(#81d8f7 l(90%));
+    color: color(#81d8f7 blackness(90%));
+    &:hover {
+      background-color: #81d8f7;
+      color: var(--colors-black);
+    }
+  }
+
+  &-redux {
+    background-color: color(#593d88 l(90%));
+    color: color(#593d88 blackness(90%));
+    &:hover {
+      background-color: #593d88;
+      color: var(--colors-white);
+    }
+  }
+
+  &-jest {
+    background-color: color(#c21325 l(90%));
+    color: color(#c21325 blackness(60%));
+    &:hover {
+      background-color: #c21325;
+      color: var(--colors-white);
+    }
+  }
+
+  &-babel {
+    background-color: color(#f5da55 l(90%));
+    color: color(#f5da55 blackness(60%));
+    &:hover {
+      background-color: #f5da55;
+      color: var(--colors-black);
+    }
+  }
+
+  &-css {
+    background-color: color(#3c99dc l(90%));
+    color: color(#3c99dc blackness(60%));
+    &:hover {
+      background-color: #3c99dc;
+      color: var(--colors-white);
+    }
+  }
+
+  &-opinion,
+  &-devtools {
+    background-color: color(#5551ff l(90%));
+    color: color(#5551ff blackness(90%));
+    &:hover {
+      background-color: #5551ff;
+      color: var(--colors-white);
+    }
+  }
+
+  &-static-sites,
+  &-today-i-learned {
+    background-color: color(#0fa958 l(90%));
+    color: color(#0fa958 blackness(60%));
+    &:hover {
+      background-color: #0fa958;
+      color: var(--colors-white);
+    }
+  }
+
+  &-tailwind {
+    color: color(#38b2ac blackness(60%));
+    background-color: color(#38b2ac l(90%));
+    &:hover {
+      background-color: #38b2ac;
+      color: var(--colors-white);
+    }
+  }
+}
