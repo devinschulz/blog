@@ -70,8 +70,7 @@ collect(data, {})
 Now take the list argument and call `reduce` to return a value other than
 `undefined`.
 
-<!-- prettier-ignore -->
-{{<highlight javascript "linenos=table,hl_lines=2-4">}}
+```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
     return accumulator
@@ -79,7 +78,7 @@ function collect(list, acc) {
 }
 collect(data, {})
 // => {}
-{{</highlight>}}
+```
 
 Take notice of line 4, when we recursively call the `collect` function, the
 resulting object is passed down and returned each time. Each iteration adds to
@@ -88,8 +87,7 @@ the same object. Neat!
 Next, you'll set the object key to the current ID and assign it the value of
 `current`.
 
-<!-- prettier-ignore -->
-{{<highlight javascript "linenos=table,hl_lines=3">}}
+```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
     accumulatorcurrent.id] = current
@@ -98,14 +96,13 @@ function collect(list, acc) {
 }
 collect(data, {})
 // => { '1': { id: 1, children: [ [Object], [Object] ] } }
-{{</highlight>}}
+```
 
 You might call this finished if the object didn't contain nested objects. In
 order to collect all those values too, you will need to recursivly call
 `collect` if the current object contains the `children` property.
 
-<!-- prettier-ignore -->
-{{<highlight javascript "linenos=table,hl_lines=3-5">}}
+```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
     if (Array.isArray(current.children) && current.children.length) {
@@ -123,19 +120,18 @@ collect(data, {})
 //      '5': { id: 5 },
 //      '6': { id: 6, children: [ [Object] ] },
 //      '7': { id: 7 } }
-{{</highlight>}}
+```
 
 This is working great, but you can take this one step further and clean up the
 `children` property. You may want to do this so you have less duplicate data.
 
-<!-- prettier-ignore -->
-{{<highlight javascript "linenos=table,hl_lines=4-7">}}
+```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
     if (Array.isArray(current.children) && current.children.length) {
       accumulator[current.id] = {
         ...current,
-        children: current.children.map(entry => entry.id),
+        children: current.children.map((entry) => entry.id),
       }
       return collect(current.children, accumulator)
     }
@@ -151,7 +147,7 @@ collect(data, {})
 //      '5': { id: 5 },
 //      '6': { id: 6, children: [ 7 ] },
 //      '7': { id: 7 } }
-{{</highlight>}}
+```
 
 ## Using Map Instead of an Object
 
@@ -160,14 +156,13 @@ like `Map`. Swap out any references to the accumulator object and replace that
 value with `Map`. Update the object assignments to use the `set` method and
 that's it!
 
-<!-- prettier-ignore -->
-{{<highlight javascript "linenos=table,hl_lines=4-7 10 14">}}
+```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
     if (Array.isArray(current.children) && current.children.length) {
       accumulator.set(current.id, {
         ...current,
-        children: current.children.map(entry => entry.id),
+        children: current.children.map((entry) => entry.id),
       })
       return collect(current.children, accumulator)
     }
@@ -184,7 +179,7 @@ collect(data, new Map())
 //  5 => { id: 5 },
 //  6 => { id: 6, children: [ 7 ] },
 //  7 => { id: 7 } }
-{{</highlight>}}
+```
 
 ## Conclusion
 
