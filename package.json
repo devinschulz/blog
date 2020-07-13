@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development hugo server --buildFuture",
-    "prebuild": "npm run postinstall",
     "build": "cross-env NODE_ENV=production hugo --gc --minify",
-    "prebuild:preview": "npm run postinstall",
     "build:preview": "cross-env NODE_ENV=production hugo --gc --minify --buildFuture",
     "format": "prettier --write assets/**/*.{js,css} {content,archetypes}/**/*.md tailwind.config.js postcss.config.js ./**/*.toml ./plugins/**/*.js"
   },
