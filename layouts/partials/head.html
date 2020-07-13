@@ -80,18 +80,11 @@
     <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
   {{ end }}
 
-  {{/*  https://discourse.gohugo.io/t/bundle-many-resources/13497/10  */}}
-  {{ $scripts := getJSON "./assets/js/scripts.json" }}
-  {{ $.Scratch.Set "jslibs" slice }}
-  {{ range $scripts.scripts }}
-    {{ $.Scratch.Add "jslibs" (resources.Get . ) }}
-  {{ end }}
-
   {{ if .Site.IsServer }}
-    {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" }}
+    {{ $js := resources.Get "js/main.js" | js.Build }}
     <script src="{{ $js.Permalink | relURL }}" defer></script>
   {{ else }}
-    {{ $js := .Scratch.Get "jslibs" | resources.Concat "/js/bundle.js" | minify | fingerprint }}
+    {{ $js := resources.Get "js/main.js" | js.Build | minify | fingerprint }}
     <script src="{{ $js.Permalink | relURL }}" defer></script>
   {{ end }}
 

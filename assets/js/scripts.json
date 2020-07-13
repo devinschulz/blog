@@ -1,7 +1,0 @@
-{
-  "scripts": [
-    "dependencies/instantpage.js",
-    "js/perf.js",
-    "js/post.js"
-  ]
-}
