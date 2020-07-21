@@ -33,7 +33,7 @@
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^2.0.5",
     "prettier-plugin-toml": "0.3.1",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^1.5.2"
   },
   "dependencies": {
     "instant.page": "^5.1.0"
