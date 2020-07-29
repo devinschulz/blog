@@ -184,6 +184,6 @@ collect(data, new Map())
 ## Conclusion
 
 There you have it, my thought process on how I would take a similar piece of
-data and transform it into something I can easily referenceable. Hopefully,
+data and transform it into something I can easily reference. Hopefully,
 there's something here you can takeaway and apply to your own work. Happy
 coding!
