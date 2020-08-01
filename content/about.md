@@ -18,55 +18,16 @@ I'm happy to have you along for the ride!
 
 &mdash; Devin
 
-## Current technology stack
+## Uses
 
-{{< multi-column-list >}}
-
-- Apollo
-- Create React App
-- Go
-- GraphQL
-- JavaScript
-- Node.js
-- React
-- Redux
-- Rollup
-- Tailwind CSS
-- Webpack
-  {{</ multi-column-list >}}
-
-## Technologies I have used
-
-{{< multi-column-list >}}
-
-- Angular JS
-- ERB
-- Grunt
-- Gulp
-- HAML
-- Jade/Pug
-- Jekyll
-- LESS
-- Mobx
-- PHP
-- Ruby
-- Ruby on Rails
-- Sass/Scss
-- Shopify Themes
-- Wordpress
-- jQuery
-  {{</ multi-column-list >}}
-
-## Tools of the Trade
-
-|             |                                                                                                                                                                                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Text Editor | [Emacs](https://www.gnu.org/software/emacs)                                                                                                                                                                                                                                                            |
-| Code Font   | [Operator Mono](https://www.typography.com/fonts/operator/styles/operatormono)                                                                                                                                                                                                                         |
-| Terminal    | [Kitty](https://sw.kovidgoyal.net/kitty)                                                                                                                                                                                                                                                               |
-| Computers   | [Thinkpad X1 Carbon Gen 7](https://www.lenovo.com/us/en/laptops/thinkpad/thinkpad-x/X1-Carbon-Gen-7/p/22TP2TXX17G) running [Fedora](https://getfedora.org/) and a [2017 15-inch Macbook Pro](https://www.apple.com/macbook-pro) with that ~~atrocious~~ magnificent butterfly keyboard and Touch Bar.  |
-| Monitors    | [LG 27UD69P-W 4K UHD IPS LED Monitor](https://www.lg.com/us/monitors/lg-27UD69P-W-4k-uhd-led-monitor) and x2 Dell E Series E2715H 27-Inch Screen LED-Lit Monitors mounted on a [Ergotech Triple Horizontal LCD Monitor Arm Desk Stand (100-D16-B03)](https://ergotechgroup.com/100-series-stands.html) |
-| Mouse       | [Logitech MX Ergo](https://www.logitech.com/en-us/product/mx-ergo-wireless-trackball-mouse)                                                                                                                                                                                                            |
-| Keyboard    | [Kinesis Advantage 2](https://kinesis-ergo.com/shop/advantage2)                                                                                                                                                                                                                                        |
-| UI Design   | [Figma](https://figma.com)                                                                                                                                                                                                                                                                             |
-| Headphones  | [Sony WH-1000XM3](https://www.sony.com/electronics/headband-headphones/wh-1000xm3)                                                                                                                                                                                                                     |
+|             |                                                                                                                                                                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Text Editor | [Emacs](https://www.gnu.org/software/emacs)                                                                                                                                                                                     |
+| Code Font   | [Operator Mono](https://www.typography.com/fonts/operator/styles/operatormono)                                                                                                                                                  |
+| Terminal    | [Kitty](https://sw.kovidgoyal.net/kitty)                                                                                                                                                                                        |
+| Computers   | [Thinkpad X1 Carbon Gen 7](https://www.lenovo.com/us/en/laptops/thinkpad/thinkpad-x/X1-Carbon-Gen-7/p/22TP2TXX17G) running [Fedora](https://getfedora.org/) and a [2019 16-inch Macbook Pro](https://www.apple.com/macbook-pro) |
+| Monitors    | [Dell UltraSharp 38 Curved Monitor: U3818DW](https://www.dell.com/en-ca/shop/dell-ultrasharp-38-curved-monitor-u3818dw/apd/210-AMRC/monitors-monitor-accessories)                                                               |
+| Mouse       | [Logitech MX Ergo](https://www.logitech.com/en-us/product/mx-ergo-wireless-trackball-mouse)                                                                                                                                     |
+| Keyboard    | [Kinesis Advantage 2](https://kinesis-ergo.com/shop/advantage2)                                                                                                                                                                 |
+| UI Design   | [Figma](https://figma.com)                                                                                                                                                                                                      |
+| Headphones  | [Sony WH-1000XM3](https://www.sony.com/electronics/headband-headphones/wh-1000xm3)                                                                                                                                              |
