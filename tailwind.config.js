@@ -3,6 +3,29 @@ const path = require('path')
 module.exports = {
   purge: [path.join(__dirname, './layouts/**/*.html')],
   theme: {
+    typography: (theme) => ({
+      default: {
+        css: {
+          color: 'var(--colors-gray-800)',
+          'ul > li::before': {
+            content: '""',
+            position: 'absolute',
+            backgroundColor: theme('colors.gray.400'),
+            borderRadius: '50%',
+          },
+          a: {
+            color: theme('colors.primary'),
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          },
+          pre: {
+            backgroundColor: theme('colors.gray.100'),
+          },
+        },
+      },
+    }),
     fontFamily: {
       body: [
         '-apple-system',
@@ -28,6 +51,8 @@ module.exports = {
         secondary: 'var(--colors-secondary)',
         black: 'var(--colors-black)',
         white: 'var(--colors-white)',
+        highlight: 'var(--colors-highlight)',
+        'highlight-darker': 'var(--colors-highlight-darker)',
         gray: {
           '100': 'var(--colors-gray-100)',
           '200': 'var(--colors-gray-200)',
@@ -48,5 +73,5 @@ module.exports = {
   variants: {
     scale: ['responsive', 'hover', 'focus', 'group-hover'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }

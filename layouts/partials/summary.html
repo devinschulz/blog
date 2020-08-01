@@ -8,10 +8,10 @@
     {{ printf "</%s>" $level | safeHTML }}
     <div class="summary-content">
       {{ if $hasFeatured }}
-        {{ .Summary }}
+        <div class="prose">{{ .Summary }}</div>
       {{ else }}
         {{ with .Description }}
-          <p>{{ . }}</p>
+          <p class="prose">{{ . }}</p>
         {{ else }}
           {{ .Summary }}
         {{ end }}

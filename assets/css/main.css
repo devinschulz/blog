@@ -1,21 +1,16 @@
 @import './settings.vars.css';
 
-@import './tools.mixins.css';
-
 @import './generic.tailwind.css';
 @import './generic.syntax.css';
 
 @import './elements.html.css';
 @import './elements.typography.css';
-@import './elements.code.css';
 @import './elements.figure.css';
 @import './elements.tables.css';
 
 @import './objects.hover-line.css';
 @import './objects.styled-link.css';
 
-@import './components.post.css';
-@import './components.multi-column-list.css';
 @import './components.toc.css';
 
 @import './utilities.comma-list.css';

@@ -1,5 +1,0 @@
-/* purgecss start ignore */
-*:not(pre) > code {
-  @apply text-sm rounded bg-gray-100 py-1 px-2;
-}
-/* purgecss end ignore */

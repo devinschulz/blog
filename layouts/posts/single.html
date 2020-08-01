@@ -1,23 +1,26 @@
 {{ define "main" }}
 <article class="container mx-auto px-4">
   <header class="mb-12">
-    <h1 class="text-4xl sm:text-5xl mb-4">{{ .Title | title }}</h1>
+    <h1 class="text-4xl sm:text-5xl leading-tight mb-4">{{ .Title | title }}</h1>
     {{ partial "post-metadata" . }}
   </header>
-  <div class="c-post-content">
-    {{ .Content }}
-
-    <footer class="mt-12 text-sm">
+  <div class="c-post-content prose">
       {{ with .Params.canonical }}
-      {{ $url := urls.Parse . }}
-      <p>Originally published at <a href="{{ . }}">{{ $url.Host }}</a></p>
+        {{ $url := urls.Parse . }}
+        <div class="text-sm py-1 px-2 bg-highlight border border-highlight-darker text-black">
+          This article was originally published at <a href="{{ . }}" rel="nofollow noopener">{{ $url.Host }}</a>
+        </div>
       {{ end }}
-      {{ if .Lastmod }}
-      <p class="mb-0 mt-4">
-        Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
+
+      {{ .Content }}
+
+      <footer class="mt-12 text-sm">
+        <p>
+        {{ if .Lastmod }}
+          <br />Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
+        {{ end }}
+        <br />Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/content/{{ .File.Path }}">Edit on Github</a></p>
       </p>
-      {{ end }}
-      <p>Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/content/{{ .File.Path }}">Edit on Github</a></p>
     </footer>
   </div>
   {{ partial "related.html" . }}

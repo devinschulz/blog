@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/devinschulz/blog#readme",
   "devDependencies": {
+    "@tailwindcss/typography": "^0.2.0",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "hugo-bin": "^0.62.2",

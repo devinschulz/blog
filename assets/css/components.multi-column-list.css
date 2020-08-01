@@ -1,9 +1,0 @@
-.c-multi-column-list {
-  column-count: 2;
-}
-
-@screen sm {
-  .c-multi-column-list {
-    column-count: 3;
-  }
-}

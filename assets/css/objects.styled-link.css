@@ -1,11 +1,20 @@
 .o-styled-link {
-  @mixin link var(--colors-gray-300), var(--colors-primary);
+  color: var(--colors-primary);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .o-styled-link__inverted {
-  @mixin link var(--colors-white), var(--colors-gray-600);
+  color: var(--colors-gray-600);
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &--active {
-    @mixin link var(--colors-primary), var(--colors-primary);
+    color: var(--colors-primary);
+    text-decoration: underline;
   }
 }

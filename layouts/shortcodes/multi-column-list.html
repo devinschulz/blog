@@ -1,7 +1,3 @@
-<ul class="c-multi-column-list list-none">
-  {{ range split .Inner "- " }} {{ if and (gt (len .) 1) (ne "\n\n" . )  }}
-  <li>
-    {{ . }}
-  </li>
-  {{ end }} {{ end }}
-</ul>
+<div class="grid grid-cols-3 sm:grid-cols-6 gap-6 items-center c-logo-list">
+  {{ .Inner }}
+</div>

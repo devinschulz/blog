@@ -24,6 +24,7 @@ change that color for visited links, it **will** work.
 
 ```css
 a {
+  /* no defined background */
 }
 
 a:visited {
