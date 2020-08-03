@@ -9,6 +9,6 @@ html {
 }
 
 ::selection {
-  @apply text-black bg-secondary;
+  background-color: var(--colors-selection);
   text-shadow: none !important;
 }

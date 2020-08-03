@@ -18,9 +18,9 @@
           <a
             href="{{ .URL }}"
             {{ if $active }}
-              class="o-styled-link__inverted o-styled-link__inverted--active"
+              class="text-active-link hover:underline"
             {{ else }}
-              class="o-styled-link__inverted"
+              class="text-grey-darkest hover:underline"
             {{ end }}
           >
             {{ if eq .Name "Today I Learned" }}

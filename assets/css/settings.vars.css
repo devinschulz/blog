@@ -1,17 +1,44 @@
 :root {
-  --colors-black: #060506;
-  --colors-gray-100: #fbfaf9;
-  --colors-gray-200: #eeeeee;
-  --colors-gray-300: #f2f1ee;
-  --colors-gray-400: #bdbdbd;
-  --colors-gray-500: #a3a9b0;
-  --colors-gray-600: #8f8f90;
-  --colors-gray-700: #616161;
-  --colors-gray-800: #424242;
-  --colors-gray-900: #212121;
-  --colors-highlight-darker: #ffdba5;
-  --colors-highlight: #fff4e6;
-  --colors-primary: #1f3ab0;
+  --colors-primary: #0040dd;
   --colors-secondary: #fac24f;
+  --colors-tertiary: #d70015;
+  --colors-quartenary: #a05a00;
+  --colors-selection: #0040dd25;
+  --colors-active-link: #000;
+
+  --colors-black: #060506;
   --colors-white: #fff;
+  --colors-bg: #fff;
+
+  --colors-body: #424242;
+  --colors-headings: #060506;
+
+  --colors-grey-lightest: #ebebf0;
+  --colors-grey-light: #d8d8dc;
+  --colors-grey-medium: #bcbcc0;
+  --colors-grey-dark: #aeaeb2;
+  --colors-grey-darker: #8e8e93;
+  --colors-grey-darkest: #6c6c70;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colors-bg: #141414;
+    --colors-body: #fafafa;
+    --colors-headings: #fff;
+
+    --colors-primary: #409cff;
+    --colors-secondary: #ffd426;
+    --colors-tertiary: #ff6961;
+    --colors-quartenary: #ffd426;
+    --colors-selection: #409cff25;
+    --colors-active-link: #fff;
+
+    --colors-grey-lightest: #242426;
+    --colors-grey-light: #363638;
+    --colors-grey-medium: #444446;
+    --colors-grey-dark: #545456;
+    --colors-grey-darker: #7c7c80;
+    --colors-grey-darkest: #aeaeb2;
+  }
 }

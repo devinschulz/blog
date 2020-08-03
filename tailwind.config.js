@@ -6,11 +6,32 @@ module.exports = {
     typography: (theme) => ({
       default: {
         css: {
-          color: 'var(--colors-gray-800)',
+          '*,*::before,*::after': {
+            borderColor: theme('colors.grey.light'),
+          },
+          color: theme('colors.body'),
+          h1: {
+            color: theme('colors.headings'),
+          },
+          h2: {
+            color: theme('colors.headings'),
+          },
+          h3: {
+            color: theme('colors.headings'),
+          },
+          h4: {
+            color: theme('colors.headings'),
+          },
+          h5: {
+            color: theme('colors.headings'),
+          },
+          h6: {
+            color: theme('colors.headings'),
+          },
           'ul > li::before': {
             content: '""',
             position: 'absolute',
-            backgroundColor: theme('colors.gray.400'),
+            backgroundColor: theme('colors.grey.dark'),
             borderRadius: '50%',
           },
           a: {
@@ -21,7 +42,30 @@ module.exports = {
             },
           },
           pre: {
-            backgroundColor: theme('colors.gray.100'),
+            backgroundColor: theme('colors.bg'),
+            border: `1px solid ${theme('colors.grey.light')}`,
+            color: theme('colors.body'),
+            fontFamily: theme('fontFamily.mono'),
+          },
+          'pre code': {
+            fontSize: theme('text.sm'),
+          },
+          code: {
+            color: theme('colors.body'),
+            fontFamily: theme('fontFamily.mono'),
+          },
+          strong: {
+            color: theme('colors.body'),
+          },
+          tbody: {
+            tr: {
+              borderBottomColor: theme('colors.grey.light'),
+            },
+          },
+          figure: {
+            figcaption: {
+              color: theme('colors.grey.darkest'),
+            },
           },
         },
       },
@@ -41,33 +85,45 @@ module.exports = {
         'Segoe UI Symbol',
         'Noto Color Emoji',
       ],
+      mono: [
+        'SFMono-Regular',
+        'Consolas',
+        'Liberation Mono',
+        'Menlo',
+        'Courier',
+        'monospace',
+      ],
     },
     screens: {
       sm: '668px',
     },
     extend: {
       colors: {
+        bg: 'var(--colors-bg)',
+        body: 'var(--colors-body)',
+        headings: 'var(--colors-headings)',
         primary: 'var(--colors-primary)',
         secondary: 'var(--colors-secondary)',
+        tertiary: 'var(--colors-tertiary)',
+        quaternary: 'var(--colors-quaternary)',
         black: 'var(--colors-black)',
         white: 'var(--colors-white)',
-        highlight: 'var(--colors-highlight)',
-        'highlight-darker': 'var(--colors-highlight-darker)',
-        gray: {
-          '100': 'var(--colors-gray-100)',
-          '200': 'var(--colors-gray-200)',
-          '300': 'var(--colors-gray-300)',
-          '400': 'var(--colors-gray-400)',
-          '500': 'var(--colors-gray-500)',
-          '600': 'var(--colors-gray-600)',
-          '700': 'var(--colors-gray-700)',
-          '800': 'var(--colors-gray-800)',
-          '900': 'var(--colors-gray-900)',
+        'active-link': 'var(--colors-active-link)',
+        grey: {
+          lightest: 'var(--colors-grey-lightest)',
+          light: 'var(--colors-grey-light)',
+          medium: 'var(--colors-grey-medium)',
+          dark: 'var(--colors-grey-dark)',
+          darker: 'var(--colors-grey-darker)',
+          darkest: 'var(--colors-grey-darkest)',
         },
       },
       fontSize: {
         xxs: '0.65rem',
       },
+      borderColor: (theme) => ({
+        default: theme('colors.grey-light'),
+      }),
     },
   },
   variants: {

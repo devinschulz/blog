@@ -1,8 +1,8 @@
 {{ with .Params.tags }}
-  <ul class="inline font-medium tracking-wide comma-list">
+  <ul class="inline font-medium tracking-wide">
     {{ range . }}
       <li class="inline-block">
-        <a href="/tags/{{ . | urlize }}" class="o-styled-link">
+        <a href="/tags/{{ . | urlize }}" class="text-primary hover:underline">
           {{/* Fix incorrect capitalization */}}
           {{ if eq "css" . }}
             CSS
