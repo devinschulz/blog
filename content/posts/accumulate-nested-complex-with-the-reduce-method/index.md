@@ -17,7 +17,7 @@ and return a single object you can use to reference any entry by ID.
 
 {{< toc >}}
 
-## Building out the Function
+## Building out the function
 
 First, we'll start with the data, an object with a structure that looks like
 this:
@@ -53,7 +53,7 @@ const data = [
 ```
 
 The objective here is to turn this array of nested objects into a flattened
-object so you can efficiently look up any entry by ID. Begin by creating the
+object, so you can efficiently look up any entry by ID. Begin by creating the
 base function which accepts two arguments, `list` and the `accumulator`. Right
 off the bat, you might find this a little funny, passing around the reduce
 accumulator outside of the reduce method. Bear with me; this is where all the
@@ -99,7 +99,7 @@ collect(data, {})
 ```
 
 You might call this finished if the object didn't contain nested objects. In
-order to collect all those values too, you will need to recursivly call
+order to collect all those values too, you will need to recursively call
 `collect` if the current object contains the `children` property.
 
 ```js
@@ -123,7 +123,7 @@ collect(data, {})
 ```
 
 This is working great, but you can take this one step further and clean up the
-`children` property. You may want to do this so you have less duplicate data.
+`children` property. You may want to do this, so you have less duplicate data.
 
 ```js
 function collect(list, acc) {
@@ -151,8 +151,8 @@ collect(data, {})
 
 ## Using Map Instead of an Object
 
-Maybe you want to spice things up a bit and use some of the newer ES6 features
-like `Map`. Swap out any references to the accumulator object and replace that
+Maybe you want to spice things up a bit and use the newer ES6 features like
+`Map`. Swap out any references to the accumulator object and replace that
 value with `Map`. Update the object assignments to use the `set` method and
 that's it!
 
