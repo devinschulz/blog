@@ -58,6 +58,9 @@ module.exports = {
           strong: {
             color: theme('colors.body'),
           },
+          thead: {
+            borderBottomColor: theme('colors.grey.light'),
+          },
           tbody: {
             tr: {
               borderBottomColor: theme('colors.grey.light'),
