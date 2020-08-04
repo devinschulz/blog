@@ -19,7 +19,7 @@
         <ul class="block text-xs font-medium tracking-wide comma-list">
           {{ range sort (uniq ($scratch.Get $char)) }}
             <li class="inline-block">
-              <a href="/tags/{{ . | urlize }}" class="inline-block text-primary hover:underline">{{ . }}</a>
+              <a href="/tags/{{ . | urlize }}/" class="inline-block text-primary hover:underline">{{ . }}</a>
             </li>
           {{ end }}
         </ul>
