@@ -2,7 +2,7 @@
   <ul class="inline font-medium tracking-wide space-x-1">
     {{ range . }}
       <li class="inline-block">
-        <a href="/tags/{{ . | urlize }}" class="text-primary hover:underline">
+        <a href="/tags/{{ . | urlize }}/" class="text-primary hover:underline">
           {{/* Fix incorrect capitalization */}}
           {{ if eq "css" . }}
             CSS
