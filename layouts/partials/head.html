@@ -26,14 +26,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fac24f">
 
-  {{ if and (eq (getenv "HUGO_ENV") "production") (not .Params.robotsdisallow) }}
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index,follow">
-  {{ else }}
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="googlebot" content="noindex,nofollow">
-  {{ end }}
-
   {{ with .OutputFormats.Get "RSS" }}
     <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}">
     <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}">
