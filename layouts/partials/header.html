@@ -13,7 +13,6 @@
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $current.Title) }}
         {{ $active = or $active (and (eq .Name "All Tags") (eq $current.Section "tags")) }}
-        {{ $active = or $active (and (eq .Name "Today I Learned") (eq $current.Section "today-i-learned")) }}
         <li>
           <a
             href="{{ .URL }}"
@@ -34,4 +33,8 @@
       {{ end }}
     </ul>
   </nav>
+  <button class="js-theme-toggle ml-auto p-2 hover:bg-grey-lightest rounded text-grey-darkest" aria-label="Switch between Dark and Light mode">
+    <span class="hidden dark:block">{{ partial "svg/sun.svg" }}</span>
+    <span class="dark:hidden">{{ partial "svg/moon.svg" }}</span>
+  </button>
 </header>

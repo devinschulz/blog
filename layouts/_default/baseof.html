@@ -4,6 +4,23 @@
   <body
     class="bg-bg text-body font-body overflow-x-hidden antialiased border-t-4 border-secondary"
   >
+    <script>
+      (function() {
+        try {
+          let mode = localStorage.getItem('theme')
+          if (!mode) {
+            const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
+            if (!matches) {
+              return
+            }
+            mode = 'dark'
+          }
+          document.documentElement.classList.add(mode)
+          document.documentElement.style.background = getComputedStyle(document.documentElement)
+                  .getPropertyValue('--bg')
+        } catch (e) {}
+      })()
+    </script>
     {{- partial "header.html" . -}}
     <main id="content">
       {{- block "main" . }}{{- end -}}

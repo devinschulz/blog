@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   purge: [path.join(__dirname, './layouts/**/*.html')],
   theme: {
+    darkSelector: '.dark',
     typography: (theme) => ({
       default: {
         css: {
@@ -128,6 +129,10 @@ module.exports = {
   },
   variants: {
     scale: ['responsive', 'hover', 'focus', 'group-hover'],
+    display: ['dark', 'responsive'],
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwindcss-dark-mode')(),
+  ],
 }

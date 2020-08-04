@@ -60,7 +60,7 @@
 .chroma .kr,
 .chroma .na,
 .chroma .nc {
-  color: var(--colors-quartenary);
+  color: var(--colors-quaternary);
 }
 
 .chroma .n,
@@ -112,7 +112,7 @@
 .chroma .mi,
 .chroma .il,
 .chroma .mo {
-  color: var(--colors-quartenary);
+  color: var(--colors-quaternary);
 }
 /* Operator */
 .chroma .o,
