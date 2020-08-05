@@ -9,6 +9,7 @@ const setLightMode = () => {
     localStorage.setItem(themeStorageKey, 'light')
     document.documentElement.classList.add('light')
     document.documentElement.classList.remove('dark')
+    fathom.trackGoal('RLVNQHJW', 0)
   } catch (err) {
     console.error(err)
   }
@@ -19,6 +20,7 @@ const setDarkMode = () => {
     localStorage.setItem(themeStorageKey, 'dark')
     document.documentElement.classList.remove('light')
     document.documentElement.classList.add('dark')
+    fathom.trackGoal('XEZPIJQP', 0)
   } catch (err) {
     console.error(err)
   }
@@ -31,12 +33,6 @@ const toggleTheme = () => {
   } else {
     setDarkMode()
   }
-}
-
-const selectors = {
-  toggle: document.querySelector('.js-theme-toggle'),
-  sun: document.querySelector('.js-sun'),
-  moon: document.querySelector('.js-moon'),
 }
 
 ;(() => {
