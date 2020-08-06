@@ -35,7 +35,7 @@
     "prettier": "^2.0.5",
     "prettier-plugin-toml": "0.3.1",
     "tailwindcss": "^1.6.2",
-    "tailwindcss-dark-mode": "^1.1.5"
+    "tailwindcss-dark-mode": "^1.1.6"
   },
   "dependencies": {
     "instant.page": "^5.1.0"
