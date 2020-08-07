@@ -35,4 +35,4 @@ I'm happy to have you along for the ride!
 ## Colophon
 
 devinschulz.com is built using [Hugo](https://gohugo.io), the static site
-generator. It’s hosted on AWS S3/CloudFront and deployed via Github Actions. Analytics are collected in a privacy-preserving way with [Fathom](https://usefathom.com/ref/IGYHNN) (affiliate link where you save \$10 off your first invoice).
+generator. It’s hosted on [CloudFlare's Workers Sites](https://workers.cloudflare.com/sites) and deployed via Github Actions. Analytics are collected in a privacy-preserving way with [Fathom](https://usefathom.com/ref/IGYHNN) (affiliate link where you save \$10 off your first invoice).
