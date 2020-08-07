@@ -1,4 +1,4 @@
-name: s3-deploy
+name: deploy
 on:
   push:
     branches:
