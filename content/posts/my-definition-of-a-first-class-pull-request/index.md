@@ -1,7 +1,7 @@
 ---
 title: My Definition of a First-Class Pull Request
 description:
-date: 2020-08-24
+date: 2020-08-25
 tags: [Workflow, Opinion]
 canonical: https://medium.com/dropoutlabs/my-definition-of-a-first-class-pull-request-96094994e67d?source=friends_link&sk=8bf05b8be81b2664d138fdae50e9a967
 ---
