@@ -8,7 +8,7 @@
     {{ printf "</%s>" $level | safeHTML }}
     <div class="summary-content">
       {{ if $hasFeatured }}
-        <div class="prose">{{ .Summary }}</div>
+        <div class="prose mb-4">{{ .Summary }}</div>
       {{ else }}
         {{ with .Description }}
           <p class="prose">{{ . }}</p>

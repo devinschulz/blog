@@ -71,6 +71,9 @@ module.exports = {
               color: theme('colors.grey.darkest'),
             },
           },
+          blockquote: {
+            color: theme('colors.grey.darkest'),
+          },
         },
       },
     }),
