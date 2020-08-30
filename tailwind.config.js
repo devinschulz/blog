@@ -69,6 +69,7 @@ module.exports = {
           figure: {
             figcaption: {
               color: theme('colors.grey.darkest'),
+              fontFamily: theme('fontFamily.display'),
             },
           },
           blockquote: {
@@ -78,28 +79,9 @@ module.exports = {
       },
     }),
     fontFamily: {
-      body: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'Helvetica Neue',
-        'Arial',
-        'Noto Sans',
-        'sans-serif',
-        'Apple Color Emoji',
-        'Segoe UI',
-        'Roboto',
-        'Segoe UI Emoji',
-        'Segoe UI Symbol',
-        'Noto Color Emoji',
-      ],
-      mono: [
-        'SFMono-Regular',
-        'Consolas',
-        'Liberation Mono',
-        'Menlo',
-        'Courier',
-        'monospace',
-      ],
+      display: 'var(--font-display)',
+      body: 'var(--font-body)',
+      mono: 'var(--font-mono)',
     },
     screens: {
       sm: '668px',
@@ -110,6 +92,8 @@ module.exports = {
         body: 'var(--colors-body)',
         headings: 'var(--colors-headings)',
         primary: 'var(--colors-primary)',
+        'primary-light': 'var(--colors-primary-light)',
+        'primary-lightest': 'var(--colors-primary-lightest)',
         secondary: 'var(--colors-secondary)',
         tertiary: 'var(--colors-tertiary)',
         quaternary: 'var(--colors-quaternary)',
@@ -135,6 +119,7 @@ module.exports = {
   },
   variants: {
     scale: ['responsive', 'hover', 'focus', 'group-hover'],
+    translate: ['responsive', 'hover', 'focus', 'group-hover'],
     display: ['dark', 'responsive'],
   },
   plugins: [
