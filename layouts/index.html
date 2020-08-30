@@ -2,5 +2,6 @@
   <section class="container mx-auto px-4">
     {{ $posts := where .Site.RegularPages "Section" "posts" }}
     {{ partial "summary-list" (dict "posts" $posts "hasFeatured" true) }}
+    <a href="/posts" class="mt-16 block text-sm text-primary hover:underline font-display">View Archive</a>
   </section>
 {{ end }}

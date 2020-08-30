@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply leading-tight font-extrabold text-headings mb-4;
+  @apply leading-tight font-extrabold text-headings mb-4 font-display;
 }
 
 h1 {

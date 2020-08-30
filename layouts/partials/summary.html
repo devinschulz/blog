@@ -1,22 +1,35 @@
 {{ $level := .level }}
-{{ $hasFeatured := and (default false .hasFeatured) (eq .index 0) }}
-{{ $featuredClasses := (cond $hasFeatured " sm:text-4xl" "") }}
+{{ $archive := .archive }}
 {{ with .post }}
-  <article{{ if ne $.lastIndex $.index }} class="mb-12 sm:mb-16"{{ end }}>
-    {{ printf "<%s class='mb-4%s'>" $level $featuredClasses | safeHTML }}
+  <article>
+    {{ if not $archive }}
+      <div class="mb-2">
+        {{ partial "post-metadata" . }}
+      </div>
+    {{ end }}
+    {{ printf "<%s class='mb-4'>" $level | safeHTML }}
       <a href="{{ .Permalink | relURL }}" class="text-inherit hover:text-primary o-hover-line">{{ .Title | title }}</a>
     {{ printf "</%s>" $level | safeHTML }}
-    <div class="summary-content">
-      {{ if $hasFeatured }}
-        <div class="prose mb-4">{{ .Summary }}</div>
-      {{ else }}
-        {{ with .Description }}
-          <p class="prose">{{ . }}</p>
-        {{ else }}
-          {{ .Summary }}
+    {{ if not $archive }}
+      <div class="prose mb-4">{{ .Summary }}</div>
+      <div class="flex flex-col sm:flex-row sm:items-center font-display text-primary text-sm mb-4 sm:space-x-4">
+        <a href="{{ .Permalink | relURL }}" class="flex items-center group hover:underline">
+          Continue Reading
+          <span class="transform group-hover:translate-x-1 transition transition-transform duration-100">
+            {{ partial "svg/chevron-right.svg" }}
+          </span>
+        </a>
+        {{ with .Params.canonical }}
+          {{ $url := urls.Parse . }}
+          <a href="{{ . }}" rel="nofollow noopener" class="flex items-center hover:underline">
+            <span class="mr-1">Read at {{ $url.Host }}</span>
+            {{ partial "svg/external.svg" (dict "size" 18) }}
+          </a>
         {{ end }}
-      {{ end }}
-    </div>
-    {{ partial "post-metadata" . }}
+      </div>
+    {{ end }}
+    {{ if and .Params.tags (not $archive) }}
+      {{ partial "category-meta" . }}
+    {{ end }}
   </article>
 {{ end }}

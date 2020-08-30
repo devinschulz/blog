@@ -1,11 +1,14 @@
-<ul class="text-xs sm:text-xxs text-grey-darkest font-medium tracking-wide sm:space-x-4">
-  <li class="inline-block">
+<ul class="text-xxs text-grey-darkest font-medium font-display tracking-wide space-x-4 flex items-center">
+  {{ with .Params.canonical }}
+    <li class="inline-flex items-center font-bold">
+      {{ partial "svg/link.svg" (dict "size" 16 "class" "mr-2") }}
+      <span class="ml-1">Link</span>
+    </li>
+  {{ end }}
+  <li>
     <time datetime="{{ .Date.Format .Site.Params.timeFormatRFC3339 }}">
       {{- .Date.Format .Site.Params.timeFormatDefault -}}
     </time>
   </li>
-  <li class="inline-block mb-2 sm:mb-0 ml-4">{{ .ReadingTime }} min read</li>
-  {{ if .Params.tags }}
-    <li class="inline-block sm:inline w-full sm:w-auto ml-0">{{ partial "category-meta" . }}</li>
-  {{ end }}
+  <li>{{ .ReadingTime }} min read</li>
 </ul>

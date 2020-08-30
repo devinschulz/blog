@@ -1,5 +1,17 @@
 :root {
+  --font-display: 'ui-sans-serif', '-apple-system', 'BlinkMacSystemFont',
+    'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji',
+    'Segoe UI', 'Roboto', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-body: 'ui-serif', 'Georgia', 'Times', 'Times New Roman', 'serif',
+    'Apple Color Emoji', 'Segoe UI', 'Roboto', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: 'ui-monospace', 'SFMono-Regular', 'Consolas', 'Liberation Mono',
+    'Menlo', 'Courier', 'monospace';
+
   --colors-primary: #0040dd;
+  --colors-primary-light: color(#0040dd l(90%));
+  --colors-primary-lightest: color(#0040dd l(95%));
   --colors-secondary: #fac24f;
   --colors-tertiary: #d70015;
   --colors-quaternary: #a05a00;
@@ -10,7 +22,7 @@
   --colors-white: #fff;
   --colors-bg: #fff;
 
-  --colors-body: #424242;
+  --colors-body: #000;
   --colors-headings: #060506;
 
   --colors-grey-lightest: #ebebf0;
@@ -26,7 +38,12 @@
   --colors-body: #fafafa;
   --colors-headings: #fff;
 
+  --colors-white: #000;
+  --colors-black: #fff;
+
   --colors-primary: #409cff;
+  --colors-primary-light: color(#409cff a(25%));
+  --colors-primary-lightest: color(#409cff a(10%));
   --colors-secondary: #ffd426;
   --colors-tertiary: #ff6961;
   --colors-quaternary: #ffd426;

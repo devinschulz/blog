@@ -5,9 +5,12 @@ date: 2020-07-05
 tags: [GraphQL, Today I Learned]
 ---
 
-When working with a GraphQL API, you may want to rename a field to something other than what the API has to offer. Aliases exist as part of the GraphQL spec to solve this exact problem.
+When working with a GraphQL API, you may want to rename a field to something
+other than what the API has to offer. Aliases exist as part of the GraphQL spec
+to solve this exact problem.
 
-Aliases allow you to rename a single field to whatever you want it to be. They are defined client-side, so you don’t need to update your API to use them.
+Aliases allow you to rename a single field to whatever you want it to be. They
+are defined client-side, so you don’t need to update your API to use them.
 
 <!--more-->
 
@@ -35,7 +38,8 @@ You will get the following JSON response:
 }
 ```
 
-The `id` here is fine, but the `updated_at` doesn’t quite conform to the camel case convention in JavaScript. Let’s change it by using an alias.
+The `id` here is fine, but the `updated_at` doesn’t quite conform to the camel
+case convention in JavaScript. Let’s change it by using an alias.
 
 ```graphql
 query GetEntries {
@@ -59,13 +63,18 @@ Which yields the following:
 }
 ```
 
-Creating an alias in GraphQL is easy. Simply add a colon and new name next to the field you want to rename.
+Creating an alias in GraphQL is easy. Simply add a colon and new name next to
+the field you want to rename.
 
 ## Aliasing fields with arguments
 
-The examples above only cover fields that don’t have any arguments. When creating an alias on a field that contains arguments, the syntax is slightly different. Instead of the alias appearing right to the field, it’s placed on the left.
+The examples above only cover fields that don’t have any arguments. When
+creating an alias on a field that contains arguments, the syntax is slightly
+different. Instead of the alias appearing right to the field, it’s placed on the
+left.
 
-Take a look at the following example. It contains the `updated_at`field, but again, we want to rename.
+Take a look at the following example. It contains the `updated_at`field, but
+again, we want to rename.
 
 ```graphql
 query GetEntries {
@@ -102,7 +111,8 @@ And the result:
 
 ## Requesting a single field more than once
 
-What’s great about aliases is you can request the same field several times, but yield different results. Take a look at this example:
+What’s great about aliases is you can request the same field several times, but
+yield different results. Take a look at this example:
 
 ```graphql
 query GetEntries {
@@ -114,7 +124,8 @@ query GetEntries {
 }
 ```
 
-Running this query would yield an error because two of the field names are the same. You can use an alias to here to mitigate the error.
+Running this query would yield an error because two of the field names are the
+same. You can use an alias to here to mitigate the error.
 
 ```graphql
 query GetEntries {
