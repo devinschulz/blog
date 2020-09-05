@@ -2,10 +2,11 @@
 {{ $level := default "h2" .level }}
 {{ $lastIndex := sub (len $posts) 1 }}
 {{ $archive := default false .archive }}
+{{ $condensed := default false .condensed }}
 
 <div class="{{ if $archive }}space-y-8{{ else }}space-y-12 sm:space-y-16{{ end }}">
   {{ range $i, $v := $posts }}
-    {{ $params := (dict "post" $v "index" $i "lastIndex" $lastIndex "level" $level "archive" $archive ) }}
+    {{ $params := (dict "post" $v "index" $i "lastIndex" $lastIndex "level" $level "archive" $archive  "condensed" $condensed) }}
     {{ partial "summary" $params }}
   {{ end }}
 </div>

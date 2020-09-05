@@ -1,5 +1,6 @@
 {{ $level := .level }}
 {{ $archive := .archive }}
+{{ $condensed := .condensed }}
 {{ with .post }}
   <article>
     {{ if not $archive }}
@@ -11,7 +12,11 @@
       <a href="{{ .Permalink | relURL }}" class="text-inherit hover:text-primary o-hover-line">{{ .Title | title }}</a>
     {{ printf "</%s>" $level | safeHTML }}
     {{ if not $archive }}
-      <div class="prose mb-4">{{ .Summary }}</div>
+      {{ if $condensed }}
+        <div class="prose mb-4">{{ .Description }}</div>
+      {{ else }}
+        <div class="prose mb-4">{{ .Summary }}</div>
+      {{ end }}
       <div class="flex flex-col sm:flex-row sm:items-center font-display text-primary text-sm mb-4 sm:space-x-4">
         <a href="{{ .Permalink | relURL }}" class="flex items-center group hover:underline">
           Continue Reading

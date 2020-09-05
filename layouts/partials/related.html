@@ -7,17 +7,17 @@
     <h2>Keep Reading</h2>
   </header>
   {{ with $related }}
-    {{ partial "summary-list" (dict "posts" . "level" "h3") }}
+    {{ partial "summary-list" (dict "posts" . "level" "h3" "condensed" true) }}
     <div class="hidden mt-12 sm:mt-16 js-all">
-      {{ partial "summary-list" (dict "posts" $posts "level" "h3") }}
+      {{ partial "summary-list" (dict "posts" $posts "level" "h3" "condensed" true) }}
     </div>
   {{ else }}
-    {{ partial "summary-list" (dict "posts" (first 2 $posts) "level" "h3") }}
+    {{ partial "summary-list" (dict "posts" (first 2 $posts) "level" "h3" "condensed" true) }}
     <div class="hidden mt-12 sm:mt-16 js-all">
-      {{ partial "summary-list" (dict "posts" (after 2 $posts) "level" "h3") }}
+      {{ partial "summary-list" (dict "posts" (after 2 $posts) "level" "h3" "condensed" true) }}
     </div>
   {{ end }}
   <footer class="pt-12 sm:pt-16">
-    <a href="/posts" class="js-view-all text-primary hover:underline text-xs" data-no-swup>View more</a>
+    <a href="/posts" class="js-view-all text-primary hover:underline text-xs">View more</a>
   </footer>
 </aside>
