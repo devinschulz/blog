@@ -132,8 +132,12 @@ author. These items might include:
 ```md
 - I have added tests to prove my fix is effective or that my feature works
 - I have added the necessary documentation (if appropriate)
-- I have tested this feature in: - Google Chrome - Safari - Firefox - Internet
-  Explorer - Edge
+- I have tested this feature in:
+  - Google Chrome
+  - Safari
+  - Firefox
+  - Internet Explorer
+  - Edge
 - I have performed a self-review of my code
 - I have followed the CONTRIBUTING guidelines
 ```
@@ -189,8 +193,12 @@ Before submitting your pull request, please review the following checklist.
 
 - [ ] I have added tests to prove my fix is effective or that my feature works
 - [ ] I have added the necessary documentation (if appropriate)
-- I have tested this feature in: - [ ] Google Chrome - [ ] Safari - [ ]
-  Firefox - [ ] Internet Explorer - [ ] Edge
+- I have tested this feature in:
+  - [ ] Google Chrome
+  - [ ] Safari
+  - [ ] Firefox
+  - [ ] Internet Explorer
+  - [ ] Edge
 - [ ] I have performed a self-review of my code
 - [ ] I have followed the [CONTRIBUTING](/CONTRIBUTING.md) guidelines
 
