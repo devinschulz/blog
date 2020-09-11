@@ -24,6 +24,8 @@ that will be closed as a result of the merge.
 
 <!--more-->
 
+{{< toc >}}
+
 I like small, concise code changes as much as the next developer, but it's not
 always feasible. Features may span hundreds of lines and have corresponding
 tests. Having worked with both backend and front end code, the front end, more
