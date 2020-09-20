@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write '**/*.{js,css,json,md}'",
+    "publish": "wrangler publish"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}

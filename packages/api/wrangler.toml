@@ -1,0 +1,6 @@
+name = "api"
+type = "javascript"
+account_id = "cc758ee73b4ad18422df688289ec3b21"
+workers_dev = false
+route = "devinschulz.com/api/*"
+zone_id = "383edf4ae939a2fa006deb8e6b1a2ebd"

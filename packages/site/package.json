@@ -1,0 +1,7 @@
+{
+  "name": "site",
+  "private": true,
+  "scripts": {
+    "publish": "wrangler publish"
+  }
+}
