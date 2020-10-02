@@ -4,6 +4,6 @@ const getLoadTime = () =>
   1e3
 window.addEventListener('load', () => {
   document.querySelector(
-    '.js-loaded-in'
+    '.js-loaded-in',
   ).innerText = `- loaded in ${getLoadTime()}s`
 })

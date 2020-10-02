@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
   {{- partial "head.html" . -}}
-  <body
-    class="bg-bg antialiased font-body bg-bg leading-7 text-body"
-  >
+  <body class="bg-bg antialiased font-body bg-bg leading-7 text-body">
     <script>
-      (function() {
+      ;(function () {
         try {
           let mode = localStorage.getItem('theme')
           if (!mode) {
-            const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
+            const matches = window.matchMedia('(prefers-color-scheme: dark)')
+              .matches
             if (!matches) {
               return
             }
             mode = 'dark'
           }
           document.documentElement.classList.add(mode)
-          document.documentElement.style.background = getComputedStyle(document.documentElement)
-                  .getPropertyValue('--bg')
+          document.documentElement.style.background = getComputedStyle(
+            document.documentElement,
+          ).getPropertyValue('--bg')
         } catch (e) {}
       })()
     </script>

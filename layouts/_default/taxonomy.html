@@ -1,14 +1,26 @@
 {{ define "main" }}
-<section class="container mx-auto px-4">
-  <header class="mb-12">
-    <h1 class="mb-4"><span class="text-grey-darkest no-sr-only">#</span>{{ .Title | urlize }}</h1>
-    <div class="flex text-xs text-grey-darkest font-medium tracking-wide">
-      <p class="mb-0">Found <strong>{{ len .Pages }}</strong> {{ cond (eq (len .Pages) 1) "post" "posts" }} tagged with <strong><span class="no-sr-only text-grey-darkest">#</span>{{ .Title | urlize }}</strong>.</p>
-    </div>
-  </header>
-  {{ partial "summary-list" .Pages }}
-  <footer class="pt-12 sm:pt-16">
-    <a href="/posts" class="text-sm text-primary hover:underline">View all posts</a>
-  </footer>
-</section>
+  <section class="container mx-auto px-4">
+    <header class="mb-12">
+      <h1 class="mb-4">
+        <span class="text-grey-darkest no-sr-only">#</span>{{ .Title | urlize }}
+      </h1>
+      <div class="flex text-xs text-grey-darkest font-medium tracking-wide">
+        <p class="mb-0">
+          Found
+          <strong>{{ len .Pages }}</strong>
+          {{ cond (eq (len .Pages) 1) "post" "posts" }} tagged with
+          <strong
+            ><span class="no-sr-only text-grey-darkest">#</span
+            >{{ .Title | urlize }}</strong
+          >.
+        </p>
+      </div>
+    </header>
+    {{ partial "summary-list" .Pages }}
+    <footer class="pt-12 sm:pt-16">
+      <a href="/posts" class="text-sm text-primary hover:underline"
+        >View all posts</a
+      >
+    </footer>
+  </section>
 {{ end }}
