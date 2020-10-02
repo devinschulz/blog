@@ -1,5 +1,5 @@
 ---
-title: About Me
+title: About
 ---
 
 I'm Devin Schulz, a software developer based in Ottawa, Canada. I specialize in
@@ -38,25 +38,3 @@ can benefit from.
 I'm happy to have you along for the ride!
 
 &mdash; Devin
-
-## Uses
-
-|                      |                                                                                                                                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Text Editor          | [vim](https://www.vim.org) and [Webstorm](https://www.jetbrains.com/webstorm/) for larger applications                                                                                                                          |
-| Code Font            | [Operator Mono](https://www.typography.com/fonts/operator/styles/operatormono)                                                                                                                                                  |
-| Terminal             | [Alacritty](https://github.com/alacritty/alacritty)                                                                                                                                                                             |
-| Terminal Multiplexer | [tmux](https://github.com/tmux/tmux)                                                                                                                                                                                            |
-| Computers            | [Thinkpad X1 Carbon Gen 7](https://www.lenovo.com/us/en/laptops/thinkpad/thinkpad-x/X1-Carbon-Gen-7/p/22TP2TXX17G) running [Fedora](https://getfedora.org/) and a [2019 16-inch Macbook Pro](https://www.apple.com/macbook-pro) |
-| Monitors             | [Dell UltraSharp 38 Curved Monitor: U3818DW](https://www.dell.com/en-ca/shop/dell-ultrasharp-38-curved-monitor-u3818dw/apd/210-AMRC/monitors-monitor-accessories)                                                               |
-| Mouse                | [Logitech MX Ergo](https://www.logitech.com/en-us/product/mx-ergo-wireless-trackball-mouse)                                                                                                                                     |
-| Keyboard             | [Kinesis Advantage 2](https://kinesis-ergo.com/shop/advantage2)                                                                                                                                                                 |
-| UI Design            | [Figma](https://figma.com)                                                                                                                                                                                                      |
-| Headphones           | [Sony WH-1000XM3](https://www.sony.com/electronics/headband-headphones/wh-1000xm3) and [Airpods](https://www.apple.com/ca/airpods)                                                                                              |
-
-## Colophon
-
-This website is built using [Hugo](https://gohugo.io), the static site
-generator. It’s hosted on
-[CloudFlare's Workers Sites](https://workers.cloudflare.com/sites) and deployed
-via Github Actions.

@@ -1,16 +1,10 @@
 {{ with .Params.tags }}
-  <ul class="inline font-medium text-xxs font-display tracking-wide space-x-1">
+  <ul class="inline text-sm font-display tracking-wide space-x-1">
     {{ range . }}
       <li class="inline-block">
-        <a href="/tags/{{ . | urlize }}/" class="text-grey-darkest hover:text-black border border-grey-light hover:bg-grey-lightest px-2 py-1 rounded-full">
-          {{/* Fix incorrect capitalization */}}
-          {{ if eq "css" . }}
-            CSS
-          {{ else if eq "javascript" . }}
-            JavaScript
-          {{ else }}
-            {{ . | title }}
-          {{ end }}
+        <a href="/tags/{{ . | urlize }}/" class="border-b border-grey-dark border-dotted hover:border-none hover:bg-black hover:text-white">
+          <span class="no-sr-only text-grey-darkest">#</span>
+          {{- . | lower | urlize -}}
         </a>
       </li>
     {{ end }}

@@ -1,40 +1,14 @@
-{{ $current := . }}
-<header class="container mx-auto p-4 mb-12 sm:mt-8 sm:mb-24 flex items-center sm:sticky font-display">
-  <a class="mb-0 rounded-full bg-grey-lightest w-12 h-12 flex items-center justify-center group" href="/">
-    <picture>
-      <source type="image/webp" srcset="/me.webp 1x, /me@2x.webp 2x">
-      <source type="image/png" srcset="/me.png 1x, /me@2x.png 2x">
-      <img src="/me.png" alt="Me" class="w-6 h-auto transition-transform duration-200 ease-out transform group-hover:scale-110">
-    </picture>
-  </a>
-  <nav class="ml-4">
-    <ul class="text-xs sm:text-xxs flex tracking-wide space-x-4">
-      {{ range .Site.Menus.main }}
-        {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
-        {{ $active = or $active (eq .Name $current.Title) }}
-        {{ $active = or $active (and (eq .Name "All Tags") (eq $current.Section "tags")) }}
-        <li>
-          <a
-            href="{{ .URL }}"
-            {{ if $active }}
-              class="text-active-link hover:underline"
-            {{ else }}
-              class="text-grey-darkest hover:underline"
-            {{ end }}
-          >
-            {{ if eq .Name "Today I Learned" }}
-            <span class="sm:hidden">TIL</span>
-            <span class="hidden sm:inline">{{ .Name }}</span>
-            {{ else }}
-            {{ .Name }}
-            {{ end }}
-          </a>
-        </li>
-      {{ end }}
-    </ul>
-  </nav>
-  <button class="js-theme-toggle ml-auto p-2 hover:bg-grey-lightest rounded text-grey-darkest" aria-label="Switch between Dark and Light mode">
-    <span class="hidden dark:block">{{ partial "svg/sun.svg" }}</span>
-    <span class="dark:hidden">{{ partial "svg/moon.svg" }}</span>
+<header class="container mx-auto p-4 mt-4 mb-12 sm:mb-24 flex items-center text-sm">
+  <a href="/">Devin Schulz</a>
+  <button
+    type="button"
+    class="js-theme-toggle ml-auto text-current group relative leading-none"
+    aria-label="Switch between Dark and Light mode"
+  >
+    <span class="absolute transform transition duration-100 right-0 inset-y-0 block mr-2 opacity-0 group-hover:-translate-x-4 group-hover:opacity-100 pointer-events-none">
+      <span class="hidden dark:block">light</span>
+      <span class="dark:hidden">dark</span>
+    </span>
+    <span class="block border-2 border-black hover:bg-black rounded-full w-3 h-3"></span>
   </button>
 </header>

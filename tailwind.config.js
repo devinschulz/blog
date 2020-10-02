@@ -13,21 +13,33 @@ module.exports = {
           color: theme('colors.body'),
           h1: {
             color: theme('colors.headings'),
+            fontSize: theme('fontSize.2xl'),
+            fontWeight: theme('fontWeight.medium'),
           },
           h2: {
             color: theme('colors.headings'),
+            fontSize: theme('fontSize.xl'),
+            fontWeight: theme('fontWeight.medium'),
           },
           h3: {
             color: theme('colors.headings'),
+            fontSize: theme('fontSize.lg'),
+            fontWeight: theme('fontWeight.medium'),
           },
           h4: {
             color: theme('colors.headings'),
+            fontSize: theme('fontSize.base'),
+            fontWeight: theme('fontWeight.medium'),
           },
           h5: {
             color: theme('colors.headings'),
+            fontSize: theme('fontSize.sm'),
+            fontWeight: theme('fontWeight.medium'),
           },
           h6: {
             color: theme('colors.headings'),
+            fontSize: theme('fontSize.sm'),
+            fontWeight: theme('fontWeight.medium'),
           },
           'ul > li::before': {
             content: '""',
@@ -36,10 +48,14 @@ module.exports = {
             borderRadius: '50%',
           },
           a: {
-            color: theme('colors.primary'),
+            borderBottom: `1px dotted ${theme('colors.grey.darker')}`,
+            color: theme('colors.current'),
+            fontWeight: theme('fontWeight.medium'),
             textDecoration: 'none',
             '&:hover': {
-              textDecoration: 'underline',
+              backgroundColor: theme('colors.black'),
+              color: theme('colors.white'),
+              borderBottom: 'none',
             },
           },
           pre: {
@@ -57,6 +73,7 @@ module.exports = {
           },
           strong: {
             color: theme('colors.body'),
+            fontWeight: theme('fontWeight.medium'),
           },
           thead: {
             borderBottomColor: theme('colors.grey.light'),
@@ -84,7 +101,7 @@ module.exports = {
       mono: 'var(--font-mono)',
     },
     screens: {
-      sm: '668px',
+      sm: '640px',
     },
     extend: {
       colors: {
@@ -118,9 +135,12 @@ module.exports = {
     },
   },
   variants: {
-    scale: ['responsive', 'hover', 'focus', 'group-hover'],
-    translate: ['responsive', 'hover', 'focus', 'group-hover'],
+    borderStyle: ['responsive', 'hover', 'focus'],
     display: ['dark', 'responsive'],
+    opacity: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    scale: ['responsive', 'hover', 'focus', 'group-hover'],
+    textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+    translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
   },
   plugins: [
     require('@tailwindcss/typography'),

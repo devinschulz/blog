@@ -1,20 +1,32 @@
 {{ $current := . }}
-<footer class="container font-display text-grey-darkest mx-auto px-4 text-xs sm:text-xxs mt-24 mb-12 tracking-wide">
-  <nav class="mb-1">
-    <ul class="text-xs sm:text-xxs flex tracking-wide space-x-4" id="secondary-nav">
+<footer class="container font-display text-grey-darkest mx-auto px-4 text-xs mt-24 mb-12 tracking-wide text-center">
+  <nav class="w-full mb-4">
+    <ul class="flex justify-center tracking-wide space-x-4">
+      {{ range .Site.Menus.main }}
+      {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
+      {{ $active = or $active (eq .Name $current.Title) }}
+      <li>
+        <a
+          href="{{ .URL }}"
+          class="{{ if $active }}text-black{{ else }}text-grey-darkest{{ end }}"
+        >{{ .Name }}</a>
+      </li>
+      {{ end }}
+    </ul>
+    <ul class="flex justify-center tracking-wide space-x-4">
       {{ range .Site.Menus.footer }}
       {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
       {{ $active = or $active (eq .Name $current.Title) }}
       <li>
         <a
           href="{{ .URL }}"
-          class="{{ if $active }}text-active-link{{ else }}text-grey-darkest{{ end }}"
+          class="{{ if $active }}text-black{{ else }}text-grey-darkest{{ end }}"
         >{{ .Name }}</a>
       </li>
       {{ end }}
     </ul>
   </nav>
   <p>
-    <small>&copy;{{ now.Format "2006" }} {{ .Site.Title }} <span class="js-loaded-in"></span></small>
+    &copy;{{ now.Format "2006" }} {{ .Site.Title }} <span class="js-loaded-in"></span></small>
   </p>
 </footer>
