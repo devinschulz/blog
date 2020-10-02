@@ -1,11 +1,9 @@
 :root {
-  --font-display: 'ui-sans-serif', '-apple-system', 'BlinkMacSystemFont',
-    'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji',
-    'Segoe UI', 'Roboto', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-  --font-body: 'ui-serif', 'Georgia', 'Times', 'Times New Roman', 'serif',
-    'Apple Color Emoji', 'Segoe UI', 'Roboto', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-display: 'untitled sans', 'ui-sans-serif', '-apple-system',
+    'blinkmacsystemfont', 'helvetica neue', 'arial', 'noto sans', 'sans-serif',
+    'apple color emoji', 'segoe ui', 'roboto', 'segoe ui emoji',
+    'segoe ui symbol', 'noto color emoji';
+  --font-body: var(--font-display);
   --font-mono: 'ui-monospace', 'SFMono-Regular', 'Consolas', 'Liberation Mono',
     'Menlo', 'Courier', 'monospace';
 
@@ -34,7 +32,7 @@
 }
 
 .dark {
-  --colors-bg: #141414;
+  --colors-bg: #000;
   --colors-body: #fafafa;
   --colors-headings: #fff;
 

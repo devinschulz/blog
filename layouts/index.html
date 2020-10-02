@@ -1,7 +1,18 @@
 {{ define "main" }}
-  <section class="container mx-auto px-4">
-    {{ $posts := where .Site.RegularPages "Section" "posts" }}
-    {{ partial "summary-list" (dict "posts" $posts "hasFeatured" true) }}
-    <a href="/posts" class="mt-16 block text-sm text-primary hover:underline font-display">View Archive</a>
-  </section>
+  <div class="container mx-auto px-4">
+    <section class="mb-20">
+      <h2>Me</h2>
+      <p>
+        I’m Devin, a front-end lead at Cape Privacy. I have architected and
+        built interfaces that are used by millions of people. Working remote
+        since 2014. Aspiring minimalist. Father of two. Often with a coffee in
+        hand.
+      </p>
+    </section>
+    <section>
+      <h2>Posts</h2>
+      {{ $posts := where .Site.RegularPages "Section" "posts" }}
+      {{ partial "summary-list" $posts }}
+    </section>
+  </div>
 {{ end }}

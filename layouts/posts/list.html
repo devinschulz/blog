@@ -1,9 +1,9 @@
 {{ define "main" }}
 <section class="container mx-auto px-4">
   <header class="mb-12">
-    <h1 class="text-3xl sm:text-5xl mb-4 sm:mb-8">Archive</h1>
+    <h1>Archive</h1>
   </header>
   {{ $posts := where .Site.RegularPages "Section" "posts" }}
-  {{ partial "summary-list" (dict "posts" $posts "archive" true) }}
+  {{ partial "summary-list" $posts }}
 </section>
 {{ end }}

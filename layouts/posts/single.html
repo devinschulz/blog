@@ -1,29 +1,27 @@
 {{ define "main" }}
 <article class="container mx-auto px-4">
   <header class="mb-12">
-    {{ partial "post-metadata" . }}
-    <h1 class="text-4xl sm:text-5xl leading-tight mt-4">{{ .Title | title }}</h1>
+    <h1 class="leading-tight mt-4">{{ .Title | title }}</h1>
   </header>
   <div class="c-post-content prose">
-      {{ with .Params.canonical }}
-        {{ $url := urls.Parse . }}
-        <div class="font-display leading-snug text-sm py-1 px-2 bg-grey-lightest border border-grey-light text-grey-darkest">
-          This article was originally published at <a href="{{ . }}" rel="nofollow noopener">{{ $url.Host }}</a>
-        </div>
-      {{ end }}
+    {{ with .Params.canonical }}
+      {{ $url := urls.Parse . }}
+      <div class="font-display leading-snug text-sm p-2 bg-grey-lightest border border-grey-light text-grey-darkest rounded">
+        This article was originally published at <a href="{{ . }}" class="font-medium" rel="nofollow noopener">{{ $url.Host }}</a>
+      </div>
+    {{ end }}
 
-      {{ .Content }}
-
-      <footer class="mt-12 text-sm">
-        <p>
-        {{ if .Lastmod }}
-          <br />Last updated on <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }}</time>
-        {{ end }}
-        <br />Found a typo or problem? <a href="https://github.com/devinschulz/blog/blob/master/content/{{ .File.Path }}">Edit on Github</a></p>
-      </p>
-    </footer>
+    {{ .Content }}
   </div>
-  {{ partial "category-meta.html" . }}
+  <footer class="mt-12 text-sm">
+    <p class="mb-0">
+      <time datetime="{{ .Date.Format .Site.Params.timeFormatRFC3339 }}">
+        {{- .Date.Format .Site.Params.timeFormatDefault -}}
+      </time>
+    </p>
+    {{ partial "category-meta.html" . }}
+  </footer>
+
   {{ partial "related.html" . }}
 </article>
 {{ end }}

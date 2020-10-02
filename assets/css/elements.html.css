@@ -1,11 +1,5 @@
 html {
-  font-size: 18px;
-}
-
-@screen sm {
-  html {
-    font-size: 20px;
-  }
+  font-size: 16px;
 }
 
 ::selection {

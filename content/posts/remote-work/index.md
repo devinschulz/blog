@@ -3,7 +3,9 @@ title: Reflecting on Four Years of Remote Work
 slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12
 tags: [Career, Remote]
-description: Learn about the good and bads I've experienced while working remotely over the past four years.
+description:
+  Learn about the good and bads I've experienced while working remotely over the
+  past four years.
 ---
 
 Throughout the past four years, I've had the opportunity to work for a unique,
@@ -29,8 +31,6 @@ broken down into small teams, each with the responsibility of handling a
 specific area of the product. Whether that's boards, inspect, or conversations
 (I’ve worked on all three products), we all have a sense of ownership to what we
 deliver to the customer.
-
-Side note: [we're hiring!](https://boards.greenhouse.io/invision)
 
 ## Take the Good with the Bad
 

@@ -1,23 +1,8 @@
 {{ $posts := where (where $.Site.RegularPages "Section" "posts") ".Params.title" "!=" .Title }}
-{{ $related := .Site.RegularPages.Related . | append $posts | first 2 }}
-{{ $posts := $posts | complement $related }}
 
 <aside class="mt-24">
   <header class="mb-8">
     <h2>Keep Reading</h2>
   </header>
-  {{ with $related }}
-    {{ partial "summary-list" (dict "posts" . "level" "h3" "condensed" true) }}
-    <div class="hidden mt-12 sm:mt-16 js-all">
-      {{ partial "summary-list" (dict "posts" $posts "level" "h3" "condensed" true) }}
-    </div>
-  {{ else }}
-    {{ partial "summary-list" (dict "posts" (first 2 $posts) "level" "h3" "condensed" true) }}
-    <div class="hidden mt-12 sm:mt-16 js-all">
-      {{ partial "summary-list" (dict "posts" (after 2 $posts) "level" "h3" "condensed" true) }}
-    </div>
-  {{ end }}
-  <footer class="pt-12 sm:pt-16">
-    <a href="/posts" class="js-view-all block text-sm text-primary hover:underline font-display">View More</a>
-  </footer>
+  {{ partial "summary-list" $posts }}
 </aside>

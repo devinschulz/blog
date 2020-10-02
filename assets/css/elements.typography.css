@@ -4,30 +4,30 @@ h3,
 h4,
 h5,
 h6 {
-  @apply leading-tight font-extrabold text-headings mb-4 font-display;
+  @apply leading-tight font-medium text-headings mb-4 font-display;
 }
 
 h1 {
-  @apply text-3xl;
-}
-
-h2 {
   @apply text-2xl;
 }
 
-h3 {
+h2 {
   @apply text-xl;
 }
 
-h4 {
+h3 {
   @apply text-lg;
 }
 
-h5 {
+h4 {
   @apply text-base;
 }
 
 h5 {
+  @apply text-sm;
+}
+
+h6 {
   @apply text-sm;
 }
 
