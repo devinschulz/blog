@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=development hugo server --buildFuture",
     "build": "cross-env NODE_ENV=production hugo --gc --minify",
     "build:preview": "cross-env NODE_ENV=production hugo --gc --minify --buildFuture",
-    "format": "prettier --write assets/**/*.{js,css} {content,archetypes}/**/*.md tailwind.config.js postcss.config.js ./**/*.toml ./plugins/**/*.js"
+    "format": "prettier --write assets/**/*.{js,css} {content,archetypes,layouts}/**/*.{md,html} tailwind.config.js postcss.config.js ./**/*.toml"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^2.1.2",
+    "prettier-plugin-go-template": "0.0.10",
     "prettier-plugin-toml": "0.3.1",
     "tailwindcss": "^1.7.6",
     "tailwindcss-dark-mode": "^1.1.6"

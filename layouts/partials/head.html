@@ -18,8 +18,12 @@
   <meta property="og:locale" content="{{ .Site.Language.Lang }}">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-  {{ range .Params.tags }}<meta property="article:section" content="{{ . }}">{{ end }}
-  {{ if isset .Params "date" }}<meta property="article:published_time" content="{{ time .Date }}">{{ end }}
+  {{ range .Params.tags }}
+    <meta property="article:section" content="{{ . }}">
+  {{ end }}
+  {{ if isset .Params "date" }}
+    <meta property="article:published_time" content="{{ time .Date }}">
+  {{ end }}
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
 
@@ -38,19 +42,14 @@
     <link rel="next" href="{{ . | absURL }}">
   {{ end }}
 
-  {{/* Attempt to prefetch and prerender the next page the user might visit */}}
-  {{ if not .IsHome }}
-    <link rel="prerender" href="{{ .Site.BaseURL | absURL }}">
-  {{ end }}
-
   {{ if .IsPage }}
-  {{ if .NextInSection }}
-    <link rel="prefetch" href="{{ .NextInSection.Permalink }}">
-  {{ end }}
+    {{ if .NextInSection }}
+      <link rel="prefetch" href="{{ .NextInSection.Permalink }}">
+    {{ end }}
 
-  {{ if .PrevInSection }}
-    <link rel="prefetch" href="{{ .PrevInSection.Permalink }}">
-  {{ end }}
+    {{ if .PrevInSection }}
+      <link rel="prefetch" href="{{ .PrevInSection.Permalink }}">
+    {{ end }}
   {{ end }}
 
   {{ with .Params.canonical }}

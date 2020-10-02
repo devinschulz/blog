@@ -1,7 +1,15 @@
 <li>
   <a href="{{ .RelPermalink }}">
-    <span class="border-b border-grey-darker border-dotted hover:border-none hover:bg-black hover:text-white">{{ .Title }}</span>
-    <time datetime="{{ .Date.Format .Site.Params.timeFormatRFC3339 }}" class="text-grey-darkest text-sm sm:ml-2 w-full sm:w-24 inline-block">
+    <span
+      class="border-b border-grey-darker border-dotted hover:border-none hover:bg-black hover:text-white"
+    >
+      {{ .Title }}
+    </span
+    >
+    <time
+      datetime="{{ .Date.Format .Site.Params.timeFormatRFC3339 }}"
+      class="text-grey-darkest text-sm sm:ml-2 w-full sm:w-24 inline-block"
+    >
       {{- .Date.Format .Site.Params.timeFormatShort -}}
     </time>
   </a>

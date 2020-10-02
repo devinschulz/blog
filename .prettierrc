@@ -1,11 +1,18 @@
 {
-  "trailingComma": "es5",
   "tabWidth": 2,
   "semi": false,
   "singleQuote": true,
   "embeddedLanguageFormatting": "auto",
-  "traillingComma": "all",
+  "trailingComma": "all",
   "bracketSpacing": false,
   "proseWrap": "always",
-  "jsxBracketSameLine": false
+  "jsxBracketSameLine": false,
+  "overrides": [
+    {
+      "files": ["*.html"],
+      "options": {
+        "parser": "go-template"
+      }
+    }
+  ]
 }

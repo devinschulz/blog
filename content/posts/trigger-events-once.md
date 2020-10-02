@@ -38,7 +38,7 @@ button.addEventListener(
   function onClick() {
     console.log('clicked')
   },
-  {once: true}
+  {once: true},
 )
 ```
 
