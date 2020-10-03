@@ -1,6 +1,8 @@
 node_modules
 public
 .log
+.env
 
 resources/_gen/assets/css/
 /assets/dependencies
+.vercel
