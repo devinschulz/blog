@@ -72,10 +72,14 @@
   {{ end }}
 
   {{ if .Site.IsServer }}
-    {{ $js := resources.Get "js/main.js" | js.Build }}
+    {{ $defines := dict "process.env.NODE_ENV" `"development"` }}
+    {{ $opts := dict "defines" $defines }}
+    {{ $js := resources.Get "js/main.js" | js.Build $opts }}
     <script src="{{ $js.Permalink | relURL }}" defer></script>
   {{ else }}
-    {{ $js := resources.Get "js/main.js" | js.Build | minify | fingerprint }}
+    {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
+    {{ $opts := dict "defines" $defines }}
+    {{ $js := resources.Get "js/main.js" | js.Build $opts | minify | fingerprint }}
     <script src="{{ $js.Permalink | relURL }}" defer></script>
   {{ end }}
 
