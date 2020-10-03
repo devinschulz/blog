@@ -8,4 +8,8 @@ if (pathname === '/') {
 // Remove all slashes
 pathname = pathname.replaceAll(/\//g, '')
 
-fetch(`/api/view?page=${pathname}`).catch((e) => console.error(e))
+if (process.env.NODE_ENV === 'production') {
+  fetch(`/api/view?page=${pathname}`).catch((e) => console.error(e))
+} else {
+  console.log('tracking page view', pathname)
+}
