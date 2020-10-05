@@ -67,6 +67,12 @@ module.exports = {
           'pre code': {
             fontSize: theme('text.sm'),
           },
+          'pre code::before': {
+            content: 'inherit',
+          },
+          'pre code::after': {
+            content: 'inherit',
+          },
           code: {
             color: theme('colors.body'),
             fontFamily: theme('fontFamily.mono'),
