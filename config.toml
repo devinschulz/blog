@@ -33,17 +33,22 @@ twitterHandle = "devinschulz_"
 [[menu.main]]
 name = "Tags"
 weight = 0
-url = "/tags/"
+url = "/tags"
 
 [[menu.main]]
 name = "About"
 weight = 1
-url = "/about/"
+url = "/about"
+
+[[menu.main]]
+name = "Uses"
+weight = 2
+url = "/uses"
 
 [[menu.main]]
 name = "Privacy"
-weight = 1
-url = "/privacy/"
+weight = 4
+url = "/privacy"
 
 [[menu.footer]]
 name = "RSS"
