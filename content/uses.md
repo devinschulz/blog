@@ -86,7 +86,7 @@ title: Uses
 
 JavaScript, TypeScript, Node, React, Svelte, WebPack, Apollo, Next.js, Gatsby,
 Jest, Testing Library, Cypress, PostCSS + plugins, Tailwind, Express, Go,
-MongoDB, MySQL, Postgres
+MongoDB, MySQL, Postgres, Hugo
 
 ### Previously
 
