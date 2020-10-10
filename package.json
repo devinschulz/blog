@@ -23,7 +23,7 @@
     "@tailwindcss/typography": "^0.2.0",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
-    "hugo-bin": "^0.63.1",
+    "hugo-bin": "^0.64.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "postcss-cli": "^7.1.2",
@@ -36,7 +36,7 @@
     "prettier": "^2.1.2",
     "prettier-plugin-go-template": "0.0.10",
     "prettier-plugin-toml": "0.3.1",
-    "tailwindcss": "^1.8.10",
+    "tailwindcss": "^1.8.12",
     "tailwindcss-dark-mode": "^1.1.6"
   },
   "dependencies": {
