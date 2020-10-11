@@ -21,10 +21,14 @@
         } catch (e) {}
       })()
     </script>
-    {{- partial "header.html" . -}}
+    {{ if ne .Page.Kind "404" }}
+      {{- partial "header.html" . -}}
+    {{ end }}
     <main id="content">
       {{- block "main" . }}{{- end -}}
     </main>
-    {{- partial "footer.html" . -}}
+    {{ if ne .Page.Kind "404" }}
+      {{- partial "footer.html" . -}}
+    {{ end }}
   </body>
 </html>
