@@ -1,4 +1,4 @@
-{{ $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
+{{ $title := cond .IsHome .Site.Title (printf "%s | %s" (.Title | title ) .Site.Title) }}
 <head>
   <meta charset="utf-8">
   <title>{{ $title }}</title>
@@ -71,16 +71,18 @@
     <link rel="stylesheet" href="{{ $css.Permalink | relURL }}" integrity="{{ $css.Data.Integrity }}" media="screen">
   {{ end }}
 
-  {{ if .Site.IsServer }}
-    {{ $defines := dict "process.env.NODE_ENV" `"development"` }}
-    {{ $opts := dict "defines" $defines }}
-    {{ $js := resources.Get "js/main.js" | js.Build $opts }}
-    <script src="{{ $js.Permalink | relURL }}" defer></script>
-  {{ else }}
-    {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
-    {{ $opts := dict "defines" $defines }}
-    {{ $js := resources.Get "js/main.js" | js.Build $opts | minify | fingerprint }}
-    <script src="{{ $js.Permalink | relURL }}" defer></script>
+  {{ if ne .Page.Kind "404" }}
+    {{ if .Site.IsServer }}
+      {{ $defines := dict "process.env.NODE_ENV" `"development"` }}
+      {{ $opts := dict "defines" $defines }}
+      {{ $js := resources.Get "js/main.js" | js.Build $opts }}
+      <script src="{{ $js.Permalink | relURL }}" defer></script>
+    {{ else }}
+      {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
+      {{ $opts := dict "defines" $defines }}
+      {{ $js := resources.Get "js/main.js" | js.Build $opts | minify | fingerprint }}
+      <script src="{{ $js.Permalink | relURL }}" defer></script>
+    {{ end }}
   {{ end }}
 
   {{ if .IsHome }}
