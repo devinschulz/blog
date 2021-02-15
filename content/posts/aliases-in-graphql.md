@@ -45,7 +45,7 @@ case convention in JavaScript. Let’s change it by using an alias.
 query GetEntries {
   entries {
     id
-    updated_at: updatedAt
+    updatedAt: updated_at
   }
 }
 ```
