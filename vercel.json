@@ -1,3 +1,19 @@
 {
-  "redirects": [{"source": "/categories(.*)", "destination": "/tags$1"}]
+  "redirects": [
+    {
+      "source": "/categories(.*)", 
+      "destination": "/tags$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers" : [
+        {
+          "key" : "Permissions-Policy",
+          "value" : "interest-cohort=()"
+        }
+      ]
+    }
+  ]
 }
