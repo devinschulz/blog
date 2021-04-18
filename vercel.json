@@ -8,10 +8,10 @@
   "headers": [
     {
       "source": "/(.*)",
-      "headers" : [
+      "headers": [
         {
-          "key" : "Permissions-Policy",
-          "value" : "interest-cohort=()"
+          "key": "Permissions-Policy",
+          "value": "interest-cohort=()"
         }
       ]
     }
