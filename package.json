@@ -28,7 +28,7 @@
     "lint-staged": "^10.5.4",
     "postcss-cli": "^7.1.2",
     "postcss-color-function": "^4.1.0",
-    "postcss-import": "^12.0.1",
+    "postcss-import": "^14.0.2",
     "postcss-mixins": "^6.2.3",
     "postcss-nested": "^4.2.3",
     "postcss-preset-env": "^6.7.0",
