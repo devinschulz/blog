@@ -4,103 +4,7 @@ module.exports = {
   purge: [path.join(__dirname, './layouts/**/*.html')],
   theme: {
     darkSelector: '.dark',
-    typography: (theme) => ({
-      default: {
-        css: {
-          '*,*::before,*::after': {
-            borderColor: theme('colors.grey.light'),
-          },
-          color: theme('colors.body'),
-          h1: {
-            color: theme('colors.headings'),
-            fontSize: theme('fontSize.2xl'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          h2: {
-            color: theme('colors.headings'),
-            fontSize: theme('fontSize.xl'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          h3: {
-            color: theme('colors.headings'),
-            fontSize: theme('fontSize.lg'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          h4: {
-            color: theme('colors.headings'),
-            fontSize: theme('fontSize.base'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          h5: {
-            color: theme('colors.headings'),
-            fontSize: theme('fontSize.sm'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          h6: {
-            color: theme('colors.headings'),
-            fontSize: theme('fontSize.sm'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          'ul > li::before': {
-            content: '""',
-            position: 'absolute',
-            backgroundColor: theme('colors.grey.dark'),
-            borderRadius: '50%',
-          },
-          a: {
-            borderBottom: `1px dotted ${theme('colors.grey.darker')}`,
-            color: theme('colors.current'),
-            fontWeight: theme('fontWeight.medium'),
-            textDecoration: 'none',
-            '&:hover': {
-              backgroundColor: theme('colors.black'),
-              color: theme('colors.white'),
-              borderBottom: 'none',
-            },
-          },
-          pre: {
-            backgroundColor: theme('colors.bg'),
-            border: `1px solid ${theme('colors.grey.light')}`,
-            color: theme('colors.body'),
-            fontFamily: theme('fontFamily.mono'),
-          },
-          'pre code': {
-            fontSize: theme('text.sm'),
-          },
-          'pre code::before': {
-            content: 'inherit',
-          },
-          'pre code::after': {
-            content: 'inherit',
-          },
-          code: {
-            color: theme('colors.body'),
-            fontFamily: theme('fontFamily.mono'),
-          },
-          strong: {
-            color: theme('colors.body'),
-            fontWeight: theme('fontWeight.medium'),
-          },
-          thead: {
-            borderBottomColor: theme('colors.grey.light'),
-          },
-          tbody: {
-            tr: {
-              borderBottomColor: theme('colors.grey.light'),
-            },
-          },
-          figure: {
-            figcaption: {
-              color: theme('colors.grey.darkest'),
-              fontFamily: theme('fontFamily.display'),
-            },
-          },
-          blockquote: {
-            color: theme('colors.grey.darkest'),
-          },
-        },
-      },
-    }),
+
     fontFamily: {
       display: 'var(--font-display)',
       body: 'var(--font-body)',
@@ -137,6 +41,103 @@ module.exports = {
       },
       borderColor: (theme) => ({
         default: theme('colors.grey-light'),
+      }),
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            '*,*::before,*::after': {
+              borderColor: theme('colors.grey.light'),
+            },
+            color: theme('colors.body'),
+            h1: {
+              color: theme('colors.headings'),
+              fontSize: theme('fontSize.2xl'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            h2: {
+              color: theme('colors.headings'),
+              fontSize: theme('fontSize.xl'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            h3: {
+              color: theme('colors.headings'),
+              fontSize: theme('fontSize.lg'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            h4: {
+              color: theme('colors.headings'),
+              fontSize: theme('fontSize.base'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            h5: {
+              color: theme('colors.headings'),
+              fontSize: theme('fontSize.sm'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            h6: {
+              color: theme('colors.headings'),
+              fontSize: theme('fontSize.sm'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            'ul > li::before': {
+              content: '""',
+              position: 'absolute',
+              backgroundColor: theme('colors.grey.dark'),
+              borderRadius: '50%',
+            },
+            a: {
+              borderBottom: `1px dotted ${theme('colors.grey.darker')}`,
+              color: theme('colors.current'),
+              fontWeight: theme('fontWeight.medium'),
+              textDecoration: 'none',
+              '&:hover': {
+                backgroundColor: theme('colors.black'),
+                color: theme('colors.white'),
+                borderBottom: 'none',
+              },
+            },
+            pre: {
+              backgroundColor: theme('colors.bg'),
+              border: `1px solid ${theme('colors.grey.light')}`,
+              color: theme('colors.body'),
+              fontFamily: theme('fontFamily.mono'),
+            },
+            'pre code': {
+              fontSize: theme('text.sm'),
+            },
+            'pre code::before': {
+              content: 'inherit',
+            },
+            'pre code::after': {
+              content: 'inherit',
+            },
+            code: {
+              color: theme('colors.body'),
+              fontFamily: theme('fontFamily.mono'),
+            },
+            strong: {
+              color: theme('colors.body'),
+              fontWeight: theme('fontWeight.medium'),
+            },
+            thead: {
+              borderBottomColor: theme('colors.grey.light'),
+            },
+            tbody: {
+              tr: {
+                borderBottomColor: theme('colors.grey.light'),
+              },
+            },
+            figure: {
+              figcaption: {
+                color: theme('colors.grey.darkest'),
+                fontFamily: theme('fontFamily.display'),
+              },
+            },
+            blockquote: {
+              color: theme('colors.grey.darkest'),
+            },
+          },
+        },
       }),
     },
   },

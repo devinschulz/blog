@@ -3,7 +3,7 @@
   class="container font-display text-grey-darkest mx-auto px-4 text-xs mt-24 mb-12 tracking-wide text-center"
 >
   <nav class="w-full mb-4">
-    <ul class="flex justify-center tracking-wide space-x-4">
+    <ul class="flex justify-center tracking-wide space-x-4 mb-2">
       {{ range .Site.Menus.main }}
         {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $current.Title) }}
