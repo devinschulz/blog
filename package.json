@@ -36,7 +36,7 @@
     "prettier": "^2.3.1",
     "prettier-plugin-go-template": "0.0.10",
     "prettier-plugin-toml": "0.3.1",
-    "tailwindcss": "^2.1.4",
+    "tailwindcss": "^2.2.2",
     "tailwindcss-dark-mode": "^1.1.7"
   },
   "dependencies": {
