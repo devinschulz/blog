@@ -34,7 +34,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^6.0.3",
     "prettier": "^2.3.2",
-    "prettier-plugin-go-template": "0.0.10",
+    "prettier-plugin-go-template": "0.0.11",
     "prettier-plugin-toml": "0.3.1",
     "tailwindcss": "^2.2.4",
     "tailwindcss-dark-mode": "^1.1.7"
