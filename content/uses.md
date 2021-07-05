@@ -54,7 +54,7 @@ title: Uses
 
 ### Now
 
-JavaScript, TypeScript, Node, React, Svelte, WebPack, Apollo, Next.js, Gatsby, Jest, Testing Library, Cypress, PostCSS + plugins, Tailwind, Express, Go, MongoDB, MySQL, Postgres
+JavaScript, TypeScript, Node, React, Svelte, WebPack, Apollo, Next.js, Gatsby, Jest, Testing Library, Cypress, PostCSS + plugins, Tailwind, Hugo, Express, Go, MongoDB, MySQL, Postgres
 
 ### Previously
 
