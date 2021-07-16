@@ -40,7 +40,7 @@
     "tailwindcss-dark-mode": "^1.1.7"
   },
   "dependencies": {
-    "firebase-admin": "^9.10.0",
+    "firebase-admin": "^9.11.0",
     "instant.page": "^5.1.0"
   },
   "husky": {
