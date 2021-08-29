@@ -9,6 +9,9 @@ const setLightMode = () => {
     localStorage.setItem(themeStorageKey, 'light')
     document.documentElement.classList.add('light')
     document.documentElement.classList.remove('dark')
+    document
+      .querySelector('meta[name="theme-color"]')
+      .setAttribute('content', '#fff')
   } catch (err) {
     console.error(err)
   }
@@ -19,6 +22,9 @@ const setDarkMode = () => {
     localStorage.setItem(themeStorageKey, 'dark')
     document.documentElement.classList.remove('light')
     document.documentElement.classList.add('dark')
+    document
+      .querySelector('meta[name="theme-color"]')
+      .setAttribute('content', '#000')
   } catch (err) {
     console.error(err)
   }

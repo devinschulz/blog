@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="{{ .Site.Title }}">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#fff">
 
   {{ with .OutputFormats.Get "RSS" }}
     <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}">
@@ -85,24 +85,24 @@
 
   {{ if .IsHome }}
     <script type="application/ld+json">
-     {
-       "@context": "http://schema.org",
-       "@type": "WebSite",
-       "url": "{{ .Permalink }}",
-       "name": "{{ .Site.Title }}",
-       "author": {
-         "@type": "Person",
-         "name": "{{ .Site.Params.author.name }}"
-       },
-       "description": "{{ .Site.Params.description }}",
-     }
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "{{ .Permalink }}",
+        "name": "{{ .Site.Title }}",
+        "author": {
+          "@type": "Person",
+          "name": "{{ .Site.Params.author.name }}"
+        },
+        "description": "{{ .Site.Params.description }}"
+      }
     </script>
   {{ end }}
   {{ if .IsPage }}
     <script type="application/ld+json">
      {{ if eq .Section "posts" }}
      {
-       "@context": "http://schema.org",
+       "@context": "https://schema.org",
        "@type": "BlogPosting",
        "headline": "{{ .Title }}",
        "keywords": {{ .Params.tags | jsonify }},
@@ -118,7 +118,7 @@
      }
      {{ else }}
      {
-       "@context": "http://schema.org",
+       "@context": "https://schema.org",
        "@type": "WebSite",
        "url": "{{ .Permalink }}",
        "name": "{{ .Title }}",
@@ -131,4 +131,12 @@
      {{ end }}
   </script>
   {{ end }}
+  <script>
+    try {
+      const key = localStorage.getItem('theme') || 'dark'
+      if (key === 'dark') {
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+      }
+    } catch (e) {}
+  </script>
 </head>
