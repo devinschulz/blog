@@ -7,7 +7,8 @@
     "start": "cross-env NODE_ENV=development hugo server --buildFuture",
     "build": "cross-env NODE_ENV=production hugo --gc --minify",
     "build:preview": "cross-env NODE_ENV=production hugo --gc --minify --buildFuture",
-    "format": "prettier --write assets/**/*.{js,css} {content,archetypes,layouts}/**/*.{md,html} tailwind.config.js postcss.config.js ./**/*.toml"
+    "format": "prettier --write assets/**/*.{js,css} {content,archetypes,layouts}/**/*.{md,html} tailwind.config.js postcss.config.js ./**/*.toml",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
     "cross-env": "^7.0.3",
     "cssnano": "^5.0.8",
     "hugo-bin": "^0.75.0",
-    "husky": "^7.0.2",
+    "husky": "^7.0.0",
     "lint-staged": "^11.1.2",
     "postcss-cli": "^8.3.1",
     "postcss-color-function": "^4.1.0",
@@ -42,11 +43,6 @@
   "dependencies": {
     "firebase-admin": "^9.11.1",
     "instant.page": "^5.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,css,md,toml}": "prettier --write"
