@@ -40,7 +40,6 @@
     "tailwindcss": "^2.2.19"
   },
   "dependencies": {
-    "firebase-admin": "^9.11.1",
     "instant.page": "^5.1.0"
   },
   "lint-staged": {
