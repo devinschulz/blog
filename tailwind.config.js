@@ -2,9 +2,8 @@ const path = require('path')
 
 module.exports = {
   purge: [path.join(__dirname, './layouts/**/*.html')],
+  darkMode: 'class',
   theme: {
-    darkSelector: '.dark',
-
     fontFamily: {
       display: 'var(--font-display)',
       body: 'var(--font-body)',
@@ -149,8 +148,5 @@ module.exports = {
     textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('tailwindcss-dark-mode')(),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 }

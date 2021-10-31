@@ -133,9 +133,11 @@
   {{ end }}
   <script>
     try {
-      const key = localStorage.getItem('theme') || 'dark'
-      if (key === 'dark') {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
         document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+      } else {
+        document.documentElement.classList.remove('dark')
       }
     } catch (e) {}
   </script>

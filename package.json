@@ -37,8 +37,7 @@
     "prettier": "^2.4.1",
     "prettier-plugin-go-template": "0.0.11",
     "prettier-plugin-toml": "0.3.1",
-    "tailwindcss": "^2.2.19",
-    "tailwindcss-dark-mode": "^1.1.7"
+    "tailwindcss": "^2.2.19"
   },
   "dependencies": {
     "firebase-admin": "^9.11.1",
