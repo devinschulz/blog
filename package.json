@@ -24,7 +24,7 @@
     "@tailwindcss/typography": "^0.4.1",
     "cross-env": "^7.0.3",
     "cssnano": "^5.0.13",
-    "hugo-bin": "^0.77.4",
+    "hugo-bin": "^0.79.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "postcss-cli": "^9.1.0",
