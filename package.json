@@ -23,7 +23,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.1",
     "cross-env": "^7.0.3",
-    "cssnano": "^5.0.14",
+    "cssnano": "^5.0.15",
     "hugo-bin": "^0.79.2",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.5",
