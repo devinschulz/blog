@@ -1,6 +1,5 @@
 ---
 title: Modify Create React App's Babel configuration without ejecting
-slug: modify-cra-babel-config-without-ejecting
 date: 2020-02-02
 description: Learn how to modify the underlying Create React App configuration with customize-cra to include new babel plugins. All without having to eject.
 tags: [React, Babel]

@@ -1,10 +1,9 @@
 ---
 title: Reflecting on Four Years of Remote Work
-slug: reflecting-on-four-years-of-remote-work
 date: 2019-03-12
 tags: [Career, Remote]
 description:
-  Learn about the good and bads I've experienced while working remotely over the
+  Learn about the good and bad's I've experienced while working remotely over the
   past four years.
 ---
 

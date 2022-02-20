@@ -90,7 +90,7 @@ Next, you'll set the object key to the current ID and assign it the value of
 ```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
-    accumulatorcurrent.id] = current
+    accumulator[current.id] = current
     return accumulator
   }, acc)
 }
