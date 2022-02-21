@@ -1,7 +1,9 @@
 ---
-title: Modify Create React App's Babel configuration without ejecting
+title: Modify Create React App's Babel Configuration Without Ejecting
 date: 2020-02-02
-description: Learn how to modify the underlying Create React App configuration with customize-cra to include new babel plugins. All without having to eject.
+description:
+  Learn how to modify the underlying Create React App configuration with
+  customize-cra to include new babel plugins. All without having to eject.
 tags: [React, Babel]
 ---
 
@@ -63,13 +65,13 @@ what we need to add both plugins.
 Open `config-overrides.js` and add the following:
 
 ```js
-const { override, addBabelPlugins } = require('customize-cra')
+const {override, addBabelPlugins} = require('customize-cra')
 
 module.exports = override(
   addBabelPlugins(
     '@babel/plugin-proposal-nullish-coalescing-operator',
-    '@babel/plugin-syntax-optional-chaining'
-  )
+    '@babel/plugin-syntax-optional-chaining',
+  ),
 )
 ```
 

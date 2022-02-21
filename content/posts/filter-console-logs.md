@@ -1,5 +1,5 @@
 ---
-title: Filter out multiple console messages in Google Chrome
+title: Filter Out Multiple Console Messages in Google Chrome
 description:
   Learn how to filter out multiple console messages by using either regular
   expressions or prefixing a string with a hyphen-minus.

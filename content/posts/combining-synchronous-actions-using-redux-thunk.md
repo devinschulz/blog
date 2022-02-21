@@ -1,7 +1,9 @@
 ---
-title: Combining synchronous actions using Redux Thunk
+title: Combining Synchronous Actions Using Redux Thunk
 date: 2018-07-09T16:20:02-04:00
-description: Learn how to use Redux Thunk for handling several synchronous actions at once to modify different areas of the application state.
+description:
+  Learn how to use Redux Thunk for handling several synchronous actions at once
+  to modify different areas of the application state.
 tags: [Redux, Testing, React, Jest]
 ---
 
@@ -61,7 +63,7 @@ const addToCart = (id) => ({
 
 ```javascript
 // AddToCart.jsx
-const AddToCart = ({ addToCart, id, openSidebar }) => (
+const AddToCart = ({addToCart, id, openSidebar}) => (
   <button
     onClick={() => {
       addToCart(id)
@@ -88,7 +90,7 @@ benefit of one less property to pass down.
 
 ```javascript
 // AddToCart.jsx
-const AddToCart = ({ addItemToCart, id }) => (
+const AddToCart = ({addItemToCart, id}) => (
   <button onClick={() => addItemToCart(id)}>Add to cart</button>
 )
 ```
@@ -139,7 +141,7 @@ you need to send.
 ```javascript
 // actions.js
 const addItemToCart = (id) => (dispatch, getState) => {
-  const { merchandise } = getState()
+  const {merchandise} = getState()
   const item = merchandise.find((item) => item.id === id)
   dispatch(addToCart(item))
   dispatch(openSidebar())
@@ -170,7 +172,7 @@ const setup = () => {
       type: 'shirt',
     },
   ]
-  const store = { merchandise, cart }
+  const store = {merchandise, cart}
   const getState = () => store
   return {
     dispatch: jest.fn(),
@@ -183,7 +185,7 @@ describe('actions', () => {
     it('should dispatch all the correct actions', () => {
       const id = 5
       // 1: Get the dispatch spy and mocked state
-      const { dispatch, getState } = setup()
+      const {dispatch, getState} = setup()
 
       // 2: Call the thunk action
       addItemToCart(id)(dispatch, getState)

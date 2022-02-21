@@ -1,5 +1,5 @@
 ---
-title: Handling an event callback once
+title: Handling an Event Callback Once
 description:
   Learn how to simplify your code by using a simple trick to remove an event
   listener after an event has been fired once.

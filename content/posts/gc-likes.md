@@ -1,7 +1,8 @@
 ---
-title: Building a likes API with Google Cloud Functions
+title: Building a Likes API With Google Cloud Functions
 date: 2018-11-05T21:41:18-04:00
-description: Learn how to use Google Cloud Functions to build a likes API with Node
+description:
+  Learn how to use Google Cloud Functions to build a likes API with Node
 tags: [Node, Google Cloud, Firebase, Serverless]
 ---
 
@@ -118,11 +119,11 @@ app.get('/:id', (req, res) =>
     .get()
     .then((doc) => {
       if (!doc.exists) {
-        res.status(200).json({ count: 0 })
+        res.status(200).json({count: 0})
       } else {
         res.status(200).send(doc.data())
       }
-    })
+    }),
 )
 ```
 
@@ -149,7 +150,7 @@ likes
   .get()
   .then((doc) => {
     const count = doc.exists ? doc.data().count + 1 : 1
-    likes.doc(req.params.id).set({ count })
+    likes.doc(req.params.id).set({count})
   })
 ```
 
@@ -165,15 +166,15 @@ const put = (req, res) =>
       transaction.get(likes.doc(req.params.id)).then((doc) => {
         const count = doc.exists ? doc.data().count + 1 : 1
         const method = doc.exists ? 'update' : 'set'
-        transaction[method](likes.doc(req.params.id), { count })
+        transaction[method](likes.doc(req.params.id), {count})
         return Promise.resolve(count)
-      })
+      }),
     )
-    .then((count) => res.status(200).json({ count }))
+    .then((count) => res.status(200).json({count}))
     .catch((error) =>
       res
         .status(500)
-        .json({ status: 500, message: 'Failed to update count', error })
+        .json({status: 500, message: 'Failed to update count', error}),
     )
 ```
 
@@ -192,8 +193,8 @@ existing document entirely. Calling `update` only updates the values you pass
 in. Take a look at the following example:
 
 ```js
-doc.set({ active: true, count: 1 })
-doc.set({ count: 2 })
+doc.set({active: true, count: 1})
+doc.set({count: 2})
 //=> { count: 2 }
 ```
 
@@ -202,8 +203,8 @@ problem if your object contained more than just `count`. Instead, calling
 `update` would only update the `count` and leave `active` intact.
 
 ```js
-doc.set({ active: true, count: 1 })
-doc.update({ count: 2 })
+doc.set({active: true, count: 1})
+doc.update({count: 2})
 //=> { active: true, count: 2 }
 ```
 

@@ -1,6 +1,8 @@
 ---
-title: Restrictions while styling visited links
-description: Learn about what the :visited pseudo-class selector is and its limitations while styling them.
+title: Restrictions While Styling Visited Links
+description:
+  Learn about what the :visited pseudo-class selector is and its limitations
+  while styling them.
 date: 2020-02-18
 tags: [CSS]
 ---
@@ -51,8 +53,8 @@ a:visited {
 When styling visited links, you are limited to these color declarations:
 
 - `background-color`
-- `border-color` (`border-top-color`, `border-right-color`, `border-bottom-color`,
-  `border-left-color`)
+- `border-color` (`border-top-color`, `border-right-color`,
+  `border-bottom-color`, `border-left-color`)
 - `color`
 - `column-rule-color`
 - `outline-color`
