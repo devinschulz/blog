@@ -1,7 +1,8 @@
-const path = require('path')
-
 module.exports = {
-  purge: [path.join(__dirname, './layouts/**/*.html')],
+  purge: {
+    enabled: true,
+    content: ['./layouts/**/*.html'],
+  },
   darkMode: 'class',
   theme: {
     fontFamily: {
