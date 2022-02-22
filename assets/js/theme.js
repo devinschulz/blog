@@ -39,7 +39,10 @@ const toggleTheme = () => {
   }
 }
 
-;(() => {
+export const applyListeners = () => {
   const toggle = document.querySelector('.js-theme-toggle')
   if (toggle) toggle.addEventListener('click', toggleTheme, false)
-})()
+  return () => {
+    toggle.removeEventListener('click', toggleTheme, false)
+  }
+}

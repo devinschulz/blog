@@ -1,3 +1,14 @@
-import 'instant.page'
-import './perf'
-import './theme'
+import '@hotwired/turbo'
+import {applyListeners} from './theme'
+
+let listeners
+
+document.addEventListener('turbo:load', () => {
+  listeners = applyListeners()
+})
+
+document.addEventListener('turbo:before-render', () => {
+  try {
+    listeners()
+  } catch (e) {}
+})

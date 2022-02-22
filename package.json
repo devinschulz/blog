@@ -40,7 +40,7 @@
     "tailwindcss": "^2.2.19"
   },
   "dependencies": {
-    "instant.page": "^5.1.0"
+    "@hotwired/turbo": "^7.1.0"
   },
   "lint-staged": {
     "*.{js,css,md,toml}": "prettier --write"

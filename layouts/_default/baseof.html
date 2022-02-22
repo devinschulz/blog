@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
+  <html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
   {{- partial "head.html" . -}}
   <body class="bg-bg antialiased font-body bg-bg leading-7 text-body">
-    <script>
-      ;(function () {
-        try {
-          let mode = localStorage.getItem('theme')
-          if (!mode) {
-            const matches = window.matchMedia('(prefers-color-scheme: dark)')
-              .matches
-            if (!matches) {
-              return
+    <turbo-frame target="_top">
+      <script>
+        ;(function () {
+          try {
+            let mode = localStorage.getItem('theme')
+            if (!mode) {
+              const matches = window.matchMedia('(prefers-color-scheme: dark)')
+                .matches
+              if (!matches) {
+                return
+              }
+              mode = 'dark'
             }
-            mode = 'dark'
-          }
-          document.documentElement.classList.add(mode)
-          document.documentElement.style.background = getComputedStyle(
-            document.documentElement,
-          ).getPropertyValue('--bg')
-        } catch (e) {}
-      })()
-    </script>
-    {{ if ne .Page.Kind "404" }}
-      {{- partial "header.html" . -}}
-    {{ end }}
-    <main id="content">
-      {{- block "main" . }}{{- end -}}
-    </main>
-    {{ if ne .Page.Kind "404" }}
-      {{- partial "footer.html" . -}}
-    {{ end }}
+            document.documentElement.classList.add(mode)
+            document.documentElement.style.background = getComputedStyle(
+              document.documentElement,
+            ).getPropertyValue('--bg')
+          } catch (e) {}
+        })()
+      </script>
+      {{ if ne .Page.Kind "404" }}
+        {{- partial "header.html" . -}}
+      {{ end }}
+      <main id="content">
+        {{- block "main" . }}{{- end -}}
+      </main>
+      {{ if ne .Page.Kind "404" }}
+        {{- partial "footer.html" . -}}
+      {{ end }}
+    </turbo-frame>
   </body>
 </html>
