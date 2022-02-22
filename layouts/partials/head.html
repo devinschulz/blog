@@ -132,15 +132,15 @@
   </script>
   {{ end }}
   <script>
-    try {
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
-        console.log('add dark')
-      } else {
-        console.log('remove dark')
-        document.documentElement.classList.remove('dark')
-      }
-    } catch (e) {}
+    (function() {
+      try {
+        if (localStorage.theme === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      } catch (e) {}
+    })()
   </script>
 </head>
