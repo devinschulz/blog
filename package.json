@@ -32,7 +32,7 @@
     "postcss-import": "^14.1.0",
     "postcss-mixins": "^9.0.2",
     "postcss-nested": "^5.0.6",
-    "postcss-preset-env": "^7.4.3",
+    "postcss-preset-env": "^7.4.4",
     "postcss-simple-vars": "^6.0.3",
     "prettier": "^2.6.2",
     "prettier-plugin-go-template": "0.0.12",
