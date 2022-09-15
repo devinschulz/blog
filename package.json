@@ -26,7 +26,7 @@
     "cssnano": "^5.1.7",
     "hugo-bin": "^0.90.3",
     "husky": "^8.0.1",
-    "lint-staged": "^12.4.2",
+    "lint-staged": "^13.0.3",
     "postcss-cli": "^9.1.0",
     "postcss-color-function": "^4.1.0",
     "postcss-import": "^15.0.0",
