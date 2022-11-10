@@ -48,7 +48,7 @@ GraphQL query wasn't working as expected or remark properties were randomly
 missing from the schema.
 
 **Next JS:** I had heard lots of great things about this framework and a few
-coworkers had used it to build marketing type pages. Zeit (the company behind
+coworkers had used it to build marketing type pages. vercel (the company behind
 Next) is also very active in the open source community and has several high
 profile projects on the go. After checking out the documentation, it had
 interactive tutorials which I thought was cool and a bonus compared to other
