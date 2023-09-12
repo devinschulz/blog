@@ -34,3 +34,11 @@ h6 {
 p {
   @apply leading-relaxed mb-4;
 }
+
+.dark .prose a {
+  color: var(--text-body) !important;
+}
+
+.dark .prose a:hover {
+  color: var(--colors-white) !important;
+}
