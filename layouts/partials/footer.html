@@ -10,7 +10,11 @@
         <li>
           <a
             href="{{ .URL }}"
-            class="{{ if $active }}text-black{{ else }}text-grey-darkest{{ end }}"
+            class="{{ if $active }}
+              text-black
+            {{ else }}
+              text-grey-darkest
+            {{ end }}"
             >{{ .Name }}</a
           >
         </li>
@@ -23,14 +27,18 @@
         <li>
           <a
             href="{{ .URL }}"
-            class="{{ if $active }}text-black{{ else }}text-grey-darkest{{ end }}"
+            class="{{ if $active }}
+              text-black
+            {{ else }}
+              text-grey-darkest
+            {{ end }}"
             >{{ .Name }}</a
           >
         </li>
       {{ end }}
       <li>
         <a rel="me" href="https://mastodon.social/@devinschulz">Mastodon</a>
-      </li> 
+      </li>
     </ul>
   </nav>
   <p>&copy;{{ now.Format "2006" }} {{ .Site.Title }}</p>
