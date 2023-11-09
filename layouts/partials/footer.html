@@ -4,41 +4,38 @@
 >
   <nav class="w-full mb-4">
     <ul class="flex justify-center tracking-wide space-x-4 mb-2">
-      {{ range .Site.Menus.main }}
-        {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
-        {{ $active = or $active (eq .Name $current.Title) }}
-        <li>
-          <a
-            href="{{ .URL }}"
-            class="{{ if $active }}
+      {{ range .Site.Menus.main }} {{ $active := or ($current.IsMenuCurrent
+      "nav" .) ($current.HasMenuCurrent "nav" .) }} {{ $active = or $active (eq
+      .Name $current.Title) }}
+      <li>
+        <a
+          href="{{ .URL }}"
+          class="{{ if $active }}
               text-black
             {{ else }}
               text-grey-darkest
             {{ end }}"
-            >{{ .Name }}</a
-          >
-        </li>
+          >{{ .Name }}</a
+        >
+      </li>
       {{ end }}
     </ul>
     <ul class="flex justify-center tracking-wide space-x-4">
-      {{ range .Site.Menus.footer }}
-        {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
-        {{ $active = or $active (eq .Name $current.Title) }}
-        <li>
-          <a
-            href="{{ .URL }}"
-            class="{{ if $active }}
+      {{ range .Site.Menus.footer }} {{ $active := or ($current.IsMenuCurrent
+      "nav" .) ($current.HasMenuCurrent "nav" .) }} {{ $active = or $active (eq
+      .Name $current.Title) }}
+      <li>
+        <a
+          href="{{ .URL }}"
+          class="{{ if $active }}
               text-black
             {{ else }}
               text-grey-darkest
             {{ end }}"
-            >{{ .Name }}</a
-          >
-        </li>
-      {{ end }}
-      <li>
-        <a rel="me" href="https://mastodon.social/@devinschulz">Mastodon</a>
+          >{{ .Name }}</a
+        >
       </li>
+      {{ end }}
     </ul>
   </nav>
   <p>&copy;{{ now.Format "2006" }} {{ .Site.Title }}</p>
