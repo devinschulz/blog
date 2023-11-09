@@ -1,7 +1,9 @@
 ---
 title: Accumulate Complex Objects With the Reduce Method
 date: 2019-07-29
-description: Learn how to recursively reduce a nested data structure by harnessing the power of the Array.reduce method.
+description:
+  Learn how to recursively reduce a nested data structure by harnessing the
+  power of the Array.reduce method.
 tags: [JavaScript, Array, Map]
 ---
 
@@ -45,7 +47,7 @@ const data = [
       },
       {
         id: 6,
-        children: [{ id: 7 }],
+        children: [{id: 7}],
       },
     ],
   },
@@ -152,9 +154,8 @@ collect(data, {})
 ## Using Map Instead of an Object
 
 Maybe you want to spice things up a bit and use the newer ES6 features like
-`Map`. Swap out any references to the accumulator object and replace that
-value with `Map`. Update the object assignments to use the `set` method and
-that's it!
+`Map`. Swap out any references to the accumulator object and replace that value
+with `Map`. Update the object assignments to use the `set` method and that's it!
 
 ```js
 function collect(list, acc) {
@@ -184,6 +185,5 @@ collect(data, new Map())
 ## Conclusion
 
 There you have it, my thought process on how I would take a similar piece of
-data and transform it into something I can easily reference. Hopefully,
-there's something here you can takeaway and apply to your own work. Happy
-coding!
+data and transform it into something I can easily reference. Hopefully, there's
+something here you can takeaway and apply to your own work. Happy coding!

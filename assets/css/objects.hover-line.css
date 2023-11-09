@@ -5,8 +5,11 @@
   background: linear-gradient(currentColor, currentColor) no-repeat;
   background-size: 0 0.1em;
   background-position: left 85%;
-  text-shadow: 0.15em 0 var(--colors-bg), 0.15em 0 var(--colors-bg),
-    -0.15em 0 var(--colors-bg), -0.15em 0 var(--colors-bg);
+  text-shadow:
+    0.15em 0 var(--colors-bg),
+    0.15em 0 var(--colors-bg),
+    -0.15em 0 var(--colors-bg),
+    -0.15em 0 var(--colors-bg);
 
   &:hover,
   &:focus {

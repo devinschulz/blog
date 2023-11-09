@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-LightItalic.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-LightItalic.woff2') format('woff2'),
     url('/fonts/UntitledSans-LightItalic.woff') format('woff');
   font-weight: 300;
   font-style: italic;
@@ -9,7 +10,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-Bold.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-Bold.woff2') format('woff2'),
     url('/fonts/UntitledSans-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
@@ -18,7 +20,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-Medium.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-Medium.woff2') format('woff2'),
     url('/fonts/UntitledSans-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
@@ -27,7 +30,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-MediumItalic.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-MediumItalic.woff2') format('woff2'),
     url('/fonts/UntitledSans-MediumItalic.woff') format('woff');
   font-weight: 500;
   font-style: italic;
@@ -36,7 +40,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-Light.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-Light.woff2') format('woff2'),
     url('/fonts/UntitledSans-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
@@ -45,7 +50,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-RegularItalic.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-RegularItalic.woff2') format('woff2'),
     url('/fonts/UntitledSans-RegularItalic.woff') format('woff');
   font-weight: normal;
   font-style: italic;
@@ -54,7 +60,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-Regular.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-Regular.woff2') format('woff2'),
     url('/fonts/UntitledSans-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -63,7 +70,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-BoldItalic.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-BoldItalic.woff2') format('woff2'),
     url('/fonts/UntitledSans-BoldItalic.woff') format('woff');
   font-weight: bold;
   font-style: italic;
@@ -72,7 +80,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-Black.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-Black.woff2') format('woff2'),
     url('/fonts/UntitledSans-Black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
@@ -81,7 +90,8 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSans-BlackItalic.woff2') format('woff2'),
+  src:
+    url('/fonts/UntitledSans-BlackItalic.woff2') format('woff2'),
     url('/fonts/UntitledSans-BlackItalic.woff') format('woff');
   font-weight: 900;
   font-style: italic;

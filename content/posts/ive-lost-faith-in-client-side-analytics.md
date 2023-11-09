@@ -2,7 +2,9 @@
 title: I've Lost Faith in Client-Side Analytics
 date: 2019-08-31
 tags: [Analytics, Opinion]
-description: Since switching to Netlify's server-side analytics, I learned how different the data is when compared to Google Analytics.
+description:
+  Since switching to Netlify's server-side analytics, I learned how different
+  the data is when compared to Google Analytics.
 ---
 
 I've been using Google Analytics on this website since its inception, and
@@ -27,9 +29,9 @@ What's going on here? To me, this seems pretty evident that adblockers are
 pretty damn popular, and most of my traffic clearly uses one. I'm guilty of this
 too since I use an ad blocker system-wide on both my computer and phone. For
 those that are interested, my computer blocks ads by modifying the systems
-[hosts file](https://github.com/StevenBlack/hosts),
-and my phone uses [Blokada](https://blokada.org). Blocking system-wide is the
-only way to prevent tracking through all applications.
+[hosts file](https://github.com/StevenBlack/hosts), and my phone uses
+[Blokada](https://blokada.org). Blocking system-wide is the only way to prevent
+tracking through all applications.
 
 Nonetheless, never did I expect so much of a gap in the data. This revelation
 made me sit down and think about all the metrics based decisions I've made in

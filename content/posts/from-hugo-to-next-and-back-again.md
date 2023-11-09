@@ -2,7 +2,9 @@
 title: From Hugo to Next JS and Back Again
 date: 2019-05-18
 tags: [Static Sites, Performance, Tailwind]
-description: Learn about why I choose Hugo over a React based static site generator for my blog.
+description:
+  Learn about why I choose Hugo over a React based static site generator for my
+  blog.
 ---
 
 This post features my challenges, frustrations, and why I ultimately landed on
