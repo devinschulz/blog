@@ -23,10 +23,10 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.1",
     "cross-env": "^7.0.3",
-    "cssnano": "^5.1.7",
+    "cssnano": "^6.0.1",
     "hugo-bin": "^0.90.3",
-    "husky": "^8.0.1",
-    "lint-staged": "^12.4.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
     "postcss-cli": "^9.1.0",
     "postcss-color-function": "^4.1.0",
     "postcss-import": "^15.0.0",
