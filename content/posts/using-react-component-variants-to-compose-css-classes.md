@@ -24,8 +24,8 @@ Here we're going to start with two TypeScript unions to define the possible
 button sizes and the variant.
 
 ```ts
-type ButtonSize = 'small' | 'medium'
-type ButtonVariant = 'primary' | 'secondary'
+type ButtonSize = "small" | "medium";
+type ButtonVariant = "primary" | "secondary";
 ```
 
 These could easily extend to any number of union types, but we'll keep it simple
@@ -42,14 +42,14 @@ and `T` is a `string`. The `string` is the class names you want to use.
 
 ```ts
 const buttonSizeClasses: Record<ButtonSize, string> = {
-  small: 'py-1 px-2',
-  medium: 'py-2 px-4',
-}
+  small: "py-1 px-2",
+  medium: "py-2 px-4",
+};
 
 const buttonVariantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-blue-700 text-white',
-  secondary: 'border border-gray-300 text-black',
-}
+  primary: "bg-blue-700 text-white",
+  secondary: "border border-gray-300 text-black",
+};
 ```
 
 By explicitly defining the `Record` generic with our union type, we can lean on
@@ -61,35 +61,35 @@ Begin by creating an interface of the component's props.
 
 ```ts
 interface ButtonProps {
-  size?: ButtonSize
-  variant?: ButtonVariant
+  size?: ButtonSize;
+  variant?: ButtonVariant;
 }
 ```
 
 And now the component itself to tie everything together.
 
 ```tsx
-import {FC} from 'react'
-import clsx from 'clsx'
+import { FC } from "react";
+import clsx from "clsx";
 
 const Button: FC<ButtonProps> = ({
   children,
-  size = 'small',
-  variant = 'primary',
+  size = "small",
+  variant = "primary",
 }) => (
   <button
     className={clsx(buttonSizeClasses[size], buttonVariantClasses[variant])}
   >
     {children}
   </button>
-)
+);
 ```
 
 We've got a simple button component, but the one crucial line I'd like to point
 out here is how we're selecting and applying the classes.
 
 ```ts
-clsx(buttonSizeClasses[size], buttonVariantClasses[variant])
+clsx(buttonSizeClasses[size], buttonVariantClasses[variant]);
 ```
 
 The [clsx](https://github.com/lukeed/clsx) (or

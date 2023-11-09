@@ -65,14 +65,14 @@ what we need to add both plugins.
 Open `config-overrides.js` and add the following:
 
 ```js
-const {override, addBabelPlugins} = require('customize-cra')
+const { override, addBabelPlugins } = require("customize-cra");
 
 module.exports = override(
   addBabelPlugins(
-    '@babel/plugin-proposal-nullish-coalescing-operator',
-    '@babel/plugin-syntax-optional-chaining',
+    "@babel/plugin-proposal-nullish-coalescing-operator",
+    "@babel/plugin-syntax-optional-chaining",
   ),
-)
+);
 ```
 
 For both of the plugins to work correctly, we'll need to install the packages.
@@ -86,12 +86,12 @@ You can now test this all works by running `npm start` in your terminal. Open
 babel is transpiling the bundle correctly.
 
 ```js
-import React from 'react'
+import React from "react";
 
 export default function App() {
-  const obj = {}
-  const prop = obj.foo?.bar?.() ?? 'foo bar'
-  return <div className="App">{prop}</div>
+  const obj = {};
+  const prop = obj.foo?.bar?.() ?? "foo bar";
+  return <div className="App">{prop}</div>;
 }
 ```
 

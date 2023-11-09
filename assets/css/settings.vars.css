@@ -1,11 +1,11 @@
 :root {
-  --font-display: 'untitled sans', 'ui-sans-serif', '-apple-system',
-    'blinkmacsystemfont', 'helvetica neue', 'arial', 'noto sans', 'sans-serif',
-    'apple color emoji', 'segoe ui', 'roboto', 'segoe ui emoji',
-    'segoe ui symbol', 'noto color emoji';
+  --font-display: "untitled sans", "ui-sans-serif", "-apple-system",
+    "blinkmacsystemfont", "helvetica neue", "arial", "noto sans", "sans-serif",
+    "apple color emoji", "segoe ui", "roboto", "segoe ui emoji",
+    "segoe ui symbol", "noto color emoji";
   --font-body: var(--font-display);
-  --font-mono: 'ui-monospace', 'SFMono-Regular', 'Consolas', 'Liberation Mono',
-    'Menlo', 'Courier', 'monospace';
+  --font-mono: "ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono",
+    "Menlo", "Courier", "monospace";
 
   --colors-primary: #0040dd;
   --colors-primary-light: color(#0040dd l(90%));

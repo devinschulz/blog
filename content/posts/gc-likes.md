@@ -1,8 +1,7 @@
 ---
 title: Building a Likes API With Google Cloud Functions
 date: 2018-11-05T21:41:18-04:00
-description:
-  Learn how to use Google Cloud Functions to build a likes API with Node
+description: Learn how to use Google Cloud Functions to build a likes API with Node
 tags: [Node, Google Cloud, Firebase, Serverless]
 ---
 
@@ -74,20 +73,20 @@ Open up `index.js` and insert the following boilerplate:
 
 ```javascript
 // index.js
-const functions = require('firebase-functions')
-const admin = require('firebase-admin')
-const express = require('express')
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const express = require("express");
 
 // Creates an express application which handles the routing
-const app = express()
+const app = express();
 
 // Initialize the firebase configuration. Since you this is already hosted
 // on Google Cloud, you don’t need any additional configuration. It just
 // works!
-admin.initializeApp(functions.config().firestore)
+admin.initializeApp(functions.config().firestore);
 
 // This is the main entry point to the function
-exports.likes = functions.https.onRequest(app)
+exports.likes = functions.https.onRequest(app);
 ```
 
 This is a bare-bones function and doesn't do much at this point. We are
@@ -109,22 +108,22 @@ document doesn’t exist, we should return a default count instead of returning 
 
 ```js
 // Reference the firestore database and store it in a variable so we can use it across both functions
-const db = admin.firestore()
+const db = admin.firestore();
 // Reference the likes collection within the firestore database
-const likes = db.collection('likes')
+const likes = db.collection("likes");
 
-app.get('/:id', (req, res) =>
+app.get("/:id", (req, res) =>
   likes
     .doc(req.params.id)
     .get()
     .then((doc) => {
       if (!doc.exists) {
-        res.status(200).json({count: 0})
+        res.status(200).json({ count: 0 });
       } else {
-        res.status(200).send(doc.data())
+        res.status(200).send(doc.data());
       }
     }),
-)
+);
 ```
 
 We are using the [Express routing](https://expressjs.com/en/guide/routing.html)
@@ -149,9 +148,9 @@ likes
   .doc(req.params.id)
   .get()
   .then((doc) => {
-    const count = doc.exists ? doc.data().count + 1 : 1
-    likes.doc(req.params.id).set({count})
-  })
+    const count = doc.exists ? doc.data().count + 1 : 1;
+    likes.doc(req.params.id).set({ count });
+  });
 ```
 
 Instead of calling `get` and then `set`, fetching and updating a value or
@@ -164,18 +163,18 @@ const put = (req, res) =>
   db
     .runTransaction((transaction) =>
       transaction.get(likes.doc(req.params.id)).then((doc) => {
-        const count = doc.exists ? doc.data().count + 1 : 1
-        const method = doc.exists ? 'update' : 'set'
-        transaction[method](likes.doc(req.params.id), {count})
-        return Promise.resolve(count)
+        const count = doc.exists ? doc.data().count + 1 : 1;
+        const method = doc.exists ? "update" : "set";
+        transaction[method](likes.doc(req.params.id), { count });
+        return Promise.resolve(count);
       }),
     )
-    .then((count) => res.status(200).json({count}))
+    .then((count) => res.status(200).json({ count }))
     .catch((error) =>
       res
         .status(500)
-        .json({status: 500, message: 'Failed to update count', error}),
-    )
+        .json({ status: 500, message: "Failed to update count", error }),
+    );
 ```
 
 Let’s take this line by line since a lot is going on here. First, we start a
@@ -193,8 +192,8 @@ existing document entirely. Calling `update` only updates the values you pass
 in. Take a look at the following example:
 
 ```js
-doc.set({active: true, count: 1})
-doc.set({count: 2})
+doc.set({ active: true, count: 1 });
+doc.set({ count: 2 });
 //=> { count: 2 }
 ```
 
@@ -203,8 +202,8 @@ problem if your object contained more than just `count`. Instead, calling
 `update` would only update the `count` and leave `active` intact.
 
 ```js
-doc.set({active: true, count: 1})
-doc.update({count: 2})
+doc.set({ active: true, count: 1 });
+doc.update({ count: 2 });
 //=> { active: true, count: 2 }
 ```
 

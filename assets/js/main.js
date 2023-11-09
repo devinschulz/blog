@@ -1,14 +1,14 @@
-import '@hotwired/turbo'
-import {applyListeners} from './theme'
+import "@hotwired/turbo";
+import { applyListeners } from "./theme";
 
-let listeners
+let listeners;
 
-document.addEventListener('turbo:load', () => {
-  listeners = applyListeners()
-})
+document.addEventListener("turbo:load", () => {
+  listeners = applyListeners();
+});
 
-document.addEventListener('turbo:before-render', () => {
+document.addEventListener("turbo:before-render", () => {
   try {
-    listeners()
+    listeners();
   } catch (e) {}
-})
+});

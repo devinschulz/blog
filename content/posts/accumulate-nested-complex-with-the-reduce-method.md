@@ -47,11 +47,11 @@ const data = [
       },
       {
         id: 6,
-        children: [{id: 7}],
+        children: [{ id: 7 }],
       },
     ],
   },
-]
+];
 ```
 
 The objective here is to turn this array of nested objects into a flattened
@@ -65,7 +65,7 @@ magic happens!
 function collect(list, acc) {
   // ...
 }
-collect(data, {})
+collect(data, {});
 // => undefined
 ```
 
@@ -75,10 +75,10 @@ Now take the list argument and call `reduce` to return a value other than
 ```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
-    return accumulator
-  }, acc)
+    return accumulator;
+  }, acc);
 }
-collect(data, {})
+collect(data, {});
 // => {}
 ```
 
@@ -92,11 +92,11 @@ Next, you'll set the object key to the current ID and assign it the value of
 ```js
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
-    accumulator[current.id] = current
-    return accumulator
-  }, acc)
+    accumulator[current.id] = current;
+    return accumulator;
+  }, acc);
 }
-collect(data, {})
+collect(data, {});
 // => { '1': { id: 1, children: [ [Object], [Object] ] } }
 ```
 
@@ -108,13 +108,13 @@ order to collect all those values too, you will need to recursively call
 function collect(list, acc) {
   return list.reduce((accumulator, current) => {
     if (Array.isArray(current.children) && current.children.length) {
-      return collect(current.children, accumulator)
+      return collect(current.children, accumulator);
     }
-    accumulator[current.id] = current
-    return accumulator
-  }, acc)
+    accumulator[current.id] = current;
+    return accumulator;
+  }, acc);
 }
-collect(data, {})
+collect(data, {});
 // => { '1': { id: 1, children: [ [Object], [Object] ] },
 //      '2': { id: 2, children: [ [Object], [Object] ] },
 //      '3': { id: 3 },
@@ -134,14 +134,14 @@ function collect(list, acc) {
       accumulator[current.id] = {
         ...current,
         children: current.children.map((entry) => entry.id),
-      }
-      return collect(current.children, accumulator)
+      };
+      return collect(current.children, accumulator);
     }
-    accumulator[current.id] = current
-    return accumulator
-  }, acc)
+    accumulator[current.id] = current;
+    return accumulator;
+  }, acc);
 }
-collect(data, {})
+collect(data, {});
 // => { '1': { id: 1, children: [ 2, 6 ] },
 //      '2': { id: 2, children: [ 3, 4 ] },
 //      '3': { id: 3 },
@@ -164,14 +164,14 @@ function collect(list, acc) {
       accumulator.set(current.id, {
         ...current,
         children: current.children.map((entry) => entry.id),
-      })
-      return collect(current.children, accumulator)
+      });
+      return collect(current.children, accumulator);
     }
-    accumulator.set(current.id, current)
-    return accumulator
-  }, acc)
+    accumulator.set(current.id, current);
+    return accumulator;
+  }, acc);
 }
-collect(data, new Map())
+collect(data, new Map());
 // => Map {
 //  1 => { id: 1, children: [ 2, 6 ] },
 //  2 => { id: 2, children: [ 3, 4 ] },

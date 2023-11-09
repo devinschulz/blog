@@ -52,27 +52,27 @@ second for telling the view that the sidebar should be opened.
 ```javascript
 // actions.js
 const openSidebar = () => ({
-  type: 'OPEN_SIDEBAR',
-})
+  type: "OPEN_SIDEBAR",
+});
 
 const addToCart = (id) => ({
-  type: 'ADD_TO_CART',
+  type: "ADD_TO_CART",
   payload: id,
-})
+});
 ```
 
 ```javascript
 // AddToCart.jsx
-const AddToCart = ({addToCart, id, openSidebar}) => (
+const AddToCart = ({ addToCart, id, openSidebar }) => (
   <button
     onClick={() => {
-      addToCart(id)
-      openSidebar()
+      addToCart(id);
+      openSidebar();
     }}
   >
     Add to cart
   </button>
-)
+);
 ```
 
 This button component would generally be a nested deep within the application
@@ -90,9 +90,9 @@ benefit of one less property to pass down.
 
 ```javascript
 // AddToCart.jsx
-const AddToCart = ({addItemToCart, id}) => (
+const AddToCart = ({ addItemToCart, id }) => (
   <button onClick={() => addItemToCart(id)}>Add to cart</button>
-)
+);
 ```
 
 ## Building a Thunk Action
@@ -100,9 +100,9 @@ const AddToCart = ({addItemToCart, id}) => (
 ```javascript
 // actions.js
 const addItemToCart = (id) => (dispatch, getState) => {
-  dispatch(addToCart(id))
-  dispatch(openSidebar())
-}
+  dispatch(addToCart(id));
+  dispatch(openSidebar());
+};
 ```
 
 Let's try to break this down. The thunk action `addItemToCart` is a function,
@@ -118,15 +118,15 @@ sessions.
 ```javascript
 // actions.js
 const saveCartRequest = (id) => ({
-  type: 'SAVE_CART_REQUEST',
+  type: "SAVE_CART_REQUEST",
   payload: id,
-})
+});
 
 const addItemToCart = (id) => (dispatch) => {
-  dispatch(addToCart(id))
-  dispatch(openSidebar())
-  dispatch(saveCartRequest(id))
-}
+  dispatch(addToCart(id));
+  dispatch(openSidebar());
+  dispatch(saveCartRequest(id));
+};
 ```
 
 Did you know that you can trigger other thunk actions from within a thunk
@@ -141,19 +141,19 @@ you need to send.
 ```javascript
 // actions.js
 const addItemToCart = (id) => (dispatch, getState) => {
-  const {merchandise} = getState()
-  const item = merchandise.find((item) => item.id === id)
-  dispatch(addToCart(item))
-  dispatch(openSidebar())
-  dispatch(saveCartRequest(id))
-}
+  const { merchandise } = getState();
+  const item = merchandise.find((item) => item.id === id);
+  dispatch(addToCart(item));
+  dispatch(openSidebar());
+  dispatch(saveCartRequest(id));
+};
 
 // Can’t forget to update the `addToCart` action to use
 // the `item` instead of the `id`
 const addToCart = (item) => ({
-  type: 'ADD_TO_CART',
+  type: "ADD_TO_CART",
   payload: item,
-})
+});
 ```
 
 ## Testing a Thunk Action
@@ -165,51 +165,51 @@ and instead of testing whether the dispatch is called with the correct values.
 ```javascript
 // test.actions.js
 const setup = () => {
-  const cart = []
+  const cart = [];
   const merchandise = [
     {
       id: 5,
-      type: 'shirt',
+      type: "shirt",
     },
-  ]
-  const store = {merchandise, cart}
-  const getState = () => store
+  ];
+  const store = { merchandise, cart };
+  const getState = () => store;
   return {
     dispatch: jest.fn(),
     getState,
-  }
-}
+  };
+};
 
-describe('actions', () => {
-  describe('addItemToCart', () => {
-    it('should dispatch all the correct actions', () => {
-      const id = 5
+describe("actions", () => {
+  describe("addItemToCart", () => {
+    it("should dispatch all the correct actions", () => {
+      const id = 5;
       // 1: Get the dispatch spy and mocked state
-      const {dispatch, getState} = setup()
+      const { dispatch, getState } = setup();
 
       // 2: Call the thunk action
-      addItemToCart(id)(dispatch, getState)
+      addItemToCart(id)(dispatch, getState);
 
       // 3: Test that the dispatch was called with the
       //    correct arguments
-      expect(dispatch).toHaveBeenCalledTimes(3)
+      expect(dispatch).toHaveBeenCalledTimes(3);
       expect(dispatch).toHaveBeenCalledWith({
-        type: 'ADD_TO_CART',
+        type: "ADD_TO_CART",
         payload: {
           id: 5,
-          type: 'shirt',
+          type: "shirt",
         },
-      })
+      });
       expect(dispatch).toHaveBeenCalledWith({
-        type: 'OPEN_SIDEBAR',
-      })
+        type: "OPEN_SIDEBAR",
+      });
       expect(dispatch).toHaveBeenLastCalledWith({
-        type: 'SAVE_CART_REQUEST',
+        type: "SAVE_CART_REQUEST",
         payload: id,
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
 ```
 
 ## Conclusion

@@ -14,12 +14,12 @@ In the past, I would have added an event listener to an element and then removed
 it within the callback function. It would have looked something like this:
 
 ```js
-const button = document.querySelector('button')
+const button = document.querySelector("button");
 
-button.addEventListener('click', function onClick() {
-  console.log('clicked')
-  button.removeEventListener('click', onClick)
-})
+button.addEventListener("click", function onClick() {
+  console.log("clicked");
+  button.removeEventListener("click", onClick);
+});
 ```
 
 <!--more-->
@@ -31,15 +31,15 @@ This code can be cleaned up by passing one additional argument to the event
 listener, `{ once: true }`.
 
 ```js
-const button = document.querySelector('button')
+const button = document.querySelector("button");
 
 button.addEventListener(
-  'click',
+  "click",
   function onClick() {
-    console.log('clicked')
+    console.log("clicked");
   },
-  {once: true},
-)
+  { once: true },
+);
 ```
 
 This example functions precisely like the example above, except requires less

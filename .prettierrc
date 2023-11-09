@@ -1,12 +1,4 @@
 {
-  "tabWidth": 2,
-  "semi": false,
-  "singleQuote": true,
-  "embeddedLanguageFormatting": "auto",
-  "trailingComma": "all",
-  "bracketSpacing": false,
-  "proseWrap": "always",
-  "jsxBracketSameLine": false,
   "overrides": [
     {
       "files": ["*.html"],

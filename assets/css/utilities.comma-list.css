@@ -1,7 +1,7 @@
 .comma-list {
   > li:not(:last-of-type) {
     &::after {
-      content: ',';
+      content: ",";
       @apply text-gray-800 inline-block mr-1;
     }
   }
