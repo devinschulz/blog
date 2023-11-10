@@ -1,18 +1,18 @@
-@import "./settings.vars.css";
+@import "settings.vars.css";
 
-@import "./generic.fonts.css";
-@import "./generic.tailwind.css";
-@import "./generic.syntax.css";
+@import "generic.fonts.css";
+@import "generic.tailwind.css";
+@import "generic.syntax.css";
 
-@import "./elements.html.css";
-@import "./elements.typography.css";
-@import "./elements.figure.css";
-@import "./elements.tables.css";
+@import "elements.html.css";
+@import "elements.typography.css";
+@import "elements.figure.css";
+@import "elements.tables.css";
 
-@import "./objects.hover-line.css";
+@import "objects.hover-line.css";
 
-@import "./components.toc.css";
+@import "components.toc.css";
 
-@import "./utilities.comma-list.css";
+@import "utilities.comma-list.css";
 
-@import "./trumps.utilties.css";
+@import "trumps.utilties.css";
