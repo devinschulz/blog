@@ -1,9 +1,0 @@
-{{ $posts := where (where $.Site.RegularPages "Section" "posts") ".Params.title" "!=" .Title }}
-
-
-<aside class="mt-24">
-  <header class="mb-8">
-    <h2>Keep Reading</h2>
-  </header>
-  {{ partial "summary-list" $posts }}
-</aside>

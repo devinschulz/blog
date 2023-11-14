@@ -1,8 +1,0 @@
-/categories/* /tags/:splat
-/categories /tags
-
-/tags/remote-work /tags/remote
-/tags/static-site-generators /tags/static-sites
-/tags/dev-tools /tags/devtools
-
-/today-i-learned /tags/today-i-learned
