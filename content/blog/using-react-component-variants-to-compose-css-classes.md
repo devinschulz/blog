@@ -69,8 +69,8 @@ interface ButtonProps {
 And now the component itself to tie everything together.
 
 ```tsx
-import { FC } from "react";
 import clsx from "clsx";
+import { FC } from "react";
 
 const Button: FC<ButtonProps> = ({
   children,

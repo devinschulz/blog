@@ -1,10 +1,10 @@
 ---
-import { readOne, readAll } from "../../lib/markdoc/read";
-import { blog } from "../../lib/markdoc/frontmatter.schema";
-import Renderer from "../../components/Renderer.astro";
 import BlogPostMeta from "../../components/BlogPostMeta.astro";
-import ContentLayout from "../../layouts/ContentLayout.astro";
+import Renderer from "../../components/Renderer.astro";
 import { SITE_URL } from "../../config";
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import { blog } from "../../lib/markdoc/frontmatter.schema";
+import { readAll, readOne } from "../../lib/markdoc/read";
 
 export async function getStaticPaths() {
   const posts = await readAll({

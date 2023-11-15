@@ -1,7 +1,8 @@
+/** @type {import("prettier").Config} */
 const config = {
   plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-astro",
+    "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-organize-attributes",
     "prettier-plugin-tailwindcss",
   ],
@@ -15,4 +16,4 @@ const config = {
   ],
 };
 
-module.exports = config;
+export default config;

@@ -63,7 +63,7 @@ transformation.
 type Props = {
   selectedLayer?: Layer,
   hoveredLayer?: Layer,
-}
+};
 ```
 
 The next obvious thing that needs to be pass down the view component is all the
@@ -88,13 +88,13 @@ type Position = {
   left: number,
   width?: number,
   height?: number,
-}
+};
 
 type Measurement = {
   direction: number,
   label: Label,
   position: Position,
-}
+};
 ```
 
 The last item that exists within each measurement is the label to display the
@@ -183,7 +183,7 @@ type Layer = {
   height: number,
   x: number,
   y: number,
-}
+};
 ```
 
 To figure out which path I can take, I started by determining if the layers are
@@ -196,20 +196,20 @@ const xIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.x + layer1.width, layer2.x + layer2.width) -
-      Math.max(layer1.x, layer2.x)
-  ) > 0
+      Math.max(layer1.x, layer2.x),
+  ) > 0;
 
 // Determine if the y axis plus height overlap
 const yIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.y + layer1.height, layer2.y + layer2.height) -
-      Math.max(layer1.y, layer2.y)
-  ) > 0
+      Math.max(layer1.y, layer2.y),
+  ) > 0;
 
 // Determine if both x and y-axis plus width and height overlap
 const overlaps = (layer1: Layer, layer2: Layer): boolean =>
-  xIntersects(layer1, layer2) && yIntersects(layer1, layer2)
+  xIntersects(layer1, layer2) && yIntersects(layer1, layer2);
 ```
 
 The next piece of information shared among all different paths is the direction.
@@ -253,37 +253,37 @@ between the two.
 ```js
 const getDirection = (layer1: Layer, layer2: Layer): number => {
   // Get the x and y center of each layer
-  const layer1Center: Point = getCenter(layer1)
-  const layer2Center: Point = getCenter(layer2)
+  const layer1Center: Point = getCenter(layer1);
+  const layer2Center: Point = getCenter(layer2);
 
   // Check if this coordinate is dead center with other.
   if (layer1Center.x === layer2Center.x && layer1Center.y === layer2Center.y) {
-    return CENTER
+    return CENTER;
   }
-  const angle = getAngle(layer2Center, layer1Center)
-  return angleToDirection(angle)
-}
+  const angle = getAngle(layer2Center, layer1Center);
+  return angleToDirection(angle);
+};
 
 // Convert the angle to a direction
 const angleToDirection = (angle: number): number => {
-  const directionCount = DIRECTIONS.length
+  const directionCount = DIRECTIONS.length;
   return DIRECTIONS[
     Math.floor(angle / (360 / directionCount) + 0.5) % directionCount
-  ]
-}
+  ];
+};
 
 // Calculate the angle between the center of two points
 const getAngle = (point1: Point, point2: Point): number => {
   const angle =
-    (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI - 90
-  return angle < 0 ? 360 + angle : angle
-}
+    (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI - 90;
+  return angle < 0 ? 360 + angle : angle;
+};
 
 // Get the absolute center point of a layer
 const getCenter = (layer: Layer): Point => ({
   x: layer.x + layer.width / 2,
   y: layer.y + layer.height / 2,
-})
+});
 ```
 
 Now that the logic is out of the way I can carry on with actually using it.
@@ -320,26 +320,26 @@ facing sides.
 
 ```js
 const intersection = (layer1: Layer, layer2: Layer): Point => {
-  const xMax = Math.max(layer1.x, layer2.x)
-  const yMax = Math.max(layer1.y, layer2.y)
+  const xMax = Math.max(layer1.x, layer2.x);
+  const yMax = Math.max(layer1.y, layer2.y);
 
   return {
     x:
       xMax +
       Math.max(
         0,
-        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax
+        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax,
       ) /
         2,
     y:
       yMax +
       Math.max(
         0,
-        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax
+        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax,
       ) /
         2,
-  }
-}
+  };
+};
 ```
 
 Now that we have the intersection and offsets, we can use this information to
@@ -347,13 +347,13 @@ can start building out the measurements. I decided to calculate all four sides
 and then only return what is required.
 
 ```js
-const yMin = Math.min(layer1.y, layer2.y)
-const xMin = Math.min(layer1.x, layer2.x)
-const yHeightMin = Math.min(layer1.y + layer1.height, layer2.y + layer2.height)
-const yHeightMax = Math.max(layer1.y + layer1.height, layer2.y + layer2.height)
-const xWidthMin = Math.min(layer1.x + layer1.width, layer2.x + layer2.width)
-const xWidthMax = Math.max(layer1.x + layer1.width, layer2.x + layer2.width)
-const intersects = intersection(layer1, layer2)
+const yMin = Math.min(layer1.y, layer2.y);
+const xMin = Math.min(layer1.x, layer2.x);
+const yHeightMin = Math.min(layer1.y + layer1.height, layer2.y + layer2.height);
+const yHeightMax = Math.max(layer1.y + layer1.height, layer2.y + layer2.height);
+const xWidthMin = Math.min(layer1.x + layer1.width, layer2.x + layer2.width);
+const xWidthMax = Math.max(layer1.x + layer1.width, layer2.x + layer2.width);
+const intersects = intersection(layer1, layer2);
 
 const topMeasurement: Measurement = {
   direction: TOP,
@@ -368,7 +368,7 @@ const topMeasurement: Measurement = {
       x: intersects.x,
     },
   },
-}
+};
 
 const rightMeasurement: Measurement = {
   direction: RIGHT,
@@ -384,7 +384,7 @@ const rightMeasurement: Measurement = {
     },
     value: right,
   },
-}
+};
 
 const bottomMeasurement: Measurement = {
   direction: BOTTOM,
@@ -400,7 +400,7 @@ const bottomMeasurement: Measurement = {
     },
     value: bottom,
   },
-}
+};
 
 const leftMeasurement: Measurement = {
   direction: LEFT,
@@ -416,7 +416,7 @@ const leftMeasurement: Measurement = {
     },
     value: left,
   },
-}
+};
 ```
 
 Now that all the measurements values are calculated, I can work on the returned
@@ -615,7 +615,7 @@ needed to account for the scale. This is easily obtainable by multiplying each
 measurement x, y, width, and height by the zoom level.
 
 ```js
-const displayScale = (scale: number, value: number): number => value * scale
+const displayScale = (scale: number, value: number): number => value * scale;
 ```
 
 #### Dotted Helper Lines

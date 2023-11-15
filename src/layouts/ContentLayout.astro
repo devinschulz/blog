@@ -6,9 +6,8 @@
 // Import the global.css file here so that it is included on
 import "../styles/global.css";
 import "../styles/markdown.css";
-
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 import Favicon from "./Favicon.astro";
 
 export interface Props {
@@ -24,7 +23,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
 });
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html class="theme-sleek" lang="en">
   <head>
     <!-- Global Metadata -->
@@ -35,7 +34,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
     <slot name="meta" />
   </head>
 
-  <body class="text-text-body bg-bg-body max-w-3xl mx-auto px-4 sm:px-8">
+  <body class="text-text-body bg-bg-body mx-auto max-w-3xl px-4 sm:px-8">
     <Header />
     <main id="main">
       <section class="blog-post">
@@ -45,39 +44,36 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
       </section>
     </main>
     <Footer />
-  </body>
-
-  <style>
-    body {
-      display: grid;
-      min-height: 100vh;
-      grid-template-areas:
-        "header"
-        "main"
-        "footer";
-      grid-template-rows: 5rem minmax(0, 1fr) 5rem;
-      grid-template-columns: minmax(0, 1fr);
+    <style>
+      body {
+        display: grid;
+        min-height: 100vh;
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+        grid-template-rows: 5rem minmax(0, 1fr) 5rem;
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        grid-area: main;
+      }
+    </style>
+  </body><style>
+    .title {
+      font-size: 2.5em;
+      line-height: 1.2 !important;
+      margin: 0.25em 0 0;
     }
-    main {
-      grid-area: main;
+    .publish-date {
+      font-size: 0.875em;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      display: block;
+    }
+    hr {
+      border-top: 1px solid #ddd;
+      margin: 1rem 0;
     }
   </style>
 </html>
-
-<style>
-  .title {
-    font-size: 2.5em;
-    line-height: 1.2 !important;
-    margin: 0.25em 0 0;
-  }
-  .publish-date {
-    font-size: 0.875em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    display: block;
-  }
-  hr {
-    border-top: 1px solid #ddd;
-    margin: 1rem 0;
-  }
-</style>

@@ -1,9 +1,9 @@
-import type { z } from "zod";
-import path from "path";
-import matter from "gray-matter";
 import fs from "fs/promises";
-import { globby } from "globby";
+import path from "path";
 import Markdoc from "@markdoc/markdoc";
+import { globby } from "globby";
+import matter from "gray-matter";
+import type { z } from "zod";
 import { config } from "./markdoc.config";
 
 // path is relative to where you run the `yarn build` command

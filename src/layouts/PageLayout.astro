@@ -8,13 +8,12 @@
 
 // Import the global.css file here so that it is included on
 import "../styles/global.css";
-
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 import Favicon from "./Favicon.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html class="theme-sleek" lang="en">
   <head>
     <!-- Global Metadata -->
@@ -25,7 +24,7 @@ import Favicon from "./Favicon.astro";
     <slot name="meta" />
   </head>
 
-  <body class="text-text-body bg-bg-body max-w-3xl mx-auto px-4 sm:px-8">
+  <body class="text-text-body bg-bg-body mx-auto max-w-3xl px-4 sm:px-8">
     <Header />
     <main id="main">
       <slot name="main" />
