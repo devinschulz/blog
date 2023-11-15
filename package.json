@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rm -rf dist",
-    "format": "prettier --write .",
+    "format": "prettier --write . --config ./.prettier.config.mjs",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -38,6 +38,6 @@
     "typescript": "^5.2.2"
   },
   "lint-staged": {
-    "*": "prettier --ignore-unknown --write"
+    "*": "prettier --ignore-unknown --write --config ./.prettier.config.mjs"
   }
 }
