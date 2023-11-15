@@ -221,15 +221,15 @@ one.
 {{< figure src="./directions.png" caption="Each direction numbered from one to eight in relation to the center" >}}
 
 ```js
-const BOTTOM = 5
-const BOTTOM_LEFT = 6
-const BOTTOM_RIGHT = 4
-const CENTER = 8
-const LEFT = 7
-const RIGHT = 3
-const TOP = 1
-const TOP_LEFT = 0
-const TOP_RIGHT = 2
+const BOTTOM = 5;
+const BOTTOM_LEFT = 6;
+const BOTTOM_RIGHT = 4;
+const CENTER = 8;
+const LEFT = 7;
+const RIGHT = 3;
+const TOP = 1;
+const TOP_LEFT = 0;
+const TOP_RIGHT = 2;
 
 const DIRECTIONS = [
   TOP,
@@ -240,7 +240,7 @@ const DIRECTIONS = [
   BOTTOM_LEFT,
   LEFT,
   TOP_LEFT,
-]
+];
 ```
 
 Now that I’ve set up these variables I can work on the math portion to determine
@@ -289,8 +289,8 @@ const getCenter = (layer: Layer): Point => ({
 Now that the logic is out of the way I can carry on with actually using it.
 
 ```js
-const layerOverlapsLayer = overlaps(selected, highlighted)
-const cardinal = getDirection(selected, highlighted)
+const layerOverlapsLayer = overlaps(selected, highlighted);
+const cardinal = getDirection(selected, highlighted);
 ```
 
 ### Layers Which Overlap
@@ -302,10 +302,10 @@ maximum values for each side, and then subtracting the same side of the opposite
 layer.
 
 ```js
-const top = Math.abs(layer1.y - layer2.y)
-const right = Math.abs(layer1.x + layer1.width - (layer2.x + layer2.width))
-const bottom = Math.abs(layer1.y + layer1.height - (layer2.y + layer2.height))
-const left = Math.abs(layer1.x - layer1.x)
+const top = Math.abs(layer1.y - layer2.y);
+const right = Math.abs(layer1.x + layer1.width - (layer2.x + layer2.width));
+const bottom = Math.abs(layer1.y + layer1.height - (layer2.y + layer2.height));
+const left = Math.abs(layer1.x - layer1.x);
 ```
 
 Performing the above calculations gives us the difference for each side which we
@@ -426,7 +426,7 @@ side the end user wants to see.
 
 ```js
 if (cardinal === CENTER) {
-  return [topMeasurement, rightMeasurement, bottomMeasurement, leftMeasurement]
+  return [topMeasurement, rightMeasurement, bottomMeasurement, leftMeasurement];
 }
 ```
 
@@ -519,18 +519,18 @@ direction to either `TOP`, `RIGHT`, `BOTTOM` or `LEFT`, depending on the
 overlap, and returned the `distance` function.
 
 ```js
-const xWidth = layer1.x + layer1.width
-const yHeight = layer1.y + layer1.height
-const x2Width = layer2.x + layer2.width
-const y2Height = layer2.y + layer2.height
+const xWidth = layer1.x + layer1.width;
+const yHeight = layer1.y + layer1.height;
+const x2Width = layer2.x + layer2.width;
+const y2Height = layer2.y + layer2.height;
 
-const overlapsMiddleY = layer2.y < layer1.y && y2Height > yHeight
-const overlapsMiddleX = layer2.x < layer1.x && x2Width > xWidth
+const overlapsMiddleY = layer2.y < layer1.y && y2Height > yHeight;
+const overlapsMiddleX = layer2.x < layer1.x && x2Width > xWidth;
 
 if (overlapsMiddleX || layer2.x >= layer1.x || x2Width > layer1.x) {
-  return distance(TOP, layer1, layer2)
+  return distance(TOP, layer1, layer2);
 } else if (overlapsMiddleY || layer2.y >= layer1.y) {
-  return distance(LEFT, layer1, l)
+  return distance(LEFT, layer1, l);
 }
 ```
 
