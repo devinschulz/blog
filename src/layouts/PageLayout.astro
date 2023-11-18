@@ -1,49 +1,58 @@
 ---
-/* 
-  This layout is used in 
-  - pages/index.astro
-  - pages/blog.astro
-  - pages/projects.astro
-*/
-
-// Import the global.css file here so that it is included on
 import "../styles/global.css";
+import { SEO, type Props as SEOProps } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import MobileNav from "../components/MobileNav.astro";
+import MobileNavToggle from "../components/MobileNavToggle.astro";
 import Favicon from "./Favicon.astro";
+import "@fontsource-variable/karla";
+import "@fontsource-variable/exo";
+
+export interface Props extends SEOProps {}
+
+const { props } = Astro;
 ---
 
 <!doctype html>
-<html class="theme-sleek" lang="en">
+<html lang="en">
   <head>
-    <!-- Global Metadata -->
-    <meta charset="utf-8" />
+    <SEO
+      titleTemplate="% - Devin Schulz"
+      titleDefault="Devin Schulz"
+      charset="utf-8"
+      {...props}
+    />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="Blogster" />
     <Favicon />
     <slot name="meta" />
   </head>
+  <body
+    class="min-h-full w-screen overflow-hidden bg-gray-100 font-sans antialiased dark:bg-gray-900"
+    data-controller="mobile-nav"
+    data-action="resize@window->mobile-nav#close"
+    data-action="keydown.esc@window->mobile-nav#close"
+  >
+    <MobileNav />
+    <MobileNavToggle open />
+    <div
+      data-mobile-nav-target="page"
+      class="relative z-30 h-screen overflow-y-auto overflow-x-hidden bg-white dark:bg-black"
+    >
+      <MobileNavToggle />
+      <Header />
+      <main id="main">
+        <slot name="main" />
+      </main>
+      <Footer />
+    </div>
+    <script>
+      import { Application } from "@hotwired/stimulus";
+      import MobileNavController from "../js/controllers/mobileNavController";
 
-  <body class="text-text-body bg-bg-body mx-auto max-w-3xl px-4 sm:px-8">
-    <Header />
-    <main id="main">
-      <slot name="main" />
-    </main>
-    <Footer />
-    <style>
-      body {
-        display: grid;
-        min-height: 100vh;
-        grid-template-areas:
-          "header"
-          "main"
-          "footer";
-        grid-template-rows: 5rem minmax(0, 1fr) 5rem;
-        grid-template-columns: minmax(0, 1fr);
-      }
-      main {
-        grid-area: main;
-      }
-    </style>
+      const application = Application.start();
+
+      application.register("mobile-nav", MobileNavController);
+    </script>
   </body>
 </html>

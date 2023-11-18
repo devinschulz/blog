@@ -1,0 +1,41 @@
+---
+export interface Props {
+  open?: boolean;
+}
+
+const { open } = Astro.props;
+---
+
+<button
+  class:list={[
+    "mobile-toggle absolute right-0 z-20 mr-4 mt-3 flex h-8 items-center gap-1 rounded-full border border-gray-300 px-3 py-1 text-xs dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:text-white md:mt-7 lg:hidden",
+    {
+      "landscape:hidden": open,
+    },
+  ]}
+  data-action="click->mobile-nav#toggle"
+  data-mobile-nav-target="trigger"
+>
+  Menu
+  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+    {
+      open ? (
+        <path
+          d="M18 6L6 18M6 6L18 18"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      ) : (
+        <path
+          d="M3 12H15M3 6H21M3 18H21"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      )
+    }
+  </svg>
+</button>

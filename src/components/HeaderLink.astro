@@ -12,28 +12,16 @@ const isOtherPages =
 const isActive = isHome || isOtherPages;
 ---
 
-<!-- DO NOT FORMAT. IT ADDS AN EXTRA SPACE ON RENDERED CONTENT. -->
 <a
-  href={href}
+  {href}
   class:list={[
     className,
-    { active: isActive },
-    "header-link unset",
-    "animated",
-    "gradient-colors",
+    {
+      "text-gray-900 underline hover:text-black dark:text-gray-100 dark:text-white dark:hover:text-white":
+        isActive,
+      "text-gray-600 hover:text-black dark:text-gray-500 dark:hover:text-white":
+        !isActive,
+    },
   ]}
   {...props}><slot /></a
 >
-<style>
-  a.gradient-colors {
-    --animated-underline-from: var(--text-heading);
-    --animated-underline-to: var(--text-heading);
-  }
-
-  .header-link {
-    text-decoration: none;
-    color: var(--text-heading);
-    border-bottom: none;
-    margin: 0;
-  }
-</style>

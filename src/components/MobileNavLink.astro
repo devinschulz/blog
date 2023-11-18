@@ -1,0 +1,13 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+
+const { class: className, ...props } = Astro.props;
+---
+
+<HeaderLink
+  data-mobile-nav-target="link"
+  class="link block -translate-x-[200px] px-6 py-3 text-3xl opacity-0 landscape:px-10 landscape:py-1 landscape:text-xl"
+  {...props}
+>
+  <slot />
+</HeaderLink>

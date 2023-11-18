@@ -2,7 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "display": "theme/minimal",
   "compilerOptions": {
-    "types": ["astro/client", "bun-types"],
+    "types": ["astro/client"],
     "baseUrl": "."
   }
 }

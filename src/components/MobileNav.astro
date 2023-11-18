@@ -1,0 +1,42 @@
+---
+import Logo from "./Logo.astro";
+import MobileNavLink from "./MobileNavLink.astro";
+---
+
+<div
+  data-mobile-nav-target="nav"
+  id="mobile-nav"
+  class="absolute left-0 top-0 z-20 h-full lg:hidden"
+>
+  <a href="/" class="absolute ml-4 mt-3 font-medium text-black landscape:ml-10"
+    ><Logo /></a
+  >
+  <ul
+    data-mobile-nav-target="links"
+    class="links relative z-30 flex h-full min-w-[50vw] flex-col justify-center"
+  >
+    <li>
+      <MobileNavLink href="/">Home</MobileNavLink>
+    </li>
+    <li>
+      <MobileNavLink href="/blog">Blog</MobileNavLink>
+    </li>
+    <li>
+      <MobileNavLink href="/projects">Projects</MobileNavLink>
+    </li>
+    <li>
+      <MobileNavLink href="/about">About</MobileNavLink>
+    </li>
+    <li>
+      <MobileNavLink href="/contact">Uses</MobileNavLink>
+    </li>
+    <li>
+      <MobileNavLink href="/contact">Contact</MobileNavLink>
+    </li>
+  </ul>
+  <div
+    data-mobile-nav-target="overlay"
+    class="bg absolute inset-x-0 inset-y-0 z-10 -translate-x-0 opacity-0"
+  >
+  </div>
+</div>

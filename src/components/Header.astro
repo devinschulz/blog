@@ -1,17 +1,33 @@
 ---
+import Container from "./Container.astro";
 import HeaderLink from "./HeaderLink.astro";
+import Line from "./Line.astro";
+import Logo from "./Logo.astro";
+import MobileNav from "./MobileNav.astro";
 ---
 
-<header class="container mx-auto my-1 px-4">
-  <a class="skip-to-main" href="#main" class="sr-only focus:not-sr-only">
-    Skip to content</a
-  >
-  <nav>
-    <ul>
-      <li><HeaderLink href="/">Home</HeaderLink></li>
-      <li><HeaderLink href="/blog">Blog</HeaderLink></li>
-      <li><HeaderLink href="/projects">Projects</HeaderLink></li>
-    </ul>
-  </nav>
-  <div class="social-handles"></div>
+<header>
+  <Container>
+    <a
+      href="#main"
+      class="absolute left-0 m-3 -translate-y-16 bg-white p-3 opacity-0 transition focus:translate-y-0 focus:opacity-100 dark:bg-black"
+    >
+      Skip to content</a
+    >
+    <div class="flex items-center justify-between py-3 md:py-5 lg:pt-8">
+      <a href="/" class="font-medium">
+        <Logo />
+      </a>
+      <nav class="hidden lg:block">
+        <ul class="flex gap-5">
+          <li><HeaderLink href="/">Home</HeaderLink></li>
+          <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+          <li><HeaderLink href="/projects">Projects</HeaderLink></li>
+          <li><HeaderLink href="/about">About</HeaderLink></li>
+          <li><HeaderLink href="/contact">Contact</HeaderLink></li>
+        </ul>
+      </nav>
+    </div>
+    <Line />
+  </Container>
 </header>
