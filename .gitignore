@@ -2,6 +2,7 @@ node_modules
 public
 .log
 .env
+.DS_Store
 
 resources/_gen/assets/css/
 /assets/dependencies
