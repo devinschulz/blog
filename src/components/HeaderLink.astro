@@ -16,10 +16,11 @@ const isActive = isHome || isOtherPages;
   {href}
   class:list={[
     className,
+    "lg:relative lg:text-xl lg:before:absolute  lg:before:-bottom-1 lg:before:left-0 lg:before:h-0.5 lg:before:w-full lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform lg:before:ease-in-out lg:hover:before:origin-left lg:hover:before:scale-x-100",
     {
-      "text-gray-900 underline hover:text-black dark:text-gray-100 dark:text-white dark:hover:text-white":
+      "active text-gray-900 hover:text-black dark:text-gray-100 dark:text-white dark:hover:text-white lg:before:scale-x-100 lg:before:bg-black dark:lg:before:bg-white":
         isActive,
-      "text-gray-600 hover:text-black dark:text-gray-500 dark:hover:text-white":
+      "text-gray-600 hover:text-black dark:text-gray-500 dark:hover:text-white lg:before:bg-gray-400 dark:lg:before:bg-gray-600":
         !isActive,
     },
   ]}
