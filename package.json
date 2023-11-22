@@ -13,7 +13,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@astrojs/alpinejs": "^0.3.1",
     "@astrojs/prism": "^3.0.0",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.3",
@@ -26,6 +25,7 @@
     "astro": "^3.5.5",
     "astro-markdoc-renderer": "0.0.1-alpha.1",
     "astro-seo": "^0.8.0",
+    "flickity": "^3.0.0",
     "gray-matter": "^4.0.3",
     "gsap": "^3.12.2",
     "slugify": "^1.6.5",
@@ -36,6 +36,8 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@markdoc/markdoc": "^0.3.5",
+    "@types/flickity": "^2.2.11",
+    "@types/node": "^20.9.2",
     "globby": "^13.2.2",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",

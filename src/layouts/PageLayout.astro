@@ -28,10 +28,9 @@ const { props } = Astro;
     <slot name="meta" />
   </head>
   <body
-    class="min-h-full w-screen overflow-hidden bg-gray-100 font-sans antialiased dark:bg-gray-900"
+    class="min-h-full w-screen overflow-hidden bg-gray-100 font-sans antialiased dark:bg-gray-900 md:text-lg lg:text-xl xl:text-2xl"
     data-controller="mobile-nav"
     data-action="resize@window->mobile-nav#close"
-    data-action="keydown.esc@window->mobile-nav#close"
   >
     <MobileNav />
     <MobileNavToggle open />
@@ -48,11 +47,13 @@ const { props } = Astro;
     </div>
     <script>
       import { Application } from "@hotwired/stimulus";
+      import CarouselController from "../js/controllers/carouselController";
       import MobileNavController from "../js/controllers/mobileNavController";
 
       const application = Application.start();
 
       application.register("mobile-nav", MobileNavController);
+      application.register("carousel", CarouselController);
     </script>
   </body>
 </html>

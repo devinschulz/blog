@@ -1,5 +1,4 @@
 /* eslint-disable turbo/no-undeclared-env-vars */
-import alpinejs from "@astrojs/alpinejs";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
@@ -24,5 +23,5 @@ export default defineConfig({
     port: SERVER_PORT,
   },
   site: BASE_URL,
-  integrations: [sitemap(), tailwind(), alpinejs()],
+  integrations: [sitemap(), tailwind()],
 });

@@ -1,0 +1,166 @@
+---
+import { Image } from "astro:assets";
+import ExternalLink from "src/assets/icons/ExternalLink.astro";
+import Container from "../components/Container.astro";
+import Line from "./Line.astro";
+
+export interface Props {
+  role: string;
+  start: Date;
+  end: Date | string;
+  technologies?: string;
+  websiteUrl?: string;
+  websiteLabel?: string;
+  images: ImageMetadata[];
+  children?: any;
+  index: number;
+  count: number;
+}
+const {
+  role,
+  start,
+  end,
+  technologies,
+  websiteLabel,
+  websiteUrl,
+  index,
+  count,
+  images,
+} = Astro.props;
+
+const dateFormatter = new Intl.DateTimeFormat("en", {
+  month: "short",
+  year: "numeric",
+});
+
+const formatDate = (date: Date): string =>
+  `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`;
+---
+
+<div
+  class="text-gray-600 odd:bg-gray-100 dark:text-gray-100 dark:odd:bg-gray-900"
+>
+  <Container
+    className="flex flex-col gap-3 py-12 md:gap-8 md:py-24 lg:gap-10 lg:py-32"
+  >
+    <span
+      class:list={[
+        "-my-6 block font-heading text-4xl font-medium md:-my-12 md:text-right md:text-6xl lg:-my-16 lg:text-8xl",
+        {
+          "text-gray-200 dark:text-gray-900": index % 2 === 0,
+          "text-white dark:text-black": index % 2 === 1,
+        },
+      ]}>{index}/{count}</span
+    >
+    <div class="carousel mb-8 md:mb-10 lg:mb-12" data-controller="carousel">
+      {
+        images.map((image) => {
+          return (
+            <div class="carousel-cell w-full">
+              <Image
+                src={image}
+                alt=""
+                width={image.width / 2}
+                densities={[1, 2]}
+                class="mx-auto my-0 block max-h-full w-full transition-opacity"
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+    <div class="flex flex-col gap-3 md:grid md:grid-cols-12 md:gap-8 lg:gap-0">
+      <div
+        class="font-heading text-2xl font-bold text-black dark:text-white md:col-span-8 md:text-3xl lg:col-span-4 lg:text-4xl"
+      >
+        <slot name="title" class="text-3xl" />
+      </div>
+      <div class="md:col-span-9 md:col-start-4 lg:col-span-7 lg:col-start-6">
+        <slot name="description" />
+      </div>
+    </div>
+    <ul>
+      <li>
+        <span>Role:</span>
+        <span>{role}</span>
+      </li>
+      <li role="none">
+        <Line />
+      </li>
+      <li>
+        <span>Date:</span>
+        <span>
+          <time datetime={formatDate(start)}>{dateFormatter.format(start)}</time
+          >&ndash;{
+            end instanceof Date ? (
+              <time datetime={formatDate(end)}>
+                {dateFormatter.format(end)}
+              </time>
+            ) : (
+              end
+            )
+          }
+        </span>
+      </li>
+      {
+        technologies && (
+          <>
+            <li role="none">
+              <Line />
+            </li>
+            <li>
+              <span>Tech:</span>
+              <span>{technologies}</span>
+            </li>
+          </>
+        )
+      }
+      {
+        websiteUrl && websiteLabel && (
+          <>
+            <li role="none">
+              <Line />
+            </li>
+            <li>
+              <span>Site:</span>
+              <a href={websiteUrl} class="inline-flex items-center gap-1">
+                {websiteLabel}{" "}
+                <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
+              </a>
+            </li>
+          </>
+        )
+      }
+    </ul>
+  </Container>
+</div>
+
+<style>
+  li {
+    @apply py-1 md:py-2 lg:py-3;
+  }
+
+  li:nth-child(odd) {
+    @apply md:grid md:grid-cols-12;
+  }
+
+  li:nth-child(odd) :first-child {
+    @apply md:col-span-5;
+  }
+
+  li:nth-child(odd) :last-child {
+    @apply md:col-span-5;
+  }
+
+  :global(.flickity-page-dot) {
+    @apply bg-black/50 dark:!bg-white/50;
+  }
+
+  :global(.flickity-page-dot):focus {
+    @apply !ring-2 !ring-offset-2;
+  }
+
+  :global(.flickity-page-dot.is-selected) {
+    @apply !bg-black dark:!bg-white;
+  }
+</style>
