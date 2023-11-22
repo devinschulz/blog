@@ -4,7 +4,6 @@ import type { Content } from "astro-markdoc-renderer";
 import CodeBlock from "./CodeBlock.astro";
 import CodePenEmbed from "./CodePenEmbed.astro";
 import GitHubGistEmbed from "./GitHubGistEmbed.astro";
-import Heading from "./Heading.astro";
 import TweetEmbed from "./TweetEmbed.astro";
 import YouTubeEmbed from "./YouTubeEmbed.astro";
 
@@ -15,10 +14,6 @@ type Props = {
 const { content } = Astro.props;
 
 const components = {
-  Heading: {
-    Component: Heading,
-    props: {},
-  },
   CodeBlock: {
     Component: CodeBlock,
     props: {},
