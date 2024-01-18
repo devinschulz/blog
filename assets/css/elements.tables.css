@@ -3,7 +3,7 @@ tr {
 }
 
 td {
-  @apply py-1 px-2;
+  @apply px-2 py-1;
 
   &:first-child {
     padding-left: 0;
