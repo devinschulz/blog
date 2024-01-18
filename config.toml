@@ -30,6 +30,26 @@ twitterHandle = "devinschulz_"
 
 [menu]
 
+[[menu.header]]
+name = "Home"
+weight = 1
+url = "/"
+
+[[menu.header]]
+name = "About"
+weight = 2
+url = "/about"
+
+[[menu.header]]
+name = "Uses"
+weight = 3
+url = "/uses"
+
+[[menu.header]]
+name = "Posts"
+weight = 4
+url = "/posts"
+
 [[menu.main]]
 name = "Tags"
 weight = 0

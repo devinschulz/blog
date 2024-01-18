@@ -1,5 +1,5 @@
 /* purgecss start ignore */
 figcaption {
-  @apply text-xs font-medium tracking-wide text-center text-grey-darkest mt-4;
+  @apply mt-4 text-center text-xs font-medium tracking-wide text-gray-900;
 }
 /* purgecss end ignore */

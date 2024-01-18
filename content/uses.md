@@ -4,7 +4,7 @@ title: Uses
 
 ## Editor and terminal
 
-- Editor: [Helix](https://helix-editor.com)
+- Editor: [Helix](https://helix-editor.com)/Xcode
 - Theme: Catppuccin Macchiato
 - Terminal: WezTerm
 - Shell: Fish Shell
@@ -13,7 +13,7 @@ title: Uses
 
 ## Software
 
-- Apple Reminders
+- Things 3
 - Apple Notes
 - Apple Music
 - Figma
@@ -31,6 +31,7 @@ title: Uses
 - Advantage2 Ergonomic Keyboard
 - Herman Miller Embody Chair
 - FLEXISPOT E5 Classic Standing Desk
+- BENQ Screenbar Halo
 
 ## Other Tech
 
@@ -43,13 +44,13 @@ title: Uses
 
 ### Now
 
-JavaScript, TypeScript, Node, fp-ts, React, Svelte, WebPack, Apollo, Next.js,
+JavaScript, TypeScript, Swift, Swift UI, Node, fp-ts, React, Svelte, WebPack, Apollo, Next.js,
 Gatsby, Jest, Vitest, Testing Library, Cypress, Playwright, PostCSS, Tailwind
 CSS, Go, MongoDB, MySQL, Postgres
 
 ### Previously
 
 Angular, Gulp, Grunt, jQuery, Flow, TestCafe, Less, Scss/Sass, Stylus, PHP,
-WordPress, Expression Engine, Ruby, Ruby on Rails, Sinatra, Middleman, Express
+WordPress, Expression Engine, Ruby, Ruby on Rails, Sinatra, Middleman, Express, Objective-C
 
-_Last updated: 2023-09-11_
+_Last updated: 2024-01-18_

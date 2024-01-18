@@ -1,6 +1,6 @@
 {{ $current := . }}
 <footer
-  class="container font-display text-grey-darkest mx-auto px-4 text-xs mt-24 mb-12 tracking-wide text-center"
+  class="container font-display text-gray-700 dark:text-gray-400 mx-auto px-4 text-xs mt-24 mb-12 tracking-wide text-center"
 >
   <nav class="w-full mb-4">
     <ul class="flex justify-center tracking-wide space-x-4 mb-2">
@@ -10,11 +10,7 @@
       <li>
         <a
           href="{{ .URL }}"
-          class="{{ if $active }}
-              text-black
-            {{ else }}
-              text-grey-darkest
-            {{ end }}"
+          class="{{ if $active }}text-black dark:text-white font-medium {{ else }}text-gray-700 dark:text-gray-400{{ end }} hover:underline"
           >{{ .Name }}</a
         >
       </li>
@@ -27,11 +23,7 @@
       <li>
         <a
           href="{{ .URL }}"
-          class="{{ if $active }}
-              text-black
-            {{ else }}
-              text-grey-darkest
-            {{ end }}"
+          class="{{ if $active }}text-black dark:text-white font-medium{{ else }}text-gray-700 dark:text-gray-400{{ end }} hover:underline"
           >{{ .Name }}</a
         >
       </li>

@@ -6,3 +6,5 @@ public
 resources/_gen/assets/css/
 /assets/dependencies
 .vercel
+.DS_Store
+.hugo_build.lock

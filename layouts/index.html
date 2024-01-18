@@ -1,15 +1,36 @@
 {{ define "main" }}
 <div class="container mx-auto px-4">
-  <section class="mb-20">
+  <section class="mb-10">
     <h2>Me</h2>
     <p>
-      I'm Devin Schulz, front-end developer with a decade's worth of pixels and
+      I'm Devin Schulz, a creative developer with a decade's worth of pixels and
       code under my belt, now crafting digital experiences at Cape Privacy.
       Remote work veteran since 2014, minimalist in progress, dad of two, and
       fuelled by a never-ending stream of coffee—because what's code without a
       little caffeine humour?
     </p>
   </section>
+  <aside
+    class="p-4 bg-gray-100 dark:bg-gray-900 flex gap-3 rounded-2xl mb-10 md:items-center"
+  >
+    <img
+      src="/warranties-icon.png"
+      width="64"
+      height="64"
+      class="shrink-0 grow-0 w-[64px] h-[64px]"
+      loading="lazy"
+    />
+    <p class="mb-0">
+      Just dropped my debut iOS app! Introducing
+      <a
+        href="https://itunes.apple.com/app/id6474076706"
+        class="font-medium border-b border-gray-300 dark:border-gray-700 border-dotted hover:border-none hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+        >Warranties</a
+      >
+      – your one-stop solution for managing all your warranties effortlessly!
+      Check it out!
+    </p>
+  </aside>
   <section>
     <h2>Posts</h2>
     {{ $posts := where .Site.RegularPages "Section" "posts" }} {{ partial

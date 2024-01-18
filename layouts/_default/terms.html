@@ -1,38 +1,35 @@
-{{ define "main" }}
-  {{ $scratch := newScratch }}
-  {{ range .Pages }}
-    {{ $char := (lower (slicestr .Title 0 1)) }}
-    {{ $scratch.Add $char (slice .Title) }}
-  {{ end }}
-  <section class="container mx-auto px-4">
-    <header class="mb-12">
-      <h1>Tags</h1>
-    </header>
-    <div class="space-y-8">
-      {{ range $char := (slice "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z") }}
-        {{ if $scratch.Get $char }}
-          <div>
-            <header
-              class="w-full border-b border-dotted border-grey-light mb-2"
-            >
-              <h2 class="mb-0">{{ $char | upper }}</h2>
-            </header>
-            <ul class="block tracking-wide space-x-2">
-              {{ range sort (uniq ($scratch.Get $char)) }}
-                <li class="inline-block">
-                  <a
-                    href="/tags/{{ . | urlize }}/"
-                    class="border-b border-grey-darker border-dotted hover:border-none hover:bg-black hover:text-white"
-                  >
-                    <span class="no-sr-only text-grey-darkest">#</span>
-                    {{- . | lower | urlize -}}
-                  </a>
-                </li>
-              {{ end }}
-            </ul>
-          </div>
+{{ define "main" }} {{ $scratch := newScratch }} {{ range .Pages }} {{ $char :=
+(lower (slicestr .Title 0 1)) }} {{ $scratch.Add $char (slice .Title) }} {{ end
+}}
+<section class="container mx-auto px-4">
+  <header class="mb-12">
+    <h1>Tags</h1>
+  </header>
+  <div class="space-y-8">
+    {{ range $char := (slice "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+    "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z") }} {{ if $scratch.Get
+    $char }}
+    <div>
+      <header
+        class="w-full border-b border-dotted border-gray-300 dark:border-gray-700 mb-2"
+      >
+        <h2 class="mb-0">{{ $char | upper }}</h2>
+      </header>
+      <ul class="block tracking-wide space-x-2">
+        {{ range sort (uniq ($scratch.Get $char)) }}
+        <li class="inline-block">
+          <a
+            href="/tags/{{ . | urlize }}/"
+            class="border-b border-gray-600 border-dotted hover:border-none hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+          >
+            <span class="no-sr-only text-gray-700 dark:text-gray-400">#</span>
+            {{- . | lower | urlize -}}
+          </a>
+        </li>
         {{ end }}
-      {{ end }}
+      </ul>
     </div>
-  </section>
+    {{ end }} {{ end }}
+  </div>
+</section>
 {{ end }}

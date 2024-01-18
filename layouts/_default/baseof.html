@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-  <html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" class="overflow-x-hidden">
   {{- partial "head.html" . -}}
-  <body class="bg-bg antialiased font-body bg-bg leading-7 text-body">
+  <body
+    class="antialiased bg-white dark:bg-black leading-7 font-sans text-black dark:text-white"
+  >
     <turbo-frame target="_top">
-      {{ if ne .Page.Kind "404" }}
-        {{- partial "header.html" . -}}
-      {{ end }}
-      <main id="content">
-        {{- block "main" . }}{{- end -}}
-      </main>
-      {{ if ne .Page.Kind "404" }}
-        {{- partial "footer.html" . -}}
-      {{ end }}
+      {{ if ne .Page.Kind "404" }} {{- partial "header.html" . -}} {{ end }}
+      <main id="content">{{- block "main" . }}{{- end -}}</main>
+      {{ if ne .Page.Kind "404" }} {{- partial "footer.html" . -}} {{ end }}
     </turbo-frame>
   </body>
 </html>

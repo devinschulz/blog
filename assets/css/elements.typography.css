@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply leading-tight font-medium text-headings mb-4 font-display;
+  @apply mb-4 font-medium leading-tight;
 }
 
 h1 {
@@ -32,11 +32,7 @@ h6 {
 }
 
 p {
-  @apply leading-relaxed mb-4;
-}
-
-.dark .prose a {
-  color: var(--text-body) !important;
+  @apply mb-4 leading-relaxed;
 }
 
 .dark .prose a:hover {
