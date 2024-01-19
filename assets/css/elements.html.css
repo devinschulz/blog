@@ -3,6 +3,6 @@ html {
 }
 
 ::selection {
-  background-color: var(--colors-selection);
+  @apply bg-yellow-100 dark:bg-yellow-900;
   text-shadow: none !important;
 }
