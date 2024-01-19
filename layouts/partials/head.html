@@ -59,7 +59,6 @@
   {{ end }}
 
   <link rel="icon" href="/favicon.svg" />
-  <link rel="manifest" href="/site.webmanifest" />
 
   {{ $postCSSConfig := (dict "config" "postcss.config.js") }} {{ if
   .Site.IsServer }} {{ $css := resources.Get "css/main.css" | toCSS | postCSS
