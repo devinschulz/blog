@@ -1,0 +1,26 @@
+---
+import { SEO, type Props as SEOProps } from "astro-seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import "../styles/global.css";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+
+export interface Props extends SEOProps {}
+
+const { props } = Astro;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEO title={SITE_TITLE} description={SITE_DESCRIPTION} {...props} />
+  </head>
+  <body
+    class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-200"
+    <main
+  >
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
