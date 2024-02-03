@@ -1,48 +1,20 @@
-:root {
-  font-family: Mulish, sans-serif;
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/GeistVariableVF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Mulish;
-  font-style: normal;
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMonoVariableVF.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
-  src: url("/fonts/Mulish-VariableFont_wght.ttf") format("truetype");
-}
-@font-face {
-  font-family: Mulish;
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/Mulish-Italic-VariableFont_wght.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/InterVariable.woff2") format("woff2");
-}
-@font-face {
-  font-family: Inter;
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/InterVariable.woff2") format("woff2");
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-heading;
-}
-
-.link {
-  @apply text-blue-500 decoration-blue-500/50;
+.link,
+.article a {
+  @apply text-blue-600 decoration-blue-500/50 dark:text-blue-400;
   text-decoration-line: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.2ex;
@@ -52,7 +24,8 @@ h6 {
     text-underline-offset 0.2s;
 }
 
-.link:hover {
-  @apply text-blue-600 decoration-blue-600;
+.link:hover,
+.article a:hover {
+  @apply text-blue-600 decoration-blue-600 dark:text-blue-500;
   text-underline-offset: 0.4em;
 }
