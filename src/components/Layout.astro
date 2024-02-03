@@ -8,19 +8,57 @@ import Header from "./Header.astro";
 export interface Props extends SEOProps {}
 
 const { props } = Astro;
+
+const title = props.title || SITE_TITLE;
+const description = props.description || SITE_DESCRIPTION;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <SEO title={SITE_TITLE} description={SITE_DESCRIPTION} {...props} />
+    <meta charset="utf-8" />
+    <SEO
+      title={title}
+      description={description}
+      {...props}
+      extend={{
+        link: [{ rel: "favicon", href: "/favicon.svg" }],
+        meta: [
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+        ],
+        ...props.extend,
+      }}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: "https://devinschulz.com/social-media.png",
+        },
+        image: {
+          width: 1600,
+          height: 1000,
+        },
+        optional: {
+          description,
+          siteName: SITE_TITLE,
+        },
+        ...props.openGraph,
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title,
+        description,
+        image: "https://devinschulz.com/social-media.png",
+      }}
+    />
   </head>
   <body
-    class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-200"
-    <main
+    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 font-sans"
   >
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

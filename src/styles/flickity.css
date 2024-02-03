@@ -1,0 +1,7 @@
+.flickity-page-dot {
+  @apply dark:bg-white/40;
+}
+
+.flickity-page-dot.is-selected {
+  @apply dark:bg-white;
+}

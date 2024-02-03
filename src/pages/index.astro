@@ -1,12 +1,17 @@
 ---
-import warrantiesSlideOne from "../assets/images/warranties/slide-1.png";
 import Container from "../components/Container.astro";
 import Layout from "../components/Layout.astro";
 import Project from "../components/Project.astro";
 
+import warrantiesSlideOne from "../assets/images/warranties/slide-1.png";
+import warrantiesSlideTwo from "../assets/images/warranties/slide-2.png";
+import warrantiesSlideThree from "../assets/images/warranties/slide-3.png";
+import warrantiesSlideFour from "../assets/images/warranties/slide-4.png";
+
 import capeSlideOne from "../assets/images/cape/slide-1.png";
 import capeSlideTwo from "../assets/images/cape/slide-2.png";
 import capeSlideThree from "../assets/images/cape/slide-3.png";
+import capeSlideFour from "../assets/images/cape/slide-4.png";
 
 import invisionSlideTwo from "../assets/images/invision/slide-2.png";
 import invisionSlideThree from "../assets/images/invision/slide-3.png";
@@ -23,19 +28,19 @@ import soshalSlideThree from "../assets/images/soshal/slide-3.png";
   <Container>
     <section>
       <div class="py-16 md:py-20 lg:py-28">
-        <p class="text-gray-900 font-semibold text-lg md:text-xl mb-1">
-          Hi, I&apos;m Devin Schulz.
+        <p class="text-gray-900 font-semibold md:text-lg mb-1 dark:text-white">
+          Hey, I&apos;m Devin Schulz 👋
         </p>
         <h1
-          class="mb-6 text-3xl font-bold tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl dark:text-white"
+          class="mb-6 text-3xl font-semibold tracking-tight leading-tight text-gray-900 md:text-4xl dark:text-white"
         >
           I focus on designing, developing, and delighting users.
         </h1>
         <p
-          class="mb-8 text-lg md:text-xl font-normal text-gray-700 dark:text-gray-300"
+          class="mb-8 md:text-lg md:leading-relaxed text-gray-700 dark:text-gray-300"
         >
           I am a <mark
-            class="bg-gradient-to dark:from-yellow-500 dark:to-yellow-600 dark:bg-gradient-to-r from-yellow-200 to-yellow-100 dark:text-black font-medium"
+            class="bg-gradient-to dark:from-gray-600 dark:to-gray-700 dark:bg-gradient-to-r from-yellow-200 to-yellow-100 dark:text-white font-medium"
             >creative developer</mark
           > with over a decade&apos;s worth of pixels and code under my belt, now
           crafting digital experiences at Cape Privacy. Remote work veteran since
@@ -64,14 +69,19 @@ import soshalSlideThree from "../assets/images/soshal/slide-3.png";
         company="Warranties"
         colorClassName="text-[#CDA17A]"
         title="Effortless warranty management"
-        description="Warranties showcases my expertise in iOS app development and design. This self-created app transforms warranty management, offering features like real-time notifications, a clean interface, and comprehensive document management. It reflects my commitment to developing user-centric solutions that simplify and enhance the consumer experience."
+        description="Warranties showcases my expertise in iOS app development and design. This self-created app transforms warranty management, offering features like real-time notifications, a clean interface, and comprehensive document management."
         role="Designer & Developer"
         startDate="2023"
         endDate="Present"
         website="https://itunes.apple.com/app/id6474076706"
         appStore
         technologies="Swift, Swift UI, SwiftData"
-        slides={[warrantiesSlideOne]}
+        slides={[
+          warrantiesSlideOne,
+          warrantiesSlideTwo,
+          warrantiesSlideThree,
+          warrantiesSlideFour,
+        ]}
       />
       <Project
         company="Cape Privacy"
@@ -83,7 +93,7 @@ import soshalSlideThree from "../assets/images/soshal/slide-3.png";
         endDate="Present"
         website="https://capeprivacy.com"
         technologies="Next.js, TypeScript, React, Redux"
-        slides={[capeSlideOne, capeSlideTwo, capeSlideThree]}
+        slides={[capeSlideOne, capeSlideFour, capeSlideTwo, capeSlideThree]}
       />
       <Project
         company="InVision"
@@ -109,6 +119,7 @@ import soshalSlideThree from "../assets/images/soshal/slide-3.png";
         title="Crafting digital excellence"
         description="At the design agency Soshal (now Craft & Crew), my work involved crafting bespoke marketing websites and web applications that delivered on both form and function for an array of esteemed clients, including educational institutions like Algonquin College, York University, and Trent University, health organizations such as CHEO, as well as environmentally conscious firms like Bullfrog Power and retail health chain Kardish. My specialization in customizing WordPress solutions enabled these organizations to present dynamic, multilingual, and accessible online platforms, showcasing a commitment to user-centric design and a keen understanding of diverse client requirements."
         role="Web Developer"
+        technologies="JavaScript, PHP, Wordpress"
         startDate="2012"
         endDate="2014"
         slides={[soshalSlideOne, soshalSlideTwo, soshalSlideThree]}

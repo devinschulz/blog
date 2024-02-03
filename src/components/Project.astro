@@ -3,6 +3,7 @@ import Container from "./Container.astro";
 import AppStoreBadge from "./AppStoreBadge.astro";
 import type { ImageMetadata } from "astro";
 import "flickity/css/flickity.css";
+import "../styles/flickity.css";
 import { Image } from "astro:assets";
 
 export interface Props {
@@ -35,13 +36,13 @@ const {
 ---
 
 <article
-  class="py-16 md:py-20 lg:py-32 even:bg-gray-100 dark:even:bg-black first:pt-4 text-gray-700 dark:text-gray-200"
+  class="py-16 md:py-20 lg:py-32 even:bg-gray-100 dark:even:bg-gray-950 first:pt-4 text-gray-700 dark:text-gray-200"
 >
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-5xl mx-auto px-4 lg:px-0 rounded-xl">
     {
       slides ? (
         slides.length === 1 ? (
-          <Image src={slides[0]} alt="" class="rounded-xl mb-12 lg:mb-20" />
+          <Image src={slides[0]} alt="" class="mb-12 lg:mb-20" />
         ) : (
           <div class="main-carousel mb-12 lg:mb-20">
             {slides.map((slide) => {
@@ -60,37 +61,37 @@ const {
     <h3 class="font-semibold tracking-tight text-xl md:text-3xl lg:text-4xl">
       <span class={colorClassName}>{company}</span> &mdash; {title}
     </h3>
-    <p>{description}</p>
+    <p class="leading-relaxed">{description}</p>
     <ul
       class="w-full flex flex-col gap-2 md:w-1/2 text-gray-700 dark:text-gray-300"
     >
       <li class="flex justify-between">
-        <span class="text-gray-400 dark:text-gray-600">Role</span>
+        <span class="text-gray-400 dark:text-gray-500">Role</span>
         <span>{role}</span>
       </li>
       {
         technologies && (
           <li class="flex justify-between">
-            <span class="text-gray-400 dark:text-gray-600">Tech</span>
+            <span class="text-gray-400 dark:text-gray-500">Tech</span>
             <span>{technologies}</span>
           </li>
         )
       }
       <li class="flex justify-between">
-        <span class="text-gray-400 dark:text-gray-600">Date</span>
+        <span class="text-gray-400 dark:text-gray-500">Date</span>
         <span>{startDate}&ndash;{endDate}</span>
       </li>
       {
         website && (
           <li class="flex justify-between">
-            <span class="text-gray-400 dark:text-gray-600">Website</span>
+            <span class="text-gray-400 dark:text-gray-500">Website</span>
             <span>
               <a
                 href={website}
                 rel="noreferrer nofollow"
                 class="link font-medium"
               >
-                {appStore ? <AppStoreBadge /> : website}
+                {appStore ? <AppStoreBadge /> : new URL(website).hostname}
               </a>
             </span>
           </li>
