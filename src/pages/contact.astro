@@ -1,0 +1,31 @@
+---
+import Container from "../components/Container.astro";
+import Layout from "../components/Layout.astro";
+import Masthead from "../components/Masthead.astro";
+import Prose from "../components/Prose.astro";
+import { GITHUB_URL, LINKEDIN_URL } from "../consts";
+---
+
+<Layout title="Contact">
+  <Container>
+    <Masthead title="Contact" />
+    <Prose>
+      <p>
+        I&apos;m always open to discussing new projects, creative ideas, or
+        opportunities to be part of your visions. Feel free to get in touch with
+        me if you have any inquiries, or just want to say hello. I&apos;ll do my
+        best to respond to you as quickly as possible.
+      </p>
+      <p>You can reach me at hello[at]devinschulz.com.</p>
+      <h2>Social media</h2>
+      <p>
+        You can also find me on various social media platforms. I'm always happy
+        to connect!
+      </p>
+      <ul>
+        <li><a href={GITHUB_URL}>GitHub</a></li>
+        <li><a href={LINKEDIN_URL}>LinkedIn</a></li>
+      </ul>
+    </Prose>
+  </Container>
+</Layout>
