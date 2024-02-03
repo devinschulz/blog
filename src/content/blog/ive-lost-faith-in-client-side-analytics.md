@@ -1,6 +1,6 @@
 ---
 title: I've Lost Faith in Client-Side Analytics
-date: 2019-08-31
+pubDate: 2019-08-31
 tags: [Analytics, Opinion]
 description:
   Since switching to Netlify's server-side analytics, I learned how different
@@ -14,8 +14,6 @@ do too. I use the data collected from Google Analytics to see which posts are
 popular, and features are used most often. If a particular article is more
 popular than others, I'll make sure to write more about that subject in the
 future. If a specific feature is rarely used, I'll most likely remove it.
-
-<!--more-->
 
 My confidence in client-side analytics all changed the day I enabled
 [Netlify's server-side analytics](https://www.netlify.com/products/analytics/)

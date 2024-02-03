@@ -1,7 +1,7 @@
 ---
 title: Rename Fields by Using Aliases in GraphQL
 description: Learn how to rename fields of a GraphQL object by using aliases.
-date: 2020-07-05
+pubDate: 2020-07-05
 tags: [GraphQL, Today I Learned]
 ---
 
@@ -10,9 +10,7 @@ other than what the API has to offer. Aliases exist as part of the GraphQL spec
 to solve this exact problem.
 
 Aliases allow you to rename a single field to whatever you want it to be. They
-are defined client-side, so you don’t need to update your API to use them.
-
-<!--more-->
+are defined client-side, so you don't need to update your API to use them.
 
 Imagine requesting data using the following query from an API:
 
@@ -38,8 +36,8 @@ You will get the following JSON response:
 }
 ```
 
-The `id` here is fine, but the `updated_at` doesn’t quite conform to the camel
-case convention in JavaScript. Let’s change it by using an alias.
+The `id` here is fine, but the `updated_at` doesn't quite conform to the camel
+case convention in JavaScript. Let's change it by using an alias.
 
 ```graphql
 query GetEntries {
@@ -68,9 +66,9 @@ the field you want to rename.
 
 ## Aliasing fields with arguments
 
-The examples above only cover fields that don’t have any arguments. When
+The examples above only cover fields that don't have any arguments. When
 creating an alias on a field that contains arguments, the syntax is slightly
-different. Instead of the alias appearing right to the field, it’s placed on the
+different. Instead of the alias appearing right to the field, it's placed on the
 left.
 
 Take a look at the following example. It contains the `updated_at`field, but
@@ -80,7 +78,7 @@ again, we want to rename.
 query GetEntries {
   entries {
     id
-    updated_at(format: “MM dd, YYYY”)
+    updated_at(format: "MM dd, YYYY")
   }
 }
 ```
@@ -91,7 +89,7 @@ Now with an alias:
 query GetEntries {
   entries {
     id
-    updatedAt: updated_at(format: “MM dd, YYYY”)
+    updatedAt: updated_at(format: "MM dd, YYYY")
   }
 }
 ```
@@ -111,7 +109,7 @@ And the result:
 
 ## Requesting a single field more than once
 
-What’s great about aliases is you can request the same field several times, but
+What's great about aliases is you can request the same field several times, but
 yield different results. Take a look at this example:
 
 ```graphql
@@ -119,7 +117,7 @@ query GetEntries {
   entries {
     id
     updated_at
-    updated_at(format: “MM dd, YYYY”)
+    updated_at(format: "MM dd, YYYY")
   }
 }
 ```
@@ -132,12 +130,12 @@ query GetEntries {
   entries {
     id
     updated_at: updatedAt
-    updatedAtHumanized: updated_at(format: “MM dd, YYYY”)
+    updatedAtHumanized: updated_at(format: "MM dd, YYYY")
   }
 }
 ```
 
-Running the updated query would give us the results we’re expecting.
+Running the updated query would give us the results we're expecting.
 
 ```json
 {

@@ -1,6 +1,6 @@
 ---
 title: Accumulate Complex Objects With the Reduce Method
-date: 2019-07-29
+pubDate: 2019-07-29
 description:
   Learn how to recursively reduce a nested data structure by harnessing the
   power of the Array.reduce method.
@@ -14,10 +14,6 @@ any values and then return almost any type of data. Because of this flexibility,
 I want to highlight one technique you can use to traverse an array containing an
 infinite number of nested objects. You'll learn how to accumulate all objects
 and return a single object you can use to reference any entry by ID.
-
-<!--more-->
-
-{{< toc >}}
 
 ## Building out the function
 

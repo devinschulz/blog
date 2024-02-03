@@ -1,87 +1,39 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Footer from "../components/Footer.astro";
+import Container from "../components/Container.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import Masthead from "../components/Masthead.astro";
+import Prose from "../components/Prose.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, canonical } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article>
-        <div class="hero-image">
-          {
-            heroImage && (
-              <img width={1020} height={510} src={heroImage} alt="" />
-            )
-          }
-        </div>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1>{title}</h1>
-            <hr />
+<Layout title={title} description={description} canonical={canonical}>
+  <Container>
+    <article>
+      <div>
+        <Masthead title={title}>
+          <div class="text-gray-400 mt-6">
+            <FormattedDate date={pubDate} />
           </div>
+        </Masthead>
+        <Prose className="mt-6">
           <slot />
-        </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+        </Prose>
+        {
+          canonical && (
+            <div class="text-gray-700 mt-8">
+              This article was originally published on{" "}
+              <a href={canonical} class="link font-medium">
+                {new URL(canonical).hostname}
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </article>
+  </Container>
+</Layout>

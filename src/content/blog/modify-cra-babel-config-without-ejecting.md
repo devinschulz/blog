@@ -1,6 +1,6 @@
 ---
 title: Modify Create React App's Babel Configuration Without Ejecting
-date: 2020-02-02
+pubDate: 2020-02-02
 description:
   Learn how to modify the underlying Create React App configuration with
   customize-cra to include new babel plugins. All without having to eject.
@@ -14,8 +14,6 @@ this? Perhaps you want to use some of the latest ES.next features before they're
 approved and merged into Create React App. In this case, you may
 [eject](https://create-react-app.dev/docs/available-scripts/#npm-run-eject) the
 app, but there are several reasons why you don't want to do that.
-
-<!--more-->
 
 For this article, we're going to add both the nullish coalescing operator and
 optional chaining syntax babel plugins. These plugins are both excluded from

@@ -1,31 +1,27 @@
 ---
 title: Combining Synchronous Actions Using Redux Thunk
-date: 2018-07-09T16:20:02-04:00
+pubDate: 2018-07-09T16:20:02-04:00
 description:
   Learn how to use Redux Thunk for handling several synchronous actions at once
   to modify different areas of the application state.
 tags: [Redux, Testing, React, Jest]
 ---
 
-Simple front-end applications I’ve worked with have one event (click, keypress,
+Simple front-end applications I've worked with have one event (click, keypress,
 input change, etc.), which dispatches a single action to modify part of the
 application state tree. At the time your application scales in complexity, that
 single event may need to perform several actions at once and perform some sort
 business logic before they are dispatched.
 
-<!--more-->
-
-{{< toc >}}
-
 ## A Potential Solution
 
-Recently I’ve been using [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+Recently I've been using [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 for dispatching a single thunk action, and in turn, it dispatches several
 actions to modify independent areas of the application state. Think Redux Thunk
 is only for asynchronous actions? Think again! Never heard of Redux Thunk or the
 term thunk? No worries, I will go a bit more in-depth about how it works below.
 
-Now let’s pretend you have an e-commerce store, and your application state looks
+Now let's pretend you have an e-commerce store, and your application state looks
 something like this:
 
 ```javascript
@@ -85,7 +81,7 @@ You can see how this defeats the
 development. Instead of dispatching several actions from within a component, try
 separating them into a thunk action.
 
-Here I’ll update the button to fire a single action, which also gives you the
+Here I'll update the button to fire a single action, which also gives you the
 benefit of one less property to pass down.
 
 ```javascript
@@ -108,10 +104,10 @@ const addItemToCart = (id) => (dispatch, getState) => {
 Let's try to break this down. The thunk action `addItemToCart` is a function,
 which accepts the cart ID as an argument and then returns another function. When
 you dispatch any action, the Thunk middleware will check if the current action
-type is a function and if it’s true, it will call it, and pass the Redux
+type is a function and if it's true, it will call it, and pass the Redux
 `dispatch` and `getState` as the arguments.
 
-This is a pretty simple example, so let’s make it a little more complicated. You
+This is a pretty simple example, so let's make it a little more complicated. You
 now need to save the item to the backend to allow the cart to persist between
 sessions.
 
@@ -133,7 +129,7 @@ Did you know that you can trigger other thunk actions from within a thunk
 action? You are not limited to only dispatching actions which have a return
 value.
 
-Now instead of only passing the ID to `addToCart`, we’ll pretend the reducer
+Now instead of only passing the ID to `addToCart`, we'll pretend the reducer
 requires the entire item to be sent instead. With these new requirements, you
 can call `getState` to return the merchandise from the store, and find the value
 you need to send.
@@ -148,7 +144,7 @@ const addItemToCart = (id) => (dispatch, getState) => {
   dispatch(saveCartRequest(id));
 };
 
-// Can’t forget to update the `addToCart` action to use
+// Can't forget to update the `addToCart` action to use
 // the `item` instead of the `id`
 const addToCart = (item) => ({
   type: "ADD_TO_CART",
@@ -215,8 +211,8 @@ describe("actions", () => {
 ## Conclusion
 
 What I love the most about this approach is that all the logic is contained
-within a specific area of the application. It’s entirely out of a component,
-which helps keep them “dumb”. Luckily, thunk actions are super simple to test,
+within a specific area of the application. It's entirely out of a component,
+which helps keep them "dumb". Luckily, thunk actions are super simple to test,
 which gives you no reason not to test them. Whether you have thoughts of using
 this solution now or in the future, know that it will be able to handle your
 challenging workflows.
@@ -232,4 +228,4 @@ This article has been written and updated to support the following versions:
 ## Additional Resources
 
 - [What is a thunk](https://daveceddia.com/what-is-a-thunk/)
-- [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)
+- [Redux Thunks Dispatching Other Thunks — Discussion and Best Practices](https://medium.com/@talkol/redux-thunks-dispatching-other-thunks-discussion-and-best-practices-dd6c2b695ecf)

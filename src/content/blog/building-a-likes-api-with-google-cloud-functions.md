@@ -1,6 +1,6 @@
 ---
 title: Building a Likes API With Google Cloud Functions
-date: 2018-11-05T21:41:18-04:00
+pubDate: 2018-11-05T21:41:18-04:00
 description: Learn how to use Google Cloud Functions to build a likes API with Node
 tags: [Node, Google Cloud, Firebase, Serverless]
 ---
@@ -15,14 +15,10 @@ button. This worked great as it gave me real-time updates across multiple
 browser sessions whenever I clicked the button. However, looking at the
 compiled, minified bundle, I noticed it had added over 220 KB!
 
-<!--more-->
-
-{{< toc >}}
-
-With that in mind, I don’t think the trade-off for that much code for such a
+With that in mind, I don't think the trade-off for that much code for such a
 simple likes button makes any sense. This led me to explore other options and
-decided that cloud functions might be a great fit for this. I’ve seen coworkers
-use AWS lambda functions for various things, but I’ve never had to the
+decided that cloud functions might be a great fit for this. I've seen coworkers
+use AWS lambda functions for various things, but I've never had to the
 opportunity to try them out myself. The thought of using cloud functions excited
 me since I get the benefits of an API server, without managing an API server.
 
@@ -43,7 +39,7 @@ using a PUT request.
 
 ## Building the Cloud Function
 
-Lets first start with some of the boilerplate. We’ll create a new directory and
+Lets first start with some of the boilerplate. We'll create a new directory and
 create an index file which can house our function. In the root folder of this
 project run the following commands:
 
@@ -54,7 +50,7 @@ mkdir -p functions/likes && `# Create a new directory called functions/likes` \
   npm init -y               `# Create a basic package.json file without any configuration`
 ```
 
-Next, you’ll need to install some of the project's dependencies. For this cloud
+Next, you'll need to install some of the project's dependencies. For this cloud
 function, I have chosen to install Express, Firebase admin and the Firebase
 functions packages by running the following `npm` install command:
 
@@ -81,7 +77,7 @@ const express = require("express");
 const app = express();
 
 // Initialize the firebase configuration. Since you this is already hosted
-// on Google Cloud, you don’t need any additional configuration. It just
+// on Google Cloud, you don't need any additional configuration. It just
 // works!
 admin.initializeApp(functions.config().firestore);
 
@@ -99,11 +95,11 @@ message from Express.
 
 #### GET a Document
 
-Starting with the GET request handler, let’s try and think for a second what
+Starting with the GET request handler, let's try and think for a second what
 this endpoint is going to do. A request from the client hits the Express server
 and then matches a specific route. The route needs to include the post ID to
 identify which document to query from the database. One caveat here is if the
-document doesn’t exist, we should return a default count instead of returning a
+document doesn't exist, we should return a default count instead of returning a
 404 not found error.
 
 ```js
@@ -131,7 +127,7 @@ parameters to match the ID. For those not familiar with Express routing, `:id`
 is just a variable I defined to match any value included in the route. It then
 becomes accessible under the request object `req.params.id`.
 
-The request comes in; we’ll look up a specific document in the likes collection
+The request comes in; we'll look up a specific document in the likes collection
 using the ID. The Firebase API returns an `exists` property we can use to check
 if the document was previously in the collection. If the document exists, return
 the data by calling `doc.data()` or return a default value of zero.
@@ -143,7 +139,7 @@ mistake of fetching a document using the `get` method and then calling `set` to
 increment the value.
 
 ```js
-// DON”T DO THIS
+// DON'T DO THIS
 likes
   .doc(req.params.id)
   .get()
@@ -177,11 +173,11 @@ const put = (req, res) =>
     );
 ```
 
-Let’s take this line by line since a lot is going on here. First, we start a
+Let's take this line by line since a lot is going on here. First, we start a
 transaction against the database and then get the current document by ID.
 Firebase returns an object containing two main properties, exists and data. If
-the document exists, we’ll increment the current count by one or return a
-default value of one. Again, if the document exists, we’ll have to call the
+the document exists, we'll increment the current count by one or return a
+default value of one. Again, if the document exists, we'll have to call the
 transaction update method to update the existing value. If the document does not
 exist, call set instead.
 

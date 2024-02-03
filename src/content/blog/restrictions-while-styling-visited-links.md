@@ -3,7 +3,7 @@ title: Restrictions While Styling Visited Links
 description:
   Learn about what the :visited pseudo-class selector is and its limitations
   while styling them.
-date: 2020-02-18
+pubDate: 2020-02-18
 tags: [CSS]
 ---
 
@@ -11,10 +11,6 @@ The `:visited` pseudo-class is a unique state which provides visible feedback on
 links that a user has navigated to. This state behaves similarly to other
 pseudo-classes like `:hover`, `:focus`, and `:active`, but comes with a few
 limitations.
-
-<!--more-->
-
-{{< toc >}}
 
 ## Limitations
 

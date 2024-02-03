@@ -1,6 +1,6 @@
 ---
 title: From Hugo to Next JS and Back Again
-date: 2019-05-18
+pubDate: 2019-05-18
 tags: [Static Sites, Performance, Tailwind]
 description:
   Learn about why I choose Hugo over a React based static site generator for my
@@ -14,10 +14,6 @@ Hugo again. Hugo gave me so much out of the box, and practically everything I
 needed, whereas Next JS, required me to write the functionality I wanted
 explicitly. This article is not meant to hate on any frameworks and instead
 voice my own experience.
-
-<!--more-->
-
-{{< toc >}}
 
 ## Choosing a Static Site Generator
 

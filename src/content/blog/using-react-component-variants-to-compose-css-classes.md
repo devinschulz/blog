@@ -3,7 +3,7 @@ title: Using React Component Variants to Compose CSS Classes
 description:
   Learn how to build React component variants by composing CSS classes in a
   typesafe and flexible manner.
-date: 2022-02-20
+pubDate: 2022-02-20
 tags: [React, Tailwind CSS, TypeScript]
 ---
 

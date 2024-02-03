@@ -20,6 +20,7 @@
     "@fontsource/arimo": "^5.0.18",
     "@fontsource/mulish": "^5.0.16",
     "@fontsource/poppins": "^5.0.8",
+    "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.2.1",
     "astro-seo": "^0.8.0",
     "flickity": "^3.0.0",

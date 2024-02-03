@@ -1,10 +1,12 @@
 ---
 title: Building the Inspect Measurement Engine
-date: 2019-07-17
+pubDate: 2019-07-17
 tags: [React, JavaScript, Flow]
 canonical: https://engineering.invisionapp.com/post/building-the-inspect-measurement-engine
 description: Thoughts and learnings I had while building the Inspect measurement engine.
 ---
+
+import Figure from "../../components/Figure.astro";
 
 Not too long ago I had the opportunity to construct a measurement system inside
 of Inspect that depicts and calculates the distances between two layers.
@@ -12,15 +14,11 @@ In-between each layer, a line is drawn with a label that displays the distance.
 Supporting lines are added to the nearest edges of the hovered layer to help
 give the user an idea where the measurement lines reach.
 
-In this article, I’ll explain some of my ideas and how I managed to take a
+In this article, I'll explain some of my ideas and how I managed to take a
 fairly complex problem, break it down, and deliver something of value to an end
 user. I hope by you reading through this article; you'll have a better
 understanding of how to dissect a problem you may be encountering. I know when I
 was handed the ticket to implement this functionality, it was intimidating.
-
-<!--more-->
-
-{{< toc >}}
 
 After sitting down and thinking about how to approach this problem, I concluded
 that a higher-order component would handle the business logic and then pass the
@@ -41,9 +39,10 @@ manage bugs, new features and everything that needs to be tracked or accounted
 for. By separating the view from the business logic, not only can I now split a
 single ticket into two smaller tickets, but was able to go one step further. I
 created a ticket to deal with outlining what values should be passed from the
-<abbr title="Higher-order component">HOC</abbr> to the child component. Three
-tickets have been created from what was originally one and can now be tracked
-and dealt with independently.
+
+<abbr title="Higher-order component">HOC</abbr> to the child component. Three tickets
+have been created from what was originally one and can now be tracked and dealt with
+independently.
 
 ## The Outline
 
@@ -59,10 +58,10 @@ Both of these values exist within the global state so that I can pass these
 properties from a parent component and down to the view without additional data
 transformation.
 
-```js
-type Props = {
-  selectedLayer?: Layer,
-  hoveredLayer?: Layer,
+```ts
+interface Props {
+  selectedLayer?: Layer;
+  hoveredLayer?: Layer;
 }
 ```
 
@@ -71,83 +70,76 @@ measurements. There can be up to four separate measurements rendered at a single
 time, so the clear choice here is to use an array of objects. Now I need to
 figure out the shape of each measurement.
 
-```js
-type Measurements Measurement[]
+```ts
+type Measurements = Measurement[];
 ```
 
 Each measurement must have a direction which is either top, right, bottom or
-left. Based on this information alone, I’ll use this to draw a specific side of
-the border. The first property I’ll add to the measurement object is the
+left. Based on this information alone, I'll use this to draw a specific side of
+the border. The first property I'll add to the measurement object is the
 direction. Next, I need a start and end position for each measurement. It
 contains an an x, y coordinate with either a width or height, depending on
-whether it’s vertical or horizontal.
+whether it's vertical or horizontal.
 
-```js
-type Position = {
-  top: number,
-  left: number,
-  width?: number,
-  height?: number,
+```ts
+interface Position {
+  top: number;
+  left: number;
+  width?: number;
+  height?: number;
 }
 
-type Measurement = {
-  direction: number,
-  label: Label,
-  position: Position,
+interface Measurement {
+  direction: number;
+  label: Label;
+  position: Position;
 }
 ```
 
 The last item that exists within each measurement is the label to display the
 distance. Whenever the measurement is inside the artboard, the label is
-positioned in the middle of the measurement line. To position the label, I’ll
+positioned in the middle of the measurement line. To position the label, I'll
 need an x and y coordinate.
 
-```js
-type Point = {
-  x: number,
-  y: number
+```ts
+interface Point {
+  x: number;
+  y: number;
 }
 
-type Label {
-  point: Point,
-  value: string
+interface Label {
+  point: Point;
+  value: string;
 }
 ```
 
-Side note: the outline was created using [Flow](https://flow.org/) type
-definitions to help validate that the data types passed down the view is
-correct. Both Flow and [Typescrpt](https://www.typescriptlang.org/) are
-excellent choices if you want the type safety and reassurance that the right
-data is being passed around in your application. You end up with fewer bugs and
-feel way more confident in your codebase.
-
 Here is the entire structure:
 
-```js
-type Point = {
-  x: number,
-  y: number
+```ts
+interface Point {
+  x: number;
+  y: number;
 }
 
-type Label {
-  point: Point,
-  value: string
+interface Label {
+  point: Point;
+  value: string;
 }
 
-type Position {
-  top: number,
-  left: number,
-  width?: number,
-  height?: number
+interface Position {
+  top: number;
+  left: number;
+  width?: number;
+  height?: number;
 }
 
-type Measurement {
-  direction: number
-  label: Label,
-  position: Position
+interface Measurement {
+  direction: number;
+  label: Label;
+  position: Position;
 }
 
-type Measurements Measurement[]
+type Measurements = Measurement[];
 ```
 
 ## The Business Logic
@@ -162,8 +154,9 @@ typically what a developer is most interested in to set the position, margin or
 padding of an element. There are two main paths which the logic can follow,
 either the selected and hover layer are overlapping each other, or they are not.
 
-{{< figure src="./overlapping.png" caption="Two layers which intersect" >}}
-{{< figure src="./relation.png" caption="Two layers in relation to eachother" >}}
+<Figure src="/blog/overlapping.png" alt="Two layers which intersect" />
+
+<Figure src="/blog/relation.png" alt="Two layers in relation to each other" />
 
 Before I dive into both paths, there are a couple of checks which need to
 happen. First, I need to determine if only selected layers are passed in or both
@@ -176,51 +169,54 @@ The properties I worry about for each layer are the width, height, and x, y
 coordinates. Here is a simplification of the layer shape, but it gives you an
 idea of some basic properties it contains.
 
-```js
-type Layer = {
-  id: number,
-  width: number,
-  height: number,
-  x: number,
-  y: number,
+```ts
+interface Layer {
+  id: number;
+  width: number;
+  height: number;
+  x: number;
+  y: number;
 }
 ```
 
 To figure out which path I can take, I started by determining if the layers are
 overlapping by both the x and y-axis. If both of these return true, I know which
-path I’ll need to follow.
+path I'll need to follow.
 
-```js
+```ts
 // Determine if the x axis plus width overlap
 const xIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.x + layer1.width, layer2.x + layer2.width) -
-      Math.max(layer1.x, layer2.x)
-  ) > 0
+      Math.max(layer1.x, layer2.x),
+  ) > 0;
 
 // Determine if the y axis plus height overlap
 const yIntersects = (layer1: Layer, layer2: Layer): boolean =>
   Math.max(
     0,
     Math.min(layer1.y + layer1.height, layer2.y + layer2.height) -
-      Math.max(layer1.y, layer2.y)
-  ) > 0
+      Math.max(layer1.y, layer2.y),
+  ) > 0;
 
 // Determine if both x and y-axis plus width and height overlap
 const overlaps = (layer1: Layer, layer2: Layer): boolean =>
-  xIntersects(layer1, layer2) && yIntersects(layer1, layer2)
+  xIntersects(layer1, layer2) && yIntersects(layer1, layer2);
 ```
 
 The next piece of information shared among all different paths is the direction.
-The way I’ve decided to calculate the direction is to think of a 3x3 grid which
+The way I've decided to calculate the direction is to think of a 3x3 grid which
 starts at zero and increments in a clockwise fashion. Starting from the middle,
 eight, I need to determine where the second layer is in relation to the first
 one.
 
-{{< figure src="./directions.png" caption="Each direction numbered from one to eight in relation to the center" >}}
+<Figure
+  src="/blog/directions.png"
+  alt="Each direction numbered from one to eight in relation to the center"
+/>
 
-```js
+```ts
 const BOTTOM = 5;
 const BOTTOM_LEFT = 6;
 const BOTTOM_RIGHT = 4;
@@ -243,47 +239,50 @@ const DIRECTIONS = [
 ];
 ```
 
-Now that I’ve set up these variables I can work on the math portion to determine
+Now that I've set up these variables I can work on the math portion to determine
 the cardinal direction between the two layers. This can be accomplished by
 determining the absolute center of both layers and then calculating the angle
 between the two.
 
-{{< figure src="./angle.png" caption="Two shapes with their centers marked and a line drawn between the two to demonstrate the angle" >}}
+<Figure
+  src="/blog/angle.png"
+  alt="Two shapes with their centers marked and a line drawn between the two to demonstrate the angle"
+/>
 
-```js
+```ts
 const getDirection = (layer1: Layer, layer2: Layer): number => {
   // Get the x and y center of each layer
-  const layer1Center: Point = getCenter(layer1)
-  const layer2Center: Point = getCenter(layer2)
+  const layer1Center: Point = getCenter(layer1);
+  const layer2Center: Point = getCenter(layer2);
 
   // Check if this coordinate is dead center with other.
   if (layer1Center.x === layer2Center.x && layer1Center.y === layer2Center.y) {
-    return CENTER
+    return CENTER;
   }
-  const angle = getAngle(layer2Center, layer1Center)
-  return angleToDirection(angle)
-}
+  const angle = getAngle(layer2Center, layer1Center);
+  return angleToDirection(angle);
+};
 
 // Convert the angle to a direction
 const angleToDirection = (angle: number): number => {
-  const directionCount = DIRECTIONS.length
+  const directionCount = DIRECTIONS.length;
   return DIRECTIONS[
     Math.floor(angle / (360 / directionCount) + 0.5) % directionCount
-  ]
-}
+  ];
+};
 
 // Calculate the angle between the center of two points
 const getAngle = (point1: Point, point2: Point): number => {
   const angle =
-    (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI - 90
-  return angle < 0 ? 360 + angle : angle
-}
+    (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI - 90;
+  return angle < 0 ? 360 + angle : angle;
+};
 
 // Get the absolute center point of a layer
 const getCenter = (layer: Layer): Point => ({
   x: layer.x + layer.width / 2,
   y: layer.y + layer.height / 2,
-})
+});
 ```
 
 Now that the logic is out of the way I can carry on with actually using it.
@@ -316,44 +315,44 @@ below determines the central intersection point between two layers. This
 function is essential to center the line vertically or horizontally between two
 facing sides.
 
-{{< figure src="./intersection.png" caption="Two layers which intersect" >}}
+<Figure src="/blog/intersection.png" alt="Two layers which intersect" />
 
-```js
+```ts
 const intersection = (layer1: Layer, layer2: Layer): Point => {
-  const xMax = Math.max(layer1.x, layer2.x)
-  const yMax = Math.max(layer1.y, layer2.y)
+  const xMax = Math.max(layer1.x, layer2.x);
+  const yMax = Math.max(layer1.y, layer2.y);
 
   return {
     x:
       xMax +
       Math.max(
         0,
-        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax
+        Math.min(layer1.x + layer1.width, layer2.x + layer2.width) - xMax,
       ) /
         2,
     y:
       yMax +
       Math.max(
         0,
-        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax
+        Math.min(layer1.y + layer1.height, layer2.y + layer2.height) - yMax,
       ) /
         2,
-  }
-}
+  };
+};
 ```
 
 Now that we have the intersection and offsets, we can use this information to
 can start building out the measurements. I decided to calculate all four sides
 and then only return what is required.
 
-```js
-const yMin = Math.min(layer1.y, layer2.y)
-const xMin = Math.min(layer1.x, layer2.x)
-const yHeightMin = Math.min(layer1.y + layer1.height, layer2.y + layer2.height)
-const yHeightMax = Math.max(layer1.y + layer1.height, layer2.y + layer2.height)
-const xWidthMin = Math.min(layer1.x + layer1.width, layer2.x + layer2.width)
-const xWidthMax = Math.max(layer1.x + layer1.width, layer2.x + layer2.width)
-const intersects = intersection(layer1, layer2)
+```ts
+const yMin = Math.min(layer1.y, layer2.y);
+const xMin = Math.min(layer1.x, layer2.x);
+const yHeightMin = Math.min(layer1.y + layer1.height, layer2.y + layer2.height);
+const yHeightMax = Math.max(layer1.y + layer1.height, layer2.y + layer2.height);
+const xWidthMin = Math.min(layer1.x + layer1.width, layer2.x + layer2.width);
+const xWidthMax = Math.max(layer1.x + layer1.width, layer2.x + layer2.width);
+const intersects = intersection(layer1, layer2);
 
 const topMeasurement: Measurement = {
   direction: TOP,
@@ -368,7 +367,7 @@ const topMeasurement: Measurement = {
       x: intersects.x,
     },
   },
-}
+};
 
 const rightMeasurement: Measurement = {
   direction: RIGHT,
@@ -384,7 +383,7 @@ const rightMeasurement: Measurement = {
     },
     value: right,
   },
-}
+};
 
 const bottomMeasurement: Measurement = {
   direction: BOTTOM,
@@ -400,7 +399,7 @@ const bottomMeasurement: Measurement = {
     },
     value: bottom,
   },
-}
+};
 
 const leftMeasurement: Measurement = {
   direction: LEFT,
@@ -416,7 +415,7 @@ const leftMeasurement: Measurement = {
     },
     value: left,
   },
-}
+};
 ```
 
 Now that all the measurements values are calculated, I can work on the returned
@@ -468,7 +467,7 @@ consider when comparing it to two overlapping layers.
 My thought of approaching this is to create a switch statement based on the
 cardinal direction and calculate each side independently. There would be a total
 of eight cases to account for, top left, top, top right, right, bottom right,
-bottom, bottom left and left. Since these layers never overlap in any way, I’ll
+bottom, bottom left and left. Since these layers never overlap in any way, I'll
 never have to worry about calculating the `CENTER`.
 
 ```js
@@ -509,8 +508,8 @@ did not display what I had expected to see. Whenever a layer is in-between two
 directions, lets say `TOP` and `TOP_LEFT`, it would fall into the `TOP_LEFT`
 case.
 
-{{< figure src="./actual.png"  caption="Actual result" >}}
-{{< figure src="./expected.png" caption="Expected" >}}
+<Figure src="/blog/actual.png" alt="Actual results" />
+<Figure src="/blog/expected.png" alt="Expected" />
 
 I added an if statement to all four corners (sides 0, 2, 4, and 6) to check if
 either the hover layer overlaps the selected layer or the hover layer extends
@@ -518,7 +517,7 @@ past the selected layer. Whenever this was true, I changed the cardinal
 direction to either `TOP`, `RIGHT`, `BOTTOM` or `LEFT`, depending on the
 overlap, and returned the `distance` function.
 
-```js
+```ts
 const xWidth = layer1.x + layer1.width;
 const yHeight = layer1.y + layer1.height;
 const x2Width = layer2.x + layer2.width;
@@ -536,19 +535,19 @@ if (overlapsMiddleX || layer2.x >= layer1.x || x2Width > layer1.x) {
 
 ### Putting It All Together
 
-So far I have thrown example after example at you but haven’t given you an idea
+So far I have thrown example after example at you but haven't given you an idea
 how it all fits together. In the next example, I put together a super stripped
 down version, so you have an idea of how this all works.
 
-```js
+```ts
 // composites/measurementHandler.js
-type Props = {
-  artboard: Artboard,
-  hoveredLayer?: Layer,
+interface Props {
+  artboard: Artboard
+  hoveredLayer?: Layer
   selectedLayer: Layer
 }
 
-export default (ComposedComponent: React.ComponentType<*>) =>
+export default (ComposedComponent: React.ComponentType<any>) =>
   class SelectionMeasurementHandler extends React.Component<Props, void> {
     render() {
       let { selectedLayer, hoveredLayer, artboard }: Props = this.props
@@ -590,13 +589,13 @@ export default (ComposedComponent: React.ComponentType<*>) =>
 
     distance(cardinal: Direction, layer1: Layer, layer2:Layer ): Measurements[] {
       // All the logic that is related to determining the measurements whenever
-      // the layers do NOT touch. See the “Non-overlapping layers” section of
+      // the layers do NOT touch. See the "Non-overlapping layers" section of
       // this article.
     }
 
     distanceOverlaps(cardinal: Direction, layer1: Layer, layer2: Layer): Measurements[] {
       // All the logic that is related to determining the measurements whenever
-      // the layers DO touch or overlap. See the “Layers that overlap” section
+      // the layers DO touch or overlap. See the "Layers that overlap" section
       // of this article.
     }
   }
@@ -604,8 +603,8 @@ export default (ComposedComponent: React.ComponentType<*>) =>
 
 Again this is a super simplified version of the component but works to
 illustrate my thinking around how it works. There are a couple of areas that I
-skipped intentionally in this article since it’s already getting pretty long.
-There are two main things I didn’t cover so I’ll give you a brief synopsis.
+skipped intentionally in this article since it's already getting pretty long.
+There are two main things I didn't cover so I'll give you a brief synopsis.
 
 #### Zoom Level
 
@@ -614,8 +613,8 @@ up and close with the design. Since static measurements are used throughout, I
 needed to account for the scale. This is easily obtainable by multiplying each
 measurement x, y, width, and height by the zoom level.
 
-```js
-const displayScale = (scale: number, value: number): number => value * scale
+```ts
+const displayScale = (scale: number, value: number): number => value * scale;
 ```
 
 #### Dotted Helper Lines
@@ -625,8 +624,8 @@ start in a corner of the selected layer. These lines are calculated similarly as
 the measurement lines and are passed down as another property to the
 measurements component. They are simply an array of positions.
 
-```js
-type Dotted []Position
+```ts
+type Dotted = Position[];
 ```
 
 ## The View
@@ -638,9 +637,9 @@ guarantee that the result is the same with the same input. With that in mind, I
 wrapped a stateless component in the composite component created in the business
 logic section.
 
-```js
+```ts
 // components/measurements.js
-import SelectionMeasurementHandler from ‘composites/measurementHandler’
+import SelectionMeasurementHandler from "composites/measurementHandler"
 
 // Export decorated components separately so they can
 // easily be unit tested.
@@ -654,22 +653,22 @@ export default SelectionMeasurementHandler(Measurements)
 
 Single measurements are super simple in that they take the measurement
 properties and output a line and label. The line styles are passed down through
-the measurement position property and depending on whether it’s vertical or
+the measurement position property and depending on whether it's vertical or
 horizontal, CSS styles apply a border right or bottom.
 
 The labels point ends up in the middle between the start and end measurements,
 however, relies on the parent class `measurement--<direction>` to determine if
 the label floats above the line or to the right.
 
-```js
+```ts
 // components/measurement.js
 import cx from 'classnames'
 
-type Props {
+interface Props {
   measurement: Measurement
 }
 
-const Measurement = ({ label, position }:Props) => {
+const Measurement = ({ measurement: { label, position }}: Props) => {
   const classes = cx('measurement', {
     'measurement--top': !!position.top,
     'measurement--right': !!position.right,
