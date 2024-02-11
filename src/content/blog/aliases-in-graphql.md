@@ -129,7 +129,7 @@ same. You can use an alias to here to mitigate the error.
 query GetEntries {
   entries {
     id
-    updated_at: updatedAt
+    updatedAt: updated_at
     updatedAtHumanized: updated_at(format: "MM dd, YYYY")
   }
 }
