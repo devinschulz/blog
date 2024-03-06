@@ -19,7 +19,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/arimo": "^5.0.18",
     "@fontsource/mulish": "^5.0.16",
-    "@fontsource/poppins": "^5.0.8",
+    "@fontsource/poppins": "^5.0.12",
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.4.12",
     "astro-robots-txt": "^1.0.0",
