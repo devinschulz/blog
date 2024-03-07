@@ -21,7 +21,7 @@
     "@fontsource/mulish": "^5.0.16",
     "@fontsource/poppins": "^5.0.8",
     "@tailwindcss/typography": "^0.5.10",
-    "astro": "^4.4.12",
+    "astro": "^4.4.14",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.3",
     "flickity": "^3.0.0",
