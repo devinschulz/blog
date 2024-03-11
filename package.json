@@ -12,7 +12,7 @@
     "format": "npx prettier . --write"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.6",
+    "@astrojs/check": "^0.5.7",
     "@astrojs/mdx": "^2.1.1",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.1",
