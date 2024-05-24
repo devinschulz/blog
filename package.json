@@ -18,7 +18,7 @@
     "@astrojs/sitemap": "^3.1.4",
     "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/typography": "^0.5.13",
-    "astro": "^4.8.6",
+    "astro": "^4.9.1",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.3",
     "flickity": "^3.0.0",
