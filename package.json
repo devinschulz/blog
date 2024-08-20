@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/flickity": "^2.2.11",
     "husky": "^9.1.5",
-    "lint-staged": "^15.2.7",
+    "lint-staged": "^15.2.9",
     "prettier": "3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.5"
