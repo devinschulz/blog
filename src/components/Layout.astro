@@ -4,6 +4,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
+import { ViewTransitions } from "astro:transitions";
 
 export interface Props extends SEOProps {}
 
@@ -54,6 +55,7 @@ const description = props.description || SITE_DESCRIPTION;
         image: "https://devinschulz.com/social-media.png",
       }}
     />
+    <ViewTransitions />
   </head>
   <body
     class="bg-white dark:bg-black text-gray-900 dark:text-gray-200 font-sans"
