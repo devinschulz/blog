@@ -12,11 +12,21 @@
   font-display: swap;
 }
 
+body {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
 .link,
 .article a {
   @apply text-blue-600 decoration-blue-500/50 dark:text-blue-400;
   text-decoration-line: underline;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.2ex;
   transition:
     color 0.3s,
@@ -26,6 +36,6 @@
 
 .link:hover,
 .article a:hover {
-  @apply text-blue-600 decoration-blue-600 dark:text-blue-500;
-  text-underline-offset: 0.4em;
+  @apply text-blue-800 decoration-blue-800 dark:text-blue-600 dark:decoration-blue-600;
+  text-underline-offset: 0.3em;
 }

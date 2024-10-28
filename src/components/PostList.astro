@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="list-disc pl-5 space-y-1">
+  {
+    posts.map((post) => (
+      <li class="text-gray-400 md:text-lg">
+        <a href={`/blog/${post.slug}/`} class="link inline">
+          <h2 class="inline">{post.data.title}</h2>
+        </a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,34 +1,21 @@
 ---
+import { getCollection } from "astro:content";
 import Container from "../components/Container.astro";
 import Layout from "../components/Layout.astro";
-import Project from "../components/Project.astro";
+import PostList from "../components/PostList.astro";
 
-import warrantiesSlideOne from "../assets/images/warranties/slide-1.png";
-import warrantiesSlideTwo from "../assets/images/warranties/slide-2.png";
-import warrantiesSlideThree from "../assets/images/warranties/slide-3.png";
-import warrantiesSlideFour from "../assets/images/warranties/slide-4.png";
-
-import capeSlideOne from "../assets/images/cape/slide-1.png";
-import capeSlideTwo from "../assets/images/cape/slide-2.png";
-import capeSlideThree from "../assets/images/cape/slide-3.png";
-import capeSlideFour from "../assets/images/cape/slide-4.png";
-
-import invisionSlideTwo from "../assets/images/invision/slide-2.png";
-import invisionSlideThree from "../assets/images/invision/slide-3.png";
-import invisionSlideFour from "../assets/images/invision/slide-4.png";
-import invisionSlideFive from "../assets/images/invision/slide-5.png";
-import invisionSlideSix from "../assets/images/invision/slide-6.png";
-
-import soshalSlideOne from "../assets/images/soshal/slide-1.png";
-import soshalSlideTwo from "../assets/images/soshal/slide-2.png";
-import soshalSlideThree from "../assets/images/soshal/slide-3.png";
+const posts = (await getCollection("blog"))
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .reverse();
 ---
 
 <Layout>
-  <Container>
+  <Container
+    className="space-y-16 md:space-y-20 lg:space-y-28 mt-16 md:mt-20 lg:mt-28"
+  >
     <section>
-      <div class="py-16 md:py-20 lg:py-28">
-        <p class="text-gray-900 font-semibold md:text-lg mb-1 dark:text-white">
+      <div>
+        <p class="text-gray-900 font-semibold md:text-lg mb-3 dark:text-white">
           Hey! Bonjour! I&apos;m Devin 👋
         </p>
         <h1
@@ -37,91 +24,24 @@ import soshalSlideThree from "../assets/images/soshal/slide-3.png";
           I focus on designing, developing, and delighting users.
         </h1>
         <p
-          class="mb-8 md:text-lg md:leading-relaxed text-gray-700 dark:text-gray-300"
+          class="md:text-lg md:leading-relaxed text-gray-700 dark:text-gray-300"
         >
-          I am a <mark
-            class="bg-gradient-to-r dark:from-gray-600 dark:to-gray-700 dark:bg-gradient-to-r from-yellow-200 to-yellow-100 dark:text-white font-medium"
-            >creative developer</mark
-          > dedicated to creating intuitive, accessible web and mobile applications
-          that blend simplicity with functional design to create engaging and effective
-          user experiences. Currently unleashing my magic at Cape Privacy.
+          I am a frontend developer dedicated to creating intuitive, accessible
+          web and mobile applications that blend simplicity with functional
+          design to create engaging and effective user experiences. Currently
+          unleashing my magic at <a class="link" href="https://capeprivacy.com"
+            >Cape</a
+          >.
         </p>
-        <a
-          href="/contact"
-          class="px-5 py-3 rounded-full transition-all duration-300 bg-gradient-to-r dark:bg-gradient-to-r from-blue-500 dark:from-blue-700 dark:to-blue-900 to-blue-700 hover:from-blue-400 hover:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-800 active:shadow-none text-white font-medium shadow-lg hover:shadow-xl shadow-blue-500/50 hover:shadow-blue-500/50"
-          >Let&apos;s work together</a
-        >
       </div>
     </section>
-  </Container>
-  <section>
-    <Container>
+    <section>
       <h2
-        class="mb-4 text-2xl font-semibold tracking-tight leading-none text-gray-900 md:text-3xl dark:text-white"
+        class="mb-6 text-2xl font-semibold tracking-tight leading-none text-gray-900 md:text-3xl dark:text-white"
       >
-        Work
+        Writing
       </h2>
-    </Container>
-    <div>
-      <Project
-        company="Warranties"
-        colorClassName="text-[#CDA17A]"
-        title="Effortless warranty management"
-        description="Warranties showcases my expertise in iOS app development and design. This self-created app transforms warranty management, offering features like real-time notifications, a clean interface, and comprehensive document management."
-        role="Designer & Developer"
-        startDate="2023"
-        endDate="Present"
-        website="https://itunes.apple.com/app/id6474076706"
-        appStore
-        technologies="Swift, Swift UI, SwiftData"
-        slides={[
-          warrantiesSlideOne,
-          warrantiesSlideTwo,
-          warrantiesSlideThree,
-          warrantiesSlideFour,
-        ]}
-      />
-      <Project
-        company="Cape Privacy"
-        colorClassName="text-[#C11574]"
-        title="Building an AI you can trust"
-        description="In shaping the user experience, my approach cantered on a responsive and intuitive design, leading to the successful launch and recognition of CapeChat on Product Hunt. Quality assurance was a cornerstone of my work, with a comprehensive testing regimen ensuring the reliability and integrity of the software. My commitment extended to contributing to the open-source Cape JavaScript SDK, supporting the broader developer community. Beyond technical development, I also crafted a distinctive brand and marketing strategy, along with a user-friendly web application interface for Cape Privacy, reflecting my dedication to both strategic vision and design excellence."
-        role="Lead Front End Engineer"
-        startDate="2020"
-        endDate="Present"
-        website="https://capeprivacy.com"
-        technologies="Next.js, TypeScript, React, Redux"
-        slides={[capeSlideOne, capeSlideTwo, capeSlideThree, capeSlideFour]}
-      />
-      <Project
-        company="InVision"
-        colorClassName="text-[#EA3368]"
-        title="Building the all-in-one collaborative workspace"
-        description="At InVision, my role was central to refining the deployment process and spearheading the development of key applications such as Inspect, Commenting, and Boards, focusing on improving user experience and streamlining project workflows. My contributions were instrumental in advancing the product capabilities, including the development of a module that simplified the design process. Beyond enhancing internal efficiencies, I also played a vital role in expanding InVision's reach by developing creating versatile email templates that enabled the marketing team to reach millions of users weekly."
-        role="Senior Software Engineer"
-        website="https://invisionapp.com"
-        startDate="2014"
-        endDate="2020"
-        technologies="Angular, React, Go, Objective-C"
-        slides={[
-          invisionSlideTwo,
-          invisionSlideThree,
-          invisionSlideFour,
-          invisionSlideFive,
-          invisionSlideSix,
-        ]}
-      />
-      <Project
-        company="Soshal"
-        colorClassName="text-[#72976C]"
-        title="Crafting digital excellence"
-        description="At the design agency Soshal (now Craft & Crew), my work involved crafting bespoke marketing websites and web applications that delivered on both form and function for an array of esteemed clients, including educational institutions like Algonquin College, York University, and Trent University, health organizations such as CHEO, as well as environmentally conscious firms like Bullfrog Power and retail health chain Kardish. My specialization in customizing WordPress solutions enabled these organizations to present dynamic, multilingual, and accessible online platforms, showcasing a commitment to user-centric design and a keen understanding of diverse client requirements."
-        role="Web Developer"
-        technologies="JavaScript, PHP, Wordpress"
-        startDate="2012"
-        endDate="2014"
-        slides={[soshalSlideOne, soshalSlideTwo, soshalSlideThree]}
-      />
-    </div>
-  </section>
+      <PostList posts={posts} />
+    </section>
+  </Container>
 </Layout>

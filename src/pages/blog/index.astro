@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Container from "../../components/Container.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
 import Layout from "../../components/Layout.astro";
 import Masthead from "../../components/Masthead.astro";
+import PostList from "../../components/PostList.astro";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
@@ -17,19 +17,7 @@ const posts = (await getCollection("blog"))
   <Container>
     <section>
       <Masthead title="Blog" />
-      <ul class="flex flex-col gap-5 md:gap-6">
-        {
-          posts.map((post) => (
-            <li class="text-gray-400 md:text-lg">
-              <a href={`/blog/${post.slug}/`} class="link inline">
-                <h2 class="inline">{post.data.title}</h2>
-              </a>
-              <span class="mx-2">&mdash;</span>
-              <FormattedDate date={post.data.pubDate} />
-            </li>
-          ))
-        }
-      </ul>
+      <PostList posts={posts} />
     </section>
   </Container>
 </Layout>
