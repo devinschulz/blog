@@ -54,7 +54,7 @@ The objective here is to turn this array of nested objects into a flattened
 object, so you can efficiently look up any entry by ID. Begin by creating the
 base function which accepts two arguments, `list` and the `accumulator`. Right
 off the bat, you might find this a little funny, passing around the reduce
-accumulator outside of the reduce method. Bear with me; this is where all the
+accumulator outside the reduce method. Bear with me; this is where all the
 magic happens!
 
 ```js
@@ -182,4 +182,4 @@ collect(data, new Map());
 
 There you have it, my thought process on how I would take a similar piece of
 data and transform it into something I can easily reference. Hopefully, there's
-something here you can takeaway and apply to your own work. Happy coding!
+something here you can take away and apply to your own work. Happy coding!

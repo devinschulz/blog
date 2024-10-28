@@ -1,5 +1,5 @@
 ---
-title: From Hugo to Next JS and Back Again
+title: From Hugo to Next.js and Back Again
 pubDate: 2019-05-18
 tags: [Static Sites, Performance, Tailwind]
 description:
@@ -19,16 +19,16 @@ voice my own experience.
 
 Since I'm primarily front-end focused and quite confident building almost
 anything with React, I figured it would be a great idea to rebuild my blog using
-a React based static site generator. I began my search by researching React
+a React-based static site generator. I began my search by researching React
 static site generators and managed to narrow it down to three possibilities:
-React Static, Gatsby, and Next JS.
+React Static, Gatsby, and Next.js.
 
 **React Static:** Looked interesting and was built to solve some of the problems
-that Gatsby and Next JS had.
+that Gatsby and Next.js had.
 [Here is an article](https://medium.com/@tannerlinsley/%EF%B8%8F-introducing-react-static-a-progressive-static-site-framework-for-react-3470d2a51ebc)
 about why Nozzle built React static in the first place. After digging in and
 playing around with a sample project, I felt as though the documentation and
-examples were not enough for me to feel productive. Therefore I decided to pass
+examples were not enough for me to feel productive. Therefore, I decided to pass
 on this one.
 
 **Gatsby:** Another exciting project, and quite a popular option. Gatsby gives
@@ -43,7 +43,7 @@ that there was not enough information while trying to debug why a particular
 GraphQL query wasn't working as expected or remark properties were randomly
 missing from the schema.
 
-**Next JS:** I had heard lots of great things about this framework and a few
+**Next.js:** I had heard lots of great things about this framework and a few
 coworkers had used it to build marketing type pages. Vercel (the company behind
 Next) is also very active in the open source community and has several high
 profile projects on the go. After checking out the documentation, it had
@@ -58,13 +58,13 @@ and exploring the framework and enjoyed how it was coming together. This
 experimental phase gave me confidence that is framework would be an excellent
 choice.
 
-## Building the Blog with Next JS
+## Building the Blog with Next.js
 
 After going through the basic tutorials on the Next site, I was able to quickly
 build something that worked. One area where I got stuck was creating dynamic
 pages which worked with the static export. I learned that if you want dynamic
 pages, you either have to include it as part of the configuration or include
-them in the pages directory. This meant whenever I wanted to create category
+them in the pages' directory. This meant whenever I wanted to create category
 pages, I had to parse the source files to collect all categories, and then
 generate pages based on that. Not quite as easy and straightforward as Hugo, but
 it wasn't that bad.
@@ -76,7 +76,7 @@ observables. Most of the inspiration on how to lay out the directory structure
 and generate posts using MDX was directly from
 [Next's site](https://github.com/zeit/next-site).
 
-1. I had fun building the blog using Next JS, but there were a few points which
+1. I had fun building the blog using Next.js, but there were a few points that
    made me wish I had gone a different route.
 1. I had to write a few custom plugins to add simple functionality like the
    reading time or table of contents to a blog post. This required me to parse
@@ -85,7 +85,7 @@ and generate posts using MDX was directly from
 1. Generating a list of posts required a bit of extra work compared to other
    frameworks like Gatsby. Gatsby makes all posts query-able from any page,
    while Next requires you to generate that list yourself by reading the file
-   system. To accomplish this, I had to generate a summary based on the contents
+   system. To achieve this, I had to generate a summary based on the contents
    of the blog post. I wrote a script which copied all the exported frontmatter
    and saved them into summaries which I was able to import and render.
 1. There were not as many plugins available as Gatsby has which would have saved
@@ -94,8 +94,8 @@ and generate posts using MDX was directly from
    with Emotion. By the end of the project, I still had parts of the application
    which threw TypeScript errors.
 1. Redux and Redux Observables are overkill for what I needed them to do. I was
-   using it for managing the likes button state, which could have easily been
-   replaced by the React context API. In my defence, I had plans of expanding
+   using it for managing the like button state, which could have easily been
+   replaced by the React context API. In my defense, I had plans of expanding
    the functionality and making the website more interactive and state driven.
 1. I learned that using Emotion was not as joyful as I thought it would be. I
    love the component approach to every single element, but in practice, I feel
@@ -105,11 +105,11 @@ and generate posts using MDX was directly from
 
 By the time I had completed an MVP and deployed it to production, I was left not
 quite as happy as I thought I would be. Yes, the user experience and performance
-were great, but I felt like a lot of the little things I wanted had to be hacked
+were great, but I felt like a lot of the little things I wanted, had to be hacked
 together.
 
 A couple of months went by, and I decided to redesign my blog once again. This
-time I kept in mind of my past experiences and decided it would be best to build
+time I kept in mind of my experiences and decided it would be best to build
 it again using Hugo.
 
 ## Rebuilding the Blog with Hugo Again
@@ -124,10 +124,10 @@ I began by using the
 to give me an excellent foundation to build upon. It has everything you need to
 get started with Hugo, modern JavaScript, and any CSS configuration you need.
 
-This time around I decided to use Tailwind CSS, BEM, and the ITCSS methodology
+This time around, I decided to use Tailwind CSS, BEM, and the ITCSS methodology
 to style my website. I had used Tailwind on the first iteration of this blog and
-loved using it. For those not familiar with Tailwind, it's a utility first CSS
-framework which essentially provides a series of classes to reuse to build out
+loved using it. For those not familiar with Tailwind, it's a utility-first CSS
+framework that essentially provides a series of classes to reuse to build out
 components.
 
 To keep that single page app feel, I used Turbolinks and Stimulus to load and
@@ -155,6 +155,6 @@ much as I love using React, it just didn't suit my needs for this one website.
 Many of these frameworks may seem tempting, but ask yourself if is it essential
 for what you're trying to build. A great
 [example](https://link.medium.com/y3rl0KPjbW) of this is how Netflix replaced
-their sign up page with vanilla JavaScript to speed up the loading and
+their sign-up page with vanilla JavaScript to speed up the loading and
 time-to-interactive. I do wish more companies would take note of this as you may
 not need a full-fledged framework/library for something relatively simple.

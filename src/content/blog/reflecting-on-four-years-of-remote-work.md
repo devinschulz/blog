@@ -29,31 +29,31 @@ deliver to the customer.
 
 ## Take the Good with the Bad
 
-Working the remote life is a tad different than most people imagine. When I tell
+Working the remote life is a tad different from most people imagine. When I tell
 people I work remotely, they always ask how I find the motivation to do the
 work. This is still an easy one to answer for me because if you love what you're
-doing, it doesn't feel like work at all. Most of the time I'm sincere answering
+doing, it doesn't feel like work at all. Most of the time I'm sincerely answering
 this, but remote life isn't always as glamorous as it seems. First, let us go
-over some of the goods before getting to some of the not so greats.
+over some goods before getting to some of the not so greats.
 
 ## The Goods
 
 ### Increased Flexibility
 
 It goes without saying that remote work gives way more flexibility than having
-to be in an office all day. You have the option to work from anywhere really,
+to be in an office all day. You can work from anywhere really,
 but I found the only places I've worked from are either my office, couch, or a
 nearby coffee shop. I know many people prefer having an office outside of home,
 and many people commute to their local co-working space. I may try this option
 in the future just to get out more.
 
-Have appointment midday? No problem! Just let your team know you'll be back in a
+Have appointment midday? No problem! Let your team know you'll be back in a
 bit. Kids are home sick from daycare, and you have to watch them for a couple of
 hours while working? No problem! Never have I ever had any of my managers
-question or seem put off by the fact that life sometimes gets in the way. I
+question or seem to put off by the fact that life sometimes gets in the way. I
 can't express how great this is! To be able to watch the kiddo for an hour or
 two in the middle of the day has done wonders. If it weren't for this
-flexibility, my wife and I would of either had to find someone to watch him or
+flexibility, my wife and I would've either had to find someone to watch him or
 one of us would have to take part of the day off.
 
 ### Reap in All the Productivity
@@ -63,17 +63,17 @@ shoulder to ask you some nonsensical question. When working remotely, you have
 the benefits of isolating yourself and blocking out all people and distractions.
 If I really want to get into the zone, I turn on “do not disturb” mode in Slack
 for an hour or two. Everyone on the team respects interrupting you whenever you
-are in this mode; unless it's critical of course.
+are in this mode; unless it's critical, of course.
 
 Honestly, I feel like some of the best work I've done is in a remote setting.
-With no one around you are left alone with your thoughts. No people,
+With no one around, you are left alone with your thoughts. No people,
 notifications, and some great tunes = programmers bliss.
 
 ### Transportation Is a Thing of the Past
 
 My commute to work in the morning and evening is a quick walk up or down stairs
 to and from my office. It didn't always use to be like this as I used to take
-two or three buses to get to work. This was not only time consuming (about an
+two or three buses to get to work. This was not only time-consuming (about an
 hour and a half one way), but incredibly dull and repetitive each day. Most days
 you finish work, and just want to get home as quickly as possible.
 Unfortunately, this is everyone else's mentality too.
@@ -103,8 +103,8 @@ I've taken maybe 5 days off total.
 
 This was recently true until my toddler started going to daycare. Any parents
 that have children in daycare know that they seem to bring back most colds that
-go around. It feels like he brings back a cold every month or two and I seem to
-have a 50-50 chance of catching it.
+go around. It feels like he brings back a cold every month or two, and I seem to
+have a 50–50 chance of catching it.
 
 ### Clothing: Partially Optional
 
@@ -112,7 +112,7 @@ Lots of people that work remotely tout the fact that you only need to be
 presentable from the waist up. Personally, I feel incomplete if I'm half
 dressed. I do own at least 10 or more pairs of sweatpants and a couple of pairs
 of sweat shorts more than the average person, but I have never gone to work in
-my pyjamas.
+my pajamas.
 
 **Fun fact:** one guy on my team only wears shirts when we have a meeting
 because he lives in a tropical area. It's funny to hear him say one second I
@@ -125,7 +125,7 @@ need to put a shirt on when a spontaneous meeting is scheduled.
 You often feel like you take on more responsibility and are held more
 accountable to what you say and do. It's not uncommon for me to work outside of
 office hours because my computer is literally a room away. You put in a couple
-extra hours after dinner, and before you know it, you've worked a 10 hour day.
+extra hours after dinner, and before you know it, you've worked a 10-hour day.
 
 I don't always see this as a negative though. There are times I'll sit on the
 couch watching something on Netflix and experimenting with something new that I
@@ -158,9 +158,9 @@ the house, but that motivation comes and goes.
 ### Your Mental State
 
 After the initial hype of working remote sets in, you begin to realize your only
-face to face interactions become limited to your family, friends, and your pets.
+face-to-face interactions become limited to your family, friends, and your pets.
 You do start to feel lonely sitting there, every day by yourself in your office
-and begin to doubt the choices you've made choosing a job where all coworker
+and begin to doubt the choices you've made choosing a job where all co-worker 
 interactions are virtual.
 
 We as people try so hard to keep work and home separate, but working remotely
@@ -194,9 +194,9 @@ you are asking a question. Try to connect with your team throughout the day to
 let them know when you're in, heading out for the day, or have to step out for a
 bit.
 
-**Get out and exercise.** I'm not sure I can include this since I've been
-lacking in this department for the past little while. I used to exercise on a
-regular basis until my son was born; however, it's something I want to get back
+**Get out and exercise.** I'm not sure if I can include this since I've been
+lacking in this department for the past little while. I used to exercise regularly 
+until my son was born; however, it's something I want to get back
 in to. Being cooped up in the house all day takes a toll on your body, and you
 should be exercising regularly. Not only for your body's sake but also your
 mind.

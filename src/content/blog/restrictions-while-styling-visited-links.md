@@ -17,7 +17,7 @@ limitations.
 First and foremost, you can only change the CSS properties of a visited link if
 the unvisited link already has that style applied. If your unvisited link does
 not have a background color, but the visited one does, it will **not** apply
-that background color. If your unvisited link has a background color and you
+that background color. If your unvisited link has a background color, and you
 change that color for visited links, it **will** work.
 
 ```css
@@ -73,7 +73,7 @@ The primary reason all properties aren't available is to provide privacy and
 security to the user. Without these safeguards, websites could use this
 information to track which sites a user has visited, all without their consent.
 
-Browsers misinform developers when they try to obtain the style with
+Browsers misinform developers when they try to get the style with
 `window.getComputedStyle`. Rather than sending the visited style, the unstyled
 link is returned instead.
 

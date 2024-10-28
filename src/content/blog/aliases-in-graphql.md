@@ -72,7 +72,7 @@ different. Instead of the alias appearing right to the field, it's placed on the
 left.
 
 Take a look at the following example. It contains the `updated_at`field, but
-again, we want to rename.
+again, we want to rename it.
 
 ```graphql
 query GetEntries {

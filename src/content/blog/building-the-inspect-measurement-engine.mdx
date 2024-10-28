@@ -6,6 +6,8 @@ canonical: https://engineering.invisionapp.com/post/building-the-inspect-measure
 description: Thoughts and learnings I had while building the Inspect measurement engine.
 ---
 
+
+
 import Figure from "../../components/Figure.astro";
 
 Not too long ago I had the opportunity to construct a measurement system inside
@@ -65,7 +67,7 @@ interface Props {
 }
 ```
 
-The next obvious thing that needs to be pass down the view component is all the
+The next obvious thing that needs to be passed down to the view component is all the
 measurements. There can be up to four separate measurements rendered at a single
 time, so the clear choice here is to use an array of objects. Now I need to
 figure out the shape of each measurement.
@@ -151,14 +153,14 @@ transform that data into the structure defined in the outline.
 The key thing to determine was where in relation one layer is to another, and
 then calculate the distance between the closest sides. These values are
 typically what a developer is most interested in to set the position, margin or
-padding of an element. There are two main paths which the logic can follow,
-either the selected and hover layer are overlapping each other, or they are not.
+padding of an element. There are two main paths that the logic can follow,
+either the selected and hover layer is overlapping each other, or they are not.
 
 <Figure src="/blog/overlapping.png" alt="Two layers which intersect" />
 
 <Figure src="/blog/relation.png" alt="Two layers in relation to each other" />
 
-Before I dive into both paths, there are a couple of checks which need to
+Before I dive into both paths, there are a couple of checks that need to
 happen. First, I need to determine if only selected layers are passed in or both
 the selected and hovered layers. If only the selected layer is passed in, I use
 the properties from the artboard and create the hovered layer manually. This
@@ -239,8 +241,8 @@ const DIRECTIONS = [
 ];
 ```
 
-Now that I've set up these variables I can work on the math portion to determine
-the cardinal direction between the two layers. This can be accomplished by
+Now that I've set up these variables, I can work on the math portion to determine
+the cardinal direction between the two layers. This can be achieved by
 determining the absolute center of both layers and then calculating the angle
 between the two.
 
@@ -296,7 +298,7 @@ const cardinal = getDirection(selected, highlighted);
 
 Overlapping layers is the easier option of the two paths to calculate. The first
 step I chose to do here was to calculate all four sides of the selected layer
-and build up each measurement. This achieved by calculating the minimum and
+and build up each measurement. This is achieved by calculating the minimum and
 maximum values for each side, and then subtracting the same side of the opposite
 layer.
 
@@ -342,7 +344,7 @@ const intersection = (layer1: Layer, layer2: Layer): Point => {
 ```
 
 Now that we have the intersection and offsets, we can use this information to
-can start building out the measurements. I decided to calculate all four sides
+ start building out the measurements. I decided to calculate all four sides
 and then only return what is required.
 
 ```ts
@@ -418,7 +420,7 @@ const leftMeasurement: Measurement = {
 };
 ```
 
-Now that all the measurements values are calculated, I can work on the returned
+Now that all the measurement values are calculated, I can work on the returned
 value. When the selected layer is perfectly centred with the hover layer, all
 four measurements will be returned since I cannot successfully determine which
 side the end user wants to see.
@@ -601,10 +603,10 @@ export default (ComposedComponent: React.ComponentType<any>) =>
   }
 ```
 
-Again this is a super simplified version of the component but works to
+Again, this is a super-simplified version of the component but works to
 illustrate my thinking around how it works. There are a couple of areas that I
 skipped intentionally in this article since it's already getting pretty long.
-There are two main things I didn't cover so I'll give you a brief synopsis.
+There are two main things I didn't cover, so I'll give you a brief synopsis.
 
 #### Zoom Level
 
@@ -653,7 +655,7 @@ export default SelectionMeasurementHandler(Measurements)
 
 Single measurements are super simple in that they take the measurement
 properties and output a line and label. The line styles are passed down through
-the measurement position property and depending on whether it's vertical or
+the measurement position property, and depending on whether it's vertical or
 horizontal, CSS styles apply a border right or bottom.
 
 The labels point ends up in the middle between the start and end measurements,

@@ -27,21 +27,21 @@ me since I get the benefits of an API server, without managing an API server.
 The API is reasonably straightforward if you think roughly how the user
 interacts with a like button. Let's break this down into user stories.
 
-1. As an anonymous user, I want to see the total likes count next to the likes
+1. As an anonymous user, I want to see the total likes count next to the like
    button.
-1. As an anonymous user, when I click the likes button, it should increment the
+1. As an anonymous user, when I click the like button, it should increment the
    count by one.
 
 Based on those two user stories, we can create two endpoints to satisfy the
 requirements. First, we need to fetch the current count for a specific post
-using a GET request. Secondly, update that count by one or create a new document
+using a GET request. Secondly, update that counts by one or create a new document
 using a PUT request.
 
 ## Building the Cloud Function
 
-Lets first start with some of the boilerplate. We'll create a new directory and
+Let's first start with some boilerplate. We'll create a new directory and
 create an index file which can house our function. In the root folder of this
-project run the following commands:
+ project, run the following commands:
 
 ```sh
 mkdir -p functions/likes && `# Create a new directory called functions/likes` \

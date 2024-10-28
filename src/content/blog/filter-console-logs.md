@@ -7,7 +7,7 @@ pubDate: 2020-05-01
 tags: [DevTools, Today I Learned]
 ---
 
-Google chrome gives you the ability to filter out messages within the console by
+Google Chrome gives you the ability to filter out messages within the console by
 prefixing a search term with the hyphen-minus (subtraction) character `-`. If
 you want to ignore multiple entries, add a space between the search terms.
 
@@ -15,7 +15,7 @@ you want to ignore multiple entries, add a space between the search terms.
 -term -analytics
 ```
 
-Using regular expressions to filter enties also works:
+Using regular expressions to filter entries also works:
 
 ```text
 -/term/ -/analytics/
