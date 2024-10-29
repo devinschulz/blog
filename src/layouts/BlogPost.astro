@@ -25,7 +25,7 @@ const { title, description, pubDate, canonical } = Astro.props;
         </Prose>
         {
           canonical && (
-            <div class="text-gray-700 mt-8">
+            <div class="text-gray-600 mt-8 dark:text-gray-400">
               This article was originally published on{" "}
               <a href={canonical} class="link font-medium">
                 {new URL(canonical).hostname}
