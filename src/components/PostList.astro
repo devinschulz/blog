@@ -8,12 +8,12 @@ export interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul class="list-disc pl-5 space-y-1">
+<ul class="list-disc pl-5 space-y-1 md:text-lg">
   {
     posts.map((post) => (
-      <li class="text-gray-400 md:text-lg">
-        <a href={`/blog/${post.slug}/`} class="link inline">
-          <h2 class="inline">{post.data.title}</h2>
+      <li>
+        <a href={`/blog/${post.slug}/`} class="link">
+          {post.data.title}
         </a>
       </li>
     ))
