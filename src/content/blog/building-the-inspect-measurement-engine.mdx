@@ -2,11 +2,8 @@
 title: Building the Inspect Measurement Engine
 pubDate: 2019-07-17
 tags: [React, JavaScript, Flow]
-canonical: https://engineering.invisionapp.com/post/building-the-inspect-measurement-engine
 description: Thoughts and learnings I had while building the Inspect measurement engine.
 ---
-
-
 
 import Figure from "../../components/Figure.astro";
 
@@ -42,9 +39,9 @@ for. By separating the view from the business logic, not only can I now split a
 single ticket into two smaller tickets, but was able to go one step further. I
 created a ticket to deal with outlining what values should be passed from the
 
-<abbr title="Higher-order component">HOC</abbr> to the child component. Three tickets
-have been created from what was originally one and can now be tracked and dealt with
-independently.
+<abbr title="Higher-order component">HOC</abbr> to the child component. Three
+tickets have been created from what was originally one and can now be tracked
+and dealt with independently.
 
 ## The Outline
 
@@ -344,7 +341,7 @@ const intersection = (layer1: Layer, layer2: Layer): Point => {
 ```
 
 Now that we have the intersection and offsets, we can use this information to
- start building out the measurements. I decided to calculate all four sides
+start building out the measurements. I decided to calculate all four sides
 and then only return what is required.
 
 ```ts
