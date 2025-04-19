@@ -58,33 +58,33 @@ const {
     }
   </div>
   <Container className="flex flex-col gap-4">
-    <h3 class="font-semibold tracking-tight text-xl md:text-3xl lg:text-4xl">
+    <h2 class="font-semibold tracking-tight text-xl md:text-3xl lg:text-4xl">
       <span class={colorClassName}>{company}</span> &mdash; {title}
-    </h3>
+    </h2>
     <p class="leading-relaxed">{description}</p>
     <ul
       class="w-full flex flex-col gap-2 md:w-1/2 text-gray-700 dark:text-gray-300"
     >
       <li class="flex justify-between">
-        <span class="text-gray-400 dark:text-gray-500">Role</span>
+        <span class="text-gray-400 dark:text-gray-600">Role</span>
         <span>{role}</span>
       </li>
       {
         technologies && (
           <li class="flex justify-between">
-            <span class="text-gray-400 dark:text-gray-500">Tech</span>
+            <span class="text-gray-400 dark:text-gray-600">Tech</span>
             <span>{technologies}</span>
           </li>
         )
       }
       <li class="flex justify-between">
-        <span class="text-gray-400 dark:text-gray-500">Date</span>
+        <span class="text-gray-400 dark:text-gray-600">Date</span>
         <span>{startDate}&ndash;{endDate}</span>
       </li>
       {
         website && (
           <li class="flex justify-between">
-            <span class="text-gray-400 dark:text-gray-500">Website</span>
+            <span class="text-gray-400 dark:text-gray-600">Website</span>
             <span>
               <a
                 href={website}
