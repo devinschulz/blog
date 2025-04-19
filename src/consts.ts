@@ -1,6 +1,6 @@
-export const SITE_TITLE = "Devin Schulz | Front-end Developer";
+export const SITE_TITLE = "Interfaces by Devin";
 export const SITE_DESCRIPTION =
-  "Seasoned front-end developer with over a decade of experience, specializing in crafting sleek, intuitive web and mobile applications. Dedicated to merging simplicity with sophisticated design for an optimal user experience.";
+  "Front-end developer with 10+ years of experience building clean, easy-to-use web and mobile apps. I focus on simple interfaces, thoughtful design, and smooth user experiences.";
 
 export const LINKEDIN_URL = "https://www.linkedin.com/in/devinschulz";
 export const GITHUB_URL = "https://github.com/devinschulz";
