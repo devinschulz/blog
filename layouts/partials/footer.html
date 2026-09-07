@@ -1,0 +1,5 @@
+<footer class="grid grid-cols-1 gap-5 bg-night px-4.25 py-4.5 font-mono text-[10px] text-footer-text uppercase desktop:grid-cols-[1fr_1fr_auto] desktop:px-[8.33%] desktop:py-5 [&_a:hover]:text-lime">
+  <div><p class="mb-1.25">Devin Schulz</p><p class="mb-1.25">{{ site.Params.role }} at Stripe</p></div>
+  <div class="desktop:text-center"><a class="mb-1.25 block text-lime" href="mailto:{{ site.Params.email }}">{{ site.Params.email }} ↗</a><span>© {{ now.Year }}</span></div>
+  <div class="mt-1.25 flex gap-4 desktop:mt-0"><a href="{{ site.Params.github }}">GitHub</a><a href="{{ site.Params.linkedin }}">LinkedIn</a></div>
+</footer>

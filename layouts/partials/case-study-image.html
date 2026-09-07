@@ -1,0 +1,12 @@
+{{ $image := resources.Get .image }}
+{{ if not $image }}{{ errorf "Case-study image not found: %s" .image }}{{ end }}
+{{ $small := $image.Resize "700x webp q85" }}
+{{ $large := $image.Resize "1400x webp q90" }}
+<figure>
+  <a class="group block overflow-hidden rounded-sm border border-line bg-night" href="{{ $image.RelPermalink }}" target="_blank" rel="noopener" aria-label="View full-size image: {{ .caption }} (opens in a new tab)">
+    <img class="block h-auto w-full transition-opacity duration-200 group-hover:opacity-90" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 700w, {{ $large.RelPermalink }} 1400w" sizes="{{ .sizes | default "(min-width: 781px) 83vw, 100vw" }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ .alt }}" {{ if .eager }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async">
+  </a>
+  <figcaption class="mt-3 flex items-baseline justify-between gap-5 font-mono text-[10px] leading-relaxed text-muted">
+    <span>{{ .caption }}</span><span aria-hidden="true" class="shrink-0 text-accent">Full size ↗</span>
+  </figcaption>
+</figure>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="mx-auto flex min-h-[70svh] max-w-280 flex-col justify-center px-4.25 py-20 desktop:px-12 desktop:py-28">
+  <p class="font-mono text-xs text-muted uppercase">404 / An unexpected state</p>
+  <h1 class="mt-8 font-serif text-[clamp(64px,10vw,120px)] leading-[0.9] font-medium tracking-[-0.065em]">A little<br><em class="text-accent">off the path.</em></h1>
+  <p class="mt-8 max-w-120 text-base leading-relaxed text-text-secondary">That page doesn’t live here. If you followed an old link, the writing might still be in the archive.</p>
+  <div class="mt-10 flex flex-wrap gap-4 font-mono text-xs uppercase">
+    <a class="inline-flex min-h-12 items-center bg-ink px-5 text-paper" href="{{ "blog/" | relURL }}">Explore the archive ↗</a>
+    <a class="inline-flex min-h-12 items-center border border-line px-5" href="{{ site.Home.RelPermalink }}#work">Selected work ↗</a>
+  </div>
+</section>
+{{ end }}

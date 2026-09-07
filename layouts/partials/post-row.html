@@ -1,0 +1,6 @@
+<a data-topics="{{ range .Params.tags }}{{ . | lower }}|{{ end }}" href="{{ .RelPermalink }}" class="grid grid-cols-[44px_1fr_auto] items-baseline gap-2.25 border-t border-line py-4.5 transition-[padding,background-color] duration-200 hover:bg-surface-hover hover:px-3 desktop:grid-cols-[11%_18%_1fr_auto] desktop:gap-3.25 [[hidden]]:hidden">
+  <time datetime="{{ .Date.Format "2006-01-02" }}" class="font-mono text-[10px] text-muted">{{ .Date.Format "2006" }}</time>
+  <span class="hidden font-mono text-[10px] text-muted desktop:inline">{{ with .Params.tags }}{{ delimit . ", " }}{{ else }}Notes{{ end }}</span>
+  <h3 class="col-start-2 font-serif text-[clamp(21px,2.3vw,31px)] leading-[0.96] font-medium tracking-[-0.04em] desktop:col-start-auto">{{ .Title }}</h3>
+  <b class="col-start-3 row-span-2 row-start-1 self-center font-normal text-accent desktop:col-start-auto desktop:row-span-1 desktop:row-start-auto desktop:self-auto" aria-hidden="true">↗</b>
+</a>

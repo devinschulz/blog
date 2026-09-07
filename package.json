@@ -1,39 +1,29 @@
 {
-  "name": "dangerous-debris",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "prepare": "husky install",
-    "format": "npx prettier . --write"
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/devinschulz/blog#readme",
+  "bugs": {
+    "url": "https://github.com/devinschulz/blog/issues"
   },
-  "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/mdx": "^3.1.0",
-    "@astrojs/rss": "^4.0.7",
-    "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/tailwind": "^5.1.0",
-    "@tailwindcss/typography": "^0.5.13",
-    "astro": "^4.14.2",
-    "astro-robots-txt": "^1.0.0",
-    "astro-seo": "^0.8.4",
-    "flickity": "^3.0.0",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devinschulz/blog.git"
+  },
+  "license": "ISC",
+  "author": "Devin Schulz",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "hugo",
+    "serve": "hugo server",
+    "check": "npm run build && node scripts/check-site.mjs"
   },
   "devDependencies": {
-    "@types/flickity": "^2.2.11",
-    "husky": "^9.1.5",
-    "lint-staged": "^15.2.9",
-    "prettier": "3.3.3",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.5"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "hugo-bin": "^0.162.0",
+    "tailwindcss": "^4.3.3"
   }
 }

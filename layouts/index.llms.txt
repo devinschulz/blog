@@ -1,0 +1,26 @@
+{{- $work := where site.RegularPages "Section" "work" -}}
+{{- $blog := where site.RegularPages "Section" "blog" -}}
+# {{ site.Title }}
+
+> {{ site.Params.role }} at Stripe. Product interfaces where clarity, trust, and the small details are not optional. This file indexes the site for language models; every page below is also available as Markdown.
+
+- Site: {{ site.Home.Permalink }}
+- Contact: {{ site.Params.email }}
+- Code: {{ site.Params.github }}
+- Profile: {{ site.Params.linkedin }}
+
+## Case studies
+
+{{ range $work }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Params.role }}{{ with .Params.period }}, {{ . }}{{ end }}. {{ .Description }}
+{{ end }}
+## Writing
+
+Archived posts, kept at their original publication dates.
+
+{{ range $blog.ByDate.Reverse }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Date.Format "2006" }}.{{ with .Description }} {{ . }}{{ end }}
+{{ end }}
+## Optional
+
+- [Home page as Markdown]({{ with site.Home.OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
+- [Writing index as Markdown]({{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
+- [RSS feed]({{ with site.Home.OutputFormats.Get "rss" }}{{ .Permalink }}{{ end }})

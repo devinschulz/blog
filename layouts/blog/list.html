@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <section class="mx-auto max-w-222.5 px-4.25 py-20 desktop:px-8 desktop:py-32.5">
+    <p class="font-mono text-[10px] text-muted uppercase">Historical writing</p>
+    <h1 class="my-6.75 max-w-180 font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">{{ .Title }}</h1>
+    <p class="mt-5 max-w-155 font-serif text-[22px] leading-[1.4] font-medium text-text-secondary">{{ .Description }}</p>
+    <div data-post-list class="mt-11.25 border-b border-ink desktop:mt-17.5">
+      {{ range .RegularPages.ByDate.Reverse }}
+        {{ partial "post-row.html" . }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

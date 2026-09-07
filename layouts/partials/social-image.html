@@ -1,0 +1,27 @@
+{{ $background := resources.Get "images/social-background.png" }}
+{{ $font := resources.Get "fonts/playfair-display-medium.ttf" }}
+{{ $title := .Title }}
+{{ $label := "ARCHIVED WRITING" }}
+{{ if .IsHome }}
+  {{ $title = "Making serious software feel human." }}
+  {{ $label = printf "%s AT STRIPE" (upper site.Params.role) }}
+{{ else if eq .Section "work" }}
+  {{ $title = printf "%s: %s %s" .Title .Params.headline .Params.headlineAccent }}
+  {{ $label = "SELECTED WORK / CASE STUDY" }}
+{{ end }}
+{{ $lines := slice }}
+{{ $line := "" }}
+{{ range split $title " " }}
+  {{ if and $line (gt (len (printf "%s %s" $line .)) 30) }}
+    {{ $lines = $lines | append $line }}{{ $line = . }}
+  {{ else }}{{ $line = printf "%s %s" $line . | strings.TrimSpace }}{{ end }}
+{{ end }}
+{{ with $line }}{{ $lines = $lines | append . }}{{ end }}
+{{ $size := 70 }}{{ if gt (len $lines) 4 }}{{ $size = 56 }}{{ end }}
+{{ $image := $background.Filter
+  (images.Text "Devin Schulz" (dict "font" $font "size" 36 "color" "#181a21" "x" 64 "y" 45))
+  (images.Text $label (dict "size" 19 "color" "#5146df" "x" 64 "y" 139))
+  (images.Text (delimit $lines "\n") (dict "font" $font "size" $size "linespacing" 6 "color" "#181a21" "x" 64 "y" 191))
+  (images.Text "devinschulz.com" (dict "size" 20 "color" "#181a21" "x" 64 "y" 555))
+}}
+{{ return ($image.Process "jpg q85") }}

@@ -1,0 +1,14 @@
+{{ $destination := .Destination }}
+{{ $image := .Page.Resources.GetMatch $destination }}
+{{ if not $image }}{{ $image = resources.Get (strings.TrimPrefix "/" $destination) }}{{ end }}
+{{ if $image }}
+  {{ if eq $image.MediaType.SubType "gif" }}
+    <img src="{{ $image.RelPermalink }}" alt="{{ .PlainText }}" width="{{ $image.Width }}" height="{{ $image.Height }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}>
+  {{ else }}
+    {{ $large := $image.Resize (printf "%dx webp q85" (math.Min 1400 $image.Width | int)) }}
+    {{ $small := $image.Resize (printf "%dx webp q85" (math.Min 700 $image.Width | int)) }}
+    <img src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w{{ if ne $small.Width $large.Width }}, {{ $large.RelPermalink }} {{ $large.Width }}w{{ end }}" sizes="(min-width: 781px) 660px, calc(100vw - 34px)" alt="{{ .PlainText }}" width="{{ $image.Width }}" height="{{ $image.Height }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}>
+  {{ end }}
+{{ else }}
+  <img src="{{ $destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}>
+{{ end }}

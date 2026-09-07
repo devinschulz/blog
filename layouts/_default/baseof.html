@@ -1,0 +1,35 @@
+{{ $siteTitle := printf "%s — %s at Stripe" site.Title site.Params.role }}
+<!doctype html>
+<html lang="{{ site.Language.Lang }}" class="scheme-light-dark scroll-smooth motion-reduce:scroll-auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ partial "seo.html" . }}
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="16x16 32x32 48x48">
+    {{ $favicon := resources.FromString "favicon.svg" (readFile "static/favicon.svg") | fingerprint }}
+    <link rel="icon" href="{{ $favicon.RelPermalink }}" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" sizes="180x180">
+    {{ partial "fonts.html" . }}
+    {{ with (templates.Defer (dict "key" "tailwind")) }}
+      {{ partial "css.html" . }}
+    {{ end }}
+    {{ with .OutputFormats.Get "md" }}<link rel="alternate" type="text/markdown" href="{{ .RelPermalink }}" title="{{ $.Title }} as Markdown">{{ end }}
+    {{ if .IsHome }}{{ with .OutputFormats.Get "llms" }}<link rel="alternate" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}{{ end }}
+    {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
+  </head>
+  <body class="bg-paper font-sans leading-normal text-ink antialiased [&_a:focus-visible]:outline-3 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-peach [&_button:focus-visible]:outline-3 [&_button:focus-visible]:outline-offset-4 [&_button:focus-visible]:outline-peach [&_button]:cursor-pointer motion-reduce:**:transition-none">
+    <a class="fixed top-3 left-3 z-100 translate-y-[-180%] bg-night px-3.25 py-2.5 text-ivory focus:translate-y-0" href="#content">Skip to content</a>
+    {{ partial "header.html" . }}
+    <main id="content">{{ block "main" . }}{{ end }}</main>
+    {{ partial "footer.html" . }}
+    {{ $navigation := resources.Get "js/navigation.js" | minify | fingerprint }}
+    <script src="{{ $navigation.RelPermalink }}" integrity="{{ $navigation.Data.Integrity }}" defer></script>
+    {{ if .IsHome }}
+      {{ $scripts := resources.Get "js/state-shift.js" | minify | fingerprint }}
+      <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>
+      {{ $heroMotion := resources.Get "js/hero-motion.js" | minify | fingerprint }}
+      <script src="{{ $heroMotion.RelPermalink }}" integrity="{{ $heroMotion.Data.Integrity }}" defer></script>
+    {{ end }}
+  </body>
+</html>

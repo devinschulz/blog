@@ -1,0 +1,73 @@
+{{ define "main" }}
+<article>
+  {{ partial "case-study-header.html" . }}
+
+  <div class="mx-auto max-w-360 px-4.25 desktop:px-15">
+    {{ partial "case-study-image.html" (merge .Params.hero (dict "eager" true "sizes" "(min-width: 1440px) 1320px, (min-width: 781px) 92vw, 100vw")) }}
+  </div>
+
+  <section id="assistant" aria-labelledby="assistant-title" class="mx-auto max-w-360 scroll-mt-8 px-4.25 py-16 desktop:px-30 desktop:py-24">
+    <div class="grid gap-6 desktop:grid-cols-[1fr_3fr] desktop:gap-16">
+      <p class="font-mono text-[10px] text-muted uppercase">The shared thread</p>
+      <div>
+        <p class="max-w-190 font-serif text-3xl leading-tight tracking-tight desktop:text-4xl">{{ .Params.intro }}</p>
+        <nav aria-label="Case study chapters" class="mt-8 flex flex-wrap gap-x-7 gap-y-4 font-mono text-[10px] uppercase">
+          <a class="border-b border-line pb-2 hover:border-accent hover:text-accent" href="#assistant-title"><span class="mr-2 text-muted">01</span>Assistant ↓</a>
+          {{ range .Params.chapters }}<a class="border-b border-line pb-2 hover:border-accent hover:text-accent" href="#{{ .id }}"><span class="mr-2 text-muted">{{ .number }}</span>{{ .name }} ↓</a>{{ end }}
+        </nav>
+      </div>
+    </div>
+    <div class="mt-16 grid gap-6 border-t border-line pt-10 desktop:mt-24 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20 desktop:pt-14">
+      <div><p class="mb-6 font-mono text-[10px] text-muted uppercase">01 / Assistant</p><h2 id="assistant-title" class="max-w-125 scroll-mt-8 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">{{ .Params.assistant.title }}</h2></div>
+      <p class="self-end text-base leading-relaxed text-text-secondary">{{ .Params.assistant.body }}</p>
+    </div>
+    <div class="mt-10 grid gap-8 desktop:grid-cols-3 desktop:gap-10">
+      {{ range .Params.assistant.notes }}<div class="border-t border-line pt-5"><h3 class="text-base font-semibold">{{ .title }}</h3><p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ .body }}</p></div>{{ end }}
+    </div>
+  </section>
+
+  {{ range $index, $chapter := .Params.chapters }}
+  <section id="{{ .id }}" aria-labelledby="{{ .id }}-title" class="scroll-mt-8 border-t border-line {{ if eq $index 0 }}bg-surface-muted{{ end }}">
+    <div class="mx-auto max-w-360 px-4.25 py-16 desktop:px-30 desktop:py-24">
+      <div class="mb-10 grid gap-6 desktop:mb-14 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
+        <div>
+          <p class="mb-6 font-mono text-[10px] text-muted uppercase">{{ .number }} / {{ .name }}</p>
+          <h2 id="{{ .id }}-title" class="max-w-125 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">{{ .title }}</h2>
+        </div>
+        <p class="max-w-145 self-end text-base leading-relaxed text-text-secondary">{{ .description }}</p>
+      </div>
+      {{ partial "case-study-image.html" . }}
+      <div class="mt-10 grid gap-8 desktop:grid-cols-3 desktop:gap-10">
+        {{ range .notes }}<div class="border-t border-line pt-5"><h3 class="text-base font-semibold">{{ .title }}</h3><p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ .body }}</p></div>{{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  <section aria-labelledby="frontend-title" class="bg-night text-ivory">
+    <div class="mx-auto max-w-360 px-4.25 py-16 desktop:px-30 desktop:py-24">
+      <p class="font-mono text-[10px] text-lime uppercase">From design to frontend</p>
+      <div class="mt-7 grid gap-8 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
+        <h2 id="frontend-title" class="max-w-125 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">The answer is only<br><em class="text-lime">part of it.</em></h2>
+        <div class="space-y-5 text-sm leading-relaxed text-experiment-description [&_p]:mb-5">{{ .Content }}</div>
+      </div>
+      <div class="mt-12 grid gap-8 desktop:grid-cols-3 desktop:gap-10">
+        {{ range $i, $principle := .Params.principles }}<div class="border-t border-experiment-border pt-6"><p class="font-mono text-[10px] text-lime">0{{ add $i 1 }}</p><h3 class="mt-4 font-serif text-3xl tracking-tight">{{ .title }}</h3><p class="mt-4 text-sm leading-relaxed text-experiment-description">{{ .body }}</p></div>{{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="reflection-title" class="mx-auto max-w-360 px-4.25 py-20 desktop:px-30 desktop:py-28">
+    <p class="font-mono text-[10px] text-muted uppercase">The throughline</p>
+    <div class="mt-7 grid gap-8 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
+      <h2 id="reflection-title" class="max-w-120 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">Complex tools.<br><em class="text-accent">Clear context.</em></h2>
+      <p class="text-base leading-relaxed text-text-secondary">{{ .Params.reflection }}</p>
+    </div>
+    <div class="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-line pt-6">
+      <a class="font-mono text-xs uppercase hover:text-accent" href="{{ site.Home.RelPermalink }}#work">← Back to selected work</a>
+      <a class="font-serif text-3xl tracking-tight hover:text-accent" href="{{ relref . "/work/warranties" }}">Next chapter: Warranties ↗</a>
+    </div>
+    <p class="mt-8 max-w-180 font-mono text-[10px] leading-relaxed text-muted">Product screenshots from Cape. This case study focuses on my work designing the interfaces and leading frontend development.</p>
+  </section>
+</article>
+{{ end }}

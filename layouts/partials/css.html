@@ -1,0 +1,10 @@
+{{ with resources.Get "css/site.css" }}
+  {{ $styles := . | css.TailwindCSS (dict "minify" (not hugo.IsDevelopment)) }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+  {{ else }}
+    {{ with $styles | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+  {{ end }}
+{{ end }}
