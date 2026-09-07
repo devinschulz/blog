@@ -59,7 +59,7 @@ pull request where you changed the button colour to red and describing it as so,
 why not add an image of the red button? You will likely save yourself time, and
 the reviewer will now have visual aid.
 
-![An example screenshot which represents a small area of a user interface. In this instance,  when a user enables the redact on row level option, single row level redactions can be added to a policy.](/blog/example.png)
+![An example screenshot which represents a small area of a user interface. In this instance,  when a user enables the redact on row level option, single row level redactions can be added to a policy.](/images/blog/example.png)
 
 After implementing a new feature that performs a series of steps, it can be
 helpful to include a short GIF of it in action. Use any screen recording tools
@@ -68,7 +68,7 @@ available to your operating system. On macOS, I like to use
 paid software, but there are other free alternatives like QuickTime or
 open-source like [Kap](https://getkap.co).
 
-![An example GIF displaying a series of steps a user might take while interacting with a feature. In this instance, a user is interacting with a series of checkboxes and verifying an option to select all works as expected.](/blog/example.gif)
+![An example GIF displaying a series of steps a user might take while interacting with a feature. In this instance, a user is interacting with a series of checkboxes and verifying an option to select all works as expected.](/images/blog/example.gif)
 
 ## Testing
 

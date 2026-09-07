@@ -34,22 +34,6 @@ source = 'assets'
 target = 'assets'
 
 [[module.mounts]]
-source = 'static/blog'
-target = 'assets/blog'
-
-[[module.mounts]]
-source = 'src/assets/images/invision'
-target = 'assets/images/invision'
-
-[[module.mounts]]
-source = 'src/assets/images/cape'
-target = 'assets/images/cape'
-
-[[module.mounts]]
-source = 'src/assets/images/warranties'
-target = 'assets/images/warranties'
-
-[[module.mounts]]
 source = 'hugo_stats.json'
 target = 'assets/notwatching/hugo_stats.json'
 disableWatch = true

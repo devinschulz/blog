@@ -152,9 +152,9 @@ typically what a developer is most interested in to set the position, margin or
 padding of an element. There are two main paths that the logic can follow,
 either the selected and hover layer is overlapping each other, or they are not.
 
-![Two layers which intersect](/blog/overlapping.png)
+![Two layers which intersect](/images/blog/overlapping.png)
 
-![Two layers in relation to each other](/blog/relation.png)
+![Two layers in relation to each other](/images/blog/relation.png)
 
 Before I dive into both paths, there are a couple of checks that need to
 happen. First, I need to determine if only selected layers are passed in or both
@@ -209,7 +209,7 @@ starts at zero and increments in a clockwise fashion. Starting from the middle,
 eight, I need to determine where the second layer is in relation to the first
 one.
 
-![Each direction numbered from one to eight in relation to the center](/blog/directions.png)
+![Each direction numbered from one to eight in relation to the center](/images/blog/directions.png)
 
 ```ts
 const BOTTOM = 5;
@@ -239,7 +239,7 @@ the cardinal direction between the two layers. This can be achieved by
 determining the absolute center of both layers and then calculating the angle
 between the two.
 
-![Two shapes with their centers marked and a line drawn between the two to demonstrate the angle](/blog/angle.png)
+![Two shapes with their centers marked and a line drawn between the two to demonstrate the angle](/images/blog/angle.png)
 
 ```ts
 const getDirection = (layer1: Layer, layer2: Layer): number => {
@@ -307,7 +307,7 @@ below determines the central intersection point between two layers. This
 function is essential to center the line vertically or horizontally between two
 facing sides.
 
-![Two layers which intersect](/blog/intersection.png)
+![Two layers which intersect](/images/blog/intersection.png)
 
 ```ts
 const intersection = (layer1: Layer, layer2: Layer): Point => {
@@ -500,8 +500,8 @@ did not display what I had expected to see. Whenever a layer is in-between two
 directions, lets say `TOP` and `TOP_LEFT`, it would fall into the `TOP_LEFT`
 case.
 
-![Actual results](/blog/actual.png)
-![Expected](/blog/expected.png)
+![Actual results](/images/blog/actual.png)
+![Expected](/images/blog/expected.png)
 
 I added an if statement to all four corners (sides 0, 2, 4, and 6) to check if
 either the hover layer overlaps the selected layer or the hover layer extends
