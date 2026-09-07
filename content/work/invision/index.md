@@ -1,9 +1,9 @@
 ---
 title: InVision
-seoTitle: InVision — Frontend Engineering Case Study
+seoTitle: 'InVision: Frontend Engineering Case Study'
 description: Frontend engineering for the space between design and development. A look back at Inspect, Conversations, and Boards.
 role: Senior Software Engineer
-period: 2014 — 2020
+period: 2014–2020
 facts:
   - label: Focus
     value: Frontend engineering
@@ -17,14 +17,14 @@ summary: A design is more than the image on a screen. It’s the spacing, the de
 hero:
   image: images/invision/slide-3.png
   alt: InVision Inspect with a layer tree, a mobile recipe artboard, and panels for dimensions, colors, fonts, and grid settings.
-  caption: Inspect — the design, its structure, and its implementation details in one workspace.
-intro: I joined InVision in December 2014 and worked across Inspect, Conversations, and Boards. Different products, with a shared concern — helping designers, developers, and stakeholders work from the same context.
+  caption: 'Inspect: the design, its structure, and its implementation details in one workspace.'
+intro: 'I joined InVision in December 2014 and worked across Inspect, Conversations, and Boards. Different products, with a shared concern: helping designers, developers, and stakeholders work from the same context.'
 chapters:
   - id: inspect
     number: '01'
     name: Inspect
     title: From a picture to something you can build.
-    description: A finished mockup tells you what an interface looks like. Inspect exposes the structure behind it — layers, dimensions, colors, and typography. The engineering challenge is to make that detail available without losing the design itself.
+    description: 'A finished mockup tells you what an interface looks like. Inspect exposes the structure behind it: layers, dimensions, colors, and typography. The engineering challenge is to make that detail available without losing the design itself.'
     image: images/invision/slide-2.png
     alt: A recipe prototype with the Inspect mode control highlighted in the bottom toolbar.
     caption: A change of mode turns a prototype into a source of implementation detail.
@@ -40,7 +40,7 @@ chapters:
     number: '03'
     name: Boards
     title: Give early ideas room to take shape.
-    description: Not every design conversation begins with a finished screen. Boards offers a space for references, assets, and visual direction. It was another product I worked on — a different kind of interface, with the same need to make creative collaboration feel approachable.
+    description: Not every design conversation begins with a finished screen. Boards offers a space for references, assets, and visual direction. It was another product I worked on, a different kind of interface with the same need to make creative collaboration feel approachable.
     image: images/invision/slide-5.png
     alt: InVision Boards showing layout options and controls for customizing a brand board’s cover image.
     caption: Flexible layouts and presentation controls for collecting and sharing visual direction.
@@ -54,7 +54,7 @@ decisions:
 workflow:
   image: images/invision/slide-6.png
   alt: Craft Sync’s publish dialog over a Sketch document, with artboard selection and a project destination.
-  caption: Workflow context — Craft Sync connected the source design to the shared InVision workspace.
+  caption: 'Workflow context: Craft Sync connected the source design to the shared InVision workspace.'
 reflection: Across these products, the common thread was context. A measurement needs the right edges. A comment needs the right location. A collection of references needs a useful structure. That attention to how an interface is understood is the part of this work I carry forward.
 ---
 

@@ -24,5 +24,5 @@ Full case study: {{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}
 
 A decade of writing, archived with its original dates. Index: {{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}
 
-{{ range first 10 $blog.ByDate.Reverse }}- {{ .Date.Format "2006" }} — [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
+{{ range first 10 $blog.ByDate.Reverse }}- {{ .Date.Format "2006" }}: [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 {{ end }}

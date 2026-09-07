@@ -26,7 +26,7 @@ matter, so it is reconstructed here; posts emit their original Markdown. */ -}}
 {{ with .Params.summary }}{{ . }}
 {{ end }}
 {{- with .Params.hero }}
-Cover image — {{ .alt }}
+Cover image: {{ .alt }}
 {{ end }}
 {{- with .Params.intro }}
 ## The shared thread
@@ -34,7 +34,7 @@ Cover image — {{ .alt }}
 {{ . }}
 {{ end }}
 {{- with .Params.assistant }}
-## 01 / Assistant — {{ .title }}
+## 01 / Assistant: {{ .title }}
 
 {{ .body }}
 {{ range .notes }}
@@ -42,11 +42,11 @@ Cover image — {{ .alt }}
 {{- end }}
 {{ end }}
 {{- range .Params.chapters }}
-## {{ .number }} / {{ .name }} — {{ .title }}
+## {{ .number }} / {{ .name }}: {{ .title }}
 
 {{ .description }}
 {{ with .alt }}
-Screenshot — {{ . }}
+Screenshot: {{ . }}
 {{ end }}
 {{- range .notes }}
 - **{{ .title }}** {{ .body }}
@@ -61,7 +61,7 @@ Screenshot — {{ . }}
 {{- with .Params.workflow }}
 ## The wider workflow
 
-{{ .caption }} Screenshot — {{ .alt }}
+{{ .caption }} Screenshot: {{ .alt }}
 {{ end }}
 {{- with .Params.sunset }}
 ## {{ .kicker }}

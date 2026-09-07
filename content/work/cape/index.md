@@ -1,6 +1,6 @@
 ---
 title: Cape
-seoTitle: Cape — Product Design & Frontend Engineering
+seoTitle: 'Cape: Product Design & Frontend Engineering'
 layout: cape
 description: Product design and frontend leadership for an AI workspace spanning conversation, risk dashboards, and document review.
 role: Designer & Lead Frontend Engineer
@@ -17,8 +17,8 @@ summary: At Cape, I was both the designer and the lead frontend engineer. I desi
 hero:
   image: images/cape/slide-1.png
   alt: Cape Assistant showing the same conversation in a full desktop workspace and a compact side panel, with navigation, message history, and a composer.
-  caption: The assistant — a full workspace and a compact panel, with a familiar conversation structure in both.
-intro: My role connected product design with frontend delivery. Across a chat thread, a customer dashboard, and a document review, the design problem was the same — helping people understand where they are, what they’re looking at, and what they can do next.
+  caption: 'The assistant: a full workspace and a compact panel, with a familiar conversation structure in both.'
+intro: 'My role connected product design with frontend delivery. Across a chat thread, a customer dashboard, and a document review, the design problem was the same: helping people understand where they are, what they’re looking at, and what they can do next.'
 assistant:
   title: One conversation. More than one way in.
   body: The assistant screenshot shows both a full-page view and a narrow companion panel. History and navigation support the larger workspace; the compact view puts the exchange and the composer first. Both retain the model label, message hierarchy, and a recognizable place to respond.

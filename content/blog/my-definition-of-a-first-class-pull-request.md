@@ -206,7 +206,7 @@ Modify this template to fit your needs or check
 [awesome-github-templates](https://github.com/devspace/awesome-github-templates)
 for more examples.
 
-—
+---
 
 I hope this article gave you some ideas of your own on how you can help improve
 the quality of you and your teammates' pull requests. Everyone can benefit from

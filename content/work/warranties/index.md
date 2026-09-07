@@ -1,10 +1,10 @@
 ---
 title: Warranties
-seoTitle: Warranties — App Design & Development Case Study
+seoTitle: 'Warranties: App Design & Development Case Study'
 layout: warranties
-description: Designing and building a small app for tracking the things you own and the coverage that comes with them — from first release to the end of support in 2025.
+description: Designing and building a small app for tracking the things you own and the coverage that comes with them, from first release to the end of support in 2025.
 role: Designer & Developer
-period: 2023 — 2025
+period: 2023–2025
 facts:
   - label: Focus
     value: Product design & app development
@@ -14,12 +14,12 @@ facts:
     value: Support ended in 2025
 headline: Your things,
 headlineAccent: remembered.
-summary: Warranties was a personal product. I designed it and I built it. It kept a record of the things you own — what they cost, where they came from, and how long they stay covered — so that the information is there on the day something breaks.
+summary: 'Warranties was a personal product. I designed it and I built it. It kept a record of the things you own: what they cost, where they came from, and how long they stay covered, so that the information is there on the day something breaks.'
 hero:
   image: images/warranties/slide-1.png
   alt: Warranties running on iPhone, iPad, and Mac, showing an item list grouped by remaining coverage next to an Add Item form.
-  caption: One app across iPhone, iPad, and Mac — the same list, the same detail view, sized to the screen.
-intro: A warranty is only useful if you can find it. The problem was never storage — it was making a record worth keeping up to date, and putting the answer to “is this still covered?” in the first thing you see.
+  caption: One app across iPhone, iPad, and Mac, with the same list and the same detail view, sized to the screen.
+intro: A warranty is only useful if you can find it. The problem was never storage. It was making a record worth keeping up to date, and putting the answer to “is this still covered?” in the first thing you see.
 chapters:
   - id: capture
     number: '01'
@@ -55,7 +55,7 @@ chapters:
     number: '03'
     name: Detail
     title: Sorted by how much time is left.
-    description: The list is grouped by remaining coverage rather than by name or category — within a year, two to five years, no expiry, and expired. That ordering answers the question people open the app with. On iPad and Mac, the same list becomes a sidebar beside the full record.
+    description: 'The list is grouped by remaining coverage rather than by name or category: within a year, two to five years, no expiry, and expired. That ordering answers the question people open the app with. On iPad and Mac, the same list becomes a sidebar beside the full record.'
     image: images/warranties/slide-3.jpg
     alt: Warranties on iPad with a sidebar of items grouped by remaining coverage and a detail pane showing a photo, information rows, and warranty rows.
     caption: The list and the record side by side, with remaining coverage stated in words.
@@ -70,8 +70,8 @@ sunset:
   kicker: End of support
   title: Knowing when<br><em class="text-lime">to stop.</em>
   image: images/warranties/slide-4.png
-  alt: The Warranties app icon — a document with a yellow seal and a green checkmark.
-  caption: Warranties, 2023 — 2025.
+  alt: The Warranties app icon, a document with a yellow seal and a green checkmark.
+  caption: Warranties, 2023–2025.
 principles:
   - title: Legible time
     body: “3 years 8 months 18 days” answers the question. A date is something you still have to do arithmetic on.
@@ -79,7 +79,7 @@ principles:
     body: A record that is easy to start gets started. Detail can be added later, and often is.
   - title: Quiet by design
     body: The app opens to the things you own and nothing else. There is no reason for a utility like this to ask for attention.
-reflection: 'Warranties was small enough that every decision was visible — the number of required fields, the order of the groups, the wording of a duration. That is the useful part of building something end to end at this size, and it is what I take back into larger products: the shape of a record is a design decision, not a schema detail.'
+reflection: 'Warranties was small enough that every decision was visible: the number of required fields, the order of the groups, the wording of a duration. That is the useful part of building something end to end at this size, and it is what I take back into larger products: the shape of a record is a design decision, not a schema detail.'
 ---
 
 I released Warranties in 2023, designed it and built it on my own, and maintained it alongside full-time work. In 2025 I ended support.

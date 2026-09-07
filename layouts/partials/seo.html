@@ -1,6 +1,6 @@
-{{ $title := printf "%s — %s" .Title site.Title }}
-{{ if .IsHome }}{{ $title = printf "%s — %s at Stripe" site.Title site.Params.role }}{{ end }}
-{{ with .Params.seoTitle }}{{ $title = printf "%s — %s" . site.Title }}{{ end }}
+{{ $title := printf "%s · %s" .Title site.Title }}
+{{ if .IsHome }}{{ $title = printf "%s · %s at Stripe" site.Title site.Params.role }}{{ end }}
+{{ with .Params.seoTitle }}{{ $title = printf "%s · %s" . site.Title }}{{ end }}
 {{ $description := .Description | default (printf "%s is a %s at Stripe, building thoughtful product interfaces." site.Title site.Params.role) }}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">
@@ -18,12 +18,12 @@
   <meta property="og:image" content="{{ $image.Permalink }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{{ .Title }} — {{ site.Title }}">
+  <meta property="og:image:alt" content="{{ .Title }} · {{ site.Title }}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:description" content="{{ $description }}">
   <meta name="twitter:image" content="{{ $image.Permalink }}">
-  <meta name="twitter:image:alt" content="{{ .Title }} — {{ site.Title }}">
+  <meta name="twitter:image:alt" content="{{ .Title }} · {{ site.Title }}">
   {{ $person := dict "@type" "Person" "@id" (printf "%s#person" site.Home.Permalink) "name" site.Title "url" site.Home.Permalink "jobTitle" site.Params.role "worksFor" (dict "@type" "Organization" "name" "Stripe") "sameAs" (slice site.Params.github site.Params.linkedin) }}
   {{ $schema := dict "@context" "https://schema.org" "@type" "WebPage" "name" $title "description" $description "url" $canonical }}
   {{ if .IsHome }}
