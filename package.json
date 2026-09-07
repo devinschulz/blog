@@ -12,6 +12,9 @@
   },
   "license": "ISC",
   "author": "Devin Schulz",
+  "engines": {
+    "node": ">=22.13"
+  },
   "scripts": {
     "build": "hugo",
     "serve": "hugo server",
