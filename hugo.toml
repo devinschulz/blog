@@ -22,6 +22,21 @@ style = "github-dark"
 [permalinks]
 blog = "/blog/:slug/"
 
+[outputFormats.llms]
+mediaType = 'text/plain'
+baseName = 'llms'
+isPlainText = true
+
+[outputFormats.md]
+mediaType = 'text/markdown'
+baseName = 'index'
+isPlainText = true
+
+[outputs]
+home = ['html', 'rss', 'llms', 'md']
+section = ['html', 'rss', 'md']
+page = ['html', 'md']
+
 [build.buildStats]
 enable = true
 

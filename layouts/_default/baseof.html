@@ -14,6 +14,8 @@
     {{ with (templates.Defer (dict "key" "tailwind")) }}
       {{ partial "css.html" . }}
     {{ end }}
+    {{ with .OutputFormats.Get "md" }}<link rel="alternate" type="text/markdown" href="{{ .RelPermalink }}" title="{{ $.Title }} as Markdown">{{ end }}
+    {{ if .IsHome }}{{ with .OutputFormats.Get "llms" }}<link rel="alternate" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}{{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
   <body class="bg-paper font-sans leading-normal text-ink antialiased [&_a:focus-visible]:outline-3 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-peach [&_button:focus-visible]:outline-3 [&_button:focus-visible]:outline-offset-4 [&_button:focus-visible]:outline-peach [&_button]:cursor-pointer motion-reduce:**:transition-none">
