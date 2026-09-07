@@ -1,0 +1,52 @@
+{{ define "main" }}
+  <section id="top" data-hero-motion data-motion="paused" aria-labelledby="hero-title" class="group/hero relative flex min-h-[calc(100svh-61px)] flex-col overflow-hidden bg-paper px-4.25 py-5 desktop:min-h-[calc(100vh-80px)] desktop:px-7.75 desktop:pt-5.5 desktop:pb-6">
+    <span aria-hidden="true" data-parallax="0.18" class="pointer-events-none absolute top-[-31vw] right-[-25vw] aspect-square w-[80vw] [--parallax-y:0px] motion-safe:translate-y-(--parallax-y) desktop:top-[-20vw] desktop:right-[-9vw] desktop:w-[49vw]">
+      <span class="block size-full rounded-full bg-violet motion-safe:animate-hero-violet group-data-[motion=paused]/hero:[animation-play-state:paused]"></span>
+    </span>
+    <span aria-hidden="true" data-parallax="-0.12" class="pointer-events-none absolute right-[2vw] bottom-[15%] aspect-square w-[27vw] [--parallax-y:0px] motion-safe:translate-y-(--parallax-y) desktop:right-[11vw] desktop:bottom-[17%] desktop:w-[15vw]">
+      <span class="block size-full rounded-full bg-peach motion-safe:animate-hero-peach group-data-[motion=paused]/hero:[animation-play-state:paused]"></span>
+    </span>
+    <div class="relative z-2 flex justify-between font-mono text-[10px] uppercase">
+      <span>Personal site</span><span class="hidden desktop:inline">{{ site.Params.role }}</span><span>Est. 2012</span>
+    </div>
+    <div class="relative z-2 mt-auto">
+      <p class="mb-4.25 text-sm">Currently building at <strong class="text-accent">Stripe</strong></p>
+      <h1 id="hero-title" class="max-w-245 font-serif text-[clamp(63px,18vw,91px)] leading-[0.78] font-medium tracking-[-0.075em] desktop:text-[clamp(64px,9.9vw,153px)]">Making serious<br>software feel<br><em class="text-accent">human.</em></h1>
+    </div>
+    <div class="relative z-2 mt-13.75 pb-10.75 desktop:mt-17.5 desktop:grid desktop:grid-cols-2 desktop:items-end desktop:gap-[8%] desktop:pb-13">
+      <p class="max-w-67.5 text-sm leading-normal desktop:max-w-80 desktop:text-[15px]">I’m Devin, a {{ site.Params.role }} at Stripe. I build product interfaces where clarity, trust, and the tiny details are not optional.</p>
+      <a class="mt-5 inline-block justify-self-end border-b border-ink pb-1.25 font-mono text-[11px] uppercase desktop:mt-0" href="#states">See how I think <span class="text-[17px] text-accent" aria-hidden="true">↓</span></a>
+    </div>
+    {{ $bannerText := "Thoughtful interfaces. Down to the last detail." }}
+    <div aria-hidden="true" class="absolute right-[-5%] bottom-0 left-[-5%] z-4 flex -rotate-2 gap-22.5 overflow-hidden bg-lime text-night py-2.75 font-mono text-[11px] whitespace-nowrap uppercase">
+      {{ range seq 32 }}
+        <span class="shrink-0 pl-11.25">{{ $bannerText }}</span>
+      {{ end }}
+    </div>
+  </section>
+
+  <section aria-label="Introduction" class="px-4.25 pt-20.75 pb-19.25 desktop:grid desktop:grid-cols-[25%_1fr] desktop:gap-[8%] desktop:px-[8.33%] desktop:pt-37.5 desktop:pb-33.75">
+    <p class="font-mono text-[10px] text-muted uppercase">01 — Perspective</p>
+    <div class="mt-6.75 desktop:mt-0 desktop:grid desktop:grid-cols-[1.5fr_0.66fr] desktop:gap-[12%]">
+      <h2 class="font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">Most people see a screen.<br>I see every state it will <em class="text-accent">become.</em></h2>
+      <p class="mt-6.5 max-w-75 text-[15px] leading-[1.55] desktop:mt-2.5">That’s what frontend engineering means to me: turning an idea into an experience that stays legible under pressure—from first input to imperfect connection to final confirmation.</p>
+    </div>
+  </section>
+
+  {{ partial "state-shift.html" . }}
+
+  <section aria-labelledby="stripe-title" class="bg-violet px-4.25 pt-19.75 pb-19.5 text-ivory desktop:px-[8.33%] desktop:py-31.5">
+    <p class="font-mono text-[10px] text-stripe-kicker uppercase">03 — Current chapter</p>
+    <div class="mt-7.75 mb-11.75 desktop:mt-12.5 desktop:mb-20 desktop:ml-[16.66%] desktop:grid desktop:grid-cols-[1.4fr_0.65fr] desktop:gap-[11%]">
+      <div>
+        <p class="mb-3.25 font-mono text-[13px] text-stripe-label">At <strong class="text-lime">Stripe</strong></p>
+        <h2 id="stripe-title" class="font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">Building the<br>interfaces behind<br><em class="text-lime">internet commerce.</em></h2>
+      </div>
+      <p class="mt-7 max-w-82.5 text-[15px] leading-[1.55] text-stripe-description desktop:mt-3">I’m a {{ site.Params.role }} at Stripe, where I work on products that have to earn trust through every interaction. This personal site is my own space to share the craft, the history, and the curiosity that I bring to that work.</p>
+    </div>
+    <p class="border-t border-stripe-border pt-3.25 text-[9px] leading-[1.4] text-stripe-note">Work referenced here reflects my personal perspective and public career history.</p>
+  </section>
+
+  {{ partial "work.html" . }}
+  {{ partial "archive.html" . }}
+{{ end }}

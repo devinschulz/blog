@@ -1,7 +1,7 @@
 ---
 title: Welcome Readers
 description: Explore the journey of a designer-turned-developer as they tackle the challenges of creating a custom blog, choosing Hugo for its efficiency. Dive into this blog for insights into web development, best practices, and the balance between professional growth and personal commitments. Join a journey of learning, sharing, and community in the realm of frontend development.
-pubDate: 2018-06-17
+date: 2018-06-17
 ---
 
 I'm a designer turned web developer that specializes in frontend applications.

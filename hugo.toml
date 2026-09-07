@@ -1,0 +1,51 @@
+baseURL = "https://devinschulz.com/"
+publishDir = "dist"
+locale = "en-CA"
+title = "Devin Schulz"
+enableRobotsTXT = true
+enableGitInfo = true
+
+disableKinds = ["taxonomy", "term"]
+
+[params]
+email = "hello@devinschulz.com"
+github = "https://github.com/devinschulz"
+linkedin = "https://www.linkedin.com/in/devinschulz/"
+role = "Senior Frontend Engineer"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[permalinks]
+blog = "/blog/:slug/"
+
+[build.buildStats]
+enable = true
+
+[[build.cachebusters]]
+source = 'assets/notwatching/hugo_stats\.json'
+target = 'css'
+
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+
+[[module.mounts]]
+source = 'src/assets/images/invision'
+target = 'assets/images/invision'
+
+[[module.mounts]]
+source = 'src/assets/images/cape'
+target = 'assets/images/cape'
+
+[[module.mounts]]
+source = 'src/assets/images/warranties'
+target = 'assets/images/warranties'
+
+[[module.mounts]]
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'
+disableWatch = true
+
+[security.exec]
+allow = ['^go$', '^git$', '^node$', '^tailwindcss$']

@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <article class="mx-auto max-w-222.5 px-4.25 py-20 desktop:px-8 desktop:py-32.5">
+    <header class="max-w-180">
+      <p class="font-mono text-[10px] text-muted uppercase">Historical writing · {{ .Date.Format "January 2, 2006" }}</p>
+      <h1 class="my-6.75 font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">{{ .Title }}</h1>
+      {{ with .Description }}<p class="max-w-155 font-serif text-[22px] leading-[1.4] font-medium text-text-secondary">{{ . }}</p>{{ end }}
+    </header>
+    <div class="prose dark:prose-invert mt-11.25 max-w-165 text-base leading-[1.7] text-ink prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-[-0.04em] prose-headings:text-ink prose-h2:mt-15 prose-h2:text-4xl prose-a:text-accent prose-pre:overflow-x-auto prose-pre:bg-surface-muted prose-pre:p-4.5 prose-pre:text-ink prose-code:font-mono prose-code:text-[13px] prose-code:before:content-none prose-code:after:content-none prose-img:h-auto prose-img:max-w-full desktop:mt-17.5 desktop:text-[17px]">{{ .Content }}</div>
+    <a class="mt-20 inline-block border-b border-ink pb-1 font-mono text-[10px] uppercase" href="{{ site.Home.RelPermalink }}#archive">← Back to the archive</a>
+  </article>
+{{ end }}

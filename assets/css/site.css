@@ -1,0 +1,161 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@source "hugo_stats.json";
+@source "../../layouts";
+@source "../js";
+
+@theme {
+  --color-ink: #181a21;
+  --color-paper: #f5f1e8;
+  --color-ivory: #fffefb;
+  --color-violet: #635bff;
+  --color-peach: #f7a886;
+  --color-lime: #d6f752;
+  --color-muted: #6c6e76;
+  --color-line: rgb(24 26 33 / 22%);
+  /* Fixed artwork colors stay separate from adaptive text and surfaces. */
+  --color-night: #181a21;
+  --color-accent: #635bff;
+  /* Shared surfaces and text */
+  --color-surface-muted: #e5e2da;
+  --color-surface-hover: #f0eee7;
+  --color-text-secondary: #5d626e;
+  --color-archive-muted: #5f6671;
+  --color-footer-text: #d2d3d5;
+
+  /* State switcher */
+  --color-experiment-kicker: #b9bdc7;
+  --color-experiment-description: #c8cbd3;
+  --color-experiment-panel: #2a2d37;
+  --color-experiment-border: #535664;
+  --color-experiment-control: #c3c6d0;
+  --color-experiment-counter: #8990a1;
+  --color-experiment-note: #c7cbd4;
+  --color-demo-surface: #f5f0e7;
+  --color-demo-ink: #242631;
+  --color-demo-border: #d3d0c9;
+  --color-demo-toolbar: #606572;
+  --color-demo-muted: #69717a;
+  --color-demo-description: #636772;
+  --color-demo-card-border: #d2d1cb;
+  --color-demo-card: #fffefa;
+  --color-demo-label: #4b505a;
+  --color-demo-input-border: #b9bec3;
+  --color-demo-input-text: #1f2530;
+  --color-demo-input: #ffffff;
+  --color-demo-help: #707682;
+  --color-demo-step: #727884;
+  --color-success: #238647;
+  --color-success-ink: #143d27;
+  --color-danger: #cb3d42;
+  --color-danger-action: #cb3d42;
+  --color-danger-surface: #fff5f5;
+  --color-processing: #c8c5ff;
+  --color-processing-ink: #312d93;
+
+  /* Project illustrations */
+  --color-cape-surface: #cad8fa;
+  --color-cape-window: #20244a;
+  --color-cape-dot: #b9bef1;
+  --color-cape-border: #69729f;
+  --color-cape-muted: #c1c6e8;
+  --color-warranties-surface: #ffe6bb;
+  --color-warranties-frame: #1e2731;
+  --color-warranties-screen: #f5f5e9;
+  --color-warranties-icon: #94c2ac;
+  --color-warranties-icon-ink: #225142;
+  --color-warranties-muted: #697876;
+  --color-warranties-card: #49738d;
+  --color-warranties-card-muted: #cee1ed;
+  --color-invision-surface: #edf1ef;
+  --color-invision-grid: #bad4e9;
+  --color-invision-placeholder: #d7e4ed;
+
+  /* Stripe chapter */
+  --color-stripe-kicker: #ddd9ff;
+  --color-stripe-label: #e3e1ff;
+  --color-stripe-description: #edecff;
+  --color-stripe-border: #aba6ff;
+  --color-stripe-note: #dbd9ff;
+
+  /* Illustration and demo shadows reuse the palette above. */
+  --shadow-cape: 12px 14px 0
+    color-mix(in srgb, var(--color-night) 17%, transparent);
+  --shadow-warranties: 9px 12px 0 var(--color-warranties-frame);
+  --shadow-invision: 7px 7px 0
+    color-mix(in srgb, var(--color-violet) 18%, transparent);
+  --shadow-demo-card: 7px 8px 0
+    color-mix(in srgb, var(--color-night) 9%, transparent);
+
+  --font-mono: 'DM Mono', monospace;
+  --font-sans: 'Manrope', Arial, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --breakpoint-desktop: 781px;
+
+  --animate-hero-violet: hero-drift-violet 24s ease-in-out -4s infinite;
+  --animate-hero-peach: hero-drift-peach 24s linear -6s infinite;
+
+  @keyframes hero-drift-violet {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-6%, 6%);
+    }
+    50% {
+      transform: translate(-2%, 10%);
+    }
+    75% {
+      transform: translate(4%, 4%);
+    }
+  }
+
+  @keyframes hero-drift-peach {
+    from {
+      transform: translateY(-15%) rotate(0turn)
+        translateX(clamp(24px, 4vw, 64px));
+    }
+    to {
+      transform: translateY(-15%) rotate(1turn)
+        translateX(clamp(24px, 4vw, 64px));
+    }
+  }
+}
+
+@layer base {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-ink: #f1eee7;
+      --color-paper: #111319;
+      --color-accent: #aaa4ff;
+      --color-muted: #a5a8b3;
+      --color-line: rgb(241 238 231 / 22%);
+      --color-surface-muted: #1d2028;
+      --color-surface-hover: #292d38;
+      --color-text-secondary: #b8bcc7;
+      --color-archive-muted: #b8bcc7;
+
+      --color-demo-surface: #20232d;
+      --color-demo-ink: #f1eee7;
+      --color-demo-border: #454b59;
+      --color-demo-toolbar: #b8bdc9;
+      --color-demo-muted: #aab2c0;
+      --color-demo-description: #bbc0cc;
+      --color-demo-card-border: #505766;
+      --color-demo-card: #2a2e3a;
+      --color-demo-label: #d4d8e1;
+      --color-demo-input: #191d26;
+      --color-demo-input-border: #737c8d;
+      --color-demo-input-text: #f1eee7;
+      --color-demo-help: #adb5c4;
+      --color-demo-step: #adb5c4;
+      --color-success: #63d08b;
+      --color-danger: #ff858a;
+      --color-danger-surface: #3c232c;
+      --color-processing: #393563;
+      --color-processing-ink: #dfdcff;
+    }
+  }
+}

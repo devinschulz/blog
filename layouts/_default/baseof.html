@@ -1,0 +1,32 @@
+{{ $siteTitle := printf "%s — %s at Stripe" site.Title site.Params.role }}
+{{ $siteDescription := printf "%s is a %s at Stripe." site.Title site.Params.role }}
+<!doctype html>
+<html lang="{{ site.Language.Lang }}" class="scheme-light-dark scroll-smooth motion-reduce:scroll-auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ $siteDescription }}{{ end }}">
+    <title>{{ if .IsHome }}{{ $siteTitle }}{{ else }}{{ .Title }} — Devin Schulz{{ end }}</title>
+    {{ with .Params.canonical }}<link rel="canonical" href="{{ . }}">{{ else }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+    {{ with (templates.Defer (dict "key" "tailwind")) }}
+      {{ partial "css.html" . }}
+    {{ end }}
+    {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
+  </head>
+  <body class="bg-paper font-sans leading-normal text-ink antialiased [&_a:focus-visible]:outline-3 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-peach [&_button:focus-visible]:outline-3 [&_button:focus-visible]:outline-offset-4 [&_button:focus-visible]:outline-peach [&_button]:cursor-pointer motion-reduce:**:transition-none">
+    <a class="fixed top-3 left-3 z-100 translate-y-[-180%] bg-night px-3.25 py-2.5 text-ivory focus:translate-y-0" href="#content">Skip to content</a>
+    {{ partial "header.html" . }}
+    <main id="content">{{ block "main" . }}{{ end }}</main>
+    {{ partial "footer.html" . }}
+    {{ $scripts := resources.Get "js/state-shift.js" | minify | fingerprint }}
+    <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>
+    {{ if .IsHome }}
+      {{ $heroMotion := resources.Get "js/hero-motion.js" | minify | fingerprint }}
+      <script src="{{ $heroMotion.RelPermalink }}" integrity="{{ $heroMotion.Data.Integrity }}" defer></script>
+    {{ end }}
+  </body>
+</html>
