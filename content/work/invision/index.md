@@ -1,5 +1,6 @@
 ---
 title: InVision
+seoTitle: InVision — Frontend Engineering Case Study
 description: Frontend engineering for the space between design and development. A look back at Inspect, Conversations, and Boards.
 role: Senior Software Engineer
 period: 2014 — 2020

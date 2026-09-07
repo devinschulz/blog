@@ -1,5 +1,6 @@
 ---
 title: Warranties
+seoTitle: Warranties — App Design & Development Case Study
 layout: warranties
 description: Designing and building a small app for tracking the things you own and the coverage that comes with them — from first release to the end of support in 2025.
 role: Designer & Developer

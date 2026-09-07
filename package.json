@@ -14,7 +14,8 @@
   "author": "Devin Schulz",
   "scripts": {
     "build": "hugo",
-    "serve": "hugo server"
+    "serve": "hugo server",
+    "check": "npm run build && node scripts/check-site.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",

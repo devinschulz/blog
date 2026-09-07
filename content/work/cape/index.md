@@ -1,5 +1,6 @@
 ---
 title: Cape
+seoTitle: Cape — Product Design & Frontend Engineering
 layout: cape
 description: Product design and frontend leadership for an AI workspace spanning conversation, risk dashboards, and document review.
 role: Designer & Lead Frontend Engineer

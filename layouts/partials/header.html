@@ -1,9 +1,18 @@
-<header class="grid h-15.25 grid-cols-[1fr_auto] items-center border-b border-line px-4.25 desktop:h-20 desktop:grid-cols-[1fr_auto_1fr] desktop:px-7.75">
+<header class="relative z-20 grid h-15.25 grid-cols-[1fr_auto] items-center border-b border-line bg-paper px-4.25 desktop:h-20 desktop:grid-cols-[1fr_auto_1fr] desktop:px-7.75">
   <a class="font-serif text-2xl leading-none font-medium tracking-[-0.065em]" href="{{ site.Home.RelPermalink }}" aria-label="Devin Schulz, home">Devin <em class="text-accent">Schulz</em></a>
   <nav class="hidden gap-6.5 text-xs desktop:flex [&_a:hover]:text-accent" aria-label="Main navigation">
     <a href="{{ site.Home.RelPermalink }}#states">State Shift</a>
     <a href="{{ site.Home.RelPermalink }}#work">Selected work</a>
     <a href="{{ site.Home.RelPermalink }}#archive">Archive</a>
   </nav>
-  <a href="mailto:{{ site.Params.email }}" class="justify-self-end text-xs hover:text-accent">Say hello <span class="text-[17px] text-accent" aria-hidden="true">↗</span></a>
+  <a href="mailto:{{ site.Params.email }}" class="hidden justify-self-end text-xs hover:text-accent desktop:block">Say hello <span class="text-[17px] text-accent" aria-hidden="true">↗</span></a>
+  <details data-mobile-menu class="group desktop:hidden">
+    <summary class="flex min-h-11 cursor-pointer list-none items-center gap-3 px-2 font-mono text-xs focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">Menu <span aria-hidden="true" class="text-lg text-accent group-open:rotate-45">+</span></summary>
+    <nav aria-label="Mobile navigation" class="absolute inset-x-0 top-full grid border-b border-line bg-paper px-4.25 py-4 text-sm [&_a]:flex [&_a]:min-h-12 [&_a]:items-center [&_a:hover]:text-accent">
+      <a href="{{ site.Home.RelPermalink }}#states">State Shift</a>
+      <a href="{{ site.Home.RelPermalink }}#work">Selected work</a>
+      <a href="{{ site.Home.RelPermalink }}#archive">Archive</a>
+      <a href="mailto:{{ site.Params.email }}">Say hello ↗</a>
+    </nav>
+  </details>
 </header>

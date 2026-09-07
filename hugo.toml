@@ -16,6 +16,9 @@ role = "Senior Frontend Engineer"
 [markup.goldmark.renderer]
 unsafe = true
 
+[markup.highlight]
+style = "github-dark"
+
 [permalinks]
 blog = "/blog/:slug/"
 
@@ -29,6 +32,10 @@ target = 'css'
 [[module.mounts]]
 source = 'assets'
 target = 'assets'
+
+[[module.mounts]]
+source = 'static/blog'
+target = 'assets/blog'
 
 [[module.mounts]]
 source = 'src/assets/images/invision'
