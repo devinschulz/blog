@@ -18,9 +18,13 @@
   "scripts": {
     "build": "hugo",
     "serve": "hugo server",
-    "check": "npm run build && node scripts/check-site.mjs"
+    "check": "npm run build && node scripts/check-site.mjs",
+    "check:a11y": "npm run build && playwright test",
+    "check:all": "npm run check && npm run check:a11y"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "hugo-bin": "^0.162.0",

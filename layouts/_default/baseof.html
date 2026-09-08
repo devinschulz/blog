@@ -20,13 +20,15 @@
     {{ if .IsHome }}{{ with .OutputFormats.Get "llms" }}<link rel="alternate" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}{{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
-  <body class="bg-paper font-sans leading-normal text-ink antialiased [&_a:focus-visible]:outline-3 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-peach [&_button:focus-visible]:outline-3 [&_button:focus-visible]:outline-offset-4 [&_button:focus-visible]:outline-peach [&_button]:cursor-pointer motion-reduce:**:transition-none">
+  <body class="bg-paper font-sans leading-normal wrap-anywhere text-ink antialiased [&_button:not(:disabled)]:cursor-pointer motion-reduce:**:transition-none">
     <a class="fixed top-3 left-3 z-100 translate-y-[-180%] bg-night px-3.25 py-2.5 text-ivory focus:translate-y-0" href="#content">Skip to content</a>
     {{ partial "header.html" . }}
-    <main id="content">{{ block "main" . }}{{ end }}</main>
+    <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
     {{ $navigation := resources.Get "js/navigation.js" | minify | fingerprint }}
     <script src="{{ $navigation.RelPermalink }}" integrity="{{ $navigation.Data.Integrity }}" defer></script>
+    {{ $motion := resources.Get "js/motion.js" | minify | fingerprint }}
+    <script src="{{ $motion.RelPermalink }}" integrity="{{ $motion.Data.Integrity }}" defer></script>
     {{ if .IsHome }}
       {{ $scripts := resources.Get "js/state-shift.js" | minify | fingerprint }}
       <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>

@@ -1,5 +1,5 @@
 <header class="mx-auto max-w-360 px-4.25 pt-9 pb-12 desktop:px-30 desktop:pt-14 desktop:pb-20">
-  <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] uppercase">
+  <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-xs uppercase">
     <a class="border-b border-line pb-1 hover:text-accent" href="{{ site.Home.RelPermalink }}#work">← Selected work</a>
     <span class="text-muted">Case study / {{ .Title }}</span>
   </div>
@@ -9,8 +9,8 @@
   <h1 class="mt-7 max-w-260 font-serif text-[clamp(56px,9vw,128px)] leading-[0.88] font-medium tracking-[-0.065em]">{{ .Params.headline }}<br><em class="text-accent">{{ .Params.headlineAccent }}</em></h1>
   <div class="mt-10 grid gap-9 desktop:mt-14 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
     <dl class="grid grid-cols-2 content-start gap-x-5 gap-y-6 text-xs">
-      <div><dt class="mb-2 font-mono text-[10px] text-muted uppercase">My role</dt><dd>{{ .Params.role }}</dd></div>
-      {{ range .Params.facts }}<div><dt class="mb-2 font-mono text-[10px] text-muted uppercase">{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}
+      <div><dt class="mb-2 font-mono text-xs text-muted uppercase">My role</dt><dd>{{ .Params.role }}</dd></div>
+      {{ range .Params.facts }}<div><dt class="mb-2 font-mono text-xs text-muted uppercase">{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}
     </dl>
     <p class="max-w-145 text-base leading-relaxed text-text-secondary desktop:text-lg">{{ .Params.summary }}</p>
   </div>

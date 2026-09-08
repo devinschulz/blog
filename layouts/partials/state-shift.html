@@ -1,52 +1,52 @@
 <section id="states" aria-labelledby="states-title" class="bg-night px-4.25 pt-19.75 pb-23.5 text-ivory desktop:px-[8.33%] desktop:pt-28">
-  <div class="flex justify-between font-mono text-[10px] text-experiment-kicker uppercase"><p>02 / A small experiment</p><p>Try the state switcher</p></div>
+  <div class="flex justify-between font-mono text-xs text-experiment-kicker uppercase"><p>02 / A small experiment</p><p>Try the state switcher</p></div>
   <div class="mt-7.75 mb-11.75 desktop:mt-13.5 desktop:mb-16 desktop:ml-[16.66%] desktop:grid desktop:grid-cols-[1.5fr_0.55fr] desktop:gap-[12%]">
     <h2 id="states-title" class="font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">State <em class="text-lime">Shift</em></h2>
-    <p class="mt-5.75 max-w-71.25 text-sm leading-[1.48] text-experiment-description desktop:mt-2">A single interface has more than one moment. Toggle the conditions below. The work is in making each one feel intentional.</p>
+    <p id="demo-description" class="mt-5.75 max-w-71.25 text-sm leading-[1.48] text-experiment-description desktop:mt-2">A local, interactive demo. Try each state, or edit the display name and continue. Saving is simulated; nothing is sent or stored.</p>
   </div>
   <div class="mx-auto max-w-280 desktop:grid desktop:grid-cols-[24%_1fr]">
-    <div data-state-controls role="group" aria-label="Interface states" class="grid grid-cols-2 gap-x-3.5 bg-experiment-panel p-3.75 desktop:flex desktop:flex-col desktop:px-5 desktop:py-4.25">
+    <div hidden data-state-controls role="group" aria-label="Interface states" class="grid grid-cols-2 gap-x-3.5 bg-experiment-panel p-3.75 desktop:flex desktop:flex-col desktop:px-5 desktop:py-4.25">
       {{ range $index, $item := slice (dict "state" "default" "label" "Ready") (dict "state" "focus" "label" "Keyboard") (dict "state" "error" "label" "Recovery") (dict "state" "processing" "label" "Waiting") (dict "state" "success" "label" "Done") }}
-        <button type="button" data-state="{{ .state }}" aria-pressed="{{ eq $index 0 }}" class="flex gap-3.25 border-b border-experiment-border bg-transparent py-2.5 text-left text-xs text-experiment-control transition-colors duration-200 hover:text-lime aria-pressed:text-lime desktop:py-3">
-          <span class="font-mono text-[10px] text-experiment-counter">{{ printf "%02d" (add $index 1) }}</span>{{ .label }}
+        <button type="button" data-state="{{ .state }}" aria-pressed="{{ eq $index 0 }}" class="flex min-h-11 gap-3.25 border-b border-experiment-border bg-transparent py-2.5 text-left text-xs text-experiment-control transition-colors duration-200 hover:text-lime aria-pressed:text-lime desktop:py-3">
+          <span aria-hidden="true" class="font-mono text-xs text-experiment-counter">{{ printf "%02d" (add $index 1) }}</span>{{ .label }}
         </button>
       {{ end }}
     </div>
-    <div data-demo data-state="default" class="group/demo relative min-h-115 overflow-hidden bg-demo-surface text-demo-ink desktop:min-h-120">
-      <div class="flex h-9.75 items-center gap-1.75 border-b border-demo-border px-4 font-mono text-[10px] text-demo-toolbar">
-        <span class="text-base text-accent group-data-[state=processing]/demo:animate-spin motion-reduce:animate-none">◒</span>
+    <div data-demo data-state="default" class="group/demo relative min-h-115 overflow-hidden bg-demo-surface text-demo-ink desktop:col-start-2 desktop:min-h-120">
+      <div class="flex min-h-9.75 items-center gap-1.75 border-b border-demo-border px-4 py-2 font-mono text-xs text-demo-toolbar">
+        <span aria-hidden="true" class="text-base text-accent group-data-[state=processing]/demo:animate-spin motion-reduce:animate-none">◒</span>
         <span>Northstar Workspace</span>
         <span class="ml-auto text-success group-data-[state=focus]/demo:text-accent group-data-[state=error]/demo:text-danger">● Secure</span>
       </div>
-      <div class="grid min-h-105.25 grid-cols-1 items-center gap-[8%] px-[10%] py-6.5 desktop:min-h-100.25 desktop:grid-cols-[1fr_0.85fr] desktop:px-[11%] desktop:py-7.5">
+      <div class="grid min-h-105.25 grid-cols-1 items-center gap-6 px-[10%] py-6.5 desktop:min-h-100.25 desktop:grid-cols-[1fr_0.85fr] desktop:gap-x-[8%] desktop:px-[11%] desktop:py-7.5">
         <div>
-          <p class="mb-2.75 font-mono text-[10px] text-demo-muted uppercase">New workspace</p>
-          <h3 class="font-serif text-[54px] leading-[0.8] font-medium tracking-[-0.065em] desktop:text-[clamp(43px,5vw,68px)]">Set up your<br>profile.</h3>
+          <p class="mb-2.75 font-mono text-xs text-demo-muted uppercase">New workspace</p>
+          <h3 class="font-serif text-[54px] leading-none font-medium tracking-[-0.065em] desktop:text-[clamp(43px,5vw,68px)]">Set up your<br>profile.</h3>
           <p data-state-message aria-live="polite" class="mt-3.75 max-w-65 text-xs leading-normal text-demo-description desktop:mt-5.5">A quiet, clear starting point for a job that matters.</p>
         </div>
-        <div role="group" aria-label="Example profile form" class="mt-5.5 max-w-65 rounded-md border border-demo-card-border bg-demo-card p-4.5 shadow-demo-card desktop:mt-0 desktop:max-w-none">
-          <label class="mb-3.25 block text-[10px] text-demo-label">Email address
-            <input type="email" value="you@example.com" readonly class="mt-1.5 block w-full rounded-[3px] border border-demo-input-border bg-demo-input p-2 font-sans text-[11px] text-demo-input-text">
+        <div data-demo-form role="group" aria-label="Example profile form" aria-describedby="demo-description" aria-busy="false" class="mt-5.5 min-w-0 max-w-65 rounded-md border border-demo-card-border bg-demo-card p-4.5 shadow-demo-card desktop:mt-0 desktop:max-w-none">
+          <label class="mb-3.25 block text-xs text-demo-label">Email address
+            <input type="email" value="you@example.com" readonly class="mt-1.5 block min-h-11 w-full rounded-[3px] border border-demo-input-border bg-demo-input p-2 font-sans text-base text-demo-input-text">
           </label>
-          <label class="mb-3.25 block text-[10px] text-demo-label">Display name
-            <input type="text" value="Devin" readonly class="mt-1.5 block w-full rounded-[3px] border border-demo-input-border bg-demo-input p-2 font-sans text-[11px] text-demo-input-text group-data-[state=focus]/demo:outline-3 group-data-[state=focus]/demo:outline-offset-3 group-data-[state=focus]/demo:outline-accent group-data-[state=error]/demo:border-danger group-data-[state=error]/demo:bg-danger-surface">
+          <label class="mb-3.25 block text-xs text-demo-label">Display name
+            <input id="demo-name" type="text" value="Devin" readonly aria-invalid="false" aria-describedby="demo-name-hint" autocomplete="off" class="mt-1.5 block min-h-11 w-full rounded-[3px] border border-demo-input-border bg-demo-input p-2 font-sans text-base text-demo-input-text group-data-[state=focus]/demo:border-dashed group-data-[state=focus]/demo:border-accent group-data-[state=error]/demo:border-danger group-data-[state=error]/demo:bg-danger-surface">
           </label>
-          <p role="alert" class="-mt-1.5 mb-3 hidden text-[9px] text-danger group-data-[state=error]/demo:block">Use at least 2 characters.</p>
-          <button type="button" class="block w-full rounded-[3px] bg-violet p-2.5 font-sans text-[10px] font-semibold text-white group-data-[state=focus]/demo:outline-3 group-data-[state=focus]/demo:outline-offset-3 group-data-[state=focus]/demo:outline-accent group-data-[state=error]/demo:bg-danger-action group-data-[state=processing]/demo:pointer-events-none group-data-[state=processing]/demo:bg-processing group-data-[state=processing]/demo:text-processing-ink group-data-[state=success]/demo:bg-lime group-data-[state=success]/demo:text-success-ink">
-            <span class="group-data-[state=processing]/demo:hidden group-data-[state=success]/demo:hidden">Continue</span>
-            <span class="hidden group-data-[state=processing]/demo:inline">Saving...</span>
-            <span class="hidden group-data-[state=success]/demo:inline">Saved <b>✓</b></span>
+          <p id="demo-name-hint" class="mb-3 text-xs text-demo-help">Use at least 2 characters.</p>
+          <p id="demo-name-error" hidden class="-mt-1.5 mb-3 text-xs text-danger">Display name is too short.</p>
+          <button hidden data-demo-continue type="button" aria-disabled="false" class="block min-h-11 w-full rounded-[3px] bg-violet p-2.5 font-sans text-sm font-semibold text-white group-data-[state=error]/demo:bg-danger-action group-data-[state=processing]/demo:bg-processing group-data-[state=processing]/demo:text-processing-ink group-data-[state=success]/demo:bg-lime group-data-[state=success]/demo:text-success-ink">
+            Continue
           </button>
-          <p class="mt-2.75 text-center text-[8px] text-demo-help">Your information is kept private.</p>
+          <p class="mt-2.75 text-center text-xs text-demo-help">Demo only. Nothing leaves this page.</p>
+          <noscript><p class="mt-3 text-sm">This is a static preview. JavaScript enables the state switcher.</p></noscript>
         </div>
       </div>
-      <div class="flex gap-2.25 border-t border-demo-border px-[8%] py-2.5 font-mono text-[8px] text-demo-step desktop:gap-4.5 desktop:px-[11%] desktop:py-3 desktop:text-[9px]">
+      <div data-demo-steps class="flex flex-wrap gap-2.25 border-t border-demo-border px-[8%] py-2.5 font-mono text-xs text-demo-step desktop:gap-4.5 desktop:px-[11%] desktop:py-3">
         <span class="text-accent group-data-[state=success]/demo:text-success">1 / Profile</span><span>2 / Preferences</span><span>3 / Complete</span>
       </div>
     </div>
   </div>
   <div class="mx-auto flex max-w-280 gap-5.5 bg-experiment-panel p-3.75 text-experiment-note desktop:grid desktop:min-h-15.25 desktop:grid-cols-[24%_1fr] desktop:gap-0 desktop:px-5 desktop:py-4.25">
-    <p id="state-index" class="font-mono text-[10px] text-lime">State 01 / 05</p>
-    <p id="state-note" class="text-[11px] desktop:text-xs">The happy path deserves care. It just doesn’t deserve all of it.</p>
+    <p id="state-index" class="font-mono text-xs text-lime">State 01 / 05</p>
+    <p id="state-note" class="text-xs desktop:text-xs">The happy path deserves care. It just doesn’t deserve all of it.</p>
   </div>
 </section>

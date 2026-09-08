@@ -3,7 +3,12 @@
 {{ if not $image }}{{ $image = resources.Get (strings.TrimPrefix "/" $destination) }}{{ end }}
 {{ if $image }}
   {{ if eq $image.MediaType.SubType "gif" }}
-    <img src="{{ $image.RelPermalink }}" alt="{{ .PlainText }}" width="{{ $image.Width }}" height="{{ $image.Height }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}>
+    {{ $still := $image.Process "webp" }}
+    <span data-animated-image data-playing="false" class="block">
+      <img src="{{ $still.RelPermalink }}" data-static-src="{{ $still.RelPermalink }}" data-animated-src="{{ $image.RelPermalink }}" alt="{{ .PlainText }}" width="{{ $image.Width }}" height="{{ $image.Height }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}>
+      <button hidden type="button" class="min-h-11 rounded-sm border border-current px-3 py-2 font-sans text-sm">Play animation</button>
+      <span class="mt-2 block text-sm">Still preview. <a href="{{ $image.RelPermalink }}">Open original animated GIF (contains motion)</a>.</span>
+    </span>
   {{ else }}
     {{ $large := $image.Resize (printf "%dx webp q85" (math.Min 1400 $image.Width | int)) }}
     {{ $small := $image.Resize (printf "%dx webp q85" (math.Min 700 $image.Width | int)) }}

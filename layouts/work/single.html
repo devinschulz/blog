@@ -7,10 +7,10 @@
   </div>
 
   <div class="mx-auto max-w-360 px-4.25 py-16 desktop:grid desktop:grid-cols-[1fr_3fr] desktop:gap-16 desktop:px-30 desktop:py-24">
-    <p class="font-mono text-[10px] text-muted uppercase">The shared thread</p>
+    <p class="font-mono text-xs text-muted uppercase">The shared thread</p>
     <div>
       <p class="mt-5 max-w-190 font-serif text-3xl leading-tight tracking-tight desktop:mt-0 desktop:text-4xl">{{ .Params.intro }}</p>
-      <nav aria-label="Case study chapters" class="mt-8 flex flex-wrap gap-x-7 gap-y-4 font-mono text-[10px] uppercase">
+      <nav aria-label="Case study chapters" class="mt-8 flex flex-wrap gap-x-7 gap-y-4 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center font-mono text-xs uppercase">
         {{ range .Params.chapters }}<a class="border-b border-line pb-2 hover:border-accent hover:text-accent" href="#{{ .id }}"><span class="mr-2 text-muted">{{ .number }}</span>{{ .name }} ↓</a>{{ end }}
       </nav>
     </div>
@@ -21,7 +21,7 @@
     <div class="mx-auto max-w-360 px-4.25 py-16 desktop:px-30 desktop:py-24">
       <div class="mb-10 grid gap-6 desktop:mb-14 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
         <div>
-          <p class="mb-6 font-mono text-[10px] text-muted uppercase">{{ .number }} / {{ .name }}</p>
+          <p class="mb-6 font-mono text-xs text-muted uppercase">{{ .number }} / {{ .name }}</p>
           <h2 id="{{ .id }}-title" class="max-w-125 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">{{ .title }}</h2>
         </div>
         <p class="max-w-145 self-end text-base leading-relaxed text-text-secondary">{{ .description }}</p>
@@ -30,15 +30,15 @@
         <div class="grid items-start gap-10 desktop:grid-cols-[0.8fr_1fr] desktop:gap-20">
           {{ partial "case-study-image.html" (merge $chapter (dict "sizes" "(min-width: 781px) 40vw, 100vw")) }}
           <div class="desktop:pt-6">
-            <p class="font-mono text-[10px] text-accent uppercase">A closer look / My contribution</p>
+            <p class="font-mono text-xs text-accent uppercase">A closer look / My contribution</p>
             <h3 class="mt-5 font-serif text-4xl leading-tight tracking-tight desktop:text-5xl">The space between<br>two layers.</h3>
             <div class="mt-6 space-y-5 text-sm leading-relaxed text-text-secondary [&_p]:mb-5">{{ $.Content }}</div>
-            <a class="mt-3 inline-block border-b border-accent pb-2 font-mono text-[10px] text-accent uppercase" href="{{ relref $ "/blog/building-the-inspect-measurement-engine" }}">Read the original engineering write-up ↗</a>
+            <a class="mt-3 inline-block border-b border-accent pb-2 font-mono text-xs text-accent uppercase" href="{{ relref $ "/blog/building-the-inspect-measurement-engine" }}">Read the original engineering write-up ↗</a>
           </div>
         </div>
         <div class="mt-14 grid gap-8 border-t border-line pt-8 desktop:grid-cols-3 desktop:gap-10">
           {{ range $i, $decision := $.Params.decisions }}
-          <div><p class="font-mono text-[10px] text-accent">0{{ add $i 1 }} / Engineering note</p><h4 class="mt-4 text-base font-semibold">{{ .title }}</h4><p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ .body }}</p></div>
+          <div><p class="font-mono text-xs text-accent">0{{ add $i 1 }} / Engineering note</p><h4 class="mt-4 text-base font-semibold">{{ .title }}</h4><p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ .body }}</p></div>
           {{ end }}
         </div>
       {{ else }}
@@ -51,26 +51,26 @@
   <section aria-labelledby="workflow-title" class="bg-night text-ivory">
     <div class="mx-auto grid max-w-360 items-center gap-10 px-4.25 py-16 desktop:grid-cols-[0.7fr_1.3fr] desktop:gap-16 desktop:px-30 desktop:py-24">
       <div>
-        <p class="font-mono text-[10px] text-lime uppercase">The wider workflow</p>
+        <p class="font-mono text-xs text-lime uppercase">The wider workflow</p>
         <h2 id="workflow-title" class="mt-6 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">One part of<br>a bigger picture.</h2>
         <p class="mt-7 text-sm leading-relaxed text-experiment-description">These interfaces lived within a larger design workflow. This archived Craft Sync screenshot shows the publishing step: bringing artboards out of the source file and into a shared workspace.</p>
-        <p class="mt-5 font-mono text-[10px] leading-relaxed text-experiment-kicker">Shown for product context, separate from the Inspect contribution described above.</p>
+        <p class="mt-5 font-mono text-xs leading-relaxed text-experiment-kicker">Shown for product context, separate from the Inspect contribution described above.</p>
       </div>
       <div class="[&_figcaption]:text-experiment-kicker [&_figcaption>span:last-child]:text-lime">{{ partial "case-study-image.html" (merge .Params.workflow (dict "sizes" "(min-width: 781px) 50vw, 100vw")) }}</div>
     </div>
   </section>
 
   <section aria-labelledby="reflection-title" class="mx-auto max-w-360 px-4.25 py-20 desktop:px-30 desktop:py-28">
-    <p class="font-mono text-[10px] text-muted uppercase">What I carry forward</p>
+    <p class="font-mono text-xs text-muted uppercase">What I carry forward</p>
     <div class="mt-7 grid gap-8 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
       <h2 id="reflection-title" class="max-w-120 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">The details<br>are the <em class="text-accent">product.</em></h2>
-      <div><p class="text-base leading-relaxed text-text-secondary">{{ .Params.reflection }}</p><a class="mt-6 inline-block border-b border-line pb-2 font-mono text-[10px] text-accent uppercase" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 ↗</a></div>
+      <div><p class="text-base leading-relaxed text-text-secondary">{{ .Params.reflection }}</p><a class="mt-6 inline-block border-b border-line pb-2 font-mono text-xs text-accent uppercase" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 ↗</a></div>
     </div>
     <div class="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-line pt-6">
       <a class="font-mono text-xs uppercase hover:text-accent" href="{{ site.Home.RelPermalink }}#work">← Back to selected work</a>
       <a class="font-serif text-3xl tracking-tight hover:text-accent" href="mailto:{{ site.Params.email }}">Let’s talk interfaces. ↗</a>
     </div>
-    <p class="mt-8 max-w-180 font-mono text-[10px] leading-relaxed text-muted">A retrospective using archived product imagery and writing from my time at InVision. Product work was a team effort; the measurement-engine section describes my individual contribution.</p>
+    <p class="mt-8 max-w-180 font-mono text-xs leading-relaxed text-muted">A retrospective using archived product imagery and writing from my time at InVision. Product work was a team effort; the measurement-engine section describes my individual contribution.</p>
   </section>
 </article>
 {{ end }}

@@ -127,6 +127,18 @@
 }
 
 @layer base {
+  /* Two contrasting rings remain visible on light, dark, and artwork surfaces. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    @apply outline-3 outline-offset-3 outline-night ring-3 ring-ivory;
+  }
+
+  @media (forced-colors: active) {
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+      outline-color: Highlight;
+      box-shadow: none;
+    }
+  }
+
   @media (prefers-color-scheme: dark) {
     :root {
       --color-ink: #f1eee7;
@@ -158,6 +170,16 @@
       --color-danger-surface: #3c232c;
       --color-processing: #393563;
       --color-processing-ink: #dfdcff;
+    }
+  }
+}
+
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
     }
   }
 }
