@@ -6,10 +6,12 @@
     <meta name="color-scheme" content="light dark">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ partial "seo.html" . }}
-    <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="16x16 32x32 48x48">
+    {{ $icoVersion := readFile "static/favicon.ico" | crypto.SHA256 }}
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}?v={{ $icoVersion }}" sizes="16x16 32x32 48x48">
     {{ $favicon := resources.FromString "favicon.svg" (readFile "static/favicon.svg") | fingerprint }}
     <link rel="icon" href="{{ $favicon.RelPermalink }}" type="image/svg+xml" sizes="any">
-    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" sizes="180x180">
+    {{ $touchIconVersion := readFile "static/apple-touch-icon.png" | crypto.SHA256 }}
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}?v={{ $touchIconVersion }}" sizes="180x180">
     {{ partial "fonts.html" . }}
     {{ with (templates.Defer (dict "key" "tailwind")) }}
       {{ partial "css.html" . }}
