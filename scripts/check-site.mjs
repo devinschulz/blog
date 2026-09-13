@@ -56,6 +56,14 @@ assert(!feed.includes('/work/'), 'Case studies must not enter the historical fee
 const robots = fs.readFileSync(path.join(root, 'robots.txt'), 'utf8');
 assert(robots.includes(`${domain}/sitemap.xml`));
 assert(robots.includes(`${domain}/llms.txt`), 'robots.txt must point at llms.txt');
+const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+const sitemapLocs = [...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g)].map(([, loc]) => loc);
+assert(sitemapLocs.length, 'sitemap must list URLs');
+for (const loc of sitemapLocs) {
+  assert(loc.trim(), 'sitemap: empty <loc> (a page built with render "never" leaked in)');
+  assert(localFile(new URL(loc)), `sitemap: missing ${loc}`);
+}
+assert(sitemapLocs.includes(`${domain}/llms.txt`), 'sitemap must list llms.txt so crawlers reach it');
 const llms = fs.readFileSync(path.join(root, 'llms.txt'), 'utf8');
 const llmsLinks = [...llms.matchAll(/\]\((https?:[^)]+)\)/g)].map(([, link]) => link);
 assert(llmsLinks.length, 'llms.txt must link to the pages it indexes');
@@ -64,5 +72,5 @@ for (const link of llmsLinks) {
   assert.equal(target.origin, domain, `llms.txt: unexpected host ${link}`);
   assert(localFile(target), `llms.txt: missing ${link}`);
 }
-console.log(`Checked ${files.length} HTML pages: metadata, JSON-LD, agent discovery links, local links/assets, blog images, ${llmsLinks.length} llms.txt entries, and ${redirects.length} redirect mappings.`);
+console.log(`Checked ${files.length} HTML pages: metadata, JSON-LD, agent discovery links, local links/assets, blog images, ${sitemapLocs.length} sitemap URLs, ${llmsLinks.length} llms.txt entries, and ${redirects.length} redirect mappings.`);
 console.log('Hosting redirect status, cache/compression headers, and Search Console still require deployment verification.');
