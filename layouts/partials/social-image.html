@@ -12,7 +12,7 @@
 {{ $lines := slice }}
 {{ $line := "" }}
 {{ range split $title " " }}
-  {{ if and $line (gt (len (printf "%s %s" $line .)) 30) }}
+  {{ if and $line (gt (len (printf "%s %s" $line .)) 19) }}
     {{ $lines = $lines | append $line }}{{ $line = . }}
   {{ else }}{{ $line = printf "%s %s" $line . | strings.TrimSpace }}{{ end }}
 {{ end }}

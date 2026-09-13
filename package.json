@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "hugo",
+    "build:social": "node scripts/build-social-background.mjs",
     "serve": "hugo server",
     "check": "npm run build && node scripts/check-site.mjs",
     "check:a11y": "npm run build && playwright test",
