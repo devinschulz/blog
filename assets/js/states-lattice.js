@@ -79,10 +79,15 @@ for (const lattice of document.querySelectorAll('[data-lattice]')) {
 
       function update(time) {
         const spacingX = (halfWidth * 2) / columns
-        const spanY = halfHeight * 0.86
+        // A tall, narrow band needs its rows spread across more of the frame,
+        // or the tiles huddle in a stripe through the middle of it.
+        const airy = columns >= 20
+        const spanY = halfHeight * (airy ? 0.86 : 1.45)
         const spacingY = spanY / (ROWS - 1)
-        const tileWidth = spacingX * 0.6
-        const tileHeight = spacingY * 0.46
+        // At the narrow end the tiles are few and small, so they take a larger
+        // share of their cell: a phone needs weight more than it needs air.
+        const tileWidth = spacingX * (airy ? 0.6 : 0.72)
+        const tileHeight = spacingY * (airy ? 0.46 : 0.6)
 
         for (let column = 0; column < MAX_COLUMNS; column++) {
           for (let row = 0; row < ROWS; row++) {

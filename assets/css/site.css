@@ -140,9 +140,9 @@
 .states-lattice {
   display: none;
   position: relative;
-  height: 118px;
+  height: 188px;
   pointer-events: none;
-  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
 }
 
 .states-lattice[data-renderer="webgl"] {
@@ -163,7 +163,11 @@
 }
 
 @media (width >= 781px) {
-  .states-lattice { height: 148px; }
+  .states-lattice {
+    height: 148px;
+    /* Wider screens carry many more columns, so a longer fade costs nothing. */
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
