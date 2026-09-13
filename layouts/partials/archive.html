@@ -17,5 +17,5 @@
   <p id="archive-status" role="status" aria-atomic="true" class="my-4 font-mono text-xs text-muted desktop:ml-[16.66%]">Showing {{ len $blog }} articles.</p>
   <div data-post-list class="border-b border-ink desktop:ml-[16.66%]">{{ range $blog.ByDate.Reverse }}{{ partial "post-row.html" . }}{{ end }}</div>
   <p id="no-posts" hidden class="mt-5.5 text-[13px] text-muted desktop:ml-[16.66%]">No archived notes in this topic yet.</p>
-  {{ with site.Home.OutputFormats.Get "RSS" }}<a class="mt-5 inline-block border-b border-ink pb-1 font-mono text-xs uppercase desktop:ml-[16.66%]" href="{{ .RelPermalink }}">Get the RSS feed <span class="text-[17px] text-accent">↗</span></a>{{ end }}
+  {{ with site.Home.OutputFormats.Get "RSS" }}<a class="mt-5 inline-block border-b border-ink pb-1 font-mono text-xs uppercase desktop:ml-[16.66%]" href="{{ .RelPermalink }}">Get the RSS feed <span class="text-[17px] text-accent">↗︎</span></a>{{ end }}
 </section>
