@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ "sitemap.xml" | absURL }}
+
+# Site index for language models, with a Markdown copy of every page.
+# {{ "llms.txt" | absURL }}

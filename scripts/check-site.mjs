@@ -27,6 +27,10 @@ for (const file of files) {
     assert(schema['@type']);
     const image = html.match(/property="og:image" content="([^"]+)"/)[1];
     assert(localFile(new URL(image)), `${file}: generated social image missing`);
+    assert(html.includes('<link rel="describedby" type="text/plain" href="/llms.txt"'), `${file}: llms.txt must be advertised`);
+    const markdown = html.match(/<link rel="alternate" type="text\/markdown" href="([^"]+)"/);
+    assert(markdown, `${file}: Markdown alternate`);
+    assert(localFile(new URL(markdown[1], domain)), `${file}: Markdown alternate ${markdown[1]} missing`);
   } else assert(html.includes('content="noindex, follow"'));
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const value = match[1].replaceAll('&amp;', '&');
@@ -49,6 +53,16 @@ for (const [source, destination, status] of redirects) {
 assert.deepEqual(errors, [], 'Broken internal links or assets');
 const feed = fs.readFileSync(path.join(root, 'index.xml'), 'utf8');
 assert(!feed.includes('/work/'), 'Case studies must not enter the historical feed');
-assert(fs.readFileSync(path.join(root, 'robots.txt'), 'utf8').includes(`${domain}/sitemap.xml`));
-console.log(`Checked ${files.length} HTML pages: metadata, JSON-LD, local links/assets, blog images, and ${redirects.length} redirect mappings.`);
+const robots = fs.readFileSync(path.join(root, 'robots.txt'), 'utf8');
+assert(robots.includes(`${domain}/sitemap.xml`));
+assert(robots.includes(`${domain}/llms.txt`), 'robots.txt must point at llms.txt');
+const llms = fs.readFileSync(path.join(root, 'llms.txt'), 'utf8');
+const llmsLinks = [...llms.matchAll(/\]\((https?:[^)]+)\)/g)].map(([, link]) => link);
+assert(llmsLinks.length, 'llms.txt must link to the pages it indexes');
+for (const link of llmsLinks) {
+  const target = new URL(link);
+  assert.equal(target.origin, domain, `llms.txt: unexpected host ${link}`);
+  assert(localFile(target), `llms.txt: missing ${link}`);
+}
+console.log(`Checked ${files.length} HTML pages: metadata, JSON-LD, agent discovery links, local links/assets, blog images, ${llmsLinks.length} llms.txt entries, and ${redirects.length} redirect mappings.`);
 console.log('Hosting redirect status, cache/compression headers, and Search Console still require deployment verification.');

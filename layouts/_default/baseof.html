@@ -17,7 +17,7 @@
       {{ partial "css.html" . }}
     {{ end }}
     {{ with .OutputFormats.Get "md" }}<link rel="alternate" type="text/markdown" href="{{ .RelPermalink }}" title="{{ $.Title }} as Markdown">{{ end }}
-    {{ if .IsHome }}{{ with .OutputFormats.Get "llms" }}<link rel="alternate" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}{{ end }}
+    {{ with site.Home.OutputFormats.Get "llms" }}<link rel="describedby" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
   <body class="bg-paper font-sans leading-normal wrap-anywhere text-ink antialiased [&_button:not(:disabled)]:cursor-pointer motion-reduce:**:transition-none">
