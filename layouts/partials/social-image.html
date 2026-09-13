@@ -1,4 +1,6 @@
-{{ $background := resources.Get "images/social-background.png" }}
+{{ $card := "writing" }}
+{{ if .IsHome }}{{ $card = "home" }}{{ else if eq .Section "work" }}{{ with .File }}{{ $card = .ContentBaseName }}{{ end }}{{ end }}
+{{ $background := or (resources.Get (printf "images/social/%s.png" $card)) (resources.Get "images/social/writing.png") }}
 {{ $font := resources.Get "fonts/playfair-display-medium.ttf" }}
 {{ $title := .Title }}
 {{ $label := "ARCHIVED WRITING" }}

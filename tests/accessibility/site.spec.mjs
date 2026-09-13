@@ -150,6 +150,28 @@ test('WebGL sculpture animates, pauses offscreen, and respects reduced motion', 
   await expect(hero).toHaveAttribute('data-motion', 'running');
 });
 
+test('states lattice runs one lifecycle, pauses offscreen and for reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const lattice = page.locator('[data-lattice]');
+  await lattice.scrollIntoViewIfNeeded();
+  await expect(lattice).toHaveAttribute('data-renderer', 'webgl');
+  await expect(lattice).toHaveAttribute('data-motion', 'running');
+  // Decorative only: it must never reach the accessibility tree.
+  await expect(lattice).toHaveAttribute('aria-hidden', 'true');
+  const moving = await lattice.screenshot();
+  await expect.poll(async () => (await lattice.screenshot()).equals(moving)).toBe(false);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(lattice).toHaveAttribute('data-motion', 'paused');
+  const still = await lattice.screenshot();
+  await page.waitForTimeout(250);
+  expect((await lattice.screenshot()).equals(still)).toBe(true);
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(lattice).toHaveAttribute('data-motion', 'running');
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  await expect(lattice).toHaveAttribute('data-motion', 'paused');
+});
+
 test('hero keeps an illustration when WebGL is unavailable', async ({ page }) => {
   await page.addInitScript(() => {
     const getContext = HTMLCanvasElement.prototype.getContext;
@@ -161,6 +183,9 @@ test('hero keeps an illustration when WebGL is unavailable', async ({ page }) =>
   await expect(page.locator('[data-hero-motion]')).toHaveAttribute('data-motion', 'paused');
   await expect(page.locator('.hero-art-fallback')).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  // The lattice has no static counterpart, so it leaves the layout instead.
+  await expect(page.locator('[data-lattice]')).toHaveAttribute('data-renderer', 'none');
+  await expect(page.locator('[data-lattice]')).toBeHidden();
 });
 
 test('GIF is opt-in and stops for reduced motion', async ({ page }) => {
@@ -188,6 +213,7 @@ test('static content and navigation work without JavaScript', async ({ browser }
   await expect(page.locator('[data-state-controls]')).toBeHidden();
   await expect(page.locator('[data-archive-filters]')).toBeHidden();
   await expect(page.locator('[data-demo-continue]')).toBeHidden();
+  await expect(page.locator('[data-lattice]')).toBeHidden();
   if (testInfo.project.name.startsWith('desktop')) {
     const width = await page.locator('[data-demo]').evaluate(el => el.getBoundingClientRect().width);
     expect(width).toBeGreaterThan(700);

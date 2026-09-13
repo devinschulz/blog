@@ -21,6 +21,8 @@ Deploy `dist/`. Hugo compiles and minifies Tailwind and fingerprints the resulti
 
 JavaScript starts at `assets/js/site.js`. Hugo’s `js.Build` bundles its imports (including Three.js), minifies the output, and fingerprints it as one `site.<hash>.js` file shared by every page. Add new scripts as imports in this entry point. Homepage features initialize only when their elements exist; the shared bundle still includes their code on other pages.
 
+WebGL surfaces are built from two pieces: `assets/js/webgl-surface.js` owns the renderer, the motion rules, and context recovery, and a scene module supplies the artwork. `hero-motion.js` and `states-lattice.js` are both thin wrappers over it, so a new surface needs a canvas, a scene, and no new motion handling.
+
 Run `npm run check` before deployment. It builds the site and checks metadata, local links/assets, image attributes, RSS, and redirect mappings. Run `npm run check:a11y` for browser accessibility checks, or `npm run check:all` for both. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for browser setup, coverage, and the manual assistive-technology checklist.
 
 ## Styling
@@ -33,6 +35,7 @@ Run `npm run check` before deployment. It builds the site and checks metadata, l
 - Blog content uses Tailwind Typography (`prose`) with utility overrides in the article layout.
 - Fonts are self-hosted in `static/fonts/` and declared in `assets/css/fonts.css`. The image render hook optimizes archived blog images without changing their original URLs or Markdown.
 - Sharing cards and structured data are generated in `layouts/partials/social-image.html` and `seo.html`. Case studies can set `seoTitle` independently of their visible heading.
+- Card backgrounds in `assets/images/social/` are rendered from the real hero sculpture by `npm run build:social`, which loads `assets/js/kinetic-scene.js` in headless Chromium and freezes it at a different moment per card. Commit the regenerated PNGs. The home page and each case study get their own; writing shares one.
 - Dark mode follows the system preference automatically, including live changes. Adaptive color tokens are overridden inside `@media (prefers-color-scheme: dark)` in `assets/css/site.css`; use `text-accent` for adaptive purple text and `bg-night` for permanently dark surfaces. Artwork keeps its fixed palette, and archived articles use `dark:prose-invert`.
 
 Use complete class names in templates or JavaScript so Tailwind can detect them. Keep reusable markup in Hugo partials.

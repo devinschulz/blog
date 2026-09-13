@@ -29,6 +29,9 @@
       <h2 class="font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">Most people see a screen.<br>I see every state it will <em class="text-accent">become.</em></h2>
       <p class="mt-6.5 max-w-75 text-[15px] leading-[1.55] desktop:mt-2.5">That’s what frontend engineering means to me: turning an idea into an experience that stays legible under pressure, from first input to imperfect connection to final confirmation.</p>
     </div>
+    <div class="states-lattice mt-12.5 desktop:col-span-2 desktop:mt-25" data-lattice aria-hidden="true">
+      <canvas class="states-lattice-canvas" data-lattice-canvas></canvas>
+    </div>
   </section>
 
   {{ partial "state-shift.html" . }}

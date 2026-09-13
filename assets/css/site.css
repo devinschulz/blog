@@ -134,6 +134,46 @@
   .hero-art { display: none; }
 }
 
+/* A run of interface tiles moving through the states the headline names. It
+   stays out of the layout until a renderer exists, so no JavaScript and no
+   graphics context both leave the section as it was. */
+.states-lattice {
+  display: none;
+  position: relative;
+  height: 118px;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+.states-lattice[data-renderer="webgl"] {
+  display: block;
+  animation: lattice-in 500ms ease both;
+}
+
+.states-lattice-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+
+@keyframes lattice-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (width >= 781px) {
+  .states-lattice { height: 148px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .states-lattice[data-renderer="webgl"] { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .states-lattice[data-renderer="webgl"] { display: none; }
+}
+
 @layer base {
   /* Two contrasting rings remain visible on light, dark, and artwork surfaces. */
   :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
