@@ -21,7 +21,7 @@ Deploy `dist/`. Hugo compiles and minifies Tailwind and fingerprints the resulti
 
 JavaScript starts at `assets/js/site.js`. Hugo’s `js.Build` bundles its imports (including Three.js), minifies the output, and fingerprints it as one `site.<hash>.js` file shared by every page. Add new scripts as imports in this entry point. Homepage features initialize only when their elements exist; the shared bundle still includes their code on other pages.
 
-WebGL surfaces are built from two pieces: `assets/js/webgl-surface.js` owns the renderer, the motion rules, and context recovery, and a scene module supplies the artwork. `hero-motion.js` and `states-lattice.js` are both thin wrappers over it, so a new surface needs a canvas, a scene, and no new motion handling.
+WebGL surfaces are built from two pieces: `assets/js/webgl-surface.js` owns the renderer, the motion rules, and context recovery, and a scene module supplies the artwork. `hero-motion.js`, `states-lattice.js`, `work-tiles.js` and `chapter-backdrop.js` are all thin wrappers over it, so a new surface needs a canvas, a scene, and no new motion handling. Each surface is its own WebGL context and the home page holds six, well inside the browser limit, but reuse an existing surface before adding another.
 
 Run `npm run check` before deployment. It builds the site and checks metadata, local links/assets, image attributes, RSS, and redirect mappings. Run `npm run check:a11y` for browser accessibility checks, or `npm run check:all` for both. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for browser setup, coverage, and the manual assistive-technology checklist.
 

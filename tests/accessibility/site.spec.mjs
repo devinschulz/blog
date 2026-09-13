@@ -172,6 +172,55 @@ test('states lattice runs one lifecycle, pauses offscreen and for reduced motion
   await expect(lattice).toHaveAttribute('data-motion', 'paused');
 });
 
+test('project tiles render over their CSS illustration', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  for (const name of ['cape', 'warranties', 'invision']) {
+    const tile = page.locator(`[data-work-tile="${name}"]`);
+    // Narrow viewports stack the tiles, so each only runs once it is in view.
+    await tile.scrollIntoViewIfNeeded();
+    await expect(tile).toHaveAttribute('data-renderer', 'webgl');
+    await expect(tile).toHaveAttribute('data-motion', 'running');
+    await expect(tile).toHaveAttribute('aria-hidden', 'true');
+  }
+  await page.locator('[data-work-tile="cape"]').scrollIntoViewIfNeeded();
+  // The illustration underneath steps aside only once a renderer has taken over.
+  await expect(page.locator('[data-work-tile="cape"] .tile-fallback')).toBeHidden();
+  const tile = page.locator('[data-work-tile="cape"]');
+  const moving = await tile.screenshot();
+  await expect.poll(async () => (await tile.screenshot()).equals(moving)).toBe(false);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(tile).toHaveAttribute('data-motion', 'paused');
+});
+
+test('current chapter backdrop stays behind its text', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const panel = page.locator('[data-chapter-backdrop]');
+  await panel.scrollIntoViewIfNeeded();
+  await expect(panel).toHaveAttribute('data-renderer', 'webgl');
+  await expect(panel).toHaveAttribute('data-motion', 'running');
+  await expect(panel.locator('canvas')).toHaveAttribute('aria-hidden', 'true');
+  // Held well under full strength; every tile colour is darker than the panel,
+  // so the copy over it keeps the contrast it has on the flat background.
+  const opacity = await panel.locator('canvas').evaluate(el => getComputedStyle(el).opacity);
+  expect(Number(opacity)).toBeLessThanOrEqual(0.5);
+  await expect(panel.getByRole('heading', { level: 2 })).toBeVisible();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(panel).toHaveAttribute('data-motion', 'paused');
+});
+
+test('the 404 lattice scatters the same states out of order', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/404.html');
+  const lattice = page.locator('[data-lattice]');
+  await expect(lattice).toHaveAttribute('data-lattice-mode', 'scattered');
+  await expect(lattice).toHaveAttribute('data-renderer', 'webgl');
+  await expect(lattice).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+});
+
 test('hero keeps an illustration when WebGL is unavailable', async ({ page }) => {
   await page.addInitScript(() => {
     const getContext = HTMLCanvasElement.prototype.getContext;
@@ -186,6 +235,10 @@ test('hero keeps an illustration when WebGL is unavailable', async ({ page }) =>
   // The lattice has no static counterpart, so it leaves the layout instead.
   await expect(page.locator('[data-lattice]')).toHaveAttribute('data-renderer', 'none');
   await expect(page.locator('[data-lattice]')).toBeHidden();
+  // Project tiles fall back to the CSS illustration they were built with.
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-work-tile="cape"] .tile-fallback')).toBeVisible();
+  await expect(page.locator('[data-work-tile="invision"] .tile-fallback')).toBeVisible();
 });
 
 test('GIF is opt-in and stops for reduced motion', async ({ page }) => {

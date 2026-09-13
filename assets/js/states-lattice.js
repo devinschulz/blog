@@ -34,9 +34,17 @@ const smoothstep = (edge0, edge1, x) => {
   return t * t * (3 - 2 * t)
 }
 
-const lattice = document.querySelector('[data-lattice]')
+// A tile's own place in the run. Scattered drops the orderly left-to-right
+// lifecycle for per-tile noise: every state is still there, just no longer in
+// any order — which is what a 404 is.
+const offsetFor = (scattered, column, row, u, v) => {
+  if (!scattered) return u * STATES.length + v * 0.4
+  const hash = Math.sin(column * 12.9898 + row * 78.233) * 43758.5453
+  return (hash - Math.floor(hash)) * STATES.length
+}
 
-if (lattice) {
+for (const lattice of document.querySelectorAll('[data-lattice]')) {
+  const scattered = lattice.dataset.latticeMode === 'scattered'
   createWebGLSurface({
     host: lattice,
     canvas: lattice.querySelector('[data-lattice-canvas]'),
@@ -90,7 +98,8 @@ if (lattice) {
 
             // Tiles linger on each state, then hand over quickly, so the change
             // reads as a transition rather than a shimmer.
-            const phase = time * 0.4 + u * STATES.length + v * 0.4
+            const phase =
+              time * 0.4 + offsetFor(scattered, column, row, u, v)
             const step = Math.floor(phase)
             const handoff = smoothstep(0.84, 1, phase - step)
             const current =

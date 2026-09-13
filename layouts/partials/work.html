@@ -3,8 +3,9 @@
   <h2 id="work-title" class="mt-7.5 mb-12.5 max-w-200 font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:mt-13.75 desktop:mb-22.75 desktop:ml-[16.66%] desktop:text-[clamp(45px,5.8vw,88px)]">A few places<br>I’ve helped make<br>the complex <em class="text-accent">clear.</em></h2>
   <div class="grid grid-cols-1 gap-10.5 desktop:grid-cols-[1.2fr_0.9fr_0.9fr] desktop:gap-4">
     <article>
-      <div aria-hidden="true" class="relative h-90.75 overflow-hidden bg-cape-surface desktop:h-94.25">
-        <span class="absolute top-[-23%] right-[-18%] aspect-square w-[84%] rounded-full bg-violet"></span>
+      <div aria-hidden="true" data-work-tile="cape" class="relative h-90.75 overflow-hidden bg-cape-surface desktop:h-94.25">
+        <canvas class="work-tile-canvas" data-work-tile-canvas></canvas>
+        <span class="tile-fallback absolute top-[-23%] right-[-18%] aspect-square w-[84%] rounded-full bg-violet"></span>
         <span class="absolute inset-x-[12%] top-[23%] h-[55%] -rotate-6 rounded-[5px] bg-cape-window p-3.75 text-white shadow-cape [&_i]:mr-1 [&_i]:inline-block [&_i]:size-1.5 [&_i]:rounded-full [&_i]:bg-cape-dot">
           <i></i><i></i><i></i>
           <b class="absolute top-[41%] left-3.75 font-serif text-[23px] font-medium">How can I help?</b>
@@ -19,7 +20,8 @@
       </div>
     </article>
     <article>
-      <div aria-hidden="true" class="relative grid h-90.75 place-items-center overflow-hidden bg-warranties-surface desktop:h-94.25">
+      <div aria-hidden="true" data-work-tile="warranties" class="relative grid h-90.75 place-items-center overflow-hidden bg-warranties-surface desktop:h-94.25">
+        <canvas class="work-tile-canvas" data-work-tile-canvas></canvas>
         <span class="h-73.5 w-44.75 rotate-6 rounded-[27px] border-6 border-warranties-frame bg-warranties-screen text-night px-3.75 py-7.75 shadow-warranties">
           <b class="block font-serif text-[27px] leading-[0.82] font-medium tracking-tighter">Your things,<br>remembered.</b>
           <i class="mt-8.25 grid size-7.75 place-items-center rounded-[7px] bg-warranties-icon text-warranties-icon-ink not-italic">⌁</i>
@@ -35,8 +37,9 @@
       </div>
     </article>
     <article>
-      <div aria-hidden="true" class="relative h-90.75 overflow-hidden bg-invision-surface desktop:h-94.25">
-        <span class="absolute inset-0 bg-[linear-gradient(var(--color-invision-grid)_1px,transparent_1px),linear-gradient(90deg,var(--color-invision-grid)_1px,transparent_1px)] bg-size-[19px_19px] opacity-70"></span>
+      <div aria-hidden="true" data-work-tile="invision" class="relative h-90.75 overflow-hidden bg-invision-surface desktop:h-94.25">
+        <canvas class="work-tile-canvas" data-work-tile-canvas></canvas>
+        <span class="tile-fallback absolute inset-0 bg-[linear-gradient(var(--color-invision-grid)_1px,transparent_1px),linear-gradient(90deg,var(--color-invision-grid)_1px,transparent_1px)] bg-size-[19px_19px] opacity-70"></span>
         <span class="absolute top-[28%] left-[12%] z-1 w-1/2 -rotate-7 border-2 border-violet bg-white p-3 shadow-invision [&_i]:mt-3 [&_i]:block [&_i]:h-1.75 [&_i]:bg-invision-placeholder">
           <b class="block font-mono text-[10px] font-normal text-violet">Inspect</b><i></i><i class="w-[70%]"></i><i class="w-[47%]"></i>
         </span>
