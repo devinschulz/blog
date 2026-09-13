@@ -29,5 +29,8 @@
     "@tailwindcss/typography": "^0.5.20",
     "hugo-bin": "^0.162.0",
     "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "three": "^0.186.0"
   }
 }

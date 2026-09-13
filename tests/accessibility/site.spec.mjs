@@ -124,26 +124,43 @@ test('filter announces result count without moving focus', async ({ page }) => {
   }
 });
 
-test('system reduced motion stops drift and parallax without site controls', async ({ page }) => {
+test('WebGL sculpture animates, pauses offscreen, and respects reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   const hero = page.locator('[data-hero-motion]');
+  const canvas = page.locator('[data-hero-canvas]');
   await expect(page.locator('[data-motion-toggle]')).toHaveCount(0);
+  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
   await expect(hero).toHaveAttribute('data-motion', 'running');
+  const moving = await canvas.screenshot();
+  await expect.poll(async () => (await canvas.screenshot()).equals(moving)).toBe(false);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(hero).toHaveAttribute('data-motion', 'paused');
-  const circles = page.locator('[data-parallax]');
-  const before = await circles.evaluateAll(els => els.map(el => el.style.getPropertyValue('--parallax-y')));
-  await page.evaluate(() => scrollTo(0, 200));
-  await expect.poll(() => circles.evaluateAll(els => els.map(el => el.style.getPropertyValue('--parallax-y')))).toEqual(before);
+  const still = await canvas.screenshot();
+  await page.mouse.move(200, 150);
+  expect((await canvas.screenshot()).equals(still)).toBe(true);
   await page.reload();
+  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
   await expect(hero).toHaveAttribute('data-motion', 'paused');
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.evaluate(() => scrollTo(0, 0));
   await expect(hero).toHaveAttribute('data-motion', 'running');
-  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.locator('#archive').scrollIntoViewIfNeeded();
   await expect(hero).toHaveAttribute('data-motion', 'paused');
-  await expect(page.locator('[data-parallax] > span').first()).toHaveCSS('animation-name', 'none');
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  await expect(hero).toHaveAttribute('data-motion', 'running');
+});
+
+test('hero keeps an illustration when WebGL is unavailable', async ({ page }) => {
+  await page.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return type.startsWith('webgl') ? null : getContext.call(this, type, ...args);
+    };
+  });
+  await page.goto('/');
+  await expect(page.locator('[data-hero-motion]')).toHaveAttribute('data-motion', 'paused');
+  await expect(page.locator('.hero-art-fallback')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 });
 
 test('GIF is opt-in and stops for reduced motion', async ({ page }) => {

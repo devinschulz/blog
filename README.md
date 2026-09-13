@@ -19,6 +19,8 @@ npm run build
 
 Deploy `dist/`. Hugo compiles and minifies Tailwind and fingerprints the resulting stylesheet. No separate CSS watcher or Tailwind CDN is needed.
 
+JavaScript starts at `assets/js/site.js`. Hugo’s `js.Build` bundles its imports (including Three.js), minifies the output, and fingerprints it as one `site.<hash>.js` file shared by every page. Add new scripts as imports in this entry point. Homepage features initialize only when their elements exist; the shared bundle still includes their code on other pages.
+
 Run `npm run check` before deployment. It builds the site and checks metadata, local links/assets, image attributes, RSS, and redirect mappings. Run `npm run check:a11y` for browser accessibility checks, or `npm run check:all` for both. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for browser setup, coverage, and the manual assistive-technology checklist.
 
 ## Styling

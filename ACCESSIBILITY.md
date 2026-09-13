@@ -21,7 +21,7 @@ Automated checks are not a conformance certification and do not replace assistiv
 - At actual 200% and 400% browser zoom, check every template for clipped text, overlaps, and lost controls. The automated 320px test approximates reflow, not actual browser zoom or text-only zoom.
 - Test increased default font size and OS text scaling on a real phone. Screenshots and code may scroll within their own region; ordinary page content should not require sideways scrolling.
 - Check light/dark themes and Windows High Contrast. Review focus indicators against moving artwork and colored surfaces.
-- Change the OS reduced-motion preference while the page is open. It must stop decorative motion, parallax, smooth scrolling, and GIF playback. Motion follows the system preference only; there is no site-level toggle or stored override.
+- Change the OS reduced-motion preference while the page is open. It must stop decorative WebGL motion, cursor response, smooth scrolling, and GIF playback. Motion follows the system preference only; there is no site-level toggle or stored override.
 - Review alt text and adjacent descriptions for meaningful screenshots. Preserve historical writing, but describe information that a screenshot alone would otherwise convey.
 
 ## Implementation notes
@@ -29,4 +29,5 @@ Automated checks are not a conformance certification and do not replace assistiv
 - Focus uses a two-tone ring with a system-color outline in forced-colors mode.
 - State Shift is a client-only demo, not an account form. No entered data is submitted or saved. Its Keyboard state uses a dashed preview border; actual focus uses the shared ring. Saving is simulated and finishes automatically.
 - GIFs render a static WebP by default. Playback is opt-in, with a Stop animation control and a clearly labeled original-file link.
-- Without JavaScript, hero drift stays paused and GIFs stay still. Archive posts and native mobile navigation remain usable.
+- The Three.js hero renders a still tile sculpture with reduced motion, pauses offscreen and in hidden tabs, and falls back to an SVG illustration if WebGL is unavailable or its context is lost. Its decorative canvas is hidden from assistive technology.
+- Without JavaScript, the hero displays a static tile illustration and GIFs stay still. Archive posts and native mobile navigation remain usable.

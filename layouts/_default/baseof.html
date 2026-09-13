@@ -25,15 +25,8 @@
     {{ partial "header.html" . }}
     <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
-    {{ $navigation := resources.Get "js/navigation.js" | minify | fingerprint }}
-    <script src="{{ $navigation.RelPermalink }}" integrity="{{ $navigation.Data.Integrity }}" defer></script>
-    {{ $motion := resources.Get "js/motion.js" | minify | fingerprint }}
-    <script src="{{ $motion.RelPermalink }}" integrity="{{ $motion.Data.Integrity }}" defer></script>
-    {{ if .IsHome }}
-      {{ $scripts := resources.Get "js/state-shift.js" | minify | fingerprint }}
-      <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>
-      {{ $heroMotion := resources.Get "js/hero-motion.js" | minify | fingerprint }}
-      <script src="{{ $heroMotion.RelPermalink }}" integrity="{{ $heroMotion.Data.Integrity }}" defer></script>
-    {{ end }}
+    {{ $scripts := resources.Get "js/site.js" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
+    {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
+    <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
   </body>
 </html>

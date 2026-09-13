@@ -95,35 +95,43 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --breakpoint-desktop: 781px;
 
-  --animate-hero-violet: hero-drift-violet 24s ease-in-out -4s infinite;
-  --animate-hero-peach: hero-drift-peach 24s linear -6s infinite;
+}
 
-  @keyframes hero-drift-violet {
-    0%,
-    100% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(-6%, 6%);
-    }
-    50% {
-      transform: translate(-2%, 10%);
-    }
-    75% {
-      transform: translate(4%, 4%);
-    }
-  }
+/* A large kinetic object balances the editorial headline. */
+.hero-art {
+  position: absolute;
+  pointer-events: none;
+  width: 53%;
+  height: 96%;
+  right: -7%;
+  top: -1%;
+  mask-image: linear-gradient(to right, transparent 12%, #000 32%);
+}
 
-  @keyframes hero-drift-peach {
-    from {
-      transform: translateY(-15%) rotate(0turn)
-        translateX(clamp(24px, 4vw, 64px));
-    }
-    to {
-      transform: translateY(-15%) rotate(1turn)
-        translateX(clamp(24px, 4vw, 64px));
-    }
+.hero-canvas,
+.hero-art-fallback {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+
+.hero-canvas { opacity: 0; }
+[data-renderer="webgl"] .hero-canvas { opacity: 1; }
+[data-renderer="webgl"] .hero-art-fallback { visibility: hidden; }
+
+@media (width < 781px) {
+  .hero-art {
+    width: 82%;
+    height: 39%;
+    right: -14%;
+    top: 0;
+    mask-image: none;
   }
+}
+
+@media (forced-colors: active) {
+  .hero-art { display: none; }
 }
 
 @layer base {

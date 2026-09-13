@@ -1,11 +1,9 @@
 {{ define "main" }}
   <section id="top" data-hero-motion data-motion="paused" aria-labelledby="hero-title" class="group/hero relative flex min-h-[calc(100svh-61px)] flex-col overflow-hidden bg-paper px-4.25 py-5 desktop:min-h-[calc(100vh-80px)] desktop:px-7.75 desktop:pt-5.5 desktop:pb-6">
-    <span aria-hidden="true" data-parallax="0.18" class="pointer-events-none absolute top-[-31vw] right-[-25vw] aspect-square w-[80vw] [--parallax-y:0px] motion-safe:translate-y-(--parallax-y) desktop:top-[-20vw] desktop:right-[-9vw] desktop:w-[49vw]">
-      <span class="block size-full rounded-full bg-violet motion-safe:animate-hero-violet group-data-[motion=paused]/hero:[animation-play-state:paused]"></span>
-    </span>
-    <span aria-hidden="true" data-parallax="-0.12" class="pointer-events-none absolute right-[2vw] bottom-[15%] aspect-square w-[27vw] [--parallax-y:0px] motion-safe:translate-y-(--parallax-y) desktop:right-[11vw] desktop:bottom-[17%] desktop:w-[15vw]">
-      <span class="block size-full rounded-full bg-peach motion-safe:animate-hero-peach group-data-[motion=paused]/hero:[animation-play-state:paused]"></span>
-    </span>
+    <div class="hero-art" data-hero-art aria-hidden="true">
+      <img class="hero-art-fallback" src="{{ "images/kinetic-sculpture.svg" | relURL }}" alt="" width="600" height="600">
+      <canvas class="hero-canvas" data-hero-canvas></canvas>
+    </div>
     <div class="relative z-2 flex justify-between font-mono text-xs uppercase">
       <span>Personal site</span><span class="-my-1 hidden bg-paper px-2 py-1 desktop:inline">{{ site.Params.role }}</span><span class="-my-1 bg-paper px-2 py-1">Est. 2012</span>
     </div>
