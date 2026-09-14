@@ -23,43 +23,63 @@ async function audit(page) {
   ).toEqual([]);
 }
 
+// Layout is measured with polling assertions rather than a single sample. The
+// WebGL tests run software-rendered alongside these, and under that contention
+// a page can be caught mid-layout; a real overflow never resolves, so retrying
+// absorbs the transient state without hiding a genuine failure.
 async function expectReflow(page) {
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth + 1,
-    ),
-  ).toBe(true);
+  await expect
+    .poll(
+      () =>
+        page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1,
+        ),
+      { message: 'Page must not scroll horizontally' },
+    )
+    .toBe(true);
   // Hero overflow is intentionally clipped for artwork, but never for its text.
-  const clippedHeadings = await page
-    .locator('h1, h2, h3')
-    .evaluateAll((headings) =>
-      headings.flatMap((heading) => {
-        const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
-        let node;
-        const clipped = [];
-        while ((node = walker.nextNode())) {
-          if (!node.textContent.trim()) continue;
-          const range = document.createRange();
-          range.selectNodeContents(node);
-          for (const rect of range.getClientRects()) {
-            if (rect.left < -1 || rect.right > innerWidth + 1)
-              clipped.push(node.textContent.trim());
-          }
-        }
-        return clipped;
-      }),
-    );
-  expect(clippedHeadings).toEqual([]);
+  await expect
+    .poll(
+      () =>
+        page.locator('h1, h2, h3').evaluateAll((headings) =>
+          headings.flatMap((heading) => {
+            const walker = document.createTreeWalker(
+              heading,
+              NodeFilter.SHOW_TEXT,
+            );
+            let node;
+            const clipped = [];
+            while ((node = walker.nextNode())) {
+              if (!node.textContent.trim()) continue;
+              const range = document.createRange();
+              range.selectNodeContents(node);
+              for (const rect of range.getClientRects()) {
+                if (rect.left < -1 || rect.right > innerWidth + 1)
+                  clipped.push(node.textContent.trim());
+              }
+            }
+            return clipped;
+          }),
+        ),
+      { message: 'Headings must not be clipped horizontally' },
+    )
+    .toEqual([]);
   if (await page.locator('[data-demo-form]').count()) {
-    const overlaps = await page
-      .locator('[data-demo-form]')
-      .evaluate(
-        (form) =>
-          form.getBoundingClientRect().bottom >
-          document.querySelector('[data-demo-steps]').getBoundingClientRect()
-            .top,
-      );
-    expect(overlaps, 'Demo form must not overlap the progress row').toBe(false);
+    await expect
+      .poll(
+        () =>
+          page
+            .locator('[data-demo-form]')
+            .evaluate(
+              (form) =>
+                form.getBoundingClientRect().bottom >
+                document
+                  .querySelector('[data-demo-steps]')
+                  .getBoundingClientRect().top,
+            ),
+        { message: 'Demo form must not overlap the progress row' },
+      )
+      .toBe(false);
   }
 }
 
