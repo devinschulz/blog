@@ -15,10 +15,6 @@ facts:
 headline: Your things,
 headlineAccent: remembered.
 summary: 'Warranties was a personal product. I designed it and I built it. It kept a record of the things you own: what they cost, where they came from, and how long they stay covered, so that the information is there on the day something breaks.'
-hero:
-  image: images/warranties/slide-1.png
-  alt: Warranties running on iPhone, iPad, and Mac, showing an item list grouped by remaining coverage next to an Add Item form.
-  caption: One app across iPhone, iPad, and Mac, with the same list and the same detail view, sized to the screen.
 intro: A warranty is only useful if you can find it. The problem was never storage. It was making a record worth keeping up to date, and putting the answer to “is this still covered?” in the first thing you see.
 chapters:
   - id: capture

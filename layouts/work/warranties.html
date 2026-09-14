@@ -2,10 +2,6 @@
 <article>
   {{ partial "case-study-header.html" . }}
 
-  <div class="mx-auto max-w-360 px-4.25 desktop:px-15">
-    {{ partial "case-study-image.html" (merge .Params.hero (dict "eager" true "sizes" "(min-width: 1440px) 1320px, (min-width: 781px) 92vw, 100vw")) }}
-  </div>
-
   <div class="mx-auto max-w-360 px-4.25 py-16 desktop:grid desktop:grid-cols-[1fr_3fr] desktop:gap-16 desktop:px-30 desktop:py-24">
     <p class="font-mono text-xs text-muted uppercase">The shared thread</p>
     <div>
