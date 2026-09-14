@@ -396,6 +396,33 @@ test('static content and navigation work without JavaScript', async ({
   await context.close();
 });
 
+test('focusing an internal link prefetches it, once, and skips the rest', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const hints = page.locator('link[rel="prefetch"]');
+  await expect(hints).toHaveCount(0);
+
+  const link = page.locator('a[href^="/work/"]').first();
+  await link.focus();
+  await expect(hints).toHaveCount(1);
+  await expect(hints.first()).toHaveAttribute('as', 'document');
+  expect(await hints.first().getAttribute('href')).toContain('/work/');
+
+  // Re-focusing the same link must not queue it twice.
+  await page.locator('a[href^="/blog/"], a[href^="/work/"]').nth(1).focus();
+  await link.focus();
+  await expect(hints).toHaveCount(2);
+
+  // A fragment on the current page, an external host and a mailto have
+  // nothing to fetch.
+  const before = await hints.count();
+  await page.locator('a[href="#content"]').first().focus();
+  await page.locator('a[href^="mailto:"]').first().focus();
+  await page.locator('a[href^="https://github.com"]').first().focus();
+  await expect(hints).toHaveCount(before);
+});
+
 test('forced-colors retains a visible keyboard outline', async ({ page }) => {
   await page.emulateMedia({ forcedColors: 'active' });
   await page.goto('/');

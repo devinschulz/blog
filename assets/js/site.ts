@@ -1,4 +1,5 @@
 import './navigation';
+import './link-prefetch';
 import './motion';
 import './state-shift';
 import './hero-motion';
