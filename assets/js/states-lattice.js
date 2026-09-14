@@ -103,8 +103,7 @@ for (const lattice of document.querySelectorAll('[data-lattice]')) {
 
             // Tiles linger on each state, then hand over quickly, so the change
             // reads as a transition rather than a shimmer.
-            const phase =
-              time * 0.4 + offsetFor(scattered, column, row, u, v)
+            const phase = time * 0.4 + offsetFor(scattered, column, row, u, v)
             const step = Math.floor(phase)
             const handoff = smoothstep(0.84, 1, phase - step)
             const current =
