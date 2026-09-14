@@ -1,5 +1,10 @@
 import {
-  Color, DynamicDrawUsage, Group, InstancedMesh, MeshBasicMaterial, Object3D,
+  Color,
+  DynamicDrawUsage,
+  Group,
+  InstancedMesh,
+  MeshBasicMaterial,
+  Object3D,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { createWebGLSurface } from './webgl-surface.js';
@@ -60,7 +65,9 @@ if (backdrop) {
           dummy.scale.set(size * 1.6, size, size * 0.4);
           dummy.updateMatrix();
           tiles.setMatrixAt(index, dummy.matrix);
-          color.copy(NEAR).lerp(FAR, (Math.sin(index * 0.9 + time * 0.15) + 1) / 2);
+          color
+            .copy(NEAR)
+            .lerp(FAR, (Math.sin(index * 0.9 + time * 0.15) + 1) / 2);
           tiles.setColorAt(index, color);
         }
         tiles.instanceMatrix.needsUpdate = true;

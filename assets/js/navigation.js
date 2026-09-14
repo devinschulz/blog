@@ -11,16 +11,22 @@
   document.addEventListener('pointerdown', (event) => {
     if (menu.open && !menu.contains(event.target)) menu.open = false;
   });
-  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-    menu.open = false;
-    const destination = new URL(link.href);
-    if (destination.pathname === location.pathname && destination.hash) {
-      const section = document.getElementById(destination.hash.slice(1));
-      if (section) {
-        section.setAttribute('tabindex', '-1');
-        section.focus({ preventScroll: true });
-        section.addEventListener('blur', () => section.removeAttribute('tabindex'), { once: true });
+  menu.querySelectorAll('a').forEach((link) =>
+    link.addEventListener('click', () => {
+      menu.open = false;
+      const destination = new URL(link.href);
+      if (destination.pathname === location.pathname && destination.hash) {
+        const section = document.getElementById(destination.hash.slice(1));
+        if (section) {
+          section.setAttribute('tabindex', '-1');
+          section.focus({ preventScroll: true });
+          section.addEventListener(
+            'blur',
+            () => section.removeAttribute('tabindex'),
+            { once: true },
+          );
+        }
       }
-    }
-  }));
+    }),
+  );
 })();

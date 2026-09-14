@@ -1,6 +1,11 @@
 import {
-  Color, DynamicDrawUsage, Group, InstancedMesh, MeshStandardMaterial,
-  Object3D, Vector3,
+  Color,
+  DynamicDrawUsage,
+  Group,
+  InstancedMesh,
+  MeshStandardMaterial,
+  Object3D,
+  Vector3,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
@@ -12,7 +17,10 @@ export function createKineticSculpture() {
   const rows = 13;
   const count = columns * rows;
   const geometry = new RoundedBoxGeometry(1, 1, 0.34, 2, 0.1);
-  const material = new MeshStandardMaterial({ roughness: 0.32, metalness: 0.25 });
+  const material = new MeshStandardMaterial({
+    roughness: 0.32,
+    metalness: 0.25,
+  });
   const tiles = new InstancedMesh(geometry, material, count);
   tiles.instanceMatrix.setUsage(DynamicDrawUsage);
   tiles.frustumCulled = false;
@@ -38,10 +46,12 @@ export function createKineticSculpture() {
     const radius = 1.92 + width * Math.cos(twist);
     const curlX = Math.cos(angle) * radius;
     const curlY = Math.sin(angle) * radius;
-    const curlZ = width * Math.sin(twist) + Math.sin(angle * 3 + time * 0.35) * 0.36;
+    const curlZ =
+      width * Math.sin(twist) + Math.sin(angle * 3 + time * 0.35) * 0.36;
     const gridX = (u - 0.5) * 5.1;
     const gridY = (v - 0.5) * 3.8;
-    const wave = Math.sin(u * 7 + time * 0.8) * Math.cos(v * 5 - time * 0.5) * 0.45;
+    const wave =
+      Math.sin(u * 7 + time * 0.8) * Math.cos(v * 5 - time * 0.5) * 0.45;
     target.set(
       gridX + (curlX - gridX) * fold,
       gridY + (curlY - gridY) * fold,
@@ -53,9 +63,11 @@ export function createKineticSculpture() {
     // Linger at each composition, then unfold with a slow, smooth transition.
     const cycle = 0.5 + Math.cos(time * 0.23) * 0.5;
     const fold = cycle * cycle * (3 - 2 * cycle);
-    group.rotation.set(-0.28 + Math.sin(time * 0.21) * 0.15 + pointer.y * 0.14,
+    group.rotation.set(
+      -0.28 + Math.sin(time * 0.21) * 0.15 + pointer.y * 0.14,
       -0.26 + Math.sin(time * 0.17) * 0.32 + pointer.x * 0.22,
-      -0.22 + Math.sin(time * 0.13) * 0.16);
+      -0.22 + Math.sin(time * 0.13) * 0.16,
+    );
     group.position.y = Math.sin(time * 0.6) * 0.1;
 
     for (let column = 0; column < columns; column++) {
@@ -69,19 +81,31 @@ export function createKineticSculpture() {
         along.sub(center);
         across.sub(center);
         normal.crossVectors(along, across).normalize();
-        const distance = (center.x - pointer.x * 5) ** 2 + (center.y + pointer.y * 5) ** 2;
+        const distance =
+          (center.x - pointer.x * 5) ** 2 + (center.y + pointer.y * 5) ** 2;
         const touch = Math.exp(-distance * 1.2);
         center.addScaledVector(normal, touch * 0.25);
         dummy.position.copy(center);
         dummy.quaternion.setFromUnitVectors(zAxis, normal);
-        dummy.rotateZ(Math.atan2(along.y, along.x) * (1 - fold) + Math.sin(time * 0.6 + u * 9) * 0.06);
-        const pulse = 1 + Math.sin(time * 1.1 - column * 0.2 + row * 0.35) * 0.055;
-        dummy.scale.set((0.105 + fold * 0.115) * pulse, (0.26 - fold * 0.16) * pulse, 0.2);
+        dummy.rotateZ(
+          Math.atan2(along.y, along.x) * (1 - fold) +
+            Math.sin(time * 0.6 + u * 9) * 0.06,
+        );
+        const pulse =
+          1 + Math.sin(time * 1.1 - column * 0.2 + row * 0.35) * 0.055;
+        dummy.scale.set(
+          (0.105 + fold * 0.115) * pulse,
+          (0.26 - fold * 0.16) * pulse,
+          0.2,
+        );
         dummy.updateMatrix();
         tiles.setMatrixAt(index, dummy.matrix);
 
         const warmth = 0.5 + 0.5 * Math.sin(u * TAU - 0.7 + time * 0.12);
-        color.copy(violet).lerp(lavender, v * 0.65).lerp(peach, warmth ** 3 * 0.92);
+        color
+          .copy(violet)
+          .lerp(lavender, v * 0.65)
+          .lerp(peach, warmth ** 3 * 0.92);
         if ((column + row * 3) % 37 === 0) color.lerp(lime, 0.95);
         tiles.setColorAt(index, color);
       }

@@ -94,7 +94,6 @@
   --font-sans: 'Manrope', Arial, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --breakpoint-desktop: 781px;
-
 }
 
 /* A large kinetic object balances the editorial headline. */
@@ -116,9 +115,15 @@
   inset: 0;
 }
 
-.hero-canvas { opacity: 0; }
-[data-renderer="webgl"] .hero-canvas { opacity: 1; }
-[data-renderer="webgl"] .hero-art-fallback { visibility: hidden; }
+.hero-canvas {
+  opacity: 0;
+}
+[data-renderer='webgl'] .hero-canvas {
+  opacity: 1;
+}
+[data-renderer='webgl'] .hero-art-fallback {
+  visibility: hidden;
+}
 
 @media (width < 781px) {
   .hero-art {
@@ -131,7 +136,9 @@
 }
 
 @media (forced-colors: active) {
-  .hero-art { display: none; }
+  .hero-art {
+    display: none;
+  }
 }
 
 /* A run of interface tiles moving through the states the headline names. It
@@ -142,10 +149,16 @@
   position: relative;
   height: 188px;
   pointer-events: none;
-  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 3%,
+    #000 97%,
+    transparent
+  );
 }
 
-.states-lattice[data-renderer="webgl"] {
+.states-lattice[data-renderer='webgl'] {
   display: block;
   animation: lattice-in 500ms ease both;
 }
@@ -158,24 +171,38 @@
 }
 
 @keyframes lattice-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (width >= 781px) {
   .states-lattice {
     height: 148px;
     /* Wider screens carry many more columns, so a longer fade costs nothing. */
-    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .states-lattice[data-renderer="webgl"] { animation: none; }
+  .states-lattice[data-renderer='webgl'] {
+    animation: none;
+  }
 }
 
 @media (forced-colors: active) {
-  .states-lattice[data-renderer="webgl"] { display: none; }
+  .states-lattice[data-renderer='webgl'] {
+    display: none;
+  }
 }
 
 /* The Current chapter panel reads body copy over this, so it is held well below
@@ -189,14 +216,20 @@
   transition: opacity 800ms ease;
 }
 
-[data-chapter-backdrop][data-renderer="webgl"] .chapter-backdrop-canvas { opacity: 0.42; }
+[data-chapter-backdrop][data-renderer='webgl'] .chapter-backdrop-canvas {
+  opacity: 0.42;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .chapter-backdrop-canvas { transition: none; }
+  .chapter-backdrop-canvas {
+    transition: none;
+  }
 }
 
 @media (forced-colors: active) {
-  .chapter-backdrop-canvas { display: none; }
+  .chapter-backdrop-canvas {
+    display: none;
+  }
 }
 
 /* Project tiles keep their CSS illustration as the fallback, the way the hero
@@ -210,26 +243,52 @@
   transition: opacity 600ms ease;
 }
 
-[data-work-tile][data-renderer="webgl"] .work-tile-canvas { opacity: 1; }
-[data-work-tile][data-renderer="webgl"] .tile-fallback { visibility: hidden; }
+[data-work-tile][data-renderer='webgl'] .work-tile-canvas {
+  opacity: 1;
+}
+[data-work-tile][data-renderer='webgl'] .tile-fallback {
+  visibility: hidden;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .work-tile-canvas { transition: none; }
+  .work-tile-canvas {
+    transition: none;
+  }
 }
 
 @media (forced-colors: active) {
-  .work-tile-canvas { display: none; }
-  [data-work-tile][data-renderer="webgl"] .tile-fallback { visibility: visible; }
+  .work-tile-canvas {
+    display: none;
+  }
+  [data-work-tile][data-renderer='webgl'] .tile-fallback {
+    visibility: visible;
+  }
 }
 
 @layer base {
   /* Two contrasting rings remain visible on light, dark, and artwork surfaces. */
-  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]
+  ):focus-visible {
     @apply outline-3 outline-offset-3 outline-night ring-3 ring-ivory;
   }
 
   @media (forced-colors: active) {
-    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    :where(
+      a,
+      button,
+      input,
+      select,
+      textarea,
+      summary,
+      [tabindex]
+    ):focus-visible {
       outline-color: Highlight;
       box-shadow: none;
     }
@@ -272,7 +331,9 @@
 
 @layer utilities {
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation: none !important;
       transition: none !important;
       scroll-behavior: auto !important;

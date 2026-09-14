@@ -77,27 +77,37 @@ fs.mkdirSync(OUT, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: CARD, deviceScaleFactor: 1 });
 
-await page.route('**/*', route => {
+await page.route('**/*', (route) => {
   const { pathname } = new URL(route.request().url());
-  if (pathname === '/') return route.fulfill({ contentType: 'text/html', body: page_html });
+  if (pathname === '/')
+    return route.fulfill({ contentType: 'text/html', body: page_html });
   const file = pathname.startsWith('/addons/')
-    ? path.join('node_modules/three/examples/jsm', pathname.slice('/addons/'.length))
+    ? path.join(
+        'node_modules/three/examples/jsm',
+        pathname.slice('/addons/'.length),
+      )
     : MODULES[pathname];
-  if (!file || !fs.existsSync(file)) return route.fulfill({ status: 404, body: '' });
-  return route.fulfill({ contentType: 'text/javascript', body: fs.readFileSync(file) });
+  if (!file || !fs.existsSync(file))
+    return route.fulfill({ status: 404, body: '' });
+  return route.fulfill({
+    contentType: 'text/javascript',
+    body: fs.readFileSync(file),
+  });
 });
 
 const failures = [];
-page.on('pageerror', error => failures.push(error.message));
+page.on('pageerror', (error) => failures.push(error.message));
 await page.goto('https://card.invalid/');
 await page.waitForFunction(() => window.cardReady, null, { timeout: 15000 });
 
 const written = [];
 for (const card of CARDS) {
-  await page.evaluate(options => window.renderCard(options), card);
+  await page.evaluate((options) => window.renderCard(options), card);
   const file = path.join(OUT, `${card.name}.png`);
   await page.locator('#card').screenshot({ path: file });
-  written.push(`${card.name} (${Math.round(fs.statSync(file).size / 1024)} KB)`);
+  written.push(
+    `${card.name} (${Math.round(fs.statSync(file).size / 1024)} KB)`,
+  );
 }
 await browser.close();
 
@@ -105,4 +115,6 @@ if (failures.length) {
   console.error(`The card page failed to run:\n${failures.join('\n')}`);
   process.exit(1);
 }
-console.log(`Wrote ${CARDS.length} backgrounds to ${OUT}/: ${written.join(', ')}.`);
+console.log(
+  `Wrote ${CARDS.length} backgrounds to ${OUT}/: ${written.join(', ')}.`,
+);
