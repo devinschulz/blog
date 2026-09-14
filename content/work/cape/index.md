@@ -60,6 +60,21 @@ chapters:
         body: Checkmarks, crosses, and neutral marks distinguish the visible states alongside their color treatments.
       - title: Tools near the work.
         body: Page navigation and zoom sit with the document; filters and item menus sit with the review list.
+  - id: administration
+    number: '04'
+    name: Administration
+    title: The surfaces around the work.
+    description: 'Team management, integrations, API keys, and usage reporting are visited less often than the assistant or the dashboard, and they carry the same obligation: say what state something is in, say what an action will do before it happens, and never show a number without the period it covers.'
+    image: images/cape/slide-4.jpg
+    alt: Six Cape administration screens — an invite dialog, a Settings members table listing names, roles, and last-active dates, an integrations list with GitHub and JIRA connected and Gmail and Notion offering a connect action, a New API Key form with naming and expiry fields, a redaction-metrics view with entity counts and a timeline chart, and a usage analytics view with token and API-call charts.
+    caption: Administration, from team and integrations through API keys to usage reporting.
+    notes:
+      - title: State, not just a button.
+        body: A connected integration reads as status; only the ones still available to set up present an action.
+      - title: Consequences before confirmation.
+        body: The API key form names what it will create and the date it will expire while the field is still being filled in.
+      - title: A number with its window.
+        body: Redaction totals and usage figures carry the date range they cover, so a count is never read on its own.
 principles:
   - title: Orientation
     body: Help people understand where they are, whether they are navigating a conversation, an app, or a document.
