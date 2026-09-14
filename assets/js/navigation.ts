@@ -1,15 +1,17 @@
 (() => {
-  const menu = document.querySelector('[data-mobile-menu]');
+  const menu = document.querySelector<HTMLDetailsElement>('[data-mobile-menu]');
   if (!menu) return;
   const summary = menu.querySelector('summary');
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && menu.open) {
       menu.open = false;
-      summary.focus();
+      summary?.focus();
     }
   });
   document.addEventListener('pointerdown', (event) => {
-    if (menu.open && !menu.contains(event.target)) menu.open = false;
+    const target = event.target;
+    if (menu.open && !(target instanceof Node && menu.contains(target)))
+      menu.open = false;
   });
   menu.querySelectorAll('a').forEach((link) =>
     link.addEventListener('click', () => {

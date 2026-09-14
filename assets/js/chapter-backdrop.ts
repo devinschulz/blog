@@ -7,7 +7,7 @@ import {
   Object3D,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { createWebGLSurface } from './webgl-surface.js';
+import { createWebGLSurface } from './webgl-surface';
 
 // A quiet version of the hero's tiles for the Current chapter panel.
 //
@@ -24,14 +24,17 @@ const NEAR = new Color('#4a40cf');
 const FAR = new Color('#382fa4');
 const COUNT = 44;
 
-const backdrop = document.querySelector('[data-chapter-backdrop]');
+const backdrop = document.querySelector<HTMLElement>('[data-chapter-backdrop]');
+const canvas = backdrop?.querySelector<HTMLCanvasElement>(
+  '[data-chapter-canvas]',
+);
 
-if (backdrop) {
+if (backdrop && canvas) {
   createWebGLSurface({
     host: backdrop,
-    canvas: backdrop.querySelector('[data-chapter-canvas]'),
+    canvas,
     fov: 34,
-    build({ scene, camera }) {
+    build({ scene }) {
       const group = new Group();
       group.rotation.set(-0.16, 0, -0.04);
       const geometry = new RoundedBoxGeometry(1, 1, 0.3, 2, 0.16);
@@ -46,7 +49,7 @@ if (backdrop) {
       const color = new Color();
       let halfWidth = 5;
 
-      function update(time) {
+      function update(time: number): void {
         for (let index = 0; index < COUNT; index++) {
           // Slow lateral drift with a per-tile lane, wrapping across the panel.
           // The lane is hashed rather than derived from the index, so the tiles
@@ -71,7 +74,7 @@ if (backdrop) {
           tiles.setColorAt(index, color);
         }
         tiles.instanceMatrix.needsUpdate = true;
-        tiles.instanceColor.needsUpdate = true;
+        if (tiles.instanceColor) tiles.instanceColor.needsUpdate = true;
       }
 
       update(0);

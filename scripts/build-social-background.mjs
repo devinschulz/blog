@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { chromium } from '@playwright/test';
+import { stripTypeScriptTypes } from 'node:module';
 
 const CARD = { width: 1200, height: 630 };
 // Mirrors the hero: the sculpture sits right, fading in so it never crowds the
@@ -27,8 +28,8 @@ const CARDS = [
 const MODULES = {
   '/three.module.js': 'node_modules/three/build/three.module.js',
   '/three.core.js': 'node_modules/three/build/three.core.js',
-  '/kinetic-sculpture.js': 'assets/js/kinetic-sculpture.js',
-  '/kinetic-scene.js': 'assets/js/kinetic-scene.js',
+  '/kinetic-sculpture': 'assets/js/kinetic-sculpture.ts',
+  '/kinetic-scene': 'assets/js/kinetic-scene.ts',
 };
 
 const page_html = `<!doctype html>
@@ -53,7 +54,7 @@ const page_html = `<!doctype html>
 </div>
 <script type="module">
   import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
-  import { createKineticScene } from '/kinetic-scene.js';
+  import { createKineticScene } from '/kinetic-scene';
 
   const canvas = document.getElementById('sculpture');
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -89,10 +90,13 @@ await page.route('**/*', (route) => {
     : MODULES[pathname];
   if (!file || !fs.existsSync(file))
     return route.fulfill({ status: 404, body: '' });
-  return route.fulfill({
-    contentType: 'text/javascript',
-    body: fs.readFileSync(file),
-  });
+  const source = fs.readFileSync(file, 'utf8');
+  // The scene modules are TypeScript now. Strip the types on the way to the
+  // browser so the card still renders from the very same source the site uses.
+  const body = file.endsWith('.ts')
+    ? stripTypeScriptTypes(source, { mode: 'strip' })
+    : source;
+  return route.fulfill({ contentType: 'text/javascript', body });
 });
 
 const failures = [];

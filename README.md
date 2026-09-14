@@ -19,7 +19,9 @@ npm run build
 
 Deploy `dist/`. Hugo compiles and minifies Tailwind and fingerprints the resulting stylesheet. No separate CSS watcher or Tailwind CDN is needed.
 
-JavaScript starts at `assets/js/site.js`. Hugo’s `js.Build` bundles its imports (including Three.js), minifies the output, and fingerprints it as one `site.<hash>.js` file shared by every page. Add new scripts as imports in this entry point. Homepage features initialize only when their elements exist; the shared bundle still includes their code on other pages.
+Client code is TypeScript, starting at `assets/js/site.ts`. Hugo’s `js.Build` compiles and bundles its imports (including Three.js), minifies the output, and fingerprints it as one `site.<hash>.js` file shared by every page — no separate build step. Add new scripts as imports in this entry point. Homepage features initialize only when their elements exist; the shared bundle still includes their code on other pages.
+
+Hugo strips the types but does not check them, so run `npm run typecheck` (`tsc --noEmit`, wired into `npm run check`) to catch anything the bundler will happily ignore. Relative imports are written without an extension, which is what `moduleResolution: bundler` in `tsconfig.json` expects.
 
 WebGL surfaces are built from two pieces: `assets/js/webgl-surface.js` owns the renderer, the motion rules, and context recovery, and a scene module supplies the artwork. `hero-motion.js`, `states-lattice.js`, `work-tiles.js` and `chapter-backdrop.js` are all thin wrappers over it, so a new surface needs a canvas, a scene, and no new motion handling. Each surface is its own WebGL context and the home page holds six, well inside the browser limit, but reuse an existing surface before adding another.
 
@@ -35,7 +37,7 @@ Run `npm run check` before deployment. It builds the site and checks metadata, l
 - Blog content uses Tailwind Typography (`prose`) with utility overrides in the article layout.
 - Fonts are self-hosted in `static/fonts/` and declared in `assets/css/fonts.css`. The image render hook optimizes archived blog images without changing their original URLs or Markdown.
 - Sharing cards and structured data are generated in `layouts/partials/social-image.html` and `seo.html`. Case studies can set `seoTitle` independently of their visible heading.
-- Card backgrounds in `assets/images/social/` are rendered from the real hero sculpture by `npm run build:social`, which loads `assets/js/kinetic-scene.js` in headless Chromium and freezes it at a different moment per card. Commit the regenerated PNGs. The home page and each case study get their own; writing shares one.
+- Card backgrounds in `assets/images/social/` are rendered from the real hero sculpture by `npm run build:social`, which serves `assets/js/kinetic-scene.ts` to headless Chromium (types stripped on the way out with `node:module`, so the card and the site render from one source) and freezes it at a different moment per card. Commit the regenerated PNGs. The home page and each case study get their own; writing shares one.
 - Dark mode follows the system preference automatically, including live changes. Adaptive color tokens are overridden inside `@media (prefers-color-scheme: dark)` in `assets/css/site.css`; use `text-accent` for adaptive purple text and `bg-night` for permanently dark surfaces. Artwork keeps its fixed palette, and archived articles use `dark:prose-invert`.
 
 Use complete class names in templates or JavaScript so Tailwind can detect them. Keep reusable markup in Hugo partials.

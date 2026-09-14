@@ -1,5 +1,32 @@
 import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
 
+/** What a scene module receives when the harness builds it. */
+export interface SceneContext {
+  scene: Scene;
+  camera: PerspectiveCamera;
+  renderer: WebGLRenderer;
+}
+
+/** What a scene module hands back. `resize` is optional; `update` is not. */
+export interface Surface {
+  update(elapsed: number, pointer: Vector2): void;
+  resize?(width: number, height: number, camera: PerspectiveCamera): void;
+}
+
+export interface WebGLSurfaceOptions {
+  /** Carries the data-motion and data-renderer attributes, and the pointer. */
+  host: HTMLElement;
+  canvas: HTMLCanvasElement;
+  /** Element whose box drives the canvas size. Defaults to the canvas parent. */
+  measure?: Element | null;
+  fov: number;
+  near?: number;
+  far?: number;
+  /** Track the pointer and hand it to `update`. */
+  pointer?: boolean;
+  build(context: SceneContext): Surface;
+}
+
 // One motion harness behind every WebGL surface on the site. Each canvas gets
 // the same guarantees: it pauses offscreen and in hidden tabs, honours reduced
 // motion and forced colours, recovers from a lost context, and marks itself
@@ -7,16 +34,22 @@ import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
 export function createWebGLSurface({
   host,
   canvas,
-  measure = canvas.parentElement,
+  measure,
   fov,
   near = 0.1,
   far = 40,
   pointer: usePointer = false,
   build,
-}) {
+}: WebGLSurfaceOptions): void {
+  const parent = measure ?? canvas.parentElement;
+  if (!parent) return;
+  // Declared non-null so the hoisted closures below see it that way; narrowing
+  // from the guard does not reach inside a function declaration.
+  const box: Element = parent;
+
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const forcedColors = matchMedia('(forced-colors: active)');
-  let renderer;
+  let renderer: WebGLRenderer;
 
   try {
     renderer = new WebGLRenderer({
@@ -39,16 +72,16 @@ export function createWebGLSurface({
 
   let visible = false;
   let lost = false;
-  let frame = null;
-  let lastTime = null;
+  let frame: number | null = null;
+  let lastTime: number | null = null;
   let elapsed = 0;
 
-  function draw() {
+  function draw(): void {
     surface.update(elapsed, pointer);
     renderer.render(scene, camera);
   }
 
-  function animate(now) {
+  function animate(now: number): void {
     frame = null;
     if (host.dataset.motion !== 'running') return;
     const delta =
@@ -60,7 +93,7 @@ export function createWebGLSurface({
     frame = requestAnimationFrame(animate);
   }
 
-  function syncMotion() {
+  function syncMotion(): void {
     const active =
       visible &&
       !document.hidden &&
@@ -78,8 +111,8 @@ export function createWebGLSurface({
     if (active) frame = requestAnimationFrame(animate);
   }
 
-  function resize() {
-    const { width, height } = measure.getBoundingClientRect();
+  function resize(): void {
+    const { width, height } = box.getBoundingClientRect();
     if (!width || !height || lost) return;
     renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     renderer.setSize(width, height, false);
@@ -92,7 +125,7 @@ export function createWebGLSurface({
   if (usePointer) {
     host.addEventListener('pointermove', (event) => {
       if (reducedMotion.matches || event.pointerType === 'touch') return;
-      const rect = measure.getBoundingClientRect();
+      const rect = box.getBoundingClientRect();
       targetPointer.set(
         Math.max(
           -0.5,
@@ -119,7 +152,7 @@ export function createWebGLSurface({
     host.dataset.renderer = 'webgl';
     syncMotion();
   });
-  new ResizeObserver(resize).observe(measure);
+  new ResizeObserver(resize).observe(box);
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     syncMotion();

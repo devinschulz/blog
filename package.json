@@ -18,10 +18,11 @@
   "scripts": {
     "build": "hugo",
     "build:social": "node scripts/build-social-background.mjs",
-    "format": "prettier --write \"**/*.{js,mjs,json,css}\"",
-    "format:check": "prettier --check \"**/*.{js,mjs,json,css}\"",
+    "format": "prettier --write \"**/*.{js,mjs,ts,json,css}\"",
+    "format:check": "prettier --check \"**/*.{js,mjs,ts,json,css}\"",
+    "typecheck": "tsc --noEmit",
     "serve": "hugo server",
-    "check": "npm run build && node scripts/check-site.mjs",
+    "check": "npm run typecheck && npm run build && node scripts/check-site.mjs",
     "check:a11y": "npm run build && playwright test",
     "check:all": "npm run check && npm run check:a11y",
     "prepare": "husky"
@@ -31,16 +32,18 @@
     "@playwright/test": "^1.63.0",
     "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
+    "@types/three": "^0.186.0",
     "hugo-bin": "^0.162.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.5.1",
     "prettier": "^3.9.6",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "three": "^0.186.0"
   },
   "lint-staged": {
-    "*.{js,mjs,json,css}": "prettier --write"
+    "*.{js,mjs,ts,json,css}": "prettier --write"
   }
 }

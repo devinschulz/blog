@@ -9,7 +9,7 @@ import {
   Object3D,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { createWebGLSurface } from './webgl-surface.js';
+import { createWebGLSurface } from './webgl-surface';
 
 // Every interface tile walks the same path a real one does. Empty, ready,
 // focused, working, recovering, done — one full lifecycle spans the band, so
@@ -29,7 +29,7 @@ const PROCESSING = 2;
 const MAX_COLUMNS = 32;
 const ROWS = 4;
 
-const smoothstep = (edge0, edge1, x) => {
+const smoothstep = (edge0: number, edge1: number, x: number): number => {
   const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
   return t * t * (3 - 2 * t);
 };
@@ -37,19 +37,31 @@ const smoothstep = (edge0, edge1, x) => {
 // A tile's own place in the run. Scattered drops the orderly left-to-right
 // lifecycle for per-tile noise: every state is still there, just no longer in
 // any order — which is what a 404 is.
-const offsetFor = (scattered, column, row, u, v) => {
+const offsetFor = (
+  scattered: boolean,
+  column: number,
+  row: number,
+  u: number,
+  v: number,
+): number => {
   if (!scattered) return u * STATES.length + v * 0.4;
   const hash = Math.sin(column * 12.9898 + row * 78.233) * 43758.5453;
   return (hash - Math.floor(hash)) * STATES.length;
 };
 
-for (const lattice of document.querySelectorAll('[data-lattice]')) {
+for (const lattice of document.querySelectorAll<HTMLElement>(
+  '[data-lattice]',
+)) {
   const scattered = lattice.dataset.latticeMode === 'scattered';
+  const canvas = lattice.querySelector<HTMLCanvasElement>(
+    '[data-lattice-canvas]',
+  );
+  if (!canvas) continue;
   createWebGLSurface({
     host: lattice,
-    canvas: lattice.querySelector('[data-lattice-canvas]'),
+    canvas,
     fov: 30,
-    build({ scene, camera }) {
+    build({ scene }) {
       const group = new Group();
       group.rotation.set(-0.2, 0, -0.015);
       const geometry = new RoundedBoxGeometry(1, 1, 0.3, 2, 0.14);
@@ -77,7 +89,7 @@ for (const lattice of document.querySelectorAll('[data-lattice]')) {
       // Narrow screens get fewer, larger tiles rather than an unreadable mesh.
       let columns = MAX_COLUMNS;
 
-      function update(time) {
+      function update(time: number): void {
         const spacingX = (halfWidth * 2) / columns;
         // A tall, narrow band needs its rows spread across more of the frame,
         // or the tiles huddle in a stripe through the middle of it.
@@ -130,7 +142,7 @@ for (const lattice of document.querySelectorAll('[data-lattice]')) {
           }
         }
         tiles.instanceMatrix.needsUpdate = true;
-        tiles.instanceColor.needsUpdate = true;
+        if (tiles.instanceColor) tiles.instanceColor.needsUpdate = true;
       }
 
       update(0);

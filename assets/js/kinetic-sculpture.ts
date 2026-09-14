@@ -39,7 +39,13 @@ export function createKineticSculpture() {
   const zAxis = new Vector3(0, 0, 1);
   const TAU = Math.PI * 2;
 
-  function surface(u, v, time, fold, target) {
+  function surface(
+    u: number,
+    v: number,
+    time: number,
+    fold: number,
+    target: Vector3,
+  ): void {
     const angle = u * TAU + Math.sin(v * 3 + time * 0.25) * 0.16;
     const twist = angle * 1.5 + time * 0.18;
     const width = (v - 0.5) * 1.6;
@@ -59,7 +65,10 @@ export function createKineticSculpture() {
     );
   }
 
-  function update(time, pointer = { x: 0, y: 0 }) {
+  function update(
+    time: number,
+    pointer: { x: number; y: number } = { x: 0, y: 0 },
+  ): void {
     // Linger at each composition, then unfold with a slow, smooth transition.
     const cycle = 0.5 + Math.cos(time * 0.23) * 0.5;
     const fold = cycle * cycle * (3 - 2 * cycle);
@@ -111,10 +120,10 @@ export function createKineticSculpture() {
       }
     }
     tiles.instanceMatrix.needsUpdate = true;
-    tiles.instanceColor.needsUpdate = true;
+    if (tiles.instanceColor) tiles.instanceColor.needsUpdate = true;
   }
 
-  function dispose() {
+  function dispose(): void {
     geometry.dispose();
     material.dispose();
     tiles.dispose();

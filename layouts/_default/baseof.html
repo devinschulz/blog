@@ -25,7 +25,7 @@
     {{ partial "header.html" . }}
     <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
-    {{ $scripts := resources.Get "js/site.js" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
+    {{ $scripts := resources.Get "js/site.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
     {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
     <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
   </body>

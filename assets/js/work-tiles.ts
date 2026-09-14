@@ -10,13 +10,23 @@ import {
   Vector3,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { createWebGLSurface } from './webgl-surface.js';
+import { createWebGLSurface } from './webgl-surface';
 
 // Each project tile gets the same tile vocabulary as the hero, arranged into a
 // form that echoes the work: a conversation gathering into a sphere, a calm
 // drift of owned things, a design grid under a travelling ripple. The CSS
 // illustration underneath stays as the fallback when there is no renderer.
-const TILES = {
+type TileForm = 'orb' | 'drift' | 'grid';
+
+interface TileConfig {
+  form: TileForm;
+  colors: [string, string];
+  count: number;
+  /** Where the form sits inside the tile, in world units. */
+  offset: [number, number];
+}
+
+const TILES: Record<string, TileConfig> = {
   cape: {
     form: 'orb',
     colors: ['#635bff', '#b2a2ff'],
@@ -40,7 +50,13 @@ const TILES = {
 const GOLDEN = Math.PI * (3 - Math.sqrt(5));
 const GRID_COLUMNS = 13;
 
-function place(form, index, count, time, target) {
+function place(
+  form: TileForm,
+  index: number,
+  count: number,
+  time: number,
+  target: Vector3,
+): Vector3 {
   if (form === 'orb') {
     const y = 1 - (index / (count - 1)) * 2;
     const ring = Math.sqrt(Math.max(0, 1 - y * y));
@@ -78,13 +94,17 @@ function place(form, index, count, time, target) {
   );
 }
 
-for (const host of document.querySelectorAll('[data-work-tile]')) {
-  const config = TILES[host.dataset.workTile];
-  if (!config) continue;
+for (const host of document.querySelectorAll<HTMLElement>('[data-work-tile]')) {
+  const name = host.dataset.workTile;
+  const config = name ? TILES[name] : undefined;
+  const canvas = host.querySelector<HTMLCanvasElement>(
+    '[data-work-tile-canvas]',
+  );
+  if (!config || !canvas) continue;
 
   createWebGLSurface({
     host,
-    canvas: host.querySelector('[data-work-tile-canvas]'),
+    canvas,
     fov: 34,
     build({ scene, camera }) {
       const { form, count, offset } = config;
@@ -109,14 +129,14 @@ for (const host of document.querySelectorAll('[data-work-tile]')) {
       rimLight.position.set(3, 1, -3);
       scene.add(rimLight);
 
-      const [near, far] = config.colors.map((hex) => new Color(hex));
+      const [near, far] = config.colors.map((hex: string) => new Color(hex));
       const dummy = new Object3D();
       const color = new Color();
       const position = new Vector3();
       const zAxis = new Vector3(0, 0, 1);
       const size = form === 'orb' ? 0.15 : 0.19;
 
-      function update(time) {
+      function update(time: number): void {
         for (let index = 0; index < count; index++) {
           place(form, index, count, time, position);
           dummy.position.copy(position);
@@ -136,7 +156,7 @@ for (const host of document.querySelectorAll('[data-work-tile]')) {
           tiles.setColorAt(index, color);
         }
         tiles.instanceMatrix.needsUpdate = true;
-        tiles.instanceColor.needsUpdate = true;
+        if (tiles.instanceColor) tiles.instanceColor.needsUpdate = true;
       }
 
       update(0);

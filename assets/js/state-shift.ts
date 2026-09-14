@@ -1,16 +1,31 @@
-const demo = document.querySelector('[data-demo]');
-const stateButtons = [
-  ...document.querySelectorAll('[data-state-controls] button'),
-];
-const stateIndex = document.querySelector('#state-index');
-const stateNote = document.querySelector('#state-note');
-const nameInput = document.querySelector('#demo-name');
-const nameError = document.querySelector('#demo-name-error');
-const continueButton = document.querySelector('[data-demo-continue]');
-const demoForm = document.querySelector('[data-demo-form]');
-let saveTimer;
+type DemoState = 'default' | 'focus' | 'error' | 'processing' | 'success';
 
-const stateMessages = {
+/** Index label, design note, and the message shown inside the demo. */
+type StateCopy = readonly [string, string, string];
+
+const demo = document.querySelector<HTMLElement>('[data-demo]');
+const stateControls = document.querySelector<HTMLElement>(
+  '[data-state-controls]',
+);
+const stateButtons = [
+  ...document.querySelectorAll<HTMLButtonElement>(
+    '[data-state-controls] button',
+  ),
+];
+const stateIndex = document.querySelector<HTMLElement>('#state-index');
+const stateNote = document.querySelector<HTMLElement>('#state-note');
+const stateMessage = document.querySelector<HTMLElement>(
+  '[data-state-message]',
+);
+const nameInput = document.querySelector<HTMLInputElement>('#demo-name');
+const nameError = document.querySelector<HTMLElement>('#demo-name-error');
+const continueButton = document.querySelector<HTMLButtonElement>(
+  '[data-demo-continue]',
+);
+const demoForm = document.querySelector<HTMLElement>('[data-demo-form]');
+let saveTimer: number | undefined;
+
+const stateMessages: Record<DemoState, StateCopy> = {
   default: [
     'State 01 / 05',
     'The happy path deserves care. It just doesn’t deserve all of it.',
@@ -38,14 +53,30 @@ const stateMessages = {
   ],
 };
 
-function switchState(nextState) {
-  if (!demo || !stateMessages[nextState]) return;
+const isDemoState = (value: string | undefined): value is DemoState =>
+  value !== undefined && value in stateMessages;
+
+function switchState(nextState: string | undefined): void {
+  // One guard for the whole demo: without every part of it on the page there
+  // is nothing to switch, which is the case on every page but the home page.
+  if (
+    !demo ||
+    !isDemoState(nextState) ||
+    !stateIndex ||
+    !stateNote ||
+    !stateMessage ||
+    !nameInput ||
+    !nameError ||
+    !continueButton ||
+    !demoForm
+  )
+    return;
   window.clearTimeout(saveTimer);
   const [index, note, message] = stateMessages[nextState];
   demo.dataset.state = nextState;
   stateIndex.textContent = index;
   stateNote.textContent = note;
-  document.querySelector('[data-state-message]').textContent = message;
+  stateMessage.textContent = message;
   stateButtons.forEach((button) =>
     button.setAttribute(
       'aria-pressed',
@@ -71,13 +102,13 @@ function switchState(nextState) {
       : 'Continue';
 }
 
-function saveDemo() {
+function saveDemo(): void {
   switchState('processing');
   saveTimer = window.setTimeout(() => switchState('success'), 1500);
 }
 
-if (demo) {
-  document.querySelector('[data-state-controls]').hidden = false;
+if (demo && stateControls && continueButton && nameInput) {
+  stateControls.hidden = false;
   continueButton.hidden = false;
   nameInput.readOnly = false;
   stateButtons.forEach((button) =>
@@ -110,16 +141,22 @@ if (demo) {
   });
 }
 
-const filters = [...document.querySelectorAll('[data-filter]')];
-const posts = [...document.querySelectorAll('[data-post-list] a')];
-const emptyMessage = document.querySelector('#no-posts');
-const archiveStatus = document.querySelector('#archive-status');
-const archiveFilters = document.querySelector('[data-archive-filters]');
+const filters = [
+  ...document.querySelectorAll<HTMLButtonElement>('[data-filter]'),
+];
+const posts = [
+  ...document.querySelectorAll<HTMLAnchorElement>('[data-post-list] a'),
+];
+const emptyMessage = document.querySelector<HTMLElement>('#no-posts');
+const archiveStatus = document.querySelector<HTMLElement>('#archive-status');
+const archiveFilters = document.querySelector<HTMLElement>(
+  '[data-archive-filters]',
+);
 if (archiveFilters) archiveFilters.hidden = false;
 
 filters.forEach((filter) =>
   filter.addEventListener('click', () => {
-    const topic = filter.dataset.filter;
+    const topic = filter.dataset.filter ?? '';
     const visible = posts.filter((post) => {
       const tags = (post.dataset.topics || '').split('|');
       const matches =
@@ -136,7 +173,8 @@ filters.forEach((filter) =>
     });
     if (emptyMessage) emptyMessage.hidden = visible.length > 0;
     if (archiveStatus) {
-      const topicName = topic === 'all' ? '' : `${filter.textContent.trim()} `;
+      const topicName =
+        topic === 'all' ? '' : `${(filter.textContent ?? '').trim()} `;
       archiveStatus.textContent = `Showing ${visible.length} ${topicName}${visible.length === 1 ? 'article' : 'articles'}.`;
     }
   }),

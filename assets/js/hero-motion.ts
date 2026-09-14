@@ -1,12 +1,13 @@
-import { createKineticScene } from './kinetic-scene.js';
-import { createWebGLSurface } from './webgl-surface.js';
+import { createKineticScene } from './kinetic-scene';
+import { createWebGLSurface } from './webgl-surface';
 
-const hero = document.querySelector('[data-hero-motion]');
+const hero = document.querySelector<HTMLElement>('[data-hero-motion]');
+const canvas = hero?.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
 
-if (hero) {
+if (hero && canvas) {
   createWebGLSurface({
     host: hero,
-    canvas: hero.querySelector('[data-hero-canvas]'),
+    canvas,
     measure: hero.querySelector('[data-hero-art]'),
     fov: 38,
     pointer: true,
