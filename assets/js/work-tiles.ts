@@ -10,7 +10,7 @@ import {
   Vector3,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { createWebGLSurface } from './webgl-surface';
+import type { SceneContext, Surface } from './webgl-surface';
 
 // Each project tile gets the same tile vocabulary as the hero, arranged into a
 // form that echoes the work: a conversation gathering into a sphere, a calm
@@ -94,79 +94,75 @@ function place(
   );
 }
 
-for (const host of document.querySelectorAll<HTMLElement>('[data-work-tile]')) {
-  const name = host.dataset.workTile;
-  const config = name ? TILES[name] : undefined;
-  const canvas = host.querySelector<HTMLCanvasElement>(
-    '[data-work-tile-canvas]',
-  );
-  if (!config || !canvas) continue;
+export const WORK_TILE_FOV = 34;
+export { TILES };
 
-  createWebGLSurface({
-    host,
-    canvas,
-    fov: 34,
-    build({ scene, camera }) {
-      const { form, count, offset } = config;
-      const group = new Group();
-      group.position.set(offset[0], offset[1], 0);
-      group.rotation.set(-0.18, 0, form === 'orb' ? 0 : -0.05);
-      const geometry = new RoundedBoxGeometry(1, 1, 0.34, 2, 0.12);
-      const material = new MeshStandardMaterial({
-        roughness: 0.34,
-        metalness: 0.22,
-      });
-      const tiles = new InstancedMesh(geometry, material, count);
-      tiles.instanceMatrix.setUsage(DynamicDrawUsage);
-      tiles.frustumCulled = false;
-      group.add(tiles);
-      scene.add(group);
-      scene.add(new HemisphereLight('#fff9ef', '#655889', 2.4));
-      const keyLight = new DirectionalLight('#ffffff', 2.5);
-      keyLight.position.set(-2, 4, 6);
-      scene.add(keyLight);
-      const rimLight = new DirectionalLight('#b8b0ff', 1.9);
-      rimLight.position.set(3, 1, -3);
-      scene.add(rimLight);
+export function createWorkTileScene(config: TileConfig) {
+  return function build({ scene }: SceneContext): Surface {
+    const { form, count, offset } = config;
+    const group = new Group();
+    group.position.set(offset[0], offset[1], 0);
+    group.rotation.set(-0.18, 0, form === 'orb' ? 0 : -0.05);
+    const geometry = new RoundedBoxGeometry(1, 1, 0.34, 2, 0.12);
+    const material = new MeshStandardMaterial({
+      roughness: 0.34,
+      metalness: 0.22,
+    });
+    const tiles = new InstancedMesh(geometry, material, count);
+    tiles.instanceMatrix.setUsage(DynamicDrawUsage);
+    tiles.frustumCulled = false;
+    group.add(tiles);
+    scene.add(group);
+    scene.add(new HemisphereLight('#fff9ef', '#655889', 2.4));
+    const keyLight = new DirectionalLight('#ffffff', 2.5);
+    keyLight.position.set(-2, 4, 6);
+    scene.add(keyLight);
+    const rimLight = new DirectionalLight('#b8b0ff', 1.9);
+    rimLight.position.set(3, 1, -3);
+    scene.add(rimLight);
 
-      const [near, far] = config.colors.map((hex: string) => new Color(hex));
-      const dummy = new Object3D();
-      const color = new Color();
-      const position = new Vector3();
-      const zAxis = new Vector3(0, 0, 1);
-      const size = form === 'orb' ? 0.15 : 0.19;
+    const [near, far] = config.colors.map((hex: string) => new Color(hex));
+    const dummy = new Object3D();
+    const color = new Color();
+    const position = new Vector3();
+    const zAxis = new Vector3(0, 0, 1);
+    const size = form === 'orb' ? 0.15 : 0.19;
 
-      function update(time: number): void {
-        for (let index = 0; index < count; index++) {
-          place(form, index, count, time, position);
-          dummy.position.copy(position);
-          if (form === 'orb')
-            dummy.quaternion.setFromUnitVectors(
-              zAxis,
-              position.clone().normalize(),
-            );
-          else dummy.rotation.set(0, 0, Math.sin(time * 0.4 + index) * 0.05);
-          const pulse = 1 + Math.sin(time * 1.2 + index * 0.4) * 0.07;
-          dummy.scale.set(size * pulse * 1.5, size * pulse, size * 0.6);
-          dummy.updateMatrix();
-          tiles.setMatrixAt(index, dummy.matrix);
-          color
-            .copy(near)
-            .lerp(far, (Math.sin(index * 0.35 + time * 0.25) + 1) / 2);
-          tiles.setColorAt(index, color);
-        }
-        tiles.instanceMatrix.needsUpdate = true;
-        if (tiles.instanceColor) tiles.instanceColor.needsUpdate = true;
+    function update(time: number): void {
+      for (let index = 0; index < count; index++) {
+        place(form, index, count, time, position);
+        dummy.position.copy(position);
+        if (form === 'orb')
+          dummy.quaternion.setFromUnitVectors(
+            zAxis,
+            position.clone().normalize(),
+          );
+        else dummy.rotation.set(0, 0, Math.sin(time * 0.4 + index) * 0.05);
+        const pulse = 1 + Math.sin(time * 1.2 + index * 0.4) * 0.07;
+        dummy.scale.set(size * pulse * 1.5, size * pulse, size * 0.6);
+        dummy.updateMatrix();
+        tiles.setMatrixAt(index, dummy.matrix);
+        color
+          .copy(near)
+          .lerp(far, (Math.sin(index * 0.35 + time * 0.25) + 1) / 2);
+        tiles.setColorAt(index, color);
       }
+      tiles.instanceMatrix.needsUpdate = true;
+      if (tiles.instanceColor) tiles.instanceColor.needsUpdate = true;
+    }
 
-      update(0);
-      return {
-        update,
-        // Hold a constant world height so the art scales with the tile box.
-        resize: (width, height, camera) => {
-          camera.position.z = 2.3 / Math.tan((camera.fov * Math.PI) / 360);
-        },
-      };
-    },
-  });
+    update(0);
+    return {
+      update,
+      dispose: () => {
+        geometry.dispose();
+        material.dispose();
+        tiles.dispose();
+      },
+      // Hold a constant world height so the art scales with the tile box.
+      resize: (width, height, camera) => {
+        camera.position.z = 2.3 / Math.tan((camera.fov * Math.PI) / 360);
+      },
+    };
+  };
 }

@@ -23,7 +23,11 @@ Client code is TypeScript, starting at `assets/js/site.ts`. Hugo’s `js.Build` 
 
 Hugo strips the types but does not check them, so run `npm run typecheck` (`tsc --noEmit`, wired into `npm run check`) to catch anything the bundler will happily ignore. Relative imports are written without an extension, which is what `moduleResolution: bundler` in `tsconfig.json` expects.
 
-WebGL surfaces are built from two pieces: `assets/js/webgl-surface.js` owns the renderer, the motion rules, and context recovery, and a scene module supplies the artwork. `hero-motion.js`, `states-lattice.js`, `work-tiles.js` and `chapter-backdrop.js` are all thin wrappers over it, so a new surface needs a canvas, a scene, and no new motion handling. Each surface is its own WebGL context and the home page holds six, well inside the browser limit, but reuse an existing surface before adding another.
+Interactions run on Hotwire. `assets/js/application.ts` starts Stimulus and imports Turbo; controllers live in `assets/js/controllers/` and are registered there by hand. Markup keeps its existing `data-*` attributes — CSS and tests depend on them — and gains `data-controller`, `data-action` and target attributes alongside.
+
+**The script tag belongs in `<head>`.** Turbo replaces `<body>` on every visit, so a bundle loaded at the end of the body re-executes and starts a second Stimulus application, then a third on the next visit. In `<head>` it survives Turbo's head merge and runs once. Turbo also prefetches links on hover itself, which is why there is no hand-rolled preloading here.
+
+WebGL surfaces are built from two pieces: `assets/js/webgl-surface.ts` owns the renderer, the motion rules, and context recovery, and a scene module supplies the artwork. One `webgl` Stimulus controller drives all of them, choosing a scene by value. Its `disconnect()` is load-bearing: it calls the handle's `destroy()`, which aborts every listener, disconnects the observers, disposes the scene and releases the GL context. Without that, each Turbo visit would leak the home page's six contexts and quickly exhaust what the browser hands out.
 
 Run `npm run check` before deployment. It builds the site and checks metadata, local links/assets, image attributes, RSS, and redirect mappings. Run `npm run check:a11y` for browser accessibility checks, or `npm run check:all` for both. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for browser setup, coverage, and the manual assistive-technology checklist.
 

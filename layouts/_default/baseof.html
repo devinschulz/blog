@@ -18,6 +18,9 @@
     {{ end }}
     {{ with .OutputFormats.Get "md" }}<link rel="alternate" type="text/markdown" href="{{ .RelPermalink }}" title="{{ $.Title }} as Markdown">{{ end }}
     {{ with site.Home.OutputFormats.Get "llms" }}<link rel="describedby" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}
+    {{ $scripts := resources.Get "js/site.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
+    {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
+    <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
   <body class="bg-paper font-sans leading-normal wrap-anywhere text-ink antialiased [&_button:not(:disabled)]:cursor-pointer motion-reduce:**:transition-none">
@@ -25,8 +28,5 @@
     {{ partial "header.html" . }}
     <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
-    {{ $scripts := resources.Get "js/site.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
-    {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
-    <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
   </body>
 </html>

@@ -25,6 +25,7 @@ export function createKineticScene({ scene, camera }: SceneContext): Surface {
   fillLight.position.set(1, -4, 3);
   scene.add(fillLight);
   return {
+    dispose: () => sculpture.dispose(),
     update: (elapsed: number, pointer: Vector2) =>
       sculpture.update(elapsed, pointer),
     // Keep the whole sculpture in frame even in tall, narrow windows.

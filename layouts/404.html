@@ -7,8 +7,8 @@
     <a class="inline-flex min-h-12 items-center bg-ink px-5 text-paper" href="{{ "blog/" | relURL }}">Explore the archive ↗︎</a>
     <a class="inline-flex min-h-12 items-center border border-line px-5" href="{{ site.Home.RelPermalink }}#work">Selected work ↗︎</a>
   </div>
-  <div class="states-lattice mt-16 desktop:mt-20" data-lattice data-lattice-mode="scattered" aria-hidden="true">
-    <canvas class="states-lattice-canvas" data-lattice-canvas></canvas>
+  <div class="states-lattice mt-16 desktop:mt-20" data-lattice data-lattice-mode="scattered" data-controller="webgl" data-webgl-scene-value="lattice" aria-hidden="true">
+    <canvas class="states-lattice-canvas" data-lattice-canvas data-webgl-target="canvas"></canvas>
   </div>
 </section>
 {{ end }}

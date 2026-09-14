@@ -7,10 +7,17 @@ export interface SceneContext {
   renderer: WebGLRenderer;
 }
 
-/** What a scene module hands back. `resize` is optional; `update` is not. */
+/** What a scene module hands back. Only `update` is required. */
 export interface Surface {
   update(elapsed: number, pointer: Vector2): void;
   resize?(width: number, height: number, camera: PerspectiveCamera): void;
+  /** Free geometry, materials and textures. Called on teardown. */
+  dispose?(): void;
+}
+
+/** Returned so a Stimulus controller can tear the surface down on disconnect. */
+export interface WebGLSurfaceHandle {
+  destroy(): void;
 }
 
 export interface WebGLSurfaceOptions {
@@ -31,6 +38,12 @@ export interface WebGLSurfaceOptions {
 // the same guarantees: it pauses offscreen and in hidden tabs, honours reduced
 // motion and forced colours, recovers from a lost context, and marks itself
 // unavailable so the static fallback can take over.
+//
+// Teardown matters as much as setup. Turbo replaces the <body> on navigation
+// without reloading the document, so a surface that never released its context
+// would leak one per visit — and browsers keep only a handful alive before they
+// start dropping the oldest. Every listener here joins one AbortSignal, and the
+// returned handle releases the context itself.
 export function createWebGLSurface({
   host,
   canvas,
@@ -40,15 +53,17 @@ export function createWebGLSurface({
   far = 40,
   pointer: usePointer = false,
   build,
-}: WebGLSurfaceOptions): void {
+}: WebGLSurfaceOptions): WebGLSurfaceHandle | undefined {
   const parent = measure ?? canvas.parentElement;
-  if (!parent) return;
+  if (!parent) return undefined;
   // Declared non-null so the hoisted closures below see it that way; narrowing
   // from the guard does not reach inside a function declaration.
   const box: Element = parent;
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const forcedColors = matchMedia('(forced-colors: active)');
+  const listeners = new AbortController();
+  const { signal } = listeners;
   let renderer: WebGLRenderer;
 
   try {
@@ -61,7 +76,7 @@ export function createWebGLSurface({
   } catch {
     // Without a graphics context the surface stays out of the layout entirely.
     host.dataset.renderer = 'none';
-    return;
+    return undefined;
   }
 
   const scene = new Scene();
@@ -123,46 +138,85 @@ export function createWebGLSurface({
   }
 
   if (usePointer) {
-    host.addEventListener('pointermove', (event) => {
-      if (reducedMotion.matches || event.pointerType === 'touch') return;
-      const rect = box.getBoundingClientRect();
-      targetPointer.set(
-        Math.max(
-          -0.5,
-          Math.min(0.5, (event.clientX - rect.left) / rect.width - 0.5),
-        ),
-        Math.max(
-          -0.5,
-          Math.min(0.5, (event.clientY - rect.top) / rect.height - 0.5),
-        ),
-      );
+    host.addEventListener(
+      'pointermove',
+      (event) => {
+        if (reducedMotion.matches || event.pointerType === 'touch') return;
+        const rect = box.getBoundingClientRect();
+        targetPointer.set(
+          Math.max(
+            -0.5,
+            Math.min(0.5, (event.clientX - rect.left) / rect.width - 0.5),
+          ),
+          Math.max(
+            -0.5,
+            Math.min(0.5, (event.clientY - rect.top) / rect.height - 0.5),
+          ),
+        );
+      },
+      { signal },
+    );
+    host.addEventListener('pointerleave', () => targetPointer.set(0, 0), {
+      signal,
     });
-    host.addEventListener('pointerleave', () => targetPointer.set(0, 0));
   }
 
-  canvas.addEventListener('webglcontextlost', (event) => {
-    event.preventDefault();
-    lost = true;
-    delete host.dataset.renderer;
-    syncMotion();
-  });
-  canvas.addEventListener('webglcontextrestored', () => {
-    lost = false;
-    resize();
-    host.dataset.renderer = 'webgl';
-    syncMotion();
-  });
-  new ResizeObserver(resize).observe(box);
-  new IntersectionObserver(([entry]) => {
+  canvas.addEventListener(
+    'webglcontextlost',
+    (event) => {
+      event.preventDefault();
+      lost = true;
+      delete host.dataset.renderer;
+      syncMotion();
+    },
+    { signal },
+  );
+  canvas.addEventListener(
+    'webglcontextrestored',
+    () => {
+      lost = false;
+      resize();
+      host.dataset.renderer = 'webgl';
+      syncMotion();
+    },
+    { signal },
+  );
+
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(box);
+  const intersectionObserver = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     syncMotion();
-  }).observe(host);
-  reducedMotion.addEventListener('change', syncMotion);
-  forcedColors.addEventListener('change', () => {
-    resize();
-    syncMotion();
   });
-  document.addEventListener('visibilitychange', syncMotion);
+  intersectionObserver.observe(host);
+
+  reducedMotion.addEventListener('change', syncMotion, { signal });
+  forcedColors.addEventListener(
+    'change',
+    () => {
+      resize();
+      syncMotion();
+    },
+    { signal },
+  );
+  document.addEventListener('visibilitychange', syncMotion, { signal });
   resize();
   host.dataset.renderer = 'webgl';
+
+  return {
+    destroy(): void {
+      listeners.abort();
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+      surface.dispose?.();
+      renderer.dispose();
+      // dispose() alone leaves the context alive in some browsers; this hands
+      // it back so a later visit can claim one.
+      renderer.forceContextLoss();
+      delete host.dataset.renderer;
+      delete host.dataset.motion;
+    },
+  };
 }

@@ -396,31 +396,72 @@ test('static content and navigation work without JavaScript', async ({
   await context.close();
 });
 
-test('focusing an internal link prefetches it, once, and skips the rest', async ({
-  page,
-}) => {
+test('Turbo prefetches an internal link on hover', async ({ page }) => {
+  // Turbo marks a speculative fetch with a header rather than a
+  // <link rel="prefetch"> element, so the request is what to assert on. It has
+  // to send X-Sec-Purpose because Sec-Purpose is a forbidden header name that
+  // scripts are not allowed to set.
+  const prefetched = [];
+  page.on('request', (request) => {
+    const headers = request.headers();
+    const purpose = headers['x-sec-purpose'] ?? headers['sec-purpose'] ?? '';
+    if (purpose.includes('prefetch'))
+      prefetched.push(new URL(request.url()).pathname);
+  });
   await page.goto('/');
-  const hints = page.locator('link[rel="prefetch"]');
-  await expect(hints).toHaveCount(0);
+  const link = page.locator('a[href="/work/cape/"]').first();
+  await link.scrollIntoViewIfNeeded();
+  await link.hover();
+  await expect.poll(() => prefetched).toContain('/work/cape/');
+});
 
-  const link = page.locator('a[href^="/work/"]').first();
-  await link.focus();
-  await expect(hints).toHaveCount(1);
-  await expect(hints.first()).toHaveAttribute('as', 'document');
-  expect(await hints.first().getAttribute('href')).toContain('/work/');
+test('Turbo navigation does not leak WebGL contexts', async ({ page }) => {
+  // Turbo swaps the body without reloading, so a surface that never released
+  // its context would leak one per visit and exhaust the browser's supply.
+  // Stimulus disconnect() is what returns them.
+  await page.addInitScript(() => {
+    window.__contexts = { created: 0, released: 0 };
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...rest) {
+      const context = getContext.call(this, type, ...rest);
+      if (context && String(type).startsWith('webgl')) {
+        window.__contexts.created++;
+        this.addEventListener(
+          'webglcontextlost',
+          () => window.__contexts.released++,
+        );
+      }
+      return context;
+    };
+  });
+  let fullLoads = 0;
+  page.on('load', () => fullLoads++);
+  await page.goto('/');
+  await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
+    'data-renderer',
+    'webgl',
+  );
+  const live = () =>
+    page.evaluate(() => window.__contexts.created - window.__contexts.released);
+  const baseline = await live();
+  expect(baseline).toBeGreaterThan(0);
+  const loadsBefore = fullLoads;
 
-  // Re-focusing the same link must not queue it twice.
-  await page.locator('a[href^="/blog/"], a[href^="/work/"]').nth(1).focus();
-  await link.focus();
-  await expect(hints).toHaveCount(2);
+  for (let visit = 0; visit < 3; visit++) {
+    await page.evaluate(() =>
+      document.querySelector('a[href="/work/cape/"]').click(),
+    );
+    await page.waitForURL('**/work/cape/');
+    await page.goBack();
+    await page.waitForURL(/\/$/);
+    await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
+      'data-renderer',
+      'webgl',
+    );
+  }
 
-  // A fragment on the current page, an external host and a mailto have
-  // nothing to fetch.
-  const before = await hints.count();
-  await page.locator('a[href="#content"]').first().focus();
-  await page.locator('a[href^="mailto:"]').first().focus();
-  await page.locator('a[href^="https://github.com"]').first().focus();
-  await expect(hints).toHaveCount(before);
+  await expect.poll(live).toBe(baseline);
+  expect(fullLoads - loadsBefore, 'Turbo should drive navigation').toBe(0);
 });
 
 test('forced-colors retains a visible keyboard outline', async ({ page }) => {
