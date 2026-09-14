@@ -1,0 +1,16 @@
+# Build output, caches and generated files
+dist/
+resources/
+node_modules/
+playwright-report/
+test-results/
+hugo_stats.json
+package-lock.json
+
+# Hugo templates. Prettier parses these as HTML and rewrites the Go template
+# syntax inside them, which breaks the site.
+layouts/
+
+# Case-study prose lives in YAML front matter whose quoting is deliberate:
+# an unquoted colon in a description is enough to fail the build.
+content/
