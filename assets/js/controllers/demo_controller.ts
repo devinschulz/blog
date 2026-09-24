@@ -8,27 +8,27 @@ type StateCopy = readonly [string, string, string];
 const STATE_COPY: Record<DemoState, StateCopy> = {
   default: [
     'State 01 / 05',
-    'The happy path deserves care. It just doesn’t deserve all of it.',
-    'A quiet, clear starting point for a job that matters.',
+    'The happy path needs care too, but it’s only one of five states.',
+    'Start with an email and a display name.',
   ],
   focus: [
     'State 02 / 05',
-    'The next action should always be obvious, especially without a mouse.',
-    'Keyboard preview: the dashed border suggests the next field. Press Tab to follow the real focus indicator.',
+    'It should always be clear what comes next, especially without a mouse.',
+    'Keyboard preview: the outlined field is where focus lands next. Press Tab to follow the real focus ring.',
   ],
   error: [
     'State 03 / 05',
-    'Good recovery language helps people move forward without losing confidence.',
+    'A good error message says what went wrong and how to fix it.',
     'Display name is too short. Use at least 2 characters to continue.',
   ],
   processing: [
     'State 04 / 05',
-    'Waiting is part of the experience. Give it a clear, calm shape.',
+    'Waiting is part of the experience too, so say what’s happening.',
     'Saving your profile. This should only take a moment.',
   ],
   success: [
     'State 05 / 05',
-    'Completion should feel final, but leave the next move within reach.',
+    'When it’s done, say so clearly and keep the next step close by.',
     'Demo complete. Nothing was submitted. You can restart the demo.',
   ],
 };

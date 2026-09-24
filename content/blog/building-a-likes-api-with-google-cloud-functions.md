@@ -1,13 +1,14 @@
 ---
 title: Building a Likes API With Google Cloud Functions
 date: 2018-11-05T21:41:18-04:00
-description: Learn how to use Google Cloud Functions to build a likes API with Node
+description: Learn how to use Google Cloud Functions to build a likes API with Node.
+
 tags: [Node, Google Cloud, Firebase, Serverless]
 ---
 
-I took the challenge to build a likes button into this blog. Since the site is
+I took on the challenge of building a like button into this blog. Since the site is
 compiled and then deployed as flat files, there is no backend or database to
-manage. From a security aspect, there is no safer way to develop a website, but
+manage. From a security standpoint, there is no safer way to develop a website, but
 it does add a bit of complexity to incorporate dynamic content.
 
 My first attempt was to add Firebase as a dependency and wire it up to the likes
@@ -16,16 +17,13 @@ browser sessions whenever I clicked the button. However, looking at the
 compiled, minified bundle, I noticed it had added over 220 KB!
 
 With that in mind, I don't think the trade-off for that much code for such a
-simple likes button makes any sense. This led me to explore other options and
-decided that cloud functions might be a great fit for this. I've seen coworkers
-use AWS lambda functions for various things, but I've never had to the
-opportunity to try them out myself. The thought of using cloud functions excited
-me since I get the benefits of an API server, without managing an API server.
+simple likes button makes any sense. This led me to explore other options, and I decided that cloud functions might be a great fit for this. I've seen coworkers
+use AWS Lambda functions for various things, but I've never had the opportunity to try them out myself. The thought of using cloud functions excited
+me since I get the benefits of an API server without managing an API server.
 
 ## Planning the API
 
-The API is reasonably straightforward if you think roughly how the user
-interacts with a like button. Let's break this down into user stories.
+The API is reasonably straightforward if you think about how the user interacts with a like button. Let's break this down into user stories.
 
 1. As an anonymous user, I want to see the total likes count next to the like
    button.
@@ -34,14 +32,12 @@ interacts with a like button. Let's break this down into user stories.
 
 Based on those two user stories, we can create two endpoints to satisfy the
 requirements. First, we need to fetch the current count for a specific post
-using a GET request. Secondly, update that counts by one or create a new document
-using a PUT request.
+using a GET request. Second, we need to increment that count by one or create a new document using a PUT request.
 
 ## Building the Cloud Function
 
 Let's first start with some boilerplate. We'll create a new directory and
-create an index file which can house our function. In the root folder of this
- project, run the following commands:
+create an index file that can house our function. In the root folder of this project, run the following commands:
 
 ```sh
 mkdir -p functions/likes && `# Create a new directory called functions/likes` \
@@ -51,8 +47,7 @@ mkdir -p functions/likes && `# Create a new directory called functions/likes` \
 ```
 
 Next, you'll need to install some of the project's dependencies. For this cloud
-function, I have chosen to install Express, Firebase admin and the Firebase
-functions packages by running the following `npm` install command:
+function, I have chosen to install the Express, Firebase Admin, and Firebase Functions packages by running the following `npm` install command:
 
 ```shell
 npm install express firebase-admin firebase-functions
@@ -64,7 +59,7 @@ Alternatively, if you prefer [yarn](https://yarnpkg.com):
 yarn add express firebase-admin firebase-functions
 ```
 
-That takes care of the project's dependencies and the now for actual function.
+That takes care of the project's dependencies, and now for the actual function.
 Open up `index.js` and insert the following boilerplate:
 
 ```javascript
@@ -88,18 +83,16 @@ exports.likes = functions.https.onRequest(app);
 This is a bare-bones function and doesn't do much at this point. We are
 importing a few required packages, configuring the Firebase connection, and then
 spinning up an Express server to handle each request. If you were to deploy this
-as is and make a request to the functions endpoint, you would get back an `OK`
+as is and make a request to the function's endpoint, you would get back an `OK`
 message from Express.
 
 ### Configuring the Routes
 
 #### GET a Document
 
-Starting with the GET request handler, let's try and think for a second what
-this endpoint is going to do. A request from the client hits the Express server
+Starting with the GET request handler, let's think for a second about what this endpoint is going to do. A request from the client hits the Express server
 and then matches a specific route. The route needs to include the post ID to
-identify which document to query from the database. One caveat here is if the
-document doesn't exist, we should return a default count instead of returning a
+identify which document to query from the database. One caveat: if the document doesn't exist, we should return a default count instead of returning a
 404 not found error.
 
 ```js
@@ -127,12 +120,11 @@ parameters to match the ID. For those not familiar with Express routing, `:id`
 is just a variable I defined to match any value included in the route. It then
 becomes accessible under the request object `req.params.id`.
 
-The request comes in; we'll look up a specific document in the likes collection
+When the request comes in, we'll look up a specific document in the likes collection
 using the ID. The Firebase API returns an `exists` property we can use to check
-if the document was previously in the collection. If the document exists, return
-the data by calling `doc.data()` or return a default value of zero.
+if the document was previously in the collection. If the document exists, return the data by calling `doc.data()`; otherwise, return a default value of zero.
 
-#### Put to Create or Update a Document
+#### PUT to Create or Update a Document
 
 Without knowing much about the Firebase API, some developers may make the
 mistake of fetching a document using the `get` method and then calling `set` to
@@ -175,9 +167,7 @@ const put = (req, res) =>
 
 Let's take this line by line since a lot is going on here. First, we start a
 transaction against the database and then get the current document by ID.
-Firebase returns an object containing two main properties, exists and data. If
-the document exists, we'll increment the current count by one or return a
-default value of one. Again, if the document exists, we'll have to call the
+Firebase returns an object containing two main properties, `exists` and `data`. If the document exists, we'll increment the current count by one; otherwise, we'll use a default value of one. Again, if the document exists, we'll have to call the
 transaction update method to update the existing value. If the document does not
 exist, call set instead.
 
@@ -219,17 +209,16 @@ gcloud functions deploy likes `# likes is the name of the Google Cloud Function`
 ```
 
 Once complete, you should get back a payload containing all the necessary
-information about your function. Look for `httpsTrigger.url`, this is the
-endpoint you need to hit to invoke the function. In my case, the URL I get back
+information about your function. Look for `httpsTrigger.url`; this is the endpoint you need to hit to invoke the function. In my case, the URL I get back
 is `https://us-central1-devin-schulz.cloudfunctions.net/likes`.
 
-Now to create a document, we can use a CURL request to hit the endpoint.
+Now to create a document, we can use a cURL request to hit the endpoint.
 
 ```shell
 curl -X PUT https://us-central1-devin-schulz.cloudfunctions.net/likes/32779e118e414d84746d8775451f6de8
 ```
 
-Furthermore, to return the count:
+And to return the count:
 
 ```shell
 curl https://us-central1-devin-schulz.cloudfunctions.net/likes/32779e118e414d84746d8775451f6de8
@@ -237,15 +226,13 @@ curl https://us-central1-devin-schulz.cloudfunctions.net/likes/32779e118e414d847
 
 ## Conclusion
 
-There you have it, a small single cloud function that acts as an API server to
-read and write post likes to a database. All without having to bloat the client
-and load the entirety of Firebase for such simple functionality.
+There you have it: a single, small cloud function that acts as an API server to read and write post likes to a database, all without bloating the client or loading all of Firebase for such simple functionality.
 
 This was my first time experimenting with cloud functions, and I think they have
 the potential to enhance the overall developer experience when it comes to
 creating easy CRUD operations or form submissions. I'll be incorporating them
-into more and more side projects and experiment with the
+into more side projects and experimenting with the
 [serverless](https://serverless.com/) framework in the future.
 
 You can view the source of the function on
-[Github](https://github.com/devinschulz/blog/blob/master/functions/likes.js).
+[GitHub](https://github.com/devinschulz/blog/blob/master/functions/likes.js).

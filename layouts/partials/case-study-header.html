@@ -1,17 +1,12 @@
-<header class="mx-auto max-w-360 px-4.25 pt-9 pb-12 desktop:px-30 desktop:pt-14 desktop:pb-20">
-  <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-xs uppercase">
-    <a class="border-b border-line pb-1 hover:text-accent" href="{{ site.Home.RelPermalink }}#work">← Selected work</a>
-    <span class="text-muted">Case study / {{ .Title }}</span>
-  </div>
-  <div class="mt-16 flex flex-wrap items-center gap-3 font-mono text-xs uppercase desktop:mt-24">
-    <span aria-hidden="true" class="size-2 rounded-full bg-accent"></span>{{ .Title }}{{ with .Params.period }}<span class="text-muted">/ {{ . }}</span>{{ end }}
-  </div>
-  <h1 class="mt-7 max-w-260 font-serif text-[clamp(56px,9vw,128px)] leading-[0.88] font-medium tracking-[-0.065em]">{{ .Params.headline }}<br><em class="text-accent">{{ .Params.headlineAccent }}</em></h1>
-  <div class="mt-10 grid gap-9 desktop:mt-14 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
-    <dl class="grid grid-cols-2 content-start gap-x-5 gap-y-6 text-xs">
-      <div><dt class="mb-2 font-mono text-xs text-muted uppercase">My role</dt><dd>{{ .Params.role }}</dd></div>
-      {{ range .Params.facts }}<div><dt class="mb-2 font-mono text-xs text-muted uppercase">{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}
+<header class="mx-auto max-w-350 px-4.25 pt-8 pb-12 desktop:px-10 desktop:pt-12 desktop:pb-20">
+  <a class="arrow-link text-sm" href="{{ site.Home.RelPermalink }}#work"><span class="back" aria-hidden="true">←&#xFE0E;</span> Selected work</a>
+  <p class="label mt-14 desktop:mt-24">{{ .Title }}{{ with .Params.period }}<span class="mx-2" aria-hidden="true">/</span>{{ . }}{{ end }}</p>
+  <h1 class="display mt-6 max-w-[18ch] text-[clamp(2.6rem,11vw,3.5rem)] leading-[0.96] tracking-[-0.045em] desktop:text-[clamp(3.75rem,6.4vw,6.5rem)]">{{ .Params.headline }} <em>{{ .Params.headlineAccent }}</em></h1>
+  <div class="mt-12 grid gap-10 desktop:mt-16 desktop:grid-cols-12 desktop:gap-x-10">
+    <p class="max-w-[52ch] text-lg leading-relaxed text-muted desktop:order-2 desktop:col-span-6 desktop:col-start-7 desktop:text-xl">{{ .Params.summary }}</p>
+    <dl class="grid grid-cols-2 content-start gap-x-6 gap-y-6 text-sm desktop:col-span-5">
+      <div><dt class="label mb-1.5">My role</dt><dd>{{ .Params.role }}</dd></div>
+      {{ range .Params.facts }}<div><dt class="label mb-1.5">{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}
     </dl>
-    <p class="max-w-145 text-base leading-relaxed text-text-secondary desktop:text-lg">{{ .Params.summary }}</p>
   </div>
 </header>

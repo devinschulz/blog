@@ -1,18 +1,33 @@
-<header class="relative z-20 grid h-15.25 grid-cols-[1fr_auto] items-center border-b border-line bg-paper px-4.25 desktop:h-20 desktop:grid-cols-[1fr_auto_1fr] desktop:px-7.75">
-  <a class="font-serif text-2xl leading-none font-medium tracking-[-0.065em]" href="{{ site.Home.RelPermalink }}" aria-label="Devin Schulz, home">Devin <em class="text-accent">Schulz</em></a>
-  <nav class="hidden gap-6.5 text-xs desktop:flex [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a:hover]:text-accent" aria-label="Main navigation">
-    <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#states">State Shift</a>
-    <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#work">Selected work</a>
-    <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#archive">Archive</a>
-  </nav>
-  <a href="mailto:{{ site.Params.email }}" class="hidden min-h-11 items-center justify-self-end text-xs hover:text-accent desktop:inline-flex">Say hello <span class="text-[17px] text-accent" aria-hidden="true">↗︎</span></a>
-  <details data-mobile-menu data-controller="menu" data-action="keydown@document->menu#closeOnEscape pointerdown@document->menu#closeOnOutsidePress" class="group desktop:hidden">
-    <summary data-menu-target="summary" class="flex min-h-11 cursor-pointer list-none items-center gap-3 px-2 font-mono text-xs [&::-webkit-details-marker]:hidden">Menu <span aria-hidden="true" class="text-lg text-accent group-open:rotate-45">+</span></summary>
-    <nav aria-label="Mobile navigation" class="absolute inset-x-0 top-full grid border-b border-line bg-paper px-4.25 py-4 text-sm [&_a]:flex [&_a]:min-h-12 [&_a]:items-center [&_a:hover]:text-accent">
+{{/* A floating island, detached from the top edge. On narrow screens the
+     same island holds a menu that opens as a full-screen sheet. */}}
+<header class="pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center px-3 pt-3 desktop:pt-5">
+  <div class="pointer-events-auto relative isolate flex w-full items-center justify-between gap-2 py-1.5 pr-1.5 pl-5 desktop:w-max desktop:gap-6">
+    {{/* The glass lives on its own layer: a backdrop-filter on the pill itself
+         would trap the fixed menu sheet inside the pill's box. */}}
+    <span aria-hidden="true" class="absolute inset-0 -z-10 rounded-full bg-[rgb(17_17_20/72%)] shadow-[inset_0_0_0_1px_rgb(255_255_255/9%),0_12px_40px_-12px_rgb(0_0_0/70%)] backdrop-blur-xl"></span>
+    <a class="display text-lg tracking-[-0.03em]" href="{{ site.Home.RelPermalink }}" aria-label="Devin Schulz, home">Devin Schulz</a>
+    <nav class="hidden text-sm desktop:flex [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:rounded-full [&_a]:px-3.5 [&_a]:text-muted [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-ink" aria-label="Main navigation">
+      <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#work">Work</a>
       <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#states">State Shift</a>
-      <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#work">Selected work</a>
       <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#archive">Archive</a>
-      <a data-action="menu#follow" href="mailto:{{ site.Params.email }}">Say hello ↗︎</a>
     </nav>
-  </details>
+    <a href="mailto:{{ site.Params.email }}" class="island-solid hidden min-h-11 py-1 desktop:inline-flex">Say hello <span aria-hidden="true">↗&#xFE0E;</span></a>
+    <details data-mobile-menu data-controller="menu" data-action="keydown@document->menu#closeOnEscape pointerdown@document->menu#closeOnOutsidePress" class="group desktop:hidden">
+      <summary data-menu-target="summary" class="relative z-10 flex min-h-11 cursor-pointer list-none items-center gap-3 rounded-full bg-white/8 pr-2 pl-4 text-sm [&::-webkit-details-marker]:hidden">
+        Menu
+        <span aria-hidden="true" class="relative block size-7">
+          <span class="absolute top-[11px] left-1.5 h-px w-4 bg-current transition-transform duration-300 ease-glide group-open:translate-y-[3px] group-open:rotate-45"></span>
+          <span class="absolute top-[17px] left-1.5 h-px w-4 bg-current transition-transform duration-300 ease-glide group-open:-translate-y-[3px] group-open:-rotate-45"></span>
+        </span>
+      </summary>
+      <div class="fixed inset-0 -z-0 bg-[rgb(10_10_12/88%)] backdrop-blur-2xl">
+        <nav aria-label="Mobile navigation" class="flex h-full flex-col justify-center gap-2 px-6 pt-20 [&_a]:display [&_a]:flex [&_a]:min-h-14 [&_a]:items-center [&_a]:text-[2.5rem] [&_a]:tracking-[-0.035em] [&_a:hover]:text-accent">
+          <a data-action="menu#follow" data-sheet-item class="[--i:0]" href="{{ site.Home.RelPermalink }}#work">Work</a>
+          <a data-action="menu#follow" data-sheet-item class="[--i:1]" href="{{ site.Home.RelPermalink }}#states">State Shift</a>
+          <a data-action="menu#follow" data-sheet-item class="[--i:2]" href="{{ site.Home.RelPermalink }}#archive">Archive</a>
+          <a data-action="menu#follow" data-sheet-item class="[--i:3]" href="mailto:{{ site.Params.email }}">Say hello <span class="ml-3 text-accent" aria-hidden="true">↗&#xFE0E;</span></a>
+        </nav>
+      </div>
+    </details>
+  </div>
 </header>

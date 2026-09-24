@@ -1,0 +1,35 @@
+{{/* One case-study chapter. Even chapters set text beside the image; odd
+     chapters stack text over a full-width image, so a page never runs more
+     than two side-by-side splits in a row. Pass "tinted" to sit the chapter
+     on the surface tint. */}}
+{{ $c := .chapter }}
+{{ $split := modBool .index 2 }}
+<section id="{{ $c.id }}" aria-labelledby="{{ $c.id }}-title" class="scroll-mt-8 {{ if .tinted }}bg-surface{{ else }}border-t border-line{{ end }}">
+  <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
+    {{ if $split }}
+      <div class="grid gap-10 desktop:grid-cols-12 desktop:gap-x-10">
+        <div class="desktop:col-span-5">
+          <h2 id="{{ $c.id }}-title" class="h-section max-w-[14ch]">{{ $c.title }}</h2>
+          <p class="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted">{{ $c.description }}</p>
+          {{ with $c.notes }}
+            <div class="mt-10 grid gap-7">
+              {{ range . }}<div><h3 class="font-semibold">{{ .title }}</h3><p class="mt-2 leading-relaxed text-muted">{{ .body }}</p></div>{{ end }}
+            </div>
+          {{ end }}
+        </div>
+        <div class="desktop:col-span-7 desktop:pt-2">{{ partial "case-study-image.html" (merge $c (dict "sizes" "(min-width: 781px) 56vw, 100vw")) }}</div>
+      </div>
+    {{ else }}
+      <div class="max-w-[48rem]">
+        <h2 id="{{ $c.id }}-title" class="h-section">{{ $c.title }}</h2>
+        <p class="mt-6 max-w-[60ch] text-lg leading-relaxed text-muted">{{ $c.description }}</p>
+      </div>
+      <div class="mt-12">{{ partial "case-study-image.html" $c }}</div>
+      {{ with $c.notes }}
+        <div class="mt-12 grid gap-8 desktop:grid-cols-2 desktop:gap-x-16">
+          {{ range . }}<div><h3 class="font-semibold">{{ .title }}</h3><p class="mt-2 max-w-[56ch] leading-relaxed text-muted">{{ .body }}</p></div>{{ end }}
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>

@@ -1,6 +1,8 @@
-<a data-archive-target="post" data-topics="{{ range .Params.tags }}{{ . | lower }}|{{ end }}" href="{{ .RelPermalink }}" class="grid grid-cols-[44px_1fr_auto] items-baseline gap-2.25 border-t border-line py-4.5 transition-[padding,background-color] duration-200 hover:bg-surface-hover hover:px-3 desktop:grid-cols-[11%_18%_1fr_auto] desktop:gap-3.25 [[hidden]]:hidden">
+<a data-archive-target="post" data-topics="{{ range .Params.tags }}{{ . | lower }}|{{ end }}" href="{{ .RelPermalink }}" class="group grid grid-cols-[3.25rem_1fr_auto] items-baseline gap-x-3 rounded-panel px-4 py-4 transition-colors duration-200 hover:bg-white/4 desktop:grid-cols-[4.5rem_1fr_auto] desktop:gap-x-5 [[hidden]]:hidden">
   <time datetime="{{ .Date.Format "2006-01-02" }}" class="font-mono text-xs text-muted">{{ .Date.Format "2006" }}</time>
-  <span class="hidden font-mono text-xs text-muted desktop:inline">{{ with .Params.tags }}{{ delimit . ", " }}{{ else }}Notes{{ end }}</span>
-  <h3 class="col-start-2 font-serif text-[clamp(21px,2.3vw,31px)] leading-[0.96] font-medium tracking-[-0.04em] desktop:col-start-auto">{{ .Title }}</h3>
-  <b class="col-start-3 row-span-2 row-start-1 self-center font-normal text-accent desktop:col-start-auto desktop:row-span-1 desktop:row-start-auto desktop:self-auto" aria-hidden="true">↗︎</b>
+  <div>
+    <h3 class="display text-[1.3rem] leading-[1.12] font-medium tracking-[-0.02em] desktop:text-[1.6rem]">{{ .Title }}</h3>
+    <span class="mt-1.5 block text-sm text-muted">{{ with .Params.tags }}{{ delimit . ", " }}{{ else }}Notes{{ end }}</span>
+  </div>
+  <b class="self-center font-normal text-accent transition-transform duration-200 ease-snappy group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗&#xFE0E;</b>
 </a>

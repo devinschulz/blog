@@ -117,7 +117,7 @@ test('keyboard skip link and navigation', async ({ page }, testInfo) => {
     await page.keyboard.press('Enter');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
-    await expect(page.locator('#states')).toBeFocused();
+    await expect(page.locator('#work')).toBeFocused();
     await expect(page.locator('[data-mobile-menu]')).not.toHaveAttribute(
       'open',
       '',
@@ -199,6 +199,7 @@ test('filter announces result count without moving focus', async ({ page }) => {
 test('WebGL sculpture animates, pauses offscreen, and respects reduced motion', async ({
   page,
 }) => {
+  test.slow();
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   const hero = page.locator('[data-hero-motion]');
@@ -207,11 +208,16 @@ test('WebGL sculpture animates, pauses offscreen, and respects reduced motion', 
   await expect(hero).toHaveAttribute('data-renderer', 'webgl');
   await expect(hero).toHaveAttribute('data-motion', 'running');
   const moving = await canvas.screenshot();
+  // Software-rendered WebGL in CI makes each screenshot slow; give it room.
   await expect
-    .poll(async () => (await canvas.screenshot()).equals(moving))
+    .poll(async () => (await canvas.screenshot()).equals(moving), {
+      timeout: 20000,
+    })
     .toBe(false);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(hero).toHaveAttribute('data-motion', 'paused');
+  // Let the still frame reach the screen before sampling it.
+  await page.waitForTimeout(300);
   const still = await canvas.screenshot();
   await page.mouse.move(200, 150);
   expect((await canvas.screenshot()).equals(still)).toBe(true);
@@ -229,6 +235,7 @@ test('WebGL sculpture animates, pauses offscreen, and respects reduced motion', 
 test('states lattice runs one lifecycle, pauses offscreen and for reduced motion', async ({
   page,
 }) => {
+  test.slow();
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   const lattice = page.locator('[data-lattice]');
@@ -239,7 +246,9 @@ test('states lattice runs one lifecycle, pauses offscreen and for reduced motion
   await expect(lattice).toHaveAttribute('aria-hidden', 'true');
   const moving = await lattice.screenshot();
   await expect
-    .poll(async () => (await lattice.screenshot()).equals(moving))
+    .poll(async () => (await lattice.screenshot()).equals(moving), {
+      timeout: 20000,
+    })
     .toBe(false);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(lattice).toHaveAttribute('data-motion', 'paused');
@@ -252,49 +261,154 @@ test('states lattice runs one lifecycle, pauses offscreen and for reduced motion
   await expect(lattice).toHaveAttribute('data-motion', 'paused');
 });
 
-test('project tiles render over their CSS illustration', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
+test('selected work shows each case study as one real screenshot link', async ({
+  page,
+}) => {
   await page.goto('/');
-  await page.locator('#work').scrollIntoViewIfNeeded();
-  for (const name of ['cape', 'warranties', 'invision']) {
-    const tile = page.locator(`[data-work-tile="${name}"]`);
-    // Narrow viewports stack the tiles, so each only runs once it is in view.
-    await tile.scrollIntoViewIfNeeded();
-    await expect(tile).toHaveAttribute('data-renderer', 'webgl');
-    await expect(tile).toHaveAttribute('data-motion', 'running');
-    await expect(tile).toHaveAttribute('aria-hidden', 'true');
+  const cards = page.locator('#work article a');
+  await expect(cards).toHaveCount(3);
+  for (const href of ['/work/cape/', '/work/warranties/', '/work/invision/']) {
+    const card = page.locator(`#work a[href="${href}"]`);
+    await card.scrollIntoViewIfNeeded();
+    const image = card.locator('img');
+    await expect(image).not.toHaveAttribute('alt', '');
+    await expect
+      // Lazy images under software-rendered WebGL can take a few seconds.
+      .poll(() => image.evaluate((img) => img.complete && img.naturalWidth), {
+        timeout: 15000,
+      })
+      .toBeGreaterThan(0);
+    await expect(card.getByRole('heading', { level: 3 })).toBeVisible();
   }
-  await page.locator('[data-work-tile="cape"]').scrollIntoViewIfNeeded();
-  // The illustration underneath steps aside only once a renderer has taken over.
-  await expect(
-    page.locator('[data-work-tile="cape"] .tile-fallback'),
-  ).toBeHidden();
-  const tile = page.locator('[data-work-tile="cape"]');
-  const moving = await tile.screenshot();
-  await expect
-    .poll(async () => (await tile.screenshot()).equals(moving))
-    .toBe(false);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(tile).toHaveAttribute('data-motion', 'paused');
 });
 
-test('current chapter backdrop stays behind its text', async ({ page }) => {
+test('hero entrance is skipped for reduced motion', async ({ page }) => {
+  await page.goto('/');
+  const names = await page
+    .locator('[data-enter]')
+    .evaluateAll((els) => els.map((el) => getComputedStyle(el).animationName));
+  expect(names.length).toBe(4);
+  expect(names.every((name) => name === 'none')).toBe(true);
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.reload();
+  await expect
+    .poll(() =>
+      page
+        .locator('[data-enter]')
+        .first()
+        .evaluate((el) => getComputedStyle(el).animationName),
+    )
+    .toBe('enter');
+});
+
+test('work screenshots draw as tiles but keep the image and its alt text', async ({
+  page,
+}) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
-  const panel = page.locator('[data-chapter-backdrop]');
-  await panel.scrollIntoViewIfNeeded();
-  await expect(panel).toHaveAttribute('data-renderer', 'webgl');
-  await expect(panel).toHaveAttribute('data-motion', 'running');
-  await expect(panel.locator('canvas')).toHaveAttribute('aria-hidden', 'true');
-  // Held well under full strength; every tile colour is darker than the panel,
-  // so the copy over it keeps the contrast it has on the flat background.
-  const opacity = await panel
-    .locator('canvas')
-    .evaluate((el) => getComputedStyle(el).opacity);
-  expect(Number(opacity)).toBeLessThanOrEqual(0.5);
-  await expect(panel.getByRole('heading', { level: 2 })).toBeVisible();
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(panel).toHaveAttribute('data-motion', 'paused');
+  const frame = page.locator('#work a[href="/work/cape/"] .work-shot');
+  await frame.scrollIntoViewIfNeeded();
+  await expect(frame).toHaveAttribute('data-renderer', 'webgl');
+  await expect(frame).toHaveAttribute('data-texture', 'ready');
+  await expect(frame.locator('canvas')).toHaveAttribute('aria-hidden', 'true');
+  // The image stays in the accessibility tree; only its pixels step aside.
+  await expect(frame.getByRole('img')).toHaveAttribute('alt', /Cape Assistant/);
+  // Keyboard focus gets the same lift a pointer does, and the link keeps its
+  // own focus ring.
+  const link = page.locator('#work a[href="/work/cape/"]');
+  await link.focus();
+  const ring = await link.evaluate((el) => getComputedStyle(el).outlineWidth);
+  expect(ring).toBe('3px');
+  // Forced colours hand the picture back to the <img>.
+  await page.emulateMedia({ forcedColors: 'active' });
+  await expect(frame.locator('canvas')).toBeHidden();
+  await expect(frame.getByRole('img')).toBeVisible();
+});
+
+test('the State Shift field follows the demo state, even with reduced motion', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const field = page.locator('[data-webgl-scene-value="states-field"]');
+  await field.scrollIntoViewIfNeeded();
+  await expect(field).toHaveAttribute('data-renderer', 'webgl');
+  await expect(field).toHaveAttribute('data-motion', 'paused');
+  await expect(field.locator('.states-field')).toHaveAttribute(
+    'aria-hidden',
+    'true',
+  );
+  const canvas = field.locator('canvas');
+  const ready = await canvas.screenshot();
+  await page.getByRole('button', { name: 'Recovery', exact: true }).click();
+  // Paused for reduced motion, yet it still redraws a still frame per state.
+  await expect
+    .poll(async () => (await canvas.screenshot()).equals(ready))
+    .toBe(false);
+  const recovery = await canvas.screenshot();
+  await page.waitForTimeout(300);
+  expect((await canvas.screenshot()).equals(recovery)).toBe(true);
+});
+
+test('the hero only unfolds on scroll when motion is allowed', async ({
+  page,
+}) => {
+  // Count draw calls: with reduced motion the hero draws one still frame and
+  // then nothing, however far the page scrolls.
+  await page.addInitScript(() => {
+    window.__draws = 0;
+    for (const proto of [
+      WebGLRenderingContext.prototype,
+      WebGL2RenderingContext.prototype,
+    ]) {
+      for (const name of [
+        'drawElements',
+        'drawArrays',
+        'drawElementsInstanced',
+        'drawArraysInstanced',
+      ]) {
+        const original = proto[name];
+        if (!original) continue;
+        proto[name] = function (...args) {
+          if (this.canvas?.hasAttribute('data-hero-canvas')) window.__draws++;
+          return original.apply(this, args);
+        };
+      }
+    }
+  });
+  await page.goto('/');
+  const hero = page.locator('[data-hero-motion]');
+  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
+  await expect(hero).toHaveAttribute('data-motion', 'paused');
+  await page.waitForTimeout(300);
+  const before = await page.evaluate(() => window.__draws);
+  await page.mouse.wheel(0, 200);
+  await page.waitForTimeout(400);
+  expect(await page.evaluate(() => window.__draws)).toBe(before);
+});
+
+test('page transitions never block navigation and stay out of reduced motion', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page.locator('[data-page-transition]')).toHaveCount(0);
+
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.reload();
+  const sweep = page.locator('[data-page-transition]');
+  await expect(sweep).toHaveCount(1);
+  await expect(sweep).toHaveAttribute('aria-hidden', 'true');
+  await expect(sweep).toHaveCSS('pointer-events', 'none');
+  await expect(sweep).toHaveCSS('visibility', 'hidden');
+  await page.evaluate(() =>
+    document.querySelector('a[href="/work/cape/"]').click(),
+  );
+  await page.waitForURL('**/work/cape/');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(sweep).toHaveCSS('visibility', 'hidden');
+  // Back and forward are left instant.
+  await page.goBack();
+  await page.waitForURL(/\/$/);
+  await expect(sweep).toHaveCSS('visibility', 'hidden');
 });
 
 test('the 404 lattice scatters the same states out of order', async ({
@@ -333,14 +447,9 @@ test('hero keeps an illustration when WebGL is unavailable', async ({
     'none',
   );
   await expect(page.locator('[data-lattice]')).toBeHidden();
-  // Project tiles fall back to the CSS illustration they were built with.
+  // Project screenshots never depended on a renderer.
   await page.locator('#work').scrollIntoViewIfNeeded();
-  await expect(
-    page.locator('[data-work-tile="cape"] .tile-fallback'),
-  ).toBeVisible();
-  await expect(
-    page.locator('[data-work-tile="invision"] .tile-fallback'),
-  ).toBeVisible();
+  await expect(page.locator('#work img').first()).toBeVisible();
 });
 
 test('GIF is opt-in and stops for reduced motion', async ({ page }) => {
@@ -436,6 +545,8 @@ test('Turbo navigation does not leak WebGL contexts', async ({ page }) => {
   });
   let fullLoads = 0;
   page.on('load', () => fullLoads++);
+  // With motion allowed, so the page-transition context is part of the count.
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
     'data-renderer',
