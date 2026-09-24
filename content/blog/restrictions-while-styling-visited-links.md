@@ -1,13 +1,12 @@
 ---
 title: Restrictions While Styling Visited Links
 description:
-  Learn about what the :visited pseudo-class selector is and its limitations
-  while styling them.
+  Learn what the :visited pseudo-class selector is and the limits on how you can style it.
 date: 2020-02-18
 tags: [CSS]
 ---
 
-The `:visited` pseudo-class is a unique state which provides visible feedback on
+The `:visited` pseudo-class is a unique state that provides visible feedback on
 links that a user has navigated to. This state behaves similarly to other
 pseudo-classes like `:hover`, `:focus`, and `:active`, but comes with a few
 limitations.
@@ -42,7 +41,7 @@ a:visited {
 }
 ```
 
-✅ **does** work. The visited link will have the background color of blue.
+✅ **Does** work. The visited link will have the background color of blue.
 
 ## Supported Styles
 
@@ -54,7 +53,7 @@ When styling visited links, you are limited to these color declarations:
 - `color`
 - `column-rule-color`
 - `outline-color`
-- SVG attributes allow for fill and stroke colors
+- Fill and stroke colors on SVG elements
 
 Any color can be used, except the alpha channel is ignored when present.
 
@@ -74,8 +73,7 @@ security to the user. Without these safeguards, websites could use this
 information to track which sites a user has visited, all without their consent.
 
 Browsers misinform developers when they try to get the style with
-`window.getComputedStyle`. Rather than sending the visited style, the unstyled
-link is returned instead.
+`window.getComputedStyle`. It returns the unvisited link's style instead of the visited one.
 
 ## Unvisiting a link
 

@@ -5,7 +5,7 @@
       <p class="label"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>{{ with .Params.tags }}<span class="mx-2" aria-hidden="true">/</span>{{ delimit . ", " }}{{ end }}</p>
       <h1 class="display mt-6 text-[clamp(2.4rem,10vw,3rem)] leading-[1] tracking-[-0.04em] desktop:text-[clamp(3rem,5vw,4.5rem)]">{{ .Title }}</h1>
       {{ with .Description }}<p class="mt-6 max-w-[48ch] text-xl leading-relaxed text-muted">{{ . }}</p>{{ end }}
-      <p class="mt-8 max-w-[60ch] rounded-panel bg-surface px-4 py-3 text-sm text-muted">Archived writing. Published in {{ .Date.Format "2006" }} and kept as it was, so some details may have aged.</p>
+      <p class="mt-8 max-w-[60ch] rounded-panel bg-surface px-4 py-3 text-sm text-muted">Archived writing, published in {{ .Date.Format "2006" }}. I’ve fixed some grammar since, but otherwise it’s as I wrote it, so some details may have aged.</p>
     </header>
     <div class="prose dark:prose-invert mt-12 max-w-[68ch] text-[17px] leading-[1.7] text-ink prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-[-0.025em] prose-headings:text-ink prose-h2:mt-16 prose-h2:text-3xl prose-a:text-accent prose-a:decoration-1 prose-a:underline-offset-[0.2em] prose-strong:text-ink prose-pre:overflow-x-auto prose-pre:rounded-panel prose-pre:border prose-pre:border-line prose-pre:bg-raised prose-pre:p-5 prose-pre:text-ink prose-code:font-mono prose-code:text-[0.84em] prose-code:before:content-none prose-code:after:content-none prose-img:h-auto prose-img:max-w-full prose-img:rounded-panel desktop:mt-16 desktop:text-[18px]">{{ .Content }}</div>
     <div class="mt-20 max-w-[68ch] border-t border-line pt-6">

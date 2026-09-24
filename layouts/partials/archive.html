@@ -3,7 +3,7 @@
   <div class="mx-auto max-w-350 px-4.25 py-20 desktop:grid desktop:grid-cols-12 desktop:gap-x-10 desktop:px-10 desktop:py-32">
     <div class="desktop:sticky desktop:top-10 desktop:col-span-4 desktop:self-start">
       <h2 id="archive-title" class="h-section">The <em>archive</em></h2>
-      <p class="mt-6 max-w-[40ch] leading-relaxed text-muted">Posts I wrote while learning in public, between 2018 and 2022. I’ve left them as they were, with their original dates.</p>
+      <p class="mt-6 max-w-[40ch] leading-relaxed text-muted">Posts I wrote while learning in public, between 2018 and 2022. Apart from a few grammar fixes, I’ve left them as they were, with their original dates.</p>
       <div hidden data-archive-filters data-archive-target="filters" role="group" aria-label="Filter archive" class="mt-8 flex flex-wrap gap-2">
         {{ range $filter := slice (dict "key" "all" "label" "All") (dict "key" "react" "label" "React") (dict "key" "javascript" "label" "JavaScript") (dict "key" "web" "label" "Web craft") }}
           <button type="button" data-archive-target="filter" data-action="archive#apply" data-filter="{{ .key }}" aria-pressed="{{ eq .key "all" }}" class="pill-line px-4 aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-paper">
