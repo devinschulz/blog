@@ -4,7 +4,7 @@ seoTitle: 'Warranties: App Design & Development Case Study'
 layout: warranties
 description: Designing and building a small app for tracking the things you own and the coverage that comes with them, from first release to the end of support in 2025.
 role: Designer & Developer
-period: 2023–2025
+period: 2023-2025
 facts:
   - label: Focus
     value: Product design & app development
@@ -64,10 +64,10 @@ chapters:
         body: The phone stacks list and detail; the iPad and Mac show both. The structure of the record does not change with the window.
 sunset:
   kicker: End of support
-  title: Knowing when<br><em class="text-lime">to stop.</em>
+  title: Knowing when<br><em>to stop.</em>
   image: images/warranties/slide-4.png
   alt: The Warranties app icon, a document with a yellow seal and a green checkmark.
-  caption: Warranties, 2023–2025.
+  caption: Warranties, 2023-2025.
 principles:
   - title: Legible time
     body: “3 years 8 months 18 days” answers the question. A date is something you still have to do arithmetic on.

@@ -7,8 +7,6 @@ import {
 } from '../webgl-surface';
 import { createKineticScene } from '../kinetic-scene';
 import { createLatticeScene, LATTICE_FOV } from '../states-lattice';
-import { createWorkTileScene, WORK_TILE_FOV, TILES } from '../work-tiles';
-import { createBackdropScene, BACKDROP_FOV } from '../chapter-backdrop';
 
 const HERO_FOV = 38;
 
@@ -23,14 +21,13 @@ interface SceneSpec {
 // makes these safe under Turbo, where the body is replaced without a reload.
 export default class extends Controller<HTMLElement> {
   static override targets = ['canvas', 'measure'];
-  static override values = { scene: String, variant: String };
+  static override values = { scene: String };
 
   declare readonly canvasTarget: HTMLCanvasElement;
   declare readonly hasCanvasTarget: boolean;
   declare readonly measureTarget: HTMLElement;
   declare readonly hasMeasureTarget: boolean;
   declare readonly sceneValue: string;
-  declare readonly variantValue: string;
 
   private handle?: WebGLSurfaceHandle;
 
@@ -63,14 +60,6 @@ export default class extends Controller<HTMLElement> {
             this.element.dataset.latticeMode === 'scattered',
           ),
         };
-      case 'work-tile': {
-        const config = TILES[this.variantValue];
-        return config
-          ? { fov: WORK_TILE_FOV, build: createWorkTileScene(config) }
-          : undefined;
-      }
-      case 'backdrop':
-        return { fov: BACKDROP_FOV, build: createBackdropScene() };
       default:
         return undefined;
     }

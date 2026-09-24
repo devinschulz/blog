@@ -26,10 +26,12 @@ export function createKineticSculpture() {
   tiles.frustumCulled = false;
   group.add(tiles);
 
-  const violet = new Color('#635bff');
-  const lavender = new Color('#b2a2ff');
-  const peach = new Color('#f7a886');
-  const lime = new Color('#d6f752');
+  // Graphite into silver, with one warm band of the site's redline accent
+  // travelling through it and the odd tile caught fully in that colour.
+  const graphite = new Color('#3b3b43');
+  const silver = new Color('#c8c8d0');
+  const redline = new Color('#d4502f');
+  const flare = new Color('#f0907a');
   const color = new Color();
   const dummy = new Object3D();
   const center = new Vector3();
@@ -112,10 +114,10 @@ export function createKineticSculpture() {
 
         const warmth = 0.5 + 0.5 * Math.sin(u * TAU - 0.7 + time * 0.12);
         color
-          .copy(violet)
-          .lerp(lavender, v * 0.65)
-          .lerp(peach, warmth ** 3 * 0.92);
-        if ((column + row * 3) % 37 === 0) color.lerp(lime, 0.95);
+          .copy(graphite)
+          .lerp(silver, v * 0.72)
+          .lerp(redline, warmth ** 3 * 0.9);
+        if ((column + row * 3) % 37 === 0) color.lerp(flare, 0.95);
         tiles.setColorAt(index, color);
       }
     }

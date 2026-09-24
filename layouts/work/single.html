@@ -2,75 +2,69 @@
 <article>
   {{ partial "case-study-header.html" . }}
 
-  <div class="mx-auto max-w-360 px-4.25 desktop:px-15">
-    {{ partial "case-study-image.html" (merge .Params.hero (dict "eager" true "sizes" "(min-width: 1440px) 1320px, (min-width: 781px) 92vw, 100vw")) }}
+  <div class="mx-auto max-w-350 px-4.25 desktop:px-10">
+    {{ partial "case-study-image.html" (merge .Params.hero (dict "eager" true "sizes" "(min-width: 1400px) 1320px, (min-width: 781px) 94vw, 100vw")) }}
   </div>
 
-  <div class="mx-auto max-w-360 px-4.25 py-16 desktop:grid desktop:grid-cols-[1fr_3fr] desktop:gap-16 desktop:px-30 desktop:py-24">
-    <p class="font-mono text-xs text-muted uppercase">The shared thread</p>
-    <div>
-      <p class="mt-5 max-w-190 font-serif text-3xl leading-tight tracking-tight desktop:mt-0 desktop:text-4xl">{{ .Params.intro }}</p>
-      <nav aria-label="Case study chapters" class="mt-8 flex flex-wrap gap-x-7 gap-y-4 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center font-mono text-xs uppercase">
-        {{ range .Params.chapters }}<a class="border-b border-line pb-2 hover:border-accent hover:text-accent" href="#{{ .id }}"><span class="mr-2 text-muted">{{ .number }}</span>{{ .name }} ↓</a>{{ end }}
+  <div class="mx-auto max-w-350 px-4.25 py-20 desktop:grid desktop:grid-cols-12 desktop:gap-x-10 desktop:px-10 desktop:py-28">
+    <div class="desktop:col-span-8 desktop:col-start-4">
+      <p class="display text-[1.6rem] leading-[1.2] font-medium tracking-[-0.02em] desktop:text-[2.25rem]">{{ .Params.intro }}</p>
+      <nav aria-label="Case study chapters" class="mt-10 flex flex-wrap gap-2">
+        {{ range .Params.chapters }}<a class="pill-line" href="#{{ .id }}">{{ .name }} <span class="text-accent" aria-hidden="true">↓&#xFE0E;</span></a>{{ end }}
       </nav>
     </div>
   </div>
 
   {{ range $index, $chapter := .Params.chapters }}
-  <section id="{{ .id }}" aria-labelledby="{{ .id }}-title" class="scroll-mt-8 border-t border-line {{ if eq $index 1 }}bg-surface-muted{{ end }}">
-    <div class="mx-auto max-w-360 px-4.25 py-16 desktop:px-30 desktop:py-24">
-      <div class="mb-10 grid gap-6 desktop:mb-14 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
-        <div>
-          <p class="mb-6 font-mono text-xs text-muted uppercase">{{ .number }} / {{ .name }}</p>
-          <h2 id="{{ .id }}-title" class="max-w-125 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">{{ .title }}</h2>
-        </div>
-        <p class="max-w-145 self-end text-base leading-relaxed text-text-secondary">{{ .description }}</p>
-      </div>
-      {{ if eq $index 0 }}
-        <div class="grid items-start gap-10 desktop:grid-cols-[0.8fr_1fr] desktop:gap-20">
-          {{ partial "case-study-image.html" (merge $chapter (dict "sizes" "(min-width: 781px) 40vw, 100vw")) }}
-          <div class="desktop:pt-6">
-            <p class="font-mono text-xs text-accent uppercase">A closer look / My contribution</p>
-            <h3 class="mt-5 font-serif text-4xl leading-tight tracking-tight desktop:text-5xl">The space between<br>two layers.</h3>
-            <div class="mt-6 space-y-5 text-sm leading-relaxed text-text-secondary [&_p]:mb-5">{{ $.Content }}</div>
-            <a class="mt-3 inline-block border-b border-accent pb-2 font-mono text-xs text-accent uppercase" href="{{ relref $ "/blog/building-the-inspect-measurement-engine" }}">Read the original engineering write-up ↗︎</a>
+    {{ if eq $index 0 }}
+      {{/* Inspect carries my individual contribution, so it gets the room. */}}
+      <section id="{{ .id }}" aria-labelledby="{{ .id }}-title" class="scroll-mt-8 border-t border-line">
+        <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
+          <div class="max-w-[48rem]">
+            <h2 id="{{ .id }}-title" class="h-section">{{ .title }}</h2>
+            <p class="mt-6 max-w-[60ch] text-lg leading-relaxed text-muted">{{ .description }}</p>
           </div>
+          <div class="mt-14 grid items-start gap-12 desktop:grid-cols-12 desktop:gap-x-10">
+            <div class="desktop:col-span-6">{{ partial "case-study-image.html" (merge $chapter (dict "sizes" "(min-width: 781px) 46vw, 100vw")) }}</div>
+            <div class="desktop:col-span-5 desktop:col-start-8">
+              <p class="label">My contribution</p>
+              <h3 class="display mt-4 text-[2rem] leading-[1.02] tracking-[-0.03em] desktop:text-[2.6rem]">The space between two layers.</h3>
+              <div class="mt-6 leading-relaxed text-muted [&_p+p]:mt-5">{{ $.Content }}</div>
+              <a class="arrow-link mt-4" href="{{ relref $ "/blog/building-the-inspect-measurement-engine" }}">Read the original engineering write-up <span aria-hidden="true">↗&#xFE0E;</span></a>
+            </div>
+          </div>
+          <dl class="mt-16 grid gap-10 border-t border-line pt-10 desktop:mt-20 desktop:grid-cols-[1.2fr_1fr_1fr] desktop:gap-x-12">
+            {{ range $.Params.decisions }}<div><dt class="font-semibold">{{ .title }}</dt><dd class="mt-2 leading-relaxed text-muted">{{ .body }}</dd></div>{{ end }}
+          </dl>
         </div>
-        <div class="mt-14 grid gap-8 border-t border-line pt-8 desktop:grid-cols-3 desktop:gap-10">
-          {{ range $i, $decision := $.Params.decisions }}
-          <div><p class="font-mono text-xs text-accent">0{{ add $i 1 }} / Engineering note</p><h4 class="mt-4 text-base font-semibold">{{ .title }}</h4><p class="mt-3 text-sm leading-relaxed text-text-secondary">{{ .body }}</p></div>
-          {{ end }}
-        </div>
-      {{ else }}
-        {{ partial "case-study-image.html" . }}
-      {{ end }}
-    </div>
-  </section>
+      </section>
+    {{ else }}
+      {{ partial "case-study-chapter.html" (dict "chapter" $chapter "index" $index "tinted" (eq $index 1)) }}
+    {{ end }}
   {{ end }}
 
-  <section aria-labelledby="workflow-title" class="bg-night text-ivory">
-    <div class="mx-auto grid max-w-360 items-center gap-10 px-4.25 py-16 desktop:grid-cols-[0.7fr_1.3fr] desktop:gap-16 desktop:px-30 desktop:py-24">
-      <div>
-        <p class="font-mono text-xs text-lime uppercase">The wider workflow</p>
-        <h2 id="workflow-title" class="mt-6 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">One part of<br>a bigger picture.</h2>
-        <p class="mt-7 text-sm leading-relaxed text-experiment-description">These interfaces lived within a larger design workflow. This archived Craft Sync screenshot shows the publishing step: bringing artboards out of the source file and into a shared workspace.</p>
-        <p class="mt-5 font-mono text-xs leading-relaxed text-experiment-kicker">Shown for product context, separate from the Inspect contribution described above.</p>
+  <section aria-labelledby="workflow-title" class="border-t border-line">
+    <div class="mx-auto grid max-w-350 items-center gap-12 px-4.25 py-20 desktop:grid-cols-12 desktop:gap-x-10 desktop:px-10 desktop:py-28">
+      <div class="desktop:col-span-4">
+        <h2 id="workflow-title" class="h-section max-w-[12ch]">One part of a bigger picture.</h2>
+        <p class="mt-6 leading-relaxed text-muted">These interfaces lived within a larger design workflow. This archived Craft Sync screenshot shows the publishing step: bringing artboards out of the source file and into a shared workspace.</p>
+        <p class="mt-5 text-sm leading-relaxed text-muted">Shown for product context, separate from the Inspect contribution described above.</p>
       </div>
-      <div class="[&_figcaption]:text-experiment-kicker [&_figcaption>span:last-child]:text-lime">{{ partial "case-study-image.html" (merge .Params.workflow (dict "sizes" "(min-width: 781px) 50vw, 100vw")) }}</div>
+      <div class="desktop:col-span-7 desktop:col-start-6">{{ partial "case-study-image.html" (merge .Params.workflow (dict "sizes" "(min-width: 781px) 54vw, 100vw")) }}</div>
     </div>
   </section>
 
-  <section aria-labelledby="reflection-title" class="mx-auto max-w-360 px-4.25 py-20 desktop:px-30 desktop:py-28">
-    <p class="font-mono text-xs text-muted uppercase">What I carry forward</p>
-    <div class="mt-7 grid gap-8 desktop:grid-cols-[1fr_1.25fr] desktop:gap-20">
-      <h2 id="reflection-title" class="max-w-120 font-serif text-5xl leading-[0.96] tracking-tighter desktop:text-6xl">The details<br>are the <em class="text-accent">product.</em></h2>
-      <div><p class="text-base leading-relaxed text-text-secondary">{{ .Params.reflection }}</p><a class="mt-6 inline-block border-b border-line pb-2 font-mono text-xs text-accent uppercase" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 ↗︎</a></div>
+  <section aria-labelledby="reflection-title" class="bg-surface">
+    <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
+      <div class="grid gap-8 desktop:grid-cols-12 desktop:gap-x-10">
+        <h2 id="reflection-title" class="h-section max-w-[12ch] desktop:col-span-5">The details are the <em>product.</em></h2>
+        <div class="desktop:col-span-6 desktop:col-start-7">
+          <p class="max-w-[60ch] text-lg leading-relaxed text-muted">{{ .Params.reflection }}</p>
+          <a class="arrow-link mt-4" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 <span aria-hidden="true">↗&#xFE0E;</span></a>
+        </div>
+      </div>
+      {{ partial "case-study-next.html" (dict "page" . "next" "/work/cape" "note" "A retrospective using archived product imagery and writing from my time at InVision. Product work was a team effort; the measurement-engine section describes my individual contribution.") }}
     </div>
-    <div class="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-line pt-6">
-      <a class="font-mono text-xs uppercase hover:text-accent" href="{{ site.Home.RelPermalink }}#work">← Back to selected work</a>
-      <a class="font-serif text-3xl tracking-tight hover:text-accent" href="mailto:{{ site.Params.email }}">Let’s talk interfaces. ↗︎</a>
-    </div>
-    <p class="mt-8 max-w-180 font-mono text-xs leading-relaxed text-muted">A retrospective using archived product imagery and writing from my time at InVision. Product work was a team effort; the measurement-engine section describes my individual contribution.</p>
   </section>
 </article>
 {{ end }}

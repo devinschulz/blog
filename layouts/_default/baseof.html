@@ -23,8 +23,8 @@
     <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
-  <body class="bg-paper font-sans leading-normal wrap-anywhere text-ink antialiased [&_button:not(:disabled)]:cursor-pointer motion-reduce:**:transition-none">
-    <a class="fixed top-3 left-3 z-100 translate-y-[-180%] bg-night px-3.25 py-2.5 text-ivory focus:translate-y-0" href="#content">Skip to content</a>
+  <body class="bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
+    <a class="fixed top-3 left-3 z-100 translate-y-[-180%] rounded-full bg-night px-4 py-2.5 text-sm text-ivory focus:translate-y-0" href="#content">Skip to content</a>
     {{ partial "header.html" . }}
     <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}

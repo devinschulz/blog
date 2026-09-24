@@ -3,7 +3,7 @@ title: InVision
 seoTitle: 'InVision: Frontend Engineering Case Study'
 description: Frontend engineering for the space between design and development. A look back at Inspect, Conversations, and Boards.
 role: Senior Software Engineer
-period: 2014–2020
+period: 2014-2020
 facts:
   - label: Focus
     value: Frontend engineering
@@ -50,7 +50,7 @@ decisions:
   - title: Treat overlap as its own problem.
     body: Distinguish overlapping layers from separated layers before calculating the distances to display.
   - title: Keep the geometry true at every zoom.
-    body: Scale the measurement positions for Inspect’s 13%–800% zoom range, while keeping the displayed distances tied to the design.
+    body: Scale the measurement positions for Inspect’s 13% to 800% zoom range, while keeping the displayed distances tied to the design.
 workflow:
   image: images/invision/slide-6.png
   alt: Craft Sync’s publish dialog over a Sketch document, with artboard selection and a project destination.

@@ -1,7 +1,8 @@
 {{ $card := "writing" }}
 {{ if .IsHome }}{{ $card = "home" }}{{ else if eq .Section "work" }}{{ with .File }}{{ $card = .ContentBaseName }}{{ end }}{{ end }}
 {{ $background := or (resources.Get (printf "images/social/%s.png" $card)) (resources.Get "images/social/writing.png") }}
-{{ $font := resources.Get "fonts/playfair-display-medium.ttf" }}
+{{ $font := resources.Get "fonts/bricolage-grotesque-semibold.ttf" }}
+{{ $mono := resources.Get "fonts/jetbrains-mono-medium.ttf" }}
 {{ $title := .Title }}
 {{ $label := "ARCHIVED WRITING" }}
 {{ if .IsHome }}
@@ -21,9 +22,9 @@
 {{ with $line }}{{ $lines = $lines | append . }}{{ end }}
 {{ $size := 70 }}{{ if gt (len $lines) 4 }}{{ $size = 56 }}{{ end }}
 {{ $image := $background.Filter
-  (images.Text "Devin Schulz" (dict "font" $font "size" 36 "color" "#181a21" "x" 64 "y" 45))
-  (images.Text $label (dict "size" 19 "color" "#5146df" "x" 64 "y" 139))
-  (images.Text (delimit $lines "\n") (dict "font" $font "size" $size "linespacing" 6 "color" "#181a21" "x" 64 "y" 191))
-  (images.Text "devinschulz.com" (dict "size" 20 "color" "#181a21" "x" 64 "y" 555))
+  (images.Text "Devin Schulz" (dict "font" $font "size" 34 "color" "#18181b" "x" 64 "y" 48))
+  (images.Text $label (dict "font" $mono "size" 18 "color" "#b93a1e" "x" 64 "y" 139))
+  (images.Text (delimit $lines "\n") (dict "font" $font "size" $size "linespacing" 4 "color" "#18181b" "x" 64 "y" 191))
+  (images.Text "devinschulz.com" (dict "font" $mono "size" 18 "color" "#5b5b66" "x" 64 "y" 555))
 }}
 {{ return ($image.Process "jpg q85") }}

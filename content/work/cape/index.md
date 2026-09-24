@@ -66,7 +66,7 @@ chapters:
     title: The surfaces around the work.
     description: 'Team management, integrations, API keys, and usage reporting are visited less often than the assistant or the dashboard, and they carry the same obligation: say what state something is in, say what an action will do before it happens, and never show a number without the period it covers.'
     image: images/cape/slide-4.jpg
-    alt: Six Cape administration screens — an invite dialog, a Settings members table listing names, roles, and last-active dates, an integrations list with GitHub and JIRA connected and Gmail and Notion offering a connect action, a New API Key form with naming and expiry fields, a redaction-metrics view with entity counts and a timeline chart, and a usage analytics view with token and API-call charts.
+    alt: Six Cape administration screens, including an invite dialog, a Settings members table listing names, roles, and last-active dates, an integrations list with GitHub and JIRA connected and Gmail and Notion offering a connect action, a New API Key form with naming and expiry fields, a redaction-metrics view with entity counts and a timeline chart, and a usage analytics view with token and API-call charts.
     caption: Administration, from team and integrations through API keys to usage reporting.
     notes:
       - title: State, not just a button.

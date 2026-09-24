@@ -252,49 +252,41 @@ test('states lattice runs one lifecycle, pauses offscreen and for reduced motion
   await expect(lattice).toHaveAttribute('data-motion', 'paused');
 });
 
-test('project tiles render over their CSS illustration', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
+test('selected work shows each case study as one real screenshot link', async ({
+  page,
+}) => {
   await page.goto('/');
-  await page.locator('#work').scrollIntoViewIfNeeded();
-  for (const name of ['cape', 'warranties', 'invision']) {
-    const tile = page.locator(`[data-work-tile="${name}"]`);
-    // Narrow viewports stack the tiles, so each only runs once it is in view.
-    await tile.scrollIntoViewIfNeeded();
-    await expect(tile).toHaveAttribute('data-renderer', 'webgl');
-    await expect(tile).toHaveAttribute('data-motion', 'running');
-    await expect(tile).toHaveAttribute('aria-hidden', 'true');
+  const cards = page.locator('#work article a');
+  await expect(cards).toHaveCount(3);
+  for (const href of ['/work/cape/', '/work/warranties/', '/work/invision/']) {
+    const card = page.locator(`#work a[href="${href}"]`);
+    await card.scrollIntoViewIfNeeded();
+    const image = card.locator('img');
+    await expect(image).not.toHaveAttribute('alt', '');
+    await expect
+      .poll(() => image.evaluate((img) => img.complete && img.naturalWidth))
+      .toBeGreaterThan(0);
+    await expect(card.getByRole('heading', { level: 3 })).toBeVisible();
   }
-  await page.locator('[data-work-tile="cape"]').scrollIntoViewIfNeeded();
-  // The illustration underneath steps aside only once a renderer has taken over.
-  await expect(
-    page.locator('[data-work-tile="cape"] .tile-fallback'),
-  ).toBeHidden();
-  const tile = page.locator('[data-work-tile="cape"]');
-  const moving = await tile.screenshot();
-  await expect
-    .poll(async () => (await tile.screenshot()).equals(moving))
-    .toBe(false);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(tile).toHaveAttribute('data-motion', 'paused');
 });
 
-test('current chapter backdrop stays behind its text', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
+test('hero entrance is skipped for reduced motion', async ({ page }) => {
   await page.goto('/');
-  const panel = page.locator('[data-chapter-backdrop]');
-  await panel.scrollIntoViewIfNeeded();
-  await expect(panel).toHaveAttribute('data-renderer', 'webgl');
-  await expect(panel).toHaveAttribute('data-motion', 'running');
-  await expect(panel.locator('canvas')).toHaveAttribute('aria-hidden', 'true');
-  // Held well under full strength; every tile colour is darker than the panel,
-  // so the copy over it keeps the contrast it has on the flat background.
-  const opacity = await panel
-    .locator('canvas')
-    .evaluate((el) => getComputedStyle(el).opacity);
-  expect(Number(opacity)).toBeLessThanOrEqual(0.5);
-  await expect(panel.getByRole('heading', { level: 2 })).toBeVisible();
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(panel).toHaveAttribute('data-motion', 'paused');
+  const names = await page
+    .locator('[data-enter]')
+    .evaluateAll((els) => els.map((el) => getComputedStyle(el).animationName));
+  expect(names.length).toBe(4);
+  expect(names.every((name) => name === 'none')).toBe(true);
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.reload();
+  await expect
+    .poll(() =>
+      page
+        .locator('[data-enter]')
+        .first()
+        .evaluate((el) => getComputedStyle(el).animationName),
+    )
+    .toBe('enter');
 });
 
 test('the 404 lattice scatters the same states out of order', async ({
@@ -333,14 +325,9 @@ test('hero keeps an illustration when WebGL is unavailable', async ({
     'none',
   );
   await expect(page.locator('[data-lattice]')).toBeHidden();
-  // Project tiles fall back to the CSS illustration they were built with.
+  // Project screenshots never depended on a renderer.
   await page.locator('#work').scrollIntoViewIfNeeded();
-  await expect(
-    page.locator('[data-work-tile="cape"] .tile-fallback'),
-  ).toBeVisible();
-  await expect(
-    page.locator('[data-work-tile="invision"] .tile-fallback'),
-  ).toBeVisible();
+  await expect(page.locator('#work img').first()).toBeVisible();
 });
 
 test('GIF is opt-in and stops for reduced motion', async ({ page }) => {
