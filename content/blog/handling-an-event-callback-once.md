@@ -7,8 +7,7 @@ date: 2020-07-12
 tags: [JavaScript, Today I Learned]
 ---
 
-An interesting tidbit I stumbled upon recently is the ability to remove an event
-listener once called.
+An interesting tidbit I stumbled upon recently is the ability to remove an event listener once it's called.
 
 In the past, I would have added an event listener to an element and then removed
 it within the callback function. It would have looked something like this:
@@ -40,5 +39,4 @@ button.addEventListener(
 );
 ```
 
-This example functions precisely like the example above, except requires less
-code. Less code equals less potential bugs to fix later 😁.
+This example works exactly like the one above, except it requires less code. Less code means fewer potential bugs to fix later 😁.

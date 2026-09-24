@@ -36,7 +36,7 @@ const page_html = `<!doctype html>
 <meta charset="utf-8">
 <style>
   html, body { margin: 0; padding: 0; }
-  #card { position: relative; width: ${CARD.width}px; height: ${CARD.height}px; background: #f5f1e8; overflow: hidden; }
+  #card { position: relative; width: ${CARD.width}px; height: ${CARD.height}px; background: #0a0a0c; overflow: hidden; }
   #art { position: absolute; left: ${ART.x}px; top: ${ART.y}px; width: ${ART.size}px; height: ${ART.size}px;
          mask-image: linear-gradient(to right, transparent 0, #000 ${ART.fade}%); }
   #art canvas { display: block; width: ${ART.size}px; height: ${ART.size}px; }
@@ -48,8 +48,7 @@ const page_html = `<!doctype html>
 <div id="card">
   <div id="art"><canvas id="sculpture"></canvas></div>
   <svg width="${CARD.width}" height="${CARD.height}" viewBox="0 0 ${CARD.width} ${CARD.height}">
-    <path d="M0 606 1200 564v66H0Z" fill="#d6f752"/>
-    <path d="M64 114h820" stroke="#181a21" stroke-opacity=".22"/>
+    <path d="M64 114h820" stroke="#ffffff" stroke-opacity=".12"/>
   </svg>
 </div>
 <script type="module">

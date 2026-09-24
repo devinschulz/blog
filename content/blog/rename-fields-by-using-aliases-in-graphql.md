@@ -68,10 +68,9 @@ the field you want to rename.
 
 The examples above only cover fields that don't have any arguments. When
 creating an alias on a field that contains arguments, the syntax is slightly
-different. Instead of the alias appearing right to the field, it's placed on the
-left.
+different. Instead of the alias appearing to the right of the field, it's placed on the left.
 
-Take a look at the following example. It contains the `updated_at`field, but
+Take a look at the following example. It contains the `updated_at` field, but
 again, we want to rename it.
 
 ```graphql
@@ -109,8 +108,7 @@ And the result:
 
 ## Requesting a single field more than once
 
-What's great about aliases is you can request the same field several times, but
-yield different results. Take a look at this example:
+What's great about aliases is you can request the same field several times and get different results. Take a look at this example:
 
 ```graphql
 query GetEntries {
@@ -123,7 +121,7 @@ query GetEntries {
 ```
 
 Running this query would yield an error because two of the field names are the
-same. You can use an alias to here to mitigate the error.
+same. You can use an alias here to avoid the error.
 
 ```graphql
 query GetEntries {

@@ -1,21 +1,24 @@
 {{ $blog := where site.RegularPages "Section" "blog" }}
-<section id="archive" data-controller="archive" aria-labelledby="archive-title" class="bg-surface-muted px-4.25 pt-19.75 pb-19 desktop:px-[8.33%] desktop:pt-31.25">
-  <div class="desktop:grid desktop:grid-cols-[25%_1fr] desktop:gap-[8%]">
-    <p class="font-mono text-xs text-muted uppercase">05 / Historical writing</p>
-    <div class="mt-7.5 desktop:mt-0 desktop:grid desktop:grid-cols-[1.5fr_0.62fr] desktop:gap-[12%]">
-      <h2 id="archive-title" class="font-serif text-[clamp(52px,15vw,74px)] leading-[0.88] font-medium tracking-[-0.065em] desktop:text-[clamp(45px,5.8vw,88px)]">The <em class="text-accent">archive</em></h2>
-      <p class="mt-6 max-w-70 text-sm leading-[1.52] text-archive-muted desktop:mt-2">Writing from a decade of learning in public. It lives here for historical purposes, with the original dates and thinking intact.</p>
+<section id="archive" data-controller="archive" aria-labelledby="archive-title" >
+  <div class="mx-auto max-w-350 px-4.25 py-24 desktop:grid desktop:grid-cols-12 desktop:gap-x-10 desktop:px-10 desktop:py-36">
+    <div data-reveal class="desktop:sticky desktop:top-28 desktop:col-span-4 desktop:self-start">
+      <h2 id="archive-title" class="h-section">The <em>archive</em></h2>
+      <p class="mt-6 max-w-[40ch] leading-relaxed text-muted">Posts I wrote while learning in public, between 2018 and 2022. Apart from a few grammar fixes, I’ve left them as they were, with their original dates.</p>
+      <div hidden data-archive-filters data-archive-target="filters" role="group" aria-label="Filter archive" class="mt-8 flex flex-wrap gap-2">
+        {{ range $filter := slice (dict "key" "all" "label" "All") (dict "key" "react" "label" "React") (dict "key" "javascript" "label" "JavaScript") (dict "key" "web" "label" "Web craft") }}
+          <button type="button" data-archive-target="filter" data-action="archive#apply" data-filter="{{ .key }}" aria-pressed="{{ eq .key "all" }}" class="pill-line px-4 aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-paper">
+            {{ .label }}{{ if eq .key "all" }} <span class="font-mono text-xs opacity-70">{{ len $blog }}</span>{{ end }}
+          </button>
+        {{ end }}
+      </div>
+      <p id="archive-status" data-archive-target="status" role="status" aria-atomic="true" class="label mt-5">Showing {{ len $blog }} articles.</p>
+      {{ with site.Home.OutputFormats.Get "RSS" }}<a class="arrow-link mt-2" href="{{ .RelPermalink }}">RSS feed <span aria-hidden="true">↗&#xFE0E;</span></a>{{ end }}
+    </div>
+    <div data-reveal class="shell mt-10 [--i:1] desktop:col-span-8 desktop:mt-0">
+      <div class="core p-2 desktop:p-3">
+        <div data-post-list>{{ range $blog.ByDate.Reverse }}{{ partial "post-row.html" . }}{{ end }}</div>
+        <p id="no-posts" data-archive-target="empty" hidden class="px-4 py-6 text-muted">No archived notes in this topic yet.</p>
+      </div>
     </div>
   </div>
-  <div hidden data-archive-filters data-archive-target="filters" role="group" aria-label="Filter archive" class="mt-10.5 flex flex-wrap gap-2 border-b border-ink p-2 desktop:mt-17.5 desktop:ml-[16.66%]">
-    {{ range $filter := slice (dict "key" "all" "label" "All") (dict "key" "react" "label" "React") (dict "key" "javascript" "label" "JavaScript") (dict "key" "web" "label" "Web craft") }}
-      <button type="button" data-archive-target="filter" data-action="archive#apply" data-filter="{{ .key }}" aria-pressed="{{ eq .key "all" }}" class="min-h-11 shrink-0 border border-transparent bg-transparent px-3 py-2 font-mono text-xs uppercase hover:border-accent hover:text-accent aria-pressed:border-accent aria-pressed:text-accent">
-        {{ .label }}{{ if eq .key "all" }} <span class="text-muted">{{ len $blog }}</span>{{ end }}
-      </button>
-    {{ end }}
-  </div>
-  <p id="archive-status" data-archive-target="status" role="status" aria-atomic="true" class="my-4 font-mono text-xs text-muted desktop:ml-[16.66%]">Showing {{ len $blog }} articles.</p>
-  <div data-post-list class="border-b border-ink desktop:ml-[16.66%]">{{ range $blog.ByDate.Reverse }}{{ partial "post-row.html" . }}{{ end }}</div>
-  <p id="no-posts" data-archive-target="empty" hidden class="mt-5.5 text-[13px] text-muted desktop:ml-[16.66%]">No archived notes in this topic yet.</p>
-  {{ with site.Home.OutputFormats.Get "RSS" }}<a class="mt-5 inline-block border-b border-ink pb-1 font-mono text-xs uppercase desktop:ml-[16.66%]" href="{{ .RelPermalink }}">Get the RSS feed <span class="text-[17px] text-accent">↗︎</span></a>{{ end }}
 </section>

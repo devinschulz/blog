@@ -11,14 +11,12 @@ Many people don't realize the power and potential of the `Array.reduce`
 ([MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce))
 method. What makes it so powerful is its ability to take in an array containing
 any values and then return almost any type of data. Because of this flexibility,
-I want to highlight one technique you can use to traverse an array containing an
-infinite number of nested objects. You'll learn how to accumulate all objects
+I want to highlight one technique you can use to traverse an array containing any number of nested objects. You'll learn how to accumulate all objects
 and return a single object you can use to reference any entry by ID.
 
 ## Building out the function
 
-First, we'll start with the data, an object with a structure that looks like
-this:
+First, we'll start with the data, an array with a structure that looks like this:
 
 ```js
 const data = [
@@ -51,10 +49,7 @@ const data = [
 ```
 
 The objective here is to turn this array of nested objects into a flattened
-object, so you can efficiently look up any entry by ID. Begin by creating the
-base function which accepts two arguments, `list` and the `accumulator`. Right
-off the bat, you might find this a little funny, passing around the reduce
-accumulator outside the reduce method. Bear with me; this is where all the
+object, so you can efficiently look up any entry by ID. Begin by creating the base function that accepts two arguments, `list` and `accumulator`. Right off the bat, passing the reduce accumulator around outside the reduce method might look a little funny. Bear with me; this is where all the
 magic happens!
 
 ```js
@@ -78,7 +73,7 @@ collect(data, {});
 // => {}
 ```
 
-Take notice of line 4, when we recursively call the `collect` function, the
+Take note of line 4: when we recursively call the `collect` function, the
 resulting object is passed down and returned each time. Each iteration adds to
 the same object. Neat!
 
@@ -121,7 +116,7 @@ collect(data, {});
 ```
 
 This is working great, but you can take this one step further and clean up the
-`children` property. You may want to do this, so you have less duplicate data.
+`children` property. You may want to do this so you have less duplicate data.
 
 ```js
 function collect(list, acc) {
@@ -151,7 +146,7 @@ collect(data, {});
 
 Maybe you want to spice things up a bit and use the newer ES6 features like
 `Map`. Swap out any references to the accumulator object and replace that value
-with `Map`. Update the object assignments to use the `set` method and that's it!
+with `Map`. Update the object assignments to use the `set` method, and that's it!
 
 ```js
 function collect(list, acc) {

@@ -2,7 +2,7 @@
 {{- $blog := where site.RegularPages "Section" "blog" -}}
 # {{ site.Title }}
 
-{{ site.Params.role }} at Stripe. I build product interfaces where clarity, trust, and the tiny details are not optional.
+{{ site.Params.role }} at Stripe. I build product interfaces and pay close attention to the small details.
 
 - Web: {{ site.Home.Permalink }}
 - Email: {{ site.Params.email }}
@@ -22,7 +22,7 @@ Full case study: {{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}
 {{ end -}}
 ## Writing
 
-A decade of writing, archived with its original dates. Index: {{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}
+Old posts, kept with their original dates. Index: {{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}
 
 {{ range first 10 $blog.ByDate.Reverse }}- {{ .Date.Format "2006" }}: [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 {{ end }}

@@ -3,24 +3,20 @@ title: Modify Create React App's Babel Configuration Without Ejecting
 date: 2020-02-02
 description:
   Learn how to modify the underlying Create React App configuration with
-  customize-cra to include new babel plugins. All without having to eject.
+  customize-cra to include new Babel plugins, all without having to eject.
 tags: [React, Babel]
 ---
 
 I love using [Create React App](https://github.com/facebook/create-react-app) to
-spin up an application swiftly, but one annoyance I continuously run into is the
-lack of ability to modify the Babel configuration. Why would you want to do
+spin up an application swiftly, but one annoyance I keep running into is not being able to modify the Babel configuration. Why would you want to do
 this? Perhaps you want to use some of the latest ES.next features before they're
-approved and merged into Create React App. In this case, you may
-[eject](https://create-react-app.dev/docs/available-scripts/#npm-run-eject) the
-app, but there are several reasons why you don't want to do that.
+approved and merged into Create React App. In this case, you could [eject](https://create-react-app.dev/docs/available-scripts/#npm-run-eject) the app, but there are several reasons you might not want to.
 
 For this article, we're going to add both the nullish coalescing operator and
-optional chaining syntax babel plugins. These plugins are both excluded from
+optional chaining syntax Babel plugins. These plugins are both excluded from
 Create React App at the time of writing.
 
-Begin by firing up your terminal and installing Create React App with the
-following command:
+Begin by firing up your terminal and creating a new app with Create React App:
 
 ```shell
 npx create-react-app my-app
@@ -57,7 +53,7 @@ touch config-overrides.js
 ```
 
 `customize-cra` has various utility functions you can use to configure virtually
-all aspects of the babel and Webpack config. In our case, `addBabelPlugins` is
+all aspects of the Babel and webpack config. In our case, `addBabelPlugins` is
 what we need to add both plugins.
 
 Open `config-overrides.js` and add the following:
@@ -79,9 +75,7 @@ For both of the plugins to work correctly, we'll need to install the packages.
 npm i -D @babel/plugin-proposal-nullish-coalescing-operator @babel/plugin-syntax-optional-chaining
 ```
 
-You can now test this all works by running `npm start` in your terminal. Open
-`src/App.js`, remove all the boilerplate code and add an expression to verify
-babel is transpiling the bundle correctly.
+You can now test that it all works by running `npm start` in your terminal. Open `src/App.js`, remove all the boilerplate code, and add an expression to verify Babel is transpiling the bundle correctly.
 
 ```js
 import React from "react";
@@ -93,5 +87,4 @@ export default function App() {
 }
 ```
 
-In this example, you should have no errors in the Webpack output, and `foo bar`
-is rendered on the screen.
+In this example, you should see no errors in the webpack output, and `foo bar` rendered on the screen.

@@ -17,7 +17,7 @@ role = "Senior Frontend Engineer"
 unsafe = true
 
 [markup.highlight]
-style = "github-dark"
+noClasses = false
 
 [permalinks]
 blog = "/blog/:slug/"

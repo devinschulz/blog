@@ -2,7 +2,7 @@
 title: My Definition of a First-Class Pull Request
 description:
   Learn how to spruce up your pull requests with a few simple tips. These tips
-  shouldn't add more than a couple minutes to your workflow, and you'll look
+  shouldn't add more than a couple of minutes to your workflow, and you'll look
   like a rockstar to your peers.
 date: 2020-08-25
 tags: [Workflow, Opinion]
@@ -12,21 +12,19 @@ canonical: https://medium.com/dropoutlabs/my-definition-of-a-first-class-pull-re
 
 Over the years, I have worked on a few projects where I was the sole developer.
 Being a sole developer has its challenges since not everyone reviewing your pull
-requests (or merge requests for the Gitlab folks) has an understanding of the
+requests (or merge requests for the GitLab folks) has an understanding of the
 repository like I do. Because of this, I like to give a bit more context to
 every pull request I create, so reviewers know what to expect when reviewing
 code.
 
-In this post, I am primarily focusing on pull requests regarding front end
-development and working on SaaS software, but this format could work for others
+In this post, I am primarily focusing on pull requests for frontend development and working on SaaS software, but this format could work for others
 too. My typical pull request is broken into four main sections: context,
 testing, checklist items, and then any related GitHub issues or JIRA tickets
 that will be closed as a result of the merge.
 
 I like small, concise code changes as much as the next developer, but it's not
 always possible. Features may span hundreds of lines and have corresponding
-tests. Having worked with both backend and frontend code, the frontend, more
-often than not, contains substantially more modifications at a time.
+tests. Having worked with both backend and frontend code, I've found the frontend, more often than not, contains substantially more changes at a time.
 
 ## Context
 
@@ -38,8 +36,7 @@ code itself, of course. The dictionary defines context as:
 
 With that in mind, we want anyone reading the pull request to have an
 understanding of what the pull request is about before looking at the code. Yes,
-your code may be declarative and easy to read with or without comments, but it
-may not be coherent to the reviewer.
+your code may be declarative and easy to read with or without comments, but it may not be clear to the reviewer.
 
 When opening a pull request, ask yourself these questions:
 
@@ -55,36 +52,32 @@ has been changed.
 
 Imagery is one category that I think doesn't get enough attention. If an image
 is worth a thousand words, why not include one? Instead of putting together a
-pull request where you changed the button colour to red and describing it as so,
+pull request where you changed the button colour to red and describing the change,
 why not add an image of the red button? You will likely save yourself time, and
-the reviewer will now have visual aid.
+the reviewer will have a visual aid.
 
-![An example screenshot which represents a small area of a user interface. In this instance,  when a user enables the redact on row level option, single row level redactions can be added to a policy.](/images/blog/example.png)
+![An example screenshot which represents a small area of a user interface. In this instance, when a user enables the redact on row level option, single row level redactions can be added to a policy.](/images/blog/example.png)
 
 After implementing a new feature that performs a series of steps, it can be
-helpful to include a short GIF of it in action. Use any screen recording tools
-available to your operating system. On macOS, I like to use
+helpful to include a short GIF of it in action. Use any screen recording tool available for your operating system. On macOS, I like to use
 [CleanShot](https://cleanshot.com) to record an area of my screen. CleanShot is
-paid software, but there are other free alternatives like QuickTime or
-open-source like [Kap](https://getkap.co).
+paid software, but there are free alternatives like QuickTime, or open-source ones like [Kap](https://getkap.co).
 
 ![An example GIF displaying a series of steps a user might take while interacting with a feature. In this instance, a user is interacting with a series of checkboxes and verifying an option to select all works as expected.](/images/blog/example.gif)
 
 ## Testing
 
 You can refer to this section as defining the **steps needed to verify the
-changeset works as expected**. Manually testing may not be required all the
-time, but it's a good way to catch errors that you didn't encounter. When
+changeset works as expected**. Manual testing may not be required all the time, but it's a good way to catch errors that you didn't encounter. When
 something should be verified by the reviewer, define the individual steps they
 should take.
 
-Before writing down the steps, include any details around things needed to be
-present before a successful test can take place. This may involve having
+Before writing down the steps, include any details about what needs to be in place before a successful test can happen. This may involve having
 additional users seeded in the database, tools required and configured a certain
 way, or performing an action beforehand.
 
 If a preview environment isn't available to test on before the changes are
-merged, consider having a link to the contributing documentation for setting up
+merged, consider including a link to the contributing documentation for setting up
 the local development environment.
 
 I like to use an unordered or ordered list to keep track of the steps necessary
@@ -112,8 +105,7 @@ worked. You can jot down these steps with the same mentality as you would
 approach end-to-end tests.
 
 Try to keep the steps small and concise so the reviewer can follow along without
-much effort. It's possible for them to reach out to you with any questions
-regarding step X versus describing a step in the middle of a paragraph.
+much effort. It's also easier for them to ask you about step X than about a step buried in the middle of a paragraph.
 
 ## Checklist
 
@@ -139,8 +131,7 @@ author. These items might include:
 
 ## Related Issues and Pull Requests
 
-When the code you've worked on relates to a ticket, an issue, a separate pull
-request or anything whatsoever, include a link to it. This gives the reviewer
+When the code you've worked on relates to a ticket, an issue, a separate pull request, or anything else, include a link to it. This gives the reviewer
 additional context around why this feature or bug fix was introduced.
 
 **Pro-tip:** GitHub can automatically close issues by referencing the issue
@@ -148,7 +139,7 @@ using a
 [simple keyword](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword).
 
 Linking related items helps provide an audit trail for individual pieces of
-work. It helps anyone look back in months or years from now to see why a
+work. It helps anyone looking back months or years from now to see why a
 particular fix or feature made it into the codebase.
 
 ## The Pull Request Template
@@ -156,10 +147,9 @@ particular fix or feature made it into the codebase.
 Pull request templates allow all contributors to follow a similar standard. Both
 GitHub and GitLab give you the option to include one within your repository.
 
-On GitHub, you can place a file named `PULL_REQUEST_TEMPLATE`in the root
+On GitHub, you can place a file named `PULL_REQUEST_TEMPLATE` in the root
 directory of the repository. If you want to keep these files out of the root,
-you can place it within a `.github` folder with the file suffix,
-`PULL_REQUEST_TEMPLATE.md`.
+you can place it in a `.github` folder instead, named `PULL_REQUEST_TEMPLATE.md`.
 
 Here is an example you can use to get started:
 
@@ -202,13 +192,11 @@ Before submitting your pull request, please review the following checklist.
 closes N/A
 ```
 
-Modify this template to fit your needs or check
+Modify this template to fit your needs, or check out
 [awesome-github-templates](https://github.com/devspace/awesome-github-templates)
 for more examples.
 
 ---
 
-I hope this article gave you some ideas of your own on how you can help improve
-the quality of you and your teammates' pull requests. Everyone can benefit from
-the additional context, imagery and testing steps on every pull request.
+I hope this article gave you some ideas of your own on how you can help improve the quality of your and your teammates' pull requests. Everyone can benefit from the additional context, imagery, and testing steps on every pull request.
 Besides, what's a couple of minutes to look like a pull request superstar?

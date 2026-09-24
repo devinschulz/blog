@@ -1,0 +1,11 @@
+{{/* Closing row for a case study: back to the grid, forward to the next
+     study, and a note on where the material came from. */}}
+{{ $next := site.GetPage .next }}
+<div class="mt-20 flex flex-wrap items-end justify-between gap-6 border-t border-line pt-8 desktop:mt-28">
+  <a class="arrow-link text-sm" href="{{ site.Home.RelPermalink }}#work"><span class="back" aria-hidden="true">←&#xFE0E;</span> Selected work</a>
+  <a class="group text-right" href="{{ $next.RelPermalink }}">
+    <span class="label block">Next case study</span>
+    <span class="display mt-2 inline-flex items-baseline gap-2 text-[2rem] tracking-[-0.03em] transition-colors duration-200 group-hover:text-accent desktop:text-[2.75rem]">{{ $next.Title }} <span class="text-accent transition-transform duration-200 ease-snappy group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗&#xFE0E;</span></span>
+  </a>
+</div>
+<p class="mt-10 max-w-[70ch] text-sm leading-relaxed text-muted">{{ .note }}</p>

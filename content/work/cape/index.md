@@ -13,78 +13,78 @@ facts:
     value: Assistant, dashboards & review tools
 headline: A clearer way to
 headlineAccent: work with AI.
-summary: At Cape, I was both the designer and the lead frontend engineer. I designed the interfaces and led their frontend development, bringing conversation, data-heavy dashboards, and document review into one coherent workspace.
+summary: At Cape I was both the designer and the lead frontend engineer. The job was to bring a chat assistant, data-heavy dashboards and document review into one workspace that felt like a single product.
 hero:
   image: images/cape/slide-1.png
   alt: Cape Assistant showing the same conversation in a full desktop workspace and a compact side panel, with navigation, message history, and a composer.
   caption: 'The assistant: a full workspace and a compact panel, with a familiar conversation structure in both.'
-intro: 'My role connected product design with frontend delivery. Across a chat thread, a customer dashboard, and a document review, the design problem was the same: helping people understand where they are, what they’re looking at, and what they can do next.'
+intro: 'I worked on both the design and the frontend. A chat thread, a customer dashboard and a document review look very different, but they had the same design problem: people need to know where they are, what they’re looking at and what they can do next.'
 assistant:
-  title: One conversation. More than one way in.
-  body: The assistant screenshot shows both a full-page view and a narrow companion panel. History and navigation support the larger workspace; the compact view puts the exchange and the composer first. Both retain the model label, message hierarchy, and a recognizable place to respond.
+  title: The same conversation, in two sizes.
+  body: The screenshot shows the assistant as a full page and as a narrow side panel. The full page has room for history and navigation. The panel drops those and leads with the conversation and the message box. Both keep the model label, the same message layout and the same place to type a reply.
   notes:
-    - title: A place in the product.
-      body: The main rail keeps Assistant alongside Apps and Workflows, while the second column provides conversation history.
+    - title: Part of the product.
+      body: Assistant sits in the main rail next to Apps and Workflows, and a second column holds past conversations.
     - title: A readable exchange.
-      body: Sender and model labels distinguish the prompt from the response without competing with the conversation itself.
-    - title: A smaller footprint.
-      body: The companion panel preserves the core interaction in a narrower space, with its composer anchored below the exchange.
+      body: Sender and model labels separate the prompt from the response without getting in the way of the text.
+    - title: A narrower version.
+      body: The side panel keeps the conversation in a much narrower space, with the message box fixed below it.
 chapters:
   - id: dashboard
     number: '02'
     name: Structured work
-    title: Make the overview useful. Keep the detail close.
-    description: The dashboard brings customer context, ownership, risk categories, and review information into one view. Its hierarchy makes the summary easy to locate, while grouped sections and expandable rows leave room for supporting detail.
+    title: A useful overview, with the detail close by.
+    description: The dashboard puts customer context, ownership, risk categories and review information on one page. The summary sits at the top where it’s easy to find, and grouped sections with expandable rows hold the detail underneath.
     image: images/cape/slide-2.png
     alt: Cape’s customer dashboard with an overview, risk summary, ownership information, expandable news rows, and review sections.
-    caption: A customer-review dashboard, organized from summary information to supporting detail.
+    caption: The customer review dashboard, with the summary at the top and the detail below it.
     notes:
       - title: Summary before detail.
-        body: The customer overview and headline risk indicator establish the subject before the denser review sections begin.
-      - title: Grouped, not flattened.
+        body: The customer overview and the headline risk indicator come first, before the denser review sections.
+      - title: Sections keep their shape.
         body: Ownership, news, and individual risk categories retain their own headings and visual boundaries.
-      - title: Depth when it is needed.
-        body: Expandable news rows show how a compact list can reveal the detail behind a particular item.
+      - title: Rows that open.
+        body: News items stay compact until you expand one to read the detail.
   - id: review
     number: '03'
     name: Document review
     title: Keep the source in sight.
-    description: The review workspace places a document beside a list of control objectives. A reviewer can keep the source material in view while moving through the structured list, with distinct visual indicators for different review states.
+    description: The review workspace puts a document next to a list of control objectives, so a reviewer can keep the source open while working down the list. Each review state has its own marker.
     image: images/cape/slide-3.png
     alt: Cape’s control-objectives workspace with a document viewer on the left and a list of objectives with check, cross, and neutral status indicators on the right.
-    caption: Source document and review objectives, presented side by side in the same workspace.
+    caption: The source document and the review objectives, side by side.
     notes:
-      - title: Context on both sides.
-        body: The split view gives the source document and the review list their own space within one task.
-      - title: More than a color.
-        body: Checkmarks, crosses, and neutral marks distinguish the visible states alongside their color treatments.
+      - title: Side by side.
+        body: The document and the review list each get their own pane in the same view.
+      - title: Shape as well as color.
+        body: Checkmarks, crosses and neutral marks show each state, so color is never the only signal.
       - title: Tools near the work.
         body: Page navigation and zoom sit with the document; filters and item menus sit with the review list.
   - id: administration
     number: '04'
     name: Administration
-    title: The surfaces around the work.
-    description: 'Team management, integrations, API keys, and usage reporting are visited less often than the assistant or the dashboard, and they carry the same obligation: say what state something is in, say what an action will do before it happens, and never show a number without the period it covers.'
+    title: The settings around the work.
+    description: 'People open team management, integrations, API keys and usage reports less often than the assistant or the dashboard, but the same rules apply: say what state something is in, say what an action will do before it happens, and never show a number without the date range it covers.'
     image: images/cape/slide-4.jpg
-    alt: Six Cape administration screens — an invite dialog, a Settings members table listing names, roles, and last-active dates, an integrations list with GitHub and JIRA connected and Gmail and Notion offering a connect action, a New API Key form with naming and expiry fields, a redaction-metrics view with entity counts and a timeline chart, and a usage analytics view with token and API-call charts.
-    caption: Administration, from team and integrations through API keys to usage reporting.
+    alt: Six Cape administration screens, including an invite dialog, a Settings members table listing names, roles, and last-active dates, an integrations list with GitHub and JIRA connected and Gmail and Notion offering a connect action, a New API Key form with naming and expiry fields, a redaction-metrics view with entity counts and a timeline chart, and a usage analytics view with token and API-call charts.
+    caption: Admin screens for the team, integrations, API keys and usage.
     notes:
-      - title: State, not just a button.
-        body: A connected integration reads as status; only the ones still available to set up present an action.
-      - title: Consequences before confirmation.
-        body: The API key form names what it will create and the date it will expire while the field is still being filled in.
-      - title: A number with its window.
-        body: Redaction totals and usage figures carry the date range they cover, so a count is never read on its own.
+      - title: Status first.
+        body: A connected integration shows its status. Only the integrations that aren’t set up yet offer a way to connect.
+      - title: Say what will happen.
+        body: While you fill in the API key form, it shows the name of the key it will create and the date it expires.
+      - title: Numbers with dates.
+        body: Redaction totals and usage figures always show the date range they cover.
 principles:
   - title: Orientation
-    body: Help people understand where they are, whether they are navigating a conversation, an app, or a document.
+    body: Help people see where they are, whether that’s in a conversation, an app or a document.
   - title: Continuity
-    body: Preserve familiar interaction patterns as the available space and the shape of the task change.
+    body: Keep familiar patterns in place when the screen gets smaller or the task changes.
   - title: Reviewability
-    body: Keep the information behind a summary or a decision within reach, rather than making the output the end of the experience.
-reflection: These screens tell a story about context as much as capability. An assistant needs a readable conversation. A dashboard needs hierarchy. A review tool needs room for the source. The frontend is where those needs become a product someone can actually work with.
+    body: Keep the information behind a summary or a decision within reach, so people can check it.
+reflection: Looking back, these screens are mostly about context. An assistant needs a readable conversation, a dashboard needs a clear hierarchy, and a review tool needs room for the source document. The frontend is where that turns into something people can use.
 ---
 
-As the designer and frontend lead, I worked across both the visual experience and its implementation. That meant carrying the intent of the interface into frontend development, rather than treating the design and the code as separate concerns.
+As the designer and the frontend lead, I worked on how the interface looked and how it was built. Doing both meant the reasons behind a design carried through into the code.
 
-The challenge across these screens was not simply fitting more information onto the page. It was choosing what deserved attention, what should remain available, and how to preserve context as the task changed.
+The hard part was deciding what deserved attention, what could sit a click away, and how to keep people oriented as the task changed.

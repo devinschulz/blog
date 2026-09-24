@@ -9,8 +9,7 @@ tags: [React, Tailwind CSS, TypeScript]
 
 When it comes to styling variations of a component, we often concat classes
 together in a non-idiomatic way. In this post, I will outline one pattern I've
-been using to apply classes to an element that has been readable, typesafe, and
-flexible enough to keep adding variants easily.
+been using to apply classes to an element. It has stayed readable, typesafe, and flexible enough to keep adding variants easily.
 
 Let's get started.
 
@@ -20,8 +19,7 @@ style inputs, dropdowns, or any other component you can think of.
 
 ## Define the union types
 
-Here we're going to start with two TypeScript unions to define the possible
-button sizes and the variant.
+Here we're going to start with two TypeScript unions to define the possible button sizes and variants.
 
 ```ts
 type ButtonSize = "small" | "medium";
@@ -38,7 +36,7 @@ union type to create a `Record<K, T>` that implements all the members and the
 corresponding class names.
 
 When setting the generics of the record, the `K` is set to one of the unions,
-and `T` is a `string`. The `string` is the class names you want to use.
+and `T` is a `string`. The `string` holds the class names you want to use.
 
 ```ts
 const buttonSizeClasses: Record<ButtonSize, string> = {
@@ -99,8 +97,7 @@ any truthy values into a single string. This package may not be required, but I
 like using it, so I don't have to join them manually.
 
 The two `buttonSizeClasses` and `buttonVariantClasses` variables will output the
-classes we defined earlier. In our case, the component only contains defaults
-props, the classes applied to the button will be
+classes we defined earlier. In our case, the component only uses the default props, so the classes applied to the button will be
 `py-1 px-2 bg-blue-700 text-white`.
 
 [View this component as a whole](https://gist.github.com/devinschulz/0f3a522e5baec0318fb21ed13fa6ffe4)

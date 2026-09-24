@@ -2,7 +2,7 @@
 {{- $blog := where site.RegularPages "Section" "blog" -}}
 # {{ site.Title }}
 
-> {{ site.Params.role }} at Stripe. Product interfaces where clarity, trust, and the small details are not optional. This file indexes the site for language models; every page below is also available as Markdown.
+> {{ site.Params.role }} at Stripe who builds product interfaces and pays close attention to the small details. This file indexes the site for language models, and every page below is also available as Markdown.
 
 - Site: {{ site.Home.Permalink }}
 - Contact: {{ site.Params.email }}

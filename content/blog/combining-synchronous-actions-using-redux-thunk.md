@@ -8,10 +8,8 @@ tags: [Redux, Testing, React, Jest]
 ---
 
 Simple frontend applications I've worked with have one event (click, keypress,
-input change, etc.), which dispatches a single action to modify part of the
-application state tree. At the time your application scales in complexity, that
-single event may need to perform several actions at once and perform some sort
-business logic before they are dispatched.
+input change, etc.) that dispatches a single action to modify part of the
+application state tree. As your application grows in complexity, that single event may need to perform several actions at once and run some sort of business logic before they are dispatched.
 
 ## A Potential Solution
 
@@ -40,7 +38,7 @@ something like this:
 }
 ```
 
-Imagine you have a sidebar which slides out from the side of the screen whenever
+Imagine you have a sidebar that slides out from the side of the screen whenever
 a user clicks a button to add an item to the cart. When doing so, you might
 dispatch two separate actions: one for adding the item to the cart, and the
 second for telling the view that the sidebar should be opened.
@@ -71,14 +69,12 @@ const AddToCart = ({ addToCart, id, openSidebar }) => (
 );
 ```
 
-This button component would generally be a nested deep within the application
+This button component would generally be nested deep within the application
 hierarchy. In the future, you might want to have this same functionality in a
-completely separate component. This would be problematic since you now have two
-areas of your application which are performing the same set of logic.
+completely separate component. This would be problematic since you now have two areas of your application performing the same logic.
 
 You can see how this defeats the
-<abbr title='Don&apos;t Repeat Yourself'>DRY</abbr> principles of software
-development. Instead of dispatching several actions from within a component, try
+<abbr title='Don&apos;t Repeat Yourself'>DRY</abbr> principle of software development. Instead of dispatching several actions from within a component, try
 separating them into a thunk action.
 
 Here I'll update the button to fire a single action, which also gives you the
@@ -101,11 +97,9 @@ const addItemToCart = (id) => (dispatch, getState) => {
 };
 ```
 
-Let's try to break this down. The thunk action `addItemToCart` is a function,
-which accepts the cart ID as an argument and then returns another function. When
+Let's try to break this down. The thunk action `addItemToCart` is a function that accepts the cart ID as an argument and then returns another function. When
 you dispatch any action, the Thunk middleware will check if the current action
-type is a function and if it's true, it will call it, and pass the Redux
-`dispatch` and `getState` as the arguments.
+type is a function and, if it is, call it and pass the Redux `dispatch` and `getState` as the arguments.
 
 This is a pretty simple example, so let's complicate it a little. You
 now need to save the item to the backend to allow the cart to persist between
@@ -126,13 +120,11 @@ const addItemToCart = (id) => (dispatch) => {
 ```
 
 Did you know that you can trigger other thunk actions from within a thunk
-action? You are not limited to only dispatching actions which have a return
-value.
+action? You are not limited to only dispatching actions that have a return value.
 
 Now instead of only passing the ID to `addToCart`, we'll pretend the reducer
 requires the entire item to be sent instead. With these new requirements, you
-can call `getState` to return the merchandise from the store, and find the value
-you need to send.
+can call `getState` to get the merchandise from the store and find the value you need to send.
 
 ```javascript
 // actions.js
@@ -154,9 +146,7 @@ const addToCart = (item) => ({
 
 ## Testing a Thunk Action
 
-Testing thunk actions are a little bit different from testing regular actions.
-The main difference is we are no longer testing the returned value of an action,
-and instead of testing whether the dispatch is called with the correct values.
+Testing thunk actions is a little bit different from testing regular actions. The main difference is that we're no longer testing the returned value of an action, but whether `dispatch` is called with the correct values.
 
 ```javascript
 // test.actions.js
@@ -211,11 +201,8 @@ describe("actions", () => {
 ## Conclusion
 
 What I love the most about this approach is that all the logic is contained
-within a specific area of the application. It's entirely out of a component,
-which helps keep them "dumb." Luckily, thunk actions are super simple to test,
-which gives you no reason not to test them. Whether you have thoughts of using
-this solution now or in the future, know that it will be able to handle your
-challenging workflows.
+within a specific area of the application. It lives entirely outside your components, which helps keep them "dumb." Luckily, thunk actions are super simple to test,
+which gives you no reason not to test them. Whether you use this approach now or later, it can handle your more challenging workflows.
 
 ## Versions
 

@@ -1,110 +1,319 @@
 @import 'tailwindcss';
 @import './fonts.css';
+@import './syntax.css';
 @plugin "@tailwindcss/typography";
 
 @source "hugo_stats.json";
 @source "../../layouts";
 @source "../js";
 
+/*
+  Dark instrument. One dark canvas, used on every page and in every system
+  theme, with a single warm accent. Depth comes from light, not colour: each
+  major container is a bezel (a faint outer tray around a lit inner core),
+  and a fixed grain layer keeps the black from looking flat.
+
+  Shape rule: controls are full pills, bezels use --radius-bezel with the
+  inner core inset by --bezel-gap, form fields in the demo use --radius-field.
+*/
 @theme {
-  --color-ink: #181a21;
-  --color-paper: #f5f1e8;
-  --color-ivory: #fffefb;
-  --color-violet: #635bff;
-  --color-peach: #f7a886;
-  --color-lime: #d6f752;
-  --color-muted: #5d606a;
-  --color-line: rgb(24 26 33 / 22%);
-  /* Fixed artwork colors stay separate from adaptive text and surfaces. */
-  --color-night: #181a21;
-  --color-accent: #5146df;
-  /* Shared surfaces and text */
-  --color-surface-muted: #e5e2da;
-  --color-surface-hover: #f0eee7;
-  --color-text-secondary: #5d626e;
-  --color-archive-muted: #5d626e;
-  --color-footer-text: #d2d3d5;
+  --color-ink: #ececef;
+  --color-paper: #0a0a0c;
+  --color-surface: #111114;
+  --color-raised: #17171b;
+  --color-muted: #9d9da8;
+  --color-line: rgb(255 255 255 / 8%);
+  --color-line-strong: rgb(255 255 255 / 22%);
+  --color-accent: #f0907a;
+  --color-accent-soft: rgb(240 144 122 / 12%);
 
-  /* State switcher */
-  --color-experiment-kicker: #b9bdc7;
-  --color-experiment-description: #c8cbd3;
-  --color-experiment-panel: #2a2d37;
-  --color-experiment-border: #535664;
-  --color-experiment-control: #c3c6d0;
-  --color-experiment-counter: #a5abbb;
-  --color-experiment-note: #c7cbd4;
-  --color-demo-surface: #f5f0e7;
-  --color-demo-ink: #242631;
-  --color-demo-border: #d3d0c9;
-  --color-demo-toolbar: #606572;
-  --color-demo-muted: #606873;
-  --color-demo-description: #636772;
-  --color-demo-card-border: #d2d1cb;
-  --color-demo-card: #fffefa;
-  --color-demo-label: #4b505a;
-  --color-demo-input-border: #b9bec3;
-  --color-demo-input-text: #1f2530;
-  --color-demo-input: #ffffff;
-  --color-demo-help: #707682;
-  --color-demo-step: #606873;
-  --color-success: #1a753b;
-  --color-success-ink: #143d27;
-  --color-danger: #b52e37;
-  --color-danger-action: #cb3d42;
-  --color-danger-surface: #fff5f5;
-  --color-processing: #c8c5ff;
-  --color-processing-ink: #312d93;
+  /* Fixed values: the skip link and artwork. */
+  --color-night: #0a0a0c;
+  --color-ivory: #ececef;
 
-  /* Project illustrations */
-  --color-cape-surface: #cad8fa;
-  --color-cape-window: #20244a;
-  --color-cape-dot: #b9bef1;
-  --color-cape-border: #69729f;
-  --color-cape-muted: #c1c6e8;
-  --color-warranties-surface: #ffe6bb;
-  --color-warranties-frame: #1e2731;
-  --color-warranties-screen: #f5f5e9;
-  --color-warranties-icon: #94c2ac;
-  --color-warranties-icon-ink: #225142;
-  --color-warranties-muted: #5c6b69;
-  --color-warranties-card: #49738d;
-  --color-warranties-card-muted: #edf4f8;
-  --color-invision-surface: #edf1ef;
-  --color-invision-grid: #bad4e9;
-  --color-invision-placeholder: #d7e4ed;
+  /* Semantic states, used only inside the State Shift demo. */
+  --color-success: #6fd49a;
+  --color-success-surface: #13261b;
+  --color-danger: #ff8a90;
+  --color-danger-surface: #2e1519;
+  --color-processing: #2a2a30;
+  --color-processing-ink: #d4d4d8;
 
-  /* Stripe chapter */
-  --color-stripe-surface: #5146df;
-  --color-stripe-kicker: #ddd9ff;
-  --color-stripe-label: #e3e1ff;
-  --color-stripe-description: #edecff;
-  --color-stripe-border: #aba6ff;
-  --color-stripe-note: #dbd9ff;
+  --shadow-panel:
+    inset 0 1px 0 rgb(255 255 255 / 6%), 0 24px 60px -24px rgb(0 0 0 / 80%);
 
-  /* Illustration and demo shadows reuse the palette above. */
-  --shadow-cape: 12px 14px 0
-    color-mix(in srgb, var(--color-night) 17%, transparent);
-  --shadow-warranties: 9px 12px 0 var(--color-warranties-frame);
-  --shadow-invision: 7px 7px 0
-    color-mix(in srgb, var(--color-violet) 18%, transparent);
-  --shadow-demo-card: 7px 8px 0
-    color-mix(in srgb, var(--color-night) 9%, transparent);
+  --radius-panel: 1.25rem;
+  --radius-bezel: 1.75rem;
+  --radius-field: 10px;
+  --bezel-gap: 6px;
 
-  --font-mono: 'DM Mono', monospace;
-  --font-sans: 'Manrope', Arial, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-glide: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --font-display: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif;
+  --font-sans: 'Hanken Grotesk', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --breakpoint-desktop: 781px;
 }
 
-/* A large kinetic object balances the editorial headline. */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display type is set in one family. Emphasis is a colour change, not an
+     italic: Bricolage has no italic, and a borrowed serif word would be a
+     second voice. */
+  :where(h1, h2, h3, h4) em {
+    font-style: normal;
+    color: var(--color-muted);
+  }
+  /* The page's one accented phrase lives in its h1. */
+  h1 em {
+    color: var(--color-accent);
+  }
+
+  :where(p, li, figcaption, dd) {
+    text-wrap: pretty;
+  }
+
+  :where(h1, h2, h3) {
+    text-wrap: balance;
+  }
+
+  /* Two contrasting rings remain visible on light, dark, and image surfaces. */
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]
+  ):focus-visible {
+    @apply outline-3 outline-offset-3 outline-ink ring-3 ring-paper;
+  }
+
+  @media (forced-colors: active) {
+    :where(
+      a,
+      button,
+      input,
+      select,
+      textarea,
+      summary,
+      [tabindex]
+    ):focus-visible {
+      outline-color: Highlight;
+      box-shadow: none;
+    }
+  }
+}
+
+/* Shared type and control styles, as utilities so variants work on them. */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+/* Section headlines share one scale so the page reads as a single voice. */
+@utility h-section {
+  @apply display text-[clamp(2.25rem,9vw,3rem)] desktop:text-[clamp(2.75rem,4.4vw,4.25rem)];
+}
+
+@utility label {
+  @apply font-mono text-xs text-muted;
+}
+
+/* A pressable pill. Press feedback is immediate; colour eases. */
+@utility pill {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium whitespace-nowrap;
+  transition:
+    transform 160ms var(--ease-snappy),
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@utility pill-solid {
+  @apply pill bg-ink text-paper hover:bg-accent;
+}
+
+@utility pill-line {
+  @apply pill border border-line-strong hover:border-ink;
+}
+
+/* An inline link whose arrow nudges toward its destination. */
+@utility arrow-link {
+  @apply inline-flex min-h-11 items-center gap-1.5 font-medium underline decoration-line-strong decoration-1 underline-offset-[0.3em] hover:decoration-accent;
+  transition: text-decoration-color 200ms ease;
+  & > [aria-hidden] {
+    color: var(--color-accent);
+    transition: transform 200ms var(--ease-snappy);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover > [aria-hidden] {
+      transform: translate(2px, -2px);
+    }
+    &:hover > [aria-hidden].down {
+      transform: translateY(2px);
+    }
+    &:hover > [aria-hidden].back {
+      transform: translateX(-2px);
+    }
+  }
+}
+
+/* The bezel: a faint outer tray with a hairline edge, holding a lit inner
+   core. Radii are concentric so the two curves stay parallel. */
+@utility shell {
+  padding: var(--bezel-gap);
+  border-radius: var(--radius-bezel);
+  background: rgb(255 255 255 / 2.5%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 7%);
+}
+
+@utility core {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--radius-bezel) - var(--bezel-gap));
+  background: var(--color-raised);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 6%),
+    inset 0 0 0 1px rgb(255 255 255 / 4%);
+}
+
+/* A pill with its arrow in its own circle, flush with the right edge. The
+   circle moves toward the destination on hover; the pill presses on click. */
+@utility island {
+  @apply inline-flex min-h-12 items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-sm font-medium whitespace-nowrap;
+  transition:
+    transform 160ms var(--ease-snappy),
+    background-color 200ms ease,
+    color 200ms ease;
+  & > [aria-hidden] {
+    @apply grid size-9 place-items-center rounded-full text-base;
+    transition: transform 300ms var(--ease-snappy);
+  }
+  &:active {
+    transform: scale(0.97);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover > [aria-hidden] {
+      transform: translate(2px, -2px) scale(1.05);
+    }
+    &:hover > [aria-hidden].down {
+      transform: translateY(2px) scale(1.05);
+    }
+  }
+}
+
+@utility island-solid {
+  @apply island bg-ink text-paper;
+  & > [aria-hidden] {
+    background: rgb(10 10 12 / 10%);
+  }
+}
+
+@utility island-ghost {
+  @apply island bg-white/5 text-ink hover:bg-white/10;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+  & > [aria-hidden] {
+    background: rgb(255 255 255 / 8%);
+    color: var(--color-accent);
+  }
+}
+
+/* Film grain over the whole page, fixed so it never repaints on scroll. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (forced-colors: active) {
+  .grain {
+    display: none;
+  }
+}
+
+/* Scroll reveals: blocks rise and sharpen as they enter. Content is only
+   hidden once the script has marked the page, so nothing depends on it. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+  .reveal-ready [data-reveal] {
+    transition:
+      opacity 900ms var(--ease-glide),
+      transform 900ms var(--ease-glide),
+      filter 900ms var(--ease-glide);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+}
+
+/* The mobile sheet: links arrive one after another when it opens. */
+@media (prefers-reduced-motion: no-preference) {
+  details[open] [data-sheet-item] {
+    animation: enter 520ms var(--ease-glide) both;
+    animation-delay: calc(var(--i, 0) * 60ms + 60ms);
+  }
+}
+
+/* Hero entrance: the four text elements arrive in reading order. Played on
+   a real visit only; Turbo's cached preview is shown still. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-enter] {
+    animation: enter 720ms var(--ease-snappy) both;
+    animation-delay: calc(var(--i, 0) * 70ms + 60ms);
+  }
+  html[data-turbo-preview] [data-enter] {
+    animation: none;
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(6px);
+  }
+}
+
+/* The kinetic sculpture fills the hero, weighted to the right, and a scrim
+   darkens the corner the copy sits in so type is never read over tiles. */
 .hero-art {
   position: absolute;
   pointer-events: none;
-  width: 53%;
-  height: 96%;
-  right: -7%;
-  top: -1%;
-  mask-image: linear-gradient(to right, transparent 12%, #000 32%);
+  inset: 0 -6% 0 22%;
+  mask-image: radial-gradient(
+    ellipse 70% 80% at 55% 45%,
+    #000 45%,
+    transparent 100%
+  );
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, var(--color-paper) 8%, transparent 55%),
+    linear-gradient(to right, var(--color-paper) 18%, transparent 62%);
 }
 
 .hero-canvas,
@@ -117,6 +326,7 @@
 
 .hero-canvas {
   opacity: 0;
+  transition: opacity 900ms ease;
 }
 [data-renderer='webgl'] .hero-canvas {
   opacity: 1;
@@ -127,11 +337,19 @@
 
 @media (width < 781px) {
   .hero-art {
-    width: 82%;
-    height: 39%;
-    right: -14%;
-    top: 0;
-    mask-image: none;
+    inset: 3.5rem -24% 46% -24%;
+    mask-image: radial-gradient(
+      ellipse 60% 60% at 50% 50%,
+      #000 50%,
+      transparent 100%
+    );
+  }
+  .hero-scrim {
+    background: linear-gradient(
+      to top,
+      var(--color-paper) 48%,
+      transparent 66%
+    );
   }
 }
 
@@ -174,15 +392,11 @@
   from {
     opacity: 0;
   }
-  to {
-    opacity: 1;
-  }
 }
 
 @media (width >= 781px) {
   .states-lattice {
     height: 148px;
-    /* Wider screens carry many more columns, so a longer fade costs nothing. */
     mask-image: linear-gradient(
       to right,
       transparent,
@@ -205,138 +419,110 @@
   }
 }
 
-/* The Current chapter panel reads body copy over this, so it is held well below
-   full strength and never becomes the reason text is hard to read. */
-.chapter-backdrop-canvas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 800ms ease;
+/* Work screenshots. Without WebGL the image itself eases up a touch on hover.
+   With it, the canvas draws the same picture as tiles and the <img> steps
+   aside only once the texture is on screen, so there is never a blank frame. */
+.work-shot img {
+  transition: transform 600ms var(--ease-snappy);
 }
-
-[data-chapter-backdrop][data-renderer='webgl'] .chapter-backdrop-canvas {
-  opacity: 0.42;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chapter-backdrop-canvas {
-    transition: none;
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover .work-shot:not([data-texture='ready']) img {
+    transform: scale(1.025);
   }
 }
-
-@media (forced-colors: active) {
-  .chapter-backdrop-canvas {
-    display: none;
-  }
-}
-
-/* Project tiles keep their CSS illustration as the fallback, the way the hero
-   keeps its SVG: the canvas only takes over once a renderer exists. */
-.work-tile-canvas {
+.work-canvas {
   position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  inset: 0;
   opacity: 0;
-  transition: opacity 600ms ease;
+  pointer-events: none;
 }
-
-[data-work-tile][data-renderer='webgl'] .work-tile-canvas {
+.work-shot[data-renderer='webgl'][data-texture='ready'] .work-canvas {
   opacity: 1;
 }
-[data-work-tile][data-renderer='webgl'] .tile-fallback {
-  visibility: hidden;
+/* Opacity, not visibility: a visibility-hidden image drops out of the
+   accessibility tree and would take its alt text with it. */
+.work-shot[data-renderer='webgl'][data-texture='ready'] img {
+  opacity: 0;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .work-tile-canvas {
-    transition: none;
-  }
-}
-
 @media (forced-colors: active) {
-  .work-tile-canvas {
+  .work-canvas {
     display: none;
   }
-  [data-work-tile][data-renderer='webgl'] .tile-fallback {
-    visibility: visible;
+  .work-shot img {
+    opacity: 1 !important;
   }
 }
 
-@layer base {
-  /* Two contrasting rings remain visible on light, dark, and artwork surfaces. */
-  :where(
-    a,
-    button,
-    input,
-    select,
-    textarea,
-    summary,
-    [tabindex]
-  ):focus-visible {
-    @apply outline-3 outline-offset-3 outline-night ring-3 ring-ivory;
+/* The State Shift field sits behind the demo panel and shows around its
+   edges. It never runs under text: the grid gaps and margins are wider than
+   its bleed. The edges fade so it has no hard border. */
+.states-field {
+  position: absolute;
+  inset: -1.5rem -17px;
+  pointer-events: none;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      #000 2rem,
+      #000 calc(100% - 2rem),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 1.25rem,
+      #000 calc(100% - 1.25rem),
+      transparent
+    );
+  mask-composite: intersect;
+}
+@media (width >= 781px) {
+  .states-field {
+    inset: -3rem -3rem -3rem -1.25rem;
   }
-
-  @media (forced-colors: active) {
-    :where(
-      a,
-      button,
-      input,
-      select,
-      textarea,
-      summary,
-      [tabindex]
-    ):focus-visible {
-      outline-color: Highlight;
-      box-shadow: none;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-ink: #f1eee7;
-      --color-paper: #111319;
-      --color-accent: #aaa4ff;
-      --color-muted: #a5a8b3;
-      --color-line: rgb(241 238 231 / 22%);
-      --color-surface-muted: #1d2028;
-      --color-surface-hover: #292d38;
-      --color-text-secondary: #b8bcc7;
-      --color-archive-muted: #b8bcc7;
-
-      --color-demo-surface: #20232d;
-      --color-demo-ink: #f1eee7;
-      --color-demo-border: #454b59;
-      --color-demo-toolbar: #b8bdc9;
-      --color-demo-muted: #aab2c0;
-      --color-demo-description: #bbc0cc;
-      --color-demo-card-border: #505766;
-      --color-demo-card: #2a2e3a;
-      --color-demo-label: #d4d8e1;
-      --color-demo-input: #191d26;
-      --color-demo-input-border: #737c8d;
-      --color-demo-input-text: #f1eee7;
-      --color-demo-help: #adb5c4;
-      --color-demo-step: #adb5c4;
-      --color-success: #63d08b;
-      --color-danger: #ff858a;
-      --color-danger-surface: #3c232c;
-      --color-processing: #393563;
-      --color-processing-ink: #dfdcff;
-    }
+}
+.states-field-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+[data-renderer='webgl'] > .states-field .states-field-canvas {
+  opacity: 1;
+}
+@media (forced-colors: active) {
+  .states-field {
+    display: none;
   }
 }
 
 @layer utilities {
+  /* Reduced motion keeps colour and opacity feedback, and drops movement. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
       animation: none !important;
-      transition: none !important;
       scroll-behavior: auto !important;
+      transition-property:
+        color, background-color, border-color, opacity, text-decoration-color !important;
+    }
+    /* Toggles have no colour fade to keep (see below). */
+    [data-state-controls] button,
+    [data-archive-filters] button {
+      transition: none !important;
     }
   }
+}
+
+/* Toggle groups are pressed over and over while exploring, so their colour
+   change is instant; only the press itself moves. */
+[data-state-controls] button,
+[data-archive-filters] button {
+  transition: transform 160ms var(--ease-snappy);
 }

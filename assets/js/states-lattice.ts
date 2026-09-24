@@ -17,12 +17,12 @@ import type { SceneContext, Surface } from './webgl-surface';
 // state earns its place twice: it is a real state, and it keeps the wrap from
 // done back to ready from lerping through mud.
 const STATES = [
-  '#635bff',
-  '#b2a2ff',
-  '#c8c5ff',
-  '#f7a886',
-  '#d6f752',
-  '#cfc8b8',
+  '#5a5a66',
+  '#8e8e9a',
+  '#c8c8d0',
+  '#d4502f',
+  '#f0907a',
+  '#dcdce1',
 ].map((hex) => new Color(hex));
 const HEIGHTS = [1, 1.2, 0.86, 1.3, 0.7, 0.5];
 const PROCESSING = 2;
@@ -66,11 +66,11 @@ export function createLatticeScene(scattered: boolean) {
     tiles.frustumCulled = false;
     group.add(tiles);
     scene.add(group);
-    scene.add(new HemisphereLight('#fff9ef', '#655889', 2.4));
+    scene.add(new HemisphereLight('#ffffff', '#4a4a55', 2.4));
     const keyLight = new DirectionalLight('#ffffff', 2.4);
     keyLight.position.set(-2, 4, 6);
     scene.add(keyLight);
-    const rimLight = new DirectionalLight('#b8b0ff', 1.8);
+    const rimLight = new DirectionalLight('#ffd9cf', 1.8);
     rimLight.position.set(3, 1, -2);
     scene.add(rimLight);
 
