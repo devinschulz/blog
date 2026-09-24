@@ -14,24 +14,24 @@ facts:
     value: Support ended in 2025
 headline: Your things,
 headlineAccent: remembered.
-summary: 'Warranties was a personal product. I designed it and I built it. It kept a record of the things you own: what they cost, where they came from, and how long they stay covered, so that the information is there on the day something breaks.'
-intro: A warranty is only useful if you can find it. The problem was never storage. It was making a record worth keeping up to date, and putting the answer to “is this still covered?” in the first thing you see.
+summary: 'Warranties was my own app. I designed it and built it myself. It kept track of the things you own: what they cost, where you bought them and how long they’re covered. That way the details are there on the day something breaks.'
+intro: A warranty is only useful if you can find it when something breaks. Most of the work went into making a record people would bother keeping up to date, and putting the answer to “is this still covered?” on the first screen.
 chapters:
   - id: capture
     number: '01'
     name: Capture
-    title: Ask for little. Accept more.
-    description: Every record starts with someone typing on a phone, usually while standing next to the box. Only the name is required. Brand, model, price, store, serial number, purchase date, photos, and attachments are all there for the people who want them, arranged so the form stays short until it needs to be long.
+    title: Only the name is required.
+    description: Every record starts with someone typing on a phone, usually while standing next to the box. Brand, model, price, store, serial number, purchase date, photos and attachments are all there if you want them, and the form stays short until you need it to be long.
     image: images/warranties/slide-1.jpg
     alt: The Add Item form on iPad and Mac, with a required Name field and optional Brand, Model, Price, Store, Serial Number, and Purchase Date fields.
     caption: One required field, and a form that grows only as far as someone wants to take it.
     notes:
-      - title: Required is a short list.
+      - title: One field to start.
         body: A name is enough to save an item. Everything else is marked optional and can be filled in later, from the receipt or the manual.
-      - title: The photo does the identifying.
-        body: A picture of the actual object recognizes faster than a model number, so adding one sits at the top of the form rather than at the end.
+      - title: Photos first.
+        body: You recognize a picture of the actual thing faster than a model number, so adding a photo is at the top of the form.
       - title: Room for the paperwork.
-        body: Notes and attachments keep the receipt and the warranty document with the item, which is where they are needed.
+        body: Notes and attachments keep the receipt and the warranty document with the item they belong to.
   - id: coverage
     number: '02'
     name: Coverage
@@ -41,7 +41,7 @@ chapters:
     alt: The Edit Item screen on iPhone with a warranty expiry calendar, +30d, +1y, +5y, and +10y shortcuts, coverage details, and an Add Another Warranty button.
     caption: Shortcuts for common terms, with the calendar still there for everything else.
     notes:
-      - title: Terms, not arithmetic.
+      - title: Common terms in one tap.
         body: +30d, +1y, +5y, and +10y cover most purchases in a single tap, and the field confirms the choice as a duration as well as a date.
       - title: More than one warranty.
         body: Parts, labour, and extended plans are separate rows on the same item instead of a single date that has to stand in for all of them.
@@ -58,10 +58,10 @@ chapters:
     notes:
       - title: Time as the sort order.
         body: Grouping by what expires soonest puts the items that need attention at the top without anyone having to search for them.
-      - title: Expired, not deleted.
+      - title: Expired items stay.
         body: Lapsed items collapse into their own group. The purchase record still matters after the coverage runs out.
       - title: One layout, three sizes.
-        body: The phone stacks list and detail; the iPad and Mac show both. The structure of the record does not change with the window.
+        body: On iPhone you see the list, then the record. iPad and Mac show both side by side. The record itself looks the same at every size.
 sunset:
   kicker: End of support
   title: Knowing when<br><em>to stop.</em>
@@ -75,11 +75,11 @@ principles:
     body: A record that is easy to start gets started. Detail can be added later, and often is.
   - title: Quiet by design
     body: The app opens to the things you own and nothing else. There is no reason for a utility like this to ask for attention.
-reflection: 'Warranties was small enough that every decision was visible: the number of required fields, the order of the groups, the wording of a duration. That is the useful part of building something end to end at this size, and it is what I take back into larger products: the shape of a record is a design decision, not a schema detail.'
+reflection: 'Warranties was small enough that I could see every decision: how many fields were required, the order of the groups, how a duration was worded. That’s the nice part of building something end to end at this size. What I took back to bigger products is that how a record is structured is a design decision too, and it deserves the same care as the screens.'
 ---
 
-I released Warranties in 2023, designed it and built it on my own, and maintained it alongside full-time work. In 2025 I ended support.
+I released Warranties in 2023 and kept it going alongside a full-time job. In 2025 I ended support.
 
-The decision was about attention rather than the product. A utility like this earns its keep by staying current with the platforms it runs on, and that maintenance is a standing commitment, not a finished task. Continuing to sell something I could no longer give that time to was the wrong trade, so I stopped.
+It came down to time. An app like this has to keep up with every new version of the platforms it runs on, and that work never really ends. I didn’t want to keep selling something I couldn’t look after properly, so I stopped.
 
-Winding it down deliberately turned out to be part of the work, and worth doing as carefully as the release.
+I tried to wind it down as carefully as I launched it.

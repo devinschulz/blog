@@ -1,7 +1,7 @@
 {{ $title := printf "%s · %s" .Title site.Title }}
 {{ if .IsHome }}{{ $title = printf "%s · %s at Stripe" site.Title site.Params.role }}{{ end }}
 {{ with .Params.seoTitle }}{{ $title = printf "%s · %s" . site.Title }}{{ end }}
-{{ $description := .Description | default (printf "%s is a %s at Stripe, building thoughtful product interfaces." site.Title site.Params.role) }}
+{{ $description := .Description | default (printf "%s is a %s at Stripe who builds product interfaces." site.Title site.Params.role) }}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">
 {{ if eq .Kind "404" }}

@@ -1,4 +1,4 @@
 ---
 title: Historical writing
-description: Writing from a decade of learning.
+description: Posts I wrote while learning in public, left as they were.
 ---

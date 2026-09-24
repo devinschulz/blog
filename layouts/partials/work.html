@@ -4,11 +4,11 @@
 {{ $projects := slice
   (dict "path" "/work/cape" "image" "images/cape/slide-1.png" "years" "2020-2025" "role" "Designer and Lead Frontend Engineer" "line" "A more trustworthy way to work with AI." "alt" "Cape Assistant showing the same conversation in a full desktop workspace and a compact side panel." "position" "object-[18%_0%]" "featured" true)
   (dict "path" "/work/warranties" "image" "images/warranties/slide-1.jpg" "years" "2023-2025" "role" "Designer and Developer" "line" "A calmer way to manage the things you own." "alt" "Warranties on iPad, iPhone, and Mac, listing protected items and the details of each." "position" "object-center")
-  (dict "path" "/work/invision" "image" "images/invision/slide-3.png" "years" "2014-2020" "role" "Senior Software Engineer" "line" "Tools for creative teams in motion." "alt" "InVision Inspect with a layer tree, a mobile artboard, and panels for dimensions, colors, and fonts." "position" "object-top")
+  (dict "path" "/work/invision" "image" "images/invision/slide-3.png" "years" "2014-2020" "role" "Senior Software Engineer" "line" "Design collaboration tools for product teams." "alt" "InVision Inspect with a layer tree, a mobile artboard, and panels for dimensions, colors, and fonts." "position" "object-top")
 }}
 <section id="work" aria-labelledby="work-title">
   <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-32">
-    <h2 id="work-title" class="h-section max-w-[16ch]">A few places I’ve helped make the complex <em>clear.</em></h2>
+    <h2 id="work-title" class="h-section max-w-[16ch]">Some of the products I’ve <em>worked on.</em></h2>
     <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 desktop:mt-20 desktop:grid-cols-12 desktop:grid-rows-[auto_auto] desktop:gap-y-10">
       {{ range $projects }}
         {{ $page := site.GetPage .path }}

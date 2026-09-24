@@ -46,8 +46,8 @@
   <section aria-labelledby="workflow-title" class="border-t border-line">
     <div class="mx-auto grid max-w-350 items-center gap-12 px-4.25 py-20 desktop:grid-cols-12 desktop:gap-x-10 desktop:px-10 desktop:py-28">
       <div class="desktop:col-span-4">
-        <h2 id="workflow-title" class="h-section max-w-[12ch]">One part of a bigger picture.</h2>
-        <p class="mt-6 leading-relaxed text-muted">These interfaces lived within a larger design workflow. This archived Craft Sync screenshot shows the publishing step: bringing artboards out of the source file and into a shared workspace.</p>
+        <h2 id="workflow-title" class="h-section max-w-[12ch]">Where these tools <em>fit in.</em></h2>
+        <p class="mt-6 leading-relaxed text-muted">These tools were part of a larger design workflow. This archived Craft Sync screenshot shows the publishing step, where artboards go from the Sketch file into a shared workspace.</p>
         <p class="mt-5 text-sm leading-relaxed text-muted">Shown for product context, separate from the Inspect contribution described above.</p>
       </div>
       <div class="desktop:col-span-7 desktop:col-start-6">{{ partial "case-study-image.html" (merge .Params.workflow (dict "sizes" "(min-width: 781px) 54vw, 100vw")) }}</div>
@@ -57,13 +57,13 @@
   <section aria-labelledby="reflection-title" class="bg-surface">
     <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
       <div class="grid gap-8 desktop:grid-cols-12 desktop:gap-x-10">
-        <h2 id="reflection-title" class="h-section max-w-[12ch] desktop:col-span-5">The details are the <em>product.</em></h2>
+        <h2 id="reflection-title" class="h-section max-w-[12ch] desktop:col-span-5">What I <em>took from it.</em></h2>
         <div class="desktop:col-span-6 desktop:col-start-7">
           <p class="max-w-[60ch] text-lg leading-relaxed text-muted">{{ .Params.reflection }}</p>
           <a class="arrow-link mt-4" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 <span aria-hidden="true">↗&#xFE0E;</span></a>
         </div>
       </div>
-      {{ partial "case-study-next.html" (dict "page" . "next" "/work/cape" "note" "A retrospective using archived product imagery and writing from my time at InVision. Product work was a team effort; the measurement-engine section describes my individual contribution.") }}
+      {{ partial "case-study-next.html" (dict "page" . "next" "/work/cape" "note" "I put this together from archived product images and my own writing from InVision. The products were a team effort; the measurement engine section is the part I built.") }}
     </div>
   </section>
 </article>
