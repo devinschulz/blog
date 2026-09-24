@@ -1,4 +1,4 @@
-<section id="states" data-controller="demo" aria-labelledby="states-title" class="bg-surface">
+<section id="states" data-controller="demo" aria-labelledby="states-title" class="overflow-x-clip bg-surface">
   <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-32">
     <div class="max-w-[46rem]">
       <h2 id="states-title" class="h-section">State <em>Shift</em></h2>
@@ -6,13 +6,15 @@
     </div>
 
     <div class="mt-12 desktop:mt-16 desktop:grid desktop:grid-cols-[13rem_1fr] desktop:gap-6">
-      <div hidden data-state-controls data-demo-target="controls" role="group" aria-label="Interface states" class="mb-4 grid grid-cols-2 gap-1.5 desktop:mb-0 desktop:flex desktop:flex-col desktop:gap-1">
+      <div hidden data-state-controls data-demo-target="controls" role="group" aria-label="Interface states" class="mb-10 grid grid-cols-2 gap-1.5 desktop:mb-0 desktop:flex desktop:flex-col desktop:gap-1">
         {{ range $index, $item := slice (dict "state" "default" "label" "Ready") (dict "state" "focus" "label" "Keyboard") (dict "state" "error" "label" "Recovery") (dict "state" "processing" "label" "Waiting") (dict "state" "success" "label" "Done") }}
           <button type="button" data-demo-target="stateButton" data-action="demo#choose" data-state="{{ .state }}" aria-pressed="{{ eq $index 0 }}" class="pill justify-start px-4 text-muted hover:bg-paper hover:text-ink aria-pressed:bg-ink aria-pressed:text-paper aria-pressed:hover:bg-ink aria-pressed:hover:text-paper">{{ .label }}</button>
         {{ end }}
       </div>
 
-      <div data-demo data-demo-target="panel" data-state="default" class="group/demo relative min-h-115 overflow-hidden rounded-panel bg-raised shadow-panel desktop:col-start-2 desktop:min-h-120">
+      <div data-controller="webgl" data-webgl-scene-value="states-field" class="relative desktop:col-start-2">
+      <div class="states-field" data-webgl-target="measure" aria-hidden="true"><canvas class="states-field-canvas" data-webgl-target="canvas"></canvas></div>
+      <div data-demo data-demo-target="panel" data-state="default" class="group/demo relative z-1 min-h-115 overflow-hidden rounded-panel bg-raised shadow-panel desktop:min-h-120">
         <div class="flex min-h-11 items-center gap-2 border-b border-line px-4 py-2 font-mono text-xs text-muted">
           <span aria-hidden="true" class="text-sm text-accent group-data-[state=processing]/demo:animate-spin motion-reduce:animate-none">◒</span>
           <span>Northstar Workspace</span>
@@ -44,9 +46,10 @@
           <span class="text-ink group-data-[state=success]/demo:text-success">Profile</span><span>Preferences</span><span>Complete</span>
         </div>
       </div>
+      </div>
     </div>
 
-    <div class="mt-4 flex flex-col gap-1 text-sm desktop:ml-[calc(13rem+1.5rem)] desktop:flex-row desktop:gap-6">
+    <div class="mt-10 flex flex-col gap-1 text-sm desktop:mt-14 desktop:ml-[calc(13rem+1.5rem)] desktop:flex-row desktop:gap-6">
       <p id="state-index" data-demo-target="index" class="shrink-0 font-mono text-xs leading-5 text-accent">State 01 / 05</p>
       <p id="state-note" data-demo-target="note" class="text-muted">The happy path deserves care. It just doesn’t deserve all of it.</p>
     </div>

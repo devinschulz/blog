@@ -70,16 +70,23 @@ export function createKineticSculpture() {
   function update(
     time: number,
     pointer: { x: number; y: number } = { x: 0, y: 0 },
+    scroll = 0,
   ): void {
     // Linger at each composition, then unfold with a slow, smooth transition.
     const cycle = 0.5 + Math.cos(time * 0.23) * 0.5;
-    const fold = cycle * cycle * (3 - 2 * cycle);
+    // Scrolling out of the hero lays the vortex down into the flat grid the
+    // states lattice below is made of, so one piece hands over to the next.
+    const settle = scroll <= 0.04 ? 0 : Math.min(1, (scroll - 0.04) / 0.56);
+    const unfold = settle * settle * (3 - 2 * settle);
+    const fold = cycle * cycle * (3 - 2 * cycle) * (1 - unfold);
+    const drift = 1 - unfold;
     group.rotation.set(
-      -0.28 + Math.sin(time * 0.21) * 0.15 + pointer.y * 0.14,
-      -0.26 + Math.sin(time * 0.17) * 0.32 + pointer.x * 0.22,
-      -0.22 + Math.sin(time * 0.13) * 0.16,
+      (-0.28 + Math.sin(time * 0.21) * 0.15 + pointer.y * 0.14) * drift -
+        0.5 * unfold,
+      (-0.26 + Math.sin(time * 0.17) * 0.32 + pointer.x * 0.22) * drift,
+      (-0.22 + Math.sin(time * 0.13) * 0.16) * drift,
     );
-    group.position.y = Math.sin(time * 0.6) * 0.1;
+    group.position.y = Math.sin(time * 0.6) * 0.1 * drift - unfold * 0.9;
 
     for (let column = 0; column < columns; column++) {
       for (let row = 0; row < rows; row++) {

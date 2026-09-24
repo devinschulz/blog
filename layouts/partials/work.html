@@ -17,8 +17,9 @@
         {{ $large := $image.Resize "1400x webp q84" }}
         <article class="{{ if .featured }}desktop:col-span-7 desktop:row-span-2{{ else }}desktop:col-span-5{{ end }}">
           <a class="work-card group flex h-full flex-col" href="{{ $page.RelPermalink }}">
-            <div class="work-shot relative overflow-hidden rounded-panel border border-line bg-surface {{ if .featured }}aspect-[4/3] desktop:aspect-auto desktop:min-h-0 desktop:flex-1{{ else }}aspect-[16/9]{{ end }}">
+            <div data-controller="webgl" data-webgl-scene-value="work-image" class="work-shot relative overflow-hidden rounded-panel border border-line bg-surface {{ if .featured }}aspect-[4/3] desktop:aspect-auto desktop:min-h-0 desktop:flex-1{{ else }}aspect-[16/9]{{ end }}">
               <img class="absolute inset-0 size-full object-cover {{ .position }}" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 720w, {{ $large.RelPermalink }} 1400w" sizes="{{ if .featured }}(min-width: 781px) 56vw{{ else }}(min-width: 781px) 40vw{{ end }}, 100vw" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
+              <canvas class="work-canvas" data-webgl-target="canvas" aria-hidden="true"></canvas>
             </div>
             <div class="mt-5 grid grid-cols-[1fr_auto] items-baseline gap-x-4">
               <h3 class="display text-[1.75rem] tracking-[-0.03em] transition-colors duration-200 group-hover:text-accent desktop:text-[2rem]">{{ $page.Title }}</h3>

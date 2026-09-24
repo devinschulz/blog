@@ -5,11 +5,27 @@ export interface SceneContext {
   scene: Scene;
   camera: PerspectiveCamera;
   renderer: WebGLRenderer;
+  /** The element that carries data-motion; scenes may listen to it. */
+  host: HTMLElement;
+  /** Aborted on teardown. Pass it to every listener a scene adds. */
+  signal: AbortSignal;
+  /** Draw one frame now if the loop is not running (paused, reduced motion). */
+  invalidate(): void;
+}
+
+/** Per-frame facts a scene may use beyond time and pointer. */
+export interface FrameInfo {
+  /** Seconds since the previous frame; 0 for a single, invalidated draw. */
+  delta: number;
+  /** How far the host has scrolled up past the top of the viewport, 0 to 1. */
+  scroll: number;
+  /** Reduced motion is on: scenes should jump to their resting pose. */
+  still: boolean;
 }
 
 /** What a scene module hands back. Only `update` is required. */
 export interface Surface {
-  update(elapsed: number, pointer: Vector2): void;
+  update(elapsed: number, pointer: Vector2, frame: FrameInfo): void;
   resize?(width: number, height: number, camera: PerspectiveCamera): void;
   /** Free geometry, materials and textures. Called on teardown. */
   dispose?(): void;
@@ -81,18 +97,38 @@ export function createWebGLSurface({
 
   const scene = new Scene();
   const camera = new PerspectiveCamera(fov, 1, near, far);
-  const surface = build({ scene, camera, renderer });
+  let frame: number | null = null;
+  let lost = false;
+  const surface = build({
+    scene,
+    camera,
+    renderer,
+    host,
+    signal,
+    invalidate: () => {
+      if (frame === null && !lost && !forcedColors.matches) draw(0);
+    },
+  });
   const pointer = new Vector2();
   const targetPointer = new Vector2();
 
   let visible = false;
-  let lost = false;
-  let frame: number | null = null;
   let lastTime: number | null = null;
   let elapsed = 0;
 
-  function draw(): void {
-    surface.update(elapsed, pointer);
+  // Scroll is read from layout once per drawn frame rather than from a scroll
+  // listener, so it costs nothing while the surface is paused or offscreen.
+  function scrollProgress(): number {
+    const rect = host.getBoundingClientRect();
+    return Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height)));
+  }
+
+  function draw(delta: number): void {
+    surface.update(elapsed, pointer, {
+      delta,
+      scroll: reducedMotion.matches ? 0 : scrollProgress(),
+      still: reducedMotion.matches,
+    });
     renderer.render(scene, camera);
   }
 
@@ -104,7 +140,7 @@ export function createWebGLSurface({
     lastTime = now;
     elapsed += delta;
     pointer.lerp(targetPointer, 1 - Math.exp(-delta * 4));
-    draw();
+    draw(delta);
     frame = requestAnimationFrame(animate);
   }
 
@@ -122,6 +158,8 @@ export function createWebGLSurface({
     if (reducedMotion.matches) {
       pointer.set(0, 0);
       targetPointer.set(0, 0);
+      // Settle into the still pose straight away rather than on the next resize.
+      if (!lost && !forcedColors.matches) draw(0);
     }
     if (active) frame = requestAnimationFrame(animate);
   }
@@ -134,7 +172,7 @@ export function createWebGLSurface({
     camera.aspect = width / height;
     surface.resize?.(width, height, camera);
     camera.updateProjectionMatrix();
-    if (!forcedColors.matches) draw();
+    if (!forcedColors.matches) draw(0);
   }
 
   if (usePointer) {

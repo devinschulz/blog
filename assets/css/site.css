@@ -318,14 +318,85 @@
   }
 }
 
-/* Work screenshots: the frame holds still and the image inside eases up a
-   touch on hover, so the grid never shifts. */
+/* Work screenshots. Without WebGL the image itself eases up a touch on hover.
+   With it, the canvas draws the same picture as tiles and the <img> steps
+   aside only once the texture is on screen, so there is never a blank frame. */
 .work-shot img {
   transition: transform 600ms var(--ease-snappy);
 }
 @media (hover: hover) and (pointer: fine) {
-  .work-card:hover .work-shot img {
+  .work-card:hover .work-shot:not([data-texture='ready']) img {
     transform: scale(1.025);
+  }
+}
+.work-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+.work-shot[data-renderer='webgl'][data-texture='ready'] .work-canvas {
+  opacity: 1;
+}
+/* Opacity, not visibility: a visibility-hidden image drops out of the
+   accessibility tree and would take its alt text with it. */
+.work-shot[data-renderer='webgl'][data-texture='ready'] img {
+  opacity: 0;
+}
+@media (forced-colors: active) {
+  .work-canvas {
+    display: none;
+  }
+  .work-shot img {
+    opacity: 1 !important;
+  }
+}
+
+/* The State Shift field sits behind the demo panel and shows around its
+   edges. It never runs under text: the grid gaps and margins are wider than
+   its bleed. The edges fade so it has no hard border. */
+.states-field {
+  position: absolute;
+  inset: -1.5rem -17px;
+  pointer-events: none;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      #000 2rem,
+      #000 calc(100% - 2rem),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 1.25rem,
+      #000 calc(100% - 1.25rem),
+      transparent
+    );
+  mask-composite: intersect;
+}
+@media (width >= 781px) {
+  .states-field {
+    inset: -3rem -3rem -3rem -1.25rem;
+  }
+}
+.states-field-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+[data-renderer='webgl'] > .states-field .states-field-canvas {
+  opacity: 1;
+}
+@media (forced-colors: active) {
+  .states-field {
+    display: none;
   }
 }
 

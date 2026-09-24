@@ -264,7 +264,10 @@ test('selected work shows each case study as one real screenshot link', async ({
     const image = card.locator('img');
     await expect(image).not.toHaveAttribute('alt', '');
     await expect
-      .poll(() => image.evaluate((img) => img.complete && img.naturalWidth))
+      // Lazy images under software-rendered WebGL can take a few seconds.
+      .poll(() => image.evaluate((img) => img.complete && img.naturalWidth), {
+        timeout: 15000,
+      })
       .toBeGreaterThan(0);
     await expect(card.getByRole('heading', { level: 3 })).toBeVisible();
   }
@@ -287,6 +290,92 @@ test('hero entrance is skipped for reduced motion', async ({ page }) => {
         .evaluate((el) => getComputedStyle(el).animationName),
     )
     .toBe('enter');
+});
+
+test('work screenshots draw as tiles but keep the image and its alt text', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const frame = page.locator('#work a[href="/work/cape/"] .work-shot');
+  await frame.scrollIntoViewIfNeeded();
+  await expect(frame).toHaveAttribute('data-renderer', 'webgl');
+  await expect(frame).toHaveAttribute('data-texture', 'ready');
+  await expect(frame.locator('canvas')).toHaveAttribute('aria-hidden', 'true');
+  // The image stays in the accessibility tree; only its pixels step aside.
+  await expect(frame.getByRole('img')).toHaveAttribute('alt', /Cape Assistant/);
+  // Keyboard focus gets the same lift a pointer does, and the link keeps its
+  // own focus ring.
+  const link = page.locator('#work a[href="/work/cape/"]');
+  await link.focus();
+  const ring = await link.evaluate((el) => getComputedStyle(el).outlineWidth);
+  expect(ring).toBe('3px');
+  // Forced colours hand the picture back to the <img>.
+  await page.emulateMedia({ forcedColors: 'active' });
+  await expect(frame.locator('canvas')).toBeHidden();
+  await expect(frame.getByRole('img')).toBeVisible();
+});
+
+test('the State Shift field follows the demo state, even with reduced motion', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const field = page.locator('[data-webgl-scene-value="states-field"]');
+  await field.scrollIntoViewIfNeeded();
+  await expect(field).toHaveAttribute('data-renderer', 'webgl');
+  await expect(field).toHaveAttribute('data-motion', 'paused');
+  await expect(field.locator('.states-field')).toHaveAttribute(
+    'aria-hidden',
+    'true',
+  );
+  const canvas = field.locator('canvas');
+  const ready = await canvas.screenshot();
+  await page.getByRole('button', { name: 'Recovery', exact: true }).click();
+  // Paused for reduced motion, yet it still redraws a still frame per state.
+  await expect
+    .poll(async () => (await canvas.screenshot()).equals(ready))
+    .toBe(false);
+  const recovery = await canvas.screenshot();
+  await page.waitForTimeout(300);
+  expect((await canvas.screenshot()).equals(recovery)).toBe(true);
+});
+
+test('the hero only unfolds on scroll when motion is allowed', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const hero = page.locator('[data-hero-motion]');
+  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
+  const canvas = page.locator('[data-hero-canvas]');
+  const still = await canvas.screenshot();
+  await page.mouse.wheel(0, 200);
+  await page.waitForTimeout(300);
+  expect((await canvas.screenshot()).equals(still)).toBe(true);
+});
+
+test('page transitions never block navigation and stay out of reduced motion', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page.locator('[data-page-transition]')).toHaveCount(0);
+
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.reload();
+  const sweep = page.locator('[data-page-transition]');
+  await expect(sweep).toHaveCount(1);
+  await expect(sweep).toHaveAttribute('aria-hidden', 'true');
+  await expect(sweep).toHaveCSS('pointer-events', 'none');
+  await expect(sweep).toHaveCSS('visibility', 'hidden');
+  await page.evaluate(() =>
+    document.querySelector('a[href="/work/cape/"]').click(),
+  );
+  await page.waitForURL('**/work/cape/');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(sweep).toHaveCSS('visibility', 'hidden');
+  // Back and forward are left instant.
+  await page.goBack();
+  await page.waitForURL(/\/$/);
+  await expect(sweep).toHaveCSS('visibility', 'hidden');
 });
 
 test('the 404 lattice scatters the same states out of order', async ({
@@ -423,6 +512,8 @@ test('Turbo navigation does not leak WebGL contexts', async ({ page }) => {
   });
   let fullLoads = 0;
   page.on('load', () => fullLoads++);
+  // With motion allowed, so the page-transition context is part of the count.
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
     'data-renderer',
