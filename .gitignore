@@ -5,3 +5,5 @@ resources/_gen/
 hugo_stats.json
 test-results/
 playwright-report/
+.claude-tmp/
+.DS_Store
