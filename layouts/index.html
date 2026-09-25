@@ -1,7 +1,9 @@
 {{ define "main" }}
   {{/* The sculpture fills the first screen and follows the pointer. The copy
-       sits bottom-left on a scrim, so it is never read over the artwork. */}}
-  <section id="top" data-hero-motion data-controller="webgl" data-webgl-scene-value="hero" data-motion="paused" aria-labelledby="hero-title" class="relative isolate flex min-h-[100dvh] flex-col justify-end overflow-hidden">
+       sits bottom-left on a scrim, so it is never read over the artwork. Its
+       height uses svh, not dvh: on iOS the toolbar collapses mid-scroll, and a
+       dvh hero would grow and push in-page anchors like #archive off target. */}}
+  <section id="top" data-hero-motion data-controller="webgl" data-webgl-scene-value="hero" data-motion="paused" aria-labelledby="hero-title" class="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden">
     <div class="hero-art" data-hero-art data-webgl-target="measure" aria-hidden="true">
       <img class="hero-art-fallback" src="{{ "images/kinetic-sculpture.svg" | relURL }}" alt="" width="600" height="600">
       <canvas class="hero-canvas" data-hero-canvas data-webgl-target="canvas"></canvas>
