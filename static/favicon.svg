@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
   <title>Devin Schulz</title>
-  <rect width="64" height="64" rx="15" fill="#18181b"/>
-  <path fill="#fafafa" fill-rule="evenodd" d="M12 13h19c14 0 23 7 23 19s-9 19-23 19H12v-4h6V17h-6v-4Zm16 5v28h3c8 0 13-5 13-14s-5-14-13-14h-3Z" clip-rule="evenodd"/>
-  <circle cx="51" cy="50" r="6" fill="#e0583a"/>
+  <rect width="64" height="64" rx="15" fill="#17171b"/>
+  <path fill="#ececef" fill-rule="evenodd" d="M12 13h19c14 0 23 7 23 19s-9 19-23 19H12v-4h6V17h-6v-4Zm16 5v28h3c8 0 13-5 13-14s-5-14-13-14h-3Z" clip-rule="evenodd"/>
+  <circle cx="51" cy="50" r="6" fill="#f0907a"/>
 </svg>
