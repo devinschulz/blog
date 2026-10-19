@@ -1,0 +1,22 @@
+{{- /* Resolve real image resources without rewriting historical code samples. */ -}}
+{{- $page := . -}}
+{{- $parts := slice -}}
+{{- range $index, $part := split (trim .RawContent "\n") "```" -}}
+  {{- if modBool $index 2 -}}
+    {{- range findRE "!\\[[^\\n]*\\]\\([^\\n)]+\\)" $part -}}
+      {{- $match := . -}}
+      {{- $destination := replaceRE "^.*\\]\\(([^)]+)\\)$" "$1" $match -}}
+      {{- $image := $page.Resources.GetMatch $destination -}}
+      {{- if not $image }}{{ $image = resources.Get (strings.TrimPrefix "/" $destination) }}{{ end -}}
+      {{- $url := $destination -}}
+      {{- if $image -}}
+        {{- $url = $image.Permalink -}}
+      {{- else if hasPrefix $destination "/" -}}
+        {{- $url = absURL $destination -}}
+      {{- end -}}
+      {{- $part = replace $part $match (replace $match $destination $url) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $parts = $parts | append $part -}}
+{{- end -}}
+{{- return (delimit $parts "```") -}}

@@ -1,30 +1,8 @@
 {{ $card := "writing" }}
 {{ if .IsHome }}{{ $card = "home" }}{{ else if eq .Section "work" }}{{ with .File }}{{ $card = .ContentBaseName }}{{ end }}{{ end }}
-{{ $background := or (resources.Get (printf "images/social/%s.png" $card)) (resources.Get "images/social/writing.png") }}
-{{ $font := resources.Get "fonts/bricolage-grotesque-semibold.ttf" }}
-{{ $mono := resources.Get "fonts/jetbrains-mono-medium.ttf" }}
-{{ $title := .Title }}
-{{ $label := "ARCHIVED WRITING" }}
-{{ if .IsHome }}
-  {{ $title = "I make serious software easier to use." }}
-  {{ $label = printf "%s AT STRIPE" (upper site.Params.role) }}
-{{ else if eq .Section "work" }}
-  {{ $title = printf "%s: %s %s" .Title .Params.headline .Params.headlineAccent }}
-  {{ $label = "SELECTED WORK / CASE STUDY" }}
-{{ end }}
-{{ $lines := slice }}
-{{ $line := "" }}
-{{ range split $title " " }}
-  {{ if and $line (gt (len (printf "%s %s" $line .)) 19) }}
-    {{ $lines = $lines | append $line }}{{ $line = . }}
-  {{ else }}{{ $line = printf "%s %s" $line . | strings.TrimSpace }}{{ end }}
-{{ end }}
-{{ with $line }}{{ $lines = $lines | append . }}{{ end }}
-{{ $size := 70 }}{{ if gt (len $lines) 4 }}{{ $size = 56 }}{{ end }}
-{{ $image := $background.Filter
-  (images.Text "Devin Schulz" (dict "font" $font "size" 34 "color" "#ececef" "x" 64 "y" 48))
-  (images.Text $label (dict "font" $mono "size" 18 "color" "#f0907a" "x" 64 "y" 139))
-  (images.Text (delimit $lines "\n") (dict "font" $font "size" $size "linespacing" 4 "color" "#ececef" "x" 64 "y" 191))
-  (images.Text "devinschulz.com" (dict "font" $mono "size" 18 "color" "#9d9da8" "x" 64 "y" 555))
-}}
-{{ return ($image.Process "jpg q85") }}
+{{ if and .IsPage (eq .Section "blog") }}{{ with .File }}{{ $card = printf "post-%s" .ContentBaseName }}{{ end }}{{ end }}
+{{ $source := resources.Get (printf "images/social/%s.png" $card) }}
+{{ if and (not $source) .IsPage (eq .Section "blog") }}{{ errorf "Missing share image for %s. Run npm run build:social." .RelPermalink }}{{ end }}
+{{ if not $source }}{{ $source = resources.Get "images/social/writing.png" }}{{ end }}
+{{ $image := $source | resources.Copy (printf "images/sharing/%s.png" $card) }}
+{{ return ($image.Process "jpg q90") }}

@@ -16,7 +16,8 @@
     "node": ">=22.13"
   },
   "scripts": {
-    "build": "hugo",
+    "build": "hugo --cleanDestinationDir",
+    "build:icons": "node scripts/build-icons.mjs",
     "build:social": "node scripts/build-social-background.mjs",
     "format": "prettier --write \"**/*.{js,mjs,ts,json,css}\"",
     "format:check": "prettier --check \"**/*.{js,mjs,ts,json,css}\"",

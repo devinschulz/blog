@@ -1,12 +1,27 @@
-<header class="mx-auto max-w-350 px-4.25 pt-8 pb-12 desktop:px-10 desktop:pt-12 desktop:pb-20">
-  <a class="arrow-link text-sm" href="{{ site.Home.RelPermalink }}#work"><span class="back" aria-hidden="true">←&#xFE0E;</span> Selected work</a>
-  <p class="label mt-14 desktop:mt-24">{{ .Title }}{{ with .Params.period }}<span class="mx-2" aria-hidden="true">/</span>{{ . }}{{ end }}</p>
-  <h1 class="display mt-6 max-w-[18ch] text-[clamp(2.6rem,11vw,3.5rem)] leading-[0.96] tracking-[-0.045em] desktop:text-[clamp(3.75rem,6.4vw,6.5rem)]">{{ .Params.headline }} <em>{{ .Params.headlineAccent }}</em></h1>
-  <div class="mt-12 grid gap-10 desktop:mt-16 desktop:grid-cols-12 desktop:gap-x-10">
-    <p class="max-w-[52ch] text-lg leading-relaxed text-muted desktop:order-2 desktop:col-span-6 desktop:col-start-7 desktop:text-xl">{{ .Params.summary }}</p>
-    <dl class="grid grid-cols-2 content-start gap-x-6 gap-y-6 text-sm desktop:col-span-5">
-      <div><dt class="label mb-1.5">My role</dt><dd>{{ .Params.role }}</dd></div>
-      {{ range .Params.facts }}<div><dt class="label mb-1.5">{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}
+<header class="case-study-header">
+  <div class="case-hero relative isolate [container-type:inline-size] mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-4 pb-18 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-6 desktop:pb-30 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
+    <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-3 text-xs desktop:pb-4 desktop:text-[13px]">
+      <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ site.Home.RelPermalink }}#work"><span aria-hidden="true">←&#xFE0E;</span> Selected work</a>
+      <p>{{ .Params.period | replaceRE "-" "—" }}</p>
+    </div>
+    <h1 class="case-title pointer-events-none relative z-2 mt-9 leading-[1] font-medium tracking-[-0.075em] select-none desktop:mt-12 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] {{ if eq .Title "Cape" }}text-[clamp(4rem,24cqw,21.25rem)]{{ else if eq .Title "Warranties" }}text-[clamp(2rem,11.5cqw,11.5rem)]{{ else }}text-[clamp(2.5rem,15cqw,14.375rem)]{{ end }}">{{ upper .Title }}</h1>
+    <div class="relative z-3 mt-6 grid items-end gap-6 desktop:mt-8 desktop:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] desktop:gap-12">
+      <p class="max-w-[23ch] text-[clamp(1.625rem,5cqw,3rem)] leading-[1.1] tracking-[-0.045em]">{{ .Params.headline }} <span class="text-white/85">{{ .Params.headlineAccent }}</span></p>
+      <p class="text-xs leading-relaxed text-white/85 desktop:justify-self-end desktop:text-right desktop:text-[13px]">{{ .Params.role }}</p>
+    </div>
+  </div>
+
+  {{ with .Params.hero }}
+  <div class="case-cover relative z-3 mx-auto -mt-10 w-[calc(100%-64px)] max-w-320 desktop:-mt-18 desktop:w-[calc(100%-128px)] min-[1500px]:w-[calc(100%-192px)] [&_a]:overflow-hidden [&_a]:rounded-xl [&_a]:border-0 [&_a]:shadow-[0_16px_40px_#00000012] [&_.core]:rounded-xl [&_figcaption]:mt-4 [&_figcaption]:text-xs">
+    {{ partial "case-study-image.html" (merge . (dict "eager" true "sizes" "(min-width: 1500px) 1280px, (min-width: 781px) 90vw, calc(100vw - 64px)")) }}
+  </div>
+  {{ end }}
+
+  <div class="mx-auto w-[calc(100%-40px)] max-w-320 border-b border-line-strong pt-12 pb-12 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] desktop:gap-16 desktop:pt-16 desktop:pb-16 min-[1100px]:w-[calc(100%-96px)]">
+    <div><p class="mb-5 text-xs">The project</p><p class="max-w-[54ch] text-lg leading-[1.55] tracking-[-0.02em] desktop:text-[22px]">{{ .Params.summary }}</p></div>
+    <dl class="mt-9 grid grid-cols-2 content-start gap-x-6 gap-y-7 text-sm desktop:mt-0 desktop:gap-x-10">
+      <div><dt class="mb-2 text-xs text-muted">My role</dt><dd class="leading-relaxed">{{ .Params.role }}</dd></div>
+      {{ range .Params.facts }}<div><dt class="mb-2 text-xs text-muted">{{ .label }}</dt><dd class="leading-relaxed">{{ .value }}</dd></div>{{ end }}
     </dl>
   </div>
 </header>

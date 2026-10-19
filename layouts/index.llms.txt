@@ -1,25 +1,25 @@
-{{- $work := where site.RegularPages "Section" "work" -}}
+{{- $work := partial "selected-work-pages.html" . -}}
 {{- $blog := where site.RegularPages "Section" "blog" -}}
 # {{ site.Title }}
 
-> {{ site.Params.role }} at Stripe who builds product interfaces and pays close attention to the small details. This file indexes the site for language models, and every page below is also available as Markdown.
+> {{ site.Title }} is a {{ site.Params.role }} at Stripe. He has been building for the web since 2012, first as a designer and then as a frontend engineer. This is his personal portfolio, with selected work and an archive of writing. Every page below is available as Markdown.
 
 - Site: {{ site.Home.Permalink }}
 - Contact: {{ site.Params.email }}
 - Code: {{ site.Params.github }}
 - Profile: {{ site.Params.linkedin }}
 
-## Case studies
+## Selected work
 
 {{ range $work }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Params.role }}{{ with .Params.period }}, {{ . }}{{ end }}. {{ .Description }}
 {{ end }}
 ## Writing
 
-Archived posts, kept at their original publication dates.
+“Thinking out loud”: {{ len $blog }} archived articles from 2018–2022, kept with their original publication dates. These are historical posts; details may have aged.
 
 {{ range $blog.ByDate.Reverse }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Date.Format "2006" }}.{{ with .Description }} {{ . }}{{ end }}
 {{ end }}
-## Optional
+## Site indexes and feeds
 
 - [Home page as Markdown]({{ with site.Home.OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 - [Writing index as Markdown]({{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})

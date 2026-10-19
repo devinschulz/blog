@@ -1,0 +1,17 @@
+{{/* Put the content hash in the filename, so each icon revision has a new URL.
+     The full filename is also the FromString cache key during live rebuilds. */}}
+{{ $icons := slice
+  (dict "file" "favicon.ico" "rel" "icon" "type" "image/x-icon" "sizes" "16x16 32x32 48x48")
+  (dict "file" "favicon-16x16.png" "rel" "icon" "type" "image/png" "sizes" "16x16")
+  (dict "file" "favicon-32x32.png" "rel" "icon" "type" "image/png" "sizes" "32x32")
+  (dict "file" "favicon.svg" "rel" "icon" "type" "image/svg+xml" "sizes" "any")
+  (dict "file" "apple-touch-icon.png" "rel" "apple-touch-icon" "type" "image/png" "sizes" "180x180")
+  (dict "file" "safari-pinned-tab.svg" "rel" "mask-icon" "type" "image/svg+xml" "color" "#2449ef")
+}}
+{{ range $icons }}
+  {{ $content := readFile (printf "static/%s" .file) }}
+  {{ $version := crypto.SHA256 $content }}
+  {{ $name := printf "icons/%s.%s%s" (strings.TrimSuffix (path.Ext .file) .file) $version (path.Ext .file) }}
+  {{ $icon := resources.FromString $name $content }}
+  <link rel="{{ .rel }}" href="{{ $icon.RelPermalink }}" type="{{ .type }}"{{ with .sizes }} sizes="{{ . }}"{{ end }}{{ with .color }} color="{{ . }}"{{ end }}>
+{{ end }}

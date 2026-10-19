@@ -2,527 +2,145 @@
 @import './fonts.css';
 @import './syntax.css';
 @plugin "@tailwindcss/typography";
-
 @source "hugo_stats.json";
 @source "../../layouts";
 @source "../js";
 
-/*
-  Dark instrument. One dark canvas, used on every page and in every system
-  theme, with a single warm accent. Depth comes from light, not colour: each
-  major container is a bezel (a faint outer tray around a lit inner core),
-  and a fixed grain layer keeps the black from looking flat.
-
-  Shape rule: controls are full pills, bezels use --radius-bezel with the
-  inner core inset by --bezel-gap, form fields in the demo use --radius-field.
-*/
+/* Tailwind theme and shared primitives. Component styling lives in the templates. */
 @theme {
-  --color-ink: #ececef;
-  --color-paper: #0a0a0c;
-  --color-surface: #111114;
-  --color-raised: #17171b;
-  --color-muted: #9d9da8;
-  --color-line: rgb(255 255 255 / 8%);
-  --color-line-strong: rgb(255 255 255 / 22%);
-  --color-accent: #f0907a;
-  --color-accent-soft: rgb(240 144 122 / 12%);
-
-  /* Fixed values: the skip link and artwork. */
-  --color-night: #0a0a0c;
-  --color-ivory: #ececef;
-
-  /* Semantic states, used only inside the State Shift demo. */
-  --color-success: #6fd49a;
-  --color-success-surface: #13261b;
-  --color-danger: #ff8a90;
-  --color-danger-surface: #2e1519;
+  --color-paper: #f5f5f3;
+  --color-ink: #191919;
+  --color-muted: #60635c;
+  --color-surface: #e9eae6;
+  --color-raised: #fff;
+  --color-line: rgb(38 39 31 / 16%);
+  --color-line-strong: rgb(38 39 31 / 35%);
+  --color-accent: #2449ef;
+  --color-accent-soft: #e8ecff;
+  --color-night: #191919;
+  --color-ivory: #fff;
+  --color-success: #276b43;
+  --color-success-surface: #e0eee3;
+  --color-danger: #b82f3a;
+  --color-danger-surface: #f8e5e6;
   --color-processing: #2a2a30;
   --color-processing-ink: #d4d4d8;
-
-  --shadow-panel:
-    inset 0 1px 0 rgb(255 255 255 / 6%), 0 24px 60px -24px rgb(0 0 0 / 80%);
-
-  --radius-panel: 1.25rem;
-  --radius-bezel: 1.75rem;
-  --radius-field: 10px;
-  --bezel-gap: 6px;
-
-  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-glide: cubic-bezier(0.32, 0.72, 0, 1);
-
-  --font-display: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif;
-  --font-sans: 'Hanken Grotesk', Arial, sans-serif;
+  --font-display: 'DM Sans', Arial, sans-serif;
+  --font-sans: 'DM Sans', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --breakpoint-desktop: 781px;
+  --radius-panel: 0.35rem;
+  --radius-field: 0.35rem;
+  --ease-snappy: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-glide: cubic-bezier(0.32, 0.72, 0, 1);
 }
-
+:root {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-paper: #1a1b19;
+  --color-ink: #eeefeb;
+  --color-muted: #a8aca3;
+  --color-surface: #282b25;
+  --color-raised: #22251f;
+  --color-line: rgb(238 239 235 / 16%);
+  --color-line-strong: rgb(238 239 235 / 36%);
+  --color-accent: #a2b3ff;
+  --color-accent-soft: #282b25;
+}
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
-
   html {
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
+    scroll-padding-top: 28px;
   }
-
-  /* Display type is set in one family. Emphasis is a colour change, not an
-     italic: Bricolage has no italic, and a borrowed serif word would be a
-     second voice. */
-  :where(h1, h2, h3, h4) em {
-    font-style: normal;
-    color: var(--color-muted);
+  body {
+    margin: 0;
   }
-  /* The page's one accented phrase lives in its h1. */
-  h1 em {
-    color: var(--color-accent);
-  }
-
-  :where(p, li, figcaption, dd) {
-    text-wrap: pretty;
-  }
-
   :where(h1, h2, h3) {
     text-wrap: balance;
   }
-
-  /* Two contrasting rings remain visible on light, dark, and image surfaces. */
+  :where(p, li, dd, figcaption) {
+    text-wrap: pretty;
+  }
+  :where(h1, h2, h3, h4) em {
+    font-style: normal;
+    color: var(--color-accent);
+  }
   :where(
     a,
     button,
     input,
+    summary,
     select,
     textarea,
-    summary,
     [tabindex]
   ):focus-visible {
-    @apply outline-3 outline-offset-3 outline-ink ring-3 ring-paper;
+    @apply outline-3 outline-offset-4 outline-ink ring-3 ring-paper;
   }
-
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
   @media (forced-colors: active) {
-    :where(
-      a,
-      button,
-      input,
-      select,
-      textarea,
-      summary,
-      [tabindex]
-    ):focus-visible {
+    :where(a, button, input, summary, [tabindex]):focus-visible {
       outline-color: Highlight;
       box-shadow: none;
     }
   }
 }
-
-/* Shared type and control styles, as utilities so variants work on them. */
 @utility display {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  @apply font-display font-semibold tracking-[-0.045em] leading-[1.02];
 }
-
-/* Section headlines share one scale so the page reads as a single voice. */
 @utility h-section {
-  @apply display text-[clamp(2.25rem,9vw,3rem)] desktop:text-[clamp(2.75rem,4.4vw,4.25rem)];
+  @apply display text-[clamp(2.25rem,7vw,4.5rem)];
 }
-
 @utility label {
   @apply font-mono text-xs text-muted;
 }
-
-/* A pressable pill. Press feedback is immediate; colour eases. */
 @utility pill {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium whitespace-nowrap;
-  transition:
-    transform 160ms var(--ease-snappy),
-    background-color 200ms ease,
-    color 200ms ease,
-    border-color 200ms ease;
-  &:active {
-    transform: scale(0.97);
-  }
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium;
 }
-
 @utility pill-solid {
   @apply pill bg-ink text-paper hover:bg-accent;
 }
-
 @utility pill-line {
   @apply pill border border-line-strong hover:border-ink;
 }
-
-/* An inline link whose arrow nudges toward its destination. */
 @utility arrow-link {
-  @apply inline-flex min-h-11 items-center gap-1.5 font-medium underline decoration-line-strong decoration-1 underline-offset-[0.3em] hover:decoration-accent;
-  transition: text-decoration-color 200ms ease;
-  & > [aria-hidden] {
-    color: var(--color-accent);
-    transition: transform 200ms var(--ease-snappy);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    &:hover > [aria-hidden] {
-      transform: translate(2px, -2px);
-    }
-    &:hover > [aria-hidden].down {
-      transform: translateY(2px);
-    }
-    &:hover > [aria-hidden].back {
-      transform: translateX(-2px);
-    }
-  }
+  @apply inline-flex min-h-11 items-center gap-2 underline underline-offset-4;
 }
-
-/* The bezel: a faint outer tray with a hairline edge, holding a lit inner
-   core. Radii are concentric so the two curves stay parallel. */
-@utility shell {
-  padding: var(--bezel-gap);
-  border-radius: var(--radius-bezel);
-  background: rgb(255 255 255 / 2.5%);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 7%);
-}
-
-@utility core {
-  position: relative;
-  overflow: hidden;
-  border-radius: calc(var(--radius-bezel) - var(--bezel-gap));
-  background: var(--color-raised);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 6%),
-    inset 0 0 0 1px rgb(255 255 255 / 4%);
-}
-
-/* A pill with its arrow in its own circle, flush with the right edge. The
-   circle moves toward the destination on hover; the pill presses on click. */
-@utility island {
-  @apply inline-flex min-h-12 items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-sm font-medium whitespace-nowrap;
-  transition:
-    transform 160ms var(--ease-snappy),
-    background-color 200ms ease,
-    color 200ms ease;
-  & > [aria-hidden] {
-    @apply grid size-9 place-items-center rounded-full text-base;
-    transition: transform 300ms var(--ease-snappy);
-  }
-  &:active {
-    transform: scale(0.97);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    &:hover > [aria-hidden] {
-      transform: translate(2px, -2px) scale(1.05);
-    }
-    &:hover > [aria-hidden].down {
-      transform: translateY(2px) scale(1.05);
-    }
-  }
-}
-
 @utility island-solid {
-  @apply island bg-ink text-paper;
-  & > [aria-hidden] {
-    background: rgb(10 10 12 / 10%);
-  }
+  @apply pill-solid;
 }
-
 @utility island-ghost {
-  @apply island bg-white/5 text-ink hover:bg-white/10;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
-  & > [aria-hidden] {
-    background: rgb(255 255 255 / 8%);
-    color: var(--color-accent);
-  }
+  @apply pill-line;
 }
-
-/* Film grain over the whole page, fixed so it never repaints on scroll. */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+@utility shell {
+  @apply border border-line rounded-panel;
 }
-@media (forced-colors: active) {
-  .grain {
-    display: none;
-  }
+@utility core {
+  @apply rounded-panel bg-raised;
 }
-
-/* Scroll reveals: blocks rise and sharpen as they enter. Content is only
-   hidden once the script has marked the page, so nothing depends on it. */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal-ready [data-reveal]:not([data-revealed]) {
-    opacity: 0;
-    transform: translateY(28px);
-    filter: blur(8px);
-  }
-  .reveal-ready [data-reveal] {
-    transition:
-      opacity 900ms var(--ease-glide),
-      transform 900ms var(--ease-glide),
-      filter 900ms var(--ease-glide);
-    transition-delay: calc(var(--i, 0) * 80ms);
-  }
+@utility prose-theme {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-muted);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-line-strong);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-ink);
 }
-
-/* The mobile sheet: links arrive one after another when it opens. */
-@media (prefers-reduced-motion: no-preference) {
-  details[open] [data-sheet-item] {
-    animation: enter 520ms var(--ease-glide) both;
-    animation-delay: calc(var(--i, 0) * 60ms + 60ms);
-  }
-}
-
-/* Hero entrance: the four text elements arrive in reading order. Played on
-   a real visit only; Turbo's cached preview is shown still. */
-@media (prefers-reduced-motion: no-preference) {
-  [data-enter] {
-    animation: enter 720ms var(--ease-snappy) both;
-    animation-delay: calc(var(--i, 0) * 70ms + 60ms);
-  }
-  html[data-turbo-preview] [data-enter] {
-    animation: none;
-  }
-}
-
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(6px);
-  }
-}
-
-/* The kinetic sculpture fills the hero, weighted to the right, and a scrim
-   darkens the corner the copy sits in so type is never read over tiles. */
-.hero-art {
-  position: absolute;
-  pointer-events: none;
-  inset: 0 -6% 0 22%;
-  mask-image: radial-gradient(
-    ellipse 70% 80% at 55% 45%,
-    #000 45%,
-    transparent 100%
-  );
-}
-
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(to top, var(--color-paper) 8%, transparent 55%),
-    linear-gradient(to right, var(--color-paper) 18%, transparent 62%);
-}
-
-.hero-canvas,
-.hero-art-fallback {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  inset: 0;
-}
-
-.hero-canvas {
-  opacity: 0;
-  transition: opacity 900ms ease;
-}
-[data-renderer='webgl'] .hero-canvas {
-  opacity: 1;
-}
-[data-renderer='webgl'] .hero-art-fallback {
-  visibility: hidden;
-}
-
-@media (width < 781px) {
-  .hero-art {
-    inset: 3.5rem -24% 46% -24%;
-    mask-image: radial-gradient(
-      ellipse 60% 60% at 50% 50%,
-      #000 50%,
-      transparent 100%
-    );
-  }
-  .hero-scrim {
-    background: linear-gradient(
-      to top,
-      var(--color-paper) 48%,
-      transparent 66%
-    );
-  }
-}
-
-@media (forced-colors: active) {
-  .hero-art {
-    display: none;
-  }
-}
-
-/* A run of interface tiles moving through the states the headline names. It
-   stays out of the layout until a renderer exists, so no JavaScript and no
-   graphics context both leave the section as it was. */
-.states-lattice {
-  display: none;
-  position: relative;
-  height: 188px;
-  pointer-events: none;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 3%,
-    #000 97%,
-    transparent
-  );
-}
-
-.states-lattice[data-renderer='webgl'] {
-  display: block;
-  animation: lattice-in 500ms ease both;
-}
-
-.states-lattice-canvas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  inset: 0;
-}
-
-@keyframes lattice-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@media (width >= 781px) {
-  .states-lattice {
-    height: 148px;
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 7%,
-      #000 93%,
-      transparent
-    );
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .states-lattice[data-renderer='webgl'] {
-    animation: none;
-  }
-}
-
-@media (forced-colors: active) {
-  .states-lattice[data-renderer='webgl'] {
-    display: none;
-  }
-}
-
-/* Work screenshots. Without WebGL the image itself eases up a touch on hover.
-   With it, the canvas draws the same picture as tiles and the <img> steps
-   aside only once the texture is on screen, so there is never a blank frame. */
-.work-shot img {
-  transition: transform 600ms var(--ease-snappy);
-}
-@media (hover: hover) and (pointer: fine) {
-  .work-card:hover .work-shot:not([data-texture='ready']) img {
-    transform: scale(1.025);
-  }
-}
-.work-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  pointer-events: none;
-}
-.work-shot[data-renderer='webgl'][data-texture='ready'] .work-canvas {
-  opacity: 1;
-}
-/* Opacity, not visibility: a visibility-hidden image drops out of the
-   accessibility tree and would take its alt text with it. */
-.work-shot[data-renderer='webgl'][data-texture='ready'] img {
-  opacity: 0;
-}
-@media (forced-colors: active) {
-  .work-canvas {
-    display: none;
-  }
-  .work-shot img {
-    opacity: 1 !important;
-  }
-}
-
-/* The State Shift field sits behind the demo panel and shows around its
-   edges. It never runs under text: the grid gaps and margins are wider than
-   its bleed. The edges fade so it has no hard border. */
-.states-field {
-  position: absolute;
-  inset: -1.5rem -17px;
-  pointer-events: none;
-  mask-image:
-    linear-gradient(
-      to right,
-      transparent,
-      #000 2rem,
-      #000 calc(100% - 2rem),
-      transparent
-    ),
-    linear-gradient(
-      to bottom,
-      transparent,
-      #000 1.25rem,
-      #000 calc(100% - 1.25rem),
-      transparent
-    );
-  mask-composite: intersect;
-}
-@media (width >= 781px) {
-  .states-field {
-    inset: -3rem -3rem -3rem -1.25rem;
-  }
-}
-.states-field-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 500ms ease;
-}
-[data-renderer='webgl'] > .states-field .states-field-canvas {
-  opacity: 1;
-}
-@media (forced-colors: active) {
-  .states-field {
-    display: none;
-  }
-}
-
-@layer utilities {
-  /* Reduced motion keeps colour and opacity feedback, and drops movement. */
+@layer base {
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
       animation: none !important;
-      scroll-behavior: auto !important;
-      transition-property:
-        color, background-color, border-color, opacity, text-decoration-color !important;
-    }
-    /* Toggles have no colour fade to keep (see below). */
-    [data-state-controls] button,
-    [data-archive-filters] button {
       transition: none !important;
+      scroll-behavior: auto !important;
     }
   }
-}
-
-/* Toggle groups are pressed over and over while exploring, so their colour
-   change is instant; only the press itself moves. */
-[data-state-controls] button,
-[data-archive-filters] button {
-  transition: transform 160ms var(--ease-snappy);
 }

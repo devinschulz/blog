@@ -1,15 +1,16 @@
-<footer class="mx-auto max-w-350 px-4.25 pt-8 pb-8 desktop:px-10 desktop:pb-10">
-  <div data-reveal class="shell">
-    <div class="core px-5 py-10 desktop:px-14 desktop:py-20">
-      <p class="label">Have an interface that needs care?</p>
-      <a class="display mt-5 inline-block text-[clamp(1.25rem,6.6vw,2.5rem)] tracking-[-0.04em] underline decoration-line-strong decoration-2 underline-offset-[0.18em] transition-colors duration-200 hover:decoration-accent desktop:text-[clamp(2.5rem,5vw,4.5rem)]" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
-    </div>
+<footer class="site-footer relative isolate [container-type:inline-size] m-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-8 pb-3 text-white desktop:m-4 desktop:rounded-3xl desktop:px-8 desktop:pt-14 forced-colors:border forced-colors:border-[CanvasText] [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef]" id="contact">
+  <div class="footer-top">
+    <p class="relative z-3 text-xs desktop:text-sm">Have something in mind?</p>
+    <a class="relative z-3 mt-10 mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-[0.2em] text-[clamp(2.5rem,13cqw,13.75rem)] leading-[1.2] tracking-[-0.075em] select-none hover:underline hover:decoration-2 hover:underline-offset-[12px] desktop:mt-12 desktop:text-[clamp(2.5rem,13cqw,13.75rem)] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]" href="mailto:{{ site.Params.email }}"><span class="min-w-0">LET’S TALK</span><span class="shrink-0 text-[0.8em]" aria-hidden="true">↗&#xFE0E;</span></a>
+    <span class="footer-email relative z-3 block pb-10 text-xs desktop:pb-16 desktop:text-sm">{{ site.Params.email }}</span>
   </div>
-  <div class="mt-6 grid gap-4 px-2 text-sm text-muted desktop:grid-cols-[1fr_auto] desktop:items-center">
-    <p>Devin Schulz, {{ site.Params.role }} at Stripe. © {{ now.Year }}</p>
-    <ul class="-ml-2 flex flex-wrap gap-1 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:px-2 [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-ink desktop:-mr-2 desktop:ml-0">
-      <li><a href="{{ site.Params.github }}">GitHub</a></li>
-      <li><a href="{{ site.Params.linkedin }}">LinkedIn</a></li>
+  <div class="footer-bottom relative z-3 items-center justify-between gap-6 border-t border-white/33 pt-5 pb-2 text-[11px] desktop:flex desktop:pt-2">
+    <p>© {{ now.Year }} Devin Schulz</p>
+    <p class="personal-note hidden max-w-65 text-[10px] leading-normal min-[1100px]:block">This is my own site. Views on my work are my own.</p>
+    <ul class="mt-2 flex flex-wrap gap-5 desktop:mt-0 desktop:flex-nowrap desktop:gap-7">
+      <li><a class="inline-flex min-h-11 items-center" href="{{ site.Params.github }}">GitHub ↗&#xFE0E;</a></li>
+      <li><a class="inline-flex min-h-11 items-center" href="{{ site.Params.linkedin }}">LinkedIn ↗&#xFE0E;</a></li>
+      <li><a class="inline-flex min-h-11 items-center" href="#page-top">Back to top ↑&#xFE0E;</a></li>
     </ul>
   </div>
 </footer>

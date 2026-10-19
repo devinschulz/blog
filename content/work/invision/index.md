@@ -56,6 +56,14 @@ workflow:
   alt: Craft Sync’s publish dialog over a Sketch document, with artboard selection and a project destination.
   caption: 'Workflow context: Craft Sync connected the source design to the shared InVision workspace.'
 reflection: All three products came down to context. A measurement needs the right edges, a comment needs the right spot on the design, and a collection of references needs a useful structure. Paying attention to how people read an interface is what I’ve kept from that work.
+editorial:
+  contributionTitle: The space between two layers.
+  workflowTitle: Where these tools <em>fit in.</em>
+  workflowBody: These tools were part of a larger design workflow. This archived Craft Sync screenshot shows the publishing step, where artboards go from the Sketch file into a shared workspace.
+  workflowNote: Shown for product context, separate from the Inspect contribution described above.
+  reflectionTitle: What I <em>took from it.</em>
+  next: /work/cape
+  attribution: 'I put this together from archived product images and my own writing from InVision. The products were a team effort; the measurement engine section is the part I built.'
 ---
 
 One of the things I built for Inspect was its measurement engine: the lines and labels that show the distance between a selected layer and a hovered layer.
