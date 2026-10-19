@@ -48,7 +48,7 @@ Article pages use an ultramarine title panel with the original date, topics, and
 
 Case studies share an ultramarine project-name header, original outcome headline, and overlapping product screenshot. Project summaries and role details sit below the image. The header uses the same input-driven typography as the homepage, with native text for reduced motion and unavailable graphics.
 
-The theme follows the system until a visitor chooses light or dark; that choice is stored locally. The native mobile menu supports Escape and section focus. Existing case-study and article URLs are preserved. The JavaScript source contains only the active theme, menu, GIF, and particle-surface interactions.
+The theme follows the system until a visitor chooses light or dark; that choice is stored locally. A small inline background style applies the theme before the stylesheet loads. Turbo and supported full-page navigations use native view transitions: the old page stays opaque while the new page fades over it in 160ms. Reduced motion uses an immediate swap, and browsers without view transitions retain normal navigation. The native mobile menu supports Escape and section focus. Existing case-study and article URLs are preserved. The JavaScript source contains only the active theme, menu, GIF, and particle-surface interactions.
 
 ## Content
 

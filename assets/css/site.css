@@ -51,6 +51,7 @@
 }
 @layer base {
   html {
+    background-color: var(--color-paper);
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     scroll-padding-top: 28px;
@@ -89,6 +90,40 @@
       outline-color: Highlight;
       box-shadow: none;
     }
+  }
+}
+/* Keep the old page opaque beneath the incoming page, including full loads. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-group(root) {
+  animation-duration: 160ms;
+  animation-timing-function: var(--ease-snappy);
+}
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: page-enter 160ms var(--ease-snappy) both;
+  mix-blend-mode: normal;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
 @utility display {

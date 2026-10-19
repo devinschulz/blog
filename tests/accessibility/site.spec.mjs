@@ -278,6 +278,109 @@ test('theme choice persists through navigation and reload', async ({
   await expect(page.locator('html')).toHaveAttribute('data-theme', after);
 });
 
+test('page transitions keep the previous page opaque and preserve history', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    const start = document.startViewTransition.bind(document);
+    window.__pageTransitions = [];
+    document.startViewTransition = (...args) => {
+      const transition = start(...args);
+      transition.ready
+        .then(() => {
+          const root = document.documentElement;
+          const old = getComputedStyle(root, '::view-transition-old(root)');
+          const incoming = getComputedStyle(
+            root,
+            '::view-transition-new(root)',
+          );
+          window.__pageTransitions.push({
+            oldOpacity: old.opacity,
+            oldAnimation: old.animationName,
+            oldBlend: old.mixBlendMode,
+            incomingAnimation: incoming.animationName,
+            duration: incoming.animationDuration,
+            incomingBlend: incoming.mixBlendMode,
+          });
+        })
+        .catch(() => {});
+      return transition;
+    };
+  });
+  await page.goto('/');
+  await page.locator('.project-link').first().click();
+  await page.waitForURL('**/work/cape/');
+  await expect
+    .poll(() => page.evaluate(() => window.__pageTransitions.length))
+    .toBe(1);
+  expect(await page.evaluate(() => window.__pageTransitions[0])).toEqual({
+    oldOpacity: '1',
+    oldAnimation: 'none',
+    oldBlend: 'normal',
+    incomingAnimation: 'page-enter',
+    duration: '0.16s',
+    incomingBlend: 'normal',
+  });
+  await page.goBack();
+  await expect(page.locator('.hero-title')).toBeVisible();
+  await page.goForward();
+  await expect(page.locator('.case-hero h1')).toHaveText('CAPE');
+  await expectReflow(page);
+});
+
+test('navigation stays immediate with reduced motion or no view transition API', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    document.startViewTransition = () => {
+      throw new Error('Reduced motion must not start a view transition');
+    };
+  });
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto('/');
+  await page.locator('.project-link').first().click();
+  await page.waitForURL('**/work/cape/');
+  await expect(page.locator('.case-hero h1')).toHaveText('CAPE');
+  expect(errors).toEqual([]);
+
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.evaluate(() => {
+    document.startViewTransition = undefined;
+  });
+  await page.getByRole('link', { name: 'Devin Schulz, home' }).click();
+  await page.waitForURL('http://127.0.0.1:4177/');
+  await expect(page.locator('.hero-title')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('the themed page background is painted before the stylesheet loads', async ({
+  page,
+}) => {
+  // An unavailable stylesheet makes this assertion independent of the main CSS.
+  await page.route('**/*.css', (route) => route.abort());
+  await page.addInitScript(() =>
+    localStorage.setItem('portfolio-theme', 'dark'),
+  );
+  await page.goto('/blog/');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(page.locator('html')).toHaveCSS(
+    'background-color',
+    'rgb(26, 27, 25)',
+  );
+  await page.evaluate(() => {
+    localStorage.setItem('portfolio-theme', 'light');
+  });
+  await page.locator('html').evaluate((html) => {
+    html.dataset.theme = 'light';
+  });
+  await expect(page.locator('html')).toHaveCSS(
+    'background-color',
+    'rgb(245, 245, 243)',
+  );
+});
+
 test('writing highlights lead to the complete archive', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.note-entry')).toHaveCount(4);
