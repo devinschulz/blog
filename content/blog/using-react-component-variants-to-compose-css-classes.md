@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Using React Component Variants to Compose CSS Classes
 description:
   Learn how to build React component variants by composing CSS classes in a

@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Welcome Readers
 description: My first post, about why it took me years to launch a blog of my own, why I landed on Hugo, and what I plan to write about.
 date: 2018-06-17

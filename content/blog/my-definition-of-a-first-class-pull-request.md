@@ -1,4 +1,5 @@
 ---
+archived: true
 title: My Definition of a First-Class Pull Request
 description:
   Learn how to spruce up your pull requests with a few simple tips. These tips

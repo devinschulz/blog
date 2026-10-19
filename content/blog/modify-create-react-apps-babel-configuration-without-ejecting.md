@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Modify Create React App's Babel Configuration Without Ejecting
 date: 2020-02-02
 description:

@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Reflecting on Four Years of Remote Work
 date: 2019-03-12
 tags: [Career, Remote]

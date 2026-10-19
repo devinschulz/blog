@@ -154,7 +154,7 @@ assert.equal(
 const feed = fs.readFileSync(path.join(root, 'index.xml'), 'utf8');
 assert(
   !feed.includes('/work/'),
-  'Case studies must not enter the historical feed',
+  'Case studies must not enter the writing feed',
 );
 const robots = fs.readFileSync(path.join(root, 'robots.txt'), 'utf8');
 assert(robots.includes(`${domain}/sitemap.xml`));
@@ -218,10 +218,28 @@ for (const source of fs
     'utf8',
   );
   const year = content.match(/^date:\s*['"]?(\d{4})/m)[1];
-  assert(
-    markdown.includes(`Archived writing, published in ${year}.`),
-    `${source}: archive context missing`,
+  const archived = /^archived:\s*true\s*$/m.test(content.split('---')[1]);
+  const html = fs.readFileSync(
+    path.join(root, 'blog', slug, 'index.html'),
+    'utf8',
   );
+  assert.equal(
+    markdown.includes(`Archived writing, published in ${year}.`),
+    archived,
+    `${source}: Markdown archive context must match frontmatter`,
+  );
+  assert.equal(
+    html.includes('From the archive'),
+    archived,
+    `${source}: HTML archive context must match frontmatter`,
+  );
+  for (const feedPath of ['index.xml', 'blog/index.xml'])
+    assert(
+      fs
+        .readFileSync(path.join(root, feedPath), 'utf8')
+        .includes(`${domain}/blog/${slug}/`),
+      `${source}: missing from ${feedPath}`,
+    );
   for (const [sample] of content.matchAll(/^```[^\n]*\n[\s\S]*?^```/gm))
     assert(
       markdown.includes(sample),

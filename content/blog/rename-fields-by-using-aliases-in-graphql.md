@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Rename Fields by Using Aliases in GraphQL
 description: Learn how to rename fields of a GraphQL object by using aliases.
 date: 2020-07-05

@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Accumulate Complex Objects With the Reduce Method
 date: 2019-07-29
 description:

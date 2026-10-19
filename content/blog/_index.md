@@ -1,4 +1,4 @@
 ---
-title: Historical writing
-description: Posts I wrote while learning in public, kept with their original dates.
+title: Writing
+description: Notes on code, design, and the things I learned along the way, alongside older posts kept with their original dates.
 ---

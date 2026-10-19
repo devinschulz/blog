@@ -5,6 +5,9 @@ import fs from 'node:fs';
 const pages = fs
   .readdirSync('dist', { recursive: true })
   .filter((file) => file.endsWith('.html'));
+const articleCount = pages.filter(
+  (file) => file.startsWith('blog/') && file !== 'blog/index.html',
+).length;
 const gifPage = '/blog/my-definition-of-a-first-class-pull-request/';
 
 async function audit(page) {
@@ -278,9 +281,11 @@ test('theme choice persists through navigation and reload', async ({
 test('writing highlights lead to the complete archive', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.note-entry')).toHaveCount(4);
-  await page.getByRole('link', { name: 'All 16 articles' }).click();
+  await page
+    .getByRole('link', { name: `All ${articleCount} articles` })
+    .click();
   await page.waitForURL('**/blog/');
-  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
 });
 
 test('reduced motion retains native typography and project images', async ({
@@ -334,7 +339,7 @@ test('all project and writing destinations work without JavaScript', async ({
     ).toBeVisible();
   }
   await expect(
-    page.getByRole('link', { name: 'All 16 articles' }),
+    page.getByRole('link', { name: `All ${articleCount} articles` }),
   ).toBeVisible();
   if (testInfo.project.name.startsWith('narrow')) {
     await page.locator('summary').click();
@@ -452,7 +457,9 @@ test('WebGL responds to input, settles, and stops for reduced motion', async ({
   await expect(page.locator('.hero-title')).not.toHaveClass(
     /(^|\s)is-spatial(\s|$)/,
   );
-  await page.getByRole('link', { name: 'All 16 articles' }).click();
+  await page
+    .getByRole('link', { name: `All ${articleCount} articles` })
+    .click();
   await page.waitForURL('**/blog/');
   await expect(page.locator('.archive-hero')).toHaveAttribute(
     'data-spatial-ready',
@@ -462,7 +469,7 @@ test('WebGL responds to input, settles, and stops for reduced motion', async ({
     /(^|\s)is-spatial(\s|$)/,
   );
   await expect(page.locator('.spatial-surface')).toHaveCount(2);
-  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('.spatial-surface')).toHaveCount(0);
   await expect(page.locator('.archive-title')).not.toHaveClass(
@@ -581,7 +588,7 @@ test('WebGL failure retains readable artwork and every destination', async ({
     'rgb(255, 255, 255)',
   );
   await expect(page.locator('.archive-hero canvas')).toHaveCount(0);
-  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
   await audit(page);
   await page.goto(
     '/blog/using-react-component-variants-to-compose-css-classes/',
@@ -643,7 +650,9 @@ test('liquid lettering is opt-in, settles, and restores native interactions', as
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await expect(button).toBeVisible();
   await button.click();
-  await page.getByRole('link', { name: 'All 16 articles' }).click();
+  await page
+    .getByRole('link', { name: `All ${articleCount} articles` })
+    .click();
   await page.waitForURL('**/blog/');
   await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
   await page
@@ -800,7 +809,7 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
   await expect(page.locator('.article-body pre').first()).toContainText(
     'type ButtonSize = "small" | "medium";',
   );
-  const more = page.getByRole('region', { name: 'More from the archive' });
+  const more = page.getByRole('region', { name: 'More writing' });
   await more
     .getByRole('link', { name: /My Definition of a First-Class Pull Request/ })
     .click();
@@ -813,5 +822,5 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     .getByRole('link', { name: 'All writing', exact: true })
     .click();
   await page.waitForURL('**/blog/');
-  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
 });

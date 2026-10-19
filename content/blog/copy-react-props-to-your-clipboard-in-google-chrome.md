@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Copy React Props to Your Clipboard in Google Chrome
 date: 2018-07-14T12:26:27-04:00
 description:

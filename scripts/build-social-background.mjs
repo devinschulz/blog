@@ -6,7 +6,7 @@ import path from 'node:path';
 import { chromium } from '@playwright/test';
 
 const OUT = 'assets/images/social';
-// The archive uses single-line title/date/tag fields. Fail clearly if a new
+// Posts use single-line title/date/tag fields. Fail clearly if a new
 // post changes that shape, rather than publishing a card with missing text.
 const posts = fs
   .readdirSync('content/blog')
@@ -18,15 +18,23 @@ const posts = fs
     const title = frontmatter.match(/^title:\s*(.+)$/m)?.[1];
     const year = frontmatter.match(/^date:\s*['"]?(\d{4})/m)?.[1];
     const topics = frontmatter.match(/^tags:\s*\[(.+)\]/m)?.[1];
+    const archived = /^archived:\s*true\s*$/m.test(frontmatter);
     if (!title || !year) throw new Error(`${file}: missing title or date`);
     return {
       name: `post-${path.basename(file, '.md')}`,
       article: true,
+      year,
       title: title.replace(/^(['"])(.*)\1$/, '$2'),
-      label: `ARCHIVED WRITING / ${year}`,
-      note: topics ? topics.replaceAll(/['"]/g, '') : 'Notes from the archive',
+      label: `${archived ? 'ARCHIVED WRITING' : 'WRITING'} / ${year}`,
+      note: topics
+        ? topics.replaceAll(/['"]/g, '')
+        : archived
+          ? 'Notes from the archive'
+          : 'Notes on code and design',
     };
   });
+const years = posts.map((post) => post.year).sort();
+const writingYears = [...new Set([years[0], years.at(-1)])].join('–');
 const cards = [
   {
     name: 'home',
@@ -37,8 +45,8 @@ const cards = [
   {
     name: 'writing',
     lines: ['THINKING', 'OUT LOUD.'],
-    label: 'NOTES FROM THE ARCHIVE',
-    note: `${posts.length} articles · 2018–2022`,
+    label: 'NOTES ON CODE & DESIGN',
+    note: `${posts.length} articles · ${writingYears}`,
   },
   {
     name: 'cape',

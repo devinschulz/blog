@@ -4,7 +4,7 @@
   <channel>
     <title>{{ site.Title }}</title>
     <link>{{ .Permalink }}</link>
-    <description>Historical writing from {{ site.Title }}.</description>
+    <description>Writing from {{ site.Title }}.</description>
     <language>{{ site.Language.Lang }}</language>
     {{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />{{ end }}
     {{ range first 1 $posts }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>{{ end }}

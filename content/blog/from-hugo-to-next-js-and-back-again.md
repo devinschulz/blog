@@ -1,4 +1,5 @@
 ---
+archived: true
 title: From Hugo to Next.js and Back Again
 date: 2019-05-18
 slug: from-hugo-to-next-js-and-back-again

@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Restrictions While Styling Visited Links
 description:
   Learn what the :visited pseudo-class selector is and the limits on how you can style it.

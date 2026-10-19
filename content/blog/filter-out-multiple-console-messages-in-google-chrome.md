@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Filter Out Multiple Console Messages in Google Chrome
 description:
   Learn how to filter out multiple console messages by using either regular

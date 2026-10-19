@@ -33,7 +33,7 @@ Today I’m a {{ site.Params.role }} at Stripe. Before that, I designed and buil
 
 ## Thinking out loud.
 
-Notes from the archive, 2018–2022.
+Notes on code and design, {{ partial "writing-years.html" $blog }}.
 
 {{ range first 4 $blog.ByDate.Reverse }}- {{ .Date.Format "2006" }}: [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 {{ end }}

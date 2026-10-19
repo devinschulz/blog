@@ -1,4 +1,5 @@
 ---
+archived: true
 title: Building the Inspect Measurement Engine
 date: 2019-07-17
 tags: [React, JavaScript, Flow]

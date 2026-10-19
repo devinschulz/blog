@@ -1,0 +1,8 @@
+{{- $years := "" -}}
+{{- with .ByDate -}}
+  {{- $first := (index . 0).Date.Format "2006" -}}
+  {{- $last := (index . (sub (len .) 1)).Date.Format "2006" -}}
+  {{- $years = $first -}}
+  {{- if ne $first $last }}{{ $years = printf "%s–%s" $first $last }}{{ end -}}
+{{- end -}}
+{{- return $years -}}

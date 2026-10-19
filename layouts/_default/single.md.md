@@ -8,8 +8,8 @@
 
 {{ with .Description }}{{ . }}
 
-{{ end }}Archived writing, published in {{ .Date.Format "2006" }}. I’ve fixed some grammar since, but otherwise it’s as I wrote it, so some details may have aged.
-
+{{ end }}{{ if .Params.archived }}Archived writing, published in {{ .Date.Format "2006" }}. I’ve fixed some grammar since, but otherwise it’s as I wrote it, so some details may have aged.
+{{ end }}
 ---
 
 {{ partial "markdown/article.html" . }}

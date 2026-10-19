@@ -2,7 +2,7 @@
 {{- $blog := where site.RegularPages "Section" "blog" -}}
 # {{ site.Title }}
 
-> {{ site.Title }} is a {{ site.Params.role }} at Stripe. He has been building for the web since 2012, first as a designer and then as a frontend engineer. This is his personal portfolio, with selected work and an archive of writing. Every page below is available as Markdown.
+> {{ site.Title }} is a {{ site.Params.role }} at Stripe. He has been building for the web since 2012, first as a designer and then as a frontend engineer. This is his personal portfolio, with selected work and writing on code and design. Every page below is available as Markdown.
 
 - Site: {{ site.Home.Permalink }}
 - Contact: {{ site.Params.email }}
@@ -15,7 +15,7 @@
 {{ end }}
 ## Writing
 
-“Thinking out loud”: {{ len $blog }} archived articles from 2018–2022, kept with their original publication dates. These are historical posts; details may have aged.
+“Thinking out loud”: {{ len $blog }} articles from {{ partial "writing-years.html" $blog }}. Older posts are marked as archived and keep their original publication dates; details in those posts may have aged.
 
 {{ range $blog.ByDate.Reverse }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Date.Format "2006" }}.{{ with .Description }} {{ . }}{{ end }}
 {{ end }}
