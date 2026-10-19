@@ -1,20 +1,19 @@
 {{ $siteTitle := printf "%s · %s at Stripe" site.Title site.Params.role }}
 <!doctype html>
-<html lang="{{ site.Language.Lang }}" class="scheme-dark scroll-smooth motion-reduce:scroll-auto">
+<html data-theme="light" lang="{{ site.Language.Lang }}" class="scroll-smooth motion-reduce:scroll-auto">
   <head>
     <meta charset="utf-8">
-    <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#0a0a0c">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="{{ if .IsHome }}#2449ef{{ else }}#f8f8f6{{ end }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      try {
+        const theme = localStorage.getItem('portfolio-theme');
+        document.documentElement.dataset.theme = theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      } catch {}
+    </script>
     {{ partial "seo.html" . }}
-    {{ $icoVersion := readFile "static/favicon.ico" | crypto.SHA256 }}
-    <link rel="icon" href="{{ "favicon.ico" | relURL }}?v={{ $icoVersion }}" sizes="16x16 32x32 48x48">
-    {{/* Versioned by content hash like the other icons. resources.FromString
-         caches by name, so a fingerprinted copy can outlive an edit. */}}
-    {{ $svgVersion := readFile "static/favicon.svg" | crypto.SHA256 }}
-    <link rel="icon" href="{{ "favicon.svg" | relURL }}?v={{ $svgVersion }}" type="image/svg+xml" sizes="any">
-    {{ $touchIconVersion := readFile "static/apple-touch-icon.png" | crypto.SHA256 }}
-    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}?v={{ $touchIconVersion }}" sizes="180x180">
+    {{ partial "icons.html" . }}
     {{ partial "fonts.html" . }}
     {{ with (templates.Defer (dict "key" "tailwind")) }}
       {{ partial "css.html" . }}
@@ -24,13 +23,16 @@
     {{ $scripts := resources.Get "js/site.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
     {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
     <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
+    {{ if or .IsHome (eq .Section "blog") (and .IsPage (eq .Section "work")) }}
+    {{ $scene := resources.Get "js/spatial-page.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $scene.RelPermalink }}" defer data-turbo-track="reload"></script>
+    {{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
-  <body class="bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
+  <body id="page-top" class="{{ if .IsHome }}is-home {{ end }}bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
     <a class="fixed top-3 left-3 z-100 translate-y-[-180%] rounded-full bg-ivory px-4 py-2.5 text-sm text-night focus:translate-y-0" href="#content">Skip to content</a>
     {{ partial "header.html" . }}
-    <main id="content" tabindex="-1"{{ if not .IsHome }} class="pt-20 desktop:pt-24"{{ end }}>{{ block "main" . }}{{ end }}</main>
+    <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
-    <div class="grain" aria-hidden="true"></div>
   </body>
 </html>

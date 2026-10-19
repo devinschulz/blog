@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-variable.woff2') format('woff2');
+}
 /* Self-hosted variable fonts (Fontsource builds of the Google Fonts
    releases), SIL OFL licenses in static/fonts/. Latin subset only. */
 @font-face {

@@ -1,37 +1,42 @@
-{{/* Three case studies, three cells: Cape leads as the most recent and the
-     largest body of work; the other two stack beside it. Each card is one
-     link, so the whole bezel is the target. */}}
 {{ $projects := slice
-  (dict "path" "/work/cape" "image" "images/cape/slide-1.png" "years" "2020-2025" "role" "Designer and lead frontend engineer" "line" "An AI workspace people could trust with real work." "alt" "Cape Assistant showing the same conversation in a full desktop workspace and a compact side panel." "position" "object-[18%_0%]" "featured" true)
-  (dict "path" "/work/warranties" "image" "images/warranties/slide-1.jpg" "years" "2023-2025" "role" "Designer and developer" "line" "My own app for keeping track of the things you own." "alt" "Warranties on iPad, iPhone, and Mac, listing protected items and the details of each." "position" "object-center")
-  (dict "path" "/work/invision" "image" "images/invision/slide-3.png" "years" "2014-2020" "role" "Senior software engineer" "line" "Design handoff and feedback tools for product teams." "alt" "InVision Inspect with a layer tree, a mobile artboard, and panels for dimensions, colors, and fonts." "position" "object-top")
+(dict "path" "/work/cape" "image" "images/cape/slide-4.jpg" "detail" "images/cape/slide-3.png" "title" "Cape" "description" "An AI workspace for real work." "role" "Product design & frontend engineering" "alt" "Cape’s administration, integrations and usage interfaces." "detailAlt" "Cape’s workspace with a document and its extracted control objectives side by side." "year" "2020–2025")
+(dict "path" "/work/warranties" "image" "images/warranties/slide-3.jpg" "detail" "images/warranties/slide-2.jpg" "title" "Warranties" "description" "A home for the things you own." "role" "Independent app design & development" "alt" "Warranties on iPad, displaying a list of household products and a stove’s warranty details." "detailAlt" "Warranties’ calendar and expiration reminders on iPhone." "year" "2023–2025")
+(dict "path" "/work/invision" "image" "images/invision/slide-3.png" "detail" "images/invision/slide-5.png" "title" "InVision" "description" "Bringing design and development closer." "role" "Frontend engineering" "alt" "InVision Inspect, showing design layers, an artboard and development specifications." "detailAlt" "InVision’s design review and feedback interface." "year" "2014–2020")
 }}
-<section id="work" aria-labelledby="work-title" class="mx-auto max-w-350 px-4.25 py-24 desktop:px-10 desktop:py-36">
-  <h2 id="work-title" data-reveal class="h-section max-w-[16ch]">Some of the products I’ve <em>worked on.</em></h2>
-  <div class="mt-12 grid grid-cols-1 gap-3 desktop:mt-16 desktop:grid-cols-12 desktop:grid-rows-[auto_auto]">
-    {{ range $i, $p := $projects }}
+<section id="work" class="work-section pt-16 desktop:pt-24" aria-labelledby="work-title">
+  <div class="work-heading mx-auto w-[calc(100%-40px)] max-w-400 border-t border-line-strong pt-6 desktop:w-[calc(100%-64px)] desktop:pt-7 min-[1100px]:w-[calc(100%-96px)]">
+    <div class="section-kicker flex items-baseline gap-4 text-[11px] desktop:gap-7 desktop:text-xs"><span class="font-mono text-[10px]">(01)</span><span>A selection of projects</span><span class="ml-auto">2014–2025</span></div>
+    <h2 id="work-title" class="mt-7 flex items-center justify-between text-[14vw] leading-[1.1] font-medium tracking-[-0.065em] desktop:mt-12 desktop:text-[clamp(64px,10vw,160px)]">Selected work<span class="pr-[0.07em] text-[0.7em] font-normal" aria-hidden="true">↘&#xFE0E;</span></h2>
+  </div>
+  <div class="project-gallery mx-auto w-[calc(100%-40px)] max-w-400 gap-x-16 gap-y-24 pt-8 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1.1fr_1fr] desktop:pt-14 desktop:pb-28 min-[1100px]:w-[calc(100%-96px)]">
+    {{ range $i, $project := $projects }}
       {{ $page := site.GetPage .path }}
       {{ $image := resources.Get .image }}
-      {{ $small := $image.Resize "720x webp q82" }}
-      {{ $large := $image.Resize "1400x webp q84" }}
-      <article data-reveal class="[--i:{{ $i }}] {{ if .featured }}desktop:col-span-7 desktop:row-span-2{{ else }}desktop:col-span-5{{ end }}">
-        <a class="work-card group shell flex h-full flex-col transition-transform duration-300 ease-snappy active:scale-[0.99]" href="{{ $page.RelPermalink }}">
-          <div class="core flex h-full flex-col">
-            <div data-controller="webgl" data-webgl-scene-value="work-image" class="work-shot relative overflow-hidden bg-surface {{ if .featured }}aspect-[4/3] desktop:aspect-auto desktop:min-h-0 desktop:flex-1{{ else }}aspect-[16/9]{{ end }}">
-              <img class="absolute inset-0 size-full object-cover {{ .position }}" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 720w, {{ $large.RelPermalink }} 1400w" sizes="{{ if .featured }}(min-width: 781px) 56vw{{ else }}(min-width: 781px) 40vw{{ end }}, 100vw" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
-              <canvas class="work-canvas" data-webgl-target="canvas" aria-hidden="true"></canvas>
+      {{ $small := $image.Resize "900x webp q86" }}
+      {{ $large := $image.Resize "1800x webp q88" }}
+      {{ $detail := (resources.Get .detail).Resize "1400x webp q86" }}
+      <article class="project project-{{ $i }} relative mb-16 w-full desktop:mb-0 {{ if eq $i 0 }}col-span-full{{ end }}" data-project-preview>
+        <a class="project-link group block" href="{{ $page.RelPermalink }}" aria-labelledby="project-title-{{ $i }} project-description-{{ $i }}">
+          <div class="project-art relative overflow-clip rounded-[10px] {{ if eq $i 0 }}aspect-[1.25] bg-[#dfe5ec] desktop:aspect-[1.65]{{ else if eq $i 1 }}aspect-[1.15] bg-[#f6f6f6]{{ else }}aspect-[1.15] bg-[#222733]{{ end }}">
+            <div class="project-main absolute inset-0 flex items-center justify-center">
+              <img class="h-full w-full {{ if eq $i 0 }}object-cover{{ else }}object-contain{{ end }}" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 900w, {{ $large.RelPermalink }} 1800w" sizes="(min-width: 781px) 85vw, 100vw" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
+              <img hidden data-project-detail class="h-full w-full object-contain [[hidden]]:hidden" src="{{ $detail.RelPermalink }}" width="{{ $detail.Width }}" height="{{ $detail.Height }}" alt="{{ .detailAlt }}" loading="lazy" decoding="async">
             </div>
-            <div class="flex items-end justify-between gap-6 p-6 desktop:p-7">
-              <div>
-                <p class="label">{{ .years }}</p>
-                <h3 class="display mt-2 text-[1.75rem] tracking-[-0.03em] desktop:text-[2rem]">{{ $page.Title }}</h3>
-                <p class="mt-2 max-w-[40ch] text-muted">{{ .line }}</p>
-                <p class="mt-1 text-sm text-muted">{{ .role }}</p>
-              </div>
-              <span aria-hidden="true" class="grid size-11 shrink-0 place-items-center rounded-full bg-white/6 text-accent shadow-[inset_0_0_0_1px_rgb(255_255_255/8%)] transition-transform duration-300 ease-snappy group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-105">↗&#xFE0E;</span>
+            <span class="project-open absolute z-2 top-3 right-3 flex min-h-11 items-center rounded-[30px] bg-white px-3 text-[10px] text-[#191919] desktop:top-6 desktop:right-6 desktop:min-h-11 desktop:px-5 desktop:text-xs forced-colors:border forced-colors:border-[ButtonText]" aria-hidden="true"><span class="hidden desktop:inline">View project&nbsp;</span><span class="text-lg desktop:text-xs">↗&#xFE0E;</span></span>
+            <span hidden data-lens-hint class="pointer-events-none absolute z-2 bottom-4 left-4 rounded-full bg-[#191919]/85 px-3 py-2 text-[10px] text-white desktop:bottom-6 desktop:left-6 desktop:text-xs [[hidden]]:hidden" aria-hidden="true">Move to look closer</span>
+          </div>
+          <div class="project-caption grid items-start pt-5 desktop:pt-6 {{ if eq $i 0 }}grid-cols-[20px_1fr_24px] gap-x-3 gap-y-2.5 desktop:grid-cols-[24px_1fr_32px] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr_auto_44px] min-[1100px]:gap-6{{ else }}grid-cols-[24px_1fr_24px] gap-3{{ end }}">
+            <span class="project-number mt-2.5 font-mono text-[9px] desktop:text-[11px]">0{{ add $i 1 }}</span>
+            <div>
+              <h3 id="project-title-{{ $i }}" class="text-[32px] leading-[1.1] font-medium tracking-[-0.055em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[6px] desktop:text-[clamp(30px,3.1vw,48px)]">{{ .title }}</h3>
+              <p id="project-description-{{ $i }}" class="mt-2.5 text-xs text-muted desktop:text-sm">{{ .description }}</p>
             </div>
+            <p class="project-meta col-start-2 row-start-2 text-left text-[10px] leading-[1.7] text-muted desktop:text-[11px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto min-[1100px]:mt-2.5 min-[1100px]:text-right{{ end }}">{{ .role }}<br>{{ .year }}</p>
+            <span class="project-arrow col-start-3 row-start-1 text-right text-[26px] leading-[1.4] desktop:text-[32px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto{{ end }}" aria-hidden="true">↗&#xFE0E;</span>
           </div>
         </a>
+        <button hidden data-preview-toggle type="button" aria-label="Show another view of {{ .title }}" aria-pressed="false" class="absolute top-3 left-3 z-3 inline-flex min-h-11 items-center gap-3 rounded-full border border-[#191919]/15 bg-white px-3 text-[10px] text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#191919] focus-visible:ring-2 focus-visible:ring-white desktop:top-6 desktop:left-6 desktop:px-4 desktop:text-xs [[hidden]]:hidden"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="4" width="10" height="10" rx="2" stroke="currentColor"/><path d="M5 2h7a2 2 0 0 1 2 2v7" stroke="currentColor"/></svg><span data-preview-label>Another view</span><span data-preview-count class="font-mono text-[9px]" aria-hidden="true">01/02</span></button>
+        <span class="sr-only" data-preview-status role="status"></span>
       </article>
     {{ end }}
   </div>

@@ -9,6 +9,7 @@ const files = fs
   .filter((file) => file.endsWith('.html'));
 const errors = [];
 const cards = new Map();
+const markdownTargets = new Set();
 const redirects = fs
   .readFileSync('static/_redirects', 'utf8')
   .split('\n')
@@ -70,6 +71,7 @@ for (const file of files) {
       localFile(new URL(markdown[1], domain)),
       `${file}: Markdown alternate ${markdown[1]} missing`,
     );
+    markdownTargets.add(new URL(markdown[1], domain).href);
   } else assert(html.includes('content="noindex, follow"'));
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const value = match[1].replaceAll('&amp;', '&');
@@ -80,6 +82,24 @@ for (const file of files) {
   }
   if (file.startsWith('blog/') && file !== 'blog/index.html') {
     for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) {
+      const poster = tag.match(/data-static-src="([^"]+)"/);
+      if (poster) {
+        const target = localFile(new URL(poster[1], domain));
+        assert(target, `${file}: GIF poster missing`);
+        const bytes = fs.readFileSync(target);
+        assert(
+          bytes
+            .subarray(0, 8)
+            .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
+          `${file}: GIF poster must be a single-frame PNG`,
+        );
+        for (let offset = 8; offset + 12 <= bytes.length;) {
+          const length = bytes.readUInt32BE(offset);
+          const type = bytes.toString('ascii', offset + 4, offset + 8);
+          assert.notEqual(type, 'acTL', `${file}: GIF poster must not animate`);
+          offset += length + 12;
+        }
+      }
       assert(
         /\bwidth="\d+"/.test(tag) && /\bheight="\d+"/.test(tag),
         `${file}: image dimensions`,
@@ -100,7 +120,7 @@ for (const [source, destination, status] of redirects) {
   assert(!redirectSources.has(destination), `${source}: avoid redirect chains`);
 }
 assert.deepEqual(errors, [], 'Broken internal links or assets');
-// The home page and each case study carry their own artwork; writing shares one.
+// Home, case studies, and every article have their own share card.
 const signatures = [
   'index.html',
   'work/cape/index.html',
@@ -113,14 +133,24 @@ assert.equal(
   signatures.length,
   `Signature pages must not share a card: ${signatures.join(', ')}`,
 );
-for (const [file, card] of cards) {
-  if (file.startsWith('blog/'))
-    assert.equal(
-      card,
-      'writing',
-      `${file}: writing shares one card, got ${card}`,
-    );
-}
+assert.equal(
+  cards.get('blog/index.html'),
+  'writing',
+  'Archive needs its own share card',
+);
+const articleCards = [...cards].filter(
+  ([file]) => file.startsWith('blog/') && file !== 'blog/index.html',
+);
+for (const [file, card] of articleCards)
+  assert(
+    card.startsWith('post-'),
+    `${file}: article needs a dedicated share card, got ${card}`,
+  );
+assert.equal(
+  new Set(articleCards.map(([, card]) => card)).size,
+  articleCards.length,
+  'Every article needs a unique share image',
+);
 const feed = fs.readFileSync(path.join(root, 'index.xml'), 'utf8');
 assert(
   !feed.includes('/work/'),
@@ -158,8 +188,63 @@ for (const link of llmsLinks) {
   assert.equal(target.origin, domain, `llms.txt: unexpected host ${link}`);
   assert(localFile(target), `llms.txt: missing ${link}`);
 }
+for (const target of markdownTargets) {
+  assert(
+    llmsLinks.includes(target),
+    `llms.txt: unlisted Markdown page ${target}`,
+  );
+  const file = localFile(new URL(target));
+  const markdown = fs.readFileSync(file, 'utf8');
+  assert(markdown.startsWith('# '), `${file}: missing Markdown title`);
+  // Code samples may deliberately contain illustrative, non-existent URLs.
+  const prose = markdown.replace(/^```[^\n]*\n[\s\S]*?^```/gm, '');
+  for (const [, href] of prose.matchAll(/\]\((https?:[^\s)]+|\/[^\s)]+)\)/g)) {
+    const url = new URL(href, domain);
+    if (url.origin === domain)
+      assert(
+        localFile(url) || redirectSources.has(url.pathname),
+        `${file}: missing Markdown link ${href}`,
+      );
+  }
+}
+for (const source of fs
+  .readdirSync('content/blog')
+  .filter((file) => file.endsWith('.md') && !file.startsWith('_'))) {
+  const content = fs.readFileSync(path.join('content/blog', source), 'utf8');
+  const slug =
+    content.match(/^slug:\s*(.+)$/m)?.[1] || path.basename(source, '.md');
+  const markdown = fs.readFileSync(
+    path.join(root, 'blog', slug, 'index.md'),
+    'utf8',
+  );
+  const year = content.match(/^date:\s*['"]?(\d{4})/m)[1];
+  assert(
+    markdown.includes(`Archived writing, published in ${year}.`),
+    `${source}: archive context missing`,
+  );
+  for (const [sample] of content.matchAll(/^```[^\n]*\n[\s\S]*?^```/gm))
+    assert(
+      markdown.includes(sample),
+      `${source}: Markdown export changed a code sample`,
+    );
+}
+for (const name of ['cape', 'warranties', 'invision']) {
+  const html = fs.readFileSync(
+    path.join(root, 'work', name, 'index.html'),
+    'utf8',
+  );
+  const markdown = fs.readFileSync(
+    path.join(root, 'work', name, 'index.md'),
+    'utf8',
+  );
+  assert.equal(
+    [...markdown.matchAll(/!\[/g)].length,
+    [...html.matchAll(/<img\s/g)].length,
+    `${name}: Markdown is missing a project image`,
+  );
+}
 console.log(
-  `Checked ${files.length} HTML pages: metadata, JSON-LD, agent discovery links, local links/assets, blog images, ${new Set(cards.values()).size} sharing cards, ${sitemapLocs.length} sitemap URLs, ${llmsLinks.length} llms.txt entries, and ${redirects.length} redirect mappings.`,
+  `Checked ${files.length} HTML pages and ${markdownTargets.size} Markdown exports: metadata, JSON-LD, agent discovery links, local links/assets, archived code samples, case-study images, ${new Set(cards.values()).size} sharing cards, ${sitemapLocs.length} sitemap URLs, ${llmsLinks.length} llms.txt entries, and ${redirects.length} redirect mappings.`,
 );
 console.log(
   'Hosting redirect status, cache/compression headers, and Search Console still require deployment verification.',

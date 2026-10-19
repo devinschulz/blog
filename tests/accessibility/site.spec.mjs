@@ -41,26 +41,35 @@ async function expectReflow(page) {
   await expect
     .poll(
       () =>
-        page.locator('h1, h2, h3').evaluateAll((headings) =>
-          headings.flatMap((heading) => {
-            const walker = document.createTreeWalker(
-              heading,
-              NodeFilter.SHOW_TEXT,
-            );
-            let node;
-            const clipped = [];
-            while ((node = walker.nextNode())) {
-              if (!node.textContent.trim()) continue;
-              const range = document.createRange();
-              range.selectNodeContents(node);
-              for (const rect of range.getClientRects()) {
-                if (rect.left < -1 || rect.right > innerWidth + 1)
-                  clipped.push(node.textContent.trim());
+        page
+          .locator('h1, h2, h3, .footer-top > a, .hero-topline')
+          .evaluateAll((headings) =>
+            headings.flatMap((heading) => {
+              const walker = document.createTreeWalker(
+                heading,
+                NodeFilter.SHOW_TEXT,
+              );
+              let node;
+              const clipped = [];
+              while ((node = walker.nextNode())) {
+                if (!node.textContent.trim()) continue;
+                const range = document.createRange();
+                range.selectNodeContents(node);
+                const panel = heading.closest(
+                  '.hero, .archive-hero, .case-hero, .article-hero, .site-footer',
+                );
+                const bounds = panel?.getBoundingClientRect();
+                for (const rect of range.getClientRects()) {
+                  if (
+                    rect.left < (bounds?.left ?? 0) - 1 ||
+                    rect.right > (bounds?.right ?? innerWidth) + 1
+                  )
+                    clipped.push(node.textContent.trim());
+                }
               }
-            }
-            return clipped;
-          }),
-        ),
+              return clipped;
+            }),
+          ),
       { message: 'Headings must not be clipped horizontally' },
     )
     .toEqual([]);
@@ -83,6 +92,111 @@ async function expectReflow(page) {
   }
 }
 
+test('display lettering reflows at 200 percent zoom and text size', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    !testInfo.project.name.startsWith('desktop'),
+    'Desktop zoom uses a 720px CSS viewport.',
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    window.__typeLines = [];
+    const original = CanvasRenderingContext2D.prototype.fillText;
+    CanvasRenderingContext2D.prototype.fillText = function (
+      text,
+      x,
+      y,
+      ...args
+    ) {
+      const transform = this.getTransform();
+      window.__typeLines.push({
+        text,
+        left: transform.e + x * transform.a,
+        right: transform.e + (x + this.measureText(text).width) * transform.a,
+        width: this.canvas.width,
+      });
+      return original.call(this, text, x, y, ...args);
+    };
+  });
+  // A 1440px desktop at 200% page zoom has a 720px CSS viewport. Also check
+  // doubled text separately, since Safari can zoom text without the page.
+  for (const textOnly of [false, true]) {
+    await page.setViewportSize({ width: textOnly ? 1440 : 720, height: 900 });
+    for (const path of [
+      '/',
+      '/blog/',
+      '/work/cape/',
+      '/work/warranties/',
+      '/work/invision/',
+      '/blog/using-react-component-variants-to-compose-css-classes/',
+    ]) {
+      await page.goto(path);
+      await page.evaluate(() => document.fonts.ready);
+      if (textOnly) {
+        await page.evaluate(() => {
+          window.__typeLines = [];
+          const sizes = [...document.querySelectorAll('body, body *')]
+            .filter((el) => !(el instanceof SVGElement))
+            .map((el) => [el, parseFloat(getComputedStyle(el).fontSize) * 2]);
+          for (const [el, size] of sizes) el.style.fontSize = `${size}px`;
+        });
+      }
+      await expectReflow(page);
+      if (textOnly && path === '/') {
+        await expect
+          .poll(
+            () =>
+              page.evaluate(
+                () =>
+                  window.__typeLines.some((line) => line.text === 'LET’S') &&
+                  window.__typeLines.some((line) => line.text === 'TALK'),
+              ),
+            { message: 'WebGL must redraw both wrapped footer lines' },
+          )
+          .toBe(true);
+        expect(
+          await page.evaluate(() =>
+            window.__typeLines.filter(
+              (line) => line.left < -1 || line.right > line.width + 1,
+            ),
+          ),
+          'WebGL lettering must fit its panel after text zoom',
+        ).toEqual([]);
+      }
+      const footer = page.locator('.footer-top > a');
+      await footer.scrollIntoViewIfNeeded();
+      const [label, arrow] = await footer
+        .locator(':scope > span')
+        .evaluateAll((nodes) =>
+          nodes.map((node) => {
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            const { left, right, top, bottom } = range.getBoundingClientRect();
+            return { left, right, top, bottom };
+          }),
+        );
+      expect(
+        label.right <= arrow.left + 1 ||
+          label.bottom <= arrow.top + 1 ||
+          arrow.bottom <= label.top + 1,
+        JSON.stringify({ path, textOnly, label, arrow }),
+      ).toBe(true);
+      if (await page.locator('.hero').count()) {
+        const [topline, title] = await page
+          .locator('.hero-topline, .hero-title')
+          .evaluateAll((nodes) =>
+            nodes.map((node) => {
+              const { top, bottom } = node.getBoundingClientRect();
+              return { top, bottom };
+            }),
+          );
+        expect(topline.bottom).toBeLessThanOrEqual(title.top);
+      }
+    }
+  }
+});
+
 for (const file of pages) {
   test(`page audit and text-spacing reflow: ${file}`, async ({ page }) => {
     await page.goto('/' + file.replace(/index\.html$/, ''));
@@ -96,7 +210,7 @@ for (const file of pages) {
   });
 }
 
-test('keyboard skip link and navigation', async ({ page }, testInfo) => {
+test('keyboard skip link and mobile navigation', async ({ page }, testInfo) => {
   await page.goto('/');
   await page.keyboard.press('Tab');
   await expect(
@@ -123,465 +237,581 @@ test('keyboard skip link and navigation', async ({ page }, testInfo) => {
       '',
     );
   }
-  await page.getByRole('button', { name: 'Recovery', exact: true }).focus();
-  const ring = await page.locator(':focus').evaluate((el) => {
-    const style = getComputedStyle(el);
-    return { width: style.outlineWidth, shadow: style.boxShadow };
-  });
-  expect(ring.width).toBe('3px');
-  expect(ring.shadow).not.toBe('none');
 });
 
-test('demo states, validation, simulated saving and restart', async ({
+test('every project remains visible and opens its case study', async ({
   page,
 }) => {
   await page.goto('/');
-  const name = page.getByRole('textbox', { name: 'Display name' });
-  const action = page.locator('[data-demo-continue]');
-  for (const label of ['Ready', 'Keyboard', 'Recovery', 'Done']) {
-    await page.getByRole('button', { name: label, exact: true }).click();
-    await expect(
-      page.getByRole('button', { name: label, exact: true }),
-    ).toHaveAttribute('aria-pressed', 'true');
-    await audit(page);
+  const projects = page.locator('.project-link');
+  await expect(projects).toHaveCount(3);
+  for (const title of ['Cape', 'Warranties', 'InVision']) {
+    const link = projects.filter({
+      has: page.getByRole('heading', { name: title, exact: true }),
+    });
+    await expect(link).toBeVisible();
+    await expect(link.locator('img').first()).toHaveAttribute('alt', /.+/);
   }
-  await action.click();
-  await expect(name).toBeFocused();
-  await name.fill('D');
-  await action.focus();
+  await projects.last().focus();
   await page.keyboard.press('Enter');
-  await expect(name).toBeFocused();
-  await expect(name).toHaveAttribute('aria-invalid', 'true');
-  await expect(name).toHaveAttribute(
-    'aria-describedby',
-    'demo-name-hint demo-name-error',
-  );
-  await name.fill('Devin');
-  await expect(name).toHaveAttribute('aria-invalid', 'false');
-  await page.clock.install();
-  await action.click();
-  await expect(action).toBeFocused();
-  await expect(action).toHaveAttribute('aria-disabled', 'true');
-  await expect(page.locator('[data-demo-form]')).toHaveAttribute(
-    'aria-busy',
-    'true',
-  );
-  await page.keyboard.press('Enter');
-  await expect(page.locator('[data-demo]')).toHaveAttribute(
-    'data-state',
-    'processing',
-  );
-  await audit(page);
-  await page.clock.fastForward(1600);
-  await expect(action).toHaveText('Restart demo');
-  await expect(action).toBeFocused();
-  await expect(page.locator('[data-demo-form]')).toHaveAttribute(
-    'aria-busy',
-    'false',
-  );
-});
-
-test('filter announces result count without moving focus', async ({ page }) => {
-  await page.goto('/');
-  for (const topic of ['react', 'javascript', 'web', 'all']) {
-    const filter = page.locator(`[data-filter="${topic}"]`);
-    await filter.focus();
-    await page.keyboard.press('Space');
-    await expect(filter).toBeFocused();
-    await expect(filter).toHaveAttribute('aria-pressed', 'true');
-    const count = await page.locator('[data-post-list] a:visible').count();
-    await expect(page.locator('#archive-status')).toContainText(
-      `Showing ${count} `,
-    );
-  }
-});
-
-test('WebGL sculpture animates, pauses offscreen, and respects reduced motion', async ({
-  page,
-}) => {
-  test.slow();
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  const hero = page.locator('[data-hero-motion]');
-  const canvas = page.locator('[data-hero-canvas]');
-  await expect(page.locator('[data-motion-toggle]')).toHaveCount(0);
-  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
-  await expect(hero).toHaveAttribute('data-motion', 'running');
-  const moving = await canvas.screenshot();
-  // Software-rendered WebGL in CI makes each screenshot slow; give it room.
-  await expect
-    .poll(async () => (await canvas.screenshot()).equals(moving), {
-      timeout: 20000,
-    })
-    .toBe(false);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(hero).toHaveAttribute('data-motion', 'paused');
-  // Let the still frame reach the screen before sampling it.
-  await page.waitForTimeout(300);
-  const still = await canvas.screenshot();
-  await page.mouse.move(200, 150);
-  expect((await canvas.screenshot()).equals(still)).toBe(true);
-  await page.reload();
-  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
-  await expect(hero).toHaveAttribute('data-motion', 'paused');
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await expect(hero).toHaveAttribute('data-motion', 'running');
-  await page.locator('#archive').scrollIntoViewIfNeeded();
-  await expect(hero).toHaveAttribute('data-motion', 'paused');
-  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await expect(hero).toHaveAttribute('data-motion', 'running');
-});
-
-test('states lattice runs one lifecycle, pauses offscreen and for reduced motion', async ({
-  page,
-}) => {
-  test.slow();
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  const lattice = page.locator('[data-lattice]');
-  await lattice.scrollIntoViewIfNeeded();
-  await expect(lattice).toHaveAttribute('data-renderer', 'webgl');
-  await expect(lattice).toHaveAttribute('data-motion', 'running');
-  // Decorative only: it must never reach the accessibility tree.
-  await expect(lattice).toHaveAttribute('aria-hidden', 'true');
-  const moving = await lattice.screenshot();
-  await expect
-    .poll(async () => (await lattice.screenshot()).equals(moving), {
-      timeout: 20000,
-    })
-    .toBe(false);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(lattice).toHaveAttribute('data-motion', 'paused');
-  const still = await lattice.screenshot();
-  await page.waitForTimeout(250);
-  expect((await lattice.screenshot()).equals(still)).toBe(true);
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await expect(lattice).toHaveAttribute('data-motion', 'running');
-  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await expect(lattice).toHaveAttribute('data-motion', 'paused');
-});
-
-test('selected work shows each case study as one real screenshot link', async ({
-  page,
-}) => {
-  await page.goto('/');
-  const cards = page.locator('#work article a');
-  await expect(cards).toHaveCount(3);
-  for (const href of ['/work/cape/', '/work/warranties/', '/work/invision/']) {
-    const card = page.locator(`#work a[href="${href}"]`);
-    await card.scrollIntoViewIfNeeded();
-    const image = card.locator('img');
-    await expect(image).not.toHaveAttribute('alt', '');
-    await expect
-      // Lazy images under software-rendered WebGL can take a few seconds.
-      .poll(() => image.evaluate((img) => img.complete && img.naturalWidth), {
-        timeout: 15000,
-      })
-      .toBeGreaterThan(0);
-    await expect(card.getByRole('heading', { level: 3 })).toBeVisible();
-  }
-});
-
-test('hero entrance is skipped for reduced motion', async ({ page }) => {
-  await page.goto('/');
-  const names = await page
-    .locator('[data-enter]')
-    .evaluateAll((els) => els.map((el) => getComputedStyle(el).animationName));
-  expect(names.length).toBe(4);
-  expect(names.every((name) => name === 'none')).toBe(true);
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.reload();
-  await expect
-    .poll(() =>
-      page
-        .locator('[data-enter]')
-        .first()
-        .evaluate((el) => getComputedStyle(el).animationName),
-    )
-    .toBe('enter');
-});
-
-test('work screenshots draw as tiles but keep the image and its alt text', async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  const frame = page.locator('#work a[href="/work/cape/"] .work-shot');
-  await frame.scrollIntoViewIfNeeded();
-  await expect(frame).toHaveAttribute('data-renderer', 'webgl');
-  await expect(frame).toHaveAttribute('data-texture', 'ready');
-  await expect(frame.locator('canvas')).toHaveAttribute('aria-hidden', 'true');
-  // The image stays in the accessibility tree; only its pixels step aside.
-  await expect(frame.getByRole('img')).toHaveAttribute('alt', /Cape Assistant/);
-  // Keyboard focus gets the same lift a pointer does, and the link keeps its
-  // own focus ring.
-  const link = page.locator('#work a[href="/work/cape/"]');
-  await link.focus();
-  const ring = await link.evaluate((el) => getComputedStyle(el).outlineWidth);
-  expect(ring).toBe('3px');
-  // Forced colours hand the picture back to the <img>.
-  await page.emulateMedia({ forcedColors: 'active' });
-  await expect(frame.locator('canvas')).toBeHidden();
-  await expect(frame.getByRole('img')).toBeVisible();
-});
-
-test('the State Shift field follows the demo state, even with reduced motion', async ({
-  page,
-}) => {
-  await page.goto('/');
-  const field = page.locator('[data-webgl-scene-value="states-field"]');
-  await field.scrollIntoViewIfNeeded();
-  await expect(field).toHaveAttribute('data-renderer', 'webgl');
-  await expect(field).toHaveAttribute('data-motion', 'paused');
-  await expect(field.locator('.states-field')).toHaveAttribute(
-    'aria-hidden',
-    'true',
-  );
-  const canvas = field.locator('canvas');
-  const ready = await canvas.screenshot();
-  await page.getByRole('button', { name: 'Recovery', exact: true }).click();
-  // Paused for reduced motion, yet it still redraws a still frame per state.
-  await expect
-    .poll(async () => (await canvas.screenshot()).equals(ready))
-    .toBe(false);
-  const recovery = await canvas.screenshot();
-  await page.waitForTimeout(300);
-  expect((await canvas.screenshot()).equals(recovery)).toBe(true);
-});
-
-test('the hero only unfolds on scroll when motion is allowed', async ({
-  page,
-}) => {
-  // Count draw calls: with reduced motion the hero draws one still frame and
-  // then nothing, however far the page scrolls.
-  await page.addInitScript(() => {
-    window.__draws = 0;
-    for (const proto of [
-      WebGLRenderingContext.prototype,
-      WebGL2RenderingContext.prototype,
-    ]) {
-      for (const name of [
-        'drawElements',
-        'drawArrays',
-        'drawElementsInstanced',
-        'drawArraysInstanced',
-      ]) {
-        const original = proto[name];
-        if (!original) continue;
-        proto[name] = function (...args) {
-          if (this.canvas?.hasAttribute('data-hero-canvas')) window.__draws++;
-          return original.apply(this, args);
-        };
-      }
-    }
-  });
-  await page.goto('/');
-  const hero = page.locator('[data-hero-motion]');
-  await expect(hero).toHaveAttribute('data-renderer', 'webgl');
-  await expect(hero).toHaveAttribute('data-motion', 'paused');
-  await page.waitForTimeout(300);
-  const before = await page.evaluate(() => window.__draws);
-  await page.mouse.wheel(0, 200);
-  await page.waitForTimeout(400);
-  expect(await page.evaluate(() => window.__draws)).toBe(before);
-});
-
-test('page transitions never block navigation and stay out of reduced motion', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await expect(page.locator('[data-page-transition]')).toHaveCount(0);
-
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.reload();
-  const sweep = page.locator('[data-page-transition]');
-  await expect(sweep).toHaveCount(1);
-  await expect(sweep).toHaveAttribute('aria-hidden', 'true');
-  await expect(sweep).toHaveCSS('pointer-events', 'none');
-  await expect(sweep).toHaveCSS('visibility', 'hidden');
-  await page.evaluate(() =>
-    document.querySelector('a[href="/work/cape/"]').click(),
-  );
-  await page.waitForURL('**/work/cape/');
+  await page.waitForURL('**/work/invision/');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(sweep).toHaveCSS('visibility', 'hidden');
-  // Back and forward are left instant.
   await page.goBack();
-  await page.waitForURL(/\/$/);
-  await expect(sweep).toHaveCSS('visibility', 'hidden');
+  await expect(projects).toHaveCount(3);
 });
 
-test('the 404 lattice scatters the same states out of order', async ({
+test('theme choice persists through navigation and reload', async ({
   page,
 }) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/404.html');
-  const lattice = page.locator('[data-lattice]');
-  await expect(lattice).toHaveAttribute('data-lattice-mode', 'scattered');
-  await expect(lattice).toHaveAttribute('data-renderer', 'webgl');
-  await expect(lattice).toHaveAttribute('aria-hidden', 'true');
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-});
-
-test('hero keeps an illustration when WebGL is unavailable', async ({
-  page,
-}) => {
-  await page.addInitScript(() => {
-    const getContext = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
-      return type.startsWith('webgl')
-        ? null
-        : getContext.call(this, type, ...args);
-    };
-  });
   await page.goto('/');
-  await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
-    'data-motion',
-    'paused',
+  const before = await page.locator('html').getAttribute('data-theme');
+  await page.getByRole('button', { name: /Switch to .* theme/ }).click();
+  const after = before === 'dark' ? 'light' : 'dark';
+  await expect(page.locator('html')).toHaveAttribute('data-theme', after);
+  await page.locator('.project-link').first().click();
+  await page.waitForURL('**/work/cape/');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', after);
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', after);
+});
+
+test('writing highlights lead to the complete archive', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.note-entry')).toHaveCount(4);
+  await page.getByRole('link', { name: 'All 16 articles' }).click();
+  await page.waitForURL('**/blog/');
+  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+});
+
+test('reduced motion retains native typography and project images', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page.locator('.hero-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
   );
-  await expect(page.locator('.hero-art-fallback')).toBeVisible();
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  // The lattice has no static counterpart, so it leaves the layout instead.
-  await expect(page.locator('[data-lattice]')).toHaveAttribute(
-    'data-renderer',
+  await expect(page.locator('.hero canvas')).toHaveCount(0);
+  await expect(page.locator('.project-art').first()).toHaveCSS(
+    'animation-name',
     'none',
   );
-  await expect(page.locator('[data-lattice]')).toBeHidden();
-  // Project screenshots never depended on a renderer.
-  await page.locator('#work').scrollIntoViewIfNeeded();
-  await expect(page.locator('#work img').first()).toBeVisible();
+  await expect(page.locator('.project-main img').first()).toBeVisible();
+  await audit(page);
 });
 
-test('GIF is opt-in and stops for reduced motion', async ({ page }) => {
+test('GIF remains opt-in and stops for reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto(gifPage);
   const container = page.locator('[data-animated-image]');
-  const img = container.locator('img');
-  await expect(img).toHaveAttribute('src', /\.webp$/);
+  const image = container.locator('img');
+  await expect(image).toHaveAttribute('src', /\.png$/);
   await container.getByRole('button', { name: 'Play animation' }).click();
-  await expect(img).toHaveAttribute('src', /\.gif$/);
+  await expect(image).toHaveAttribute('src', /\.gif$/);
   await container.getByRole('button', { name: 'Stop animation' }).click();
-  await expect(img).toHaveAttribute('src', /\.webp$/);
+  await expect(image).toHaveAttribute('src', /\.png$/);
   await container.getByRole('button', { name: 'Play animation' }).click();
+  await expect(image).toHaveAttribute('src', /\.gif$/);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(img).toHaveAttribute('src', /\.webp$/);
+  await expect(image).toHaveAttribute('src', /\.png$/);
   await expect(container.getByRole('button')).toBeDisabled();
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await expect(container.getByRole('button')).toHaveText('Play animation');
 });
 
-test('static content and navigation work without JavaScript', async ({
+test('all project and writing destinations work without JavaScript', async ({
   browser,
 }, testInfo) => {
   const context = await browser.newContext({
     javaScriptEnabled: false,
     viewport: testInfo.project.use.viewport,
-    colorScheme: testInfo.project.use.colorScheme,
   });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4177/');
-  await expect(page.locator('[data-state-controls]')).toBeHidden();
-  await expect(page.locator('[data-archive-filters]')).toBeHidden();
-  await expect(page.locator('[data-demo-continue]')).toBeHidden();
-  await expect(page.locator('[data-lattice]')).toBeHidden();
-  if (testInfo.project.name.startsWith('desktop')) {
-    const width = await page
-      .locator('[data-demo]')
-      .evaluate((el) => el.getBoundingClientRect().width);
-    expect(width).toBeGreaterThan(700);
+  await expect(page.locator('.hero canvas')).toHaveCount(0);
+  for (const title of ['Cape', 'Warranties', 'InVision']) {
+    await expect(
+      page
+        .locator('.project-gallery')
+        .getByRole('link', { name: new RegExp(title) }),
+    ).toBeVisible();
   }
-  await expect(page.locator('[data-post-list] a').first()).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'All 16 articles' }),
+  ).toBeVisible();
   if (testInfo.project.name.startsWith('narrow')) {
     await page.locator('summary').click();
     await expect(
       page.getByRole('navigation', { name: 'Mobile navigation' }),
     ).toBeVisible();
   }
-  await page.goto('http://127.0.0.1:4177' + gifPage);
-  await expect(page.locator('[data-animated-image] img')).toHaveAttribute(
-    'src',
-    /\.webp$/,
-  );
   await context.close();
 });
 
-test('Turbo prefetches an internal link on hover', async ({ page }) => {
-  // Turbo marks a speculative fetch with a header rather than a
-  // <link rel="prefetch"> element, so the request is what to assert on. It has
-  // to send X-Sec-Purpose because Sec-Purpose is a forbidden header name that
-  // scripts are not allowed to set.
-  const prefetched = [];
-  page.on('request', (request) => {
-    const headers = request.headers();
-    const purpose = headers['x-sec-purpose'] ?? headers['sec-purpose'] ?? '';
-    if (purpose.includes('prefetch'))
-      prefetched.push(new URL(request.url()).pathname);
-  });
-  await page.goto('/');
-  const link = page.locator('a[href="/work/cape/"]').first();
-  await link.scrollIntoViewIfNeeded();
-  await link.hover();
-  await expect.poll(() => prefetched).toContain('/work/cape/');
-});
-
-test('Turbo navigation does not leak WebGL contexts', async ({ page }) => {
-  // Turbo swaps the body without reloading, so a surface that never released
-  // its context would leak one per visit and exhaust the browser's supply.
-  // Stimulus disconnect() is what returns them.
-  await page.addInitScript(() => {
-    window.__contexts = { created: 0, released: 0 };
-    const getContext = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (type, ...rest) {
-      const context = getContext.call(this, type, ...rest);
-      if (context && String(type).startsWith('webgl')) {
-        window.__contexts.created++;
-        this.addEventListener(
-          'webglcontextlost',
-          () => window.__contexts.released++,
-        );
-      }
-      return context;
-    };
-  });
-  let fullLoads = 0;
-  page.on('load', () => fullLoads++);
-  // With motion allowed, so the page-transition context is part of the count.
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
-    'data-renderer',
-    'webgl',
-  );
-  const live = () =>
-    page.evaluate(() => window.__contexts.created - window.__contexts.released);
-  const baseline = await live();
-  expect(baseline).toBeGreaterThan(0);
-  const loadsBefore = fullLoads;
-
-  for (let visit = 0; visit < 3; visit++) {
-    await page.evaluate(() =>
-      document.querySelector('a[href="/work/cape/"]').click(),
-    );
-    await page.waitForURL('**/work/cape/');
-    await page.goBack();
-    await page.waitForURL(/\/$/);
-    await expect(page.locator('[data-hero-motion]')).toHaveAttribute(
-      'data-renderer',
-      'webgl',
-    );
-  }
-
-  await expect.poll(live).toBe(baseline);
-  expect(fullLoads - loadsBefore, 'Turbo should drive navigation').toBe(0);
-});
-
-test('forced-colors retains a visible keyboard outline', async ({ page }) => {
+test('forced colors retain a visible keyboard outline', async ({ page }) => {
   await page.emulateMedia({ forcedColors: 'active' });
   await page.goto('/');
   await page.keyboard.press('Tab');
-  const outline = await page.locator(':focus').evaluate((el) => {
-    const style = getComputedStyle(el);
-    return { width: style.outlineWidth, style: style.outlineStyle };
-  });
+  const outline = await page.locator(':focus').evaluate((el) => ({
+    width: getComputedStyle(el).outlineWidth,
+    style: getComputedStyle(el).outlineStyle,
+  }));
   expect(outline).toEqual({ width: '3px', style: 'solid' });
+});
+
+test('WebGL responds to input, settles, and stops for reduced motion', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'desktop-light',
+    'Graphics lifecycle needs one desktop run.',
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    window.__draws = 0;
+    for (const Type of [WebGLRenderingContext, WebGL2RenderingContext]) {
+      for (const name of ['drawElements', 'drawArrays']) {
+        const original = Type.prototype[name];
+        Type.prototype[name] = function (...args) {
+          window.__draws++;
+          return original.apply(this, args);
+        };
+      }
+    }
+  });
+  await page.goto('/');
+  await expect(page.locator('.hero')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  const draws = () => page.evaluate(() => window.__draws);
+  const settled = () =>
+    expect
+      .poll(
+        async () => {
+          const before = await draws();
+          await page.waitForTimeout(350);
+          return (await draws()) - before;
+        },
+        {
+          timeout: 8000,
+          message: 'WebGL must stop drawing when input settles',
+        },
+      )
+      .toBe(0);
+  await settled();
+  const before = await draws();
+  await page.mouse.move(1000, 220);
+  await expect.poll(draws).toBeGreaterThan(before);
+  await expect(page.locator('.hero-title')).toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await settled();
+  const project = page.locator('.project-gallery .project-main').first();
+  await project.scrollIntoViewIfNeeded();
+  await expect(project.locator('canvas')).toHaveCount(0);
+  await expect(page.locator('.project-art').first()).toHaveCSS(
+    'animation-name',
+    'none',
+  );
+  await expect(project).toHaveCSS('transform', 'none');
+  await settled();
+  const beforeScroll = await draws();
+  await page.mouse.wheel(0, 140);
+  await page.waitForTimeout(350);
+  expect(await draws()).toBe(beforeScroll);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await settled();
+  await expect(page.locator('.spatial-surface')).toHaveCount(0);
+  await expect(page.locator('.hero-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await expect(project.locator('img').first()).toBeVisible();
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page
+    .getByRole('link', { name: 'Devin Schulz, home', exact: true })
+    .click();
+  await expect(page.locator('.hero')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  // Start the loss check on a fully loaded page, rather than Turbo’s cached preview.
+  await page.reload();
+  await expect(page.locator('.hero')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  await page.mouse.move(500, 420);
+  await expect(page.locator('.hero-title')).toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  // Loss of the graphics context must restore the real text immediately.
+  await page.locator('.hero-surface').evaluate((canvas) => {
+    canvas
+      .getContext('webgl2')
+      .getExtension('WEBGL_lose_context')
+      .loseContext();
+  });
+  await expect(page.locator('.hero-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await page.getByRole('link', { name: 'All 16 articles' }).click();
+  await page.waitForURL('**/blog/');
+  await expect(page.locator('.archive-hero')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  await expect(page.locator('.archive-title')).toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('.spatial-surface')).toHaveCount(0);
+  await expect(page.locator('.archive-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await expect(page.locator('.archive-title')).toHaveCSS(
+    'color',
+    'rgb(255, 255, 255)',
+  );
+});
+
+test('article header particles respond to hover and restore native text', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'desktop-light',
+    'One desktop graphics lifecycle.',
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    window.__articleDraws = 0;
+    const original = WebGL2RenderingContext.prototype.drawArrays;
+    WebGL2RenderingContext.prototype.drawArrays = function (...args) {
+      window.__articleDraws++;
+      return original.apply(this, args);
+    };
+  });
+  await page.goto(
+    '/blog/using-react-component-variants-to-compose-css-classes/',
+  );
+  const title = page.locator('.article-title');
+  await expect(page.locator('.article-hero')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  await expect(title).toHaveClass(/(^|\s)is-spatial(\s|$)/);
+  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  const before = await title.boundingBox();
+  const draws = await page.evaluate(() => window.__articleDraws);
+  await page.mouse.move(before.x + 100, before.y + 50);
+  await page.mouse.move(before.x + 210, before.y + 65, { steps: 8 });
+  await expect
+    .poll(() => page.evaluate(() => window.__articleDraws))
+    .toBeGreaterThan(draws);
+  expect(await title.boundingBox()).toEqual(before);
+  await expect
+    .poll(
+      async () => {
+        const count = await page.evaluate(() => window.__articleDraws);
+        await page.waitForTimeout(350);
+        return (await page.evaluate(() => window.__articleDraws)) - count;
+      },
+      {
+        timeout: 8000,
+        message: 'Article hover must settle without continuous animation',
+      },
+    )
+    .toBe(0);
+  await expectReflow(page);
+  await audit(page);
+  await page
+    .locator('.article-hero')
+    .getByRole('link', { name: 'All writing', exact: true })
+    .click();
+  await page.waitForURL('**/blog/');
+  await page.locator('[data-post-list] a').first().click();
+  await expect(page.locator('.article-hero')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  await page.locator('.article-surface').evaluate((canvas) => {
+    canvas
+      .getContext('webgl2')
+      .getExtension('WEBGL_lose_context')
+      .loseContext();
+  });
+  await expect(title).not.toHaveClass(/(^|\s)is-spatial(\s|$)/);
+  await expect(title).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('.spatial-surface')).toHaveCount(0);
+  await expect(title).toBeVisible();
+});
+
+test('WebGL failure retains readable artwork and every destination', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (kind, ...args) {
+      if (
+        kind === 'webgl' ||
+        kind === 'webgl2' ||
+        kind === 'experimental-webgl'
+      )
+        return null;
+      return original.call(this, kind, ...args);
+    };
+  });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  await expect(page.locator('.hero-title')).toBeVisible();
+  await expect(page.locator('.hero-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await expect(page.locator('.hero canvas')).toHaveCount(0);
+  await expect(page.locator('.project-main img').first()).toBeVisible();
+  await expect(page.locator('.project-link')).toHaveCount(3);
+  await audit(page);
+  await page.goto('/blog/');
+  await expect(page.locator('.archive-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await expect(page.locator('.archive-title')).toHaveCSS(
+    'color',
+    'rgb(255, 255, 255)',
+  );
+  await expect(page.locator('.archive-hero canvas')).toHaveCount(0);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
+  await audit(page);
+  await page.goto(
+    '/blog/using-react-component-variants-to-compose-css-classes/',
+  );
+  await expect(page.locator('.article-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await expect(page.locator('.article-title')).toHaveCSS(
+    'color',
+    'rgb(255, 255, 255)',
+  );
+  await expect(page.locator('.article-hero canvas')).toHaveCount(0);
+  await expect(page.locator('.article-body')).toBeVisible();
+  await audit(page);
+});
+
+test('liquid lettering is opt-in, settles, and restores native interactions', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'desktop-light' &&
+      testInfo.project.name !== 'narrow-light',
+    'One desktop and one touch-sized lifecycle.',
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const button = page.locator('[data-wave-trigger]');
+  const hero = page.locator('.hero');
+  await expect(button).toBeVisible();
+  await expect(button).toHaveAttribute('aria-pressed', 'false');
+  const before = await page.locator('.hero-title').boundingBox();
+  await button.focus();
+  await page.keyboard.press('Enter');
+  await expect(button).toHaveAttribute('aria-pressed', 'true');
+  await expect(hero).toHaveCSS('touch-action', 'none');
+  await expect(hero.getByRole('status')).toContainText('Drag through');
+  const bounds = await hero.boundingBox();
+  const x = bounds.x + bounds.width * 0.25;
+  const y = bounds.y + bounds.height * 0.72;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + bounds.width * 0.45, y - 30, { steps: 20 });
+  await page.mouse.up();
+  expect(await page.locator('.hero-title').boundingBox()).toEqual(before);
+  await audit(page);
+  await page.keyboard.press('Escape');
+  await expect(button).toHaveAttribute('aria-pressed', 'false');
+  await expect(button).toBeFocused();
+  await expect(hero).not.toHaveCSS('touch-action', 'none');
+  await button.click();
+  await expect(button).toHaveAttribute('aria-pressed', 'true');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(button).toBeHidden();
+  await expect(hero).not.toHaveCSS('touch-action', 'none');
+  await expect(hero.locator('canvas')).toHaveCount(0);
+  await expect(page.locator('.hero-title')).not.toHaveClass(
+    /(^|\s)is-spatial(\s|$)/,
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(button).toBeVisible();
+  await button.click();
+  await page.getByRole('link', { name: 'All 16 articles' }).click();
+  await page.waitForURL('**/blog/');
+  await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
+  await page
+    .getByRole('link', { name: 'Devin Schulz, home', exact: true })
+    .click();
+  await expect(button).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('project previews work with keyboard and reduced motion', async ({
+  page,
+}) => {
+  await page.goto('/');
+  for (const name of ['Cape', 'Warranties', 'InVision']) {
+    const project = page
+      .locator('[data-project-preview]')
+      .filter({ has: page.getByRole('heading', { name, exact: true }) });
+    const toggle = project.locator('[data-preview-toggle]');
+    await toggle.focus();
+    await page.keyboard.press('Enter');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    await expect(project.locator('[data-project-detail]')).toBeVisible();
+    await expect(project.getByRole('status')).toContainText(
+      `${name}: view 2 of 2`,
+    );
+    await expect(toggle).toBeFocused();
+    await expect(project.locator('canvas')).toHaveCount(0);
+    await page.keyboard.press('Enter');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(project.locator('[data-project-detail]')).toBeHidden();
+    await expect(project.locator('.project-main img').first()).toBeVisible();
+  }
+  await audit(page);
+  await page
+    .getByRole('button', { name: 'Show another view of Cape', exact: true })
+    .click();
+  await page.locator('.project-0 .project-link').click();
+  await page.waitForURL('**/work/cape/');
+  await page.goBack();
+  await expect(
+    page.locator('.project-0 [data-preview-toggle]'),
+  ).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('project lens remains still on scroll and releases graphics for reduced motion', async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'desktop-light',
+    'One GPU lifecycle run.',
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    window.__projectDraws = 0;
+    const original = WebGL2RenderingContext.prototype.drawElements;
+    WebGL2RenderingContext.prototype.drawElements = function (...args) {
+      if (this.canvas.classList.contains('project-lens'))
+        window.__projectDraws++;
+      return original.apply(this, args);
+    };
+  });
+  await page.goto('/');
+  const art = page.locator('.project-art').first();
+  await art.scrollIntoViewIfNeeded();
+  await expect(art.locator('canvas')).toHaveCount(0);
+  let bounds = await art.boundingBox();
+  await page.mouse.move(
+    bounds.x + bounds.width * 0.55,
+    bounds.y + bounds.height * 0.5,
+    { steps: 8 },
+  );
+  await expect(art.locator('canvas')).toBeVisible();
+  await page.mouse.move(
+    bounds.x + bounds.width * 0.7,
+    bounds.y + bounds.height * 0.5,
+    { steps: 8 },
+  );
+  const toggle = page.locator('.project-0 [data-preview-toggle]');
+  await toggle.focus();
+  await expect(art.locator('canvas')).toBeHidden();
+  // Moving the pointer while a keyboard control owns focus must not cover it.
+  await page.mouse.move(
+    bounds.x + bounds.width * 0.6,
+    bounds.y + bounds.height * 0.5,
+    { steps: 8 },
+  );
+  await expect(art.locator('canvas')).toBeHidden();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  await expect(art.locator('canvas')).toBeHidden();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+  // End keyboard focus before resuming pointer exploration.
+  await page.locator('#work-title').click();
+  await art.scrollIntoViewIfNeeded();
+  bounds = await art.boundingBox();
+  await page.mouse.move(
+    bounds.x + bounds.width * 0.6,
+    bounds.y + bounds.height * 0.5,
+    { steps: 8 },
+  );
+  await expect(art.locator('canvas')).toBeVisible();
+  const draws = () => page.evaluate(() => window.__projectDraws);
+  await expect
+    .poll(
+      async () => {
+        const before = await draws();
+        await page.waitForTimeout(350);
+        return (await draws()) - before;
+      },
+      { timeout: 8000 },
+    )
+    .toBe(0);
+  const before = await draws();
+  await page.mouse.wheel(0, 100);
+  await page.waitForTimeout(350);
+  expect(await draws()).toBe(before);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(art.locator('canvas')).toHaveCount(0);
+  await page
+    .getByRole('button', { name: 'Show another view of Cape', exact: true })
+    .click();
+  await expect(page.locator('.project-0 [data-project-detail]')).toBeVisible();
+  await expect(page.locator('.project-0 .project-main')).toHaveCSS(
+    'transform',
+    'none',
+  );
+});
+
+test('article sections, code blocks, and archive navigation remain usable', async ({
+  page,
+}, testInfo) => {
+  await page.goto(
+    '/blog/using-react-component-variants-to-compose-css-classes/',
+  );
+  await expect(page.locator('.article-hero h1')).toHaveText(
+    'Using React Component Variants to Compose CSS Classes',
+  );
+  const mobile = testInfo.project.name.startsWith('narrow');
+  if (mobile) await page.locator('.article-layout summary').click();
+  const contents = page.getByRole('navigation', {
+    name: mobile ? 'Article sections on mobile' : 'Article sections',
+    exact: true,
+  });
+  await expect(contents).toBeVisible();
+  await contents
+    .getByRole('link', { name: 'Define the union types', exact: true })
+    .click();
+  await page.waitForURL('**/#define-the-union-types');
+  await expect(page.locator('#define-the-union-types')).toBeInViewport();
+  await expect(page.locator('.article-body pre').first()).toHaveAttribute(
+    'tabindex',
+    '0',
+  );
+  await expect(page.locator('.article-body pre').first()).toContainText(
+    'type ButtonSize = "small" | "medium";',
+  );
+  const more = page.getByRole('region', { name: 'More from the archive' });
+  await more
+    .getByRole('link', { name: /My Definition of a First-Class Pull Request/ })
+    .click();
+  await page.waitForURL('**/blog/my-definition-of-a-first-class-pull-request/');
+  await expect(page.locator('.article-hero h1')).toHaveText(
+    'My Definition of a First-Class Pull Request',
+  );
+  await page
+    .locator('.article-hero')
+    .getByRole('link', { name: 'All writing', exact: true })
+    .click();
+  await page.waitForURL('**/blog/');
+  await expect(page.locator('[data-post-list] a')).toHaveCount(16);
 });

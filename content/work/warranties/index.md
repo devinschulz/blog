@@ -15,6 +15,10 @@ facts:
 headline: Your things,
 headlineAccent: remembered.
 summary: 'Warranties was my own app. I designed it and built it myself. It kept track of the things you own: what they cost, where you bought them and how long they’re covered. That way the details are there on the day something breaks.'
+hero:
+  image: images/warranties/slide-3.jpg
+  alt: Warranties on iPad, with items grouped by remaining coverage alongside a detailed record for a stove.
+  caption: The things you own, with their coverage and details in one place.
 intro: A warranty is only useful if you can find it when something breaks. Most of the work went into making a record people would bother keeping up to date, and putting the answer to “is this still covered?” on the first screen.
 chapters:
   - id: capture
@@ -76,6 +80,10 @@ principles:
   - title: Quiet by design
     body: The app opens to the things you own and nothing else. There is no reason for a utility like this to ask for attention.
 reflection: 'Warranties was small enough that I could see every decision: how many fields were required, the order of the groups, how a duration was worded. That’s the nice part of building something end to end at this size. What I took back to bigger products is that how a record is structured is a design decision too, and it deserves the same care as the screens.'
+editorial:
+  reflectionTitle: Small enough to <em>see every decision.</em>
+  next: /work/invision
+  attribution: Screenshots from Warranties, a product I designed and built on my own. The app was released in 2023 and support ended in 2025.
 ---
 
 I released Warranties in 2023 and kept it going alongside a full-time job. In 2025 I ended support.

@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 
-// GIFs are opt-in: a static WebP until someone asks for motion, and never
+// GIFs are opt-in: a single-frame PNG until someone asks for motion, and never
 // playing when the system asks for less of it.
 export default class extends Controller<HTMLElement> {
   static override targets = ['image', 'button'];
@@ -14,6 +14,7 @@ export default class extends Controller<HTMLElement> {
   private listeners?: AbortController;
 
   override connect(): void {
+    this.stop();
     this.listeners = new AbortController();
     this.reducedMotion.addEventListener('change', () => this.sync(), {
       signal: this.listeners.signal,
@@ -38,7 +39,9 @@ export default class extends Controller<HTMLElement> {
   stop(): void {
     const still = this.imageTarget.dataset.staticSrc;
     if (still) this.imageTarget.src = still;
-    this.buttonTarget.textContent = 'Play animation';
+    this.buttonTarget.textContent = this.reducedMotion.matches
+      ? 'Animation paused by motion preference'
+      : 'Play animation';
     this.element.dataset.playing = 'false';
   }
 

@@ -1,0 +1,9 @@
+{{- $result := "" -}}
+{{- with .image -}}
+  {{- $image := resources.Get . -}}
+  {{- if not $image }}{{ errorf "Markdown image not found: %s" . }}{{ end -}}
+  {{- $alt := replace $.alt "]" "\\]" -}}
+  {{- $result = printf "![%s](%s)\n" $alt $image.Permalink -}}
+  {{- with $.caption }}{{ $result = printf "%s\n%s\n" $result . }}{{ end -}}
+{{- end -}}
+{{- return $result -}}

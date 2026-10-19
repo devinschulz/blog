@@ -18,7 +18,7 @@
   </url>
   {{- end }}
   {{- end }}
-  {{- /* llms.txt is linked from no page, so crawlers only reach it if it is listed here. */}}
+  {{- /* Also list the machine-readable index alongside the HTML sitemap entries. */}}
   {{- with site.Home.OutputFormats.Get "llms" }}
   <url>
     <loc>{{ .Permalink }}</loc>

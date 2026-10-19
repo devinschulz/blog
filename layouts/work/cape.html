@@ -2,10 +2,6 @@
 <article>
   {{ partial "case-study-header.html" . }}
 
-  <div class="mx-auto max-w-350 px-4.25 desktop:px-10">
-    {{ partial "case-study-image.html" (merge .Params.hero (dict "eager" true "sizes" "(min-width: 1400px) 1320px, (min-width: 781px) 94vw, 100vw")) }}
-  </div>
-
   <div class="mx-auto max-w-350 px-4.25 py-20 desktop:grid desktop:grid-cols-12 desktop:gap-x-10 desktop:px-10 desktop:py-28">
     <div class="desktop:col-span-8 desktop:col-start-4">
       <p class="display text-[1.6rem] leading-[1.2] font-medium tracking-[-0.02em] desktop:text-[2.25rem]">{{ .Params.intro }}</p>
@@ -35,7 +31,7 @@
   <section aria-labelledby="frontend-title" class="bg-surface">
     <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
       <div class="grid gap-8 desktop:grid-cols-12 desktop:gap-x-10">
-        <h2 id="frontend-title" class="h-section max-w-[12ch] desktop:col-span-5">Designing it and <em>building it.</em></h2>
+        <h2 id="frontend-title" class="h-section max-w-[12ch] desktop:col-span-5">{{ .Params.editorial.contributionTitle | safeHTML }}</h2>
         <div class="max-w-[60ch] text-lg leading-relaxed text-muted desktop:col-span-6 desktop:col-start-7 [&_p+p]:mt-5">{{ .Content }}</div>
       </div>
       <dl class="mt-16 grid gap-10 border-t border-line pt-10 desktop:mt-20 desktop:grid-cols-[1.2fr_1fr_1fr] desktop:gap-x-12">
@@ -47,10 +43,10 @@
   <section aria-labelledby="reflection-title">
     <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
       <div class="grid gap-8 desktop:grid-cols-12 desktop:gap-x-10">
-        <h2 id="reflection-title" class="h-section max-w-[12ch] desktop:col-span-5">What the screens <em>have in common.</em></h2>
+        <h2 id="reflection-title" class="h-section max-w-[12ch] desktop:col-span-5">{{ .Params.editorial.reflectionTitle | safeHTML }}</h2>
         <p class="max-w-[60ch] text-lg leading-relaxed text-muted desktop:col-span-6 desktop:col-start-7">{{ .Params.reflection }}</p>
       </div>
-      {{ partial "case-study-next.html" (dict "page" . "next" "/work/warranties" "note" "Product screenshots from Cape. This case study covers my part: designing the interfaces and leading the frontend work.") }}
+      {{ partial "case-study-next.html" (dict "page" . "next" .Params.editorial.next "note" .Params.editorial.attribution) }}
     </div>
   </section>
 </article>

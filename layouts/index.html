@@ -1,58 +1,18 @@
 {{ define "main" }}
-  {{/* The sculpture fills the first screen and follows the pointer. The copy
-       sits bottom-left on a scrim, so it is never read over the artwork. Its
-       height uses svh, not dvh: on iOS the toolbar collapses mid-scroll, and a
-       dvh hero would grow and push in-page anchors like #archive off target. */}}
-  <section id="top" data-hero-motion data-controller="webgl" data-webgl-scene-value="hero" data-motion="paused" aria-labelledby="hero-title" class="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden">
-    <div class="hero-art" data-hero-art data-webgl-target="measure" aria-hidden="true">
-      <img class="hero-art-fallback" src="{{ "images/kinetic-sculpture.svg" | relURL }}" alt="" width="600" height="600">
-      <canvas class="hero-canvas" data-hero-canvas data-webgl-target="canvas"></canvas>
-    </div>
-    <div class="hero-scrim" aria-hidden="true"></div>
-    <div class="relative mx-auto w-full max-w-350 px-4.25 pt-28 pb-14 desktop:px-10 desktop:pb-20">
-      <div class="max-w-[60rem]">
-        <p data-enter class="inline-flex items-center rounded-full bg-white/5 px-3 py-1.5 font-mono text-xs text-muted shadow-[inset_0_0_0_1px_rgb(255_255_255/8%)] [--i:0]">Senior Frontend Engineer at Stripe</p>
-        <h1 id="hero-title" data-enter class="display mt-6 text-[clamp(2.75rem,12vw,4rem)] leading-[0.94] tracking-[-0.045em] [--i:1] desktop:text-[clamp(3.5rem,5.4vw,5.5rem)]">I make serious software <em>easier to use.</em></h1>
-        <p data-enter class="mt-6 max-w-[38ch] text-lg leading-relaxed text-muted [--i:2] desktop:text-xl">I’m Devin. Before Stripe, I worked on design tools at InVision and an AI workspace at Cape.</p>
-        <div data-enter class="mt-9 flex flex-wrap items-center gap-3 [--i:3]">
-          <a class="island-solid" href="#work">See the work <span class="down" aria-hidden="true">↓&#xFE0E;</span></a>
-          <a class="island-ghost" href="mailto:{{ site.Params.email }}">Say hello <span aria-hidden="true">↗&#xFE0E;</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="now-title" class="mx-auto max-w-350 px-4.25 py-24 desktop:px-10 desktop:py-36">
-    <div class="grid gap-3 desktop:grid-cols-12 desktop:grid-rows-[auto_auto]">
-      <div data-reveal class="shell desktop:col-span-7 desktop:row-span-2">
-        <div class="core flex h-full flex-col justify-between gap-16 p-7 desktop:p-12">
-          <p class="label">Now</p>
-          <div>
-            <h2 id="now-title" class="display text-[clamp(2rem,8vw,2.75rem)] leading-[1.02] tracking-[-0.035em] desktop:text-[clamp(2.5rem,3.8vw,3.75rem)]">At Stripe, I work on products people trust <em>with their money.</em></h2>
-            <p class="mt-6 max-w-[48ch] text-lg leading-relaxed text-muted">I’ve been building for the web since 2012, first as a designer and then as a frontend engineer. This is my own site, so what I say here about my work is my own view.</p>
-          </div>
-        </div>
-      </div>
-      <div data-reveal class="shell [--i:1] desktop:col-span-5">
-        <div class="core h-56 desktop:h-full desktop:min-h-60">
-          <div class="states-lattice absolute! inset-0 h-full!" data-lattice data-controller="webgl" data-webgl-scene-value="lattice" aria-hidden="true">
-            <canvas class="states-lattice-canvas" data-lattice-canvas data-webgl-target="canvas"></canvas>
-          </div>
-        </div>
-      </div>
-      <div data-reveal class="shell [--i:2] desktop:col-span-5">
-        <div class="core flex h-full flex-col justify-between gap-10 p-7 desktop:p-9">
-          <p class="label">Writing</p>
-          <div>
-            <p class="text-lg leading-relaxed">{{ len (where site.RegularPages "Section" "blog") }} posts from 2018 to 2022, mostly about React, JavaScript and CSS.</p>
-            <a class="island-ghost mt-6" href="#archive">Read the archive <span class="down" aria-hidden="true">↓&#xFE0E;</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {{ partial "state-shift.html" . }}
-  {{ partial "work.html" . }}
-  {{ partial "archive.html" . }}
+<section class="hero relative isolate [container-type:inline-size] m-2 flex min-h-[max(660px,calc(100svh-16px))] flex-col justify-end overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-28 text-white desktop:m-4 desktop:min-h-[min(1100px,max(660px,calc(100svh-32px)))] desktop:rounded-3xl desktop:px-8 forced-colors:border forced-colors:border-[CanvasText] [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef]" aria-labelledby="hero-title">
+  <div class="hero-topline pointer-events-none relative z-3 mt-8 grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-x-6 gap-y-4 text-[11px] leading-normal desktop:mt-5 desktop:gap-6 desktop:text-[13px]"><p class="min-w-0">Independent perspective.<br>Design &amp; frontend engineering.</p><p class="min-w-0 text-right">Currently building<br>at Stripe</p></div>
+  <p id="wave-help" data-wave-help role="status" class="pointer-events-none absolute inset-x-5 top-[32%] z-3 text-center text-[11px] text-white/80 desktop:text-xs"><span class="sr-only">Make waves lets you drag through the headline like ink in water.</span></p>
+  <div class="hero-composition mt-auto w-full pt-24">
+    <h1 id="hero-title" class="hero-title pointer-events-none relative z-2 pb-9 text-[clamp(44px,16.5cqw,116px)] leading-[0.94] font-medium tracking-[-0.07em] [text-wrap:initial] select-none desktop:pb-10 desktop:text-[11.2cqw] desktop:leading-none desktop:tracking-[-0.075em] min-[1100px]:text-[clamp(60px,11.5cqw,200px)] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]"><span class="hero-line flex flex-col justify-between desktop:flex-row desktop:flex-wrap desktop:gap-[0.16em] [&>span]:min-w-0 [&>span]:max-w-full [&>span:last-child]:self-end desktop:[&>span:last-child]:self-auto"><span>DESIGNER’S</span><span>EYE.</span></span><span class="hero-line flex flex-col justify-between desktop:flex-row desktop:flex-wrap desktop:gap-[0.16em] [&>span]:min-w-0 [&>span]:max-w-full [&>span:last-child]:self-end desktop:[&>span:last-child]:self-auto"><span>ENGINEER’S</span><span>MIND.</span></span></h1>
+  </div>
+  <div class="hero-bottom relative z-3 grid min-h-18 grid-cols-[1fr_auto] items-center gap-4 border-t border-white/33 text-[10px] desktop:min-h-19 desktop:grid-cols-[1fr_auto_1fr] desktop:gap-8 desktop:text-xs"><span class="max-w-31.25 desktop:max-w-none">Thoughtfully designed. Carefully built.</span><a class="inline-flex min-h-11 items-center gap-4 desktop:gap-8" href="#work">Scroll to explore <span class="text-[22px]" aria-hidden="true">↓&#xFE0E;</span></a><span class="hero-index hidden justify-self-end font-mono text-[10px] desktop:block" aria-hidden="true">(01—03)</span></div>
+</section>
+{{ partial "work.html" . }}
+<section class="intro-section mx-auto w-[calc(100%-40px)] border-t border-line-strong pt-14 pb-18 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1fr_1.8fr] desktop:gap-12 desktop:pt-24 desktop:pb-28 min-[1100px]:w-[calc(100%-96px)] max-w-400" id="about" aria-labelledby="about-title">
+  <div class="section-kicker flex items-baseline gap-4 self-start text-[11px] desktop:gap-7 desktop:text-xs"><span class="font-mono text-[10px]">(02)</span><h2 id="about-title">A little context</h2></div>
+  {{ $inline := (resources.Get "images/cape/slide-4.jpg").Fill "280x150 webp q85" }}
+  <p class="intro-statement col-start-2 my-10 text-[clamp(34px,7.8vw,60px)] leading-[1.06] font-normal tracking-[-0.065em] desktop:my-0 desktop:text-[clamp(40px,4.4vw,72px)]">Designing and building<br>for the web <img class="inline-work mx-[0.1em] inline-block h-[0.83em] w-[1.7em] rounded-[0.12em] object-cover align-[-0.04em]" src="{{ $inline.RelPermalink }}" width="280" height="150" alt="" loading="lazy"> <span class="text-muted">since 2012.</span></p>
+  <div class="intro-details col-start-2"><span class="intro-glyph hidden" aria-hidden="true">ds/</span><div class="max-w-145 text-base leading-[1.55] tracking-[-0.02em] desktop:text-lg"><p>I’ve been building for the web since 2012, first as a designer and then as a frontend engineer.</p><p class="mt-5 text-muted">Today I’m a Senior Frontend Engineer at Stripe. Before that, I designed and built an AI workspace at Cape, and worked on design tools at InVision.</p><a class="index-text-link mt-6 inline-flex min-h-11 items-center justify-between gap-10 border-b border-line-strong text-[13px] hover:border-current" href="{{ site.Params.linkedin }}">More about me <span class="text-[22px]" aria-hidden="true">↗&#xFE0E;</span></a></div></div>
+</section>
+<section id="archive" class="notes-section mx-auto w-[calc(100%-40px)] max-w-400 border-t border-line-strong pt-6 pb-20 desktop:w-[calc(100%-64px)] desktop:pt-9 desktop:pb-35 min-[1100px]:w-[calc(100%-96px)]" aria-labelledby="writing-title"><div class="section-kicker flex items-baseline gap-4 self-start text-[11px] desktop:gap-7 desktop:text-xs"><span class="font-mono text-[10px]">(03)</span><h2 id="writing-title">Notes from the archive</h2><span class="ml-auto">2018–2022</span></div><div class="notes-heading my-10 desktop:my-15 desktop:flex desktop:items-end desktop:justify-between"><p class="text-[20vw] leading-[0.95] tracking-[-0.07em] desktop:text-[clamp(64px,9.4vw,150px)]">Thinking<br>out loud.</p><a class="index-text-link mt-7 inline-flex min-h-11 items-center justify-between gap-10 border-b border-line-strong text-[13px] hover:border-current desktop:mt-6" href="{{ "blog/" | relURL }}">All {{ len (where site.RegularPages "Section" "blog") }} articles <span class="text-[22px]" aria-hidden="true">↗&#xFE0E;</span></a></div><div class="notes-list" data-post-list>{{ range first 4 (where site.RegularPages "Section" "blog").ByDate.Reverse }}<a class="note-entry group grid grid-cols-[34px_1fr_20px] items-baseline gap-3 border-t border-line py-6 last:border-b desktop:grid-cols-[1fr_4fr_44px] desktop:gap-6 desktop:py-8" href="{{ .RelPermalink }}"><time class="font-mono text-[9px] text-muted desktop:text-[11px]" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time><h3 class="text-[22px] leading-[1.2] font-normal tracking-[-0.04em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[5px] desktop:text-[clamp(22px,2.8vw,42px)]">{{ .Title }}</h3><span class="text-right text-xl desktop:text-2xl" aria-hidden="true">↗&#xFE0E;</span></a>{{ end }}</div></section>
 {{ end }}

@@ -1,33 +1,24 @@
-{{/* A floating island, detached from the top edge. On narrow screens the
-     same island holds a menu that opens as a full-screen sheet. */}}
-<header class="pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center px-3 pt-3 desktop:pt-5">
-  <div class="pointer-events-auto relative isolate flex w-full items-center justify-between gap-2 py-1.5 pr-1.5 pl-5 desktop:w-max desktop:gap-6">
-    {{/* The glass lives on its own layer: a backdrop-filter on the pill itself
-         would trap the fixed menu sheet inside the pill's box. */}}
-    <span aria-hidden="true" class="absolute inset-0 -z-10 rounded-full bg-[rgb(17_17_20/72%)] shadow-[inset_0_0_0_1px_rgb(255_255_255/9%),0_12px_40px_-12px_rgb(0_0_0/70%)] backdrop-blur-xl"></span>
-    <a class="display text-lg tracking-[-0.03em]" href="{{ site.Home.RelPermalink }}" aria-label="Devin Schulz, home">Devin Schulz</a>
-    <nav class="hidden text-sm desktop:flex [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:rounded-full [&_a]:px-3.5 [&_a]:text-muted [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-ink" aria-label="Main navigation">
-      <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#work">Work</a>
-      <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#states">State Shift</a>
-      <a data-action="menu#follow" href="{{ site.Home.RelPermalink }}#archive">Archive</a>
-    </nav>
-    <a href="mailto:{{ site.Params.email }}" class="island-solid hidden min-h-11 py-1 desktop:inline-flex">Say hello <span aria-hidden="true">↗&#xFE0E;</span></a>
-    <details data-mobile-menu data-controller="menu" data-action="keydown@document->menu#closeOnEscape pointerdown@document->menu#closeOnOutsidePress" class="group desktop:hidden">
-      <summary data-menu-target="summary" class="relative z-10 flex min-h-11 cursor-pointer list-none items-center gap-3 rounded-full bg-white/8 pr-2 pl-4 text-sm [&::-webkit-details-marker]:hidden">
-        Menu
-        <span aria-hidden="true" class="relative block size-7">
-          <span class="absolute top-[11px] left-1.5 h-px w-4 bg-current transition-transform duration-300 ease-glide group-open:translate-y-[3px] group-open:rotate-45"></span>
-          <span class="absolute top-[17px] left-1.5 h-px w-4 bg-current transition-transform duration-300 ease-glide group-open:-translate-y-[3px] group-open:-rotate-45"></span>
-        </span>
-      </summary>
-      <div class="fixed inset-0 -z-0 bg-[rgb(10_10_12/88%)] backdrop-blur-2xl">
-        <nav aria-label="Mobile navigation" class="flex h-full flex-col justify-center gap-2 px-6 pt-20 [&_a]:display [&_a]:flex [&_a]:min-h-14 [&_a]:items-center [&_a]:text-[2.5rem] [&_a]:tracking-[-0.035em] [&_a:hover]:text-accent">
-          <a data-action="menu#follow" data-sheet-item class="[--i:0]" href="{{ site.Home.RelPermalink }}#work">Work</a>
-          <a data-action="menu#follow" data-sheet-item class="[--i:1]" href="{{ site.Home.RelPermalink }}#states">State Shift</a>
-          <a data-action="menu#follow" data-sheet-item class="[--i:2]" href="{{ site.Home.RelPermalink }}#archive">Archive</a>
-          <a data-action="menu#follow" data-sheet-item class="[--i:3]" href="mailto:{{ site.Params.email }}">Say hello <span class="ml-3 text-accent" aria-hidden="true">↗&#xFE0E;</span></a>
-        </nav>
-      </div>
-    </details>
+<header class="site-header z-40 flex items-center justify-between gap-3 {{ if .IsHome }}absolute inset-x-2 top-2 min-h-20 px-5 text-white desktop:inset-x-4 desktop:top-4 desktop:min-h-25 desktop:px-8 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef]{{ else }}relative min-h-22 px-5 desktop:min-h-27 desktop:px-8 min-[1100px]:px-12{{ end }} desktop:gap-6">
+  <a class="brand inline-flex min-h-11 items-center gap-1.25 text-[23px] font-semibold tracking-[-0.065em] desktop:text-[26px]" href="{{ site.Home.RelPermalink }}" aria-label="Devin Schulz, home">devin schulz<span class="text-[26px] {{ if .IsHome }}text-white{{ else }}text-accent{{ end }}" aria-hidden="true">.</span></a>
+  {{ if .IsHome }}
+  <button hidden data-wave-trigger type="button" aria-pressed="false" aria-describedby="wave-help" class="absolute top-20 left-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/50 bg-white/10 px-3 text-[11px] whitespace-nowrap hover:bg-white/20 desktop:static desktop:mr-auto desktop:ml-2 [[hidden]]:hidden"><span aria-hidden="true">≈</span><span data-wave-label>Make waves</span></button>
+  {{ end }}
+  <nav class="desktop-nav hidden items-center gap-5 desktop:flex min-[1100px]:gap-8" aria-label="Main navigation">
+    <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px]" href="{{ site.Home.RelPermalink }}#work">Work <sup class="-mt-3 ml-1 font-mono text-[9px]">03</sup></a>
+    <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px]" href="{{ site.Home.RelPermalink }}#about">About</a>
+    <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px]" href="{{ site.Home.RelPermalink }}#archive">Writing</a>
+  </nav>
+  <div class="header-actions mr-2 ml-auto flex items-center gap-5 desktop:mx-0 min-[1100px]:gap-8">
+    <button hidden type="button" data-controller="theme" data-action="theme#toggle" aria-label="Switch color theme" class="theme-toggle inline-flex min-h-11 min-w-11 items-center justify-center text-[11px] desktop:text-[13px] [[hidden]]:hidden {{ if .IsHome }}text-white{{ else }}text-muted{{ end }}">Dark</button>
+    <a class="contact-link hidden min-h-11 items-center gap-7 rounded-[30px] border px-5 text-[13px] desktop:inline-flex {{ if .IsHome }}border-white bg-white text-[#1d3dce]{{ else }}border-line-strong{{ end }}" href="mailto:{{ site.Params.email }}">Say hello <span class="text-xl" aria-hidden="true">↗&#xFE0E;</span></a>
   </div>
+  <details class="mobile-menu desktop:hidden" data-mobile-menu data-controller="menu" data-action="keydown@document->menu#closeOnEscape pointerdown@document->menu#closeOnOutsidePress">
+    <summary class="flex min-h-11 cursor-pointer list-none items-center gap-3 text-xs [&::-webkit-details-marker]:hidden" data-menu-target="summary">Menu <span class="text-[22px]" aria-hidden="true">+</span></summary>
+    <nav class="mobile-navigation absolute inset-x-0 top-19 rounded-2xl border border-line-strong bg-paper p-6 text-ink shadow-[0_12px_24px_#0002] [&_:focus-visible]:outline-ink [&_:focus-visible]:ring-paper" aria-label="Mobile navigation">
+      <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="{{ site.Home.RelPermalink }}#work">Work</a>
+      <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="{{ site.Home.RelPermalink }}#about">About</a>
+      <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="{{ site.Home.RelPermalink }}#archive">Writing</a>
+      <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="mailto:{{ site.Params.email }}">Say hello ↗&#xFE0E;</a>
+    </nav>
+  </details>
 </header>
