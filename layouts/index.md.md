@@ -2,13 +2,13 @@
 {{- $blog := where site.RegularPages "Section" "blog" -}}
 # {{ site.Title }}
 
-> DESIGNER’S EYE. ENGINEER’S MIND.
+> Making complex software feel simple.
 
-Independent perspective. Design & frontend engineering.
+I design and build complex interfaces, from AI workspaces to the tools designers use.
 
-Currently building at Stripe.
+Senior Frontend Engineer at Stripe.
 
-Thoughtfully designed. Carefully built.
+[Explore selected work]({{ site.Home.Permalink }}#work) · [Try the measurement example]({{ (site.GetPage "/work/invision").Permalink }}#measurement-demo)
 
 ## Selected work
 
@@ -25,11 +25,13 @@ Thoughtfully designed. Carefully built.
 
 Designing and building for the web since 2012.
 
-I’ve been building for the web since 2012, first as a designer and then as a frontend engineer.
+I came to frontend engineering through design. I still enjoy figuring out how an interface should behave as much as writing the code that makes it work.
 
-Today I’m a {{ site.Params.role }} at Stripe. Before that, I designed and built an AI workspace at Cape, and worked on design tools at InVision.
+At Cape, that meant designing and building an AI workspace. At InVision, it meant working on the tools designers and developers use together. I’ve also built my own apps for iPhone, iPad, and Mac, where every decision, from the first form to the end of support, was mine to make.
 
-[More about me]({{ site.Params.linkedin }})
+The work I tend to enjoy most is in the details: keeping a conversation readable as it grows, making a failed request recoverable, or getting a small interaction to behave the way you expect.
+
+[How I approach frontend work]({{ (site.GetPage "/blog/the-hardest-part-of-frontend-development-isnt-writing-code").Permalink }})
 
 ## Thinking out loud.
 
@@ -39,9 +41,9 @@ Notes on code and design, {{ partial "writing-years.html" $blog }}.
 {{ end }}
 [All {{ len $blog }} articles]({{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 
-## Let’s talk
+## Say hello
 
-Have something in mind? [{{ site.Params.email }}](mailto:{{ site.Params.email }})
+Always happy to compare notes. [{{ site.Params.email }}](mailto:{{ site.Params.email }})
 
 - Website: {{ site.Home.Permalink }}
 - GitHub: {{ site.Params.github }}

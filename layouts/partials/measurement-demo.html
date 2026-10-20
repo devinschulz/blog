@@ -1,0 +1,35 @@
+<section id="measurement-demo" aria-labelledby="measurement-demo-title" class="scroll-mt-8 border-t border-line" data-controller="measurement">
+  <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
+    <div class="grid items-start gap-10 desktop:grid-cols-[1fr_1.3fr] desktop:gap-16">
+      <div>
+        <p class="label">An engineering example</p>
+        <h2 id="measurement-demo-title" class="h-section mt-5">Which edges<br>do you measure?</h2>
+        <p class="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted">Two layers can sit apart, overlap, or fit inside one another. Each relationship needs a different set of measurements. This small example shows the approach behind the engine I built for Inspect.</p>
+        <p id="measurement-zoom-note" class="mt-5 max-w-[52ch] leading-relaxed text-muted">Change the relationship, then try zooming. The drawing changes size; the distances stay in design pixels.</p>
+        <a class="arrow-link mt-6 text-sm" href="{{ relref . "/blog/building-the-inspect-measurement-engine" }}">Read how I built the engine <span aria-hidden="true">↗&#xFE0E;</span></a>
+      </div>
+      <div class="min-w-0">
+        <div hidden data-measurement-target="controls" class="mb-6 grid gap-5 [[hidden]]:hidden min-[500px]:grid-cols-2">
+          <div><label class="mb-2 block text-sm" for="measurement-scenario">Layer relationship</label><select id="measurement-scenario" data-measurement-target="scenario" data-action="change->measurement#update" class="min-h-11 w-full rounded-field border border-line-strong bg-paper px-3 text-base"><option value="separated">Separated layers</option><option value="overlapping">Overlapping layers</option><option value="contained">Contained layer</option></select></div>
+          <div><div class="mb-2 flex items-baseline justify-between gap-3"><label class="text-sm" for="measurement-zoom">Display zoom</label><output for="measurement-zoom" data-measurement-target="zoomLabel" class="font-mono text-xs">100%</output></div><input id="measurement-zoom" type="range" min="75" max="125" step="25" value="100" aria-describedby="measurement-zoom-note" data-measurement-target="zoom" data-action="input->measurement#update" class="min-h-11 w-full accent-accent"></div>
+        </div>
+        <figure>
+          <div class="overflow-hidden rounded-panel border border-line-strong bg-paper">
+            <svg class="block h-auto w-full" viewBox="0 0 640 420" role="img" aria-labelledby="measurement-graphic-title measurement-graphic-description">
+              <title id="measurement-graphic-title">Distances between two design layers</title>
+              <desc id="measurement-graphic-description" data-measurement-target="description">Two separated layers with a horizontal gap of 60 design pixels.</desc>
+              <g data-measurement-target="scene">
+                <rect data-measurement-target="compared" x="360" y="170" width="120" height="100" class="fill-ink/5 stroke-ink" stroke-width="1.5" stroke-dasharray="6 4" rx="3"/>
+                <rect data-measurement-target="selected" x="180" y="150" width="120" height="100" class="fill-accent/10 stroke-accent" stroke-width="2" rx="3"/>
+                <g data-measurement-target="measurements" class="text-accent" aria-hidden="true"><line x1="300" y1="210" x2="360" y2="210" stroke="currentColor" stroke-width="1.5"/><rect x="305" y="199" width="50" height="22" class="fill-paper"/><text x="330" y="215" text-anchor="middle" fill="currentColor" font-size="14" class="font-mono">60 px</text></g>
+              </g>
+            </svg>
+            <div class="flex flex-wrap gap-x-6 gap-y-2 border-t border-line px-4 py-3 text-xs"><span class="inline-flex items-center gap-2"><span class="h-3 w-3 border-2 border-accent bg-accent/10" aria-hidden="true"></span>Selected layer</span><span class="inline-flex items-center gap-2"><span class="h-3 w-3 border border-dashed border-ink bg-ink/5" aria-hidden="true"></span>Compared layer</span></div>
+          </div>
+          <figcaption class="mt-4 text-xs leading-relaxed text-muted">A simplified example of the geometry, built for this site. The original Inspect engine handled more arrangements and zoom levels.</figcaption>
+        </figure>
+        <p data-measurement-target="summary" role="status" aria-label="Measurement result" aria-live="polite" aria-atomic="true" class="mt-5 min-h-20 text-sm leading-relaxed">Separated layers: measure the gap between the nearest edges. Horizontal gap: 60 px.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -38,9 +38,9 @@ const writingYears = [...new Set([years[0], years.at(-1)])].join('–');
 const cards = [
   {
     name: 'home',
-    lines: ['DESIGNER’S EYE.', 'ENGINEER’S MIND.'],
+    lines: ['Making complex', 'software feel', 'simple.'],
     label: 'DESIGN & FRONTEND ENGINEERING',
-    note: 'Currently building at Stripe',
+    note: 'Senior Frontend Engineer at Stripe',
   },
   {
     name: 'writing',
@@ -157,29 +157,20 @@ try {
       if (card.lines) {
         // Share previews show the site's resting state, with solid letters.
         // Pointer-driven particles belong to the interactive website.
-        const size = card.name === 'home' ? 123 : 148;
+        const size = card.name === 'home' ? 112 : 148;
         card.lines.forEach((line, index) => {
-          const y = 292 + index * (card.name === 'home' ? 128 : 145);
+          const y =
+            card.name === 'home' ? 222 + index * 112 : 292 + index * 145;
           if (card.name === 'home') {
-            const split = line.lastIndexOf(' ');
             text(
-              line.slice(0, split),
-              56,
+              line,
+              index === 2 ? 1144 : 56,
               y,
               size,
               500,
               'Display',
-              `${size * -0.075}px`,
-            );
-            text(
-              line.slice(split + 1),
-              1144,
-              y,
-              size,
-              500,
-              'Display',
-              `${size * -0.075}px`,
-              'right',
+              `${size * -0.065}px`,
+              index === 2 ? 'right' : 'left',
             );
           } else {
             text(

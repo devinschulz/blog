@@ -1,0 +1,15 @@
+{{- $language := lower (.Type | default "text") -}}
+{{- $names := dict "js" "JavaScript" "javascript" "JavaScript" "jsx" "JSX" "ts" "TypeScript" "typescript" "TypeScript" "tsx" "TSX" "css" "CSS" "html" "HTML" "json" "JSON" "graphql" "GraphQL" "md" "Markdown" "markdown" "Markdown" "sh" "Shell" "shell" "Shell" "bash" "Bash" "text" "Plain text" -}}
+{{- $extensions := dict "js" "js" "javascript" "js" "jsx" "jsx" "ts" "ts" "typescript" "ts" "tsx" "tsx" "css" "css" "html" "html" "json" "json" "graphql" "graphql" "md" "md" "markdown" "md" "sh" "sh" "shell" "sh" "bash" "sh" "text" "txt" -}}
+{{- $name := index $names $language | default $language -}}
+{{- $labelID := printf "code-label-%d" .Ordinal -}}
+{{- $options := dict -}}
+{{- if not (transform.CanHighlight $language) }}{{ $options = dict "type" "text" }}{{ end -}}
+{{- $result := transform.HighlightCodeBlock . $options -}}
+{{- $code := $result.Wrapped -}}
+{{- if not (findRE `<pre[^>]*\btabindex=` $code) }}{{ $code = replace $code "<pre" `<pre tabindex="0"` }}{{ end -}}
+{{- $code = replace $code "<pre" (printf `<pre aria-labelledby="%s"` $labelID) -}}
+<figure class="code-block not-prose my-8 min-w-0 overflow-hidden rounded-xl border border-white/10 bg-[#171a20] text-[13px] leading-[1.7] text-[#eee] [&_pre]:m-0 [&_pre]:max-w-full [&_pre]:overflow-x-auto [&_pre]:bg-transparent [&_pre]:p-5 desktop:[&_pre]:p-7 [&_code]:font-mono [&_code]:text-[inherit]">
+  <figcaption id="{{ $labelID }}" class="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-3 font-mono text-xs text-[#b8c2d1] desktop:px-7"><span>{{ $name }}</span>{{ with index $extensions $language }}<span aria-hidden="true">.{{ . }}</span>{{ end }}</figcaption>
+  {{ $code | safeHTML }}
+</figure>

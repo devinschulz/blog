@@ -94,3 +94,9 @@ editorial:
 As the designer and the frontend lead, I worked on how the interface looked and how it was built. Doing both meant the reasons behind a design carried through into the code.
 
 The hard part was deciding what deserved attention, what could sit a click away, and how to keep people oriented as the task changed.
+
+The full assistant and the side panel are a good example. The full workspace has room for conversation history and navigation. In the panel, those would take space away from the conversation itself. Keeping the message layout and composer familiar gave the smaller view continuity without trying to squeeze in the entire workspace.
+
+Document review involved a different trade-off. A compact summary is useful until someone needs to check the source. Keeping the document beside the objectives meant the evidence stayed available while a reviewer worked through the list. Page navigation and zoom belonged with the document; filters and review actions belonged with the objectives.
+
+The administration screens needed the same care around state. A connected integration and one that still needs setup should offer different actions. An API key form should make its expiry clear before the key is created. These are small decisions individually, but they determine whether a complicated product feels predictable.

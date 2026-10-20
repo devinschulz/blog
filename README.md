@@ -26,6 +26,10 @@ Deploy `dist/`, produced by `npm run build`. Production builds clean retired gen
 
 The homepage uses full-width DM Sans typography on an ultramarine stage. A flat editorial gallery follows, with a compact introduction and writing section below. Project images do not animate or deform on scroll.
 
+The opening headline is “Making complex software feel simple.” It introduces the product interfaces I build and links directly to selected work and the InVision measurement example. The About section describes my approach to design and engineering, with a link to recent writing. Project descriptions name the actual interfaces and contributions, and the contact footer uses a neutral invitation to compare notes.
+
+The InVision case study includes a small SVG measurement example built with a Stimulus controller. Visitors can compare separated, overlapping, and contained layers, then change display zoom without changing the design-pixel measurements. Geometry is independent of rendering in `assets/js/measurements.ts`. Native select and range controls support touch and keyboard input; without JavaScript, the annotated 60px example and its explanation remain visible. Browser tests cover the geometry, zoom invariance, accessibility, and fallback in Chromium and iPhone WebKit. The example illustrates the documented approach rather than reproducing the original Inspect engine.
+
 WebGL is embedded in the blue opening and contact panels. Inspired by the water and physical typography at jithinrp.com, all blue-panel headings use continuous, antialiased lettering at rest. Moving or pressing the pointer dissolves only the nearby area into fine particles; damped springs return them to the solid letterforms. The homepage, writing archive, article and case-study titles, and contact footer share this treatment. Ripple trails and caustic highlights respond in the blue background. On small screens, native text stays crisp while touch drives the water response. Project images stay fixed in their layout; pointer exploration gently magnifies the current screen through a refractive lens.
 
 The shared homepage, writing archive, article, and case-study bundle uses:

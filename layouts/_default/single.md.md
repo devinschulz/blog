@@ -61,6 +61,13 @@
 {{ end }}
 {{ end }}
 {{ end }}
+{{ if eq .File.ContentBaseName "invision" }}
+## Which edges do you measure?
+
+Two layers can sit apart, overlap, or fit inside one another. Separate layers use the gap between their nearest edges. Overlapping layers compare corresponding edges, while a contained layer uses the insets from its surrounding edges. Display zoom scales the drawing without changing the distances in design pixels.
+
+[Try the interactive measurement example]({{ .Permalink }}#measurement-demo), a simplified demonstration of the approach behind the Inspect engine.
+{{ end }}
 {{ with .Params.workflow }}
 ## {{ $.Params.editorial.workflowTitle | plainify }}
 

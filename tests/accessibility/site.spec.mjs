@@ -147,13 +147,20 @@ test('display lettering reflows at 200 percent zoom and text size', async ({
       }
       await expectReflow(page);
       if (textOnly && path === '/') {
+        const footerWords = (
+          await page.locator('.footer-top > a > span').first().innerText()
+        )
+          .trim()
+          .split(/\s+/);
         await expect
           .poll(
             () =>
               page.evaluate(
-                () =>
-                  window.__typeLines.some((line) => line.text === 'LET’S') &&
-                  window.__typeLines.some((line) => line.text === 'TALK'),
+                (words) =>
+                  words.every((word) =>
+                    window.__typeLines.some((line) => line.text === word),
+                  ),
+                footerWords,
               ),
             { message: 'WebGL must redraw both wrapped footer lines' },
           )
@@ -913,13 +920,15 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     'type ButtonSize = "small" | "medium";',
   );
   const more = page.getByRole('region', { name: 'More writing' });
-  await more
-    .getByRole('link', { name: /My Definition of a First-Class Pull Request/ })
-    .click();
-  await page.waitForURL('**/blog/my-definition-of-a-first-class-pull-request/');
-  await expect(page.locator('.article-hero h1')).toHaveText(
-    'My Definition of a First-Class Pull Request',
-  );
+  const nextArticle = more
+    .getByRole('link')
+    .filter({ has: page.locator('time') })
+    .first();
+  const nextHref = await nextArticle.getAttribute('href');
+  const nextTitle = await nextArticle.locator('p span').first().innerText();
+  await nextArticle.click();
+  await page.waitForURL(`**${nextHref}`);
+  await expect(page.locator('.article-hero h1')).toHaveText(nextTitle);
   await page
     .locator('.article-hero')
     .getByRole('link', { name: 'All writing', exact: true })
