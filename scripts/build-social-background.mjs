@@ -44,7 +44,7 @@ const cards = [
   },
   {
     name: 'writing',
-    lines: ['THINKING', 'OUT LOUD.'],
+    lines: ['Things I’ve', 'learned.'],
     label: 'NOTES ON CODE & DESIGN',
     note: `${posts.length} articles · ${writingYears}`,
   },

@@ -4,7 +4,7 @@
     <header class="article-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-5 pb-6 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-6 desktop:pb-8 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
       <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-3 text-xs desktop:pb-5 desktop:text-[13px]">
         <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">←&#xFE0E;</span> All writing</a>
-        <span>Thinking out loud.</span>
+        <span>Things I’ve learned.</span>
       </div>
       <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-10 max-w-[22ch] text-[clamp(34px,9vw,64px)] leading-[1.03] font-medium tracking-[-0.06em] desktop:mt-14 desktop:text-[clamp(54px,6.9vw,112px)] desktop:leading-[1.02] min-[1600px]:max-w-[25ch]">{{ .Title }}</h1>
       {{ with .Description }}<p class="relative z-3 mt-6 max-w-[56ch] text-base leading-relaxed text-white/85 desktop:mt-8 desktop:text-[21px]">{{ . }}</p>{{ end }}

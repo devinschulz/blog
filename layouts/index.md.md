@@ -33,7 +33,7 @@ The work I tend to enjoy most is in the details: keeping a conversation readable
 
 [How I approach frontend work]({{ (site.GetPage "/blog/the-hardest-part-of-frontend-development-isnt-writing-code").Permalink }})
 
-## Thinking out loud.
+## Things I’ve learned.
 
 Notes on code and design, {{ partial "writing-years.html" $blog }}.
 

@@ -1,4 +1,4 @@
-# Thinking out loud.
+# Things I’ve learned.
 
 Notes on code and design.
 
