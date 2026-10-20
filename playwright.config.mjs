@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/accessibility',
@@ -17,16 +17,28 @@ export default defineConfig({
       ? { channel: process.env.PLAYWRIGHT_CHANNEL }
       : {}),
   },
-  projects: ['light', 'dark'].flatMap((colorScheme) => [
+  projects: [
+    ...['light', 'dark'].flatMap((colorScheme) => [
+      {
+        name: `desktop-${colorScheme}`,
+        use: { colorScheme, viewport: { width: 1440, height: 1000 } },
+      },
+      {
+        name: `narrow-${colorScheme}`,
+        use: { colorScheme, viewport: { width: 320, height: 800 } },
+      },
+    ]),
     {
-      name: `desktop-${colorScheme}`,
-      use: { colorScheme, viewport: { width: 1440, height: 1000 } },
+      name: 'mobile-safari-theme',
+      testMatch: 'theme.spec.mjs',
+      use: {
+        ...devices['iPhone 13'],
+        browserName: 'webkit',
+        channel: undefined,
+        colorScheme: 'dark',
+      },
     },
-    {
-      name: `narrow-${colorScheme}`,
-      use: { colorScheme, viewport: { width: 320, height: 800 } },
-    },
-  ]),
+  ],
   webServer: {
     command: 'node scripts/serve-test-site.mjs',
     url: 'http://127.0.0.1:4177',

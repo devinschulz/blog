@@ -19,6 +19,12 @@ export default class extends Controller<HTMLButtonElement> {
 
   private sync(): void {
     const dark = document.documentElement.dataset.theme === 'dark';
+    document
+      .querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
+      .forEach((meta) => {
+        const color = dark ? meta.dataset.dark : meta.dataset.light;
+        if (color) meta.content = color;
+      });
     this.element.textContent = dark ? 'Light' : 'Dark';
     this.element.setAttribute(
       'aria-label',

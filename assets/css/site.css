@@ -49,6 +49,20 @@
   --color-accent: #a2b3ff;
   --color-accent-soft: #282b25;
 }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --color-paper: #1a1b19;
+    --color-ink: #eeefeb;
+    --color-muted: #a8aca3;
+    --color-surface: #282b25;
+    --color-raised: #22251f;
+    --color-line: rgb(238 239 235 / 16%);
+    --color-line-strong: rgb(238 239 235 / 36%);
+    --color-accent: #a2b3ff;
+    --color-accent-soft: #282b25;
+  }
+}
 @layer base {
   html {
     background-color: var(--color-paper);
