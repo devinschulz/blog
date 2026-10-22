@@ -38,6 +38,20 @@
 :root {
   color-scheme: light;
 }
+.logo-count {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+}
 :root[data-theme='dark'] {
   color-scheme: dark;
   --color-paper: #1a1b19;

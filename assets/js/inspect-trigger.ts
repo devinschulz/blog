@@ -1,4 +1,5 @@
 import type { Inspector } from './inspect-mode';
+import { showLogoCount } from './logo-feedback';
 
 let inspector: Inspector | undefined;
 let opening = false;
@@ -61,7 +62,6 @@ document.addEventListener(
   'click',
   (event) => {
     if (
-      inspector?.active ||
       event.defaultPrevented ||
       event.detail === 0 ||
       event.button !== 0 ||
@@ -76,13 +76,22 @@ document.addEventListener(
         ? event.target.closest<HTMLAnchorElement>('.brand')
         : null;
     if (!brand) return;
+    if (inspector?.active) return;
+    showLogoCount(brand);
+    const home = new URL(brand.href);
+    // Clicking home while already home shouldn't rebuild the graphics.
+    if (
+      home.origin === location.origin &&
+      home.pathname === location.pathname
+    ) {
+      event.preventDefault();
+      if (location.hash || location.search)
+        history.replaceState(history.state, '', home.href);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
     const now = performance.now();
     taps = now - lastTap > 1400 ? 1 : taps + 1;
     lastTap = now;
-    // A normal single click retains its home link. Subsequent taps can finish
-    // the sequence without repeatedly navigating or replacing the logo.
-    if (taps > 1 && new URL(brand.href).pathname === location.pathname)
-      event.preventDefault();
     if (taps === 5) {
       event.preventDefault();
       taps = 0;

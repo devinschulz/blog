@@ -35,6 +35,7 @@ export default defineConfig({
         'measurement.spec.mjs',
         'inspect.spec.mjs',
         'header.spec.mjs',
+        'logo.spec.mjs',
       ],
       use: {
         ...devices['iPhone 13'],
