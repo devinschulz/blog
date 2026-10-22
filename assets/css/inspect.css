@@ -1,0 +1,188 @@
+/* A dormant Easter egg: measurements and UI exist only while Inspect is open. */
+html[data-inspect-active] :is(h1, h2, h3, h4, p, figure, img) {
+  pointer-events: auto;
+}
+html[data-inspect-active]
+  :is(
+    header,
+    main,
+    section,
+    article,
+    nav,
+    footer,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    img,
+    a,
+    button,
+    pre
+  ):not([data-inspect-ui], [data-inspect-ui] *):not(:focus-visible) {
+  outline: 1px solid rgb(255 120 172 / 45%);
+  outline-offset: 2px;
+}
+.inspect-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.inspect-geometry {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.inspect-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: min(320px, calc(100% - 16px));
+  border-radius: 4px;
+  background: #922147;
+  padding: 4px 8px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.inspect-panel {
+  position: absolute;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  width: min(340px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 12px;
+  background: var(--color-paper);
+  padding: 12px 16px 16px;
+  box-shadow: 0 8px 40px #0003;
+}
+.inspect-panel-top,
+.inspect-selection,
+.inspect-panel-top h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.inspect-panel-top {
+  flex-wrap: wrap;
+}
+.inspect-panel-top h2 {
+  justify-content: start;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 600;
+}
+.inspect-panel-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+}
+.inspect-live {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+.inspect-panel button {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 6px;
+  padding-inline: 8px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.inspect-panel button:active {
+  background: var(--color-surface);
+}
+.inspect-panel button:disabled {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+@media (hover: hover) and (pointer: fine) {
+  .inspect-panel button:enabled:hover {
+    background: var(--color-surface);
+  }
+}
+.inspect-instructions,
+.inspect-order {
+  color: var(--color-muted);
+}
+.inspect-selection {
+  margin-top: 12px;
+  border-block: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+}
+.inspect-selection p {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.inspect-panel dl {
+  display: grid;
+  gap: 10px;
+  padding-block: 14px;
+}
+.inspect-panel dl > div {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+}
+.inspect-panel dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-muted);
+}
+.inspect-panel dd {
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+.inspect-padding-dot,
+.inspect-margin-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-muted);
+  background: #67d9ed;
+}
+.inspect-margin-dot {
+  background: #ffbc70;
+}
+.inspect-order {
+  border-top: 1px solid var(--color-line);
+  padding-top: 10px;
+  font-size: 10px;
+}
+@media (forced-colors: active) {
+  .inspect-panel,
+  .inspect-badge {
+    border: 1px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+  [data-inspect-outline] {
+    stroke: Highlight;
+  }
+}

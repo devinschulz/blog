@@ -11,11 +11,17 @@ function mountPage() {
   )
     return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  const clearProjects = mountProjectPreviews();
+  let clearProjects: (() => void) | undefined;
   let clearSurfaces: (() => void) | undefined;
   function update() {
     clearSurfaces?.();
     clearSurfaces = undefined;
+    if (document.documentElement.hasAttribute('data-inspect-active')) {
+      clearProjects?.();
+      clearProjects = undefined;
+      return;
+    }
+    clearProjects ??= mountProjectPreviews();
     if (reduce.matches) return;
     const field = createSpatialField();
     const title = mountSpatialTitle(field);
@@ -26,8 +32,10 @@ function mountPage() {
   }
   update();
   reduce.addEventListener('change', update);
+  document.addEventListener('portfolio:inspect', update);
   disposePage = () => {
-    clearProjects();
+    clearProjects?.();
+    document.removeEventListener('portfolio:inspect', update);
     reduce.removeEventListener('change', update);
     clearSurfaces?.();
   };

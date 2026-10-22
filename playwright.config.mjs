@@ -30,7 +30,12 @@ export default defineConfig({
     ]),
     {
       name: 'mobile-safari',
-      testMatch: ['theme.spec.mjs', 'measurement.spec.mjs'],
+      testMatch: [
+        'theme.spec.mjs',
+        'measurement.spec.mjs',
+        'inspect.spec.mjs',
+        'header.spec.mjs',
+      ],
       use: {
         ...devices['iPhone 13'],
         browserName: 'webkit',

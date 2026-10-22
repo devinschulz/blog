@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './fonts.css';
 @import './syntax.css';
+@import './inspect.css';
 @plugin "@tailwindcss/typography";
 @source "hugo_stats.json";
 @source "../../layouts";
