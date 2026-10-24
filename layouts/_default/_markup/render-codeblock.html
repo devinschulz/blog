@@ -10,6 +10,6 @@
 {{- if not (findRE `<pre[^>]*\btabindex=` $code) }}{{ $code = replace $code "<pre" `<pre tabindex="0"` }}{{ end -}}
 {{- $code = replace $code "<pre" (printf `<pre aria-labelledby="%s"` $labelID) -}}
 <figure class="code-block not-prose my-8 min-w-0 overflow-hidden rounded-xl border border-white/10 bg-[#171a20] text-[13px] leading-[1.7] text-[#eee] [&_pre]:m-0 [&_pre]:max-w-full [&_pre]:overflow-x-auto [&_pre]:bg-transparent [&_pre]:p-5 desktop:[&_pre]:p-7 [&_code]:font-mono [&_code]:text-[inherit]">
-  <figcaption id="{{ $labelID }}" class="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-3 font-mono text-xs text-[#b8c2d1] desktop:px-7"><span>{{ $name }}</span>{{ with index $extensions $language }}<span aria-hidden="true">.{{ . }}</span>{{ end }}</figcaption>
+  <figcaption id="{{ $labelID }}" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-white/10 px-5 py-3 text-xs text-[#b8c2d1] desktop:px-7"><span class="font-mono">{{ $name }}</span><span hidden data-code-scroll-hint class="ml-auto [[hidden]]:hidden">Scroll horizontally <span aria-hidden="true">↔</span></span>{{ with index $extensions $language }}<span class="font-mono" aria-hidden="true">.{{ . }}</span>{{ end }}</figcaption>
   {{ $code | safeHTML }}
 </figure>

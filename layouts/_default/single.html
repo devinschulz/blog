@@ -1,25 +1,25 @@
 {{ define "main" }}
   {{ $hasContents := gt (len .Fragments.Identifiers) 1 }}
-  <article class="article-page" aria-labelledby="article-title">
-    <header class="article-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-5 pb-6 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-6 desktop:pb-8 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
-      <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-3 text-xs desktop:pb-5 desktop:text-[13px]">
+  <article class="article-page" aria-labelledby="article-title" data-controller="reading">
+    <header class="article-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-3 pb-5 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-4 desktop:pb-6 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
+      <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-2 text-xs desktop:text-[13px]">
         <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">←&#xFE0E;</span> All writing</a>
         <span>Things I’ve learned.</span>
       </div>
-      <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-10 max-w-[22ch] text-[clamp(34px,9vw,64px)] leading-[1.03] font-medium tracking-[-0.06em] desktop:mt-14 desktop:text-[clamp(54px,6.9vw,112px)] desktop:leading-[1.02] min-[1600px]:max-w-[25ch]">{{ .Title }}</h1>
-      {{ with .Description }}<p class="relative z-3 mt-6 max-w-[56ch] text-base leading-relaxed text-white/85 desktop:mt-8 desktop:text-[21px]">{{ . }}</p>{{ end }}
-      <dl class="relative z-3 mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/30 pt-5 text-xs desktop:mt-14 desktop:grid-cols-[1fr_1fr_2fr] desktop:gap-8 desktop:pt-6 desktop:text-[13px]">
-        <div><dt class="mb-2 text-[10px] text-white/85 desktop:text-[11px]">Published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></dd></div>
-        <div><dt class="mb-2 text-[10px] text-white/85 desktop:text-[11px]">Reading time</dt><dd>{{ .ReadingTime }} min read</dd></div>
-        {{ with .Params.tags }}<div class="col-span-2 desktop:col-span-1"><dt class="mb-2 text-[10px] text-white/85 desktop:text-[11px]">Filed under</dt><dd>{{ delimit . " · " }}</dd></div>{{ end }}
+      <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-medium tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(40px,4.7vw,72px)] desktop:leading-[1.04]">{{ .Title }}</h1>
+      {{ with .Description }}<p class="relative z-3 mt-4 max-w-[62ch] text-sm leading-relaxed text-white/85 desktop:text-lg">{{ . }}</p>{{ end }}
+      <dl class="relative z-3 mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/30 pt-4 text-xs leading-relaxed desktop:mt-6 desktop:text-[13px]">
+        <div><dt class="sr-only">Published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></dd></div>
+        <div><dt class="sr-only">Reading time</dt><dd>{{ .ReadingTime }} min read</dd></div>
+        {{ with .Params.tags }}<div><dt class="sr-only">Filed under</dt><dd>{{ delimit . " · " }}</dd></div>{{ end }}
       </dl>
     </header>
 
-    <div class="article-layout mx-auto w-[calc(100%-40px)] max-w-320 pt-10 pb-16 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[minmax(160px,1fr)_minmax(0,760px)] desktop:items-start desktop:gap-14 desktop:pt-16 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)] min-[1100px]:gap-24">
+    <div class="article-layout mx-auto w-[calc(100%-40px)] max-w-320 pt-6 pb-16 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[minmax(160px,1fr)_minmax(0,760px)] desktop:items-start desktop:gap-14 desktop:pt-10 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)] min-[1100px]:gap-24">
       <aside class="hidden max-w-56 self-start desktop:sticky desktop:top-10 desktop:block" aria-label="Article information">
         {{ if $hasContents }}
           <p class="mb-4 text-xs font-medium">On this page</p>
-          <div class="text-[13px] leading-normal text-muted [&_ul]:list-none [&_ul]:space-y-1 [&_ul_ul]:mt-1 [&_ul_ul]:pl-3 [&_a]:block [&_a]:min-h-9 [&_a]:py-2 [&_a:hover]:text-accent [&_a:hover]:underline [&_a:hover]:underline-offset-4">{{ .TableOfContents | replaceRE `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="Article sections">` | safeHTML }}</div>
+          <div class="article-contents text-[13px] leading-normal text-muted [&_ul]:list-none [&_ul]:space-y-1 [&_ul_ul]:mt-1 [&_ul_ul]:pl-3 [&_a]:block [&_a]:min-h-9 [&_a]:py-2 [&_a:hover]:text-accent [&_a:hover]:underline [&_a:hover]:underline-offset-4">{{ .TableOfContents | replaceRE `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="Article sections" data-turbo="false">` | safeHTML }}</div>
         {{ end }}
         {{ if .Params.archived }}
         <div class="{{ if $hasContents }}mt-10 border-t border-line pt-6{{ end }} text-xs leading-relaxed text-muted">
@@ -32,12 +32,12 @@
 
       <div class="min-w-0">
         {{ if .Params.archived }}
-        <div class="mb-9 border-l-2 border-accent pl-4 text-xs leading-relaxed text-muted desktop:hidden"><p class="mb-1 font-medium text-ink">From the archive</p><p>Published in {{ .Date.Format "2006" }} and kept as originally written, with minor grammar fixes. Some details may have aged.</p></div>
+        <div class="mb-5 border-l border-accent pl-4 text-xs leading-relaxed text-muted desktop:hidden"><p class="mb-1 font-medium text-ink">From the archive</p><p>Published in {{ .Date.Format "2006" }} and kept as originally written, with minor grammar fixes. Some details may have aged.</p></div>
         {{ end }}
         {{ if $hasContents }}
-        <details class="mb-10 border-y border-line py-1 desktop:hidden">
-          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-sm [&::-webkit-details-marker]:hidden">On this page <span aria-hidden="true">+</span></summary>
-          <div class="pb-4 text-sm text-muted [&_ul]:list-none [&_ul_ul]:pl-3 [&_a]:block [&_a]:min-h-11 [&_a]:py-2.5 [&_a:hover]:text-accent">{{ .TableOfContents | replaceRE `<nav id="TableOfContents">` `<nav id="TableOfContentsMobile" aria-label="Article sections on mobile">` | safeHTML }}</div>
+        <details class="mb-6 border-y border-line py-1 desktop:hidden">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-sm [&::-webkit-details-marker]:hidden">On this page {{ partial "disclosure-icon.html" . }}</summary>
+          <div class="article-contents pb-4 text-sm text-muted [&_ul]:list-none [&_ul_ul]:pl-3 [&_a]:block [&_a]:min-h-11 [&_a]:py-2.5 [&_a:hover]:text-accent">{{ .TableOfContents | replaceRE `<nav id="TableOfContents">` `<nav id="TableOfContentsMobile" aria-label="Article sections on mobile" data-turbo="false">` | safeHTML }}</div>
         </details>
         {{ end }}
         <div class="article-body prose prose-theme max-w-none text-[17px] leading-[1.8] text-ink prose-headings:scroll-mt-8 prose-headings:font-display prose-headings:font-medium prose-headings:tracking-[-0.045em] prose-headings:text-ink prose-h2:mt-14 prose-h2:mb-5 prose-h2:text-[30px] prose-h2:leading-[1.13] prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-a:text-accent prose-a:decoration-1 prose-a:underline-offset-[0.2em] prose-strong:font-semibold prose-strong:text-ink prose-blockquote:border-accent prose-blockquote:text-ink prose-blockquote:not-italic prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-[#171a20] prose-pre:p-5 prose-pre:text-[#eee] prose-code:rounded-sm prose-code:bg-surface prose-code:px-1 prose-code:py-0.5 prose-code:font-mono prose-code:text-[0.82em] prose-code:font-normal prose-code:break-words prose-code:before:content-none prose-code:after:content-none prose-img:h-auto prose-img:max-w-full prose-img:rounded-xl prose-hr:border-line prose-th:border-line-strong prose-th:text-ink prose-td:border-line desktop:text-lg desktop:prose-h2:mt-18 desktop:prose-h2:text-[38px] desktop:prose-pre:p-7 [&>p:first-child]:mt-0 [&>p:first-child]:text-xl [&>p:first-child]:leading-[1.65] desktop:[&>p:first-child]:text-[23px] [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_.highlight]:min-w-0 [&_li::marker]:text-muted">{{ .Content }}</div>
@@ -50,12 +50,20 @@
   </article>
 
   {{ $others := where (where site.RegularPages "Section" "blog") "RelPermalink" "ne" .RelPermalink }}
+  {{ $ranked := slice }}
+  {{ $tags := .Params.tags | default slice }}
+  {{ range $others.ByDate.Reverse }}
+    {{ $shared := len (intersect $tags (.Params.tags | default slice)) }}
+    {{ $ranked = $ranked | append (dict "page" . "score" $shared) }}
+  {{ end }}
   {{ if $others }}
   <section class="mx-auto w-[calc(100%-40px)] max-w-320 border-t border-line-strong pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]" aria-labelledby="more-writing-title">
     <div class="mb-7 flex flex-wrap items-center justify-between gap-4 text-xs desktop:mb-10"><h2 id="more-writing-title">More writing</h2><a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}">All writing <span aria-hidden="true">↗&#xFE0E;</span></a></div>
     <div class="desktop:grid desktop:grid-cols-2 desktop:gap-14">
-      {{ range first 2 $others.ByDate.Reverse }}
+      {{ range first 2 (sort $ranked "score" "desc") }}
+      {{ with .page }}
       <a class="group flex flex-col justify-between border-t border-line py-6 desktop:py-8" href="{{ .RelPermalink }}"><p class="mb-5 text-xs text-muted"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.tags }} · {{ index . 0 }}{{ end }}</p><p class="flex items-start justify-between gap-6 text-[28px] leading-[1.12] tracking-[-0.045em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4 desktop:text-[clamp(28px,2.8vw,42px)]"><span>{{ .Title }}</span><span class="shrink-0" aria-hidden="true">↗&#xFE0E;</span></p></a>
+      {{ end }}
       {{ end }}
     </div>
   </section>

@@ -6,7 +6,7 @@
   <nav class="desktop-nav hidden items-center gap-5 desktop:ml-auto desktop:flex min-[1100px]:gap-8" aria-label="Main navigation">
     <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px]" href="{{ site.Home.RelPermalink }}#work">Work <sup class="-mt-3 ml-1 font-mono text-[9px]">03</sup></a>
     <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px]" href="{{ site.Home.RelPermalink }}#about">About</a>
-    <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px]" href="{{ site.Home.RelPermalink }}#archive">Writing</a>
+    <a class="inline-flex min-h-11 items-center text-[13px] hover:underline hover:underline-offset-[5px] {{ if eq .Section "blog" }}underline underline-offset-[5px]{{ end }}" href="{{ "blog/" | relURL }}"{{ if eq .Section "blog" }} aria-current="{{ if .IsSection }}page{{ else }}true{{ end }}"{{ end }}>Writing</a>
   </nav>
   <div class="header-actions mr-2 ml-auto flex items-center gap-5 desktop:mx-0 min-[1100px]:gap-8">
     <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center">
@@ -15,11 +15,11 @@
     <a class="contact-link hidden min-h-11 items-center gap-7 rounded-[30px] border px-5 text-[13px] desktop:inline-flex {{ if .IsHome }}border-white bg-white text-[#1d3dce]{{ else }}border-line-strong{{ end }}" href="mailto:{{ site.Params.email }}">Say hello <span class="text-xl" aria-hidden="true">↗&#xFE0E;</span></a>
   </div>
   <details class="mobile-menu desktop:hidden" data-mobile-menu data-controller="menu" data-action="keydown@document->menu#closeOnEscape pointerdown@document->menu#closeOnOutsidePress">
-    <summary class="flex min-h-11 cursor-pointer list-none items-center gap-3 text-xs [&::-webkit-details-marker]:hidden" data-menu-target="summary">Menu <span class="text-[22px]" aria-hidden="true">+</span></summary>
+    <summary class="flex min-h-11 cursor-pointer list-none items-center gap-3 text-xs [&::-webkit-details-marker]:hidden" data-menu-target="summary">Menu {{ partial "disclosure-icon.html" . }}</summary>
     <nav class="mobile-navigation absolute inset-x-0 top-19 rounded-2xl border border-line-strong bg-paper p-6 text-ink shadow-[0_12px_24px_#0002] [&_:focus-visible]:outline-ink [&_:focus-visible]:ring-paper" aria-label="Mobile navigation">
       <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="{{ site.Home.RelPermalink }}#work">Work</a>
       <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="{{ site.Home.RelPermalink }}#about">About</a>
-      <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="{{ site.Home.RelPermalink }}#archive">Writing</a>
+      <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em] {{ if eq .Section "blog" }}underline underline-offset-[5px]{{ end }}" data-action="menu#follow" href="{{ "blog/" | relURL }}"{{ if eq .Section "blog" }} aria-current="{{ if .IsSection }}page{{ else }}true{{ end }}"{{ end }}>Writing</a>
       <a class="flex min-h-14 items-center text-[28px] tracking-[-0.04em]" data-action="menu#follow" href="mailto:{{ site.Params.email }}">Say hello ↗&#xFE0E;</a>
     </nav>
   </details>

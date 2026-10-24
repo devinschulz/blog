@@ -197,6 +197,17 @@
   --tw-prose-captions: var(--color-muted);
   --tw-prose-code: var(--color-ink);
 }
+.article-body > :where(p, ul, ol, blockquote, h2, h3, h4) {
+  max-width: min(68ch, 38rem);
+}
+.article-contents a[aria-current='location'] {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+details[open] > summary .disclosure-icon-vertical {
+  display: none;
+}
 @layer base {
   @media (prefers-reduced-motion: reduce) {
     *,

@@ -398,6 +398,35 @@ test('writing highlights lead to the complete archive', async ({ page }) => {
   await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
 });
 
+test('Writing opens the full archive and its year shortcuts reach older posts', async ({
+  page,
+}, testInfo) => {
+  await page.goto('/blog/reflecting-on-twelve-years-of-remote-work/');
+  const mobile = testInfo.project.name.startsWith('narrow');
+  if (mobile) await page.locator('.mobile-menu summary').click();
+  const navigation = page.getByRole('navigation', {
+    name: mobile ? 'Mobile navigation' : 'Main navigation',
+    exact: true,
+  });
+  await expect(
+    navigation.getByRole('link', { name: 'Writing', exact: true }),
+  ).toHaveAttribute('aria-current', 'true');
+  await navigation.getByRole('link', { name: 'Writing', exact: true }).click();
+  await page.waitForURL('**/blog/');
+  await expect(page.locator('.desktop-nav a[aria-current="page"]')).toHaveText(
+    'Writing',
+  );
+  const years = page.getByRole('navigation', {
+    name: 'Browse writing by year',
+  });
+  await years.getByRole('link', { name: '2018', exact: true }).click();
+  await expect(page.locator('#year-2018')).toBeInViewport();
+  await expect(
+    page.getByRole('region', { name: '2018 4 articles' }).getByRole('link'),
+  ).toHaveCount(4);
+  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
+});
+
 test('reduced motion retains native typography and project images', async ({
   page,
 }) => {
@@ -912,6 +941,9 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     .click();
   await page.waitForURL('**/#define-the-union-types');
   await expect(page.locator('#define-the-union-types')).toBeInViewport();
+  await expect(
+    contents.getByRole('link', { name: 'Define the union types', exact: true }),
+  ).toHaveAttribute('aria-current', 'location');
   await expect(page.locator('.article-body pre').first()).toHaveAttribute(
     'tabindex',
     '0',
@@ -920,6 +952,13 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     'type ButtonSize = "small" | "medium";',
   );
   const more = page.getByRole('region', { name: 'More writing' });
+  await expect(more).toContainText('Building the Inspect Measurement Engine');
+  const firstCode = page.locator('.code-block').first();
+  if (mobile) {
+    await expect(firstCode.locator('[data-code-scroll-hint]')).toBeVisible();
+  } else {
+    await expect(firstCode.locator('[data-code-scroll-hint]')).toBeHidden();
+  }
   const nextArticle = more
     .getByRole('link')
     .filter({ has: page.locator('time') })
