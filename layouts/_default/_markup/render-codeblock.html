@@ -9,7 +9,21 @@
 {{- $code := $result.Wrapped -}}
 {{- if not (findRE `<pre[^>]*\btabindex=` $code) }}{{ $code = replace $code "<pre" `<pre tabindex="0"` }}{{ end -}}
 {{- $code = replace $code "<pre" (printf `<pre aria-labelledby="%s"` $labelID) -}}
-<figure class="code-block not-prose my-8 min-w-0 overflow-hidden rounded-xl border border-white/10 bg-[#171a20] text-[13px] leading-[1.7] text-[#eee] [&_pre]:m-0 [&_pre]:max-w-full [&_pre]:overflow-x-auto [&_pre]:bg-transparent [&_pre]:p-5 desktop:[&_pre]:p-7 [&_code]:font-mono [&_code]:text-[inherit]">
-  <figcaption id="{{ $labelID }}" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-white/10 px-5 py-3 text-xs text-[#b8c2d1] desktop:px-7"><span class="font-mono">{{ $name }}</span><span hidden data-code-scroll-hint class="ml-auto [[hidden]]:hidden">Scroll horizontally <span aria-hidden="true">↔</span></span>{{ with index $extensions $language }}<span class="font-mono" aria-hidden="true">.{{ . }}</span>{{ end }}</figcaption>
+<figure class="code-block not-prose my-8 min-w-0 overflow-hidden rounded-xl border border-white/10 bg-[#171a20] text-[13px] leading-[1.7] text-[#eee] [&_pre]:m-0 [&_pre]:max-w-full [&_pre]:overflow-x-auto [&_pre]:bg-transparent [&_pre]:p-5 desktop:[&_pre]:p-7 [&_pre:focus-visible]:outline-2 [&_pre:focus-visible]:outline-offset-[-3px] [&_pre:focus-visible]:outline-white [&_pre:focus-visible]:ring-0 forced-colors:[&_pre:focus-visible]:outline-[Highlight] [&_code]:font-mono [&_code]:text-[inherit]" data-controller="code" data-action="keydown->code#scroll turbo:before-cache@document->code#clear">
+  <figcaption class="flex min-h-11 flex-wrap items-center justify-between gap-x-4 border-b border-white/10 px-5 text-xs text-[#b8c2d1] desktop:px-7">
+    <span id="{{ $labelID }}" class="font-mono">{{ $name }}</span>
+    <div class="ml-auto flex items-center gap-3">
+      {{ with index $extensions $language }}<span class="font-mono" aria-hidden="true">.{{ . }}</span>{{ end }}
+      <button hidden type="button" data-code-target="button" data-action="code#copy" aria-label="Copy {{ $name }} code" class="group/copy inline-flex min-h-11 min-w-18 items-center justify-center rounded-md font-sans text-xs text-[#eee] disabled:cursor-wait disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-white focus-visible:ring-0 forced-colors:focus-visible:outline-[Highlight] [[hidden]]:hidden">
+        <span class="pointer-events-none inline-flex min-h-7 min-w-18 shrink-0 items-center justify-center gap-1.5 rounded-md border border-white/15 px-1.5 whitespace-nowrap group-hover/copy:bg-white/10">
+          <svg data-code-target="copyIcon" class="shrink-0" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5"/><path d="M3 11H2.5A1.5 1.5 0 0 1 1 9.5v-7A1.5 1.5 0 0 1 2.5 1h7A1.5 1.5 0 0 1 11 2.5V3"/></svg>
+          <svg hidden data-code-target="checkIcon" class="shrink-0 [[hidden]]:hidden" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8 3 3 7-7"/></svg>
+          <span data-code-target="label" class="shrink-0 whitespace-nowrap">Copy</span>
+        </span>
+      </button>
+    </div>
+    <span hidden data-code-scroll-hint class="order-last w-full pb-2 [[hidden]]:hidden">Scroll horizontally <span aria-hidden="true">↔</span></span>
+  </figcaption>
+  <p data-code-target="status" role="status" class="sr-only m-0 px-5 pt-3 text-xs leading-relaxed text-[#b8c2d1] desktop:px-7"></p>
   {{ $code | safeHTML }}
 </figure>

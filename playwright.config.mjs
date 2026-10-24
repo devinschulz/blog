@@ -29,8 +29,20 @@ export default defineConfig({
       },
     ]),
     {
+      name: 'desktop-safari',
+      testMatch: ['header.spec.mjs'],
+      use: {
+        browserName: 'webkit',
+        channel: undefined,
+        colorScheme: 'dark',
+        viewport: { width: 1440, height: 1000 },
+      },
+    },
+    {
       name: 'mobile-safari',
       testMatch: [
+        'code.spec.mjs',
+        'reading.spec.mjs',
         'theme.spec.mjs',
         'measurement.spec.mjs',
         'inspect.spec.mjs',

@@ -5,6 +5,7 @@ import MenuController from './controllers/menu_controller';
 import ThemeController from './controllers/theme_controller';
 import MeasurementController from './controllers/measurement_controller';
 import ReadingController from './controllers/reading_controller';
+import CodeController from './controllers/code_controller';
 import './inspect-trigger';
 
 const application = Application.start();
@@ -13,4 +14,5 @@ application.register('menu', MenuController);
 application.register('theme', ThemeController);
 application.register('measurement', MeasurementController);
 application.register('reading', ReadingController);
+application.register('code', CodeController);
 export { application };

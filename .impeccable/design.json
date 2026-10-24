@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T20:00:14.648Z",
+  "title": "Design System: Devin Schulz",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Electric Blue",
+        "tonalRamp": [
+          "oklch(0.1500 0.24903 266.26)",
+          "oklch(0.2643 0.24903 266.26)",
+          "oklch(0.3786 0.24903 266.26)",
+          "oklch(0.4929 0.24903 266.26)",
+          "oklch(0.6071 0.24903 266.26)",
+          "oklch(0.7214 0.24903 266.26)",
+          "oklch(0.8357 0.24903 266.26)",
+          "oklch(0.9500 0.24903 266.26)"
+        ]
+      },
+      "primary-ink": {
+        "role": "primary",
+        "displayName": "Deep Electric Blue",
+        "tonalRamp": [
+          "oklch(0.1500 0.22347 266.24)",
+          "oklch(0.2643 0.22347 266.24)",
+          "oklch(0.3786 0.22347 266.24)",
+          "oklch(0.4929 0.22347 266.24)",
+          "oklch(0.6071 0.22347 266.24)",
+          "oklch(0.7214 0.22347 266.24)",
+          "oklch(0.8357 0.22347 266.24)",
+          "oklch(0.9500 0.22347 266.24)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "tonalRamp": [
+          "oklch(0.1500 0.00265 106.45)",
+          "oklch(0.2643 0.00265 106.45)",
+          "oklch(0.3786 0.00265 106.45)",
+          "oklch(0.4929 0.00265 106.45)",
+          "oklch(0.6071 0.00265 106.45)",
+          "oklch(0.7214 0.00265 106.45)",
+          "oklch(0.8357 0.00265 106.45)",
+          "oklch(0.9500 0.00265 106.45)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(0.1500 0.00000 0.00)",
+          "oklch(0.2643 0.00000 0.00)",
+          "oklch(0.3786 0.00000 0.00)",
+          "oklch(0.4929 0.00000 0.00)",
+          "oklch(0.6071 0.00000 0.00)",
+          "oklch(0.7214 0.00000 0.00)",
+          "oklch(0.8357 0.00000 0.00)",
+          "oklch(0.9500 0.00000 0.00)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "tonalRamp": [
+          "oklch(0.1500 0.01153 125.86)",
+          "oklch(0.2643 0.01153 125.86)",
+          "oklch(0.3786 0.01153 125.86)",
+          "oklch(0.4929 0.01153 125.86)",
+          "oklch(0.6071 0.01153 125.86)",
+          "oklch(0.7214 0.01153 125.86)",
+          "oklch(0.8357 0.01153 125.86)",
+          "oklch(0.9500 0.01153 125.86)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Inset Surface",
+        "tonalRamp": [
+          "oklch(0.1500 0.00543 117.93)",
+          "oklch(0.2643 0.00543 117.93)",
+          "oklch(0.3786 0.00543 117.93)",
+          "oklch(0.4929 0.00543 117.93)",
+          "oklch(0.6071 0.00543 117.93)",
+          "oklch(0.7214 0.00543 117.93)",
+          "oklch(0.8357 0.00543 117.93)",
+          "oklch(0.9500 0.00543 117.93)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Surface",
+        "tonalRamp": [
+          "oklch(0.1500 0.00000 0.00)",
+          "oklch(0.2643 0.00000 0.00)",
+          "oklch(0.3786 0.00000 0.00)",
+          "oklch(0.4929 0.00000 0.00)",
+          "oklch(0.6071 0.00000 0.00)",
+          "oklch(0.7214 0.00000 0.00)",
+          "oklch(0.8357 0.00000 0.00)",
+          "oklch(0.9500 0.00000 0.00)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Fine Rule",
+        "tonalRamp": [
+          "oklch(0.1500 0.01441 113.16 / 0.16)",
+          "oklch(0.2643 0.01441 113.16 / 0.16)",
+          "oklch(0.3786 0.01441 113.16 / 0.16)",
+          "oklch(0.4929 0.01441 113.16 / 0.16)",
+          "oklch(0.6071 0.01441 113.16 / 0.16)",
+          "oklch(0.7214 0.01441 113.16 / 0.16)",
+          "oklch(0.8357 0.01441 113.16 / 0.16)",
+          "oklch(0.9500 0.01441 113.16 / 0.16)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "tonalRamp": [
+          "oklch(0.1500 0.01441 113.16 / 0.35)",
+          "oklch(0.2643 0.01441 113.16 / 0.35)",
+          "oklch(0.3786 0.01441 113.16 / 0.35)",
+          "oklch(0.4929 0.01441 113.16 / 0.35)",
+          "oklch(0.6071 0.01441 113.16 / 0.35)",
+          "oklch(0.7214 0.01441 113.16 / 0.35)",
+          "oklch(0.8357 0.01441 113.16 / 0.35)",
+          "oklch(0.9500 0.01441 113.16 / 0.35)"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Soft Blue",
+        "tonalRamp": [
+          "oklch(0.1500 0.02595 276.40)",
+          "oklch(0.2643 0.02595 276.40)",
+          "oklch(0.3786 0.02595 276.40)",
+          "oklch(0.4929 0.02595 276.40)",
+          "oklch(0.6071 0.02595 276.40)",
+          "oklch(0.7214 0.02595 276.40)",
+          "oklch(0.8357 0.02595 276.40)",
+          "oklch(0.9500 0.02595 276.40)"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "tonalRamp": [
+          "oklch(0.1500 0.00411 128.67)",
+          "oklch(0.2643 0.00411 128.67)",
+          "oklch(0.3786 0.00411 128.67)",
+          "oklch(0.4929 0.00411 128.67)",
+          "oklch(0.6071 0.00411 128.67)",
+          "oklch(0.7214 0.00411 128.67)",
+          "oklch(0.8357 0.00411 128.67)",
+          "oklch(0.9500 0.00411 128.67)"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Light Ink",
+        "tonalRamp": [
+          "oklch(0.1500 0.00541 117.93)",
+          "oklch(0.2643 0.00541 117.93)",
+          "oklch(0.3786 0.00541 117.93)",
+          "oklch(0.4929 0.00541 117.93)",
+          "oklch(0.6071 0.00541 117.93)",
+          "oklch(0.7214 0.00541 117.93)",
+          "oklch(0.8357 0.00541 117.93)",
+          "oklch(0.9500 0.00541 117.93)"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted Ink — dark",
+        "tonalRamp": [
+          "oklch(0.1500 0.01347 126.44)",
+          "oklch(0.2643 0.01347 126.44)",
+          "oklch(0.3786 0.01347 126.44)",
+          "oklch(0.4929 0.01347 126.44)",
+          "oklch(0.6071 0.01347 126.44)",
+          "oklch(0.7214 0.01347 126.44)",
+          "oklch(0.8357 0.01347 126.44)",
+          "oklch(0.9500 0.01347 126.44)"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Inset Surface — dark",
+        "tonalRamp": [
+          "oklch(0.1500 0.01154 128.92)",
+          "oklch(0.2643 0.01154 128.92)",
+          "oklch(0.3786 0.01154 128.92)",
+          "oklch(0.4929 0.01154 128.92)",
+          "oklch(0.6071 0.01154 128.92)",
+          "oklch(0.7214 0.01154 128.92)",
+          "oklch(0.8357 0.01154 128.92)",
+          "oklch(0.9500 0.01154 128.92)"
+        ]
+      },
+      "raised-dark": {
+        "role": "neutral",
+        "displayName": "Raised Surface — dark",
+        "tonalRamp": [
+          "oklch(0.1500 0.01180 128.98)",
+          "oklch(0.2643 0.01180 128.98)",
+          "oklch(0.3786 0.01180 128.98)",
+          "oklch(0.4929 0.01180 128.98)",
+          "oklch(0.6071 0.01180 128.98)",
+          "oklch(0.7214 0.01180 128.98)",
+          "oklch(0.8357 0.01180 128.98)",
+          "oklch(0.9500 0.01180 128.98)"
+        ]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Fine Rule — dark",
+        "tonalRamp": [
+          "oklch(0.1500 0.00541 117.93 / 0.16)",
+          "oklch(0.2643 0.00541 117.93 / 0.16)",
+          "oklch(0.3786 0.00541 117.93 / 0.16)",
+          "oklch(0.4929 0.00541 117.93 / 0.16)",
+          "oklch(0.6071 0.00541 117.93 / 0.16)",
+          "oklch(0.7214 0.00541 117.93 / 0.16)",
+          "oklch(0.8357 0.00541 117.93 / 0.16)",
+          "oklch(0.9500 0.00541 117.93 / 0.16)"
+        ]
+      },
+      "line-strong-dark": {
+        "role": "neutral",
+        "displayName": "Strong Rule — dark",
+        "tonalRamp": [
+          "oklch(0.1500 0.00541 117.93 / 0.36)",
+          "oklch(0.2643 0.00541 117.93 / 0.36)",
+          "oklch(0.3786 0.00541 117.93 / 0.36)",
+          "oklch(0.4929 0.00541 117.93 / 0.36)",
+          "oklch(0.6071 0.00541 117.93 / 0.36)",
+          "oklch(0.7214 0.00541 117.93 / 0.36)",
+          "oklch(0.8357 0.00541 117.93 / 0.36)",
+          "oklch(0.9500 0.00541 117.93 / 0.36)"
+        ]
+      },
+      "accent-dark": {
+        "role": "primary",
+        "displayName": "Pale Electric Blue",
+        "tonalRamp": [
+          "oklch(0.1500 0.11028 273.93)",
+          "oklch(0.2643 0.11028 273.93)",
+          "oklch(0.3786 0.11028 273.93)",
+          "oklch(0.4929 0.11028 273.93)",
+          "oklch(0.6071 0.11028 273.93)",
+          "oklch(0.7214 0.11028 273.93)",
+          "oklch(0.8357 0.11028 273.93)",
+          "oklch(0.9500 0.11028 273.93)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(0.1500 0.00000 0.00)",
+          "oklch(0.2643 0.00000 0.00)",
+          "oklch(0.3786 0.00000 0.00)",
+          "oklch(0.4929 0.00000 0.00)",
+          "oklch(0.6071 0.00000 0.00)",
+          "oklch(0.7214 0.00000 0.00)",
+          "oklch(0.8357 0.00000 0.00)",
+          "oklch(0.9500 0.00000 0.00)"
+        ]
+      },
+      "code-surface": {
+        "role": "neutral",
+        "displayName": "Code Surface",
+        "tonalRamp": [
+          "oklch(0.1500 0.01266 264.27)",
+          "oklch(0.2643 0.01266 264.27)",
+          "oklch(0.3786 0.01266 264.27)",
+          "oklch(0.4929 0.01266 264.27)",
+          "oklch(0.6071 0.01266 264.27)",
+          "oklch(0.7214 0.01266 264.27)",
+          "oklch(0.8357 0.01266 264.27)",
+          "oklch(0.9500 0.01266 264.27)"
+        ]
+      },
+      "code-ink": {
+        "role": "neutral",
+        "displayName": "Code Ink",
+        "tonalRamp": [
+          "oklch(0.1500 0.00000 0.00)",
+          "oklch(0.2643 0.00000 0.00)",
+          "oklch(0.3786 0.00000 0.00)",
+          "oklch(0.4929 0.00000 0.00)",
+          "oklch(0.6071 0.00000 0.00)",
+          "oklch(0.7214 0.00000 0.00)",
+          "oklch(0.8357 0.00000 0.00)",
+          "oklch(0.9500 0.00000 0.00)"
+        ]
+      },
+      "code-caption": {
+        "role": "neutral",
+        "displayName": "Code Caption",
+        "tonalRamp": [
+          "oklch(0.1500 0.02385 258.36)",
+          "oklch(0.2643 0.02385 258.36)",
+          "oklch(0.3786 0.02385 258.36)",
+          "oklch(0.4929 0.02385 258.36)",
+          "oklch(0.6071 0.02385 258.36)",
+          "oklch(0.7214 0.02385 258.36)",
+          "oklch(0.8357 0.02385 258.36)",
+          "oklch(0.9500 0.02385 258.36)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "display",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "article-title": {
+        "displayName": "article-title",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "archive-title": {
+        "displayName": "archive-title",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "title": {
+        "displayName": "title",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "body": {
+        "displayName": "body",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "article-body": {
+        "displayName": "article-body",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "navigation": {
+        "displayName": "navigation",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "label": {
+        "displayName": "label",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      },
+      "code": {
+        "displayName": "code",
+        "purpose": "See the corresponding hierarchy role in DESIGN.md; responsive size exceptions are documented there."
+      }
+    },
+    "shadows": [
+      {
+        "name": "menu-lift",
+        "value": "0 12px 24px #0002",
+        "purpose": "Mobile navigation panel."
+      },
+      {
+        "name": "project-cover-lift",
+        "value": "0 16px 40px #00000012",
+        "purpose": "Overlapping case-study cover."
+      },
+      {
+        "name": "inspect-lift",
+        "value": "0 8px 40px #0003",
+        "purpose": "Temporary Inspect panel."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-snappy",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Existing navigation and interaction easing."
+      },
+      {
+        "name": "page-enter",
+        "value": "160ms",
+        "purpose": "New page fades over opaque previous page; reduced motion is immediate."
+      },
+      {
+        "name": "row-arrow",
+        "value": "200ms",
+        "purpose": "Small hover response; disabled for reduced motion."
+      },
+      {
+        "name": "case-image",
+        "value": "500ms",
+        "purpose": "Subtle image-link hover scale."
+      },
+      {
+        "name": "logo-count",
+        "value": "560ms",
+        "purpose": "Transient count bounce; static for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "measurement-controls",
+        "value": "500px"
+      },
+      {
+        "name": "desktop",
+        "value": "781px"
+      },
+      {
+        "name": "wide",
+        "value": "1100px"
+      },
+      {
+        "name": "case-cover-wide",
+        "value": "1500px"
+      },
+      {
+        "name": "large-type",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid pill",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Archive recovery action.",
+      "html": "<a class=\"ds-solid\" href=\"/blog/\">Browse all writing</a>",
+      "css": ".ds-solid{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:9999px;font:500 14px/1.5 var(--font-sans, \"DM Sans\", Arial, sans-serif);text-decoration:none;cursor:pointer;border:0;background:var(--color-ink, #191919);color:var(--color-paper, #f5f5f3)}.ds-solid:hover{background:var(--color-accent, #2449ef)}.ds-solid:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-solid:focus-visible{outline-color:Highlight;box-shadow:none}}"
+    },
+    {
+      "name": "Outline pill",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Case-study chapter shortcut.",
+      "html": "<a class=\"ds-outline\" href=\"/work/cape/#assistant-title\">Assistant <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a>",
+      "css": ".ds-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:9999px;font:500 14px/1.5 var(--font-sans, \"DM Sans\", Arial, sans-serif);text-decoration:none;cursor:pointer;border:1px solid var(--color-line-strong, rgb(38 39 31 / 35%));background:transparent;color:var(--color-ink, #191919)}.ds-outline:hover{border-color:currentColor}.ds-outline:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-outline:focus-visible{outline-color:Highlight;box-shadow:none}}"
+    },
+    {
+      "name": "Contact on blue",
+      "kind": "button",
+      "refersTo": "contact-on-blue",
+      "description": "The contact control within its actual stage color.",
+      "html": "<div class=\"ds-stage\"><a class=\"ds-contact\" href=\"mailto:hello@devinschulz.com\">Say hello <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a></div>",
+      "css": ".ds-stage{padding:20px;border-radius:18px;background:#2449ef}.ds-contact{display:inline-flex;min-height:44px;align-items:center;gap:28px;padding:0 20px;border:1px solid #fff;border-radius:30px;background:#fff;color:#1d3dce;font:400 13px/1.5 var(--font-sans, \"DM Sans\", Arial, sans-serif);text-decoration:none}.ds-contact:focus-visible{outline:3px solid #fff;outline-offset:4px;box-shadow:0 0 0 3px #2449ef}"
+    },
+    {
+      "name": "Project preview toggle",
+      "kind": "button",
+      "refersTo": "project-preview-toggle",
+      "description": "Existing screen-switch control, shown in its default appearance.",
+      "html": "<button class=\"ds-preview\" type=\"button\" aria-pressed=\"false\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" aria-hidden=\"true\"><rect x=\"1\" y=\"4\" width=\"10\" height=\"10\" rx=\"2\"/><path d=\"M5 2h7a2 2 0 0 1 2 2v7\"/></svg>Another view <span>01/02</span></button>",
+      "css": ".ds-preview{display:inline-flex;min-height:44px;align-items:center;gap:12px;border:1px solid rgb(25 25 25 / 15%);border-radius:9999px;background:#fff;color:#191919;padding:0 16px;font:400 12px/1.5 var(--font-sans,\"DM Sans\",Arial,sans-serif);cursor:pointer}.ds-preview span{font:400 9px/1.5 var(--font-mono,\"JetBrains Mono\",ui-monospace,monospace)}.ds-preview:hover{background:#f0f2ff}.ds-preview:focus-visible{outline:2px solid #191919;outline-offset:2px;box-shadow:0 0 0 2px #fff}"
+    },
+    {
+      "name": "Main navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Text links with large targets and a current-section underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Portfolio\"><a href=\"/#work\">Work</a><a href=\"/#about\">About</a><a href=\"/blog/\" aria-current=\"page\">Writing</a></nav>",
+      "css": ".ds-nav{display:flex;gap:20px;align-items:center;color:var(--color-ink, #191919);font:400 13px/1.5 var(--font-sans, \"DM Sans\", Arial, sans-serif)}.ds-nav a{display:inline-flex;min-height:44px;align-items:center;color:inherit;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current]{text-decoration:underline;text-underline-offset:5px}.ds-nav a:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-nav a:focus-visible{outline-color:Highlight;box-shadow:none}}"
+    },
+    {
+      "name": "Measurement select",
+      "kind": "input",
+      "refersTo": "select-field",
+      "description": "Native select from the measurement example.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-relationship\">Layer relationship</label><select id=\"ds-relationship\"><option>Separated layers</option><option>Overlapping layers</option><option>Contained layer</option></select></div>",
+      "css": ".ds-field{max-width:360px;color:var(--color-ink, #191919);font-family:var(--font-sans, \"DM Sans\", Arial, sans-serif)}.ds-field label{display:block;margin-bottom:8px;font-size:14px;line-height:1.5}.ds-field select{min-height:44px;width:100%;padding:0 12px;border:1px solid var(--color-line-strong, rgb(38 39 31 / 35%));border-radius:.35rem;background:var(--color-paper, #f5f5f3);color:var(--color-ink, #191919);font:400 16px/1.5 var(--font-sans, \"DM Sans\", Arial, sans-serif)}.ds-field select:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-field select:focus-visible{outline-color:Highlight;box-shadow:none}}"
+    },
+    {
+      "name": "Writing row",
+      "kind": "custom",
+      "refersTo": "article-row",
+      "description": "Date, title, topic metadata, and arrow in an editorial row.",
+      "html": "<a class=\"ds-row\" href=\"/blog/reflecting-on-twelve-years-of-remote-work/\"><time datetime=\"2026-10-21\">Oct 21</time><span><span class=\"ds-row-title\">Reflecting on Twelve Years of Remote Work</span><span class=\"ds-row-topics\">Career, Remote</span></span><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:56px minmax(0,1fr) 20px;gap:12px;align-items:baseline;padding:16px 0;border-top:1px solid var(--color-line, rgb(38 39 31 / 16%));border-bottom:1px solid var(--color-line, rgb(38 39 31 / 16%));color:var(--color-ink, #191919);font-family:var(--font-sans, \"DM Sans\", Arial, sans-serif);text-decoration:none}.ds-row time{color:var(--color-muted, #60635c);font-size:12px}.ds-row-title{display:block;font-size:20px;line-height:1.2;letter-spacing:-.03em}.ds-row-topics{display:block;margin-top:8px;color:var(--color-muted, #60635c);font-size:12px;line-height:1.625}.ds-row>svg{align-self:start}.ds-row:hover .ds-row-title,.ds-row:hover>svg{color:var(--color-accent, #2449ef)}.ds-row:hover .ds-row-title{text-decoration:underline;text-underline-offset:5px}@media(prefers-reduced-motion:no-preference){.ds-row>svg{transition:transform 200ms cubic-bezier(.22,1,.36,1)}.ds-row:hover>svg{transform:translate(2px,-2px)}}.ds-row:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-row:focus-visible{outline-color:Highlight;box-shadow:none}}"
+    },
+    {
+      "name": "Contents disclosure",
+      "kind": "custom",
+      "refersTo": "contents-disclosure",
+      "description": "Native details with plus/minus and section links. Longer articles may offer a locally restored Continue reading link before the body; its behavior and styling are documented in DESIGN.md.",
+      "html": "<details class=\"ds-contents\"><summary>On this page<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M2 8h12\"/><path class=\"ds-vertical\" d=\"M8 2v12\"/></svg></summary><nav aria-label=\"Article sections\"><a href=\"/blog/using-react-component-variants-to-compose-css-classes/#define-the-union-types\">Define the union types</a><a href=\"/blog/using-react-component-variants-to-compose-css-classes/#define-the-styles\">Define the styles</a></nav></details>",
+      "css": ".ds-contents{border-top:1px solid var(--color-line, rgb(38 39 31 / 16%));border-bottom:1px solid var(--color-line, rgb(38 39 31 / 16%));padding:4px 0;color:var(--color-ink, #191919);font:400 14px/1.5 var(--font-sans, \"DM Sans\", Arial, sans-serif)}.ds-contents summary{display:flex;min-height:48px;align-items:center;justify-content:space-between;gap:16px;list-style:none;cursor:pointer}.ds-contents summary::-webkit-details-marker{display:none}.ds-contents[open] .ds-vertical{display:none}.ds-contents nav{padding-bottom:16px}.ds-contents a{display:block;min-height:44px;padding:10px 0;color:var(--color-muted, #60635c);text-decoration:none}.ds-contents a:hover{color:var(--color-accent, #2449ef);text-decoration:underline}.ds-contents summary:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-contents summary:focus-visible{outline-color:Highlight;box-shadow:none}}.ds-contents a:focus-visible{outline:3px solid var(--color-ink, #191919);outline-offset:4px;box-shadow:0 0 0 3px var(--color-paper, #f5f5f3)}@media(forced-colors:active){.ds-contents a:focus-visible{outline-color:Highlight;box-shadow:none}}"
+    },
+    {
+      "name": "Code panel",
+      "kind": "card",
+      "refersTo": "code-panel",
+      "description": "Dark code treatment with labeled keyboard scrolling.",
+      "html": "<figure class=\"ds-code\"><figcaption><span id=\"ds-code-label\">TypeScript</span><button class=\"ds-copy\" type=\"button\" aria-label=\"Copy TypeScript code\"><span class=\"ds-copy-face\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" aria-hidden=\"true\"><rect x=\"5\" y=\"5\" width=\"9\" height=\"9\" rx=\"1.5\"/><path d=\"M3 11H2.5A1.5 1.5 0 0 1 1 9.5v-7A1.5 1.5 0 0 1 2.5 1h7A1.5 1.5 0 0 1 11 2.5V3\"/></svg><span>Copy</span></span></button></figcaption><pre tabindex=\"0\" aria-labelledby=\"ds-code-label\"><code>type ButtonSize = \"small\" | \"medium\";</code></pre></figure>",
+      "css": ".ds-code{margin:0;min-width:0;overflow:hidden;border:1px solid rgb(255 255 255 / 10%);border-radius:12px;background:#171a20;color:#eee;font:400 13px/1.7 var(--font-mono, \"JetBrains Mono\", ui-monospace, monospace)}.ds-code figcaption{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding:0 20px;border-bottom:1px solid rgb(255 255 255 / 10%);color:#b8c2d1;font-size:12px}.ds-code pre{margin:0;max-width:100%;overflow-x:auto;padding:20px;font:inherit}.ds-code code{font:inherit}.ds-code pre:focus-visible{outline:2px solid #fff;outline-offset:-3px;box-shadow:none}@media(forced-colors:active){.ds-code pre:focus-visible{outline-color:Highlight;box-shadow:none}}.ds-copy{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:72px;padding:0;border:0;border-radius:6px;background:transparent;color:#eee;font:400 12px/1.5 var(--font-sans,\"DM Sans\",Arial,sans-serif);cursor:pointer}.ds-copy-face{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:72px;min-height:28px;padding:0 6px;white-space:nowrap;flex-shrink:0;box-sizing:border-box;pointer-events:none;border:1px solid rgb(255 255 255 / 15%);border-radius:6px}.ds-copy:hover .ds-copy-face{background:rgb(255 255 255 / 10%)}.ds-copy:focus-visible{outline:2px solid #fff;outline-offset:-3px;box-shadow:none}.ds-copy:disabled{cursor:wait;opacity:.6}@media(forced-colors:active){.ds-copy:focus-visible{outline-color:Highlight}}"
+    },
+    {
+      "name": "Code copy control",
+      "kind": "button",
+      "refersTo": "code-copy",
+      "description": "A useful reading detail: the site copies exact code and provides a static confirmation or manual recovery. This preview represents its appearance.",
+      "html": "<div class=\"ds-copy-stage\"><button class=\"ds-copy\" type=\"button\" aria-label=\"Copy TypeScript code\"><span class=\"ds-copy-face\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" aria-hidden=\"true\"><rect x=\"5\" y=\"5\" width=\"9\" height=\"9\" rx=\"1.5\"/><path d=\"M3 11H2.5A1.5 1.5 0 0 1 1 9.5v-7A1.5 1.5 0 0 1 2.5 1h7A1.5 1.5 0 0 1 11 2.5V3\"/></svg><span>Copy</span></span></button></div>",
+      "css": ".ds-copy-stage{padding:16px;background:#171a20;border-radius:12px}.ds-copy{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:72px;padding:0;border:0;border-radius:6px;background:transparent;color:#eee;font:400 12px/1.5 var(--font-sans,\"DM Sans\",Arial,sans-serif);cursor:pointer}.ds-copy-face{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:72px;min-height:28px;padding:0 6px;white-space:nowrap;flex-shrink:0;box-sizing:border-box;pointer-events:none;border:1px solid rgb(255 255 255 / 15%);border-radius:6px}.ds-copy:hover .ds-copy-face{background:rgb(255 255 255 / 10%)}.ds-copy:focus-visible{outline:2px solid #fff;outline-offset:-3px;box-shadow:none}.ds-copy:disabled{cursor:wait;opacity:.6}@media(forced-colors:active){.ds-copy:focus-visible{outline-color:Highlight}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Interactive Portfolio",
+    "overview": "Present real work with playful, tactile interactions. The atmosphere is precise, confident, and quietly playful: expressive typography makes the first impression, while measured spacing, practical controls, and clear reading structure sustain it. Product imagery and engineering demonstrations supply the detail.\n\nThe user-confirmed direction is subtly layered surfaces, with shadows used more broadly to separate panels, and bold, expressive, prominent controls. The current implementation uses shadows selectively and still contains compact navigation and utility controls. These preferences guide future refinements; this document does not claim that broader elevation or larger controls have already been implemented.",
+    "keyCharacteristics": [
+      "Electric Blue stages with crisp, high-contrast lettering.",
+      "Chalk and Graphite reading surfaces that adapt to the selected theme.",
+      "Large, tightly tracked display typography paired with comfortable prose.",
+      "Open editorial rows, real interface imagery, and fine separating rules.",
+      "Input-driven tactile effects with readable native fallbacks."
+    ],
+    "rules": [
+      {
+        "name": "The Two Blue Roles Rule",
+        "body": "Keep the fixed blue stage separate from the theme-aware link accent. On a blue stage, use white content and white focus treatment; on a neutral surface, use the current semantic accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Measure Rule",
+        "body": "Keep prose within its narrower measure while allowing code and figures the wider article track. Increasing the display scale must not increase the body line length.",
+        "section": "typography"
+      },
+      {
+        "name": "The Legible Layer Rule",
+        "body": "Use elevation to explain a panel relationship. Preserve offset and soft blur, and pair it with a distinct surface and sufficient contrast in both themes.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** preserve Electric Blue stages and theme-aware Chalk/Graphite reading surfaces as distinct roles.",
+      "**Do** use DM Sans for active display/body typography and JetBrains Mono for code and measurement details.",
+      "**Do** preserve compact reading headers, the narrower prose measure, and the wider code/figure track.",
+      "**Do** make primary controls prominent while retaining clear labels and accessible target sizes.",
+      "**Do** use the existing soft, offset shadows to express meaningful panel layering in future refinements.",
+      "**Do** keep pointer effects optional, interruptible, and backed by readable native content.",
+      "**Do** use real project imagery and retain caption, focus, and full-size-image behavior."
+    ],
+    "donts": [
+      "**Don't** replace the fixed blue stage color with the dark-theme link accent.",
+      "**Don't** turn editorial article rows into a generic repeated card grid.",
+      "**Don't** apply homepage or case-study display scale to every reading header.",
+      "**Don't** widen prose merely because the code track has more room.",
+      "**Don't** change project screens on hover or deform project imagery on scroll.",
+      "**Don't** hide essential content or navigation behind JavaScript, WebGL, or motion effects.",
+      "**Don't** describe the confirmed preference for broader shadows and prominent controls as if that refinement had already shipped."
+    ]
+  }
+}
