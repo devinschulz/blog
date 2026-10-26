@@ -1,5 +1,6 @@
 stripe:
   company: Stripe
+  period: 2025–present
   summary: My work at Stripe spans Checkout Studio and, more recently, Console.
   projects:
     - name: Checkout Studio
