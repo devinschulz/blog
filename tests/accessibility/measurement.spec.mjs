@@ -93,3 +93,97 @@ test('measurement example remains useful without JavaScript', async ({
     await context.close();
   }
 });
+
+test('moving a layer keeps design coordinates accurate at every display zoom', async ({
+  page,
+}, testInfo) => {
+  await page.goto('/work/invision/#measurement-demo');
+  const demo = page.locator('#measurement-demo');
+  const mover = demo.locator('[data-measurement-target="mover"]');
+  const selected = demo.locator('[data-measurement-target="selected"]');
+  const summary = demo.getByRole('status', { name: 'Measurement result' });
+  const reset = demo.getByRole('button', { name: 'Reset', exact: true });
+  for (const zoom of [75, 125]) {
+    await demo.getByLabel('Display zoom').fill(String(zoom));
+    await expect(reset).toBeDisabled();
+    await mover.focus();
+    await mover.press('ArrowRight');
+    await mover.press('Shift+ArrowRight');
+    await expect(selected).toHaveAttribute('x', '191');
+    await expect(summary).toContainText('Horizontal gap: 49 px');
+    await mover.press('ArrowDown');
+    await expect(selected).toHaveAttribute('y', '151');
+    await reset.click();
+    await expect(summary).toContainText('Horizontal gap: 60 px');
+    const hitArea = await demo
+      .locator('[data-measurement-target="hitArea"]')
+      .boundingBox();
+    expect(hitArea.width).toBeGreaterThanOrEqual(43.99);
+    expect(hitArea.height).toBeGreaterThanOrEqual(43.99);
+    const box = await selected.boundingBox();
+    const x = box.x + box.width / 2;
+    const y = box.y + box.height / 2;
+    const scale = await demo
+      .locator('[data-measurement-target="scene"]')
+      .evaluate((scene) => scene.getScreenCTM().a);
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x + 80 * scale, y, { steps: 5 });
+    const position = Number(await selected.getAttribute('x'));
+    // Browser pointer coordinates can round to physical viewport pixels.
+    expect(Math.abs(position - 260)).toBeLessThanOrEqual(Math.ceil(1 / scale));
+    // Announce once on release, not at every pointer position.
+    await expect(summary).toContainText('Horizontal gap: 60 px');
+    await page.mouse.up();
+    await expect(summary).toContainText('Overlapping layers');
+    await expect(summary).toContainText(`Left edge: ${360 - position} px`);
+    await reset.click();
+    await expect(selected).toHaveAttribute('x', '180');
+    await expect(selected).toHaveAttribute('y', '150');
+  }
+  await demo
+    .getByRole('button', { name: 'Move selected layer right', exact: true })
+    .click();
+  await expect(summary).toContainText('Horizontal gap: 50 px');
+  await demo.getByLabel('Layer relationship').selectOption('contained');
+  await expect(reset).toBeDisabled();
+  await expect(summary).toContainText('Right edge: 80 px');
+  await demo.getByLabel('Display zoom').fill('75');
+  const left = demo.getByRole('button', {
+    name: 'Move selected layer left',
+    exact: true,
+  });
+  if (testInfo.project.use.hasTouch) await left.tap();
+  else await left.click();
+  await expect(summary).toContainText('Left edge: 40 px');
+  await expect(summary).toContainText('Right edge: 90 px');
+  await demo.getByLabel('Display zoom').fill('100');
+  await demo.screenshot({ path: testInfo.outputPath('measurement-demo.png') });
+});
+
+test('a grabbed layer cancels with Escape and stays inside the canvas', async ({
+  page,
+}) => {
+  await page.goto('/work/invision/#measurement-demo');
+  const demo = page.locator('#measurement-demo');
+  const selected = demo.locator('[data-measurement-target="selected"]');
+  await selected.scrollIntoViewIfNeeded();
+  const box = await selected.boundingBox();
+  const x = box.x + box.width / 2;
+  const y = box.y + box.height / 2;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + 40, y + 10);
+  await page.keyboard.press('Escape');
+  await page.mouse.up();
+  await expect(selected).toHaveAttribute('x', '180');
+  await expect(selected).toHaveAttribute('y', '150');
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + 1000, y + 1000);
+  await page.mouse.up();
+  await expect(selected).toHaveAttribute('x', '424');
+  await expect(selected).toHaveAttribute('y', '240');
+  await demo.getByRole('button', { name: 'Reset', exact: true }).click();
+  await expect(selected).toHaveAttribute('x', '180');
+});
