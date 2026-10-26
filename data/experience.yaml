@@ -1,0 +1,10 @@
+stripe:
+  company: Stripe
+  summary: My work at Stripe spans Checkout Studio and, more recently, Console.
+  projects:
+    - name: Checkout Studio
+      status: Previously
+      url: https://docs.stripe.com/payments/checkout-studio
+    - name: Console
+      status: Current
+      url: https://docs.stripe.com/dashboard/console

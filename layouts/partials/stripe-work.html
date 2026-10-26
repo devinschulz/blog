@@ -1,0 +1,17 @@
+{{ with hugo.Data.experience.stripe }}
+<article id="stripe" aria-labelledby="stripe-title" class="mx-auto mt-10 w-[calc(100%-40px)] max-w-400 scroll-mt-8 border-y border-line-strong py-9 desktop:mt-14 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1fr_1.3fr] desktop:gap-16 desktop:py-14 min-[1100px]:w-[calc(100%-96px)]">
+  <div>
+    <h3 id="stripe-title" class="text-[clamp(48px,8vw,96px)] leading-none font-medium tracking-[-0.04em]">{{ .company }}</h3>
+    <p class="mt-4 text-sm text-muted desktop:text-base">{{ site.Params.role }}</p>
+    <p class="mt-6 max-w-[40ch] text-base leading-relaxed desktop:text-lg">{{ .summary }}</p>
+  </div>
+  <ol class="mt-9 self-center desktop:mt-0" aria-label="Work at Stripe, in order">
+    {{ range .projects }}
+    <li class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line py-5 first:border-t desktop:py-7">
+      <h4 class="min-w-0 text-[clamp(24px,3vw,40px)] leading-tight font-normal tracking-[-0.03em]"><a class="group inline-flex min-h-11 items-center gap-3 hover:text-accent" href="{{ .url }}"><span class="underline decoration-1 underline-offset-[6px]">{{ .name }}</span><svg class="h-4 w-4 shrink-0 text-accent desktop:h-5 desktop:w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a></h4>
+      <span class="text-xs {{ if eq .status "Current" }}rounded-full bg-accent-soft px-3 py-2 font-medium text-accent{{ else }}text-muted{{ end }}">{{ .status }}</span>
+    </li>
+    {{ end }}
+  </ol>
+</article>
+{{ end }}

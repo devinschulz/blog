@@ -5,9 +5,10 @@
 }}
 <section id="work" class="work-section pt-16 desktop:pt-24" aria-labelledby="work-title">
   <div class="work-heading mx-auto w-[calc(100%-40px)] max-w-400 border-t border-line-strong pt-6 desktop:w-[calc(100%-64px)] desktop:pt-7 min-[1100px]:w-[calc(100%-96px)]">
-    <div class="section-kicker flex items-baseline gap-4 text-[11px] desktop:gap-7 desktop:text-xs"><span class="font-mono text-[10px]">(01)</span><span>A selection of projects</span><span class="ml-auto">2014–2025</span></div>
+    <div class="section-kicker flex items-baseline gap-4 text-[11px] desktop:gap-7 desktop:text-xs"><span class="font-mono text-[10px]">(01)</span><span>A selection of projects</span><span class="ml-auto">2014–present</span></div>
     <h2 id="work-title" class="mt-7 flex items-center justify-between text-[14vw] leading-[1.1] font-medium tracking-[-0.065em] desktop:mt-12 desktop:text-[clamp(64px,10vw,160px)]">Selected work<span class="pr-[0.07em] text-[0.7em] font-normal" aria-hidden="true">↘&#xFE0E;</span></h2>
   </div>
+  {{ partial "stripe-work.html" . }}
   <div class="project-gallery mx-auto w-[calc(100%-40px)] max-w-400 gap-x-16 gap-y-24 pt-8 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1.1fr_1fr] desktop:pt-14 desktop:pb-28 min-[1100px]:w-[calc(100%-96px)]">
     {{ range $i, $project := $projects }}
       {{ $page := site.GetPage .path }}

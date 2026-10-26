@@ -12,6 +12,15 @@ Senior Frontend Engineer at Stripe.
 
 ## Selected work
 
+{{ with hugo.Data.experience.stripe }}### {{ .company }}
+
+{{ site.Params.role }}
+
+{{ .summary }}
+
+{{ range .projects }}- [{{ .name }}]({{ .url }}) — {{ .status }}
+{{ end }}
+{{ end }}
 {{ range $work }}### {{ .Title }}
 
 {{ .Params.role }}{{ with .Params.period }} · {{ . }}{{ end }}
