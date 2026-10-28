@@ -2,8 +2,9 @@
 {{ if not $image }}{{ errorf "Case-study image not found: %s" .image }}{{ end }}
 {{ $small := $image.Resize "700x webp q85" }}
 {{ $large := $image.Resize "1400x webp q90" }}
+{{ $full := $image.Process "webp q85" }}
 <figure>
-  <a class="group shell block" href="{{ $image.RelPermalink }}" target="_blank" rel="noopener" aria-label="View full-size image: {{ .caption }} (opens in a new tab)">
+  <a class="group shell block" href="{{ $full.RelPermalink }}" target="_blank" rel="noopener" aria-label="View full-size image: {{ .caption }} (opens in a new tab)">
     <span class="core block"><img class="block h-auto w-full transition-transform duration-500 ease-snappy group-hover:scale-[1.012]" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 700w, {{ $large.RelPermalink }} 1400w" sizes="{{ .sizes | default "(min-width: 781px) 83vw, 100vw" }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ .alt }}" {{ if .eager }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async"></span>
   </a>
   <figcaption class="mt-3 flex items-baseline justify-between gap-5 text-sm leading-relaxed text-muted">

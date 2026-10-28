@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 
-// GIFs are opt-in: a single-frame PNG until someone asks for motion, and never
+// Animations are opt-in: a single-frame WebP until someone asks for motion, and never
 // playing when the system asks for less of it.
 export default class extends Controller<HTMLElement> {
   static override targets = ['image', 'button'];

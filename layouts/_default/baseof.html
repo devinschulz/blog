@@ -49,9 +49,13 @@
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
   <body id="page-top" class="{{ if .IsHome }}is-home {{ end }}bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
+    {{/* The contact address is public. Keep Cloudflare from rewriting it and
+         injecting its email decoder into the page's request chain. */}}
+    {{ "<!--email_off-->" | safeHTML }}
     <a class="fixed top-3 left-3 z-100 translate-y-[-180%] rounded-full bg-ivory px-4 py-2.5 text-sm text-night focus:translate-y-0" href="#content">Skip to content</a>
     {{ partial "header.html" . }}
     <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "footer.html" . }}
+    {{ "<!--/email_off-->" | safeHTML }}
   </body>
 </html>

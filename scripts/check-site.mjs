@@ -16,6 +16,21 @@ const redirects = fs
   .filter((line) => line.trim() && !line.startsWith('#'))
   .map((line) => line.trim().split(/\s+/));
 const redirectSources = new Set(redirects.map(([source]) => source));
+function webpChunks(bytes, label) {
+  assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', `${label}: RIFF header`);
+  assert.equal(bytes.toString('ascii', 8, 12), 'WEBP', `${label}: WebP format`);
+  const chunks = [];
+  for (let offset = 12; offset + 8 <= bytes.length;) {
+    const length = bytes.readUInt32LE(offset + 4);
+    assert(
+      offset + 8 + length <= bytes.length,
+      `${label}: truncated WebP chunk`,
+    );
+    chunks.push(bytes.toString('ascii', offset, offset + 4));
+    offset += 8 + length + (length % 2);
+  }
+  return chunks;
+}
 function localFile(url) {
   const decoded = decodeURIComponent(url.pathname);
   const target = path.resolve(root, '.' + decoded);
@@ -32,6 +47,31 @@ for (const file of files) {
     1,
     `${file}: exactly one title`,
   );
+  const mono = '/fonts/jetbrains-mono-normal-100-800-18be452724bf.woff2';
+  const preload = html.match(
+    /<link\b[^>]*rel="preload"[^>]*href="\/fonts\/jetbrains-mono[^>]+>/,
+  )?.[0];
+  assert(
+    preload?.includes(mono) &&
+      preload.includes('as="font"') &&
+      preload.includes('crossorigin'),
+    `${file}: preload Mono directly from HTML`,
+  );
+  assert(
+    html.indexOf(preload) < html.indexOf('rel="stylesheet"'),
+    `${file}: fonts must be discoverable before CSS`,
+  );
+  const emailStart = html.indexOf('<!--email_off-->');
+  const emailEnd = html.indexOf('<!--/email_off-->');
+  assert(
+    emailStart >= 0 && emailEnd > emailStart,
+    `${file}: Cloudflare email opt-out markers`,
+  );
+  for (const match of html.matchAll(/mailto:[^"\s<]+/g))
+    assert(
+      match.index > emailStart && match.index < emailEnd,
+      `${file}: contact link must not need Cloudflare's decoder`,
+    );
   assert(
     !html.includes('fonts.googleapis.com') &&
       !html.includes('fonts.gstatic.com'),
@@ -80,6 +120,27 @@ for (const file of files) {
     if (!localFile(target) && !redirectSources.has(target.pathname))
       errors.push(`${file}: missing ${value}`);
   }
+  for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) {
+    const source = tag.match(/\bsrc="([^"]+)"/)?.[1];
+    if (source && new URL(source, url).origin === domain)
+      assert(
+        /\.(webp|svg)$/.test(new URL(source, url).pathname),
+        `${file}: content images must use WebP: ${source}`,
+      );
+  }
+  for (const [tag] of html.matchAll(
+    /<a\b[^>]*aria-label="View full-size image:[^>]*>/g,
+  )) {
+    const href = tag.match(/\bhref="([^"]+)"/)[1];
+    assert(
+      href.endsWith('.webp'),
+      `${file}: full-size project links must use WebP`,
+    );
+    webpChunks(
+      fs.readFileSync(localFile(new URL(href, domain))),
+      `${file}: full-size project image`,
+    );
+  }
   if (file.startsWith('blog/') && file !== 'blog/index.html') {
     for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) {
       const poster = tag.match(/data-static-src="([^"]+)"/);
@@ -87,18 +148,20 @@ for (const file of files) {
         const target = localFile(new URL(poster[1], domain));
         assert(target, `${file}: GIF poster missing`);
         const bytes = fs.readFileSync(target);
+        const chunks = webpChunks(bytes, `${file}: animation poster`);
         assert(
-          bytes
-            .subarray(0, 8)
-            .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
-          `${file}: GIF poster must be a single-frame PNG`,
+          !chunks.includes('ANIM') && !chunks.includes('ANMF'),
+          `${file}: WebP poster must not animate`,
         );
-        for (let offset = 8; offset + 12 <= bytes.length;) {
-          const length = bytes.readUInt32BE(offset);
-          const type = bytes.toString('ascii', offset + 4, offset + 8);
-          assert.notEqual(type, 'acTL', `${file}: GIF poster must not animate`);
-          offset += length + 12;
-        }
+        const animated = tag.match(/data-animated-src="([^"]+)"/)[1];
+        const animationChunks = webpChunks(
+          fs.readFileSync(localFile(new URL(animated, domain))),
+          `${file}: animation`,
+        );
+        assert(
+          animationChunks.includes('ANIM') && animationChunks.includes('ANMF'),
+          `${file}: playback WebP must preserve animation`,
+        );
       }
       assert(
         /\bwidth="\d+"/.test(tag) && /\bheight="\d+"/.test(tag),
@@ -198,6 +261,16 @@ for (const target of markdownTargets) {
   assert(markdown.startsWith('# '), `${file}: missing Markdown title`);
   // Code samples may deliberately contain illustrative, non-existent URLs.
   const prose = markdown.replace(/^```[^\n]*\n[\s\S]*?^```/gm, '');
+  for (const [, href] of prose.matchAll(
+    /!\[[^\n]*?\]\((https?:[^\s)]+|\/[^\s)]+)\)/g,
+  )) {
+    const url = new URL(href, domain);
+    if (url.origin === domain)
+      assert(
+        url.pathname.endsWith('.webp'),
+        `${file}: Markdown images must use WebP: ${href}`,
+      );
+  }
   for (const [, href] of prose.matchAll(/\]\((https?:[^\s)]+|\/[^\s)]+)\)/g)) {
     const url = new URL(href, domain);
     if (url.origin === domain)
@@ -247,6 +320,14 @@ for (const source of fs
     );
 }
 for (const name of ['cape', 'warranties', 'invision']) {
+  const originals = fs
+    .readdirSync(path.join(root, 'images', name))
+    .filter((file) => /\.(png|jpe?g)$/i.test(file));
+  assert.deepEqual(
+    originals,
+    [],
+    `${name}: uncompressed project originals must not be published`,
+  );
   const html = fs.readFileSync(
     path.join(root, 'work', name, 'index.html'),
     'utf8',

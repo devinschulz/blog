@@ -10,6 +10,7 @@
       {{- if not $image }}{{ $image = resources.Get (strings.TrimPrefix "/" $destination) }}{{ end -}}
       {{- $url := $destination -}}
       {{- if $image -}}
+        {{- $image = $image.Process "webp q85" -}}
         {{- $url = $image.Permalink -}}
       {{- else if hasPrefix $destination "/" -}}
         {{- $url = absURL $destination -}}

@@ -448,15 +448,20 @@ test('GIF remains opt-in and stops for reduced motion', async ({ page }) => {
   await page.goto(gifPage);
   const container = page.locator('[data-animated-image]');
   const image = container.locator('img');
-  await expect(image).toHaveAttribute('src', /\.png$/);
+  const poster = await image.getAttribute('data-static-src');
+  const animation = await image.getAttribute('data-animated-src');
+  expect(poster).toMatch(/\.webp$/);
+  expect(animation).toMatch(/\.webp$/);
+  expect(poster).not.toBe(animation);
+  await expect(image).toHaveAttribute('src', poster);
   await container.getByRole('button', { name: 'Play animation' }).click();
-  await expect(image).toHaveAttribute('src', /\.gif$/);
+  await expect(image).toHaveAttribute('src', animation);
   await container.getByRole('button', { name: 'Stop animation' }).click();
-  await expect(image).toHaveAttribute('src', /\.png$/);
+  await expect(image).toHaveAttribute('src', poster);
   await container.getByRole('button', { name: 'Play animation' }).click();
-  await expect(image).toHaveAttribute('src', /\.gif$/);
+  await expect(image).toHaveAttribute('src', animation);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(image).toHaveAttribute('src', /\.png$/);
+  await expect(image).toHaveAttribute('src', poster);
   await expect(container.getByRole('button')).toBeDisabled();
 });
 
