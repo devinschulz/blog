@@ -8,9 +8,11 @@ Notes on code, design, and the things I learned along the way.
 
 ## All writing
 
+[Browse tags]({{ with (site.GetPage "/tags").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
+
 {{ range .RegularPages.ByDate.Reverse }}### {{ .Title }}
 
-{{ .Date.Format "2 January 2006" }}{{ with .Params.tags }} · {{ delimit . ", " }}{{ end }}
+{{ .Date.Format "2 January 2006" }}{{ with partial "markdown/tags.html" . }} · {{ . }}{{ end }}
 
 {{ with .Description }}{{ . }}
 

@@ -48,7 +48,7 @@
       {{ $chatScript := resources.Get "js/chat-scroll-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "params" (dict) "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
       <script src="{{ $chatScript.RelPermalink }}" defer></script>
     {{ end }}
-    {{ if or .IsHome (eq .Section "blog") (and .IsPage (eq .Section "work")) }}
+    {{ if or .IsHome (eq .Section "blog") (eq .Section "tags") (and .IsPage (eq .Section "work")) }}
     {{ $scene := resources.Get "js/spatial-page.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}
     <script src="{{ $scene.RelPermalink }}" defer data-turbo-track="reload"></script>
     {{ end }}

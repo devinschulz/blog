@@ -395,7 +395,9 @@ test('writing highlights lead to the complete archive', async ({ page }) => {
     .getByRole('link', { name: `All ${articleCount} articles` })
     .click();
   await page.waitForURL('**/blog/');
-  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
+  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
+    articleCount,
+  );
 });
 
 test('Writing opens the full archive and its year shortcuts reach older posts', async ({
@@ -422,9 +424,11 @@ test('Writing opens the full archive and its year shortcuts reach older posts', 
   await years.getByRole('link', { name: '2018', exact: true }).click();
   await expect(page.locator('#year-2018')).toBeInViewport();
   await expect(
-    page.getByRole('region', { name: '2018 4 articles' }).getByRole('link'),
+    page.getByRole('region', { name: '2018 4 articles' }).locator('.post-link'),
   ).toHaveCount(4);
-  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
+  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
+    articleCount,
+  );
 });
 
 test('reduced motion retains native typography and project images', async ({
@@ -613,7 +617,9 @@ test('WebGL responds to input, settles, and stops for reduced motion', async ({
     /(^|\s)is-spatial(\s|$)/,
   );
   await expect(page.locator('.spatial-surface')).toHaveCount(2);
-  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
+  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
+    articleCount,
+  );
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('.spatial-surface')).toHaveCount(0);
   await expect(page.locator('.archive-title')).not.toHaveClass(
@@ -679,7 +685,7 @@ test('article header particles respond to hover and restore native text', async 
     .getByRole('link', { name: 'All writing', exact: true })
     .click();
   await page.waitForURL('**/blog/');
-  await page.locator('[data-post-list] a').first().click();
+  await page.locator('[data-post-list] .post-link').first().click();
   await expect(page.locator('.article-hero')).toHaveAttribute(
     'data-spatial-ready',
     'true',
@@ -732,7 +738,9 @@ test('WebGL failure retains readable artwork and every destination', async ({
     'rgb(255, 255, 255)',
   );
   await expect(page.locator('.archive-hero canvas')).toHaveCount(0);
-  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
+  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
+    articleCount,
+  );
   await audit(page);
   await page.goto(
     '/blog/using-react-component-variants-to-compose-css-classes/',
@@ -966,10 +974,7 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
   } else {
     await expect(firstCode.locator('[data-code-scroll-hint]')).toBeHidden();
   }
-  const nextArticle = more
-    .getByRole('link')
-    .filter({ has: page.locator('time') })
-    .first();
+  const nextArticle = more.locator('.related-post-link').first();
   const nextHref = await nextArticle.getAttribute('href');
   const nextTitle = await nextArticle.locator('p span').first().innerText();
   await nextArticle.click();
@@ -980,5 +985,7 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     .getByRole('link', { name: 'All writing', exact: true })
     .click();
   await page.waitForURL('**/blog/');
-  await expect(page.locator('[data-post-list] a')).toHaveCount(articleCount);
+  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
+    articleCount,
+  );
 });

@@ -1,6 +1,5 @@
 {{ define "main" }}
   {{ $posts := .RegularPages.ByDate.Reverse }}
-  {{ $years := $posts.GroupByDate "2006" }}
   <section aria-labelledby="archive-title">
     <header class="archive-hero relative isolate [container-type:inline-size] mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 py-6 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:py-8 forced-colors:border forced-colors:border-[CanvasText]">
       <h1 id="archive-title" class="archive-title pointer-events-none relative z-2 select-none [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] text-[clamp(32px,10cqw,44px)] leading-[1.02] font-medium tracking-[-0.04em] desktop:flex desktop:flex-wrap desktop:justify-between desktop:gap-x-6 desktop:text-[clamp(48px,6cqw,88px)]"><span class="block">Things I’ve</span><span class="block text-right">learned.</span></h1>
@@ -12,21 +11,9 @@
     <div class="mx-auto w-[calc(100%-40px)] max-w-400 pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]">
       <div class="flex items-baseline justify-between gap-6 text-xs desktop:text-[13px]">
         <p>All writing <span class="ml-2 text-muted">({{ len $posts }})</span></p>
-        {{ with .OutputFormats.Get "RSS" }}<a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ .RelPermalink }}">RSS feed <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>{{ end }}
+        <div class="flex flex-wrap items-center justify-end gap-x-5"><a class="inline-flex min-h-11 items-center underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "tags/" | relURL }}">Browse tags</a>{{ with .OutputFormats.Get "RSS" }}<a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ .RelPermalink }}">RSS feed <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>{{ end }}</div>
       </div>
-      <nav class="mt-2 mb-6 desktop:mb-8" aria-label="Browse writing by year" data-turbo="false">
-        <ul class="-ml-3 flex flex-wrap gap-x-1">
-          {{ range $years }}<li><a class="inline-flex min-h-11 items-center px-3 text-sm underline decoration-line-strong underline-offset-4 hover:decoration-current" href="#year-{{ .Key }}">{{ .Key }}</a></li>{{ end }}
-        </ul>
-      </nav>
-      <div data-post-list>
-        {{ range $years }}
-        <section class="mt-8 first:mt-0 desktop:mt-12" aria-labelledby="year-{{ .Key }}">
-          <h2 id="year-{{ .Key }}" class="mb-3 scroll-mt-8 text-xl font-medium tracking-[-0.02em] desktop:mb-4 desktop:text-2xl">{{ .Key }} <span class="ml-2 align-middle text-xs font-normal tracking-normal text-muted">{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</span></h2>
-          {{ range .Pages }}{{ partial "post-row.html" . }}{{ end }}
-        </section>
-        {{ end }}
-      </div>
+      {{ partial "post-groups.html" $posts }}
     </div>
   </section>
 {{ end }}

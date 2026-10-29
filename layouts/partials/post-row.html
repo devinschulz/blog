@@ -1,8 +1,8 @@
-<a href="{{ .RelPermalink }}" class="post-row group grid grid-cols-[3.5rem_minmax(0,1fr)_1.25rem] items-baseline gap-x-3 border-t border-line py-4 last:border-b desktop:grid-cols-[minmax(5rem,0.8fr)_minmax(0,4fr)_2.75rem] desktop:gap-x-8 desktop:py-6 [[hidden]]:hidden">
+<div class="post-row grid grid-cols-[3.5rem_minmax(0,1fr)_1.25rem] items-baseline gap-x-3 border-t border-line py-4 last:border-b desktop:grid-cols-[minmax(5rem,0.8fr)_minmax(0,4fr)_2.75rem] desktop:gap-x-8 desktop:py-6">
+  <a href="{{ .RelPermalink }}" class="post-link group col-span-full grid min-h-11 grid-cols-subgrid items-baseline">
   <time datetime="{{ .Date.Format "2006-01-02" }}" aria-label="{{ .Date.Format "January 2, 2006" }}" class="text-xs text-muted desktop:text-sm">{{ .Date.Format "Jan 2" }}</time>
-  <div>
-    <h3 class="max-w-[40ch] text-xl leading-[1.2] font-normal tracking-[-0.03em] group-hover:text-accent group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[5px] desktop:text-[clamp(24px,2vw,32px)]">{{ .Title }}</h3>
-    <span class="mt-2 block text-xs leading-relaxed text-muted desktop:text-sm">{{ with .Params.tags }}{{ delimit . ", " }}{{ else }}Notes{{ end }}</span>
-  </div>
+  <h3 class="max-w-[40ch] text-xl leading-[1.2] font-normal tracking-[-0.03em] group-hover:text-accent group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[5px] desktop:text-[clamp(24px,2vw,32px)]">{{ .Title }}</h3>
   <span class="self-start text-right text-xl leading-normal group-hover:text-accent desktop:text-[28px] motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-snappy motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-5 w-5 desktop:h-6 desktop:w-6") }}</span>
-</a>
+  </a>
+  <div class="col-span-2 col-start-2 text-xs leading-relaxed text-muted desktop:text-sm">{{ partial "tag-links.html" (dict "page" .) }}</div>
+</div>

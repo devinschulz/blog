@@ -1,0 +1,14 @@
+{{ $years := .ByDate.Reverse.GroupByDate "2006" }}
+<nav class="mt-2 mb-6 desktop:mb-8" aria-label="Browse writing by year" data-turbo="false">
+  <ul class="-ml-3 flex flex-wrap gap-x-1">
+    {{ range $years }}<li><a class="inline-flex min-h-11 items-center px-3 text-sm underline decoration-line-strong underline-offset-4 hover:decoration-current" href="#year-{{ .Key }}">{{ .Key }}</a></li>{{ end }}
+  </ul>
+</nav>
+<div data-post-list>
+  {{ range $years }}
+  <section class="mt-8 first:mt-0 desktop:mt-12" aria-labelledby="year-{{ .Key }}">
+    <h2 id="year-{{ .Key }}" class="mb-3 scroll-mt-8 text-xl font-medium tracking-[-0.02em] desktop:mb-4 desktop:text-2xl">{{ .Key }} <span class="ml-2 align-middle text-xs font-normal tracking-normal text-muted">{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</span></h2>
+    {{ range .Pages }}{{ partial "post-row.html" . }}{{ end }}
+  </section>
+  {{ end }}
+</div>

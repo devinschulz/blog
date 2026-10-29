@@ -1,0 +1,9 @@
+{{- $terms := .page.GetTerms "tags" -}}
+{{- with .limit }}{{ $terms = first . $terms }}{{ end -}}
+{{- with $terms -}}
+<span class="tag-links inline-flex flex-wrap items-center gap-x-3">
+  {{- range . -}}
+  <a href="{{ .RelPermalink }}" rel="tag" class="post-tag inline-flex min-h-11 items-center underline decoration-current/40 underline-offset-4 hover:decoration-current">{{ .LinkTitle }}</a>
+  {{- end -}}
+</span>
+{{- end -}}

@@ -8,10 +8,10 @@
       </div>
       <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-medium tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(40px,4.7vw,72px)] desktop:leading-[1.04]">{{ .Title }}</h1>
       {{ with .Description }}<p class="relative z-3 mt-4 max-w-[62ch] text-sm leading-relaxed text-white/85 desktop:text-lg">{{ . }}</p>{{ end }}
-      <dl class="relative z-3 mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/30 pt-4 text-xs leading-relaxed desktop:mt-6 desktop:text-[13px]">
+      <dl class="relative z-3 mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/30 pt-4 text-xs leading-relaxed desktop:mt-6 desktop:text-[13px]">
         <div><dt class="sr-only">Published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></dd></div>
         <div><dt class="sr-only">Reading time</dt><dd>{{ .ReadingTime }} min read</dd></div>
-        {{ with .Params.tags }}<div><dt class="sr-only">Filed under</dt><dd>{{ delimit . " · " }}</dd></div>{{ end }}
+        {{ with .GetTerms "tags" }}<div><dt class="sr-only">Filed under</dt><dd>{{ partial "tag-links.html" (dict "page" $) }}</dd></div>{{ end }}
       </dl>
     </header>
 
@@ -68,7 +68,10 @@
     <div class="desktop:grid desktop:grid-cols-2 desktop:gap-14">
       {{ range first 2 (sort $ranked "score" "desc") }}
       {{ with .page }}
-      <a class="group flex flex-col justify-between border-t border-line py-6 desktop:py-8" href="{{ .RelPermalink }}"><p class="mb-5 text-xs text-muted"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.tags }} · {{ index . 0 }}{{ end }}</p><p class="flex items-start justify-between gap-6 text-[28px] leading-[1.12] tracking-[-0.045em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4 desktop:text-[clamp(28px,2.8vw,42px)]"><span>{{ .Title }}</span><span class="shrink-0" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></p></a>
+      <div class="flex flex-col justify-between border-t border-line py-6 desktop:py-8">
+        <p class="mb-3 flex flex-wrap items-center gap-x-3 text-xs text-muted"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ partial "tag-links.html" (dict "page" . "limit" 1) }}</p>
+        <a class="related-post-link group block" href="{{ .RelPermalink }}"><p class="flex items-start justify-between gap-6 text-[28px] leading-[1.12] tracking-[-0.045em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4 desktop:text-[clamp(28px,2.8vw,42px)]"><span>{{ .Title }}</span><span class="shrink-0" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></p></a>
+      </div>
       {{ end }}
       {{ end }}
     </div>

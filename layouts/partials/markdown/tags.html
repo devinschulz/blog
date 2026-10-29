@@ -1,0 +1,7 @@
+{{- $tags := slice -}}
+{{- range .GetTerms "tags" -}}
+  {{- $url := .Permalink -}}
+  {{- with .OutputFormats.Get "md" }}{{ $url = .Permalink }}{{ end -}}
+  {{- $tags = $tags | append (printf "[%s](%s)" .LinkTitle $url) -}}
+{{- end -}}
+{{- return (delimit $tags ", ") -}}

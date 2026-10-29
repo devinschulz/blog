@@ -30,7 +30,7 @@ export default defineConfig({
     ]),
     {
       name: 'desktop-safari',
-      testMatch: ['header.spec.mjs', 'chat-scroll.spec.mjs'],
+      testMatch: ['header.spec.mjs', 'chat-scroll.spec.mjs', 'tags.spec.mjs'],
       use: {
         browserName: 'webkit',
         channel: undefined,
@@ -49,6 +49,7 @@ export default defineConfig({
         'header.spec.mjs',
         'logo.spec.mjs',
         'chat-scroll.spec.mjs',
+        'tags.spec.mjs',
       ],
       use: {
         ...devices['iPhone 13'],

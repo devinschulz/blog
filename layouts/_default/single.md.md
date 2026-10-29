@@ -4,7 +4,7 @@
 > {{ . }} {{ $.Params.headlineAccent }}
 {{ end }}
 {{- if eq .Section "blog" }}
-{{ .Date.Format "2 January 2006" }}{{ with .Params.tags }} · {{ delimit . ", " }}{{ end }}
+{{ .Date.Format "2 January 2006" }}{{ with partial "markdown/tags.html" . }} · {{ . }}{{ end }}
 
 {{ with .Description }}{{ . }}
 

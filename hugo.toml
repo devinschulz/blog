@@ -5,7 +5,8 @@ title = "Devin Schulz"
 enableRobotsTXT = true
 enableGitInfo = true
 
-disableKinds = ["taxonomy", "term"]
+[taxonomies]
+tag = "tags"
 
 [params]
 email = "hello@devinschulz.com"
@@ -36,6 +37,8 @@ isPlainText = true
 home = ['html', 'rss', 'llms', 'md']
 section = ['html', 'rss', 'md']
 page = ['html', 'md']
+taxonomy = ['html', 'md']
+term = ['html', 'md']
 
 [build.buildStats]
 enable = true

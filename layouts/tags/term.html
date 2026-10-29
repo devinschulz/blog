@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ $posts := where .RegularPages "Section" "blog" }}
+  <section aria-labelledby="archive-title">
+    <header class="archive-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 py-6 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:py-8 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
+      <div class="relative z-3 mb-5 flex flex-wrap gap-x-6 border-b border-white/30 pb-3 text-xs"><a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}All writing</a><a class="inline-flex min-h-11 items-center underline underline-offset-4" href="{{ "tags/" | relURL }}">All tags</a></div>
+      <h1 id="archive-title" class="archive-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] text-[clamp(36px,9vw,64px)] leading-[1.04] font-medium tracking-[-0.04em] desktop:text-[clamp(48px,6vw,88px)]">{{ .LinkTitle }}</h1>
+      <p class="relative z-3 mt-5 max-w-[55ch] text-sm leading-relaxed desktop:text-base">{{ len $posts }} {{ if eq (len $posts) 1 }}article{{ else }}articles{{ end }} tagged {{ .LinkTitle }}.</p>
+    </header>
+    <div class="mx-auto w-[calc(100%-40px)] max-w-400 pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]">
+      {{ partial "post-groups.html" $posts }}
+    </div>
+  </section>
+{{ end }}

@@ -181,6 +181,20 @@ for (const [source, destination, status] of redirects) {
     `${source}: destination ${destination} missing`,
   );
   assert(!redirectSources.has(destination), `${source}: avoid redirect chains`);
+  // The preview server does not apply hosting redirects. Catch old tag rules
+  // here so a working local archive cannot redirect away after deployment.
+  const pattern = new RegExp(
+    '^' +
+      source.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replaceAll('*', '.*') +
+      '$',
+  );
+  for (const file of files.filter((file) => file.startsWith('tags/'))) {
+    const tagPath = '/' + file.replace(/index\.html$/, '');
+    assert(
+      !pattern.test(tagPath) && !pattern.test(tagPath.replace(/\/$/, '')),
+      `${source}: redirect shadows generated tag page ${tagPath}`,
+    );
+  }
 }
 assert.deepEqual(errors, [], 'Broken internal links or assets');
 // Home, case studies, and every article have their own share card.
@@ -340,6 +354,59 @@ for (const name of ['cape', 'warranties', 'invision']) {
     [...markdown.matchAll(/!\[/g)].length,
     [...html.matchAll(/<img\s/g)].length,
     `${name}: Markdown is missing a project image`,
+  );
+}
+// A tag page must list precisely the posts that declare that tag, and every
+// article's visible tags must resolve through Hugo's generated term URLs.
+const taggedPosts = new Map();
+const tagURLs = new Map();
+for (const source of fs
+  .readdirSync('content/blog')
+  .filter((file) => file.endsWith('.md') && !file.startsWith('_'))) {
+  const content = fs.readFileSync(path.join('content/blog', source), 'utf8');
+  const frontmatter = content.split('---')[1];
+  const tags = (frontmatter.match(/^tags:\s*\[(.*)\]/m)?.[1] ?? '')
+    .split(',')
+    .map((tag) => tag.trim().replace(/^(['"])(.*)\1$/, '$2'))
+    .filter(Boolean);
+  const slug =
+    frontmatter.match(/^slug:\s*(.+)$/m)?.[1] || path.basename(source, '.md');
+  const articleURL = `/blog/${slug}/`;
+  const html = fs.readFileSync(
+    path.join(root, 'blog', slug, 'index.html'),
+    'utf8',
+  );
+  const hero = html.match(/<header class="article-hero[\s\S]*?<\/header>/)[0];
+  const links = [...hero.matchAll(/<a\b([^>]*\brel="tag"[^>]*)>([^<]*)<\/a>/g)];
+  assert.deepEqual(
+    links.map(([, , label]) => label),
+    tags,
+    `${source}: every tag must be linked in frontmatter order`,
+  );
+  for (const [, attributes, label] of links) {
+    const href = attributes.match(/\bhref="([^"]+)"/)[1];
+    assert(
+      href.startsWith('/tags/'),
+      `${source}: tag must link to its archive`,
+    );
+    if (tagURLs.has(label)) assert.equal(tagURLs.get(label), href);
+    tagURLs.set(label, href);
+    if (!taggedPosts.has(label)) taggedPosts.set(label, []);
+    taggedPosts.get(label).push(articleURL);
+  }
+}
+for (const [label, expected] of taggedPosts) {
+  const url = new URL(tagURLs.get(label), domain);
+  const target = localFile(url);
+  assert(target, `${label}: tag archive missing`);
+  const html = fs.readFileSync(target, 'utf8');
+  const actual = [
+    ...html.matchAll(/<a\b[^>]*\bclass="post-link(?: [^"]*)?"[^>]*>/g),
+  ].map(([tag]) => tag.match(/\bhref="([^"]+)"/)[1]);
+  assert.deepEqual(
+    actual.sort(),
+    expected.sort(),
+    `${label}: tag archive contains unrelated or missing posts`,
   );
 }
 console.log(

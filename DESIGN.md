@@ -281,7 +281,7 @@ Longer articles can offer a returning reader a “Continue reading” link above
 
 ### Writing Rows
 
-Each entire row is one link, separated by Fine Rules. The date is secondary, the title leads, and the arrow occupies its own column. Topics remain descriptive metadata. Hover changes the title and arrow to the semantic accent and underlines the title; the arrow moves by only 2px in each direction over 200ms when motion is permitted.
+Writing rows are separated by Fine Rules. The date, title, and arrow share the article link; each underlined tag is an independent link below it, with a 44px target and room to wrap. The date is secondary, the title leads, and the arrow occupies its own column. Hover changes the title and arrow to the semantic accent and underlines the title; the arrow moves by only 2px in each direction over 200ms when motion is permitted. Tag archives reuse the year groups and writing rows, while the tag index lists topics alphabetically with article counts.
 
 ### Project Imagery and Panels
 

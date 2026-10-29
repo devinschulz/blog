@@ -21,6 +21,10 @@
 {{ end }}
 ## Site indexes and feeds
 
+- [Writing tags]({{ with (site.GetPage "/tags").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
+{{ range site.Taxonomies.tags.Alphabetical }}- [{{ .Page.LinkTitle }} articles]({{ with .Page.OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
+{{ end }}
+
 - [Home page as Markdown]({{ with site.Home.OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 - [Writing index as Markdown]({{ with (site.GetPage "/blog").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 - [RSS feed]({{ with site.Home.OutputFormats.Get "rss" }}{{ .Permalink }}{{ end }})
