@@ -1,5 +1,43 @@
 import { test, expect } from '@playwright/test';
 
+test('compact headers keep the brand and menu on one line without overlap', async ({
+  page,
+}) => {
+  for (const width of [280, 320, 360, 390]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator('.theme-toggle')).toBeVisible();
+    const layout = await page.locator('.site-header').evaluate((header) => {
+      const brand = header.querySelector('.brand');
+      const theme = header.querySelector('.theme-toggle');
+      const menu = header.querySelector('.mobile-menu summary');
+      const lineCount = (element) => {
+        const text = [...element.childNodes].find(
+          (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
+        );
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        return range.getClientRects().length;
+      };
+      return {
+        brandLines: lineCount(brand),
+        menuLines: lineCount(menu),
+        brandRight: brand.getBoundingClientRect().right,
+        themeLeft: theme.getBoundingClientRect().left,
+        themeRight: theme.getBoundingClientRect().right,
+        menuLeft: menu.getBoundingClientRect().left,
+        menuRight: menu.getBoundingClientRect().right,
+      };
+    });
+    expect(layout.brandLines, `${width}px: brand must stay together`).toBe(1);
+    expect(layout.menuLines, `${width}px: Menu must stay together`).toBe(1);
+    expect(layout.brandRight).toBeLessThanOrEqual(layout.themeLeft);
+    expect(layout.themeRight).toBeLessThanOrEqual(layout.menuLeft);
+    expect(layout.menuRight).toBeLessThanOrEqual(width - 8);
+  }
+});
+
 for (const path of ['/', '/blog/']) {
   test(`header links follow the keyboard tab order on ${path}`, async ({
     page,
