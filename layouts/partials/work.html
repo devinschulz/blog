@@ -5,8 +5,8 @@
 }}
 <section id="work" class="work-section pt-16 desktop:pt-24" aria-labelledby="work-title">
   <div class="work-heading mx-auto w-[calc(100%-40px)] max-w-400 border-t border-line-strong pt-6 desktop:w-[calc(100%-64px)] desktop:pt-7 min-[1100px]:w-[calc(100%-96px)]">
-    <div class="section-kicker flex items-baseline gap-4 text-[11px] desktop:gap-7 desktop:text-xs"><span class="font-mono text-[10px]">(01)</span><span>A selection of projects</span><span class="ml-auto">2014–present</span></div>
-    <h2 id="work-title" class="mt-7 flex items-center justify-between text-[14vw] leading-[1.1] font-medium tracking-[-0.065em] desktop:mt-12 desktop:text-[clamp(64px,10vw,160px)]">Selected work<span class="pr-[0.07em] text-[0.7em] font-normal" aria-hidden="true">↘&#xFE0E;</span></h2>
+    <div class="section-kicker flex items-baseline gap-4 text-xs desktop:gap-7"><span class="font-mono text-xs">(01)</span><span>A selection of projects</span><span class="ml-auto">2014–present</span></div>
+    <h2 id="work-title" class="mt-7 flex items-center justify-between text-[14vw] leading-[1.1] font-medium tracking-[-0.065em] desktop:mt-12 desktop:text-[clamp(64px,10vw,160px)]">Selected work<span class="pr-[0.07em] text-[0.7em] font-normal" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "down-right" "class" "h-[1em] w-[1em]") }}</span></h2>
   </div>
   {{ partial "stripe-work.html" . }}
   <div class="project-gallery mx-auto w-[calc(100%-40px)] max-w-400 gap-x-16 gap-y-24 pt-8 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1.1fr_1fr] desktop:pt-14 desktop:pb-28 min-[1100px]:w-[calc(100%-96px)]">
@@ -23,20 +23,20 @@
               <img class="h-full w-full {{ if eq $i 0 }}object-cover{{ else }}object-contain{{ end }}" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 900w, {{ $large.RelPermalink }} 1800w" sizes="(min-width: 781px) 85vw, 100vw" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
               <img hidden data-project-detail class="h-full w-full object-contain [[hidden]]:hidden" src="{{ $detail.RelPermalink }}" width="{{ $detail.Width }}" height="{{ $detail.Height }}" alt="{{ .detailAlt }}" loading="lazy" decoding="async">
             </div>
-            <span class="project-open absolute z-2 top-3 right-3 flex min-h-11 items-center rounded-[30px] bg-white px-3 text-[10px] text-[#191919] desktop:top-6 desktop:right-6 desktop:min-h-11 desktop:px-5 desktop:text-xs forced-colors:border forced-colors:border-[ButtonText]" aria-hidden="true"><span class="hidden desktop:inline">View project&nbsp;</span><span class="text-lg desktop:text-xs">↗&#xFE0E;</span></span>
-            <span hidden data-lens-hint class="pointer-events-none absolute z-2 bottom-4 left-4 rounded-full bg-[#191919]/85 px-3 py-2 text-[10px] text-white desktop:bottom-6 desktop:left-6 desktop:text-xs [[hidden]]:hidden" aria-hidden="true">Move to look closer</span>
+            <span class="project-open control-pill absolute z-2 top-3 right-3 bg-white text-[#191919] desktop:top-6 desktop:right-6 forced-colors:border forced-colors:border-[ButtonText]" aria-hidden="true"><span class="hidden desktop:inline">View project</span>{{ partial "arrow-icon.html" (dict "class" "h-4 w-4") }}</span>
+            <span hidden data-lens-hint class="pointer-events-none absolute z-2 bottom-4 left-4 rounded-full bg-[#191919]/85 px-3 py-2 text-xs text-white desktop:bottom-6 desktop:left-6 [[hidden]]:hidden" aria-hidden="true">Move to look closer</span>
           </div>
           <div class="project-caption grid items-start pt-5 desktop:pt-6 {{ if eq $i 0 }}grid-cols-[20px_1fr_24px] gap-x-3 gap-y-2.5 desktop:grid-cols-[24px_1fr_32px] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr_auto_44px] min-[1100px]:gap-6{{ else }}grid-cols-[24px_1fr_24px] gap-3{{ end }}">
-            <span class="project-number mt-2.5 font-mono text-[9px] desktop:text-[11px]">0{{ add $i 1 }}</span>
+            <span class="project-number mt-2.5 font-mono text-xs">0{{ add $i 1 }}</span>
             <div>
               <h3 id="project-title-{{ $i }}" class="text-[32px] leading-[1.1] font-medium tracking-[-0.055em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[6px] desktop:text-[clamp(30px,3.1vw,48px)]">{{ .title }}</h3>
               <p id="project-description-{{ $i }}" class="mt-2.5 text-xs text-muted desktop:text-sm">{{ .description }}</p>
             </div>
-            <p class="project-meta col-start-2 row-start-2 text-left text-[10px] leading-[1.7] text-muted desktop:text-[11px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto min-[1100px]:mt-2.5 min-[1100px]:text-right{{ end }}">{{ .role }}<br>{{ .year }}</p>
-            <span class="project-arrow col-start-3 row-start-1 text-right text-[26px] leading-[1.4] desktop:text-[32px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto{{ end }}" aria-hidden="true">↗&#xFE0E;</span>
+            <p class="project-meta col-start-2 row-start-2 text-left text-xs leading-[1.7] text-muted {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto min-[1100px]:mt-2.5 min-[1100px]:text-right{{ end }}">{{ .role }}<br>{{ .year }}</p>
+            <span class="project-arrow col-start-3 row-start-1 text-right text-[26px] leading-[1.4] desktop:text-[32px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto{{ end }}" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-6 w-6 desktop:h-8 desktop:w-8") }}</span>
           </div>
         </a>
-        <button hidden data-preview-toggle type="button" aria-label="Show another view of {{ .title }}" aria-pressed="false" class="absolute top-3 left-3 z-3 inline-flex min-h-11 items-center gap-3 rounded-full border border-[#191919]/15 bg-white px-3 text-[10px] text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#191919] focus-visible:ring-2 focus-visible:ring-white desktop:top-6 desktop:left-6 desktop:px-4 desktop:text-xs [[hidden]]:hidden"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="4" width="10" height="10" rx="2" stroke="currentColor"/><path d="M5 2h7a2 2 0 0 1 2 2v7" stroke="currentColor"/></svg><span data-preview-label>Another view</span><span data-preview-count class="font-mono text-[9px]" aria-hidden="true">01/02</span></button>
+        <button hidden data-preview-toggle type="button" aria-label="Show another view of {{ .title }}" aria-pressed="false" class="control-pill absolute top-3 left-3 z-3 border border-[#191919]/15 bg-white text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-[#191919] focus-visible:ring-white desktop:top-6 desktop:left-6 [[hidden]]:hidden"><svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="6" width="12" height="12" rx="2"/><path d="M6 2h10a2 2 0 0 1 2 2v10"/></svg><span data-preview-label>Another view</span><span data-preview-count class="font-mono text-xs" aria-hidden="true">01/02</span></button>
         <span class="sr-only" data-preview-status role="status"></span>
       </article>
     {{ end }}

@@ -6,7 +6,7 @@
     <div class="desktop:col-span-8 desktop:col-start-4">
       <p class="display text-[1.6rem] leading-[1.2] font-medium tracking-[-0.02em] desktop:text-[2.25rem]">{{ .Params.intro }}</p>
       <nav aria-label="Case study chapters" class="mt-10 flex flex-wrap gap-2">
-        {{ range .Params.chapters }}<a class="pill-line" href="#{{ .id }}">{{ .name }} <span class="text-accent" aria-hidden="true">↓&#xFE0E;</span></a>{{ end }}
+        {{ range .Params.chapters }}<a class="pill-line" href="#{{ .id }}">{{ .name }} <span class="text-accent" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "down" "class" "h-4 w-4") }}</span></a>{{ end }}
       </nav>
     </div>
   </div>
@@ -26,7 +26,7 @@
               <p class="label">My contribution</p>
               <h3 class="display mt-4 text-[2rem] leading-[1.02] tracking-[-0.03em] desktop:text-[2.6rem]">{{ $.Params.editorial.contributionTitle | safeHTML }}</h3>
               <div class="mt-6 leading-relaxed text-muted [&_p+p]:mt-5">{{ $.Content }}</div>
-              <a class="arrow-link mt-4" href="{{ relref $ "/blog/building-the-inspect-measurement-engine" }}">Read the original engineering write-up <span aria-hidden="true">↗&#xFE0E;</span></a>
+              <a class="arrow-link mt-4" href="{{ relref $ "/blog/building-the-inspect-measurement-engine" }}">Read the original engineering write-up <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>
             </div>
           </div>
           <dl class="mt-16 grid gap-10 border-t border-line pt-10 desktop:mt-20 desktop:grid-cols-[1.2fr_1fr_1fr] desktop:gap-x-12">
@@ -58,7 +58,7 @@
         <h2 id="reflection-title" class="h-section max-w-[12ch] desktop:col-span-5">{{ .Params.editorial.reflectionTitle | safeHTML }}</h2>
         <div class="desktop:col-span-6 desktop:col-start-7">
           <p class="max-w-[60ch] text-lg leading-relaxed text-muted">{{ .Params.reflection }}</p>
-          <a class="arrow-link mt-4" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 <span aria-hidden="true">↗&#xFE0E;</span></a>
+          <a class="arrow-link mt-4" href="{{ relref . "/blog/reflecting-on-four-years-of-remote-work" }}">Notes from the team, written in 2019 <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>
         </div>
       </div>
       {{ partial "case-study-next.html" (dict "page" . "next" .Params.editorial.next "note" .Params.editorial.attribution) }}

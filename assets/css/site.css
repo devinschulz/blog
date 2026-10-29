@@ -165,7 +165,13 @@
   @apply font-mono text-xs text-muted;
 }
 @utility pill {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium;
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors duration-150 ease-snappy;
+}
+@utility control-pill {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-xs leading-normal transition-colors duration-150 ease-snappy disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility icon-control {
+  @apply inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-xs leading-normal transition-colors duration-150 ease-snappy disabled:cursor-not-allowed disabled:opacity-50;
 }
 @utility pill-solid {
   @apply pill bg-ink text-paper hover:bg-accent;
@@ -174,7 +180,7 @@
   @apply pill border border-line-strong hover:border-ink;
 }
 @utility arrow-link {
-  @apply inline-flex min-h-11 items-center gap-2 underline underline-offset-4;
+  @apply inline-flex min-h-11 items-center gap-2 underline decoration-1 underline-offset-4 hover:decoration-2;
 }
 @utility island-solid {
   @apply pill-solid;

@@ -12,7 +12,7 @@
     <div class="mx-auto w-[calc(100%-40px)] max-w-400 pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]">
       <div class="flex items-baseline justify-between gap-6 text-xs desktop:text-[13px]">
         <p>All writing <span class="ml-2 text-muted">({{ len $posts }})</span></p>
-        {{ with .OutputFormats.Get "RSS" }}<a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ .RelPermalink }}">RSS feed <span aria-hidden="true">↗&#xFE0E;</span></a>{{ end }}
+        {{ with .OutputFormats.Get "RSS" }}<a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ .RelPermalink }}">RSS feed <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>{{ end }}
       </div>
       <nav class="mt-2 mb-6 desktop:mb-8" aria-label="Browse writing by year" data-turbo="false">
         <ul class="-ml-3 flex flex-wrap gap-x-1">

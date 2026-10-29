@@ -3,7 +3,7 @@
   <article class="article-page" aria-labelledby="article-title" data-controller="reading">
     <header class="article-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-3 pb-5 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-4 desktop:pb-6 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
       <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-2 text-xs desktop:text-[13px]">
-        <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">←&#xFE0E;</span> All writing</a>
+        <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> All writing</a>
         <span>Things I’ve learned.</span>
       </div>
       <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-medium tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(40px,4.7vw,72px)] desktop:leading-[1.04]">{{ .Title }}</h1>
@@ -27,14 +27,14 @@
           <p>Archived writing, published in {{ .Date.Format "2006" }}. I’ve fixed some grammar since, but otherwise it’s as I wrote it, so some details may have aged.</p>
         </div>
         {{ end }}
-        <a class="mt-6 inline-flex min-h-11 items-center gap-3 text-xs underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}"><span aria-hidden="true">←&#xFE0E;</span> Back to all writing</a>
+        <a class="mt-6 inline-flex min-h-11 items-center gap-3 text-xs underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> Back to all writing</a>
       </aside>
 
       <div class="min-w-0">
         {{ if and $hasContents (ge .ReadingTime 5) }}
         <div hidden data-reading-target="resume" class="mb-4 max-w-[38rem] desktop:mb-6 desktop:border-b desktop:border-line desktop:pb-4 [[hidden]]:hidden">
           <p class="mb-1 flex items-center gap-2 text-xs text-muted"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M3 1.5h8v12l-4-3-4 3z"/></svg>Continue reading</p>
-          <a data-reading-target="resumeLink" data-action="reading#resume" data-turbo="false" class="inline-flex min-h-11 max-w-full items-center gap-4 text-base leading-snug underline decoration-line-strong underline-offset-4 hover:decoration-current" href="#article-title"><span data-reading-target="resumeLabel"></span><svg class="shrink-0" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M3 9h12m-5-5 5 5-5 5"/></svg></a>
+          <a data-reading-target="resumeLink" data-action="reading#resume" data-turbo="false" class="inline-flex min-h-11 max-w-full items-center gap-4 text-base leading-snug underline decoration-line-strong underline-offset-4 hover:decoration-current" href="#article-title"><span data-reading-target="resumeLabel"></span>{{ partial "arrow-icon.html" (dict "direction" "right") }}</a>
         </div>
         {{ end }}
         {{ if .Params.archived }}
@@ -48,8 +48,8 @@
         {{ end }}
         <div class="article-body prose prose-theme max-w-none text-[17px] leading-[1.8] text-ink prose-headings:scroll-mt-8 prose-headings:font-display prose-headings:font-medium prose-headings:tracking-[-0.045em] prose-headings:text-ink prose-h2:mt-14 prose-h2:mb-5 prose-h2:text-[30px] prose-h2:leading-[1.13] prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-a:text-accent prose-a:decoration-1 prose-a:underline-offset-[0.2em] prose-strong:font-semibold prose-strong:text-ink prose-blockquote:border-accent prose-blockquote:text-ink prose-blockquote:not-italic prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-[#171a20] prose-pre:p-5 prose-pre:text-[#eee] prose-code:rounded-sm prose-code:bg-surface prose-code:px-1 prose-code:py-0.5 prose-code:font-mono prose-code:text-[0.82em] prose-code:font-normal prose-code:break-words prose-code:before:content-none prose-code:after:content-none prose-img:h-auto prose-img:max-w-full prose-img:rounded-xl prose-hr:border-line prose-th:border-line-strong prose-th:text-ink prose-td:border-line desktop:text-lg desktop:prose-h2:mt-18 desktop:prose-h2:text-[38px] desktop:prose-pre:p-7 [&>p:first-child]:mt-0 [&>p:first-child]:text-xl [&>p:first-child]:leading-[1.65] desktop:[&>p:first-child]:text-[23px] [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_.highlight]:min-w-0 [&_li::marker]:text-muted">{{ .Content }}</div>
         <div class="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-line-strong pt-5 text-xs desktop:mt-20">
-          <a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}"><span aria-hidden="true">←&#xFE0E;</span> Back to all writing</a>
-          <a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="#article-title">Back to top <span aria-hidden="true">↑&#xFE0E;</span></a>
+          <a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> Back to all writing</a>
+          <a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="#article-title">Back to top <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up" "class" "h-4 w-4") }}</span></a>
         </div>
       </div>
     </div>
@@ -64,11 +64,11 @@
   {{ end }}
   {{ if $others }}
   <section class="mx-auto w-[calc(100%-40px)] max-w-320 border-t border-line-strong pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]" aria-labelledby="more-writing-title">
-    <div class="mb-7 flex flex-wrap items-center justify-between gap-4 text-xs desktop:mb-10"><h2 id="more-writing-title">More writing</h2><a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}">All writing <span aria-hidden="true">↗&#xFE0E;</span></a></div>
+    <div class="mb-7 flex flex-wrap items-center justify-between gap-4 text-xs desktop:mb-10"><h2 id="more-writing-title">More writing</h2><a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "blog/" | relURL }}">All writing <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a></div>
     <div class="desktop:grid desktop:grid-cols-2 desktop:gap-14">
       {{ range first 2 (sort $ranked "score" "desc") }}
       {{ with .page }}
-      <a class="group flex flex-col justify-between border-t border-line py-6 desktop:py-8" href="{{ .RelPermalink }}"><p class="mb-5 text-xs text-muted"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.tags }} · {{ index . 0 }}{{ end }}</p><p class="flex items-start justify-between gap-6 text-[28px] leading-[1.12] tracking-[-0.045em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4 desktop:text-[clamp(28px,2.8vw,42px)]"><span>{{ .Title }}</span><span class="shrink-0" aria-hidden="true">↗&#xFE0E;</span></p></a>
+      <a class="group flex flex-col justify-between border-t border-line py-6 desktop:py-8" href="{{ .RelPermalink }}"><p class="mb-5 text-xs text-muted"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.tags }} · {{ index . 0 }}{{ end }}</p><p class="flex items-start justify-between gap-6 text-[28px] leading-[1.12] tracking-[-0.045em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4 desktop:text-[clamp(28px,2.8vw,42px)]"><span>{{ .Title }}</span><span class="shrink-0" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></p></a>
       {{ end }}
       {{ end }}
     </div>

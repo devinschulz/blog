@@ -6,8 +6,8 @@
     <div class="desktop:col-span-8 desktop:col-start-4">
       <p class="display text-[1.6rem] leading-[1.2] font-medium tracking-[-0.02em] desktop:text-[2.25rem]">{{ .Params.intro }}</p>
       <nav aria-label="Case study chapters" class="mt-10 flex flex-wrap gap-2">
-        <a class="pill-line" href="#assistant-title">Assistant <span class="text-accent" aria-hidden="true">↓&#xFE0E;</span></a>
-        {{ range .Params.chapters }}<a class="pill-line" href="#{{ .id }}">{{ .name }} <span class="text-accent" aria-hidden="true">↓&#xFE0E;</span></a>{{ end }}
+        <a class="pill-line" href="#assistant-title">Assistant <span class="text-accent" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "down" "class" "h-4 w-4") }}</span></a>
+        {{ range .Params.chapters }}<a class="pill-line" href="#{{ .id }}">{{ .name }} <span class="text-accent" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "down" "class" "h-4 w-4") }}</span></a>{{ end }}
       </nav>
     </div>
   </div>

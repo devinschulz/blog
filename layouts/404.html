@@ -5,7 +5,7 @@
   <p class="mt-8 max-w-[46ch] text-lg leading-relaxed text-muted">That page doesn’t live here. If you followed an old link, the writing might still be in the archive.</p>
   <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
     <a class="pill-solid" href="{{ "blog/" | relURL }}">Browse all writing</a>
-    <a class="arrow-link" href="{{ site.Home.RelPermalink }}">Back home <span aria-hidden="true">↗&#xFE0E;</span></a>
+    <a class="arrow-link" href="{{ site.Home.RelPermalink }}">Back home <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>
   </div>
 
 </section>

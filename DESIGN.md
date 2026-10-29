@@ -110,6 +110,7 @@ components:
     backgroundColor: "{colors.white}"
     textColor: "{colors.primary-ink}"
     typography: "{typography.navigation}"
+    fontSize: "14px"
     rounded: "{rounded.contact}"
     padding: "0px 20px"
   project-preview-toggle:
@@ -210,7 +211,7 @@ Both active families are self-hosted. Bricolage Grotesque and Hanken Grotesk fon
 - **Archive row title:** regular weight (400), tracking (-0.03em), line height (1.2). Mobile size is 20px; desktop uses `clamp(24px, 2vw, 32px)`.
 - **Interface body:** regular weight (400), 15px mobile and 16px desktop, line height (1.5). Case-study summaries and introductory copy use their established larger sizes.
 - **Article body:** regular weight (400), 17px mobile and 18px desktop, line height (1.8). Direct prose, lists, quotations, and headings are capped at `min(68ch, 38rem)`. The opening paragraph is larger (20px mobile; 23px desktop) with line height (1.65).
-- **Labels and navigation:** DM Sans, generally 12–14px. Desktop main navigation uses 13px; mobile menu destinations use 28px. Some existing project metadata and indices use 9–11px; these are local exceptions, not the default for new essential controls.
+- **Labels and navigation:** DM Sans, generally 12–14px. Desktop main navigation uses 13px; mobile menu destinations use 28px. Project roles, dates, indices, preview controls, and footer details use a 12px minimum. Primary contact controls use 14px text.
 - **Code:** JetBrains Mono (13px), line height (1.7). Mono is also used for measurements, select data labels, and small numeric annotations.
 
 Headings generally balance their wrapping, while paragraphs use pretty wrapping. The homepage’s manually composed headline is an explicit exception. Existing large-display tracking is part of the incumbent design; it is not a blanket tracking value for prose or controls.
@@ -261,15 +262,18 @@ Primary action buttons and chapter links use full pill shapes. The code-copy uti
 - **Solid pill:** Ink background, Chalk text, horizontal padding (20px), minimum height (44px). Hover adopts the semantic accent. The error-page archive action is the canonical example.
 - **Outline pill:** transparent background, Ink text, Strong Rule boundary, the same padding and minimum height. Hover strengthens the border to the current text color. Used for chapter shortcuts.
 - **Contact on blue:** White background with Deep Electric Blue text, horizontal padding (20px), minimum height (44px), and a directional arrow. Neutral-page contact uses the outlined treatment.
-- **Project preview toggle:** White surface, Ink text, subtle fixed dark border, pill shape, and minimum height (44px). Padding is 12px on mobile and 16px on desktop. Hover uses the existing pale preview tint (`#f0f2ff`). The alternate view is explicitly selected with a button; hover does not change the project screen.
+- **Compact control:** 12px text, 16px horizontal padding, an 8px icon gap, pill shape, and minimum height (44px). Make waves, project preview controls, and animation playback share this spacing; their surfaces follow their context. Measurement nudge buttons use 44px square targets.
+- **Project preview toggle:** White surface, Ink text, subtle fixed dark border, and the compact control spacing. Hover uses the existing pale preview tint (`#f0f2ff`). The alternate view is explicitly selected with a button; hover does not change the project screen.
 
-The global focus treatment is a 3px outline with 4px offset and a 3px surface-colored ring. Blue stages use white outlines with blue ring separation. Code-copy controls and keyboard-scrollable code use a white 2px outline inset by 3px, without an outer ring, so panel clipping does not hide focus in either theme. Preserve the more local 2px focus treatment used by project preview toggles. Forced colors use the system Highlight color.
+The global focus treatment is a 3px outline with 4px offset and a 3px surface-colored ring. Blue stages use white outlines with blue ring separation. Project preview toggles use the same geometry with a dark outline and white ring against the artwork. Code-copy controls and keyboard-scrollable code use a white 2px outline inset by 3px, without an outer ring, so panel clipping does not hide focus in either theme. Forced colors use the system Highlight color.
+
+Navigation arrows come from `layouts/partials/arrow-icon.html`: a 20px view box, 1.5px stroke, and round caps and joins. Use 16px arrows for text links, 20–32px for editorial rows, and relative sizes for display lettering. The measurement-demo link keeps an 8px gap between its text and arrow.
 
 ### Navigation and Disclosures
 
 Desktop navigation is a horizontal set of small, labeled text links with generous clickable height (at least 44px), a hover underline, and an underline for the current Work or Writing section. Main navigation goes directly to the complete writing archive.
 
-Mobile navigation uses native details/summary. The menu panel has a Strong Rule boundary, Paper background, 24px padding, Menu lift, and 28px destination labels with 56px minimum link height. Its plus changes to a minus when open. Escape closes the menu and returns focus to the trigger.
+Mobile navigation uses native details/summary. Menu and the theme toggle remain transparent text controls with at least 44px-high targets; they have no pill fill. The menu panel has a Strong Rule boundary, Paper background, 24px padding, Menu lift, and 28px destination labels with 56px minimum link height. Its plus changes to a minus when open. Escape closes the menu and returns focus to the trigger.
 
 Article contents use a sticky desktop list or a mobile disclosure. The current section is identified with the semantic accent, underline, and `aria-current="location"`. In-page contents and year shortcuts use native fragment navigation.
 

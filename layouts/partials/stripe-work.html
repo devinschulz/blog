@@ -9,7 +9,7 @@
   <ol class="mt-9 self-center desktop:mt-0" aria-label="Work at Stripe, in order">
     {{ range .projects }}
     <li class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line py-5 first:border-t desktop:py-7">
-      <h4 class="min-w-0 text-[clamp(24px,3vw,40px)] leading-tight font-normal tracking-[-0.03em]"><a class="group inline-flex min-h-11 items-center gap-3 hover:text-accent" href="{{ .url }}"><span class="underline decoration-1 underline-offset-[6px]">{{ .name }}</span><svg class="h-4 w-4 shrink-0 text-accent desktop:h-5 desktop:w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a></h4>
+      <h4 class="min-w-0 text-[clamp(24px,3vw,40px)] leading-tight font-normal tracking-[-0.03em]"><a class="group inline-flex min-h-11 items-center gap-3 hover:text-accent" href="{{ .url }}"><span class="underline decoration-1 underline-offset-[6px]">{{ .name }}</span>{{ partial "arrow-icon.html" (dict "class" "h-4 w-4 text-accent desktop:h-5 desktop:w-5") }}</a></h4>
       <span class="text-xs {{ if eq .status "Current" }}rounded-full bg-accent-soft px-3 py-2 font-medium text-accent{{ else }}text-muted{{ end }}">{{ .status }}</span>
     </li>
     {{ end }}

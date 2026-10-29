@@ -1,0 +1,10 @@
+{{- $direction := .direction | default "up-right" -}}
+{{- $paths := dict
+  "up-right" "M3 17 17 3M3 3h14v14"
+  "down-right" "M3 3l14 14M3 17h14V3"
+  "left" "M17 10H3m7-7-7 7 7 7"
+  "right" "M3 10h14m-7-7 7 7-7 7"
+  "up" "M10 17V3m-7 7 7-7 7 7"
+  "down" "M10 3v14m-7-7 7 7 7-7"
+-}}
+<svg class="arrow-icon inline-block shrink-0 {{ .class | default "h-4 w-4" }}" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="{{ index $paths $direction }}"/></svg>
