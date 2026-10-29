@@ -1,7 +1,21 @@
 {{- /* Resolve real image resources without rewriting historical code samples. */ -}}
 {{- $page := . -}}
+{{- $raw := trim .RawContent "\n" -}}
+{{- /* Keep the running example's actual source in the Markdown export too. */ -}}
+{{- range findRE `\{\{< chat-scroll-source file="[^"]+" lang="[^"]+" >\}\}` $raw -}}
+  {{- $path := replaceRE `^.*file="([^"]+)".*$` "$1" . -}}
+  {{- $language := replaceRE `^.*lang="([^"]+)".*$` "$1" . -}}
+  {{- $source := resources.Get (printf "examples/chat-scroll/%s" $path) -}}
+  {{- $raw = replace $raw . (printf "```%s\n%s\n```" $language (strings.TrimSpace $source.Content)) -}}
+{{- end -}}
+{{- $raw = replace $raw "{{< chat-scroll-demo >}}" (printf "[Try the interactive streaming demo](%s#chat-scroll-demo). The demo requires JavaScript; its React implementation follows below." .Permalink) -}}
+{{- $downloads := slice -}}
+{{- range slice "useChatScroll.ts" "ChatScrollDemo.tsx" "chat-scroll.css" -}}
+  {{- $downloads = $downloads | append (printf "- [%s](%s)" . (absURL (printf "examples/chat-scroll/%s" .))) -}}
+{{- end -}}
+{{- $raw = replace $raw "{{< chat-scroll-files >}}" (delimit $downloads "\n") -}}
 {{- $parts := slice -}}
-{{- range $index, $part := split (trim .RawContent "\n") "```" -}}
+{{- range $index, $part := split $raw "```" -}}
   {{- if modBool $index 2 -}}
     {{- range findRE "!\\[[^\\n]*\\]\\([^\\n)]+\\)" $part -}}
       {{- $match := . -}}

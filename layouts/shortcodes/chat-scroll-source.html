@@ -1,0 +1,10 @@
+{{- $path := .Get "file" -}}
+{{- $language := .Get "lang" | default "ts" -}}
+{{- with resources.Get (printf "examples/chat-scroll/%s" $path) -}}
+  {{- $markdown := printf "```%s\n%s\n```" $language (strings.TrimSpace .Content) -}}
+  {{- $html := $.Page.RenderString $markdown -}}
+  {{- $html = replaceRE `code-label-([0-9]+)` (printf "chat-source-%d-$1" $.Ordinal) $html -}}
+  {{- $html | safeHTML -}}
+{{- else -}}
+  {{- errorf "Missing chat scroll source: %s" $path -}}
+{{- end -}}

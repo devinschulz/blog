@@ -1,0 +1,147 @@
+.chat-scroll-demo {
+  color: var(--color-ink, #191919);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-block: 2rem;
+}
+.chat-scroll-demo p {
+  margin: 0;
+}
+.chat-scroll-demo .chat-scroll-help {
+  margin-bottom: 1rem;
+  color: var(--color-muted, #60635c);
+  font-size: 0.875rem;
+}
+.chat-scroll-example {
+  border: 1px solid var(--color-line-strong, #bbb);
+  border-radius: 12px;
+  overflow: clip;
+  background: var(--color-raised, #fff);
+}
+.chat-scroll-toolbar,
+.chat-scroll-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+.chat-scroll-demo button {
+  min-height: 44px;
+  border: 1px solid var(--color-line-strong, #bbb);
+  border-radius: 999px;
+  padding: 0.625rem 1rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.chat-scroll-demo
+  button:hover:not(:disabled):not(.chat-scroll-primary):not(
+    .chat-scroll-reset
+  ) {
+  background: var(--color-surface, #e9eae6);
+}
+.chat-scroll-demo button:disabled {
+  color: var(--color-muted, #60635c);
+  cursor: default;
+}
+.chat-scroll-demo .chat-scroll-primary {
+  background: var(--color-ink, #191919);
+  color: var(--color-paper, #f5f5f3);
+  border-color: transparent;
+}
+.chat-scroll-demo .chat-scroll-primary:hover {
+  background: var(--color-accent, #2449ef);
+  color: var(--color-paper, #f5f5f3);
+}
+.chat-scroll-demo .chat-scroll-notice {
+  min-height: 3.75rem;
+  padding: 0 1rem 1rem;
+  color: var(--color-muted, #60635c);
+  font-size: 0.875rem;
+}
+.chat-scroll-viewport {
+  height: 26rem;
+  overflow-y: auto;
+  overflow-anchor: none;
+  overscroll-behavior-y: contain;
+  scroll-behavior: auto;
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--color-muted, #60635c) var(--color-paper, #f5f5f3);
+  border-block: 1px solid var(--color-line, #ddd);
+  background: var(--color-paper, #f5f5f3);
+}
+.chat-scroll-demo .chat-scroll-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 1.25rem;
+}
+.chat-scroll-message {
+  min-width: 0;
+  padding: 0;
+  overflow-wrap: anywhere;
+}
+.chat-scroll-demo .chat-scroll-author {
+  margin-bottom: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted, #60635c);
+}
+.chat-scroll-you .chat-scroll-text {
+  background: var(--color-surface, #e9eae6);
+  border-radius: 12px;
+  padding: 0.875rem 1rem;
+}
+.chat-scroll-text {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+.chat-scroll-mode {
+  font-size: 0.875rem;
+  color: var(--color-muted, #60635c);
+}
+.chat-scroll-demo .chat-scroll-footer button {
+  color: var(--color-accent, #2449ef);
+}
+.chat-scroll-demo .chat-scroll-reset {
+  margin-top: 0.5rem;
+  border: 0;
+  padding-inline: 0;
+  color: var(--color-muted, #60635c);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.chat-scroll-demo .chat-scroll-reset:hover {
+  background: transparent;
+}
+.chat-scroll-demo :is(button, .chat-scroll-viewport):focus-visible {
+  outline: 3px solid var(--color-accent, #2449ef);
+  outline-offset: -4px;
+}
+@media (max-width: 480px) {
+  .chat-scroll-toolbar {
+    align-items: stretch;
+  }
+  .chat-scroll-toolbar button {
+    width: 100%;
+  }
+  .chat-scroll-viewport {
+    height: 24rem;
+  }
+  .chat-scroll-demo .chat-scroll-messages {
+    padding: 1rem;
+  }
+}
+@media (forced-colors: active) {
+  .chat-scroll-demo :is(button, .chat-scroll-viewport):focus-visible {
+    outline-color: Highlight;
+  }
+}

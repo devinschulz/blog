@@ -957,7 +957,9 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     'type ButtonSize = "small" | "medium";',
   );
   const more = page.getByRole('region', { name: 'More writing' });
-  await expect(more).toContainText('Building the Inspect Measurement Engine');
+  await expect(more).toContainText(
+    "Building a Chat Interface That Doesn't Fight Your Scroll Position",
+  );
   const firstCode = page.locator('.code-block').first();
   if (mobile) {
     await expect(firstCode.locator('[data-code-scroll-hint]')).toBeVisible();

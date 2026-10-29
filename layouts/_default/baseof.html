@@ -42,6 +42,12 @@
     {{ $scripts := resources.Get "js/site.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
     {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
     <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
+    {{ if .HasShortcode "chat-scroll-demo" }}
+      {{ $chatStyles := resources.Get "examples/chat-scroll/chat-scroll.css" | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $chatStyles.RelPermalink }}" integrity="{{ $chatStyles.Data.Integrity }}" crossorigin="anonymous">
+      {{ $chatScript := resources.Get "js/chat-scroll-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "params" (dict) "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
+      <script src="{{ $chatScript.RelPermalink }}" defer></script>
+    {{ end }}
     {{ if or .IsHome (eq .Section "blog") (and .IsPage (eq .Section "work")) }}
     {{ $scene := resources.Get "js/spatial-page.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}
     <script src="{{ $scene.RelPermalink }}" defer data-turbo-track="reload"></script>

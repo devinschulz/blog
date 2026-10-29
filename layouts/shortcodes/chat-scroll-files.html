@@ -1,0 +1,6 @@
+<ul>
+  {{ range slice "useChatScroll.ts" "ChatScrollDemo.tsx" "chat-scroll.css" }}
+    {{ $source := resources.Get (printf "examples/chat-scroll/%s" .) }}
+    <li><a href="{{ $source.RelPermalink }}" download>{{ . }}</a></li>
+  {{ end }}
+</ul>
