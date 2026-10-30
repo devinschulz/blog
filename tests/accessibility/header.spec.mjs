@@ -57,7 +57,9 @@ for (const path of ['/', '/blog/']) {
     const waves = page.locator('[data-wave-trigger]');
     if (await waves.isVisible()) order.push(waves);
     if (desktop) {
-      order.push(...(await page.locator('.desktop-nav a').all()));
+      order.push(
+        ...(await page.locator('.desktop-nav a, .desktop-nav button').all()),
+      );
     }
     order.push(page.locator('.theme-toggle'));
     order.push(

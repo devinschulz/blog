@@ -224,9 +224,9 @@ The system combines near-full-width blue stages with inset editorial content. Mo
 
 The main responsive breakpoint is 781px. Additional local breakpoints at 500px, 1100px, 1500px, and 1600px handle measurement controls, wider metadata arrangements, case-study imagery, and large type. These are implementation breakpoints, not five independent layout systems.
 
-- **Portfolio gallery:** stacked on mobile; a two-column desktop grid (1.1fr / 1fr), with the first project spanning both columns. The gallery gap is 64px horizontally and 96px vertically. The main gallery and broad editorial sections cap at 1600px.
+- **Portfolio gallery:** work numbering follows the visible sequence: Stripe 01, Cape 02, Warranties 03, and InVision 04. The gallery is stacked on mobile; a two-column desktop grid (1.1fr / 1fr), with the first project spanning both columns. The gallery gap is 64px horizontally and 96px vertically. The main gallery and broad editorial sections cap at 1600px.
 - **Article track:** maximum outer width (1280px), with a desktop contents column and a main track capped at 760px. The contents column is at least 160px wide; the column gap is 56px, increasing to 96px from 1100px. Actual prose caps at 608px under the default root size.
-- **Writing archive:** year-grouped editorial rows, with a compact year shortcut list. Rows use 16px vertical padding on mobile and 24px on desktop. The mobile date/title/arrow columns are 56px, flexible space, and 20px, separated by 12px gaps.
+- **Writing archive:** a single left-aligned “Writing” heading that wraps naturally, followed by year-grouped editorial rows and a compact year shortcut list. The stage pairs its introduction with the derived article count and date range. Rows use 16px vertical padding on mobile and 24px on desktop. The mobile date/title/arrow columns are 56px, flexible space, and 20px, separated by 12px gaps.
 - **Case-study cover:** overlaps the blue stage by 40px mobile and 72px desktop. Its narrower width and restrained shadow create a real layered relationship.
 
 Spacing uses Tailwind’s 4px base with deliberate local exceptions. Tight intervals connect labels and controls; larger intervals separate projects, chapters, and major sections. Article and archive introductions intentionally use a smaller scale than the homepage and case-study display treatments.
@@ -273,7 +273,7 @@ Navigation arrows come from `layouts/partials/arrow-icon.html`: a 20px view box,
 
 Desktop navigation is a horizontal set of small, labeled text links with generous clickable height (at least 44px), a hover underline, and an underline for the current Work or Writing section. Main navigation goes directly to the complete writing archive.
 
-Mobile navigation uses native details/summary. Menu and the theme toggle remain transparent text controls with at least 44px-high targets; they have no pill fill. The menu panel has a Strong Rule boundary, Paper background, 24px padding, Menu lift, and 28px destination labels with 56px minimum link height. Its plus changes to a minus when open. Escape closes the menu and returns focus to the trigger.
+Mobile navigation uses native details/summary. Menu and the theme toggle remain transparent text controls with at least 44px-high targets; they have no pill fill. The brand and Menu label stay on one line. Below 360px, the header uses 16px horizontal padding and a 20px brand with its period kept adjacent to the name. The menu panel has a Strong Rule boundary, Paper background, 24px padding, Menu lift, and 28px destination labels with 56px minimum link height. Its plus changes to a minus when open. Escape closes the menu and returns focus to the trigger.
 
 Article contents use a sticky desktop list or a mobile disclosure. The current section is identified with the semantic accent, underline, and `aria-current="location"`. In-page contents and year shortcuts use native fragment navigation.
 
@@ -306,6 +306,14 @@ Native heading text is the accessible content. On supported desktop graphics, co
 The opt-in Make waves mode has an explicit exit. Project screens change through the labeled preview button. The logo counter is a small, temporary response; Inspect is a dormant tool until deliberately revealed. None of these effects should obstruct reading, scrolling, keyboard navigation, or browser zoom.
 
 Page navigation uses a 160ms fade over an opaque previous page, with the existing snappy easing. Reduced motion uses an immediate swap. Motion pauses or settles when input stops, when offscreen, or in hidden tabs, and graphics resources are released on navigation. Easing and duration metadata live in `.impeccable/design.json`; they are not invented top-level frontmatter groups.
+
+### Site Search
+
+Search uses a native manual popover enhanced by a Stimulus controller, opened from the shared header or mobile menu. The compact palette is horizontally centered near the top of the visible viewport, with an inset of 12% of its height bounded to 24–96px. It caps its width at 42rem, keeps 16px side gutters, and caps its overall height at 40rem or the available viewport space. The query stays visible above an independently scrolling results region. Visual-viewport updates account for the mobile keyboard. The panel uses Raised/Ink surfaces, a Strong Rule boundary, 12px corners, DM Sans, a local soft shadow, and a subdued backdrop.
+
+A small Search the site heading labels a full-width borderless query field. Results update as the visitor types, so no submit button is shown. The accent underline indicates input focus; other controls retain the existing focus treatment. The field’s native clear affordance is the only clear control. Results use 20px titles (18px below 500px), 14px excerpts limited to two lines (three on narrow screens), and inline metadata and topic links. Literal matches use the semantic accent and supporting accent surface; forced colors use system Highlight and HighlightText. Initial browse links sit in a quiet footer row.
+
+Pointer opening and closing use a reversible 180ms fade with a small upward translation (6px) and scale (0.97), using the existing snappy easing and a top-center origin. The backdrop fades with the panel. The native top layer stays open until the exit completes. Keyboard opening and dismissal are immediate; reduced motion keeps only a 100ms fade. Close and Escape restore focus to the opener, with the mobile Menu summary serving as the return target. Tab and Shift+Tab cycle through the currently visible controls and links, including live results and retry. The rest of the page is inert while search is open; dismissal and Turbo cleanup restore its prior interactivity. Outside presses dismiss without taking focus back. Without JavaScript, native browse links remain available inside the popover.
 
 ## Do's and Don'ts
 

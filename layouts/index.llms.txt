@@ -15,11 +15,13 @@
 {{ end }}
 ## Writing
 
-“Things I’ve learned”: {{ len $blog }} articles from {{ partial "writing-years.html" $blog }}. Older posts are marked as archived and keep their original publication dates; details in those posts may have aged.
+{{ len $blog }} articles from {{ partial "writing-years.html" $blog }}. Older posts are marked as archived and keep their original publication dates; details in those posts may have aged.
 
 {{ range $blog.ByDate.Reverse }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Date.Format "2006" }}.{{ with .Description }} {{ . }}{{ end }}
 {{ end }}
 ## Site indexes and feeds
+
+- [Site search index]({{ with site.Home.OutputFormats.Get "search" }}{{ .Permalink }}{{ end }})
 
 - [Writing tags]({{ with (site.GetPage "/tags").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 {{ range site.Taxonomies.tags.Alphabetical }}- [{{ .Page.LinkTitle }} articles]({{ with .Page.OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})

@@ -1,10 +1,8 @@
-# Things I’ve learned.
-
-Notes on code and design.
+# Writing
 
 Notes on code, design, and the things I learned along the way.
 
-{{ len .RegularPages }} articles, {{ partial "writing-years.html" .RegularPages }}. Older posts keep their original publication dates.
+{{ len .RegularPages }} articles, {{ partial "writing-years.html" .RegularPages }}.
 
 ## All writing
 

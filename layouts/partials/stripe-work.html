@@ -1,10 +1,13 @@
 {{ with hugo.Data.experience.stripe }}
 <article id="stripe" aria-labelledby="stripe-title" class="mx-auto mt-10 w-[calc(100%-40px)] max-w-400 scroll-mt-8 border-y border-line-strong py-9 desktop:mt-14 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1fr_1.3fr] desktop:gap-16 desktop:py-14 min-[1100px]:w-[calc(100%-96px)]">
-  <div>
+  <div class="grid grid-cols-[20px_1fr] items-start gap-3 desktop:grid-cols-[24px_1fr] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr] min-[1100px]:gap-6">
+    <span class="project-number mt-2.5 font-mono text-xs">01</span>
+    <div>
     <h3 id="stripe-title" class="text-[clamp(48px,8vw,96px)] leading-none font-medium tracking-[-0.04em]">{{ .company }}</h3>
     <p class="mt-4 text-sm text-muted desktop:text-base">{{ site.Params.role }}</p>
     <p class="mt-2 text-sm text-muted">{{ .period }}</p>
     <p class="mt-6 max-w-[40ch] text-base leading-relaxed desktop:text-lg">{{ .summary }}</p>
+    </div>
   </div>
   <ol class="mt-9 self-center desktop:mt-0" aria-label="Work at Stripe, in order">
     {{ range .projects }}

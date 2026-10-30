@@ -1,0 +1,22 @@
+<div id="site-search-popover" popover="manual" role="dialog" aria-labelledby="site-search-title" data-search-target="panel" data-action="toggle->search#toggle" class="search-popover font-sans text-base leading-normal text-ink">
+  <div class="search-heading">
+    <h2 id="site-search-title">Search the site</h2>
+    <button type="button" popovertarget="site-search-popover" popovertargetaction="hide" data-action="search#close" class="search-close">Close<span class="sr-only"> search</span><kbd aria-hidden="true">esc</kbd></button>
+  </div>
+  <div hidden data-search-target="interface" class="search-interface [[hidden]]:hidden">
+    <form role="search" data-action="submit->search#submit" class="search-form">
+      <label for="site-search" class="sr-only">Search terms</label>
+      <input id="site-search" type="search" maxlength="200" placeholder="What are you looking for?" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-describedby="search-status" data-search-target="input" data-action="input->search#change search->search#nativeClear compositionend->search#change" class="search-input">
+    </form>
+    <div class="search-scroll" data-search-target="scroll">
+      <p id="search-status" role="status" aria-live="polite" aria-atomic="true" data-search-target="status" class="search-status">Search titles, topics, and page content.</p>
+      <div hidden data-search-target="error" class="search-error [[hidden]]:hidden"><p>Couldn’t load search. Check your connection and try again.</p><button type="button" data-action="search#retry" class="mt-2 min-h-11 text-accent underline underline-offset-4">Retry search</button></div>
+      <ol id="search-results" data-search-target="results" class="search-results list-none"></ol>
+    </div>
+  </div>
+  <div data-search-target="browse" class="search-browse">
+    <a href="{{ "blog/" | relURL }}">Browse all writing {{ partial "arrow-icon.html" (dict "class" "h-4 w-4") }}</a>
+    <a href="{{ site.Home.RelPermalink }}#work">Explore selected work {{ partial "arrow-icon.html" (dict "class" "h-4 w-4") }}</a>
+  </div>
+  <p data-search-target="fallback" class="search-fallback">Interactive search needs JavaScript. Use the links above to browse the site.</p>
+</div>

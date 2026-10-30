@@ -3,6 +3,7 @@
 (dict "path" "/work/warranties" "image" "images/warranties/slide-3.jpg" "detail" "images/warranties/slide-2.jpg" "title" "Warranties" "description" "Purchase records and warranty coverage across iPhone, iPad, and Mac." "role" "Independent app design & development" "alt" "Warranties on iPad, displaying a list of household products and a stove’s warranty details." "detailAlt" "Warranties’ calendar and expiration reminders on iPhone." "year" "2023–2025")
 (dict "path" "/work/invision" "image" "images/invision/slide-3.png" "detail" "images/invision/slide-5.png" "title" "InVision" "description" "The measurement engine behind Inspect, and tools for design feedback." "role" "Frontend engineering" "alt" "InVision Inspect, showing design layers, an artboard and development specifications." "detailAlt" "InVision’s design review and feedback interface." "year" "2014–2020")
 }}
+{{ $numberOffset := cond (isset hugo.Data.experience "stripe") 2 1 }}
 <section id="work" class="work-section pt-16 desktop:pt-24" aria-labelledby="work-title">
   <div class="work-heading mx-auto w-[calc(100%-40px)] max-w-400 border-t border-line-strong pt-6 desktop:w-[calc(100%-64px)] desktop:pt-7 min-[1100px]:w-[calc(100%-96px)]">
     <div class="section-kicker flex items-baseline gap-4 text-xs desktop:gap-7"><span class="font-mono text-xs">(01)</span><span>A selection of projects</span><span class="ml-auto">2014–present</span></div>
@@ -27,7 +28,7 @@
             <span hidden data-lens-hint class="pointer-events-none absolute z-2 bottom-4 left-4 rounded-full bg-[#191919]/85 px-3 py-2 text-xs text-white desktop:bottom-6 desktop:left-6 [[hidden]]:hidden" aria-hidden="true">Move to look closer</span>
           </div>
           <div class="project-caption grid items-start pt-5 desktop:pt-6 {{ if eq $i 0 }}grid-cols-[20px_1fr_24px] gap-x-3 gap-y-2.5 desktop:grid-cols-[24px_1fr_32px] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr_auto_44px] min-[1100px]:gap-6{{ else }}grid-cols-[24px_1fr_24px] gap-3{{ end }}">
-            <span class="project-number mt-2.5 font-mono text-xs">0{{ add $i 1 }}</span>
+            <span class="project-number mt-2.5 font-mono text-xs">{{ printf "%02d" (add $i $numberOffset) }}</span>
             <div>
               <h3 id="project-title-{{ $i }}" class="text-[32px] leading-[1.1] font-medium tracking-[-0.055em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[6px] desktop:text-[clamp(30px,3.1vw,48px)]">{{ .title }}</h3>
               <p id="project-description-{{ $i }}" class="mt-2.5 text-xs text-muted desktop:text-sm">{{ .description }}</p>

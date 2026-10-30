@@ -2,10 +2,10 @@
   {{ $posts := .RegularPages.ByDate.Reverse }}
   <section aria-labelledby="archive-title">
     <header class="archive-hero relative isolate [container-type:inline-size] mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 py-6 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:py-8 forced-colors:border forced-colors:border-[CanvasText]">
-      <h1 id="archive-title" class="archive-title pointer-events-none relative z-2 select-none [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] text-[clamp(32px,10cqw,44px)] leading-[1.02] font-medium tracking-[-0.04em] desktop:flex desktop:flex-wrap desktop:justify-between desktop:gap-x-6 desktop:text-[clamp(48px,6cqw,88px)]"><span class="block">Things I’ve</span><span class="block text-right">learned.</span></h1>
+      <h1 id="archive-title" class="archive-title pointer-events-none relative z-2 select-none [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] text-[clamp(32px,10cqw,44px)] leading-[1.02] font-medium tracking-[-0.04em] desktop:text-[clamp(48px,6cqw,88px)]">Writing</h1>
       <div class="relative z-3 mt-5 flex flex-col justify-between gap-4 border-t border-white/33 pt-4 desktop:mt-6 desktop:flex-row desktop:items-end desktop:pt-5">
         <p class="max-w-[38ch] text-sm leading-relaxed desktop:text-base">Notes on code, design, and the things I learned along the way.</p>
-        <p class="max-w-[35ch] text-xs leading-relaxed desktop:text-right">{{ len $posts }} articles, {{ partial "writing-years.html" $posts }}.<br>Older posts keep their original publication dates.</p>
+        <p class="max-w-[35ch] text-xs leading-relaxed desktop:text-right">{{ len $posts }} articles, {{ partial "writing-years.html" $posts }}.</p>
       </div>
     </header>
     <div class="mx-auto w-[calc(100%-40px)] max-w-400 pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]">

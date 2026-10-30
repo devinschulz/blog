@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const article = '/blog/reflecting-on-twelve-years-of-remote-work/';
-const section = 'then-covid-happened';
+const section = 'the-pandemic-changed-the-circumstances';
 const key = `portfolio-reading:${article}`;
 
 test('returning readers can resume their last section without an automatic jump', async ({
@@ -22,7 +22,9 @@ test('returning readers can resume their last section without an automatic jump'
   await page.goto(article);
   const resume = page.locator('[data-reading-target="resume"]');
   await expect(resume).toBeVisible();
-  await expect(resume.getByRole('link')).toHaveText('Then COVID happened');
+  await expect(resume.getByRole('link')).toHaveText(
+    'The pandemic changed the circumstances',
+  );
   expect(await page.evaluate(() => scrollY)).toBe(0);
   await resume.getByRole('link').focus();
   await page.keyboard.press('Enter');
@@ -55,7 +57,7 @@ test('direct section links win and obsolete reading places are discarded', async
 });
 
 test('reaching the end clears the saved place', async ({ page }) => {
-  await page.goto(`${article}#what-twelve-years-have-taught-me`);
+  await page.goto(`${article}#id-still-choose-remote-work`);
   await page.locator('.article-body > p').last().scrollIntoViewIfNeeded();
   await expect
     .poll(() =>
@@ -69,7 +71,7 @@ test('reaching the end clears the saved place', async ({ page }) => {
     .toBeLessThanOrEqual(1);
   await expect(
     page
-      .locator('.article-contents a[href="#what-twelve-years-have-taught-me"]')
+      .locator('.article-contents a[href="#id-still-choose-remote-work"]')
       .first(),
   ).toHaveAttribute('aria-current', 'location');
   await page.goto('/blog/');

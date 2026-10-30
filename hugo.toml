@@ -33,8 +33,13 @@ mediaType = 'text/markdown'
 baseName = 'index'
 isPlainText = true
 
+[outputFormats.search]
+mediaType = 'application/json'
+baseName = 'search'
+isPlainText = true
+
 [outputs]
-home = ['html', 'rss', 'llms', 'md']
+home = ['html', 'rss', 'llms', 'md', 'search']
 section = ['html', 'rss', 'md']
 page = ['html', 'md']
 taxonomy = ['html', 'md']

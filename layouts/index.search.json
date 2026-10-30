@@ -1,0 +1,19 @@
+{{- $records := slice -}}
+{{- $homeText := partial "markdown/home.md.md" site.Home -}}
+{{- $homeBody := site.Home.RenderString (dict "display" "block") $homeText | plainify | htmlUnescape | replaceRE `\s+` " " -}}
+{{- $records = $records | append (dict "title" site.Title "url" site.Home.RelPermalink "kind" "Home" "description" "Frontend engineering, selected work, and a little context about Devin Schulz." "body" $homeBody "date" "" "tags" slice) -}}
+{{- range site.RegularPages.ByDate.Reverse -}}
+  {{- $kind := "Article" -}}
+  {{- $date := .Date.Format "Jan 2, 2006" -}}
+  {{- $body := .Plain -}}
+  {{- if eq .Section "work" -}}
+    {{- $kind = "Case study" -}}
+    {{- $date = "" -}}
+    {{- $markdown := partial "markdown/page.md.md" . -}}
+    {{- $body = .RenderString (dict "display" "block") $markdown | plainify -}}
+  {{- end -}}
+  {{- $tags := slice -}}
+  {{- range .GetTerms "tags" }}{{ $tags = $tags | append (dict "title" .LinkTitle "url" .RelPermalink) }}{{ end -}}
+  {{- $records = $records | append (dict "title" .Title "url" .RelPermalink "kind" $kind "description" (.Description | default "") "body" ($body | htmlUnescape | replaceRE `\s+` " ") "date" $date "tags" $tags) -}}
+{{- end -}}
+{{- $records | jsonify -}}

@@ -409,6 +409,36 @@ for (const [label, expected] of taggedPosts) {
     `${label}: tag archive contains unrelated or missing posts`,
   );
 }
+const searchIndex = JSON.parse(
+  fs.readFileSync(path.join(root, 'search.json'), 'utf8'),
+);
+const searchablePages = [
+  '/',
+  ...files
+    .filter((file) => /^(blog|work)\/.+\/index\.html$/.test(file))
+    .map((file) => '/' + file.replace(/index\.html$/, '')),
+];
+assert.deepEqual(
+  searchIndex.map((page) => page.url).sort(),
+  searchablePages.sort(),
+  'Search must include the homepage, every article, and every case study exactly once',
+);
+for (const page of searchIndex) {
+  assert(
+    page.title && page.body.trim() && typeof page.description === 'string',
+    `${page.url}: search content must be readable and nonempty`,
+  );
+  assert(
+    localFile(new URL(page.url, domain)),
+    `${page.url}: search destination missing`,
+  );
+}
+assert(
+  searchIndex
+    .find((page) => page.url === '/work/warranties/')
+    .body.includes('serial number'),
+  'Search must include case-study content stored in frontmatter',
+);
 console.log(
   `Checked ${files.length} HTML pages and ${markdownTargets.size} Markdown exports: metadata, JSON-LD, agent discovery links, local links/assets, archived code samples, case-study images, ${new Set(cards.values()).size} sharing cards, ${sitemapLocs.length} sitemap URLs, ${llmsLinks.length} llms.txt entries, and ${redirects.length} redirect mappings.`,
 );
