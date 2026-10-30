@@ -320,8 +320,7 @@ export default class extends Controller<HTMLElement> {
     this.resultsTarget.replaceChildren();
     this.scrollTarget.scrollTop = 0;
     if (!terms.length) {
-      this.statusTarget.textContent =
-        'Search titles, topics, and page content.';
+      this.statusTarget.textContent = 'Results update as you type.';
       return;
     }
     this.statusTarget.textContent = 'Searching…';
@@ -331,7 +330,7 @@ export default class extends Controller<HTMLElement> {
       const matches = searchPages(pages, terms);
       this.statusTarget.textContent = matches.length
         ? `${matches.length} ${matches.length === 1 ? 'result' : 'results'} for “${query}”.`
-        : `No results for “${query}”. Try another word.`;
+        : `No results for “${query}”. Try fewer or different words.`;
       const fragment = document.createDocumentFragment();
       for (const page of matches) fragment.append(this.result(page, terms));
       this.resultsTarget.append(fragment);
@@ -342,7 +341,7 @@ export default class extends Controller<HTMLElement> {
         (error instanceof DOMException && error.name === 'AbortError')
       )
         return;
-      this.statusTarget.textContent = 'Search is unavailable right now.';
+      this.statusTarget.textContent = 'Couldn’t load search.';
       this.errorTarget.hidden = false;
     }
   }

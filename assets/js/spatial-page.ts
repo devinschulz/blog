@@ -3,13 +3,18 @@ import { mountSpatialTitle } from './spatial-title';
 import { mountProjectPreviews } from './project-lens';
 
 let disposePage: (() => void) | undefined;
+let mountedBody: HTMLElement | undefined;
 function mountPage() {
+  // A deferred script and Turbo's initial load can both announce the same body.
+  if (mountedBody === document.body && disposePage) return;
   disposePage?.();
   disposePage = undefined;
+  mountedBody = undefined;
   if (
     !document.querySelector('.hero, .archive-hero, .case-hero, .article-hero')
   )
     return;
+  mountedBody = document.body;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const forcedColors = matchMedia('(forced-colors: active)');
   let clearProjects: (() => void) | undefined;
@@ -47,6 +52,7 @@ document.addEventListener('turbo:load', mountPage);
 function unmountPage() {
   disposePage?.();
   disposePage = undefined;
+  mountedBody = undefined;
 }
 document.addEventListener('turbo:before-cache', unmountPage);
 document.addEventListener('turbo:before-render', unmountPage);

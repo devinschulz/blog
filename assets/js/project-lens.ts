@@ -236,7 +236,7 @@ export function mountProjectPreviews(): () => void {
             ready = undefined;
             if (!events.signal.aborted)
               status.textContent =
-                'Preview could not load. The case study is still available.';
+                'Couldn’t load this view. Try again, or open the project to read the case study.';
             return false;
           });
       }
@@ -247,8 +247,7 @@ export function mountProjectPreviews(): () => void {
       images[0].hidden = false;
       images[1].hidden = true;
       button.setAttribute('aria-pressed', 'false');
-      button.setAttribute('aria-label', `Show another view of ${name}`);
-      label.textContent = 'Another view';
+      label.textContent = 'Show other view';
       count.textContent = '01/02';
       lens?.hide();
     }
@@ -268,7 +267,7 @@ export function mountProjectPreviews(): () => void {
         hideLens();
         busy = true;
         button.setAttribute('aria-busy', 'true');
-        label.textContent = 'Loading…';
+        label.textContent = 'Loading view…';
         if (await decode()) {
           selected = !selected;
           images[0].hidden = selected;
@@ -276,18 +275,12 @@ export function mountProjectPreviews(): () => void {
           lens?.hide();
           count.textContent = selected ? '02/02' : '01/02';
           button.setAttribute('aria-pressed', String(selected));
-          button.setAttribute(
-            'aria-label',
-            selected
-              ? `Show first view of ${name}`
-              : `Show another view of ${name}`,
-          );
           status.textContent = `${name}: view ${selected ? '2' : '1'} of 2. ${images[selected ? 1 : 0].alt}`;
         }
         if (!events.signal.aborted) {
           busy = false;
           button.removeAttribute('aria-busy');
-          label.textContent = selected ? 'First view' : 'Another view';
+          label.textContent = selected ? 'Show first view' : 'Show other view';
         }
       },
       { signal: events.signal },

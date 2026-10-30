@@ -620,7 +620,8 @@ test('WebGL fish swim, pause, respond to input, and stop for reduced motion', as
   await expect(page.locator('.archive-title')).toHaveClass(
     /(^|\s)is-spatial(\s|$)/,
   );
-  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  // A restored scroll position can pass the footer before reaching the archive top.
+  await expect(page.locator('.archive-hero .spatial-surface')).toHaveCount(1);
   await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
     articleCount,
   );
@@ -660,7 +661,7 @@ test('article header particles respond to hover and restore native text', async 
     'true',
   );
   await expect(title).toHaveClass(/(^|\s)is-spatial(\s|$)/);
-  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  await expect(page.locator('.spatial-surface')).toHaveCount(1);
   const before = await title.boundingBox();
   const draws = await page.evaluate(() => window.__articleDraws);
   await page.mouse.move(before.x + 100, before.y + 50);
@@ -695,7 +696,7 @@ test('article header particles respond to hover and restore native text', async 
     'data-spatial-ready',
     'true',
   );
-  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  await expect(page.locator('.spatial-surface')).toHaveCount(1);
   await page.locator('.article-surface').evaluate((canvas) => {
     canvas
       .getContext('webgl2')
@@ -781,7 +782,7 @@ test('liquid lettering is opt-in, settles, and restores native interactions', as
   await page.keyboard.press('Enter');
   await expect(button).toHaveAttribute('aria-pressed', 'true');
   await expect(hero).toHaveCSS('touch-action', 'none');
-  await expect(hero.getByRole('status')).toContainText('Drag through');
+  await expect(hero.getByRole('status')).toContainText('Drag across');
   const bounds = await hero.boundingBox();
   const x = bounds.x + bounds.width * 0.25;
   const y = bounds.y + bounds.height * 0.72;
@@ -842,9 +843,7 @@ test('project previews work with keyboard and reduced motion', async ({
     await expect(project.locator('.project-main img').first()).toBeVisible();
   }
   await audit(page);
-  await page
-    .getByRole('button', { name: 'Show another view of Cape', exact: true })
-    .click();
+  await page.getByRole('button', { name: /Show other view.*Cape/ }).click();
   await page.locator('.project-0 .project-link').click();
   await page.waitForURL('**/work/cape/');
   await page.goBack();
@@ -928,9 +927,7 @@ test('project lens remains still on scroll and releases graphics for reduced mot
   expect(await draws()).toBe(before);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(art.locator('canvas')).toHaveCount(0);
-  await page
-    .getByRole('button', { name: 'Show another view of Cape', exact: true })
-    .click();
+  await page.getByRole('button', { name: /Show other view.*Cape/ }).click();
   await expect(page.locator('.project-0 [data-project-detail]')).toBeVisible();
   await expect(page.locator('.project-0 .project-main')).toHaveCSS(
     'transform',

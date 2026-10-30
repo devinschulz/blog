@@ -18,13 +18,13 @@
       {{ $large := $image.Resize "1800x webp q88" }}
       {{ $detail := (resources.Get .detail).Resize "1400x webp q86" }}
       <article class="project project-{{ $i }} relative mb-16 w-full desktop:mb-0 {{ if eq $i 0 }}col-span-full{{ end }}" data-project-preview>
-        <a class="project-link group block" href="{{ $page.RelPermalink }}" aria-labelledby="project-title-{{ $i }} project-description-{{ $i }}">
+        <a class="project-link group block" href="{{ $page.RelPermalink }}">
           <div class="project-art relative overflow-clip rounded-[10px] {{ if eq $i 0 }}aspect-[1.25] bg-[#dfe5ec] desktop:aspect-[1.65]{{ else if eq $i 1 }}aspect-[1.15] bg-[#f6f6f6]{{ else }}aspect-[1.15] bg-[#222733]{{ end }}">
             <div class="project-main absolute inset-0 flex items-center justify-center">
               <img class="h-full w-full {{ if eq $i 0 }}object-cover{{ else }}object-contain{{ end }}" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 900w, {{ $large.RelPermalink }} 1800w" sizes="(min-width: 781px) 85vw, 100vw" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
               <img hidden data-project-detail class="h-full w-full object-contain [[hidden]]:hidden" src="{{ $detail.RelPermalink }}" width="{{ $detail.Width }}" height="{{ $detail.Height }}" alt="{{ .detailAlt }}" loading="lazy" decoding="async">
             </div>
-            <span class="project-open control-pill absolute z-2 top-3 right-3 bg-white text-[#191919] desktop:top-6 desktop:right-6 forced-colors:border forced-colors:border-[ButtonText]" aria-hidden="true"><span class="hidden desktop:inline">View project</span>{{ partial "arrow-icon.html" (dict "class" "h-4 w-4") }}</span>
+            <span class="project-open control-pill absolute z-2 top-3 right-3 bg-white text-[#191919] desktop:top-6 desktop:right-6 forced-colors:border forced-colors:border-[ButtonText]" aria-hidden="true"><span class="hidden min-[1100px]:inline">View project</span>{{ partial "arrow-icon.html" (dict "class" "h-4 w-4") }}</span>
             <span hidden data-lens-hint class="pointer-events-none absolute z-2 bottom-4 left-4 rounded-full bg-[#191919]/85 px-3 py-2 text-xs text-white desktop:bottom-6 desktop:left-6 [[hidden]]:hidden" aria-hidden="true">Move to look closer</span>
           </div>
           <div class="project-caption grid items-start pt-5 desktop:pt-6 {{ if eq $i 0 }}grid-cols-[20px_1fr_24px] gap-x-3 gap-y-2.5 desktop:grid-cols-[24px_1fr_32px] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr_auto_44px] min-[1100px]:gap-6{{ else }}grid-cols-[24px_1fr_24px] gap-3{{ end }}">
@@ -37,7 +37,7 @@
             <span class="project-arrow col-start-3 row-start-1 text-right text-[26px] leading-[1.4] desktop:text-[32px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto{{ end }}" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-6 w-6 desktop:h-8 desktop:w-8") }}</span>
           </div>
         </a>
-        <button hidden data-preview-toggle type="button" aria-label="Show another view of {{ .title }}" aria-pressed="false" class="control-pill absolute top-3 left-3 z-3 border border-[#191919]/15 bg-white text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-[#191919] focus-visible:ring-white desktop:top-6 desktop:left-6 [[hidden]]:hidden"><svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="6" width="12" height="12" rx="2"/><path d="M6 2h10a2 2 0 0 1 2 2v10"/></svg><span data-preview-label>Another view</span><span data-preview-count class="font-mono text-xs" aria-hidden="true">01/02</span></button>
+        <button hidden data-preview-toggle type="button" aria-labelledby="preview-label-{{ $i }} preview-count-{{ $i }} project-title-{{ $i }}" aria-pressed="false" class="control-pill absolute top-3 left-3 z-3 border border-[#191919]/15 bg-white text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-[#191919] focus-visible:ring-white desktop:top-6 desktop:left-6 [[hidden]]:hidden"><svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="6" width="12" height="12" rx="2"/><path d="M6 2h10a2 2 0 0 1 2 2v10"/></svg><span id="preview-label-{{ $i }}" data-preview-label>Show other view</span> <span id="preview-count-{{ $i }}" data-preview-count class="font-mono text-xs">01/02</span></button>
         <span class="sr-only" data-preview-status role="status"></span>
       </article>
     {{ end }}

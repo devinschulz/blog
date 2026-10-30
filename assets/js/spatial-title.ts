@@ -249,7 +249,7 @@ function mountPanel(
     }
     if (help)
       help.innerHTML =
-        '<span class="sr-only">Make waves lets you drag through the headline like ink in water.</span>';
+        '<span class="invisible" aria-hidden="true">Drag across the headline. Press Escape or choose Stop waves to finish.</span><span class="sr-only">Turn on Make waves, then drag across the headline. Press Escape to stop.</span>';
     dirty = true;
     field.request();
   }
@@ -272,10 +272,11 @@ function mountPanel(
         host.classList.add('cursor-crosshair');
         waterUniforms.flowActive.value = 1;
         waveButton.setAttribute('aria-pressed', 'true');
-        waveButton.querySelector('[data-wave-label]')!.textContent = 'Done ×';
+        waveButton.querySelector('[data-wave-label]')!.textContent =
+          'Stop waves';
         if (help)
           help.textContent =
-            'Drag through the lettering. Let go and watch it settle. · Esc to finish';
+            'Drag across the headline. Press Escape or choose Stop waves to finish.';
         dirty = true;
         field.request();
       },
@@ -642,11 +643,26 @@ function mountPanel(
   };
 }
 export function mountSpatialTitle(field: SpatialField): () => void {
-  const scenes = [
+  const hosts = [
     ...document.querySelectorAll<HTMLElement>(
       '.hero, .archive-hero, .case-hero, .article-hero, .site-footer',
     ),
-  ].map((host, index) => mountPanel(host, field, index * 1.83));
+  ];
+  const scenes = new Map<HTMLElement, () => void>();
+  let disposed = false;
+  const nearby = new IntersectionObserver(
+    (entries) => {
+      if (disposed) return;
+      for (const entry of entries) {
+        const host = entry.target as HTMLElement;
+        if (!entry.isIntersecting || scenes.has(host)) continue;
+        scenes.set(host, mountPanel(host, field, hosts.indexOf(host) * 1.83));
+        nearby.unobserve(host);
+      }
+    },
+    { rootMargin: '160px' },
+  );
+  hosts.forEach((host) => nearby.observe(host));
   const button =
     document.querySelector<HTMLButtonElement>('[data-fish-toggle]');
   const toggleFish = () => {
@@ -656,7 +672,10 @@ export function mountSpatialTitle(field: SpatialField): () => void {
   };
   button?.addEventListener('click', toggleFish);
   return () => {
+    disposed = true;
+    nearby.disconnect();
     button?.removeEventListener('click', toggleFish);
     scenes.forEach((dispose) => dispose());
+    scenes.clear();
   };
 }

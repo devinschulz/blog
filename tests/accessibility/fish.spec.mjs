@@ -40,10 +40,25 @@ test('fish rendering pauses offscreen, on request, and for accessibility prefere
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.addInitScript(() => {
     window.__fishDraws = 0;
+    window.__fishContexts = 0;
     window.__testHidden = false;
     Object.defineProperty(document, 'hidden', {
       get: () => window.__testHidden,
     });
+    const canvases = new WeakSet();
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      const context = getContext.call(this, type, ...args);
+      if (
+        (type === 'webgl' || type === 'webgl2') &&
+        context &&
+        !canvases.has(this)
+      ) {
+        canvases.add(this);
+        window.__fishContexts++;
+      }
+      return context;
+    };
     for (const Type of [WebGLRenderingContext, WebGL2RenderingContext]) {
       for (const name of ['drawElements', 'drawArrays']) {
         const draw = Type.prototype[name];
@@ -63,6 +78,11 @@ test('fish rendering pauses offscreen, on request, and for accessibility prefere
   await expect(page.locator('.archive-hero')).toHaveAttribute(
     'data-spatial-ready',
     'true',
+  );
+  await expect(page.locator('.spatial-surface')).toHaveCount(1);
+  expect(await page.evaluate(() => window.__fishContexts)).toBe(1);
+  await expect(page.locator('.site-footer')).not.toHaveAttribute(
+    'data-spatial-ready',
   );
   const draws = () => page.evaluate(() => window.__fishDraws);
   const first = await draws();
@@ -88,6 +108,13 @@ test('fish rendering pauses offscreen, on request, and for accessibility prefere
     document.dispatchEvent(new Event('visibilitychange'));
   });
   await expect.poll(draws).toBeGreaterThan(hidden);
+  await page.locator('.site-footer').scrollIntoViewIfNeeded();
+  await expect(page.locator('.site-footer')).toHaveAttribute(
+    'data-spatial-ready',
+    'true',
+  );
+  await expect(page.locator('.spatial-surface')).toHaveCount(2);
+  expect(await page.evaluate(() => window.__fishContexts)).toBe(2);
   await page
     .locator('#year-2020')
     .evaluate((element) => element.scrollIntoView({ block: 'center' }));
@@ -141,4 +168,29 @@ test('Make waves glyph flows only during fine-pointer hover', async ({
   }
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(lines.first()).toHaveCSS('animation-name', 'none');
+});
+
+test('wave instructions do not move the title in a short viewport', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: page.viewportSize().width, height: 500 });
+  await page.goto('/');
+  const button = page.locator('[data-wave-trigger]');
+  const title = page.locator('.hero-title');
+  const help = page.locator('[data-wave-help]');
+  await expect(button).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
+  const before = await title.boundingBox();
+  await button.click();
+  await expect(button).toContainText('Stop waves');
+  expect(await title.boundingBox()).toEqual(before);
+  const workLink = await page
+    .getByRole('link', { name: 'Explore selected work', exact: true })
+    .boundingBox();
+  const instruction = await help.boundingBox();
+  expect(instruction.y).toBeGreaterThanOrEqual(workLink.y + workLink.height);
+  await button.click();
+  await expect(button).toContainText('Make waves');
+  expect(await title.boundingBox()).toEqual(before);
 });

@@ -6,11 +6,11 @@
   <div hidden data-search-target="interface" class="search-interface [[hidden]]:hidden">
     <form role="search" data-action="submit->search#submit" class="search-form">
       <label for="site-search" class="sr-only">Search terms</label>
-      <input id="site-search" type="search" maxlength="200" placeholder="What are you looking for?" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-describedby="search-status" data-search-target="input" data-action="input->search#change search->search#nativeClear compositionend->search#change" class="search-input">
+      <input id="site-search" type="search" maxlength="200" placeholder="Try React or scroll position" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-describedby="search-status" data-search-target="input" data-action="input->search#change search->search#nativeClear compositionend->search#change" class="search-input">
     </form>
     <div class="search-scroll" data-search-target="scroll">
-      <p id="search-status" role="status" aria-live="polite" aria-atomic="true" data-search-target="status" class="search-status">Search titles, topics, and page content.</p>
-      <div hidden data-search-target="error" class="search-error [[hidden]]:hidden"><p>Couldn’t load search. Check your connection and try again.</p><button type="button" data-action="search#retry" class="mt-2 min-h-11 text-accent underline underline-offset-4">Retry search</button></div>
+      <p id="search-status" role="status" aria-live="polite" aria-atomic="true" data-search-target="status" class="search-status">Results update as you type.</p>
+      <div hidden data-search-target="error" class="search-error flex flex-wrap items-center gap-x-5 [[hidden]]:hidden"><button type="button" data-action="search#retry" class="min-h-11 text-accent underline underline-offset-4">Retry search</button><a href="{{ "blog/" | relURL }}" class="inline-flex min-h-11 items-center text-accent underline underline-offset-4">Browse all writing</a></div>
       <ol id="search-results" data-search-target="results" class="search-results list-none"></ol>
     </div>
   </div>
