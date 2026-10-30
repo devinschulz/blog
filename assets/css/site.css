@@ -7,6 +7,23 @@
 @source "../../layouts";
 @source "../js";
 
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .wave-icon path {
+    animation: wave-icon-flow 800ms linear infinite paused;
+  }
+  .wave-icon path + path {
+    animation-direction: reverse;
+  }
+  [data-wave-trigger]:hover .wave-icon path {
+    animation-play-state: running;
+  }
+}
+@keyframes wave-icon-flow {
+  to {
+    transform: translateX(-8px);
+  }
+}
+
 .search-popover {
   position: fixed;
   inset: clamp(24px, 12vh, 96px) 16px auto;

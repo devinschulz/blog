@@ -11,6 +11,7 @@ function mountPage() {
   )
     return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const forcedColors = matchMedia('(forced-colors: active)');
   let clearProjects: (() => void) | undefined;
   let clearSurfaces: (() => void) | undefined;
   function update() {
@@ -22,7 +23,7 @@ function mountPage() {
       return;
     }
     clearProjects ??= mountProjectPreviews();
-    if (reduce.matches) return;
+    if (reduce.matches || forcedColors.matches) return;
     const field = createSpatialField();
     const title = mountSpatialTitle(field);
     clearSurfaces = () => {
@@ -32,11 +33,13 @@ function mountPage() {
   }
   update();
   reduce.addEventListener('change', update);
+  forcedColors.addEventListener('change', update);
   document.addEventListener('portfolio:inspect', update);
   disposePage = () => {
     clearProjects?.();
     document.removeEventListener('portfolio:inspect', update);
     reduce.removeEventListener('change', update);
+    forcedColors.removeEventListener('change', update);
     clearSurfaces?.();
   };
 }

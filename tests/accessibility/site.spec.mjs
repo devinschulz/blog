@@ -509,7 +509,7 @@ test('forced colors retain a visible keyboard outline', async ({ page }) => {
   expect(outline).toEqual({ width: '3px', style: 'solid' });
 });
 
-test('WebGL responds to input, settles, and stops for reduced motion', async ({
+test('WebGL fish swim, pause, respond to input, and stop for reduced motion', async ({
   page,
 }, testInfo) => {
   test.skip(
@@ -549,6 +549,10 @@ test('WebGL responds to input, settles, and stops for reduced motion', async ({
         },
       )
       .toBe(0);
+  const cruising = await draws();
+  await expect.poll(draws).toBeGreaterThan(cruising);
+  await page.locator('[data-fish-toggle]').evaluate((button) => button.click());
+  await expect(page.locator('[data-fish-toggle]')).toHaveText('Resume fish');
   await settled();
   const before = await draws();
   await page.mouse.move(1000, 220);
@@ -665,6 +669,7 @@ test('article header particles respond to hover and restore native text', async 
     .poll(() => page.evaluate(() => window.__articleDraws))
     .toBeGreaterThan(draws);
   expect(await title.boundingBox()).toEqual(before);
+  await page.locator('[data-fish-toggle]').evaluate((button) => button.click());
   await expect
     .poll(
       async () => {

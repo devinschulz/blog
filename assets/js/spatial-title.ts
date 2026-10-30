@@ -16,10 +16,24 @@ import {
 } from 'three';
 import type { SpatialField } from './spatial-field';
 import { createLiquidType } from './liquid-type';
+import { createFishShadows, fishShadowShader } from './fish-shadows';
+
+let fishPaused = false;
+function syncFishControl(): void {
+  const button =
+    document.querySelector<HTMLButtonElement>('[data-fish-toggle]');
+  if (!button) return;
+  button.hidden = !document.querySelector('[data-spatial-ready="true"]');
+  button.textContent = fishPaused ? 'Resume fish' : 'Pause fish';
+}
 
 // The reference's physical lettering and water response become part of the
 // actual blue panels. Native text remains the semantic and fallback content.
-function mountPanel(host: HTMLElement, field: SpatialField): () => void {
+function mountPanel(
+  host: HTMLElement,
+  field: SpatialField,
+  seed: number,
+): () => void {
   const title = host.querySelector<HTMLElement>(
     '.hero-title, .archive-title, .case-title, .article-title, .footer-top > a',
   );
@@ -35,6 +49,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
     return () => {};
   }
   const events = new AbortController();
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const scene = new Scene();
   const camera = new PerspectiveCamera(35, 1, 0.1, 5000);
   const waveButton = host.classList.contains('hero')
@@ -73,7 +88,9 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
     { length: 6 },
     () => new Vector4(0.5, 0.5, 100, 0),
   );
+  const fish = createFishShadows(seed);
   const waterUniforms = {
+    ...fish.uniforms,
     blue: { value: new Color(0x2449ef) },
     aspect: { value: 1 },
     clock: { value: 0 },
@@ -92,6 +109,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
       uniform sampler2D flow;
       uniform float flowActive;
       varying vec2 waterUV;
+      ${fishShadowShader}
       void main() {
         vec2 inkFlow = flowActive > .5 ? texture2D(flow,waterUV).ba : vec2(0.);
         vec2 p = (waterUV - inkFlow) * vec2(aspect, 1.0) * 5.0;
@@ -105,6 +123,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
           wave += ring * sin(distanceToRipple * 65.0 - r.z * 10.0) * exp(-r.z * 2.4) * r.w;
         }
         vec3 color = blue * (.97 + caustic * .035) + vec3(.03, .065, .1) * (caustic * .13 + wave * .7 + length(inkFlow)*3.);
+        color *= 1.0 - fishShadows((waterUV - inkFlow * .12) * vec2(aspect, 1.0));
         gl_FragColor = vec4(max(color, vec3(0.0)), 1.0);
         #include <colorspace_fragment>
       }
@@ -206,6 +225,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
   let particleType = true;
   let energy = 0;
   let waterClock = 0;
+  let lastFishFrame = -Infinity;
   let rippleIndex = 0;
   let lastRipple = -100;
   let lastInteraction = 0;
@@ -381,6 +401,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
     renderer.setSize(bounds.width, bounds.height, false);
     water.scale.set(bounds.width + 4, bounds.height + 4, 1);
     waterUniforms.aspect.value = camera.aspect;
+    fish.update(0, bounds.width, bounds.height);
     pointUniforms.distance.value = camera.position.z;
     particleType = bounds.width >= 600;
     letters.visible = particleType && !waveActive;
@@ -436,6 +457,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
     title!.classList.toggle('is-spatial', particleType || waveActive);
     if (waveButton && liquid) waveButton.hidden = false;
     host.dataset.spatialReady = 'true';
+    syncFishControl();
     dirty = true;
     field.request();
   }
@@ -472,6 +494,20 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
     waterClock += state.delta * energy * 0.65;
     waterUniforms.clock.value = waterClock;
     let pending = energy > 0.002;
+    const swimming = !fishPaused;
+    if (swimming)
+      fish.update(
+        state.delta,
+        bounds.width,
+        bounds.height,
+        inside && finePointer.matches
+          ? {
+              x: state.pointerX - bounds.left,
+              y: bounds.height - (state.pointerY - bounds.top),
+            }
+          : undefined,
+      );
+    const fishFrame = swimming && state.time - lastFishFrame >= 1000 / 30;
     if (waveActive && liquid) {
       dragPosition.set(
         (state.pointerX - bounds.left) / bounds.width,
@@ -540,11 +576,12 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
       pointGeometry.getAttribute('position').needsUpdate = true;
       pointGeometry.getAttribute('charge').needsUpdate = true;
     }
-    if (dirty || pending) {
+    if (dirty || pending || fishFrame) {
       renderer.render(scene, camera);
+      lastFishFrame = state.time;
       dirty = false;
     }
-    return pending;
+    return pending || swimming;
   });
   const resize = new ResizeObserver(layout);
   resize.observe(host);
@@ -569,6 +606,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
       if (waveButton) waveButton.hidden = true;
       title!.classList.remove('is-spatial');
       delete host.dataset.spatialReady;
+      syncFishControl();
       renderer.domElement.hidden = true;
     },
     { signal: events.signal },
@@ -589,6 +627,7 @@ function mountPanel(host: HTMLElement, field: SpatialField): () => void {
     visibility.disconnect();
     title.classList.remove('is-spatial');
     delete host.dataset.spatialReady;
+    syncFishControl();
     waterGeometry.dispose();
     waterMaterial.dispose();
     pointGeometry.dispose();
@@ -607,6 +646,17 @@ export function mountSpatialTitle(field: SpatialField): () => void {
     ...document.querySelectorAll<HTMLElement>(
       '.hero, .archive-hero, .case-hero, .article-hero, .site-footer',
     ),
-  ].map((host) => mountPanel(host, field));
-  return () => scenes.forEach((dispose) => dispose());
+  ].map((host, index) => mountPanel(host, field, index * 1.83));
+  const button =
+    document.querySelector<HTMLButtonElement>('[data-fish-toggle]');
+  const toggleFish = () => {
+    fishPaused = !fishPaused;
+    syncFishControl();
+    field.request();
+  };
+  button?.addEventListener('click', toggleFish);
+  return () => {
+    button?.removeEventListener('click', toggleFish);
+    scenes.forEach((dispose) => dispose());
+  };
 }

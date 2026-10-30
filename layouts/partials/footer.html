@@ -8,6 +8,7 @@
     <p>© {{ now.Year }} Devin Schulz</p>
     <p class="personal-note hidden max-w-65 text-xs leading-normal min-[1100px]:block">This is my own site. Views on my work are my own.</p>
     <ul class="mt-2 flex flex-wrap gap-5 desktop:mt-0 desktop:flex-nowrap desktop:gap-7">
+      <li class="has-[[hidden]]:hidden"><button hidden data-fish-toggle type="button" class="inline-flex min-h-11 items-center underline-offset-4 hover:underline [[hidden]]:hidden">Pause fish</button></li>
       <li><a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline" href="{{ site.Params.github }}">GitHub {{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</a></li>
       <li><a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline" href="{{ site.Params.linkedin }}">LinkedIn {{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</a></li>
       <li><a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline" href="#page-top">Back to top {{ partial "arrow-icon.html" (dict "direction" "up" "class" "h-4 w-4") }}</a></li>
