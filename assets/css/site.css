@@ -7,6 +7,13 @@
 @source "../../layouts";
 @source "../js";
 
+@utility section-title {
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.08;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
   .wave-icon path {
     animation: wave-icon-flow 800ms linear infinite paused;

@@ -4,7 +4,6 @@
     <header class="article-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-3 pb-5 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-4 desktop:pb-6 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
       <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-2 text-xs desktop:text-[13px]">
         <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> All writing</a>
-        <span>Things I’ve learned.</span>
       </div>
       <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-medium tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(40px,4.7vw,72px)] desktop:leading-[1.04]">{{ .Title }}</h1>
       {{ with .Description }}<p class="relative z-3 mt-4 max-w-[62ch] text-sm leading-relaxed text-white/85 desktop:text-lg">{{ . }}</p>{{ end }}

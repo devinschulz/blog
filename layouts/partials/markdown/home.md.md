@@ -30,7 +30,7 @@ Senior Frontend Engineer at Stripe.
 [Full case study]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}) · [Website]({{ .Permalink }})
 
 {{ end -}}
-## A little context
+## About
 
 Designing and building for the web since 2012.
 
@@ -42,7 +42,7 @@ The work I tend to enjoy most is in the details: keeping a conversation readable
 
 [How I approach frontend work]({{ (site.GetPage "/blog/the-hardest-part-of-frontend-development-isnt-writing-code").Permalink }})
 
-## Things I’ve learned.
+## Writing
 
 Notes on code and design, {{ partial "writing-years.html" $blog }}.
 

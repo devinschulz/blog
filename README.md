@@ -24,7 +24,7 @@ Deploy `dist/`, produced by `npm run build`. Production builds clean retired gen
 
 ## Design and interactions
 
-The homepage uses full-width DM Sans typography on an ultramarine stage. A flat editorial gallery follows, with a compact introduction and writing section below. Project images do not animate or deform on scroll.
+The homepage uses full-width DM Sans typography on an ultramarine stage. A flat editorial gallery follows, with shared, smaller Selected work and Writing headings. The About statement sits beside readable paragraphs on desktop and stacks above them on mobile; four compact dated writing rows link to recent articles. Project images do not animate or deform on scroll.
 
 The opening headline is “Making complex software feel simple.” It introduces the product interfaces I build and links directly to selected work and the InVision measurement example. The About section describes my approach to design and engineering, with a link to recent writing. Project descriptions name the actual interfaces and contributions, and the contact footer uses a neutral invitation to compare notes.
 
