@@ -35,7 +35,7 @@ function mountPanel(
   seed: number,
 ): () => void {
   const title = host.querySelector<HTMLElement>(
-    '.hero-title, .archive-title, .case-title, .article-title, .footer-top > a',
+    '.hero-title, .archive-title, .case-title, .article-title',
   );
   if (!title) return () => {};
   let renderer: WebGLRenderer;
@@ -80,9 +80,7 @@ function mountPanel(
       ? 'spatial-surface archive-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
       : host.classList.contains('case-hero')
         ? 'spatial-surface case-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
-        : host.classList.contains('article-hero')
-          ? 'spatial-surface article-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
-          : 'spatial-surface footer-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden';
+        : 'spatial-surface article-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden';
   renderer.domElement.setAttribute('aria-hidden', 'true');
   const ripples = Array.from(
     { length: 6 },
@@ -645,7 +643,7 @@ function mountPanel(
 export function mountSpatialTitle(field: SpatialField): () => void {
   const hosts = [
     ...document.querySelectorAll<HTMLElement>(
-      '.hero, .archive-hero, .case-hero, .article-hero, .site-footer',
+      '.hero, .archive-hero, .case-hero, .article-hero',
     ),
   ];
   const scenes = new Map<HTMLElement, () => void>();

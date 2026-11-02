@@ -1,18 +1,22 @@
-<footer class="site-footer relative isolate @container m-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-8 pb-3 text-white desktop:m-4 desktop:rounded-3xl desktop:px-8 desktop:pt-14 forced-colors:border forced-colors:border-[CanvasText] [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef]" id="contact">
-  <div class="footer-top">
-    <p class="relative z-3 text-xs desktop:text-sm">Always happy to compare notes.</p>
-    <a class="relative z-3 mt-10 mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-[0.2em] text-[clamp(2.5rem,13cqw,13.75rem)] leading-[1.2] tracking-[-0.075em] select-none hover:underline hover:decoration-2 hover:underline-offset-[12px] desktop:mt-12 desktop:text-[clamp(2.5rem,13cqw,13.75rem)] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]" href="mailto:{{ site.Params.email }}"><span class="min-w-0">SAY HELLO</span><span class="inline-flex shrink-0 text-[0.8em] text-white" aria-hidden="true">{{ partial "arrow-icon.html" (dict "class" "h-[1em] w-[1em]") }}</span></a>
-    <span class="footer-email relative z-3 block pb-10 text-xs desktop:pb-16 desktop:text-sm">{{ site.Params.email }}</span>
+<footer class="site-footer mx-auto mt-8 w-[calc(100%-40px)] max-w-[1200px] border-t border-line-strong py-8 text-sm text-muted desktop:mt-12 desktop:w-[calc(100%-96px)] desktop:py-10" id="contact">
+  <div class="flex flex-col gap-6 desktop:flex-row desktop:items-start desktop:justify-between desktop:gap-10">
+    <p class="shrink-0">© {{ now.Year }} Devin Schulz</p>
+    <nav aria-label="Footer navigation">
+      <ul class="flex flex-wrap gap-x-6 gap-y-1 desktop:justify-end">
+        <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ "blog/" | relURL }}">Writing</a></li>
+        <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ "tags/" | relURL }}">Topics</a></li>
+        {{ with site.Home.OutputFormats.Get "RSS" }}<li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ .RelPermalink }}">RSS</a></li>{{ end }}
+        <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ "colophon/" | relURL }}">Colophon</a></li>
+        <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ site.Params.github }}">GitHub</a></li>
+        <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="mailto:{{ site.Params.email }}">Email</a></li>
+      </ul>
+    </nav>
   </div>
-  <div class="footer-bottom relative z-3 items-center justify-between gap-6 border-t border-white/33 pt-5 pb-2 text-xs desktop:flex desktop:pt-2">
-    <p>© {{ now.Year }} Devin Schulz</p>
-    <p class="personal-note hidden max-w-65 text-xs leading-normal min-[1100px]:block">This is my own site. Views on my work are my own.</p>
-    <ul class="mt-2 flex flex-wrap gap-5 desktop:mt-0 desktop:flex-nowrap desktop:gap-7">
-      <li class="has-[[hidden]]:hidden"><button hidden data-fish-toggle type="button" class="inline-flex min-h-11 items-center underline-offset-4 hover:underline [[hidden]]:hidden">Pause fish</button></li>
-      <li><a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline" href="{{ site.Params.github }}">GitHub {{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</a></li>
-      <li><a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline" href="{{ site.Params.linkedin }}">LinkedIn {{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</a></li>
-      <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:underline" href="{{ "colophon/" | relURL }}">Colophon</a></li>
-      <li><a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline" href="#page-top">Back to top {{ partial "arrow-icon.html" (dict "direction" "up" "class" "h-4 w-4") }}</a></li>
-    </ul>
+  <div class="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-xs">
+    <p>This is my own site. Views are my own.</p>
+    <div class="flex items-center gap-6">
+      <button hidden data-fish-toggle type="button" class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline [[hidden]]:hidden">Pause fish</button>
+      <a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:text-ink hover:underline" href="#page-top">Back to top {{ partial "arrow-icon.html" (dict "direction" "up" "class" "h-4 w-4") }}</a>
+    </div>
   </div>
 </footer>

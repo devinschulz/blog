@@ -109,12 +109,12 @@ test('fish rendering pauses offscreen, on request, and for accessibility prefere
   });
   await expect.poll(draws).toBeGreaterThan(hidden);
   await page.locator('.site-footer').scrollIntoViewIfNeeded();
-  await expect(page.locator('.site-footer')).toHaveAttribute(
+  await expect(page.locator('.site-footer')).not.toHaveAttribute(
     'data-spatial-ready',
-    'true',
   );
-  await expect(page.locator('.spatial-surface')).toHaveCount(2);
-  expect(await page.evaluate(() => window.__fishContexts)).toBe(2);
+  await expect(page.locator('.site-footer canvas')).toHaveCount(0);
+  await expect(page.locator('.spatial-surface')).toHaveCount(1);
+  expect(await page.evaluate(() => window.__fishContexts)).toBe(1);
   await page
     .locator('#year-2020')
     .evaluate((element) => element.scrollIntoView({ block: 'center' }));

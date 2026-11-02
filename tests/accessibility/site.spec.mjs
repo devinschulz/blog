@@ -146,52 +146,11 @@ test('display lettering reflows at 200 percent zoom and text size', async ({
         });
       }
       await expectReflow(page);
-      if (textOnly && path === '/') {
-        const footerWords = (
-          await page.locator('.footer-top > a > span').first().innerText()
-        )
-          .trim()
-          .split(/\s+/);
-        await expect
-          .poll(
-            () =>
-              page.evaluate(
-                (words) =>
-                  words.every((word) =>
-                    window.__typeLines.some((line) => line.text === word),
-                  ),
-                footerWords,
-              ),
-            { message: 'WebGL must redraw both wrapped footer lines' },
-          )
-          .toBe(true);
-        expect(
-          await page.evaluate(() =>
-            window.__typeLines.filter(
-              (line) => line.left < -1 || line.right > line.width + 1,
-            ),
-          ),
-          'WebGL lettering must fit its panel after text zoom',
-        ).toEqual([]);
-      }
-      const footer = page.locator('.footer-top > a');
-      await footer.scrollIntoViewIfNeeded();
-      const [label, arrow] = await footer
-        .locator(':scope > span')
-        .evaluateAll((nodes) =>
-          nodes.map((node) => {
-            const range = document.createRange();
-            range.selectNodeContents(node);
-            const { left, right, top, bottom } = range.getBoundingClientRect();
-            return { left, right, top, bottom };
-          }),
-        );
-      expect(
-        label.right <= arrow.left + 1 ||
-          label.bottom <= arrow.top + 1 ||
-          arrow.bottom <= label.top + 1,
-        JSON.stringify({ path, textOnly, label, arrow }),
-      ).toBe(true);
+      await page.locator('.site-footer').scrollIntoViewIfNeeded();
+      await expect(page.locator('.site-footer canvas')).toHaveCount(0);
+      await expect(
+        page.getByRole('navigation', { name: 'Footer navigation' }),
+      ).toBeVisible();
       if (await page.locator('.hero').count()) {
         const [topline, title] = await page
           .locator('.hero-topline, .hero-title')
