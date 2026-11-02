@@ -8,7 +8,7 @@ let lastKey = 0;
 let taps = 0;
 let lastTap = 0;
 
-async function toggle(): Promise<void> {
+async function toggle(source: 'logo' | 'keyboard'): Promise<void> {
   if (opening) return;
   taps = 0;
   keys = '';
@@ -16,7 +16,14 @@ async function toggle(): Promise<void> {
   try {
     const { createInspector } = await import('./inspect-mode');
     inspector ??= createInspector();
+    const wasActive = inspector.active;
     inspector.toggle();
+    if (source === 'logo' && !wasActive && inspector.active) {
+      const analytics = window as Window & {
+        plausible?: (event: string) => void;
+      };
+      analytics.plausible?.('Logo Easter Egg Activated');
+    }
   } finally {
     opening = false;
   }
@@ -54,7 +61,7 @@ document.addEventListener('keydown', (event) => {
   lastKey = now;
   if (keys === 'inspect') {
     keys = '';
-    void toggle();
+    void toggle('keyboard');
   }
 });
 
@@ -95,7 +102,7 @@ document.addEventListener(
     if (taps === 5) {
       event.preventDefault();
       taps = 0;
-      void toggle();
+      void toggle('logo');
     }
   },
   true,
