@@ -414,6 +414,7 @@ const searchIndex = JSON.parse(
 );
 const searchablePages = [
   '/',
+  '/colophon/',
   ...files
     .filter((file) => /^(blog|work)\/.+\/index\.html$/.test(file))
     .map((file) => '/' + file.replace(/index\.html$/, '')),
@@ -421,7 +422,7 @@ const searchablePages = [
 assert.deepEqual(
   searchIndex.map((page) => page.url).sort(),
   searchablePages.sort(),
-  'Search must include the homepage, every article, and every case study exactly once',
+  'Search must include the homepage, colophon, every article, and every case study exactly once',
 );
 for (const page of searchIndex) {
   assert(

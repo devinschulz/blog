@@ -1,0 +1,9 @@
+{{ define "main" }}
+<article class="mx-auto max-w-[800px] px-5 pt-10 pb-20 desktop:px-8 desktop:pt-16 desktop:pb-28" aria-labelledby="colophon-title">
+  <header class="mb-10 desktop:mb-14">
+    <h1 id="colophon-title" class="text-[clamp(36px,5vw,56px)] leading-[1.08] font-medium tracking-[-0.045em]">{{ .Title }}</h1>
+    <p class="mt-5 text-lg leading-relaxed text-muted">{{ .Description }}</p>
+  </header>
+  <div class="prose prose-theme max-w-none text-base leading-[1.8] text-ink prose-headings:font-medium prose-headings:tracking-[-0.03em] prose-headings:text-ink prose-h2:mt-12 prose-h2:text-2xl prose-a:text-accent prose-a:underline-offset-4 prose-strong:text-ink desktop:text-lg">{{ .Content }}</div>
+</article>
+{{ end }}

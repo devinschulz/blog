@@ -1,0 +1,6 @@
+# {{ .Title }}
+
+{{ .RawContent }}
+
+---
+Source: {{ .Permalink }}

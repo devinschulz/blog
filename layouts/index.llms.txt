@@ -21,6 +21,10 @@
 
 {{ range $blog.ByDate.Reverse }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Date.Format "2006" }}.{{ with .Description }} {{ . }}{{ end }}
 {{ end }}
+## About this site
+
+- [Colophon]({{ with (site.GetPage "/colophon").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): Tools, typography, and implementation details.
+
 ## Site indexes and feeds
 
 - [Site search index]({{ with site.Home.OutputFormats.Get "search" }}{{ .Permalink }}{{ end }})
