@@ -3,6 +3,20 @@
 <html lang="{{ site.Language.Lang }}" class="scroll-smooth motion-reduce:scroll-auto">
   <head>
     <meta charset="utf-8">
+    {{ if hugo.IsProduction }}
+    <script async src="https://green-disk-c9b4.devin5443.workers.dev/js/script.js"></script>
+    <script>
+      window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+      window.plausible.init = window.plausible.init || function (options) {
+        window.plausible.o = options || {};
+      };
+      window.plausible.init({
+        endpoint: "https://green-disk-c9b4.devin5443.workers.dev/api/event"
+      });
+    </script>
+    {{ end }}
     <meta name="color-scheme" content="light dark">
     {{ $lightColor := cond (and .IsSection (eq .Section "work")) "#2449ef" "#f5f5f3" }}
     {{ $darkColor := cond (and .IsSection (eq .Section "work")) "#2449ef" "#1a1b19" }}
@@ -48,10 +62,8 @@
       {{ $chatScript := resources.Get "js/chat-scroll-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "params" (dict) "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
       <script src="{{ $chatScript.RelPermalink }}" defer></script>
     {{ end }}
-    {{ if or .IsHome (eq .Section "blog") (eq .Section "tags") (eq .Section "work") (eq .Type "colophon") }}
     {{ $scene := resources.Get "js/spatial-page.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}
     <script src="{{ $scene.RelPermalink }}" defer data-turbo-track="reload"></script>
-    {{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
   <body id="page-top" class="{{ if .IsHome }}is-home {{ end }}bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
