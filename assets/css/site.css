@@ -554,19 +554,22 @@ details[open] > summary .disclosure-icon-vertical {
 }
 
 .article-preview-title,
-.archive-title-link {
+.archive-title-link,
+.related-post-title {
   text-decoration-line: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
 }
 .article-preview:has(a:focus-visible) .article-preview-title,
-.archive-title-link:focus-visible {
+.archive-title-link:focus-visible,
+.related-post-link:focus-visible .related-post-title {
   text-decoration-color: var(--color-accent);
 }
 @media (hover: hover) and (pointer: fine) {
   .article-preview:hover .article-preview-title,
-  .archive-title-link:hover {
+  .archive-title-link:hover,
+  .related-post-link:hover .related-post-title {
     text-decoration-color: var(--color-accent);
   }
 }
