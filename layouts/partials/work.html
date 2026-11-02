@@ -30,7 +30,7 @@
           <div class="project-caption grid items-start pt-5 desktop:pt-6 {{ if eq $i 0 }}grid-cols-[20px_1fr_24px] gap-x-3 gap-y-2.5 desktop:grid-cols-[24px_1fr_32px] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr_auto_44px] min-[1100px]:gap-6{{ else }}grid-cols-[24px_1fr_24px] gap-3{{ end }}">
             <span class="project-number mt-2.5 font-mono text-xs">{{ printf "%02d" (add $i $numberOffset) }}</span>
             <div>
-              <h3 id="project-title-{{ $i }}" class="text-[32px] leading-[1.1] font-medium tracking-[-0.055em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[6px] desktop:text-[clamp(30px,3.1vw,48px)]">{{ .title }}</h3>
+              <h3 id="project-title-{{ $i }}" class="text-[32px] leading-[1.1] font-semibold tracking-[-0.055em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[6px] desktop:text-[clamp(30px,3.1vw,48px)]">{{ .title }}</h3>
               <p id="project-description-{{ $i }}" class="mt-2.5 text-xs text-muted desktop:text-sm">{{ .description }}</p>
             </div>
             <p class="project-meta col-start-2 row-start-2 text-left text-xs leading-[1.7] text-muted {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto min-[1100px]:mt-2.5 min-[1100px]:text-right{{ end }}">{{ .role }}<br>{{ .year }}</p>

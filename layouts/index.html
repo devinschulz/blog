@@ -1,10 +1,10 @@
 {{ define "main" }}
 {{ $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse }}
-<div class="mx-auto max-w-[1200px] px-5 pt-10 pb-20 desktop:px-12 desktop:pt-16 desktop:pb-28">
+<div class="writing-home mx-auto max-w-[1200px] px-5 pt-10 pb-20 desktop:px-12 desktop:pt-16 desktop:pb-28">
   <div class="grid items-start gap-14 min-[1000px]:grid-cols-[minmax(0,1fr)_240px] min-[1000px]:gap-20">
     <section aria-labelledby="writing-title">
       <header class="mb-12 desktop:mb-16">
-        <h1 id="writing-title" class="text-[clamp(36px,5vw,56px)] leading-[1.08] font-medium tracking-[-0.045em]">Articles & notes</h1>
+        <h1 id="writing-title" class="text-[clamp(48px,6vw,80px)] leading-[1] font-semibold tracking-[-0.04em] text-accent">Articles & notes</h1>
         <p class="mt-5 max-w-[48ch] text-lg leading-relaxed text-muted">On building interfaces, working through the details, and learning along the way.</p>
       </header>
       <div data-post-list class="grid gap-12 desktop:gap-16">
@@ -14,7 +14,7 @@
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
             <span>{{ .ReadingTime }} min read</span>
           </div>
-          <h2 class="text-[26px] leading-[1.2] font-medium tracking-[-0.03em] desktop:text-[32px]"><a href="{{ .RelPermalink }}" class="article-preview-title">{{ .Title }}</a></h2>
+          <h2 class="text-[28px] leading-[1.15] font-semibold tracking-[-0.03em] desktop:text-[36px]"><a href="{{ .RelPermalink }}" class="article-preview-title">{{ .Title }}</a></h2>
           <p class="mt-4 text-base leading-[1.8] text-muted desktop:text-lg">{{ .Description | default (.Summary | plainify | truncate 240) }}</p>
           <a href="{{ .RelPermalink }}" aria-label="Read article: {{ .Title }}" data-action="pointerenter->stretch-arrow#play focus->stretch-arrow#play" class="read-article-link mt-3 inline-flex min-h-11 items-center gap-3 text-sm font-semibold text-ink">Read article <svg class="read-article-icon h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path data-stretch-arrow-target="shaft" d="M5 12H19"/><path data-stretch-arrow-target="tip" d="M12 5L19 12L12 19"/></svg></a>
         </article>
@@ -24,12 +24,12 @@
     </section>
     <aside aria-label="Explore the blog" class="grid gap-10 min-[1000px]:pt-2">
       <section aria-labelledby="hello-title">
-        <h2 id="hello-title" class="text-xl font-medium tracking-[-0.025em]">Hi, I’m Devin.</h2>
+        <h2 id="hello-title" class="text-xl font-semibold tracking-[-0.025em]">Hi, I’m Devin.</h2>
         <p class="mt-4 text-sm leading-[1.8] text-muted">I’m a frontend engineer at Stripe with a background in design. I write about the things I learn while building for the web.</p>
         <a href="{{ "work/" | relURL }}#about" class="mt-2 inline-flex min-h-11 items-center text-sm underline decoration-line-strong underline-offset-4 hover:decoration-current">More about me</a>
       </section>
       <section aria-labelledby="topics-title">
-        <h2 id="topics-title" class="text-xl font-medium tracking-[-0.025em]">Browse by topic</h2>
+        <h2 id="topics-title" class="text-xl font-semibold tracking-[-0.025em]">Browse by topic</h2>
         <ul class="mt-4 flex flex-wrap gap-2">
           {{ range site.Taxonomies.tags.Alphabetical }}
           <li><a href="{{ .Page.RelPermalink }}" class="inline-flex min-h-11 items-center rounded-lg bg-surface px-3 text-sm hover:text-accent">{{ .Page.LinkTitle }} <span class="ml-2 text-xs text-muted">{{ .Count }}</span></a></li>
@@ -37,7 +37,7 @@
         </ul>
       </section>
       <section aria-labelledby="reading-title">
-        <h2 id="reading-title" class="text-xl font-medium tracking-[-0.025em]">From the archive</h2>
+        <h2 id="reading-title" class="text-xl font-semibold tracking-[-0.025em]">From the archive</h2>
         <ul class="mt-3">
           {{ range first 3 (after 8 $posts) }}
           <li class="border-b border-line py-3"><a href="{{ .RelPermalink }}" class="archive-title-link inline-flex min-h-11 items-center text-sm leading-relaxed">{{ .Title }}</a></li>
@@ -45,7 +45,7 @@
         </ul>
       </section>
       <section aria-labelledby="follow-title">
-        <h2 id="follow-title" class="text-xl font-medium tracking-[-0.025em]">Keep reading</h2>
+        <h2 id="follow-title" class="text-xl font-semibold tracking-[-0.025em]">Keep reading</h2>
         <p class="mt-4 text-sm leading-relaxed text-muted">Get new articles in your favorite feed reader.</p>
         {{ with .OutputFormats.Get "RSS" }}<a href="{{ .RelPermalink }}" class="mt-2 inline-flex min-h-11 items-center text-sm text-accent underline underline-offset-4">Subscribe via RSS</a>{{ end }}
       </section>

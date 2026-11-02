@@ -8,9 +8,9 @@
 @source "../js";
 
 @utility section-title {
-  font-size: clamp(36px, 5vw, 64px);
-  line-height: 1.08;
-  font-weight: 500;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.04;
+  font-weight: 600;
   letter-spacing: -0.04em;
 }
 
@@ -569,4 +569,20 @@ details[open] > summary .disclosure-icon-vertical {
   .archive-title-link:hover {
     text-decoration-color: var(--color-accent);
   }
+}
+
+/* The newest piece leads; older entries keep the quieter reading rhythm. */
+.writing-home .article-preview:first-child {
+  border-top: 2px solid var(--color-accent);
+  padding-top: 28px;
+}
+.writing-home .article-preview:first-child h2 {
+  font-size: clamp(32px, 3.5vw, 44px);
+  line-height: 1.12;
+}
+.writing-home .read-article-link {
+  font-size: 15px;
+}
+.article-body h2 {
+  font-weight: 600;
 }
