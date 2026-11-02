@@ -407,3 +407,29 @@ test('native popover offers useful browse links without JavaScript', async ({
   await expect(page.locator('h1')).toHaveText('Writing');
   await context.close();
 });
+
+test('search stays separated and usable above a software keyboard', async ({
+  page,
+}) => {
+  const { panel, input } = await openSearch(page, '/');
+  await page.evaluate(() => {
+    Object.defineProperty(window.visualViewport, 'height', {
+      configurable: true,
+      get: () => 220,
+    });
+    window.visualViewport.dispatchEvent(new Event('resize'));
+  });
+  const boxes = await panel.evaluate((element) => ({
+    bottom: element.getBoundingClientRect().bottom,
+    inputBottom: element.querySelector('.search-form').getBoundingClientRect()
+      .bottom,
+    browseTop: element.querySelector('.search-browse').getBoundingClientRect()
+      .top,
+  }));
+  expect(boxes.bottom).toBeLessThanOrEqual(204);
+  expect(boxes.inputBottom).toBeLessThanOrEqual(boxes.browseTop);
+  await input.fill('colophon');
+  await expect(
+    panel.locator('.search-result-link').filter({ hasText: 'Colophon' }),
+  ).toBeVisible();
+});

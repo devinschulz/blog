@@ -1,7 +1,7 @@
 export type SearchPage = {
   title: string;
   url: string;
-  kind: 'Article' | 'Case study' | 'Home';
+  kind: 'Article' | 'Case study' | 'Home' | 'Page';
   description: string;
   body: string;
   date: string;

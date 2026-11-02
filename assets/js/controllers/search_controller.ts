@@ -289,7 +289,7 @@ export default class extends Controller<HTMLElement> {
               typeof page.body === 'string' &&
               typeof page.description === 'string' &&
               typeof page.date === 'string' &&
-              ['Article', 'Case study', 'Home'].includes(page.kind) &&
+              ['Article', 'Case study', 'Home', 'Page'].includes(page.kind) &&
               typeof page.url === 'string' &&
               /^\/(?!\/)/.test(page.url) &&
               Array.isArray(page.tags) &&
