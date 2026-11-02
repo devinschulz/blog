@@ -48,7 +48,7 @@
     "@hotwired/turbo": "^8.0.23",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "three": "^0.186.0"
+    "three": "^0.187.0"
   },
   "lint-staged": {
     "*.{js,mjs,ts,json,css}": "prettier --write"
