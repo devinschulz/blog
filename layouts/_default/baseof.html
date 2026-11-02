@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="color-scheme" content="light dark">
-    {{ $lightColor := cond .IsHome "#2449ef" "#f5f5f3" }}
-    {{ $darkColor := cond .IsHome "#2449ef" "#1a1b19" }}
+    {{ $lightColor := cond (and .IsSection (eq .Section "work")) "#2449ef" "#f5f5f3" }}
+    {{ $darkColor := cond (and .IsSection (eq .Section "work")) "#2449ef" "#1a1b19" }}
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ $lightColor }}" data-light="{{ $lightColor }}" data-dark="{{ $darkColor }}">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ $darkColor }}" data-light="{{ $lightColor }}" data-dark="{{ $darkColor }}">
     <script>
@@ -48,7 +48,7 @@
       {{ $chatScript := resources.Get "js/chat-scroll-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "params" (dict) "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
       <script src="{{ $chatScript.RelPermalink }}" defer></script>
     {{ end }}
-    {{ if or .IsHome (eq .Section "blog") (eq .Section "tags") (and .IsPage (eq .Section "work")) }}
+    {{ if or .IsHome (eq .Section "blog") (eq .Section "tags") (eq .Section "work") }}
     {{ $scene := resources.Get "js/spatial-page.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}
     <script src="{{ $scene.RelPermalink }}" defer data-turbo-track="reload"></script>
     {{ end }}

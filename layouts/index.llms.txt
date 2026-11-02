@@ -2,7 +2,7 @@
 {{- $blog := where site.RegularPages "Section" "blog" -}}
 # {{ site.Title }}
 
-> {{ site.Title }} is a {{ site.Params.role }} at Stripe. He has been building for the web since 2012, first as a designer and then as a frontend engineer. This is his personal portfolio, with selected work and writing on code and design. Every page below is available as Markdown.
+> {{ site.Title }} is a {{ site.Params.role }} at Stripe. He has been building for the web since 2012, first as a designer and then as a frontend engineer. This is his personal blog about code and design, with selected work on a separate work page. Every page below is available as Markdown.
 
 - Site: {{ site.Home.Permalink }}
 - Contact: {{ site.Params.email }}
@@ -10,6 +10,8 @@
 - Profile: {{ site.Params.linkedin }}
 
 ## Selected work
+
+[Work index]({{ with (site.GetPage "/work").OutputFormats.Get "md" }}{{ .Permalink }}{{ end }})
 
 {{ range $work }}- [{{ .Title }}]({{ with .OutputFormats.Get "md" }}{{ .Permalink }}{{ end }}): {{ .Params.role }}{{ with .Params.period }}, {{ . }}{{ end }}. {{ .Description }}
 {{ end }}

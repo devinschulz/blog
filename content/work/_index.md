@@ -1,5 +1,4 @@
 ---
 title: Selected work
-build:
-  render: never
+description: Selected product design and frontend engineering work by Devin Schulz.
 ---

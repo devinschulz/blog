@@ -5,7 +5,7 @@ description:
   Learn how to simplify your code by using a simple trick to remove an event
   listener after an event has been fired once.
 date: 2020-07-12
-tags: [JavaScript, Today I Learned]
+tags: [JavaScript]
 ---
 
 An interesting tidbit I stumbled upon recently is the ability to remove an event listener once it's called.

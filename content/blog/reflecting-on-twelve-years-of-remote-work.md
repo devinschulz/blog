@@ -1,7 +1,7 @@
 ---
 title: Reflecting on Twelve Years of Remote Work
 date: 2026-10-21
-tags: [Career, Remote]
+tags: [Career]
 description: Looking back on nearly twelve years of remote work, what changed during COVID, and what I still appreciate about working from home.
 ---
 

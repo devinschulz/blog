@@ -1,7 +1,7 @@
 ---
 title: The Hardest Part of Frontend Development Isn't Writing Code
 date: 2026-10-18
-tags: [Frontend, Opinion]
+tags: [Design]
 description: After more than a decade of building interfaces, the hardest work is deciding how they should behave when things don't go as planned.
 ---
 

@@ -5,7 +5,7 @@ description:
   Learn how to build React component variants by composing CSS classes in a
   typesafe and flexible manner.
 date: 2022-02-20
-tags: [React, Tailwind CSS, TypeScript]
+tags: [React, CSS]
 ---
 
 When it comes to styling variations of a component, we often concat classes

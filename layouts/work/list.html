@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ $posts := where site.RegularPages "Section" "blog" }}
+<section class="hero relative isolate @container m-2 flex min-h-[max(660px,calc(100svh-16px))] flex-col justify-end overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-28 text-white desktop:m-4 desktop:min-h-[min(1100px,max(660px,calc(100svh-32px)))] desktop:rounded-3xl desktop:px-8 forced-colors:border forced-colors:border-[CanvasText] [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef]" aria-labelledby="hero-title">
+  <div class="hero-topline relative z-3 mt-8 grid grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] gap-x-6 gap-y-4 text-[12px] leading-relaxed desktop:mt-5 desktop:gap-6 desktop:text-[15px]"><div class="min-w-0 max-w-95"><p>I design and build complex interfaces, from AI workspaces to the tools designers use.</p><a class="mt-3 inline-flex min-h-11 items-center gap-5" href="#work"><span class="underline underline-offset-4">Explore selected work</span><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "down-right" "class" "h-4 w-4") }}</span></a></div><p class="min-w-0 text-right">Senior Frontend Engineer<br>at Stripe</p></div>
+  <p id="wave-help" data-wave-help role="status" class="pointer-events-none relative z-3 mt-3 text-xs text-white/80"><span class="invisible" aria-hidden="true">Drag across the headline. Press Escape or choose Stop waves to finish.</span><span class="sr-only">Turn on Make waves, then drag across the headline. Press Escape to stop.</span></p>
+  <div class="hero-composition mt-auto w-full pt-24">
+    <h1 id="hero-title" class="hero-title pointer-events-none relative z-2 pb-9 text-[clamp(36px,11cqw,116px)] leading-[1.02] font-medium tracking-[-0.065em] [text-wrap:initial] select-none desktop:pb-10 desktop:text-[10.5cqw] desktop:leading-none min-[1100px]:text-[clamp(60px,10.5cqw,176px)] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]">
+      <span class="hero-line block">Making complex</span>
+      <span class="hero-line block">software feel</span>
+      <span class="hero-line block text-right">simple.</span>
+    </h1>
+  </div>
+  <div class="hero-bottom relative z-3 grid min-h-18 grid-cols-1 items-center gap-x-4 gap-y-0 py-3 min-[500px]:grid-cols-[1fr_auto] border-t border-white/33 text-xs desktop:min-h-19 desktop:py-0 desktop:grid-cols-[1fr_auto] desktop:gap-8"><span class="min-[500px]:max-w-31.25 desktop:max-w-none">Design decisions. Working code.</span><a class="inline-flex min-h-11 items-center gap-2" href="{{ relref . "/work/invision" }}#measurement-demo">Try the measurement demo <span class="text-[22px]" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a></div>
+</section>
+{{ partial "work.html" . }}
+<section class="intro-section mx-auto w-[calc(100%-40px)] max-w-400 border-t border-line-strong py-14 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] desktop:items-start desktop:gap-16 desktop:py-24 min-[1100px]:w-[calc(100%-96px)]" id="about" aria-labelledby="about-title">
+  <h2 id="about-title" class="intro-statement max-w-[20ch] text-[clamp(32px,7.6vw,40px)] leading-[1.12] font-medium tracking-[-0.04em] desktop:text-[clamp(36px,3.8vw,56px)]">Designing and building for the web since 2012.</h2>
+  <div class="intro-details mt-8 grid max-w-[60ch] gap-5 text-base leading-[1.65] desktop:mt-0 desktop:text-lg">
+    <p>I came to frontend engineering through design. I still enjoy figuring out how an interface should behave as much as writing the code that makes it work.</p>
+    <p class="text-muted">At Cape, that meant designing and building an AI workspace. At InVision, it meant working on the tools designers and developers use together. I’ve also built my own apps for iPhone, iPad, and Mac, where every decision, from the first form to the end of support, was mine to make.</p>
+    <p class="text-muted">The work I tend to enjoy most is in the details: keeping a conversation readable as it grows, making a failed request recoverable, or getting a small interaction to behave the way you expect.</p>
+    <a class="index-text-link mt-1 inline-flex min-h-11 items-center gap-5 justify-self-start border-b border-line-strong text-[13px] hover:border-current" href="{{ relref . "/blog/the-hardest-part-of-frontend-development-isnt-writing-code" }}">How I approach frontend work {{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</a>
+  </div>
+</section>
+{{ end }}

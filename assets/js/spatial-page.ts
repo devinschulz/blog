@@ -11,7 +11,9 @@ function mountPage() {
   disposePage = undefined;
   mountedBody = undefined;
   if (
-    !document.querySelector('.hero, .archive-hero, .case-hero, .article-hero')
+    !document.querySelector(
+      '.hero, .archive-hero, .case-hero, .article-hero, .site-footer',
+    )
   )
     return;
   mountedBody = document.body;

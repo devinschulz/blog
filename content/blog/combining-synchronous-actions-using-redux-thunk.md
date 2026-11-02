@@ -5,7 +5,7 @@ date: 2018-07-09T16:20:02-04:00
 description:
   Learn how to use Redux Thunk for handling several synchronous actions at once
   to modify different areas of the application state.
-tags: [Redux, Testing, React, Jest]
+tags: [React]
 ---
 
 Simple frontend applications I've worked with have one event (click, keypress,

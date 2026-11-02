@@ -5,7 +5,7 @@ date: 2019-07-29
 description:
   Learn how to recursively reduce a nested data structure by harnessing the
   power of the Array.reduce method.
-tags: [JavaScript, Array, Map]
+tags: [JavaScript]
 ---
 
 Many people don't realize the power and potential of the `Array.reduce`

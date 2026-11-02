@@ -5,7 +5,7 @@ date: 2020-02-02
 description:
   Learn how to modify the underlying Create React App configuration with
   customize-cra to include new Babel plugins, all without having to eject.
-tags: [React, Babel]
+tags: [React, Tooling]
 ---
 
 I love using [Create React App](https://github.com/facebook/create-react-app) to

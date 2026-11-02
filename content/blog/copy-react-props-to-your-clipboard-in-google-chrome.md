@@ -5,7 +5,7 @@ date: 2018-07-14T12:26:27-04:00
 description:
   Learn how to copy React props to your clipboard using Google Chrome and the
   React Developer Tools.
-tags: [DevTools, Today I Learned]
+tags: [React, Tooling]
 ---
 
 

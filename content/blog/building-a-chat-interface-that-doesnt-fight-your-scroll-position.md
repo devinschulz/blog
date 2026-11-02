@@ -1,7 +1,7 @@
 ---
 title: Building a Chat Interface That Doesn't Fight Your Scroll Position
 date: 2026-10-29
-tags: [React, Frontend, UX]
+tags: [React, Design]
 description: A React implementation for following streaming replies, pausing when someone scrolls up, and keeping their place when older messages load. Includes a working demo.
 ---
 

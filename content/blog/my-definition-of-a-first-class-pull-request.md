@@ -6,7 +6,7 @@ description:
   shouldn't add more than a couple of minutes to your workflow, and you'll look
   like a rockstar to your peers.
 date: 2020-08-25
-tags: [Workflow, Opinion]
+tags: [Career]
 canonical: https://medium.com/dropoutlabs/my-definition-of-a-first-class-pull-request-96094994e67d?source=friends_link&sk=8bf05b8be81b2664d138fdae50e9a967
 ---
 

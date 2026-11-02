@@ -1,5 +1,5 @@
 {{ $title := printf "%s · %s" .Title site.Title }}
-{{ if .IsHome }}{{ $title = printf "%s · %s at Stripe" site.Title site.Params.role }}{{ end }}
+{{ if .IsHome }}{{ $title = printf "%s · Writing on code and design" site.Title }}{{ end }}
 {{ with .Params.seoTitle }}{{ $title = printf "%s · %s" . site.Title }}{{ end }}
 {{ if eq .Kind "term" }}{{ $title = printf "%s articles · %s" .LinkTitle site.Title }}{{ else if eq .Kind "taxonomy" }}{{ $title = printf "Writing tags · %s" site.Title }}{{ end }}
 {{ $description := .Description | default (printf "%s is a %s at Stripe who builds product interfaces." site.Title site.Params.role) }}

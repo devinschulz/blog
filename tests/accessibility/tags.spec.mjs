@@ -84,7 +84,7 @@ test('the tag index exposes topics with spaces and a way back to all writing', a
 test('tag pages remain readable, accessible, and usable with text spacing in both themes', async ({
   page,
 }) => {
-  for (const route of ['/tags/', '/tags/react/', '/tags/static-sites/']) {
+  for (const route of ['/tags/', '/tags/react/', '/tags/websites/']) {
     await page.goto(route);
     const audit = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
