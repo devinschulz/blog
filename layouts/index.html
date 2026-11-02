@@ -1,17 +1,17 @@
 {{ define "main" }}
 {{ $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse }}
-<div class="writing-home mx-auto max-w-[1200px] px-5 pt-10 pb-20 desktop:px-12 desktop:pt-16 desktop:pb-28">
-      <header class="writing-masthead mb-10 border-b-2 border-accent pb-8 desktop:mb-14 desktop:pb-10">
-        <h1 id="writing-title" class="text-[clamp(48px,8vw,96px)] leading-[1] font-bold tracking-[-0.04em] text-accent">Articles & notes</h1>
-        <p class="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink desktop:text-xl">On building interfaces, working through the details, and learning along the way.</p>
-      </header>
+<div class="writing-home mx-auto max-w-[1200px] px-5 pt-4 pb-20 desktop:px-12 desktop:pt-8 desktop:pb-28">
+  <header class="writing-masthead relative isolate mb-10 grid gap-8 overflow-clip rounded-[18px] bg-[#2449ef] p-6 text-white selection:bg-white selection:text-[#2449ef] desktop:mb-16 desktop:grid-cols-[1.3fr_1fr] desktop:items-end desktop:gap-12 desktop:rounded-[24px] desktop:p-12 forced-colors:border forced-colors:border-[CanvasText]">
+    <h1 id="writing-title" class="writing-title pointer-events-none relative z-2 text-[clamp(48px,14vw,96px)] leading-[1] font-bold tracking-[-0.04em] desktop:text-[clamp(48px,8vw,96px)] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]">Articles <span class="block">& Notes</span></h1>
+    <p class="relative z-2 max-w-[28ch] text-lg leading-relaxed desktop:pb-1 desktop:text-[22px]">On building interfaces, working through the details, and learning along the way.</p>
+  </header>
   <div class="grid items-start gap-14 min-[1000px]:grid-cols-[minmax(0,1fr)_240px] min-[1000px]:gap-20">
     <section aria-labelledby="writing-title">
 
-      <div data-post-list class="grid gap-12 desktop:gap-16">
+      <div data-post-list class="grid">
         {{ range first 8 $posts }}
         <article class="article-preview" data-controller="stretch-arrow" data-action="turbo:before-cache@document->stretch-arrow#reset">
-          <div class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
+          <div class="article-preview-meta mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
             <span>{{ .ReadingTime }} min read</span>
           </div>
@@ -21,15 +21,15 @@
         </article>
         {{ end }}
       </div>
-      <a href="{{ "blog/" | relURL }}" class="mt-12 inline-flex min-h-12 items-center gap-4 rounded-full bg-ink px-6 text-sm font-semibold text-paper hover:bg-accent hover:text-paper">Explore all {{ len $posts }} articles {{ partial "arrow-icon.html" (dict "direction" "right" "class" "h-4 w-4") }}</a>
+      <a href="{{ "blog/" | relURL }}" class="mt-8 flex min-h-16 items-center justify-between gap-4 border-y-2 border-ink py-3 text-lg font-semibold tracking-[-0.025em] hover:text-accent desktop:mt-10 desktop:text-xl">Explore all {{ len $posts }} articles {{ partial "arrow-icon.html" (dict "direction" "right" "class" "h-6 w-6 shrink-0") }}</a>
     </section>
-    <aside aria-label="Explore the blog" class="grid gap-10 min-[1000px]:pt-2">
-      <section aria-labelledby="hello-title">
-        <h2 id="hello-title" class="text-xl font-semibold tracking-[-0.025em]">Hi, I’m Devin.</h2>
+    <aside aria-label="Explore the blog" class="grid gap-8">
+      <section aria-labelledby="hello-title" class="border-t-2 border-ink pt-5">
+        <h2 id="hello-title" class="text-[28px] leading-tight font-semibold tracking-[-0.03em]">Hi, I’m Devin.</h2>
         <p class="mt-4 text-sm leading-[1.8] text-muted">I’m a frontend engineer at Stripe with a background in design. I write about the things I learn while building for the web.</p>
         <a href="{{ "work/" | relURL }}#about" class="mt-2 inline-flex min-h-11 items-center text-sm underline decoration-line-strong underline-offset-4 hover:decoration-current">More about me</a>
       </section>
-      <section aria-labelledby="topics-title">
+      <section aria-labelledby="topics-title" class="border-t border-line-strong pt-6">
         <h2 id="topics-title" class="text-xl font-semibold tracking-[-0.025em]">Browse by topic</h2>
         <ul class="mt-4 grid grid-cols-2 gap-x-4">
           {{ range site.Taxonomies.tags.Alphabetical }}
@@ -37,7 +37,7 @@
           {{ end }}
         </ul>
       </section>
-      <section aria-labelledby="reading-title">
+      <section aria-labelledby="reading-title" class="border-t border-line-strong pt-6">
         <h2 id="reading-title" class="text-xl font-semibold tracking-[-0.025em]">From the archive</h2>
         <ul class="mt-3">
           {{ range first 3 (after 8 $posts) }}
@@ -45,7 +45,7 @@
           {{ end }}
         </ul>
       </section>
-      <section aria-labelledby="follow-title">
+      <section aria-labelledby="follow-title" class="border-t border-line-strong pt-6">
         <h2 id="follow-title" class="text-xl font-semibold tracking-[-0.025em]">Keep reading</h2>
         <p class="mt-4 text-sm leading-relaxed text-muted">Get new articles in your favorite feed reader.</p>
         {{ with .OutputFormats.Get "RSS" }}<a href="{{ .RelPermalink }}" class="mt-2 inline-flex min-h-11 items-center text-sm text-accent underline underline-offset-4">Subscribe via RSS</a>{{ end }}

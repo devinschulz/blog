@@ -575,12 +575,39 @@ details[open] > summary .disclosure-icon-vertical {
 }
 
 /* The newest piece leads; older entries keep the quieter reading rhythm. */
+.writing-home .article-preview {
+  border-bottom: 1px solid var(--color-line-strong);
+  padding-block: 36px;
+}
 .writing-home .article-preview:first-child {
   padding-top: 0;
+  padding-bottom: 40px;
 }
 .writing-home .article-preview:first-child h2 {
-  font-size: clamp(32px, 3.8vw, 48px);
-  line-height: 1.12;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.writing-home .article-preview:first-child .article-preview-meta {
+  color: var(--color-accent);
+}
+.writing-home .article-preview:first-child .read-article-link {
+  min-height: 48px;
+  margin-top: 24px;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  padding-inline: 20px;
+  color: var(--color-paper);
+}
+.writing-home .article-preview:first-child .read-article-link:hover {
+  background: var(--color-accent);
+}
+.writing-home .article-preview:first-child .read-article-icon {
+  color: inherit;
+}
+.writing-home .article-preview:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 .writing-home .read-article-link {
   font-size: 15px;

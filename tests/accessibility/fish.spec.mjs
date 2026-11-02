@@ -1,6 +1,63 @@
 import { test, expect } from '@playwright/test';
 import { createFishShadows } from '../../assets/js/fish-shadows.ts';
 
+test.beforeEach(async ({ page }) => {
+  // Keep live analytics and its observers out of graphics lifecycle checks.
+  await page.route('**/js/script.js', (route) =>
+    route.fulfill({ contentType: 'text/javascript', body: '' }),
+  );
+});
+
+test('homepage masthead shares the water effect and restores native text', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto('/');
+  const masthead = page.locator('.writing-masthead');
+  const title = page.getByRole('heading', { name: 'Articles & Notes' });
+  await expect(masthead).toHaveAttribute('data-spatial-ready', 'true');
+  await expect(page.locator('.spatial-surface')).toHaveCount(1);
+  await expect(masthead.locator('.writing-surface')).toBeVisible();
+  const bounds = await title.boundingBox();
+  await masthead.hover();
+  expect(await title.boundingBox()).toEqual(bounds);
+
+  const toggle = page.locator('[data-fish-toggle]');
+  await toggle.evaluate((button) => button.click());
+  await expect(toggle).toHaveText('Resume fish');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('.spatial-surface')).toHaveCount(0);
+  await expect(title).not.toHaveClass(/(^|\s)is-spatial(\s|$)/);
+  await expect(toggle).toBeHidden();
+  await page.emulateMedia({
+    reducedMotion: 'no-preference',
+    forcedColors: 'active',
+  });
+  await expect(page.locator('.spatial-surface')).toHaveCount(0);
+  await page.emulateMedia({ forcedColors: 'none' });
+  await expect(masthead).toHaveAttribute('data-spatial-ready', 'true');
+
+  await page.locator('.article-preview .read-article-link').first().click();
+  await expect(page.locator('.article-surface')).toBeVisible();
+  await expect(page.locator('.writing-surface')).toHaveCount(0);
+  await page.getByRole('link', { name: 'Devin Schulz, home' }).click();
+  await expect(masthead).toHaveAttribute('data-spatial-ready', 'true');
+  await expect(page.locator('.spatial-surface')).toHaveCount(1);
+  await expect(toggle).toHaveText('Resume fish');
+  await masthead.locator('canvas').evaluate((canvas) => {
+    canvas
+      .getContext('webgl2')
+      .getExtension('WEBGL_lose_context')
+      .loseContext();
+  });
+  await expect(masthead).not.toHaveAttribute('data-spatial-ready');
+  await expect(title).not.toHaveClass(/(^|\s)is-spatial(\s|$)/);
+  await expect(masthead.locator('canvas')).toBeHidden();
+  expect(errors).toEqual([]);
+});
+
 test('nearby fish accelerate away and recover to cruising speed', () => {
   const cruising = createFishShadows(0);
   const startled = createFishShadows(0);

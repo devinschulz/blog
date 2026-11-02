@@ -35,7 +35,7 @@ function mountPanel(
   seed: number,
 ): () => void {
   const title = host.querySelector<HTMLElement>(
-    '.hero-title, .archive-title, .case-title, .article-title',
+    '.hero-title, .writing-title, .archive-title, .case-title, .article-title',
   );
   if (!title) return () => {};
   let renderer: WebGLRenderer;
@@ -76,11 +76,13 @@ function mountPanel(
   renderer.setClearColor(0x2449ef, 1);
   renderer.domElement.className = host.classList.contains('hero')
     ? 'spatial-surface hero-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
-    : host.classList.contains('archive-hero')
-      ? 'spatial-surface archive-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
-      : host.classList.contains('case-hero')
-        ? 'spatial-surface case-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
-        : 'spatial-surface article-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden';
+    : host.classList.contains('writing-masthead')
+      ? 'spatial-surface writing-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
+      : host.classList.contains('archive-hero')
+        ? 'spatial-surface archive-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
+        : host.classList.contains('case-hero')
+          ? 'spatial-surface case-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
+          : 'spatial-surface article-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden';
   renderer.domElement.setAttribute('aria-hidden', 'true');
   const ripples = Array.from(
     { length: 6 },
@@ -643,7 +645,7 @@ function mountPanel(
 export function mountSpatialTitle(field: SpatialField): () => void {
   const hosts = [
     ...document.querySelectorAll<HTMLElement>(
-      '.hero, .archive-hero, .case-hero, .article-hero',
+      '.hero, .writing-masthead, .archive-hero, .case-hero, .article-hero',
     ),
   ];
   const scenes = new Map<HTMLElement, () => void>();
