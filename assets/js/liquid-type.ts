@@ -13,8 +13,8 @@ import {
 import type { WebGLRenderer, Texture } from 'three';
 
 // A small advected displacement field: the lettering follows the same ink-like
-// flow that bends the blue panel's highlights. Nothing in the document moves.
-export function createLiquidType(renderer: WebGLRenderer) {
+// flow that bends the header's highlights. Nothing in the document moves.
+export function createLiquidType(renderer: WebGLRenderer, inkColor: Color) {
   const geometry = new PlaneGeometry(2, 2);
   const targets = [0, 1].map(
     () =>
@@ -63,19 +63,26 @@ export function createLiquidType(renderer: WebGLRenderer) {
   const output = { value: targets[0].texture };
   const ink = { value: null as Texture | null };
   const inkMaterial = new ShaderMaterial({
-    uniforms: { flow: output, ink, strength: { value: 1 } },
+    uniforms: {
+      flow: output,
+      ink,
+      inkColor: { value: inkColor },
+      strength: { value: 1 },
+    },
     transparent: true,
     depthWrite: false,
     vertexShader:
       'varying vec2 vUv; void main(){vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
     fragmentShader: `
       uniform sampler2D flow, ink;
+      uniform vec3 inkColor;
       uniform float strength;
       varying vec2 vUv;
       void main(){
         vec2 offset=texture2D(flow,vUv).ba*strength;
         float alpha=texture2D(ink,vUv-offset).a;
-        gl_FragColor=vec4(1.,1.,1.,alpha);
+        gl_FragColor=vec4(inkColor,alpha);
+        #include <colorspace_fragment>
       }`,
   });
   const inkGeometry = new PlaneGeometry(1, 1);

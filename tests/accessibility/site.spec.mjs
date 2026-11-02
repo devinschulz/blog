@@ -663,7 +663,7 @@ test('article header particles respond to hover and restore native text', async 
       .loseContext();
   });
   await expect(title).not.toHaveClass(/(^|\s)is-spatial(\s|$)/);
-  await expect(title).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(title).toHaveCSS('color', 'rgb(25, 25, 25)');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('.spatial-surface')).toHaveCount(0);
   await expect(title).toBeVisible();

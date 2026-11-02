@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse }}
 <div class="writing-home mx-auto max-w-[1200px] px-5 pt-4 pb-20 desktop:px-12 desktop:pt-8 desktop:pb-28">
-  <header class="writing-masthead relative isolate mb-10 grid gap-8 overflow-clip rounded-[18px] bg-[#2449ef] p-6 text-white selection:bg-white selection:text-[#2449ef] desktop:mb-16 desktop:grid-cols-[1.3fr_1fr] desktop:items-end desktop:gap-12 desktop:rounded-[24px] desktop:p-12 forced-colors:border forced-colors:border-[CanvasText]">
+  <header class="writing-masthead relative isolate mb-10 grid gap-8 overflow-clip border-y border-line-strong bg-paper py-8 text-ink desktop:mb-16 desktop:grid-cols-[1.3fr_1fr] desktop:items-end desktop:gap-12 desktop:py-12 forced-colors:border forced-colors:border-[CanvasText]">
     <h1 id="writing-title" class="writing-title pointer-events-none relative z-2 text-[clamp(48px,14vw,96px)] leading-[1] font-bold tracking-[-0.04em] desktop:text-[clamp(48px,8vw,96px)] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]">Articles <span class="block">& Notes</span></h1>
     <p class="relative z-2 max-w-[28ch] text-lg leading-relaxed desktop:pb-1 desktop:text-[22px]">On building interfaces, working through the details, and learning along the way.</p>
   </header>

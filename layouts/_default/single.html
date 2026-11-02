@@ -1,13 +1,13 @@
 {{ define "main" }}
   {{ $hasContents := gt (len .Fragments.Identifiers) 1 }}
   <article class="article-page" aria-labelledby="article-title" data-controller="reading">
-    <header class="article-hero relative isolate mx-2 overflow-clip rounded-[18px] bg-[#2449ef] px-5 pt-3 pb-5 text-white desktop:mx-4 desktop:rounded-3xl desktop:px-8 desktop:pt-4 desktop:pb-6 min-[1100px]:px-10 [&_:focus-visible]:outline-white [&_:focus-visible]:ring-[#2449ef] forced-colors:border forced-colors:border-[CanvasText]">
-      <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-2 text-xs desktop:text-[13px]">
+    <header class="article-hero relative isolate mx-auto w-[calc(100%-40px)] max-w-400 overflow-clip border-t border-line-strong bg-paper pt-3 pb-5 text-ink desktop:w-[calc(100%-64px)] min-[1100px]:w-[calc(100%-96px)] desktop:pt-4 desktop:pb-6 forced-colors:border forced-colors:border-[CanvasText]">
+      <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-line pb-2 text-xs desktop:text-[13px]">
         <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> All writing</a>
       </div>
       <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-bold tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(44px,5.5vw,88px)] desktop:leading-[1.04]">{{ .Title }}</h1>
-      {{ with .Description }}<p class="relative z-3 mt-4 max-w-[62ch] text-sm leading-relaxed text-white/85 desktop:text-lg">{{ . }}</p>{{ end }}
-      <dl class="relative z-3 mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/30 pt-4 text-xs leading-relaxed desktop:mt-6 desktop:text-[13px]">
+      {{ with .Description }}<p class="relative z-3 mt-4 max-w-[62ch] text-sm leading-relaxed text-muted desktop:text-lg">{{ . }}</p>{{ end }}
+      <dl class="relative z-3 mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-4 text-xs leading-relaxed desktop:mt-6 desktop:text-[13px]">
         <div><dt class="sr-only">Published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></dd></div>
         <div><dt class="sr-only">Reading time</dt><dd>{{ .ReadingTime }} min read</dd></div>
         {{ with .GetTerms "tags" }}<div><dt class="sr-only">Filed under</dt><dd>{{ partial "tag-links.html" (dict "page" $) }}</dd></div>{{ end }}

@@ -58,6 +58,48 @@ test('homepage masthead shares the water effect and restores native text', async
   expect(errors).toEqual([]);
 });
 
+test('editorial headers follow the page theme without recreating their graphics', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  for (const path of [
+    '/',
+    '/blog/',
+    '/tags/',
+    '/tags/react/',
+    '/work/',
+    '/work/cape/',
+    '/work/warranties/',
+    '/work/invision/',
+    '/blog/building-a-chat-interface-that-doesnt-fight-your-scroll-position/',
+  ]) {
+    await page.goto(path);
+    const header = page.locator(
+      '.writing-masthead, .archive-hero, .hero, .case-hero, .article-hero',
+    );
+    await expect(header).toHaveAttribute('data-spatial-ready', 'true');
+    const canvas = await header.locator('canvas').elementHandle();
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate((theme) => {
+        document.documentElement.dataset.theme = theme;
+      }, theme);
+      await expect(header).toHaveCSS(
+        'background-color',
+        theme === 'light' ? 'rgb(245, 245, 243)' : 'rgb(26, 27, 25)',
+      );
+      await expect(header).toHaveCSS(
+        'color',
+        theme === 'light' ? 'rgb(25, 25, 25)' : 'rgb(238, 239, 235)',
+      );
+      expect(await canvas.evaluate((node) => node.isConnected)).toBe(true);
+      await expect(header.locator('canvas')).toHaveCount(1);
+    }
+  }
+  expect(errors).toEqual([]);
+});
+
 test('nearby fish accelerate away and recover to cruising speed', () => {
   const cruising = createFishShadows(0);
   const startled = createFishShadows(0);
@@ -198,7 +240,7 @@ test('Make waves glyph flows only during fine-pointer hover', async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
+  await page.goto('/work/');
   const button = page.locator('[data-wave-trigger]');
   await expect(button).toBeVisible();
   const lines = button.locator('.wave-icon path');
@@ -232,7 +274,7 @@ test('wave instructions do not move the title in a short viewport', async ({
 }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.setViewportSize({ width: page.viewportSize().width, height: 500 });
-  await page.goto('/');
+  await page.goto('/work/');
   const button = page.locator('[data-wave-trigger]');
   const title = page.locator('.hero-title');
   const help = page.locator('[data-wave-help]');

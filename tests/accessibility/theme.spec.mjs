@@ -89,7 +89,7 @@ test('theme colors follow toggles, navigation, and reloads', async ({
   await expect(page.locator('body')).toHaveCSS('background-color', light);
   await expect(
     page.locator('meta[name="theme-color"]').first(),
-  ).toHaveAttribute('content', '#2449ef');
+  ).toHaveAttribute('content', '#f5f5f3');
   await page.reload();
   await expect(page.locator('body')).toHaveCSS('background-color', light);
 });

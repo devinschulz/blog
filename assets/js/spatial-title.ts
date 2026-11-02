@@ -28,7 +28,7 @@ function syncFishControl(): void {
 }
 
 // The reference's physical lettering and water response become part of the
-// actual blue panels. Native text remains the semantic and fallback content.
+// actual headers. Native text remains the semantic and fallback content.
 function mountPanel(
   host: HTMLElement,
   field: SpatialField,
@@ -38,6 +38,8 @@ function mountPanel(
     '.hero-title, .writing-title, .archive-title, .case-title, .article-title',
   );
   if (!title) return () => {};
+  const surfaceColor = new Color(getComputedStyle(host).backgroundColor);
+  const inkColor = new Color(getComputedStyle(host).color);
   let renderer: WebGLRenderer;
   try {
     renderer = new WebGLRenderer({
@@ -57,7 +59,7 @@ function mountPanel(
     : null;
   const liquid =
     waveButton && renderer.extensions.has('EXT_color_buffer_float')
-      ? createLiquidType(renderer)
+      ? createLiquidType(renderer, inkColor)
       : undefined;
   if (liquid) {
     scene.add(liquid.letters);
@@ -73,7 +75,7 @@ function mountPanel(
   const help = document.querySelector<HTMLElement>('[data-wave-help]');
   let pixelRatio = Math.min(devicePixelRatio, 2);
   renderer.setPixelRatio(pixelRatio);
-  renderer.setClearColor(0x2449ef, 1);
+  renderer.setClearColor(surfaceColor, 1);
   renderer.domElement.className = host.classList.contains('hero')
     ? 'spatial-surface hero-surface absolute inset-0 z-1 h-full w-full pointer-events-none rounded-[inherit] forced-colors:hidden'
     : host.classList.contains('writing-masthead')
@@ -91,7 +93,8 @@ function mountPanel(
   const fish = createFishShadows(seed);
   const waterUniforms = {
     ...fish.uniforms,
-    blue: { value: new Color(0x2449ef) },
+    surface: { value: surfaceColor },
+    ink: { value: inkColor },
     aspect: { value: 1 },
     clock: { value: 0 },
     ripples: { value: ripples },
@@ -102,7 +105,7 @@ function mountPanel(
     uniforms: waterUniforms,
     vertexShader: `varying vec2 waterUV; void main() { waterUV = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
     fragmentShader: `
-      uniform vec3 blue;
+      uniform vec3 surface, ink;
       uniform float aspect;
       uniform float clock;
       uniform vec4 ripples[6];
@@ -122,8 +125,10 @@ function mountPanel(
           float ring = exp(-pow((distanceToRipple - r.z * .2) * 24.0, 2.0));
           wave += ring * sin(distanceToRipple * 65.0 - r.z * 10.0) * exp(-r.z * 2.4) * r.w;
         }
-        vec3 color = blue * (.97 + caustic * .035) + vec3(.03, .065, .1) * (caustic * .13 + wave * .7 + length(inkFlow)*3.);
-        color *= 1.0 - fishShadows((waterUV - inkFlow * .12) * vec2(aspect, 1.0));
+        float shadow = fishShadows((waterUV - inkFlow * .12) * vec2(aspect, 1.0));
+        float shade = clamp(caustic * .006 + abs(wave) * .018 + length(inkFlow) * .12 + shadow * .35, 0., .12);
+        shade *= mix(1., .18, step(.5, dot(ink, vec3(.2126, .7152, .0722))));
+        vec3 color = mix(surface, ink, shade);
         gl_FragColor = vec4(max(color, vec3(0.0)), 1.0);
         #include <colorspace_fragment>
       }
@@ -137,6 +142,7 @@ function mountPanel(
   // Only the area being disturbed gives way to particles.
   let titleTexture: CanvasTexture | undefined;
   const sharpUniforms = {
+    ink: { value: inkColor },
     mask: { value: null as CanvasTexture | null },
     panel: { value: new Vector2(1, 1) },
     pointer: { value: new Vector2(-10000, -10000) },
@@ -150,6 +156,7 @@ function mountPanel(
     vertexShader: `varying vec2 titleUV; void main() { titleUV = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
     fragmentShader: `
       uniform sampler2D mask;
+      uniform vec3 ink;
       uniform vec2 panel;
       uniform vec2 pointer;
       uniform float energy;
@@ -161,7 +168,7 @@ function mountPanel(
         float breakup = smoothstep(.03, .22, force);
         float alpha = texture2D(mask, titleUV).a * (1. - breakup);
         if (alpha < .005) discard;
-        gl_FragColor = vec4(1., 1., 1., alpha);
+        gl_FragColor = vec4(ink, alpha);
         #include <colorspace_fragment>
       }
     `,
@@ -173,6 +180,7 @@ function mountPanel(
   scene.add(sharpLetters);
   const pointGeometry = new BufferGeometry();
   const pointUniforms = {
+    ink: { value: inkColor },
     size: { value: 5 },
     ratio: { value: pixelRatio },
     distance: { value: 1000 },
@@ -195,6 +203,7 @@ function mountPanel(
       }
     `,
     fragmentShader: `
+      uniform vec3 ink;
       varying float roundness;
       void main() {
         vec2 p = gl_PointCoord * 2.0 - 1.0;
@@ -206,7 +215,7 @@ function mountPanel(
         if (alpha < .02) discard;
         vec3 normal = normalize(vec3(p.x, -p.y, sqrt(max(.05, 1.0 - dot(p,p)))));
         float light = .8 + .2 * max(dot(normal, normalize(vec3(-.5, .65, 1.0))), 0.0);
-        vec3 color = mix(vec3(.94, .96, 1.0), vec3(.7, .8, 1.0) * light, roundness * .65);
+        vec3 color = ink * mix(1., light, roundness * .65);
         gl_FragColor = vec4(color, alpha);
         #include <colorspace_fragment>
       }
@@ -222,6 +231,17 @@ function mountPanel(
   let ready = false;
   let visible = true;
   let dirty = true;
+  const theme = new MutationObserver(() => {
+    surfaceColor.setStyle(getComputedStyle(host).backgroundColor);
+    inkColor.setStyle(getComputedStyle(host).color);
+    renderer.setClearColor(surfaceColor, 1);
+    dirty = true;
+    field.request();
+  });
+  theme.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
   let particleType = true;
   let energy = 0;
   let waterClock = 0;
@@ -625,6 +645,7 @@ function mountPanel(
     if (waveButton) waveButton.hidden = true;
     unsubscribe();
     resize.disconnect();
+    theme.disconnect();
     visibility.disconnect();
     title.classList.remove('is-spatial');
     delete host.dataset.spatialReady;
