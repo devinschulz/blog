@@ -1,12 +1,13 @@
 {{ define "main" }}
 {{ $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse }}
 <div class="writing-home mx-auto max-w-[1200px] px-5 pt-10 pb-20 desktop:px-12 desktop:pt-16 desktop:pb-28">
+      <header class="writing-masthead mb-10 border-b-2 border-accent pb-8 desktop:mb-14 desktop:pb-10">
+        <h1 id="writing-title" class="text-[clamp(48px,8vw,96px)] leading-[1] font-bold tracking-[-0.04em] text-accent">Articles & notes</h1>
+        <p class="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink desktop:text-xl">On building interfaces, working through the details, and learning along the way.</p>
+      </header>
   <div class="grid items-start gap-14 min-[1000px]:grid-cols-[minmax(0,1fr)_240px] min-[1000px]:gap-20">
     <section aria-labelledby="writing-title">
-      <header class="mb-12 desktop:mb-16">
-        <h1 id="writing-title" class="text-[clamp(48px,6vw,80px)] leading-[1] font-semibold tracking-[-0.04em] text-accent">Articles & notes</h1>
-        <p class="mt-5 max-w-[48ch] text-lg leading-relaxed text-muted">On building interfaces, working through the details, and learning along the way.</p>
-      </header>
+
       <div data-post-list class="grid gap-12 desktop:gap-16">
         {{ range first 8 $posts }}
         <article class="article-preview" data-controller="stretch-arrow" data-action="turbo:before-cache@document->stretch-arrow#reset">
@@ -20,7 +21,7 @@
         </article>
         {{ end }}
       </div>
-      <a href="{{ "blog/" | relURL }}" class="mt-12 inline-flex min-h-12 items-center gap-4 rounded-full border border-line-strong px-6 text-sm hover:border-ink hover:bg-surface">Explore all {{ len $posts }} articles {{ partial "arrow-icon.html" (dict "direction" "right" "class" "h-4 w-4") }}</a>
+      <a href="{{ "blog/" | relURL }}" class="mt-12 inline-flex min-h-12 items-center gap-4 rounded-full bg-ink px-6 text-sm font-semibold text-paper hover:bg-accent hover:text-paper">Explore all {{ len $posts }} articles {{ partial "arrow-icon.html" (dict "direction" "right" "class" "h-4 w-4") }}</a>
     </section>
     <aside aria-label="Explore the blog" class="grid gap-10 min-[1000px]:pt-2">
       <section aria-labelledby="hello-title">
@@ -30,9 +31,9 @@
       </section>
       <section aria-labelledby="topics-title">
         <h2 id="topics-title" class="text-xl font-semibold tracking-[-0.025em]">Browse by topic</h2>
-        <ul class="mt-4 flex flex-wrap gap-2">
+        <ul class="mt-4 grid grid-cols-2 gap-x-4">
           {{ range site.Taxonomies.tags.Alphabetical }}
-          <li><a href="{{ .Page.RelPermalink }}" class="inline-flex min-h-11 items-center rounded-lg bg-surface px-3 text-sm hover:text-accent">{{ .Page.LinkTitle }} <span class="ml-2 text-xs text-muted">{{ .Count }}</span></a></li>
+          <li><a href="{{ .Page.RelPermalink }}" class="flex min-h-12 items-center justify-between gap-2 border-b border-line text-sm font-semibold hover:text-accent">{{ .Page.LinkTitle }} <span class="ml-2 text-xs text-muted">{{ .Count }}</span></a></li>
           {{ end }}
         </ul>
       </section>

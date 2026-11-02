@@ -5,7 +5,7 @@
       <div class="relative z-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-white/30 pb-2 text-xs desktop:text-[13px]">
         <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> All writing</a>
       </div>
-      <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-semibold tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(44px,5.5vw,88px)] desktop:leading-[1.04]">{{ .Title }}</h1>
+      <h1 id="article-title" class="article-title pointer-events-none relative z-2 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] mt-6 max-w-[26ch] text-[clamp(30px,7.8vw,40px)] leading-[1.06] font-bold tracking-[-0.04em] desktop:mt-7 desktop:text-[clamp(44px,5.5vw,88px)] desktop:leading-[1.04]">{{ .Title }}</h1>
       {{ with .Description }}<p class="relative z-3 mt-4 max-w-[62ch] text-sm leading-relaxed text-white/85 desktop:text-lg">{{ . }}</p>{{ end }}
       <dl class="relative z-3 mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/30 pt-4 text-xs leading-relaxed desktop:mt-6 desktop:text-[13px]">
         <div><dt class="sr-only">Published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></dd></div>

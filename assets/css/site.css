@@ -576,11 +576,10 @@ details[open] > summary .disclosure-icon-vertical {
 
 /* The newest piece leads; older entries keep the quieter reading rhythm. */
 .writing-home .article-preview:first-child {
-  border-top: 2px solid var(--color-accent);
-  padding-top: 28px;
+  padding-top: 0;
 }
 .writing-home .article-preview:first-child h2 {
-  font-size: clamp(32px, 3.5vw, 44px);
+  font-size: clamp(32px, 3.8vw, 48px);
   line-height: 1.12;
 }
 .writing-home .read-article-link {
@@ -588,4 +587,25 @@ details[open] > summary .disclosure-icon-vertical {
 }
 .article-body h2 {
   font-weight: 600;
+}
+
+/* Stronger wayfinding without increasing the weight of reading copy. */
+.desktop-nav [aria-current] {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
+.site-header:not(.absolute) .desktop-nav [aria-current] {
+  text-decoration-color: var(--color-accent);
+}
+.post-row h3,
+.related-post-title {
+  font-weight: 600;
+}
+.article-body h2,
+.case-study h2 {
+  text-wrap: balance;
+}
+.writing-masthead h1,
+.article-preview h2 {
+  text-wrap: balance;
 }
