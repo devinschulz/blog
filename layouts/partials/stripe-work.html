@@ -1,11 +1,13 @@
 {{ with hugo.Data.experience.stripe }}
-<article id="stripe" aria-labelledby="stripe-title" class="mt-7 scroll-mt-8">
-  <h3 id="stripe-title" class="text-lg font-medium tracking-[-0.02em]">{{ .company }}</h3>
-  <p class="mt-2 text-xs text-muted">{{ site.Params.role }}<br>{{ .period }}</p>
-  <p class="mt-4 text-base leading-[1.75]">{{ .summary }}</p>
-  <ol class="mt-3" aria-label="Work at Stripe, in order">
+<article id="stripe" aria-labelledby="stripe-title" class="scroll-mt-8">
+  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+    <h3 id="stripe-title" class="text-lg font-medium tracking-[-0.02em]">{{ .company }}</h3>
+    <p class="text-sm text-muted">{{ .period }}</p>
+  </div>
+  <p class="mt-1 text-sm text-muted">{{ site.Params.role }}</p>
+  <ol class="mt-3 flex flex-wrap gap-x-6" aria-label="Work at Stripe, in order">
     {{ range .projects }}
-    <li class="flex items-baseline justify-between gap-4">
+    <li class="flex items-baseline gap-2">
       <a class="inline-flex min-h-11 items-center text-base text-accent underline underline-offset-4" href="{{ .url }}">{{ .name }}</a>
       <span class="text-xs text-muted">{{ .status }}</span>
     </li>

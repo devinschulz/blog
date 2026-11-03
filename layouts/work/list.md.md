@@ -1,8 +1,6 @@
 {{- $work := partial "selected-work-pages.html" . -}}
 {{- $blog := where site.RegularPages "Section" "blog" -}}
-# {{ site.Title }}
-
-> Making complex software feel simple.
+# Work
 
 I design and build complex interfaces, from AI workspaces to the tools designers use.
 

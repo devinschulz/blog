@@ -111,7 +111,7 @@ The footer has no dividing rule. Copyright, navigation, and the existing site no
 
 ## Typography and color
 
-Use self-hosted DM Sans throughout and JetBrains Mono for code and measurement values. Page titles are 24px medium, index titles 20px medium, and section headings generally 18px medium. Body text and writing links are 16px. Avoid giant display lettering, forced headline line breaks, decorative labels, and excessive tracking.
+Use self-hosted DM Sans throughout and JetBrains Mono for code and measurement values. Work, About, and Writing index titles are 20px medium; article and case-study titles are 24px medium, and section headings generally 18px medium. Body text and writing links are 16px. Avoid giant display lettering, forced headline line breaks, decorative labels, and excessive tracking.
 
 Paper and Ink form a continuous page surface; the existing visitor-controlled dark theme uses Graphite and Light Ink. Electric Blue remains the interaction accent, with Pale Electric Blue in dark mode. Do not restore blue or fixed black header panels. Project screenshots and code retain their original supporting colors.
 
@@ -127,7 +127,7 @@ Article prose is 16px at 1.75 line height. Section headings are 18px; opening pa
 
 ## Work and About
 
-Work opens with the existing personal work statement at 24px and its supporting description. The job title appears once, within the Stripe entry. There is no short jump link to the immediately following project list. Stripe projects retain their real external destinations and statuses. Cape, Warranties, and InVision form one column of actual screenshots and compact captions. Project numbering, oversized titles, decorative arrows, and overlay View project labels are removed.
+Work opens with a simple 20px Work heading and its supporting description. Stripe pairs the company and period on one line, with the job title below and compact inline project links. The repeated Selected work label and summary sentence are omitted from the visual layout. The job title appears once, within the Stripe entry. There is no short jump link to the immediately following project list. Stripe projects retain their real external destinations and statuses. Cape, Warranties, and InVision form one column of actual screenshots and compact captions. Project numbering, oversized titles, decorative arrows, and overlay View project labels are removed.
 
 Screenshot switching keeps its labeled 44px control, keyboard access, image decode recovery, and Turbo reset behavior. It never hides the primary image while loading. The measurement demo link sits beside InVision instead of in the Work introduction.
 
@@ -139,7 +139,7 @@ The biography lives at `/about/`, with its own navigation destination and Email,
 
 All keyboard focus remains blue. Shared controls use the existing 3px accent outline and paper separation; fixed light controls and dark code surfaces keep their contrast-specific blue values. Forced colors use system Highlight.
 
-Search has one focus indicator: the form's 2px blue underline. Its input has no additional box outline or shadow and retains a blue caret. The query, result navigation, focus containment, Escape restoration, retry, and no-JavaScript browse links remain available.
+Search keeps the heading and query fixed while a single inner region scrolls results or browse links. The background page is locked while open and regains its original scrolling styles on dismissal or navigation. Search has one focus indicator: the form's 2px blue underline. Its input has no additional box outline or shadow and retains a blue caret. The query, result navigation, focus containment, Escape restoration, retry, and no-JavaScript browse links remain available.
 
 On precise hover devices, plain-text links turn blue and underline. Blue text links change to Ink and use a 2px underline. Writing-list titles gain a blue, stronger underline; dates remain quiet. Project titles underline and turn blue. Image links retain their small hover scale. These states do not depend on animation and do not create sticky touch hover effects.
 

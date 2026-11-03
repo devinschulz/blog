@@ -231,3 +231,26 @@ test('About has its own page and Work leads directly to its interactive example'
   await page.keyboard.press('ArrowRight');
   await expect(summary).not.toHaveText(before);
 });
+
+test('Writing, Work, and About use the same page-title typography', async ({
+  page,
+}) => {
+  const styles = [];
+  for (const route of ['/blog/', '/work/', '/about/']) {
+    await page.goto(route);
+    styles.push(
+      await page.locator('main h1').evaluate((heading) => {
+        const style = getComputedStyle(heading);
+        return [
+          style.fontSize,
+          style.fontWeight,
+          style.lineHeight,
+          style.letterSpacing,
+        ];
+      }),
+    );
+  }
+  expect(styles[0][0]).toBe('20px');
+  expect(styles[1]).toEqual(styles[0]);
+  expect(styles[2]).toEqual(styles[0]);
+});

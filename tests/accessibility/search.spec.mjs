@@ -433,3 +433,80 @@ test('search stays separated and usable above a software keyboard', async ({
     panel.locator('.search-result-link').filter({ hasText: 'Colophon' }),
   ).toBeVisible();
 });
+
+test('only results scroll while the background, heading, and query stay in place', async ({
+  page,
+  browserName,
+  isMobile,
+}) => {
+  const wheelSupported = !(browserName === 'webkit' && isMobile);
+  const { panel, input } = await openSearch(page, '/blog/');
+  await input.fill('the');
+  await expect(panel.locator('.search-result').first()).toBeVisible();
+  const headingTop = (await panel.locator('.search-heading').boundingBox()).y;
+  const inputTop = (await input.boundingBox()).y;
+  const pageTop = await page.evaluate(() => scrollY);
+  const results = panel.locator('.search-scroll');
+  const scrollBy = await results.evaluate((element) => element.clientHeight);
+  await results.evaluate((element, amount) => {
+    element.scrollTop += amount;
+  }, scrollBy);
+  await expect
+    .poll(() => results.evaluate((element) => element.scrollTop))
+    .toBeGreaterThan(0);
+  expect((await panel.locator('.search-heading').boundingBox()).y).toBe(
+    headingTop,
+  );
+  expect((await input.boundingBox()).y).toBe(inputTop);
+  await page.mouse.move(2, page.viewportSize().height - 2);
+  if (wheelSupported) await page.mouse.wheel(0, 400);
+  await expect(page.locator('html')).toHaveCSS('overflow-y', 'hidden');
+  expect(await page.evaluate(() => scrollY)).toBe(pageTop);
+
+  // The software keyboard must not introduce an outer scrollbar or clip browse links.
+  await page.evaluate(() => {
+    Object.defineProperty(window.visualViewport, 'height', {
+      configurable: true,
+      get: () => 220,
+    });
+    window.visualViewport.dispatchEvent(new Event('resize'));
+  });
+  for (const query of ['the', '']) {
+    await input.fill(query);
+    await expect(page.locator('#search-status')).toContainText(
+      query ? 'results for' : 'Results update',
+    );
+    const dimensions = await panel.evaluate((element) => ({
+      outerHeight: element.clientHeight,
+      outerContent: element.scrollHeight,
+      scrollAreas: [...element.querySelectorAll('*')]
+        .filter(
+          (node) =>
+            ['auto', 'scroll'].includes(getComputedStyle(node).overflowY) &&
+            node.scrollHeight > node.clientHeight + 1,
+        )
+        .map((node) => node.className),
+    }));
+    expect(dimensions.outerContent).toBeLessThanOrEqual(
+      dimensions.outerHeight + 1,
+    );
+    expect(dimensions.scrollAreas).toEqual(['search-scroll']);
+  }
+  await results.evaluate((element) => {
+    element.scrollTop = element.scrollHeight;
+  });
+  await expect(
+    panel.getByRole('link', { name: 'Explore selected work' }),
+  ).toBeInViewport();
+  await input.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(page.locator('html')).not.toHaveCSS('overflow-y', 'hidden');
+  if (wheelSupported) {
+    await expect
+      .poll(async () => {
+        await page.mouse.wheel(0, 400);
+        return page.evaluate(() => scrollY);
+      })
+      .toBeGreaterThan(pageTop);
+  }
+});

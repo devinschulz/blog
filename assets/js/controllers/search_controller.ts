@@ -40,11 +40,13 @@ export default class extends Controller<HTMLElement> {
   private request: AbortController | undefined;
   private index: Promise<SearchPage[]> | undefined;
   private invoker: HTMLElement | undefined;
+  private scrollLock: { overflow: string; scrollbarGutter: string } | undefined;
   private readonly inertElements = new Set<HTMLElement>();
   private readonly reposition = () => this.position();
 
   override connect(): void {
     this.interfaceTarget.hidden = false;
+    this.statusTarget.hidden = false;
     this.fallbackTarget.hidden = true;
     window.visualViewport?.addEventListener('resize', this.reposition);
     window.visualViewport?.addEventListener('scroll', this.reposition);
@@ -107,6 +109,8 @@ export default class extends Controller<HTMLElement> {
       this.position();
       this.inputTarget.focus({ preventScroll: true });
       if (this.inputTarget.value.trim()) void this.run();
+    } else {
+      this.releaseBackground();
     }
   }
 
@@ -186,6 +190,15 @@ export default class extends Controller<HTMLElement> {
 
   private lockBackground(): void {
     this.panelTarget.setAttribute('aria-modal', 'true');
+    if (!this.scrollLock) {
+      const root = document.documentElement;
+      this.scrollLock = {
+        overflow: root.style.overflow,
+        scrollbarGutter: root.style.scrollbarGutter,
+      };
+      root.style.overflow = 'hidden';
+      root.style.scrollbarGutter = 'stable';
+    }
     // Leave the panel's ancestor path active while making every other branch inert.
     let branch: HTMLElement = this.panelTarget;
     while (branch.parentElement && branch !== document.body) {
@@ -204,6 +217,12 @@ export default class extends Controller<HTMLElement> {
   }
 
   private releaseBackground(): void {
+    if (this.scrollLock) {
+      const root = document.documentElement;
+      root.style.overflow = this.scrollLock.overflow;
+      root.style.scrollbarGutter = this.scrollLock.scrollbarGutter;
+      this.scrollLock = undefined;
+    }
     for (const element of this.inertElements) element.inert = false;
     this.inertElements.clear();
     this.panelTarget.removeAttribute('aria-modal');

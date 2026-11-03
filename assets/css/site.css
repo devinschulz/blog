@@ -14,7 +14,7 @@
   width: min(42rem, var(--search-width, calc(100vw - 32px)));
   height: fit-content;
   max-height: min(40rem, var(--search-space, calc(100dvh - 128px)));
-  overflow-y: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
   scrollbar-color: var(--color-muted) var(--color-paper);
   border: 1px solid var(--color-line-strong);
@@ -130,8 +130,7 @@
 }
 .search-interface {
   display: flex;
-  /* Keep the input and status usable when the software keyboard reduces space. */
-  min-height: 140px;
+  min-height: 0;
   flex-direction: column;
 }
 .search-form {
@@ -171,6 +170,7 @@
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-color: var(--color-muted) var(--color-paper);
   padding: 0 12px 12px;
   scroll-padding-block: 12px;
 }
@@ -248,7 +248,7 @@
   flex-wrap: wrap;
   gap: 0 24px;
   border-top: 1px solid var(--color-line);
-  padding: 8px 24px;
+  padding: 8px 12px;
   color: var(--color-muted);
   font-size: 13px;
 }
@@ -265,7 +265,7 @@
   color: var(--color-accent);
 }
 .search-fallback {
-  padding: 0 24px 20px;
+  padding: 0 12px 20px;
   color: var(--color-muted);
   font-size: 14px;
 }
@@ -289,9 +289,6 @@
   }
   .search-excerpt {
     -webkit-line-clamp: 3;
-  }
-  .search-browse {
-    padding-inline: 16px;
   }
   .search-close kbd {
     display: none;
