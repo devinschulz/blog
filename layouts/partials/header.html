@@ -16,7 +16,7 @@
   </div>
   <details class="mobile-menu shrink-0 max-[279px]:ml-auto desktop:hidden" data-mobile-menu data-controller="menu" data-action="keydown@document->menu#closeOnEscape pointerdown@document->menu#closeOnOutsidePress">
     <summary class="flex min-h-11 cursor-pointer list-none items-center gap-2 text-xs whitespace-nowrap [&::-webkit-details-marker]:hidden" data-menu-target="summary">Menu {{ partial "disclosure-icon.html" . }}</summary>
-    <nav class="mobile-navigation absolute inset-x-0 top-19 rounded-2xl border border-line-strong bg-paper p-6 text-ink shadow-[0_12px_24px_#0002] [&_:focus-visible]:outline-ink [&_:focus-visible]:ring-paper" aria-label="Mobile navigation">
+    <nav class="mobile-navigation absolute inset-x-0 top-19 rounded-2xl border border-line-strong bg-paper p-6 text-ink shadow-[0_12px_24px_#0002] [&_:focus-visible]:outline-accent [&_:focus-visible]:ring-paper" aria-label="Mobile navigation">
       <a class="flex min-h-14 items-center text-[28px] font-semibold tracking-[-0.04em] {{ if or .IsHome (eq .Section "blog") (eq .Section "tags") }}underline underline-offset-[5px]{{ end }}" data-action="menu#follow" href="{{ "blog/" | relURL }}"{{ if or .IsHome (eq .Section "blog") (eq .Section "tags") }} aria-current="{{ if .IsSection }}page{{ else }}true{{ end }}"{{ end }}>Writing</a>
       <a class="flex min-h-14 items-center text-[28px] font-semibold tracking-[-0.04em] {{ if eq .Section "work" }}underline underline-offset-[5px]{{ end }}" data-action="menu#follow" href="{{ "work/" | relURL }}"{{ if eq .Section "work" }} aria-current="true"{{ end }}>Work</a>
       <a class="flex min-h-14 items-center text-[28px] font-semibold tracking-[-0.04em]" data-action="menu#follow" href="{{ "work/" | relURL }}#about">About</a>

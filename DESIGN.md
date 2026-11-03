@@ -31,8 +31,9 @@ typography:
     letterSpacing: "-0.065em"
   masthead:
     fontFamily: "DM Sans, Arial, sans-serif"
-    fontWeight: 700
-    lineHeight: 1
+    fontSize: "clamp(40px, 6vw, 72px)"
+    fontWeight: 600
+    lineHeight: 1.04
     letterSpacing: "-0.04em"
   case-title:
     fontFamily: "DM Sans, Arial, sans-serif"
@@ -116,7 +117,9 @@ components:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     typography: "{typography.masthead}"
-    padding: "32px 0px"
+    padding: "8px 0px 32px"
+  editorial-masthead-desktop:
+    padding: "16px 0px 40px"
   editorial-masthead-dark:
     backgroundColor: "{colors.paper-dark}"
     textColor: "{colors.ink-dark}"
@@ -170,6 +173,8 @@ Present real work with playful, tactile interactions. The atmosphere is precise,
 
 The user-confirmed direction is subtly layered surfaces, with shadows used more broadly to separate panels, and bold, expressive, prominent controls. The current implementation uses shadows selectively and still contains compact navigation and utility controls. These preferences guide future refinements; this document does not claim that broader elevation or larger controls have already been implemented.
 
+The latest confirmed header direction is minimal editorial styling: page-colored surfaces, a naturally wrapping homepage title, one light dividing rule, and plain reading links. The user rejected fixed black header backgrounds; dark mode continues to follow the visitor’s theme choice.
+
 **Key Characteristics:**
 
 - Open Chalk and Graphite headers with crisp, high-contrast ink lettering.
@@ -216,7 +221,7 @@ Both active families are self-hosted. Bricolage Grotesque and Hanken Grotesk fon
 
 ### Hierarchy
 
-- **Homepage masthead:** bold weight (700), tracking (-0.04em), line height (1), with “Articles & Notes” composed on two lines. Mobile uses `clamp(48px, 14vw, 96px)`; desktop uses `clamp(48px, 8vw, 96px)`.
+- **Homepage masthead:** semibold weight (600), tracking (-0.04em), line height (1.04), using `clamp(40px, 6vw, 72px)`. “Articles & Notes” wraps naturally rather than forcing a line break.
 - **Work overview display:** bold weight (700), tracking (-0.065em), line height (1.02 mobile; 1 desktop). Mobile uses `clamp(36px, 11cqw, 116px)`; desktop uses `10.5cqw`, capped through `clamp(60px, 10.5cqw, 176px)` at widths of 1100px and above. At the sampled 1280px viewport, the rendered size was about 124px.
 - **Case-study display:** uppercase, semibold weight (600), tracking (-0.075em), line height (1). Its size responds to the project name: Cape, Warranties, and InVision have separate container-relative formulas in `layouts/partials/case-study-header.html`. Do not copy one project’s formula to every title.
 - **Archive display:** bold weight (700), tracking (-0.04em), line height (1.02). Mobile uses `clamp(32px, 10cqw, 44px)`; desktop uses `clamp(48px, 6cqw, 88px)`.
@@ -238,7 +243,7 @@ Headers are open sections on the page surface, without a colored panel, rounded 
 
 The main responsive breakpoint is 781px. Additional local breakpoints at 500px, 1100px, 1500px, and 1600px handle measurement controls, wider metadata arrangements, case-study imagery, and large type. These are implementation breakpoints, not five independent layout systems.
 
-- **Homepage masthead:** a two-column title/description composition on desktop (1.3fr / 1fr), stacked on mobile. Top and bottom Strong Rules frame the page-colored section, with 32px vertical padding on mobile and 48px desktop.
+- **Homepage masthead:** one column in both layouts, with the title above muted supporting copy (56ch maximum measure). A single Fine Rule closes the section. Top/bottom padding is 8px/32px on mobile and 16px/40px desktop; supporting copy starts 20px below the title.
 - **Portfolio gallery:** work numbering follows the visible sequence: Stripe 01, Cape 02, Warranties 03, and InVision 04. The gallery is stacked on mobile; a two-column desktop grid (1.1fr / 1fr), with the first project spanning both columns. The gallery gap is 64px horizontally and 96px vertically. The main gallery and broad editorial sections cap at 1600px.
 - **Homepage introduction:** the substantive About heading sits beside three readable paragraphs on desktop and above them on mobile. Its type ranges from 32–40px on mobile and 36–56px on desktop, with a 20ch maximum measure. Decorative section indices and inline heading imagery are omitted.
 - **Homepage writing:** the Writing heading and archive link introduce four compact dated rows. Date/title/arrow columns use 64px / flexible / 20px on mobile and 112px / flexible / 24px on desktop. Titles are 20px on mobile and 24–32px on desktop; vertical row padding is 24px and 28px respectively.
@@ -281,7 +286,7 @@ Primary action buttons and chapter links use full pill shapes. The code-copy uti
 - **Compact control:** 12px text, 16px horizontal padding, an 8px icon gap, pill shape, and minimum height (44px). Make waves, project preview controls, and animation playback share this spacing; their surfaces follow their context. Measurement nudge buttons use 44px square targets.
 - **Project preview toggle:** White surface, Ink text, subtle fixed dark border, and the compact control spacing. Hover uses the existing pale preview tint (`#f0f2ff`). Show other view switches to the alternate screen; Show first view restores the original. The visible label, view count, and project name also form the accessible name. Hover does not change the project screen.
 
-The global focus treatment is a 3px outline with 4px offset and a 3px surface-colored ring. Header controls use the same theme-aware Ink outline and Paper ring as the page. Project preview toggles use the same geometry with a dark outline and white ring against the artwork. Code-copy controls and keyboard-scrollable code use a white 2px outline inset by 3px, without an outer ring, so panel clipping does not hide focus in either theme. Forced colors use the system Highlight color.
+The global focus treatment is a 3px semantic blue accent outline with 4px offset and a 3px Paper ring. Header and mobile-navigation controls use this same theme-aware treatment. Fixed white project preview and skip-link controls use Electric Blue outlines with white ring separation. Code-copy controls and keyboard-scrollable code use a Pale Electric Blue 2px outline inset by 3px, without an outer ring, so panel clipping does not hide focus in either theme. Forced colors use the system Highlight color.
 
 Navigation arrows come from `layouts/partials/arrow-icon.html`: a 20px view box, 1.5px stroke, and round caps and joins. Use 16px arrows for text links, 20–32px for editorial rows, and relative sizes for display lettering. The measurement-demo link keeps an 8px gap between its text and arrow.
 
@@ -296,6 +301,8 @@ Article contents use a sticky desktop list or a mobile disclosure. The current s
 Longer articles can offer a returning reader a “Continue reading” link above the body. A small bookmark outline and muted label introduce the actual section title as a 44px-high native link. Desktop adds a Fine Rule below; mobile uses the contents disclosure’s own divider, with a tighter 16px gap to avoid double rules. It appears only when a valid later section was saved locally, never scrolls automatically, and yields to a direct fragment URL. Following it hides the prompt and moves keyboard focus to the heading. Finishing the article clears the place; blocked storage leaves the prompt hidden. Keep this response quiet and immediate, without an animated entrance or celebration.
 
 ### Writing Rows
+
+The homepage lead article uses `clamp(32px, 3.8vw, 48px)` semibold type and a plain Read article link. Subsequent previews use Fine Rule separators and 36px vertical padding; the archive action is a plain blue text link. The author introduction stays quiet, without a heavy top rule.
 
 Writing rows are separated by Fine Rules. The date, title, and arrow share the article link; each underlined tag is an independent link below it, with a 44px target and room to wrap. The date is secondary, the title leads, and the arrow occupies its own column. Hover changes the title and arrow to the semantic accent and underlines the title; the arrow moves by only 2px in each direction over 200ms when motion is permitted. Tag archives reuse the year groups and writing rows, while the tag index lists topics alphabetically with article counts.
 
@@ -317,7 +324,7 @@ The caption reserves a minimum height of 44px and includes a compact Copy utilit
 
 ### Editorial Headers and Tactile Feedback
 
-Native heading text is the accessible content. The homepage, writing archive, article, topic, work overview, and case-study headers share the page’s Paper/Ink palette, a Strong Rule at the top, and Fine Rules around supporting metadata where needed. The homepage masthead also has a bottom Strong Rule. Graphics initialize once per page and mount within 160px of the viewport, preserving native text until ready. On supported desktop graphics, continuous lettering can dissolve locally under pointer input, then return through damped motion; background water effects share that input. Small screens preserve native text, and reduced motion or unavailable graphics preserve readable native content without the decorative graphics path.
+Native heading text is the accessible content. The homepage, writing archive, article, topic, work overview, and case-study headers share the page’s Paper/Ink palette. Archive, article, topic, work overview, and case-study headers retain their top Strong Rule and Fine Rules around supporting metadata where needed. The minimal homepage masthead uses only a bottom Fine Rule. Graphics initialize once per page and mount within 160px of the viewport, preserving native text until ready. On supported desktop graphics, continuous lettering can dissolve locally under pointer input, then return through damped motion; background water effects share that input. Small screens preserve native text, and reduced motion or unavailable graphics preserve readable native content without the decorative graphics path.
 
 The renderer reads the host’s computed background and text color for the water, resting text mask, particles, and Make waves ink. A `data-theme` observer updates those colors in place without rebuilding WebGL contexts. Theme changes preserve the active scene and interaction state.
 
@@ -331,7 +338,7 @@ Page navigation uses a 160ms fade over an opaque previous page, with the existin
 
 Search uses a native manual popover enhanced by a Stimulus controller, opened from the shared header or mobile menu. The compact palette is horizontally centered near the top of the visible viewport, with an inset of 12% of its height bounded to 24–96px. It caps its width at 42rem, keeps 16px side gutters, and caps its overall height at 40rem or the available viewport space. The query stays visible above an independently scrolling results region. Visual-viewport updates account for the mobile keyboard. The panel uses Raised/Ink surfaces, a Strong Rule boundary, 12px corners, DM Sans, a local soft shadow, and a subdued backdrop.
 
-A small Search the site heading labels a full-width borderless query field. Results update as the visitor types, so no submit button is shown. The accent underline indicates input focus; other controls retain the existing focus treatment. The field’s native clear affordance is the only clear control. Results use 20px titles (18px below 500px), 14px excerpts limited to two lines (three on narrow screens), and inline metadata and topic links. Literal matches use the semantic accent and supporting accent surface; forced colors use system Highlight and HighlightText. Initial browse links sit in a quiet footer row.
+A small Search the site heading labels a full-width borderless query field. Results update as the visitor types, so no submit button is shown. The accent underline and a 2px accent outline with 2px offset indicate input focus; other controls use the shared blue focus treatment. The field’s native clear affordance is the only clear control. Results use 20px titles (18px below 500px), 14px excerpts limited to two lines (three on narrow screens), and inline metadata and topic links. Literal matches use the semantic accent and supporting accent surface; forced colors use system Highlight and HighlightText. Initial browse links sit in a quiet footer row.
 
 Pointer opening and closing use a reversible 180ms fade with a small upward translation (6px) and scale (0.97), using the existing snappy easing and a top-center origin. The backdrop fades with the panel. The native top layer stays open until the exit completes. Keyboard opening and dismissal are immediate; reduced motion keeps only a 100ms fade. Close and Escape restore focus to the opener, with the mobile Menu summary serving as the return target. Tab and Shift+Tab cycle through the currently visible controls and links, including live results and retry. The rest of the page is inert while search is open; dismissal and Turbo cleanup restore its prior interactivity. Outside presses dismiss without taking focus back. Without JavaScript, native browse links remain available inside the popover.
 
