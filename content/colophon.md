@@ -18,12 +18,6 @@ The site is built with [Hugo](https://gohugo.io/). Articles are written in Markd
 
 The main typeface is DM Sans. Code uses JetBrains Mono. Both are self-hosted, so reading a page doesn’t require a request to a font service.
 
-## A little movement
-
-The water, fish, and interactive lettering use [Three.js](https://threejs.org/) and custom WebGL shaders. They’re a place to experiment with the kinds of small interactions I enjoy building.
-
-The effects respect reduced-motion preferences, and the fish can be paused from the footer. The text and links remain usable without the effects.
-
 ## Reading and browsing
 
 Search runs in the browser against an index generated from the site’s content. There’s also an [RSS feed](/index.xml) for following new articles in a feed reader.
