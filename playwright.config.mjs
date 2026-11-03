@@ -35,7 +35,7 @@ export default defineConfig({
         'chat-scroll.spec.mjs',
         'tags.spec.mjs',
         'search.spec.mjs',
-        'fish.spec.mjs',
+        'native-pages.spec.mjs',
       ],
       use: {
         browserName: 'webkit',
@@ -57,7 +57,7 @@ export default defineConfig({
         'chat-scroll.spec.mjs',
         'tags.spec.mjs',
         'search.spec.mjs',
-        'fish.spec.mjs',
+        'native-pages.spec.mjs',
       ],
       use: {
         ...devices['iPhone 13'],

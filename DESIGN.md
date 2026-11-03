@@ -271,7 +271,7 @@ DOM order remains the reading and focus order. Narrow layouts stack rather than 
 
 ## Shapes
 
-Page headers have square, open edges and no enclosing panel outline. Their decorative graphics clip to the header bounds. Project artwork uses a 10px radius. Code panels, case-study media, and Inspect use 12px corners; the mobile menu uses 16px.
+Page headers have square, open edges and no enclosing panel outline. Project artwork uses a 10px radius. Code panels, case-study media, and Inspect use 12px corners; the mobile menu uses 16px.
 
 Primary action buttons and chapter links use full pill shapes. The code-copy utility uses a compact rectangle with 6px corners. Measurement fields and generic framed media use the small `field` and `panel` radii (0.35rem). The form language stays geometric and direct; fine one-pixel rules distinguish editorial groups without turning every group into a card.
 
@@ -310,7 +310,7 @@ Writing rows are separated by Fine Rules. The date, title, and arrow share the a
 
 Real interface screenshots dominate project previews. Frames clip to the project radius, retain their source-specific supporting backgrounds, and have caption groups for project name, contribution, and period. The first project has more space; subsequent projects share the paired grid. Do not replace these artifacts with generic illustrations.
 
-Case-study images link to the full-size original. Their small hover scale (1.012 over 500ms) is independent of the gallery’s pointer lens. The gallery keeps screenshots fixed during scrolling; fine-pointer lens feedback is temporary and input-driven.
+Case-study images link to the full-size original and retain their small hover scale (1.012 over 500ms). Gallery screenshots stay fixed during scrolling; the labeled preview button switches between two actual screens without a magnifier or graphics canvas.
 
 ### Inputs and Fields
 
@@ -322,17 +322,13 @@ Code stays on its own dark surface in both themes. The panel has a subtle white-
 
 The caption reserves a minimum height of 44px and includes a compact Copy utility when the Clipboard API is available. Its visible rectangle has a minimum size of 72px by 28px, with 6px corners, 6px horizontal padding, 12px glyphs, a white 15% boundary, and a white 10% hover fill. Labels stay on one line and the frame can expand for enlarged text. The surrounding transparent button keeps a 44px-high pointer and keyboard target. A successful copy replaces the clipboard glyph with a check and the label with “Copied” for two seconds. A status message announces success; a failed copy exposes a manual-copy instruction and a Retry label. Temporary feedback and pending clipboard results are cleared before Turbo history snapshots. Feedback is static, the code’s whitespace is preserved, and no celebration delays the action. Without JavaScript or Clipboard API support, the control stays hidden and code retains native selection and scrolling.
 
-### Editorial Headers and Tactile Feedback
+### Editorial Headers and Native Interactions
 
-Native heading text is the accessible content. The homepage, writing archive, article, topic, work overview, and case-study headers share the page’s Paper/Ink palette. Archive, article, topic, work overview, and case-study headers retain their top Strong Rule and Fine Rules around supporting metadata where needed. The minimal homepage masthead has no rule; whitespace separates it from the previews. Graphics initialize once per page and mount within 160px of the viewport, preserving native text until ready. On supported desktop graphics, continuous lettering can dissolve locally under pointer input, then return through damped motion; background water effects share that input. Small screens preserve native text, and reduced motion or unavailable graphics preserve readable native content without the decorative graphics path.
+The homepage, writing archive, article, topic, work overview, and case-study titles are native, selectable HTML text on the page’s Paper/Ink palette. They wrap naturally and respond directly to theme changes and enlarged text. The homepage uses whitespace between its introduction and previews; other headers retain their existing rules and metadata structure. No graphics engine, canvas, particles, water, fish, or Make waves controls are loaded.
 
-The renderer reads the host’s computed background and text color for the water, resting text mask, particles, and Make waves ink. A `data-theme` observer updates those colors in place without rebuilding WebGL contexts. Theme changes preserve the active scene and interaction state.
+Project screens change through the labeled preview button using a small Stimulus controller. It waits for the images to decode, reports failures without replacing the current view, preserves focus, and resets before a Turbo snapshot. Late decode results cannot change the restored view. Without JavaScript, the primary screenshot and case-study link remain native and usable.
 
-The two lines in the work overview’s Make waves button flow in opposite directions during fine-pointer hover and pause in place on exit; reduced motion and coarse pointers keep the glyph static. The opt-in Make waves mode has a Stop waves action and Escape exit, with a brief instruction to drag across the headline. The instruction’s space is reserved while inactive, so entering or exiting the mode does not shift the title, including in short viewports. Project screens change through the labeled preview button. The logo counter is a small, temporary response; Inspect is a dormant tool until deliberately revealed. None of these effects should obstruct reading, scrolling, keyboard navigation, or browser zoom.
-
-Three soft fish silhouettes swim beneath the lettering on neutral header surfaces, using the existing water shader. Background traces mix the computed surface and ink with restrained contrast, especially in dark mode. Slow steering and flexible tails suggest depth; nearby fine pointers trigger a smooth turn and acceleration away, followed by a gradual return to cruising. Touch retains ambient swimming without proximity reactions. Idle fish rendering is capped at 30fps, pauses offscreen and in hidden tabs, and is disabled for reduced motion and forced colors. A footer Pause fish / Resume fish control freezes or restarts swimming across Turbo navigation.
-
-Page navigation uses a 160ms fade over an opaque previous page, with the existing snappy easing. Reduced motion uses an immediate swap. Motion pauses or settles when input stops, when offscreen, or in hidden tabs, and graphics resources are released on navigation. Easing and duration metadata live in `.impeccable/design.json`; they are not invented top-level frontmatter groups.
+The logo counter remains a small, temporary response; Inspect is a dormant view of the actual page geometry until deliberately revealed. Both keep their existing keyboard and reduced-motion behavior. Page navigation uses a 160ms fade over an opaque previous page, with the existing snappy easing; reduced motion uses an immediate swap. Easing and duration metadata live in `.impeccable/design.json`.
 
 ### Site Search
 
@@ -361,5 +357,5 @@ Pointer opening and closing use a reversible 180ms fade with a small upward tran
 - **Don't** apply the work overview or case-study display scale to every reading header.
 - **Don't** widen prose merely because the code track has more room.
 - **Don't** change project screens on hover or deform project imagery on scroll.
-- **Don't** hide essential content or navigation behind JavaScript, WebGL, or motion effects.
+- **Don't** hide essential content or navigation behind JavaScript or motion effects.
 - **Don't** describe the confirmed preference for broader shadows and prominent controls as if that refinement had already shipped.

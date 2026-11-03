@@ -42,7 +42,7 @@ Confirmed durable requirements:
 - Preserve Hugo and static delivery. The existing implementation uses Tailwind CSS, TypeScript, and Hotwire; deployable output is generated in `dist/`.
 - Preserve published article and case-study URLs, historical publication dates, existing article content, and original code examples.
 - Keep historical posts identifiable as archived writing. Do not silently present aged technical advice as newly published guidance.
-- Keep core content and navigation usable without JavaScript or WebGL. Interactive effects and demonstrations must have useful fallbacks.
+- Keep core content and navigation usable without JavaScript. Interactive effects and demonstrations must have useful fallbacks.
 - Preserve keyboard access and reduced-motion support.
 
 Existing capabilities include case studies, a writing archive, article contents navigation, related articles, RSS, theme selection, accessible code scrolling, an Inspect measurement demonstration, and machine-readable Markdown exports.
@@ -73,6 +73,6 @@ Use this evidence for factual copy. Do not invent outcomes, customer endorsement
 
 ## Accessibility & Inclusion
 
-Keyboard navigation, visible focus, reduced-motion behavior, and access without JavaScript are confirmed requirements. Retain semantic structure, readable reflow, and usable controls across desktop and mobile sizes. Preserve user-controlled playback for archived animations and fallbacks for unavailable graphics.
+Keyboard navigation, visible focus, reduced-motion behavior, and access without JavaScript are confirmed requirements. Retain semantic structure, readable reflow, and usable controls across desktop and mobile sizes. Preserve user-controlled playback for archived animations and readable native content when enhancements are unavailable.
 
 No additional audience-specific assistive-technology requirements or formal conformance target have been specified.

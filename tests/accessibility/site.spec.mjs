@@ -27,9 +27,8 @@ async function audit(page) {
 }
 
 // Layout is measured with polling assertions rather than a single sample. The
-// WebGL tests run software-rendered alongside these, and under that contention
-// a page can be caught mid-layout; a real overflow never resolves, so retrying
-// absorbs the transient state without hiding a genuine failure.
+// A page can be caught during font loading; polling absorbs transient layout
+// without hiding a genuine overflow.
 async function expectReflow(page) {
   await expect
     .poll(
@@ -103,25 +102,6 @@ test('display lettering reflows at 200 percent zoom and text size', async ({
     'Desktop zoom uses a 720px CSS viewport.',
   );
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.addInitScript(() => {
-    window.__typeLines = [];
-    const original = CanvasRenderingContext2D.prototype.fillText;
-    CanvasRenderingContext2D.prototype.fillText = function (
-      text,
-      x,
-      y,
-      ...args
-    ) {
-      const transform = this.getTransform();
-      window.__typeLines.push({
-        text,
-        left: transform.e + x * transform.a,
-        right: transform.e + (x + this.measureText(text).width) * transform.a,
-        width: this.canvas.width,
-      });
-      return original.call(this, text, x, y, ...args);
-    };
-  });
   // A 1440px desktop at 200% page zoom has a 720px CSS viewport. Also check
   // doubled text separately, since Safari can zoom text without the page.
   for (const textOnly of [false, true]) {
@@ -138,7 +118,6 @@ test('display lettering reflows at 200 percent zoom and text size', async ({
       await page.evaluate(() => document.fonts.ready);
       if (textOnly) {
         await page.evaluate(() => {
-          window.__typeLines = [];
           const sizes = [...document.querySelectorAll('body, body *')]
             .filter((el) => !(el instanceof SVGElement))
             .map((el) => [el, parseFloat(getComputedStyle(el).fontSize) * 2]);
@@ -393,11 +372,9 @@ test('Writing opens the full archive and its year shortcuts reach older posts', 
 test('reduced motion retains native typography and project images', async ({
   page,
 }) => {
-  await page.goto('/');
-  await expect(page.locator('.hero-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await expect(page.locator('.hero canvas')).toHaveCount(0);
+  await page.goto('/work/');
+  await expect(page.locator('.hero-title')).toBeVisible();
+  await expect(page.locator('canvas')).toHaveCount(0);
   await expect(page.locator('.project-art').first()).toHaveCSS(
     'animation-name',
     'none',
@@ -468,320 +445,10 @@ test('forced colors retain a visible keyboard outline', async ({ page }) => {
   expect(outline).toEqual({ width: '3px', style: 'solid' });
 });
 
-test('WebGL fish swim, pause, respond to input, and stop for reduced motion', async ({
-  page,
-}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== 'desktop-light',
-    'Graphics lifecycle needs one desktop run.',
-  );
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.addInitScript(() => {
-    window.__draws = 0;
-    for (const Type of [WebGLRenderingContext, WebGL2RenderingContext]) {
-      for (const name of ['drawElements', 'drawArrays']) {
-        const original = Type.prototype[name];
-        Type.prototype[name] = function (...args) {
-          window.__draws++;
-          return original.apply(this, args);
-        };
-      }
-    }
-  });
-  await page.goto('/');
-  await expect(page.locator('.hero')).toHaveAttribute(
-    'data-spatial-ready',
-    'true',
-  );
-  const draws = () => page.evaluate(() => window.__draws);
-  const settled = () =>
-    expect
-      .poll(
-        async () => {
-          const before = await draws();
-          await page.waitForTimeout(350);
-          return (await draws()) - before;
-        },
-        {
-          timeout: 8000,
-          message: 'WebGL must stop drawing when input settles',
-        },
-      )
-      .toBe(0);
-  const cruising = await draws();
-  await expect.poll(draws).toBeGreaterThan(cruising);
-  await page.locator('[data-fish-toggle]').evaluate((button) => button.click());
-  await expect(page.locator('[data-fish-toggle]')).toHaveText('Resume fish');
-  await settled();
-  const before = await draws();
-  await page.mouse.move(1000, 220);
-  await expect.poll(draws).toBeGreaterThan(before);
-  await expect(page.locator('.hero-title')).toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await settled();
-  const project = page.locator('.project-gallery .project-main').first();
-  await project.scrollIntoViewIfNeeded();
-  await expect(project.locator('canvas')).toHaveCount(0);
-  await expect(page.locator('.project-art').first()).toHaveCSS(
-    'animation-name',
-    'none',
-  );
-  await expect(project).toHaveCSS('transform', 'none');
-  await settled();
-  const beforeScroll = await draws();
-  await page.mouse.wheel(0, 140);
-  await page.waitForTimeout(350);
-  expect(await draws()).toBe(beforeScroll);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await settled();
-  await expect(page.locator('.spatial-surface')).toHaveCount(0);
-  await expect(page.locator('.hero-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await expect(project.locator('img').first()).toBeVisible();
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page
-    .getByRole('link', { name: 'Devin Schulz, home', exact: true })
-    .click();
-  await expect(page.locator('.hero')).toHaveAttribute(
-    'data-spatial-ready',
-    'true',
-  );
-  // Start the loss check on a fully loaded page, rather than Turbo’s cached preview.
-  await page.reload();
-  await expect(page.locator('.hero')).toHaveAttribute(
-    'data-spatial-ready',
-    'true',
-  );
-  await page.mouse.move(500, 420);
-  await expect(page.locator('.hero-title')).toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  // Loss of the graphics context must restore the real text immediately.
-  await page.locator('.hero-surface').evaluate((canvas) => {
-    canvas
-      .getContext('webgl2')
-      .getExtension('WEBGL_lose_context')
-      .loseContext();
-  });
-  await expect(page.locator('.hero-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await page
-    .getByRole('link', { name: `All ${articleCount} articles` })
-    .click();
-  await page.waitForURL('**/blog/');
-  await expect(page.locator('.archive-hero')).toHaveAttribute(
-    'data-spatial-ready',
-    'true',
-  );
-  await expect(page.locator('.archive-title')).toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  // A restored scroll position can pass the footer before reaching the archive top.
-  await expect(page.locator('.archive-hero .spatial-surface')).toHaveCount(1);
-  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
-    articleCount,
-  );
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(page.locator('.spatial-surface')).toHaveCount(0);
-  await expect(page.locator('.archive-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await expect(page.locator('.archive-title')).toHaveCSS(
-    'color',
-    'rgb(255, 255, 255)',
-  );
-});
-
-test('article header particles respond to hover and restore native text', async ({
-  page,
-}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== 'desktop-light',
-    'One desktop graphics lifecycle.',
-  );
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.addInitScript(() => {
-    window.__articleDraws = 0;
-    const original = WebGL2RenderingContext.prototype.drawArrays;
-    WebGL2RenderingContext.prototype.drawArrays = function (...args) {
-      window.__articleDraws++;
-      return original.apply(this, args);
-    };
-  });
-  await page.goto(
-    '/blog/using-react-component-variants-to-compose-css-classes/',
-  );
-  const title = page.locator('.article-title');
-  await expect(page.locator('.article-hero')).toHaveAttribute(
-    'data-spatial-ready',
-    'true',
-  );
-  await expect(title).toHaveClass(/(^|\s)is-spatial(\s|$)/);
-  await expect(page.locator('.spatial-surface')).toHaveCount(1);
-  const before = await title.boundingBox();
-  const draws = await page.evaluate(() => window.__articleDraws);
-  await page.mouse.move(before.x + 100, before.y + 50);
-  await page.mouse.move(before.x + 210, before.y + 65, { steps: 8 });
-  await expect
-    .poll(() => page.evaluate(() => window.__articleDraws))
-    .toBeGreaterThan(draws);
-  expect(await title.boundingBox()).toEqual(before);
-  await page.locator('[data-fish-toggle]').evaluate((button) => button.click());
-  await expect
-    .poll(
-      async () => {
-        const count = await page.evaluate(() => window.__articleDraws);
-        await page.waitForTimeout(350);
-        return (await page.evaluate(() => window.__articleDraws)) - count;
-      },
-      {
-        timeout: 8000,
-        message: 'Article hover must settle without continuous animation',
-      },
-    )
-    .toBe(0);
-  await expectReflow(page);
-  await audit(page);
-  await page
-    .locator('.article-hero')
-    .getByRole('link', { name: 'All writing', exact: true })
-    .click();
-  await page.waitForURL('**/blog/');
-  await page.locator('[data-post-list] .post-link').first().click();
-  await expect(page.locator('.article-hero')).toHaveAttribute(
-    'data-spatial-ready',
-    'true',
-  );
-  await expect(page.locator('.spatial-surface')).toHaveCount(1);
-  await page.locator('.article-surface').evaluate((canvas) => {
-    canvas
-      .getContext('webgl2')
-      .getExtension('WEBGL_lose_context')
-      .loseContext();
-  });
-  await expect(title).not.toHaveClass(/(^|\s)is-spatial(\s|$)/);
-  await expect(title).toHaveCSS('color', 'rgb(25, 25, 25)');
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(page.locator('.spatial-surface')).toHaveCount(0);
-  await expect(title).toBeVisible();
-});
-
-test('WebGL failure retains readable artwork and every destination', async ({
-  page,
-}) => {
-  await page.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (kind, ...args) {
-      if (
-        kind === 'webgl' ||
-        kind === 'webgl2' ||
-        kind === 'experimental-webgl'
-      )
-        return null;
-      return original.call(this, kind, ...args);
-    };
-  });
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  await expect(page.locator('.hero-title')).toBeVisible();
-  await expect(page.locator('.hero-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await expect(page.locator('.hero canvas')).toHaveCount(0);
-  await expect(page.locator('.project-main img').first()).toBeVisible();
-  await expect(page.locator('.project-link')).toHaveCount(3);
-  await audit(page);
-  await page.goto('/blog/');
-  await expect(page.locator('.archive-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await expect(page.locator('.archive-title')).toHaveCSS(
-    'color',
-    'rgb(255, 255, 255)',
-  );
-  await expect(page.locator('.archive-hero canvas')).toHaveCount(0);
-  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(
-    articleCount,
-  );
-  await audit(page);
-  await page.goto(
-    '/blog/using-react-component-variants-to-compose-css-classes/',
-  );
-  await expect(page.locator('.article-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await expect(page.locator('.article-title')).toHaveCSS(
-    'color',
-    'rgb(255, 255, 255)',
-  );
-  await expect(page.locator('.article-hero canvas')).toHaveCount(0);
-  await expect(page.locator('.article-body')).toBeVisible();
-  await audit(page);
-});
-
-test('liquid lettering is opt-in, settles, and restores native interactions', async ({
-  page,
-}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== 'desktop-light' &&
-      testInfo.project.name !== 'narrow-light',
-    'One desktop and one touch-sized lifecycle.',
-  );
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  const button = page.locator('[data-wave-trigger]');
-  const hero = page.locator('.hero');
-  await expect(button).toBeVisible();
-  await expect(button).toHaveAttribute('aria-pressed', 'false');
-  const before = await page.locator('.hero-title').boundingBox();
-  await button.focus();
-  await page.keyboard.press('Enter');
-  await expect(button).toHaveAttribute('aria-pressed', 'true');
-  await expect(hero).toHaveCSS('touch-action', 'none');
-  await expect(hero.getByRole('status')).toContainText('Drag across');
-  const bounds = await hero.boundingBox();
-  const x = bounds.x + bounds.width * 0.25;
-  const y = bounds.y + bounds.height * 0.72;
-  await page.mouse.move(x, y);
-  await page.mouse.down();
-  await page.mouse.move(x + bounds.width * 0.45, y - 30, { steps: 20 });
-  await page.mouse.up();
-  expect(await page.locator('.hero-title').boundingBox()).toEqual(before);
-  await audit(page);
-  await page.keyboard.press('Escape');
-  await expect(button).toHaveAttribute('aria-pressed', 'false');
-  await expect(button).toBeFocused();
-  await expect(hero).not.toHaveCSS('touch-action', 'none');
-  await button.click();
-  await expect(button).toHaveAttribute('aria-pressed', 'true');
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(button).toBeHidden();
-  await expect(hero).not.toHaveCSS('touch-action', 'none');
-  await expect(hero.locator('canvas')).toHaveCount(0);
-  await expect(page.locator('.hero-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await expect(button).toBeVisible();
-  await button.click();
-  await page
-    .getByRole('link', { name: `All ${articleCount} articles` })
-    .click();
-  await page.waitForURL('**/blog/');
-  await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
-  await page
-    .getByRole('link', { name: 'Devin Schulz, home', exact: true })
-    .click();
-  await expect(button).toHaveAttribute('aria-pressed', 'false');
-});
-
 test('project previews work with keyboard and reduced motion', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/work/');
   for (const name of ['Cape', 'Warranties', 'InVision']) {
     const project = page
       .locator('[data-project-preview]')
@@ -809,89 +476,6 @@ test('project previews work with keyboard and reduced motion', async ({
   await expect(
     page.locator('.project-0 [data-preview-toggle]'),
   ).toHaveAttribute('aria-pressed', 'false');
-});
-
-test('project lens remains still on scroll and releases graphics for reduced motion', async ({
-  page,
-}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== 'desktop-light',
-    'One GPU lifecycle run.',
-  );
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.addInitScript(() => {
-    window.__projectDraws = 0;
-    const original = WebGL2RenderingContext.prototype.drawElements;
-    WebGL2RenderingContext.prototype.drawElements = function (...args) {
-      if (this.canvas.classList.contains('project-lens'))
-        window.__projectDraws++;
-      return original.apply(this, args);
-    };
-  });
-  await page.goto('/');
-  const art = page.locator('.project-art').first();
-  await art.scrollIntoViewIfNeeded();
-  await expect(art.locator('canvas')).toHaveCount(0);
-  let bounds = await art.boundingBox();
-  await page.mouse.move(
-    bounds.x + bounds.width * 0.55,
-    bounds.y + bounds.height * 0.5,
-    { steps: 8 },
-  );
-  await expect(art.locator('canvas')).toBeVisible();
-  await page.mouse.move(
-    bounds.x + bounds.width * 0.7,
-    bounds.y + bounds.height * 0.5,
-    { steps: 8 },
-  );
-  const toggle = page.locator('.project-0 [data-preview-toggle]');
-  await toggle.focus();
-  await expect(art.locator('canvas')).toBeHidden();
-  // Moving the pointer while a keyboard control owns focus must not cover it.
-  await page.mouse.move(
-    bounds.x + bounds.width * 0.6,
-    bounds.y + bounds.height * 0.5,
-    { steps: 8 },
-  );
-  await expect(art.locator('canvas')).toBeHidden();
-  await toggle.click();
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-  await expect(art.locator('canvas')).toBeHidden();
-  await toggle.click();
-  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  // End keyboard focus before resuming pointer exploration.
-  await page.locator('#work-title').click();
-  await art.scrollIntoViewIfNeeded();
-  bounds = await art.boundingBox();
-  await page.mouse.move(
-    bounds.x + bounds.width * 0.6,
-    bounds.y + bounds.height * 0.5,
-    { steps: 8 },
-  );
-  await expect(art.locator('canvas')).toBeVisible();
-  const draws = () => page.evaluate(() => window.__projectDraws);
-  await expect
-    .poll(
-      async () => {
-        const before = await draws();
-        await page.waitForTimeout(350);
-        return (await draws()) - before;
-      },
-      { timeout: 8000 },
-    )
-    .toBe(0);
-  const before = await draws();
-  await page.mouse.wheel(0, 100);
-  await page.waitForTimeout(350);
-  expect(await draws()).toBe(before);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(art.locator('canvas')).toHaveCount(0);
-  await page.getByRole('button', { name: /Show other view.*Cape/ }).click();
-  await expect(page.locator('.project-0 [data-project-detail]')).toBeVisible();
-  await expect(page.locator('.project-0 .project-main')).toHaveCSS(
-    'transform',
-    'none',
-  );
 });
 
 test('article sections, code blocks, and archive navigation remain usable', async ({

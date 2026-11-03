@@ -1,19 +1,14 @@
 import { test, expect } from '@playwright/test';
 
-test('logo counts bounce without replacing the homepage or restarting waves', async ({
+test('logo counts bounce without replacing the homepage', async ({
   page,
   isMobile,
-  browserName,
 }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   await expect(page.locator('.theme-toggle')).toBeVisible();
   const brand = page.getByRole('link', { name: 'Devin Schulz, home' });
   const original = await brand.elementHandle();
-  const wave = page.locator('[data-wave-trigger]');
-  if (browserName === 'chromium') await expect(wave).toBeVisible();
-  if (await wave.isVisible()) await wave.click();
-  const pressed = await wave.getAttribute('aria-pressed');
   for (let count = 1; count <= 3; count++) {
     if (isMobile) await brand.tap();
     else await brand.click();
@@ -23,7 +18,6 @@ test('logo counts bounce without replacing the homepage or restarting waves', as
     expect(await original.evaluate((element) => element.isConnected)).toBe(
       true,
     );
-    expect(await wave.getAttribute('aria-pressed')).toBe(pressed);
   }
   await expect(page.locator('[data-logo-count]')).toHaveCount(0);
 });

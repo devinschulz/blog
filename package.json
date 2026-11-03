@@ -35,7 +35,6 @@
     "@tailwindcss/typography": "^0.5.20",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@types/three": "^0.186.0",
     "hugo-bin": "^0.166.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.5.1",
@@ -47,8 +46,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.23",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "three": "^0.186.0"
+    "react-dom": "^19.3.1"
   },
   "lint-staged": {
     "*.{js,mjs,ts,json,css}": "prettier --write"

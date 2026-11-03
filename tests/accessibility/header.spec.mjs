@@ -54,8 +54,6 @@ for (const path of ['/', '/blog/']) {
       page.getByRole('link', { name: 'Skip to content', exact: true }),
       page.locator('.brand'),
     ];
-    const waves = page.locator('[data-wave-trigger]');
-    if (await waves.isVisible()) order.push(waves);
     if (desktop) {
       order.push(
         ...(await page.locator('.desktop-nav a, .desktop-nav button').all()),
@@ -179,13 +177,6 @@ for (const path of ['/', '/blog/']) {
         }
       };
       await expectStable();
-      if (path === '/' && desktop) {
-        // The optional graphics control must not move navigation when revealed.
-        await page.locator('[data-wave-trigger]').evaluate((button) => {
-          button.hidden = false;
-        });
-        await expectStable();
-      }
     } finally {
       release();
     }

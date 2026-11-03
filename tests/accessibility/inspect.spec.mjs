@@ -5,7 +5,7 @@ test('Inspect is dormant until discovered, measures real elements, and exits cle
   page,
   isMobile,
 }) => {
-  await page.goto('/');
+  await page.goto('/work/');
   await expect(page.locator('[data-inspect-ui]')).toHaveCount(0);
   const heading = page.locator('#hero-title');
   const before = await heading.boundingBox();
@@ -113,7 +113,7 @@ test('five logo taps reveal Inspect, touch selection preserves scrolling, and Do
   await expect(panel).toBeVisible();
   await panel.getByRole('button', { name: 'Hide Inspect details' }).tap();
   await expect(panel.locator('dl')).toBeHidden();
-  await page.getByRole('link', { name: 'Explore selected work' }).tap();
+  await page.getByRole('link', { name: 'More about me' }).tap();
   await panel.getByRole('button', { name: 'Show Inspect details' }).tap();
   await expect(panel.locator('[data-inspect-element]')).toHaveText('a');
   expect(new URL(page.url()).hash).toBe('');
@@ -141,31 +141,4 @@ test('Inspect cleans up for Turbo navigation and can be rediscovered', async ({
   await page.getByRole('button', { name: 'Close Inspect mode' }).click();
   await page.goBack();
   await expect(page.locator('[data-inspect-ui]')).toHaveCount(0);
-});
-
-test('Inspect restores native graphics and respects reduced motion on exit', async ({
-  page,
-}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== 'desktop-light',
-    'One desktop run covers the graphics lifecycle.',
-  );
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/');
-  await expect(page.locator('.hero-title')).toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await page.keyboard.type('inspect');
-  await expect(page.locator('.hero canvas')).toHaveCount(0);
-  await expect(page.locator('.hero-title')).not.toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await page.keyboard.press('Escape');
-  await expect(page.locator('.hero-title')).toHaveClass(
-    /(^|\s)is-spatial(\s|$)/,
-  );
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.keyboard.type('inspect');
-  await page.getByRole('button', { name: 'Close Inspect mode' }).click();
-  await expect(page.locator('.hero canvas')).toHaveCount(0);
 });

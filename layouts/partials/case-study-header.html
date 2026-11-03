@@ -4,7 +4,7 @@
       <a class="inline-flex min-h-11 items-center gap-3 hover:underline hover:underline-offset-4" href="{{ "work/" | relURL }}"><span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}</span> Selected work</a>
       <p>{{ .Params.period | replaceRE "-" "—" }}</p>
     </div>
-    <h1 class="case-title pointer-events-none relative z-2 mt-9 leading-[1] font-semibold tracking-[-0.075em] select-none desktop:mt-12 [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText] {{ if eq .Title "Cape" }}text-[clamp(4rem,24cqw,21.25rem)]{{ else if eq .Title "Warranties" }}text-[clamp(2rem,11.5cqw,11.5rem)]{{ else }}text-[clamp(2.5rem,15cqw,14.375rem)]{{ end }}">{{ upper .Title }}</h1>
+    <h1 class="case-title relative z-2 mt-9 leading-[1] font-semibold tracking-[-0.075em] desktop:mt-12 {{ if eq .Title "Cape" }}text-[clamp(4rem,24cqw,21.25rem)]{{ else if eq .Title "Warranties" }}text-[clamp(2rem,11.5cqw,11.5rem)]{{ else }}text-[clamp(2.5rem,15cqw,14.375rem)]{{ end }}">{{ upper .Title }}</h1>
     <div class="relative z-3 mt-6 grid items-end gap-6 desktop:mt-8 desktop:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] desktop:gap-12">
       <p class="max-w-[23ch] text-[clamp(1.625rem,5cqw,3rem)] leading-[1.1] tracking-[-0.045em]">{{ .Params.headline }} <span class="text-muted">{{ .Params.headlineAccent }}</span></p>
       <p class="text-xs leading-relaxed text-muted desktop:justify-self-end desktop:text-right desktop:text-[13px]">{{ .Params.role }}</p>

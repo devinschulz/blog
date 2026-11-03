@@ -2,7 +2,7 @@
 {{ $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse }}
 <div class="writing-home mx-auto max-w-[720px] px-5 pt-6 pb-16 desktop:px-8 desktop:pt-10 desktop:pb-20">
   <header class="writing-masthead relative isolate mb-12 overflow-clip bg-paper pb-1 text-ink desktop:mb-16">
-    <h1 id="writing-title" class="writing-title pointer-events-none relative z-2 text-[clamp(30px,4vw,40px)] leading-[1.15] font-semibold tracking-[-0.035em] [&.is-spatial]:text-transparent forced-colors:[&.is-spatial]:text-[CanvasText]">Articles & Notes</h1>
+    <h1 id="writing-title" class="writing-title relative z-2 text-[clamp(30px,4vw,40px)] leading-[1.15] font-semibold tracking-[-0.035em]">Articles & Notes</h1>
     <p class="relative z-2 mt-5 text-base leading-[1.75] text-muted">I’m a frontend engineer at Stripe with a background in design. I write about the things I learn while building for the web.</p>
     <div class="relative z-2 mt-4 flex flex-wrap gap-x-6 text-sm text-accent">
       <a href="{{ "work/" | relURL }}#about" class="inline-flex min-h-11 items-center underline underline-offset-4">More about me</a>

@@ -1,5 +1,5 @@
 // Render share cards with the site's actual DM Sans and crisp resting typography.
-// These are static exports: sharing services cannot run the site's WebGL.
+// These standalone exports are independent of the website’s rendering.
 // Run npm run build:social after changing the visual identity or card content.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -119,7 +119,7 @@ try {
       const ctx = canvas.getContext('2d');
       ctx.fillStyle = '#2449ef';
       ctx.fillRect(0, 0, 1200, 630);
-      // Quiet caustic traces echo the resting water surface on the site.
+      // Preserve the existing share-card artwork’s subtle background linework.
       ctx.strokeStyle = '#ffffff06';
       ctx.lineWidth = 2;
       for (let line = 0; line < 9; line++) {
@@ -155,8 +155,7 @@ try {
       text(card.label, 1144, 71, 14, 400, 'Mono', '0px', 'right');
       rule(112);
       if (card.lines) {
-        // Share previews show the site's resting state, with solid letters.
-        // Pointer-driven particles belong to the interactive website.
+        // Share previews use crisp lettering and the existing artwork palette.
         const size = card.name === 'home' ? 112 : 148;
         card.lines.forEach((line, index) => {
           const y =

@@ -86,7 +86,7 @@ document.addEventListener(
     if (inspector?.active) return;
     showLogoCount(brand);
     const home = new URL(brand.href);
-    // Clicking home while already home shouldn't rebuild the graphics.
+    // Clicking home while already home returns to the top without navigation.
     if (
       home.origin === location.origin &&
       home.pathname === location.pathname
