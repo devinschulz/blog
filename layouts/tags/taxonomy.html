@@ -1,15 +1,14 @@
 {{ define "main" }}
-  <section aria-labelledby="archive-title">
-    <header class="archive-hero relative isolate mx-auto w-[calc(100%-40px)] max-w-400 overflow-clip border-t border-line-strong bg-paper py-6 text-ink desktop:w-[calc(100%-64px)] min-[1100px]:w-[calc(100%-96px)] desktop:py-8 forced-colors:border forced-colors:border-[CanvasText]">
-      <a class="relative z-3 mb-5 inline-flex min-h-11 items-center gap-3 text-xs hover:underline hover:underline-offset-4" href="{{ "blog/" | relURL }}">{{ partial "arrow-icon.html" (dict "direction" "left" "class" "h-4 w-4") }}All writing</a>
-      <h1 id="archive-title" class="archive-title relative z-2 text-[clamp(36px,9vw,64px)] leading-[1.04] font-bold tracking-[-0.04em] desktop:text-[clamp(48px,6vw,88px)]">Browse writing by tag</h1>
-      <p class="relative z-3 mt-5 text-sm leading-relaxed desktop:text-base">Find more articles about a topic.</p>
+  <section class="reading-shell pb-8" aria-labelledby="archive-title">
+    <header class="archive-hero mb-6">
+      <a class="mb-5 inline-flex min-h-11 items-center text-sm text-accent underline underline-offset-4" href="{{ "blog/" | relURL }}">All writing</a>
+      <h1 id="archive-title" class="text-xl font-medium tracking-[-0.02em]">Browse writing by tag</h1>
     </header>
-    <nav class="mx-auto w-[calc(100%-40px)] max-w-400 pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]" aria-label="Writing tags">
-      <ul class="desktop:grid desktop:grid-cols-2 desktop:gap-x-16">
+    <nav aria-label="Writing tags">
+      <ul>
         {{ range .Data.Terms.Alphabetical }}
-          {{ $posts := where .Page.RegularPages "Section" "blog" }}
-          <li class="border-t border-line last:border-b"><a class="group flex min-h-16 items-baseline justify-between gap-5 py-4 desktop:py-6" href="{{ .Page.RelPermalink }}"><span class="text-2xl font-semibold tracking-[-0.03em] group-hover:text-accent group-hover:underline group-hover:underline-offset-4 desktop:text-[36px]">{{ .Page.LinkTitle }}</span><span class="shrink-0 text-xs text-muted">{{ len $posts }} {{ if eq (len $posts) 1 }}article{{ else }}articles{{ end }}</span></a></li>
+        {{ $posts := where .Page.RegularPages "Section" "blog" }}
+        <li><a class="flex min-h-11 items-baseline justify-between gap-5 py-2 text-base hover:underline hover:underline-offset-4" href="{{ .Page.RelPermalink }}"><span>{{ .Page.LinkTitle }}</span><span class="text-xs text-muted">{{ len $posts }} {{ if eq (len $posts) 1 }}article{{ else }}articles{{ end }}</span></a></li>
         {{ end }}
       </ul>
     </nav>

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const root = path.resolve('dist');
+const root = path.resolve(process.env.BLOG_TEST_SITE_DIR || 'dist');
 const domain = 'https://devinschulz.com';
 const files = fs
   .readdirSync(root, { recursive: true })
@@ -415,6 +415,7 @@ const searchIndex = JSON.parse(
 const searchablePages = [
   '/',
   '/colophon/',
+  '/about/',
   ...files
     .filter((file) => /^(blog|work)\/.+\/index\.html$/.test(file))
     .map((file) => '/' + file.replace(/index\.html$/, '')),
@@ -422,7 +423,7 @@ const searchablePages = [
 assert.deepEqual(
   searchIndex.map((page) => page.url).sort(),
   searchablePages.sort(),
-  'Search must include the homepage, colophon, every article, and every case study exactly once',
+  'Search must include the homepage, about page, colophon, every article, and every case study exactly once',
 );
 for (const page of searchIndex) {
   assert(

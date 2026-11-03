@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
-const root = path.resolve('dist');
+const root = path.resolve(process.env.BLOG_TEST_SITE_DIR || 'dist');
 const types = {
   '.html': 'text/html',
   '.css': 'text/css',

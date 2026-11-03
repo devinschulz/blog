@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
 
 const pages = fs
-  .readdirSync('dist', { recursive: true })
+  .readdirSync(process.env.BLOG_TEST_SITE_DIR || 'dist', { recursive: true })
   .filter((file) => file.endsWith('.html'));
 const articleCount = pages.filter(
   (file) => file.startsWith('blog/') && file !== 'blog/index.html',
@@ -488,9 +488,9 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
     'Using React Component Variants to Compose CSS Classes',
   );
   const mobile = testInfo.project.name.startsWith('narrow');
-  if (mobile) await page.locator('.article-layout summary').click();
+  await page.locator('.article-layout summary').click();
   const contents = page.getByRole('navigation', {
-    name: mobile ? 'Article sections on mobile' : 'Article sections',
+    name: 'Article sections',
     exact: true,
   });
   await expect(contents).toBeVisible();
@@ -521,7 +521,7 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
   }
   const nextArticle = more.locator('.related-post-link').first();
   const nextHref = await nextArticle.getAttribute('href');
-  const nextTitle = await nextArticle.locator('p span').first().innerText();
+  const nextTitle = await nextArticle.locator('span').first().innerText();
   await nextArticle.click();
   await page.waitForURL(`**${nextHref}`);
   await expect(page.locator('.article-hero h1')).toHaveText(nextTitle);

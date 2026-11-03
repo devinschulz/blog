@@ -1,10 +1,9 @@
-<section id="measurement-demo" aria-labelledby="measurement-demo-title" class="scroll-mt-8 border-t border-line" data-controller="measurement">
-  <div class="mx-auto max-w-350 px-4.25 py-20 desktop:px-10 desktop:py-28">
-    <div class="grid items-start gap-10 desktop:grid-cols-[1fr_1.3fr] desktop:gap-16">
+<section id="measurement-demo" aria-labelledby="measurement-demo-title" class="scroll-mt-8" data-controller="measurement">
+  <div class="py-10">
+    <div class="grid items-start gap-7">
       <div>
-        <p class="label">An engineering example</p>
-        <h2 id="measurement-demo-title" class="h-section mt-5">Which edges<br>do you measure?</h2>
-        <p class="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted">Two layers can sit apart, overlap, or fit inside one another. Each relationship needs a different set of measurements. This small example shows the approach behind the engine I built for Inspect.</p>
+        <h2 id="measurement-demo-title" class="h-section">Which edges do you measure?</h2>
+        <p class="mt-6 max-w-[52ch] text-base leading-[1.75] text-muted">Two layers can sit apart, overlap, or fit inside one another. Each relationship needs a different set of measurements. This small example shows the approach behind the engine I built for Inspect.</p>
         <p id="measurement-zoom-note" class="mt-5 max-w-[52ch] leading-relaxed text-muted">Choose a starting relationship, then try zooming. The drawing changes size; the distances stay in design pixels.</p>
         <a class="arrow-link mt-6 text-sm" href="{{ relref . "/blog/building-the-inspect-measurement-engine" }}">Read how I built the engine <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>
       </div>

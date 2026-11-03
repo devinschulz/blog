@@ -1,0 +1,15 @@
+{{ $posts := .posts.ByDate.Reverse }}
+{{ $home := .home | default false }}
+{{ $year := "" }}
+<ul class="writing-list" data-post-list>
+  {{ range $posts }}
+  {{ $newYear := .Date.Format "2006" }}
+  <li class="{{ if $home }}article-preview{{ else }}post-row{{ end }}"{{ if ne $newYear $year }} id="year-{{ $newYear }}"{{ end }}>
+    <a href="{{ .RelPermalink }}" class="{{ if $home }}article-preview-title{{ else }}post-link{{ end }} writing-list-link">
+      <time datetime="{{ .Date.Format "2006-01-02" }}" aria-label="{{ .Date.Format "January 2, 2006" }}">{{ .Date.Format "2006-01-02" }}</time>
+      <span class="writing-list-title">{{ .Title }}</span>
+    </a>
+  </li>
+  {{ $year = $newYear }}
+  {{ end }}
+</ul>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="reading-shell pb-8" aria-labelledby="about-title">
+  <h1 id="about-title" class="mb-6 text-2xl leading-snug font-medium tracking-[-0.025em]">{{ .Title }}</h1>
+  <div class="prose prose-theme max-w-none text-base leading-[1.75] text-ink prose-p:my-6 prose-a:text-accent prose-a:underline-offset-4 [&>p:first-child]:mt-0">{{ .Content }}</div>
+  <nav class="mt-6 flex flex-wrap gap-x-6 text-sm text-accent" aria-label="Contact Devin">
+    <a class="inline-flex min-h-11 items-center underline underline-offset-4" href="mailto:{{ site.Params.email }}">Email</a>
+    <a class="inline-flex min-h-11 items-center underline underline-offset-4" href="{{ site.Params.linkedin }}">LinkedIn</a>
+    <a class="inline-flex min-h-11 items-center underline underline-offset-4" href="{{ site.Params.github }}">GitHub</a>
+  </nav>
+</article>
+{{ end }}

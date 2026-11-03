@@ -45,7 +45,7 @@ Confirmed durable requirements:
 - Keep core content and navigation usable without JavaScript. Interactive effects and demonstrations must have useful fallbacks.
 - Preserve keyboard access and reduced-motion support.
 
-Existing capabilities include case studies, a writing archive, article contents navigation, related articles, RSS, theme selection, accessible code scrolling, an Inspect measurement demonstration, and machine-readable Markdown exports.
+Existing capabilities include a dedicated About page, case studies, a writing archive, article contents navigation, related articles, RSS, theme selection, accessible code scrolling, an Inspect measurement demonstration, and machine-readable Markdown exports.
 
 Content conventions:
 

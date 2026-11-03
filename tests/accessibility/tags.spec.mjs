@@ -34,17 +34,21 @@ test('article tags open a topic archive, keep newest posts first, and support ke
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('React');
 });
 
-test('archive rows and related posts have independent tag and article destinations', async ({
+test('compact archive rows lead to articles with independent topic destinations', async ({
   page,
 }) => {
   await page.goto('/blog/');
   const row = page
     .locator('.post-row')
-    .filter({ has: page.getByRole('heading', { name: title, exact: true }) });
-  await row.getByRole('link', { name: 'UX', exact: true }).click();
-  await expect(page).toHaveURL(/\/tags\/ux\/$/);
-  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(1);
-  await page.locator('[data-post-list] .post-link').click();
+    .filter({ has: page.getByRole('link', { name: new RegExp(title) }) });
+  await row.locator('.post-link').click();
+  await page
+    .locator('.article-hero')
+    .getByRole('link', { name: 'Design', exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/tags\/design\/$/);
+  await expect(page.locator('[data-post-list] .post-link')).toHaveCount(3);
+  await page.locator('[data-post-list] .post-link').first().click();
   await expect(page.locator('.article-hero h1')).toHaveText(title);
 
   const more = page.getByRole('region', { name: 'More writing' });
@@ -57,7 +61,7 @@ test('archive rows and related posts have independent tag and article destinatio
   ).toBeVisible();
 });
 
-test('the tag index exposes topics with spaces and a way back to all writing', async ({
+test('the tag index exposes topics and a way back to all writing', async ({
   page,
 }) => {
   await page.goto('/blog/');
@@ -67,12 +71,10 @@ test('the tag index exposes topics with spaces and a way back to all writing', a
   );
   await page
     .getByRole('navigation', { name: 'Writing tags' })
-    .getByRole('link', { name: /^Static Sites / })
+    .getByRole('link', { name: /^Websites / })
     .click();
-  await expect(page).toHaveURL(/\/tags\/static-sites\/$/);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Static Sites',
-  );
+  await expect(page).toHaveURL(/\/tags\/websites\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Websites');
   await expect(page.locator('[data-post-list] .post-link')).toContainText([
     'From Hugo to Next.js and Back Again',
   ]);

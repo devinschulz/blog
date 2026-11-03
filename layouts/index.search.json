@@ -12,7 +12,7 @@
     {{- $markdown := partial "markdown/page.md.md" . -}}
     {{- $body = .RenderString (dict "display" "block") $markdown | plainify -}}
   {{- end -}}
-  {{- if eq .Type "colophon" }}{{ $kind = "Page" }}{{ $date = "" }}{{ end -}}
+  {{- if and (ne .Section "blog") (ne .Section "work") }}{{ $kind = "Page" }}{{ $date = "" }}{{ end -}}
   {{- $tags := slice -}}
   {{- range .GetTerms "tags" }}{{ $tags = $tags | append (dict "title" .LinkTitle "url" .RelPermalink) }}{{ end -}}
   {{- $records = $records | append (dict "title" .Title "url" .RelPermalink "kind" $kind "description" (.Description | default "") "body" ($body | htmlUnescape | replaceRE `\s+` " ") "date" $date "tags" $tags) -}}

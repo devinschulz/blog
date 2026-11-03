@@ -21,7 +21,7 @@ test('Inspect is dormant until discovered, measures real elements, and exits cle
     'h1#hero-title',
   );
   // Focusing a real page link also exercises the keyboard inspection route.
-  const work = page.getByRole('link', { name: 'Explore selected work' });
+  const work = page.getByRole('link', { name: 'Devin Schulz, home' });
   await work.focus();
   await expect(panel.locator('[data-inspect-element]')).toHaveText('a');
   const rect = await work.boundingBox();
@@ -43,7 +43,7 @@ test('Inspect is dormant until discovered, measures real elements, and exits cle
   await page.keyboard.press('Enter');
   expect(new URL(page.url()).hash).toBe('');
   await panel.getByRole('button', { name: 'Parent', exact: false }).click();
-  await expect(panel.locator('[data-inspect-element]')).toHaveText('div');
+  await expect(panel.locator('[data-inspect-element]')).toHaveText('header');
   expect(await heading.boundingBox()).toEqual(before);
   expect(
     await page.evaluate(
@@ -78,7 +78,7 @@ test('Inspect is dormant until discovered, measures real elements, and exits cle
   await expect(panel).toHaveCount(0);
   await expect(page.locator('html')).not.toHaveAttribute('data-inspect-active');
   await work.click();
-  await expect(page).toHaveURL(/#work$/);
+  await expect(page).toHaveURL(/\/$/);
 });
 
 test('typing in editable controls and browser shortcuts cannot reveal Inspect', async ({

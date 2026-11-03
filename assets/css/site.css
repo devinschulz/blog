@@ -7,13 +7,6 @@
 @source "../../layouts";
 @source "../js";
 
-@utility section-title {
-  font-size: clamp(40px, 5vw, 72px);
-  line-height: 1.04;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-}
-
 .search-popover {
   position: fixed;
   inset: clamp(24px, 12vh, 96px) 16px auto;
@@ -171,8 +164,7 @@
   color: var(--color-muted);
 }
 .search-popover .search-input:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: none;
   box-shadow: none;
 }
 .search-scroll {
@@ -470,7 +462,10 @@
   @apply font-display font-semibold tracking-[-0.045em] leading-[1.02];
 }
 @utility h-section {
-  @apply display text-[clamp(2.25rem,7vw,4.5rem)];
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
 }
 @utility label {
   @apply font-mono text-xs text-muted;
@@ -537,46 +532,64 @@ details[open] > summary .disclosure-icon-vertical {
   }
 }
 
-.article-preview-title,
-.archive-title-link,
 .related-post-title {
   text-decoration-line: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
 }
-.article-preview:has(a:focus-visible) .article-preview-title,
-.archive-title-link:focus-visible,
 .related-post-link:focus-visible .related-post-title {
   text-decoration-color: var(--color-accent);
 }
 @media (hover: hover) and (pointer: fine) {
-  .article-preview:hover .article-preview-title,
-  .archive-title-link:hover,
   .related-post-link:hover .related-post-title {
     text-decoration-color: var(--color-accent);
   }
 }
 
-/* A narrow writing column with space between entries instead of row chrome. */
-.writing-home .article-preview {
-  padding-block: 28px;
+/* One quiet reading track for introductions, indexes, and articles. */
+.reading-shell {
+  width: 100%;
+  max-width: 704px;
+  margin-inline: auto;
+  padding-inline: 20px;
 }
-.writing-home .article-preview:first-child {
-  padding-top: 0;
-  padding-bottom: 28px;
+@media (min-width: 781px) {
+  .reading-shell {
+    padding-inline: 32px;
+  }
 }
-.writing-home .article-preview:first-child h2 {
-  font-size: clamp(28px, 3vw, 32px);
-  line-height: 1.25;
-  letter-spacing: -0.025em;
+.writing-list-link {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 16px;
+  min-height: 44px;
+  padding-block: 9px;
+  font-size: 16px;
+  line-height: 1.6;
 }
-.writing-home .article-preview:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
+.writing-list-link time {
+  color: var(--color-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.writing-list-title {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.writing-list-link:focus-visible .writing-list-title {
+  text-decoration-color: var(--color-accent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .writing-list-link:hover .writing-list-title {
+    text-decoration-color: var(--color-accent);
+  }
 }
 .article-body h2 {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Stronger wayfinding without increasing the weight of reading copy. */
@@ -587,15 +600,59 @@ details[open] > summary .disclosure-icon-vertical {
 .site-header:not(.absolute) .desktop-nav [aria-current] {
   text-decoration-color: var(--color-accent);
 }
-.post-row h3,
 .related-post-title {
-  font-weight: 600;
+  font-weight: 400;
 }
 .article-body h2,
 .case-study h2 {
   text-wrap: balance;
 }
-.writing-masthead h1,
-.article-preview h2 {
+.writing-masthead h1 {
   text-wrap: balance;
+}
+
+.case-chapter-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-accent);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.case-study {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+@media (forced-colors: active) {
+  .search-form:focus-within {
+    border-bottom-color: Highlight;
+  }
+}
+
+/* Make every text destination respond, including links already underlined. */
+@media (hover: hover) and (pointer: fine) {
+  a:not(:has(img)):hover {
+    color: var(--color-accent);
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+  a.text-accent:hover,
+  .prose a:hover,
+  .case-chapter-link:hover {
+    color: var(--color-ink);
+  }
+  .project-link:hover h3 {
+    color: var(--color-accent);
+  }
+  .writing-list-link:hover {
+    text-decoration: none;
+  }
+  .writing-list-link:hover .writing-list-title {
+    text-decoration-thickness: 2px;
+  }
 }

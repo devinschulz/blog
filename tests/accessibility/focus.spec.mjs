@@ -41,7 +41,19 @@ test('keyboard focus stays blue across navigation, search, artwork, and code', a
     '.desktop-nav button:visible, .mobile-navigation button:visible',
   );
   await search.press('Enter');
-  await expectBlueFocus(page, page.locator('.search-input'), accent);
+  await expect(page.locator('.search-input')).toBeFocused();
+  await expect(page.locator('.search-input')).toHaveCSS(
+    'outline-style',
+    'none',
+  );
+  await expect(page.locator('.search-form')).toHaveCSS(
+    'border-bottom-color',
+    accent,
+  );
+  await expect(page.locator('.search-form')).toHaveCSS(
+    'border-bottom-width',
+    '2px',
+  );
   await page.keyboard.press('Escape');
 
   await page.goto('/work/');

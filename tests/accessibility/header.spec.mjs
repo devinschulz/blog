@@ -182,3 +182,52 @@ for (const path of ['/', '/blog/']) {
     }
   });
 }
+
+test('About has its own page and Work leads directly to its interactive example', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'More about me', exact: true }).click();
+  await expect(page).toHaveURL(/\/about\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('About');
+  await expect(
+    page
+      .getByRole('navigation', { name: 'Contact Devin' })
+      .getByRole('link', { name: 'LinkedIn' }),
+  ).toHaveAttribute('href', 'https://www.linkedin.com/in/devinschulz/');
+  await expect(
+    page
+      .getByRole('navigation', { name: 'Footer navigation' })
+      .getByRole('link', { name: 'LinkedIn' }),
+  ).toBeVisible();
+  if (await page.locator('.desktop-nav').isVisible()) {
+    await page
+      .locator('.desktop-nav')
+      .getByRole('link', { name: 'Work', exact: true })
+      .click();
+  } else {
+    await page.locator('.mobile-menu summary').click();
+    await page
+      .locator('.mobile-navigation')
+      .getByRole('link', { name: 'Work', exact: true })
+      .click();
+  }
+  await expect(page).toHaveURL(/\/work\/$/);
+  await expect(
+    page
+      .locator('main')
+      .getByText('Senior Frontend Engineer', { exact: false }),
+  ).toHaveCount(1);
+  await page
+    .getByRole('link', { name: 'Try the measurement demo', exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/work\/invision\/#measurement-demo$/);
+  const scenario = page.locator('#measurement-scenario');
+  await expect(scenario).toBeVisible();
+  await scenario.selectOption('overlapping');
+  const summary = page.locator('[data-measurement-target="summary"]');
+  const before = await summary.innerText();
+  await page.locator('[data-measurement-target="mover"]').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(summary).not.toHaveText(before);
+});

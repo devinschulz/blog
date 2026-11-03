@@ -1,13 +1,14 @@
-<footer class="site-footer mx-auto mt-8 w-[calc(100%-40px)] {{ if .IsHome }}max-w-[680px] desktop:max-w-[656px]{{ else if eq .Type "colophon" }}max-w-[760px] desktop:max-w-[736px]{{ else if and .IsPage (eq .Section "blog") }}max-w-320{{ else }}max-w-400{{ end }} border-t {{ if .IsHome }}border-line{{ else }}border-line-strong{{ end }} py-8 text-sm text-muted desktop:mt-12 {{ if .IsHome }}desktop:w-[calc(100%-64px)]{{ else if eq .Type "colophon" }}desktop:w-[calc(100%-64px)]{{ else }}desktop:w-[calc(100%-64px)] min-[1100px]:w-[calc(100%-96px)]{{ end }} desktop:py-10" id="contact">
-  <div class="flex flex-col gap-6 desktop:flex-row desktop:items-start desktop:justify-between desktop:gap-10">
+<footer class="site-footer reading-shell mt-16 pt-6 pb-12 text-sm text-muted desktop:mt-24 desktop:pb-16" id="contact">
+  <div class="flex flex-col gap-6">
     <p class="shrink-0">© {{ now.Year }} Devin Schulz</p>
     <nav aria-label="Footer navigation">
-      <ul class="flex flex-wrap gap-x-6 gap-y-1 desktop:justify-end">
+      <ul class="flex flex-wrap gap-x-6 gap-y-1">
         <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ "blog/" | relURL }}">Writing</a></li>
         <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ "tags/" | relURL }}">Topics</a></li>
         {{ with site.Home.OutputFormats.Get "RSS" }}<li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ .RelPermalink }}">RSS</a></li>{{ end }}
         <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ "colophon/" | relURL }}">Colophon</a></li>
         <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ site.Params.github }}">GitHub</a></li>
+        <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="{{ site.Params.linkedin }}">LinkedIn</a></li>
         <li><a class="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline" href="mailto:{{ site.Params.email }}">Email</a></li>
       </ul>
     </nav>
@@ -15,7 +16,7 @@
   <div class="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-xs">
     <p>This is my own site. Views are my own.</p>
     <div class="flex items-center gap-6">
-      <a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:text-ink hover:underline" href="#page-top">Back to top {{ partial "arrow-icon.html" (dict "direction" "up" "class" "h-4 w-4") }}</a>
+      <a class="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:text-ink hover:underline" href="#page-top">Back to top</a>
     </div>
   </div>
 </footer>

@@ -64,7 +64,7 @@
     {{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
-  <body id="page-top" class="{{ if .IsHome }}is-home {{ end }}bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
+  <body id="page-top" class="{{ if .IsHome }}is-home {{ end }}{{ if or .IsHome (eq .Section "blog") (eq .Section "tags") }}is-reading {{ end }}bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">
     {{/* The contact address is public. Keep Cloudflare from rewriting it and
          injecting its email decoder into the page's request chain. */}}
     {{ "<!--email_off-->" | safeHTML }}

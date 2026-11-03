@@ -3,40 +3,32 @@
 (dict "path" "/work/warranties" "image" "images/warranties/slide-3.jpg" "detail" "images/warranties/slide-2.jpg" "title" "Warranties" "description" "Purchase records and warranty coverage across iPhone, iPad, and Mac." "role" "Independent app design & development" "alt" "Warranties on iPad, displaying a list of household products and a stove’s warranty details." "detailAlt" "Warranties’ calendar and expiration reminders on iPhone." "year" "2023–2025")
 (dict "path" "/work/invision" "image" "images/invision/slide-3.png" "detail" "images/invision/slide-5.png" "title" "InVision" "description" "The measurement engine behind Inspect, and tools for design feedback." "role" "Frontend engineering" "alt" "InVision Inspect, showing design layers, an artboard and development specifications." "detailAlt" "InVision’s design review and feedback interface." "year" "2014–2020")
 }}
-{{ $numberOffset := cond (isset hugo.Data.experience "stripe") 2 1 }}
-<section id="work" class="work-section pt-16 desktop:pt-24" aria-labelledby="work-title">
-  <div class="work-heading mx-auto flex w-[calc(100%-40px)] max-w-400 flex-wrap items-end justify-between gap-x-6 gap-y-3 border-t border-line-strong pt-6 desktop:w-[calc(100%-64px)] desktop:pt-8 min-[1100px]:w-[calc(100%-96px)]">
-    <h2 id="work-title" class="section-title">Selected work</h2>
-    <p class="pb-1 text-xs text-muted desktop:text-sm">2014–present</p>
-  </div>
+<section id="work" class="work-section mt-14" aria-labelledby="work-title">
+  <h2 id="work-title" class="text-lg font-medium tracking-[-0.02em]">Selected work</h2>
   {{ partial "stripe-work.html" . }}
-  <div class="project-gallery mx-auto w-[calc(100%-40px)] max-w-400 gap-x-16 gap-y-24 pt-8 desktop:grid desktop:w-[calc(100%-64px)] desktop:grid-cols-[1.1fr_1fr] desktop:pt-14 desktop:pb-28 min-[1100px]:w-[calc(100%-96px)]">
+  <div class="project-gallery mt-10 grid gap-12">
     {{ range $i, $project := $projects }}
       {{ $page := site.GetPage .path }}
       {{ $image := resources.Get .image }}
       {{ $small := $image.Resize "900x webp q86" }}
       {{ $large := $image.Resize "1800x webp q88" }}
       {{ $detail := (resources.Get .detail).Resize "1400x webp q86" }}
-      <article class="project project-{{ $i }} relative mb-16 w-full desktop:mb-0 {{ if eq $i 0 }}col-span-full{{ end }}" data-project-preview data-controller="project-preview" data-action="turbo:before-cache@document->project-preview#reset">
+      <article class="project project-{{ $i }} relative min-w-0" data-project-preview data-controller="project-preview" data-action="turbo:before-cache@document->project-preview#reset">
         <a class="project-link group block" href="{{ $page.RelPermalink }}">
-          <div class="project-art relative overflow-clip rounded-[10px] {{ if eq $i 0 }}aspect-[1.25] bg-[#dfe5ec] desktop:aspect-[1.65]{{ else if eq $i 1 }}aspect-[1.15] bg-[#f6f6f6]{{ else }}aspect-[1.15] bg-[#222733]{{ end }}">
+          <div class="project-art relative aspect-[1.5] overflow-clip rounded-md {{ if eq $i 0 }}bg-[#dfe5ec]{{ else if eq $i 1 }}bg-[#f6f6f6]{{ else }}bg-[#222733]{{ end }}">
             <div class="project-main absolute inset-0 flex items-center justify-center">
-              <img data-project-preview-target="primary" class="h-full w-full {{ if eq $i 0 }}object-cover{{ else }}object-contain{{ end }}" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 900w, {{ $large.RelPermalink }} 1800w" sizes="(min-width: 781px) 85vw, 100vw" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
+              <img data-project-preview-target="primary" class="h-full w-full object-contain" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 900w, {{ $large.RelPermalink }} 1800w" sizes="(min-width: 704px) 640px, calc(100vw - 40px)" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async">
               <img hidden data-project-detail data-project-preview-target="detail" class="h-full w-full object-contain [[hidden]]:hidden" src="{{ $detail.RelPermalink }}" width="{{ $detail.Width }}" height="{{ $detail.Height }}" alt="{{ .detailAlt }}" loading="lazy" decoding="async">
             </div>
-            <span class="project-open control-pill absolute z-2 top-3 right-3 bg-white text-[#191919] desktop:top-6 desktop:right-6 forced-colors:border forced-colors:border-[ButtonText]" aria-hidden="true"><span class="hidden min-[1100px]:inline">View project</span>{{ partial "arrow-icon.html" (dict "class" "h-4 w-4") }}</span>
           </div>
-          <div class="project-caption grid items-start pt-5 desktop:pt-6 {{ if eq $i 0 }}grid-cols-[20px_1fr_24px] gap-x-3 gap-y-2.5 desktop:grid-cols-[24px_1fr_32px] desktop:gap-4 min-[1100px]:grid-cols-[40px_1fr_auto_44px] min-[1100px]:gap-6{{ else }}grid-cols-[24px_1fr_24px] gap-3{{ end }}">
-            <span class="project-number mt-2.5 font-mono text-xs">{{ printf "%02d" (add $i $numberOffset) }}</span>
-            <div>
-              <h3 id="project-title-{{ $i }}" class="text-[32px] leading-[1.1] font-semibold tracking-[-0.055em] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-[6px] desktop:text-[clamp(30px,3.1vw,48px)]">{{ .title }}</h3>
-              <p id="project-description-{{ $i }}" class="mt-2.5 text-xs text-muted desktop:text-sm">{{ .description }}</p>
-            </div>
-            <p class="project-meta col-start-2 row-start-2 text-left text-xs leading-[1.7] text-muted {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto min-[1100px]:mt-2.5 min-[1100px]:text-right{{ end }}">{{ .role }}<br>{{ .year }}</p>
-            <span class="project-arrow col-start-3 row-start-1 text-right text-[26px] leading-[1.4] desktop:text-[32px] {{ if eq $i 0 }}min-[1100px]:col-auto min-[1100px]:row-auto{{ end }}" aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-6 w-6 desktop:h-8 desktop:w-8") }}</span>
+          <div class="project-caption pt-4">
+            <h3 id="project-title-{{ $i }}" class="text-lg font-medium tracking-[-0.02em] group-hover:underline group-hover:underline-offset-4">{{ .title }}</h3>
+            <p id="project-description-{{ $i }}" class="mt-2 text-base leading-relaxed">{{ .description }}</p>
+            <p class="project-meta mt-2 text-xs leading-relaxed text-muted">{{ .role }}<br>{{ .year }}</p>
           </div>
         </a>
-        <button hidden data-preview-toggle data-project-preview-target="button" data-action="project-preview#toggle" type="button" aria-labelledby="preview-label-{{ $i }} preview-count-{{ $i }} project-title-{{ $i }}" aria-pressed="false" class="control-pill absolute top-3 left-3 z-3 border border-[#191919]/15 bg-white text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-[#2449ef] focus-visible:ring-white desktop:top-6 desktop:left-6 [[hidden]]:hidden"><svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="6" width="12" height="12" rx="2"/><path d="M6 2h10a2 2 0 0 1 2 2v10"/></svg><span id="preview-label-{{ $i }}" data-preview-label data-project-preview-target="label">Show other view</span> <span id="preview-count-{{ $i }}" data-preview-count data-project-preview-target="count" class="font-mono text-xs">01/02</span></button>
+        {{ if eq .title "InVision" }}<a class="mt-2 inline-flex min-h-11 items-center text-sm text-accent underline underline-offset-4" href="{{ $page.RelPermalink }}#measurement-demo">Try the measurement demo</a>{{ end }}
+        <button hidden data-preview-toggle data-project-preview-target="button" data-action="project-preview#toggle" type="button" aria-labelledby="preview-label-{{ $i }} preview-count-{{ $i }} project-title-{{ $i }}" aria-pressed="false" class="control-pill absolute top-3 left-3 z-3 border border-[#191919]/15 bg-white text-[#191919] hover:bg-[#f0f2ff] focus-visible:outline-[#2449ef] focus-visible:ring-white  [[hidden]]:hidden"><svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="6" width="12" height="12" rx="2"/><path d="M6 2h10a2 2 0 0 1 2 2v10"/></svg><span id="preview-label-{{ $i }}" data-preview-label data-project-preview-target="label">Show other view</span> <span id="preview-count-{{ $i }}" data-preview-count data-project-preview-target="count" class="font-mono text-xs">01/02</span></button>
         <span class="sr-only" data-preview-status data-project-preview-target="status" role="status"></span>
       </article>
     {{ end }}

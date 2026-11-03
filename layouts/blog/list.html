@@ -1,19 +1,12 @@
 {{ define "main" }}
-  {{ $posts := .RegularPages.ByDate.Reverse }}
-  <section aria-labelledby="archive-title">
-    <header class="archive-hero relative isolate [container-type:inline-size] mx-auto w-[calc(100%-40px)] max-w-400 overflow-clip border-t border-line-strong bg-paper py-6 text-ink desktop:w-[calc(100%-64px)] min-[1100px]:w-[calc(100%-96px)] desktop:py-8 forced-colors:border forced-colors:border-[CanvasText]">
-      <h1 id="archive-title" class="archive-title relative z-2 text-[clamp(32px,10cqw,44px)] leading-[1.02] font-bold tracking-[-0.04em] desktop:text-[clamp(48px,6cqw,88px)]">Writing</h1>
-      <div class="relative z-3 mt-5 flex flex-col justify-between gap-4 border-t border-line pt-4 desktop:mt-6 desktop:flex-row desktop:items-end desktop:pt-5">
-        <p class="max-w-[38ch] text-sm leading-relaxed desktop:text-base">Notes on code, design, and the things I learned along the way.</p>
-        <p class="max-w-[35ch] text-xs leading-relaxed desktop:text-right">{{ len $posts }} articles, {{ partial "writing-years.html" $posts }}.</p>
-      </div>
+  <section class="reading-shell pb-8" aria-labelledby="archive-title">
+    <header class="archive-hero mb-7">
+      <h1 id="archive-title" class="text-xl leading-snug font-medium tracking-[-0.02em]">Writing</h1>
     </header>
-    <div class="mx-auto w-[calc(100%-40px)] max-w-400 pt-6 pb-16 desktop:w-[calc(100%-64px)] desktop:pt-8 desktop:pb-24 min-[1100px]:w-[calc(100%-96px)]">
-      <div class="flex items-baseline justify-between gap-6 text-xs desktop:text-[13px]">
-        <p>All writing <span class="ml-2 text-muted">({{ len $posts }})</span></p>
-        <div class="flex flex-wrap items-center justify-end gap-x-5"><a class="inline-flex min-h-11 items-center underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ "tags/" | relURL }}">Browse tags</a>{{ with .OutputFormats.Get "RSS" }}<a class="inline-flex min-h-11 items-center gap-3 underline decoration-line-strong underline-offset-4 hover:decoration-current" href="{{ .RelPermalink }}">RSS feed <span aria-hidden="true">{{ partial "arrow-icon.html" (dict "direction" "up-right" "class" "h-4 w-4") }}</span></a>{{ end }}</div>
-      </div>
-      {{ partial "post-groups.html" $posts }}
+    {{ partial "writing-list.html" (dict "posts" .RegularPages) }}
+    <div class="mt-6 flex flex-wrap gap-x-6 text-sm text-accent">
+      <a class="inline-flex min-h-11 items-center underline underline-offset-4" href="{{ "tags/" | relURL }}">Browse tags</a>
+      {{ with .OutputFormats.Get "RSS" }}<a class="inline-flex min-h-11 items-center underline underline-offset-4" href="{{ .RelPermalink }}">RSS feed</a>{{ end }}
     </div>
   </section>
 {{ end }}
