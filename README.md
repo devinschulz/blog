@@ -24,7 +24,7 @@ Deploy `dist/`, produced by `npm run build`. Production builds clean retired gen
 
 ## Design and interactions
 
-The homepage’s “Articles & Notes” masthead uses naturally wrapping, semibold DM Sans above muted supporting copy, with one light bottom rule. Its title scales from 40px to 72px. Headers throughout the site remain on the page’s Chalk/Graphite background. The lead article has larger type and a plain reading link; light separators, a blue archive link, and a quiet author introduction keep the reading flow minimal. Existing WebGL headline interactions are preserved.
+The homepage follows a narrow single-column reading layout, informed by mellow.dev and the restrained typography of bleibtgleich.dev. The 720px outer shell has a 656px desktop reading track shared by navigation, content, and footer. “Articles & Notes” uses 30–40px semibold DM Sans, followed by the existing author introduction and plain About/RSS links. Eight recent articles use 24–28px titles (28–32px for the lead), 16px descriptions, muted dates, and blue reading links. Whitespace separates entries without borders or a sidebar. Topics and older writing remain available through the footer and full archive. Page-colored headers, blue keyboard focus, and existing WebGL headline interactions are preserved.
 
 The opening headline is “Making complex software feel simple.” It introduces the product interfaces I build and links directly to selected work and the InVision measurement example. The About section describes my approach to design and engineering, with a link to recent writing. Project descriptions name the actual interfaces and contributions, and the contact footer uses a neutral invitation to compare notes.
 

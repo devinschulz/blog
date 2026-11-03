@@ -575,29 +575,22 @@ details[open] > summary .disclosure-icon-vertical {
   }
 }
 
-/* The newest piece leads; older entries keep the quieter reading rhythm. */
+/* A narrow writing column with space between entries instead of row chrome. */
 .writing-home .article-preview {
-  border-bottom: 1px solid var(--color-line);
-  padding-block: 36px;
+  padding-block: 28px;
 }
 .writing-home .article-preview:first-child {
   padding-top: 0;
-  padding-bottom: 40px;
+  padding-bottom: 28px;
 }
 .writing-home .article-preview:first-child h2 {
-  font-size: clamp(32px, 3.8vw, 48px);
-  line-height: 1.12;
-  letter-spacing: -0.035em;
-}
-.writing-home .article-preview:first-child .article-preview-meta {
-  color: var(--color-accent);
+  font-size: clamp(28px, 3vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
 }
 .writing-home .article-preview:last-child {
   border-bottom: 0;
   padding-bottom: 0;
-}
-.writing-home .read-article-link {
-  font-size: 15px;
 }
 .article-body h2 {
   font-weight: 600;

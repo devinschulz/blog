@@ -31,10 +31,10 @@ typography:
     letterSpacing: "-0.065em"
   masthead:
     fontFamily: "DM Sans, Arial, sans-serif"
-    fontSize: "clamp(40px, 6vw, 72px)"
+    fontSize: "clamp(30px, 4vw, 40px)"
     fontWeight: 600
-    lineHeight: 1.04
-    letterSpacing: "-0.04em"
+    lineHeight: 1.15
+    letterSpacing: "-0.035em"
   case-title:
     fontFamily: "DM Sans, Arial, sans-serif"
     fontWeight: 600
@@ -117,9 +117,9 @@ components:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     typography: "{typography.masthead}"
-    padding: "8px 0px 32px"
+    padding: "0px 0px 4px"
   editorial-masthead-desktop:
-    padding: "16px 0px 40px"
+    padding: "0px 0px 4px"
   editorial-masthead-dark:
     backgroundColor: "{colors.paper-dark}"
     textColor: "{colors.ink-dark}"
@@ -173,7 +173,7 @@ Present real work with playful, tactile interactions. The atmosphere is precise,
 
 The user-confirmed direction is subtly layered surfaces, with shadows used more broadly to separate panels, and bold, expressive, prominent controls. The current implementation uses shadows selectively and still contains compact navigation and utility controls. These preferences guide future refinements; this document does not claim that broader elevation or larger controls have already been implemented.
 
-The latest confirmed header direction is minimal editorial styling: page-colored surfaces, a naturally wrapping homepage title, one light dividing rule, and plain reading links. The user rejected fixed black header backgrounds; dark mode continues to follow the visitor’s theme choice.
+The latest confirmed direction uses [Mellow](https://mellow.dev/) as the writing-homepage structure reference and [Bleibtgleich](https://bleibtgleich.dev/) for restrained typographic personality: a narrow single reading column, modest type, whitespace, and plain blue links. The homepage has no sidebar or article dividers. The user rejected fixed black header backgrounds; dark mode continues to follow the visitor’s theme choice.
 
 **Key Characteristics:**
 
@@ -221,7 +221,7 @@ Both active families are self-hosted. Bricolage Grotesque and Hanken Grotesk fon
 
 ### Hierarchy
 
-- **Homepage masthead:** semibold weight (600), tracking (-0.04em), line height (1.04), using `clamp(40px, 6vw, 72px)`. “Articles & Notes” wraps naturally rather than forcing a line break.
+- **Homepage masthead:** semibold weight (600), tracking (-0.035em), line height (1.15), using `clamp(30px, 4vw, 40px)`. “Articles & Notes” wraps naturally rather than forcing a line break.
 - **Work overview display:** bold weight (700), tracking (-0.065em), line height (1.02 mobile; 1 desktop). Mobile uses `clamp(36px, 11cqw, 116px)`; desktop uses `10.5cqw`, capped through `clamp(60px, 10.5cqw, 176px)` at widths of 1100px and above. At the sampled 1280px viewport, the rendered size was about 124px.
 - **Case-study display:** uppercase, semibold weight (600), tracking (-0.075em), line height (1). Its size responds to the project name: Cape, Warranties, and InVision have separate container-relative formulas in `layouts/partials/case-study-header.html`. Do not copy one project’s formula to every title.
 - **Archive display:** bold weight (700), tracking (-0.04em), line height (1.02). Mobile uses `clamp(32px, 10cqw, 44px)`; desktop uses `clamp(48px, 6cqw, 88px)`.
@@ -239,19 +239,19 @@ Headings generally balance their wrapping, while paragraphs use pretty wrapping.
 
 ## Layout
 
-Headers are open sections on the page surface, without a colored panel, rounded outline, or additional inner inset. Archive, article, topic, work overview, and case-study titles align with the main navigation gutters: 20px on mobile, 32px at desktop, and 48px from 1100px upward. These broad headers cap at 1600px. The homepage uses a centered 1200px outer container with 20px mobile and 48px desktop padding shared by its navigation and masthead.
+Headers are open sections on the page surface, without a colored panel, rounded outline, or additional inner inset. Archive, article, topic, work overview, and case-study titles align with the main navigation gutters: 20px on mobile, 32px at desktop, and 48px from 1100px upward. These broad headers cap at 1600px. The homepage uses a centered 720px outer container with 20px mobile and 32px desktop padding, giving a 656px desktop reading track. Its navigation, title, previews, and footer align to that track.
 
 The main responsive breakpoint is 781px. Additional local breakpoints at 500px, 1100px, 1500px, and 1600px handle measurement controls, wider metadata arrangements, case-study imagery, and large type. These are implementation breakpoints, not five independent layout systems.
 
-- **Homepage masthead:** one column in both layouts, with the title above muted supporting copy (56ch maximum measure). A single Fine Rule closes the section. Top/bottom padding is 8px/32px on mobile and 16px/40px desktop; supporting copy starts 20px below the title.
+- **Homepage masthead:** one column in both layouts. The title is followed by the existing author introduction in 16px muted text at 1.75 line height, then plain About and RSS links. There is no dividing rule or filled stage. The header has 4px bottom padding and a 48px gap before the previews, increasing to 64px on desktop.
 - **Portfolio gallery:** work numbering follows the visible sequence: Stripe 01, Cape 02, Warranties 03, and InVision 04. The gallery is stacked on mobile; a two-column desktop grid (1.1fr / 1fr), with the first project spanning both columns. The gallery gap is 64px horizontally and 96px vertically. The main gallery and broad editorial sections cap at 1600px.
-- **Homepage introduction:** the substantive About heading sits beside three readable paragraphs on desktop and above them on mobile. Its type ranges from 32–40px on mobile and 36–56px on desktop, with a 20ch maximum measure. Decorative section indices and inline heading imagery are omitted.
-- **Homepage writing:** the Writing heading and archive link introduce four compact dated rows. Date/title/arrow columns use 64px / flexible / 20px on mobile and 112px / flexible / 24px on desktop. Titles are 20px on mobile and 24–32px on desktop; vertical row padding is 24px and 28px respectively.
+- **Work overview introduction:** the substantive About heading sits beside three readable paragraphs on desktop and above them on mobile. Its type ranges from 32–40px on mobile and 36–56px on desktop, with a 20ch maximum measure. Decorative section indices and inline heading imagery are omitted.
+- **Homepage writing:** eight newest article previews in one column, without a sidebar. Titles use 24px mobile / 28px desktop, weight 500, line height 1.25, and tracking -0.025em; the first uses `clamp(28px, 3vw, 32px)`. Descriptions use 16px / 1.75, dates stay muted, and Read article links use 14px blue type. Vertical padding of 28px separates entries without borders. About and RSS remain in the introduction; Topics remains in the footer, and older posts remain available through the full archive.
 - **Article track:** maximum outer width (1280px), with a desktop contents column and a main track capped at 760px. The contents column is at least 160px wide; the column gap is 56px, increasing to 96px from 1100px. Actual prose caps at 608px under the default root size.
 - **Writing archive:** a single left-aligned “Writing” heading that wraps naturally, followed by year-grouped editorial rows and a compact year shortcut list. The header pairs its introduction with the derived article count and date range. Rows use 16px vertical padding on mobile and 24px on desktop. The mobile date/title/arrow columns are 56px, flexible space, and 20px, separated by 12px gaps.
 - **Case-study cover:** follows the title and description with 32px top space on mobile and 48px on desktop. Its narrower width and restrained shadow separate the product artifact from the open header; it does not overlap the header.
 
-Spacing uses Tailwind’s 4px base with deliberate local exceptions. Tight intervals connect labels and controls; larger intervals separate projects, chapters, and major sections. Article and archive introductions intentionally use a smaller scale than the homepage and case-study display treatments.
+Spacing uses Tailwind’s 4px base with deliberate local exceptions. Tight intervals connect labels and controls; larger intervals separate projects, chapters, and major sections. Writing-homepage type stays modest; the work overview and case-study displays retain their more expressive scale.
 
 DOM order remains the reading and focus order. Narrow layouts stack rather than hide core content. Display text must reflow at increased text size; code overflow stays inside its own keyboard-accessible region.
 
@@ -302,7 +302,7 @@ Longer articles can offer a returning reader a “Continue reading” link above
 
 ### Writing Rows
 
-The homepage lead article uses `clamp(32px, 3.8vw, 48px)` semibold type and a plain Read article link. Subsequent previews use Fine Rule separators and 36px vertical padding; the archive action is a plain blue text link. The author introduction stays quiet, without a heavy top rule.
+Homepage previews use whitespace instead of row rules. The lead title is 28–32px and subsequent titles 24–28px, at medium weight. All dates are muted; reading and archive actions are plain blue text links. The author introduction appears above the list, without a separate sidebar.
 
 Writing rows are separated by Fine Rules. The date, title, and arrow share the article link; each underlined tag is an independent link below it, with a 44px target and room to wrap. The date is secondary, the title leads, and the arrow occupies its own column. Hover changes the title and arrow to the semantic accent and underlines the title; the arrow moves by only 2px in each direction over 200ms when motion is permitted. Tag archives reuse the year groups and writing rows, while the tag index lists topics alphabetically with article counts.
 
@@ -324,7 +324,7 @@ The caption reserves a minimum height of 44px and includes a compact Copy utilit
 
 ### Editorial Headers and Tactile Feedback
 
-Native heading text is the accessible content. The homepage, writing archive, article, topic, work overview, and case-study headers share the page’s Paper/Ink palette. Archive, article, topic, work overview, and case-study headers retain their top Strong Rule and Fine Rules around supporting metadata where needed. The minimal homepage masthead uses only a bottom Fine Rule. Graphics initialize once per page and mount within 160px of the viewport, preserving native text until ready. On supported desktop graphics, continuous lettering can dissolve locally under pointer input, then return through damped motion; background water effects share that input. Small screens preserve native text, and reduced motion or unavailable graphics preserve readable native content without the decorative graphics path.
+Native heading text is the accessible content. The homepage, writing archive, article, topic, work overview, and case-study headers share the page’s Paper/Ink palette. Archive, article, topic, work overview, and case-study headers retain their top Strong Rule and Fine Rules around supporting metadata where needed. The minimal homepage masthead has no rule; whitespace separates it from the previews. Graphics initialize once per page and mount within 160px of the viewport, preserving native text until ready. On supported desktop graphics, continuous lettering can dissolve locally under pointer input, then return through damped motion; background water effects share that input. Small screens preserve native text, and reduced motion or unavailable graphics preserve readable native content without the decorative graphics path.
 
 The renderer reads the host’s computed background and text color for the water, resting text mask, particles, and Make waves ink. A `data-theme` observer updates those colors in place without rebuilding WebGL contexts. Theme changes preserve the active scene and interaction state.
 
