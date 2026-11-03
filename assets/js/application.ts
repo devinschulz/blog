@@ -1,4 +1,3 @@
-import StretchArrowController from './controllers/stretch_arrow_controller';
 import { Application } from '@hotwired/stimulus';
 import '@hotwired/turbo';
 import GifController from './controllers/gif_controller';
@@ -21,5 +20,3 @@ application.register('code', CodeController);
 application.register('search', SearchController);
 application.register('project-preview', ProjectPreviewController);
 export { application };
-
-application.register('stretch-arrow', StretchArrowController);

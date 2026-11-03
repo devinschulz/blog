@@ -15,6 +15,8 @@ test('keyboard focus stays blue across navigation, search, artwork, and code', a
   page,
 }) => {
   await page.goto('/');
+  await expect(page.locator('.article-preview-title')).toHaveCount(8);
+  await expect(page.locator('.article-preview a')).toHaveCount(8);
   const accent =
     (await page.locator('html').getAttribute('data-theme')) === 'dark'
       ? paleBlue
@@ -24,7 +26,7 @@ test('keyboard focus stays blue across navigation, search, artwork, and code', a
   await expectBlueFocus(page, page.locator('.theme-toggle'), accent);
   await expectBlueFocus(
     page,
-    page.locator('.article-preview .read-article-link').first(),
+    page.locator('.article-preview-title').first(),
     accent,
   );
   if (!(await page.locator('.desktop-nav').isVisible())) {

@@ -164,9 +164,9 @@ test('titles, project links, and writing work without JavaScript', async ({
     await expect(page).toHaveURL(/\/work\/cape\/$/);
     await page.goto('/');
     await expect(
-      page.getByRole('heading', { name: 'Articles & Notes' }),
+      page.getByRole('heading', { name: 'Hi, I’m Devin.' }),
     ).toBeVisible();
-    await page.locator('.article-preview .read-article-link').first().click();
+    await page.locator('.article-preview-title').first().click();
     await expect(page).toHaveURL(/\/blog\/building-a-chat-interface/);
   } finally {
     await context.close();

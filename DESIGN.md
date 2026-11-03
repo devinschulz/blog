@@ -31,10 +31,10 @@ typography:
     letterSpacing: "-0.065em"
   masthead:
     fontFamily: "DM Sans, Arial, sans-serif"
-    fontSize: "clamp(30px, 4vw, 40px)"
-    fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.035em"
+    fontSize: "24px"
+    fontWeight: 500
+    lineHeight: 1.3
+    letterSpacing: "-0.025em"
   case-title:
     fontFamily: "DM Sans, Arial, sans-serif"
     fontWeight: 600
@@ -117,9 +117,9 @@ components:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     typography: "{typography.masthead}"
-    padding: "0px 0px 4px"
+    padding: "0px"
   editorial-masthead-desktop:
-    padding: "0px 0px 4px"
+    padding: "0px"
   editorial-masthead-dark:
     backgroundColor: "{colors.paper-dark}"
     textColor: "{colors.ink-dark}"
@@ -221,7 +221,7 @@ Both active families are self-hosted. Bricolage Grotesque and Hanken Grotesk fon
 
 ### Hierarchy
 
-- **Homepage masthead:** semibold weight (600), tracking (-0.035em), line height (1.15), using `clamp(30px, 4vw, 40px)`. “Articles & Notes” wraps naturally rather than forcing a line break.
+- **Homepage masthead:** medium weight (500), tracking (-0.025em), line height (1.3), and 24px type. “Hi, I’m Devin.” introduces the author at a modest scale.
 - **Work overview display:** bold weight (700), tracking (-0.065em), line height (1.02 mobile; 1 desktop). Mobile uses `clamp(36px, 11cqw, 116px)`; desktop uses `10.5cqw`, capped through `clamp(60px, 10.5cqw, 176px)` at widths of 1100px and above. At the sampled 1280px viewport, the rendered size was about 124px.
 - **Case-study display:** uppercase, semibold weight (600), tracking (-0.075em), line height (1). Its size responds to the project name: Cape, Warranties, and InVision have separate container-relative formulas in `layouts/partials/case-study-header.html`. Do not copy one project’s formula to every title.
 - **Archive display:** bold weight (700), tracking (-0.04em), line height (1.02). Mobile uses `clamp(32px, 10cqw, 44px)`; desktop uses `clamp(48px, 6cqw, 88px)`.
@@ -230,7 +230,7 @@ Both active families are self-hosted. Bricolage Grotesque and Hanken Grotesk fon
 - **Work overview section title:** medium weight (500), tracking (-0.04em), line height (1.08), using `clamp(36px, 5vw, 64px)`. Selected work uses this quieter role below the expressive work overview header.
 - **Interface body:** regular weight (400), 15px mobile and 16px desktop, line height (1.5). Case-study summaries and introductory copy use their established larger sizes.
 - **Article body:** regular weight (400), 17px mobile and 18px desktop, line height (1.8). Direct prose, lists, quotations, and headings are capped at `min(68ch, 38rem)`. The opening paragraph is larger (20px mobile; 23px desktop) with line height (1.65).
-- **Labels and navigation:** DM Sans, generally 12–14px. Desktop main navigation uses 13px; mobile menu destinations use 28px. Project roles, dates, indices, preview controls, and footer details use a 12px minimum. Primary contact controls use 14px text.
+- **Labels and navigation:** DM Sans, generally 12–14px. Desktop main navigation uses 13px; mobile menu destinations use 28px. The shared brand uses medium weight at 18px mobile / 20px desktop. Navigation contains Writing, Work, Search, and the theme control. Project roles, dates, indices, preview controls, and footer details use a 12px minimum. Primary contact controls use 14px text.
 - **Code:** JetBrains Mono (13px), line height (1.7). Mono is also used for measurements, select data labels, and small numeric annotations.
 
 Headings generally balance their wrapping, while paragraphs use pretty wrapping. The work overview’s manually composed headline is an explicit exception. Existing large-display tracking is part of the incumbent design; it is not a blanket tracking value for prose or controls.
@@ -243,10 +243,10 @@ Headers are open sections on the page surface, without a colored panel, rounded 
 
 The main responsive breakpoint is 781px. Additional local breakpoints at 500px, 1100px, 1500px, and 1600px handle measurement controls, wider metadata arrangements, case-study imagery, and large type. These are implementation breakpoints, not five independent layout systems.
 
-- **Homepage masthead:** one column in both layouts. The title is followed by the existing author introduction in 16px muted text at 1.75 line height, then plain About and RSS links. There is no dividing rule or filled stage. The header has 4px bottom padding and a 48px gap before the previews, increasing to 64px on desktop.
+- **Homepage masthead:** one column in both layouts. The title is followed by the existing author introduction in 16px muted text at 1.75 line height, then a plain About link. RSS is available in the footer. There is no dividing rule or filled stage. The header has a 48px gap before the previews, increasing to 64px on desktop.
 - **Portfolio gallery:** work numbering follows the visible sequence: Stripe 01, Cape 02, Warranties 03, and InVision 04. The gallery is stacked on mobile; a two-column desktop grid (1.1fr / 1fr), with the first project spanning both columns. The gallery gap is 64px horizontally and 96px vertically. The main gallery and broad editorial sections cap at 1600px.
 - **Work overview introduction:** the substantive About heading sits beside three readable paragraphs on desktop and above them on mobile. Its type ranges from 32–40px on mobile and 36–56px on desktop, with a 20ch maximum measure. Decorative section indices and inline heading imagery are omitted.
-- **Homepage writing:** eight newest article previews in one column, without a sidebar. Titles use 24px mobile / 28px desktop, weight 500, line height 1.25, and tracking -0.025em; the first uses `clamp(28px, 3vw, 32px)`. Descriptions use 16px / 1.75, dates stay muted, and Read article links use 14px blue type. Vertical padding of 28px separates entries without borders. About and RSS remain in the introduction; Topics remains in the footer, and older posts remain available through the full archive.
+- **Homepage writing:** eight newest article previews in one column, without a sidebar. Titles use 24px mobile / 28px desktop, weight 500, line height 1.25, and tracking -0.025em; the first uses `clamp(28px, 3vw, 32px)`. Descriptions use 16px / 1.75, dates stay muted, and each preview has a single native title link with a minimum 44px target height. Repeated Read article links and arrows are omitted. Vertical padding of 28px separates entries without borders. About remains in the introduction; RSS and Topics remain in the footer, and older posts remain available through the full archive.
 - **Article track:** maximum outer width (1280px), with a desktop contents column and a main track capped at 760px. The contents column is at least 160px wide; the column gap is 56px, increasing to 96px from 1100px. Actual prose caps at 608px under the default root size.
 - **Writing archive:** a single left-aligned “Writing” heading that wraps naturally, followed by year-grouped editorial rows and a compact year shortcut list. The header pairs its introduction with the derived article count and date range. Rows use 16px vertical padding on mobile and 24px on desktop. The mobile date/title/arrow columns are 56px, flexible space, and 20px, separated by 12px gaps.
 - **Case-study cover:** follows the title and description with 32px top space on mobile and 48px on desktop. Its narrower width and restrained shadow separate the product artifact from the open header; it does not overlap the header.
