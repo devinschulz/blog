@@ -5,8 +5,7 @@
 }}
 <section id="work" class="work-section mt-8" aria-labelledby="work-title">
   <h2 id="work-title" class="sr-only">Selected work</h2>
-  {{ partial "stripe-work.html" . }}
-  <div class="project-gallery mt-10 grid gap-12">
+  <div class="project-gallery grid gap-12">
     {{ range $i, $project := $projects }}
       {{ $page := site.GetPage .path }}
       {{ $image := resources.Get .image }}

@@ -3,7 +3,7 @@
   <section class="hero" aria-labelledby="hero-title">
     <h1 id="hero-title" class="hero-title text-xl leading-snug font-medium tracking-[-0.02em]">Work</h1>
     <div class="hero-topline mt-5 text-base leading-[1.75]">
-      <p>I design and build complex interfaces, from AI workspaces to the tools designers use.</p>
+      {{ partial "stripe-work.html" . }}
     </div>
   </section>
   {{ partial "work.html" . }}
