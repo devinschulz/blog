@@ -41,6 +41,19 @@ function localFile(url) {
 }
 for (const file of files) {
   const html = fs.readFileSync(path.join(root, file), 'utf8');
+  for (const [script] of html.matchAll(/<script\b[^>]*>/g)) {
+    if (script.includes('application/ld+json')) continue;
+    assert(
+      script.includes('data-cfasync="false"'),
+      `${file}: executable scripts must bypass Cloudflare Rocket Loader`,
+    );
+    if (script.includes('src=')) {
+      assert(
+        script.indexOf('data-cfasync=') < script.indexOf('src='),
+        `${file}: Rocket Loader exclusion must precede the script source`,
+      );
+    }
+  }
   const url = new URL('/' + file.replace(/index\.html$/, ''), domain);
   assert.equal(
     (html.match(/<title>/g) || []).length,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { createRoot, type Root } from 'react-dom/client';
+import { mountReactDemo } from './mount-react-demo';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Streamdown, type Components } from 'streamdown';
@@ -194,22 +194,6 @@ function Playground() {
     </section>
   );
 }
-const roots = new Map<HTMLElement, Root>();
-function mount() {
-  document
-    .querySelectorAll<HTMLElement>('[data-streaming-markdown-root]')
-    .forEach((host) => {
-      if (roots.has(host)) return;
-      const root = createRoot(host);
-      roots.set(host, root);
-      root.render(<Playground />);
-    });
-}
-function unmount() {
-  roots.forEach((root) => root.unmount());
-  roots.clear();
-}
-document.addEventListener('turbo:before-cache', unmount);
-document.addEventListener('turbo:before-render', unmount);
-document.addEventListener('turbo:load', mount);
-mount();
+mountReactDemo('[data-streaming-markdown-root]', (root) => {
+  root.render(<Playground />);
+});

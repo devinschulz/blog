@@ -33,6 +33,7 @@ export default defineConfig({
       testMatch: [
         'header.spec.mjs',
         'chat-scroll.spec.mjs',
+        'demo-loading.spec.mjs',
         'tags.spec.mjs',
         'search.spec.mjs',
         'native-pages.spec.mjs',
@@ -55,6 +56,7 @@ export default defineConfig({
         'header.spec.mjs',
         'logo.spec.mjs',
         'chat-scroll.spec.mjs',
+        'demo-loading.spec.mjs',
         'tags.spec.mjs',
         'search.spec.mjs',
         'native-pages.spec.mjs',

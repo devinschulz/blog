@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
     {{ if hugo.IsProduction }}
-    <script async src="https://green-disk-c9b4.devin5443.workers.dev/js/script.js"></script>
-    <script>
+    <script data-cfasync="false" async src="https://green-disk-c9b4.devin5443.workers.dev/js/script.js"></script>
+    <script data-cfasync="false">
       window.plausible = window.plausible || function () {
         (window.plausible.q = window.plausible.q || []).push(arguments);
       };
@@ -22,7 +22,7 @@
     {{ $darkColor := "#202730" }}
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ $lightColor }}" data-light="{{ $lightColor }}" data-dark="{{ $darkColor }}">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ $darkColor }}" data-light="{{ $lightColor }}" data-dark="{{ $darkColor }}">
-    <script>
+    <script data-cfasync="false">
       (() => {
         let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         try {
@@ -55,18 +55,18 @@
     {{ with site.Home.OutputFormats.Get "llms" }}<link rel="describedby" type="text/plain" href="{{ .RelPermalink }}" title="llms.txt">{{ end }}
     {{ $scripts := resources.Get "js/site.ts" | js.Build (dict "target" "es2020" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline")) }}
     {{ if hugo.IsProduction }}{{ $scripts = $scripts | fingerprint }}{{ end }}
-    <script src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
+    <script data-cfasync="false" src="{{ $scripts.RelPermalink }}"{{ with $scripts.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
     {{ if .HasShortcode "streaming-markdown-demo" }}
       {{ $styles := resources.Get "css/streaming-markdown-demo.css" | minify | fingerprint }}
       <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
       {{ $script := resources.Get "js/streaming-markdown-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
-      <script src="{{ $script.RelPermalink }}" defer></script>
+      <script data-cfasync="false" src="{{ $script.RelPermalink }}" defer></script>
     {{ end }}
     {{ if .HasShortcode "chat-scroll-demo" }}
       {{ $chatStyles := resources.Get "examples/chat-scroll/chat-scroll.css" | minify | fingerprint }}
       <link rel="stylesheet" href="{{ $chatStyles.RelPermalink }}" integrity="{{ $chatStyles.Data.Integrity }}" crossorigin="anonymous">
       {{ $chatScript := resources.Get "js/chat-scroll-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "params" (dict) "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
-      <script src="{{ $chatScript.RelPermalink }}" defer></script>
+      <script data-cfasync="false" src="{{ $chatScript.RelPermalink }}" defer></script>
     {{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
