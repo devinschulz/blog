@@ -19,7 +19,7 @@ test('article tags open a topic archive, keep newest posts first, and support ke
   await expect(page).toHaveURL(/\/tags\/react\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('React');
   const posts = page.locator('[data-post-list] .post-link');
-  await expect(posts.first()).toHaveAttribute('href', chat);
+  await expect(posts.filter({ hasText: title })).toHaveCount(1);
   const dates = await posts
     .locator('time')
     .evaluateAll((nodes) => nodes.map((node) => node.dateTime));
@@ -28,7 +28,7 @@ test('article tags open a topic archive, keep newest posts first, and support ke
     'aria-current',
     'true',
   );
-  await posts.first().click();
+  await posts.filter({ hasText: title }).click();
   await expect(page.locator('.article-hero h1')).toHaveText(title);
   await page.goBack();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('React');
@@ -48,7 +48,10 @@ test('compact archive rows lead to articles with independent topic destinations'
     .click();
   await expect(page).toHaveURL(/\/tags\/design\/$/);
   await expect(page.locator('[data-post-list] .post-link')).toHaveCount(3);
-  await page.locator('[data-post-list] .post-link').first().click();
+  await page
+    .locator('[data-post-list] .post-link')
+    .filter({ hasText: title })
+    .click();
   await expect(page.locator('.article-hero h1')).toHaveText(title);
 
   const more = page.getByRole('region', { name: 'More writing' });
@@ -122,7 +125,10 @@ test('tag browsing works without JavaScript', async ({ browser, baseURL }) => {
     .getByRole('link', { name: 'React', exact: true })
     .click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('React');
-  await page.locator('[data-post-list] .post-link').first().click();
+  await page
+    .locator('[data-post-list] .post-link')
+    .filter({ hasText: title })
+    .click();
   await expect(page.locator('.article-hero h1')).toHaveText(title);
   await context.close();
 });

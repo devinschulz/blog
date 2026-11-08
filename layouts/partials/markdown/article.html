@@ -8,6 +8,7 @@
   {{- $source := resources.Get (printf "examples/chat-scroll/%s" $path) -}}
   {{- $raw = replace $raw . (printf "```%s\n%s\n```" $language (strings.TrimSpace $source.Content)) -}}
 {{- end -}}
+{{- $raw = replace $raw "{{< streaming-markdown-demo >}}" (printf "[Try the streaming Markdown playground](%s#streaming-markdown-demo). Requires JavaScript." .Permalink) -}}
 {{- $raw = replace $raw "{{< chat-scroll-demo >}}" (printf "[Try the interactive streaming demo](%s#chat-scroll-demo). The demo requires JavaScript; its React implementation follows below." .Permalink) -}}
 {{- $downloads := slice -}}
 {{- range slice "useChatScroll.ts" "ChatScrollDemo.tsx" "chat-scroll.css" -}}

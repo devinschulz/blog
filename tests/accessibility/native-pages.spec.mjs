@@ -166,8 +166,10 @@ test('titles, project links, and writing work without JavaScript', async ({
     await expect(
       page.getByRole('heading', { name: 'Hi, I’m Devin.' }),
     ).toBeVisible();
-    await page.locator('.article-preview-title').first().click();
-    await expect(page).toHaveURL(/\/blog\/building-a-chat-interface/);
+    const newest = page.locator('.article-preview-title').first();
+    const destination = await newest.getAttribute('href');
+    await newest.click();
+    await expect(page).toHaveURL(new URL(destination, baseURL).href);
   } finally {
     await context.close();
   }
