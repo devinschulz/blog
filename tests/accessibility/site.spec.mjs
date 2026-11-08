@@ -211,7 +211,7 @@ test('every project remains visible and opens its case study', async ({
 test('theme choice persists through navigation and reload', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/work/');
   const before = await page.locator('html').getAttribute('data-theme');
   await page.getByRole('button', { name: /Switch to .* theme/ }).click();
   const after = before === 'dark' ? 'light' : 'dark';
@@ -312,7 +312,7 @@ test('the themed page background is painted before the stylesheet loads', async 
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(page.locator('html')).toHaveCSS(
     'background-color',
-    'rgb(26, 27, 25)',
+    'rgb(32, 39, 48)',
   );
   await page.evaluate(() => {
     localStorage.setItem('portfolio-theme', 'light');

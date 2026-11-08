@@ -11,11 +11,11 @@ colors:
   line: "rgb(38 39 31 / 16%)"
   line-strong: "rgb(38 39 31 / 35%)"
   accent-soft: "#e8ecff"
-  paper-dark: "#1a1b19"
+  paper-dark: "#202730"
   ink-dark: "#eeefeb"
-  muted-dark: "#a8aca3"
-  surface-dark: "#282b25"
-  raised-dark: "#22251f"
+  muted-dark: "#adb7c4"
+  surface-dark: "#2b3440"
+  raised-dark: "#252e39"
   line-dark: "rgb(238 239 235 / 16%)"
   line-strong-dark: "rgb(238 239 235 / 36%)"
   accent-dark: "#a2b3ff"
@@ -113,7 +113,7 @@ The footer has no dividing rule. Copyright, navigation, and the existing site no
 
 Use self-hosted DM Sans throughout and JetBrains Mono for code and measurement values. Work, About, and Writing index titles are 20px medium; article and case-study titles are 24px medium, and section headings generally 18px medium. Body text and writing links are 16px. Avoid giant display lettering, forced headline line breaks, decorative labels, and excessive tracking.
 
-Paper and Ink form a continuous page surface; the existing visitor-controlled dark theme uses Graphite and Light Ink. Electric Blue remains the interaction accent, with Pale Electric Blue in dark mode. Do not restore blue or fixed black header panels. Project screenshots and code retain their original supporting colors.
+Paper and Ink form a continuous page surface; the existing visitor-controlled dark theme uses Slate and Light Ink. Electric Blue remains the interaction accent, with Pale Electric Blue in dark mode. Do not restore blue or fixed black header panels. Project screenshots and code retain their original supporting colors.
 
 ## Writing
 

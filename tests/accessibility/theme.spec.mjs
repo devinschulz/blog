@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const dark = 'rgb(26, 27, 25)';
+const dark = 'rgb(32, 39, 48)';
 const light = 'rgb(245, 245, 243)';
 
 test('dark system preference survives unavailable storage before CSS loads', async ({
@@ -66,7 +66,7 @@ for (const theme of ['light', 'dark']) {
       .evaluateAll((tags) => tags.map((tag) => tag.content));
     expect(
       colors.every(
-        (color) => color === (theme === 'dark' ? '#1a1b19' : '#f5f5f3'),
+        (color) => color === (theme === 'dark' ? '#202730' : '#f5f5f3'),
       ),
     ).toBe(true);
   });
