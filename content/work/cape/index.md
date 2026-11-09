@@ -85,8 +85,8 @@ principles:
     body: Keep the information behind a summary or a decision within reach, so people can check it.
 reflection: Looking back, these screens are mostly about context. An assistant needs a readable conversation, a dashboard needs a clear hierarchy, and a review tool needs room for the source document. The frontend is where that turns into something people can use.
 editorial:
-  contributionTitle: Designing it and <em>building it.</em>
-  reflectionTitle: What the screens <em>have in common.</em>
+  contributionTitle: Designing it and building it.
+  reflectionTitle: What the screens have in common.
   next: /work/warranties
   attribution: 'Product screenshots from Cape. This case study covers my part: designing the interfaces and leading the frontend work.'
 ---

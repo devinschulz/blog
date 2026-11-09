@@ -1,0 +1,9 @@
+<svg class="header-icon header-icon--{{ . }} h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {{- if eq . "search" -}}
+    <circle cx="10.75" cy="10.75" r="6.75"/><path d="m16 16 4.5 4.5"/>
+  {{- else if eq . "sun" -}}
+    <circle cx="12" cy="12" r="4"/><path class="header-sun-rays" d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+  {{- else if eq . "moon" -}}
+    <path d="M20.5 14.2A8.75 8.75 0 0 1 9.8 3.5a8.75 8.75 0 1 0 10.7 10.7Z"/>
+  {{- end -}}
+</svg>

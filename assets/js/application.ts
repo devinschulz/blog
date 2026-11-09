@@ -8,6 +8,7 @@ import ReadingController from './controllers/reading_controller';
 import CodeController from './controllers/code_controller';
 import SearchController from './controllers/search_controller';
 import ProjectPreviewController from './controllers/project_preview_controller';
+import StickyHeaderController from './controllers/sticky_header_controller';
 import './inspect-trigger';
 
 const application = Application.start();
@@ -19,4 +20,5 @@ application.register('reading', ReadingController);
 application.register('code', CodeController);
 application.register('search', SearchController);
 application.register('project-preview', ProjectPreviewController);
+application.register('sticky-header', StickyHeaderController);
 export { application };

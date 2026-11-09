@@ -9,20 +9,8 @@ import {
 async function openSearch(page, path) {
   if (path) await page.goto(path);
   await expect(page.locator('.theme-toggle')).toBeVisible();
-  let opener = page
-    .locator('.desktop-nav')
-    .getByRole('button', { name: 'Search', exact: true });
-  if (!(await opener.isVisible())) {
-    const menu = page.locator('.mobile-menu summary');
-    await menu.click();
-    await page
-      .getByRole('navigation', { name: 'Mobile navigation' })
-      .getByRole('button', { name: 'Search', exact: true })
-      .click();
-    opener = menu;
-  } else {
-    await opener.click();
-  }
+  const opener = page.getByRole('button', { name: 'Search', exact: true });
+  await opener.click();
   const panel = page.getByRole('dialog', { name: 'Search the site' });
   const input = panel.getByRole('searchbox', { name: 'Search terms' });
   await expect(panel).toBeVisible();
@@ -258,15 +246,7 @@ test('pointer entry and exit animate; reduced motion and keyboard remain immedia
     await popup.evaluate((element) => getComputedStyle(element).transform),
   ).toBe('none');
   await reduced.input.press('Escape');
-  let trigger = page
-    .locator('.desktop-nav')
-    .getByRole('button', { name: 'Search', exact: true });
-  if (!(await trigger.isVisible())) {
-    await page.locator('.mobile-menu summary').click();
-    trigger = page
-      .getByRole('navigation', { name: 'Mobile navigation' })
-      .getByRole('button', { name: 'Search', exact: true });
-  }
+  const trigger = page.getByRole('button', { name: 'Search', exact: true });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await trigger.focus();
   await trigger.press('Enter');
@@ -388,17 +368,7 @@ test('native popover offers useful browse links without JavaScript', async ({
   });
   const page = await context.newPage();
   await page.goto('/blog/');
-  const desktop = page
-    .locator('.desktop-nav')
-    .getByRole('button', { name: 'Search', exact: true });
-  if (await desktop.isVisible()) await desktop.click();
-  else {
-    await page.locator('.mobile-menu summary').click();
-    await page
-      .getByRole('navigation', { name: 'Mobile navigation' })
-      .getByRole('button', { name: 'Search', exact: true })
-      .click();
-  }
+  await page.getByRole('button', { name: 'Search', exact: true }).click();
   const panel = page.getByRole('dialog', { name: 'Search the site' });
   await expect(panel).toBeVisible();
   await expect(panel.getByRole('searchbox')).toHaveCount(0);

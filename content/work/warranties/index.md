@@ -68,7 +68,7 @@ chapters:
         body: On iPhone you see the list, then the record. iPad and Mac show both side by side. The record itself looks the same at every size.
 sunset:
   kicker: End of support
-  title: Knowing when<br><em>to stop.</em>
+  title: Knowing when<br>to stop.
   image: images/warranties/slide-4.png
   alt: The Warranties app icon, a document with a yellow seal and a green checkmark.
   caption: Warranties, 2023-2025.
@@ -81,7 +81,7 @@ principles:
     body: The app opens to the things you own and nothing else. There is no reason for a utility like this to ask for attention.
 reflection: 'Warranties was small enough that I could see every decision: how many fields were required, the order of the groups, how a duration was worded. That’s the nice part of building something end to end at this size. What I took back to bigger products is that how a record is structured is a design decision too, and it deserves the same care as the screens.'
 editorial:
-  reflectionTitle: Small enough to <em>see every decision.</em>
+  reflectionTitle: Small enough to see every decision.
   next: /work/invision
   attribution: Screenshots from Warranties, a product I designed and built on my own. The app was released in 2023 and support ended in 2025.
 ---

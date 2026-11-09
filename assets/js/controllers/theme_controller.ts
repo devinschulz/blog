@@ -25,7 +25,12 @@ export default class extends Controller<HTMLButtonElement> {
         const color = dark ? meta.dataset.dark : meta.dataset.light;
         if (color) meta.content = color;
       });
-    this.element.textContent = dark ? 'Light' : 'Dark';
+    this.element
+      .querySelectorAll<HTMLElement>('[data-theme-icon]')
+      .forEach((icon) => {
+        icon.hidden = icon.dataset.themeIcon !== (dark ? 'light' : 'dark');
+      });
+    this.element.title = `Switch to ${dark ? 'light' : 'dark'} theme`;
     this.element.setAttribute(
       'aria-label',
       `Switch to ${dark ? 'light' : 'dark'} theme`,

@@ -59,10 +59,9 @@ for (const path of ['/', '/blog/']) {
         ...(await page.locator('.desktop-nav a, .desktop-nav button').all()),
       );
     }
+    order.push(page.getByRole('button', { name: 'Search', exact: true }));
     order.push(page.locator('.theme-toggle'));
-    order.push(
-      page.locator(desktop ? '.contact-link' : '.mobile-menu summary'),
-    );
+    if (!desktop) order.push(page.locator('.mobile-menu summary'));
 
     // Use actual sequential navigation; direct focus() masks skipped links.
     for (const target of order) {
@@ -89,7 +88,8 @@ for (const path of ['/', '/blog/']) {
       page.getByRole('link', { name: 'Skip to content', exact: true }),
       page.locator('.brand'),
       ...(await page.locator('.desktop-nav a').all()),
-      page.locator('.contact-link'),
+      page.getByRole('button', { name: 'Search', exact: true }),
+      page.locator('.theme-toggle'),
     ];
     // Option-Tab includes links even with Safari's link-tabbing preference off.
     // Native buttons may also participate, depending on macOS Keyboard navigation.
@@ -253,4 +253,59 @@ test('Writing, Work, and About use the same page-title typography', async ({
   expect(styles[0][0]).toBe('20px');
   expect(styles[1]).toEqual(styles[0]);
   expect(styles[2]).toEqual(styles[0]);
+});
+
+test('sticky header stays reachable and article section links clear it', async ({
+  page,
+}) => {
+  await page.goto('/blog/reflecting-on-twelve-years-of-remote-work/');
+  const header = page.locator('.site-header');
+  await expect(header).not.toHaveAttribute('data-docked');
+  await page.evaluate(() => scrollTo(0, 800));
+  await expect.poll(async () => (await header.boundingBox()).y).toBe(0);
+  await expect(header).toHaveAttribute('data-docked', '');
+  await expect(header.locator('.brand')).toBeInViewport();
+  if (await page.locator('.mobile-menu summary').isVisible()) {
+    await page.locator('.mobile-menu summary').click();
+    const menu = page.getByRole('navigation', { name: 'Mobile navigation' });
+    await expect(menu).toBeVisible();
+    expect((await menu.boundingBox()).y).toBeGreaterThanOrEqual(
+      (await header.boundingBox()).height,
+    );
+    await page.keyboard.press('Escape');
+    await expect(menu).toBeHidden();
+  }
+  await page.locator('.article-layout summary').click();
+  await page
+    .locator(
+      '.article-contents a[href="#the-pandemic-changed-the-circumstances"]',
+    )
+    .click();
+  const target = page.locator('#the-pandemic-changed-the-circumstances');
+  await expect(target).toBeInViewport();
+  await expect
+    .poll(async () => {
+      const heading = await target.boundingBox();
+      const navigation = await header.boundingBox();
+      return heading.y - (navigation.y + navigation.height);
+    })
+    .toBeGreaterThanOrEqual(8);
+});
+
+test('docked separator disappears when returning to the top', async ({
+  page,
+}) => {
+  await page.goto('/blog/reflecting-on-twelve-years-of-remote-work/');
+  const header = page.locator('.site-header');
+  await page.evaluate(() => scrollTo(0, 800));
+  await expect(header).toHaveAttribute('data-docked', '');
+  await expect
+    .poll(() =>
+      header.evaluate((element) => getComputedStyle(element, '::after').height),
+    )
+    .toBe('1px');
+  const dockedHeight = (await header.boundingBox()).height;
+  await page.evaluate(() => scrollTo(0, 0));
+  await expect(header).not.toHaveAttribute('data-docked');
+  expect((await header.boundingBox()).height).toBe(dockedHeight);
 });

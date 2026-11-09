@@ -58,10 +58,10 @@ workflow:
 reflection: All three products came down to context. A measurement needs the right edges, a comment needs the right spot on the design, and a collection of references needs a useful structure. Paying attention to how people read an interface is what I’ve kept from that work.
 editorial:
   contributionTitle: The space between two layers.
-  workflowTitle: Where these tools <em>fit in.</em>
+  workflowTitle: Where these tools fit in.
   workflowBody: These tools were part of a larger design workflow. This archived Craft Sync screenshot shows the publishing step, where artboards go from the Sketch file into a shared workspace.
   workflowNote: Shown for product context, separate from the Inspect contribution described above.
-  reflectionTitle: What I <em>took from it.</em>
+  reflectionTitle: What I took from it.
   next: /work/cape
   attribution: 'I put this together from archived product images and my own writing from InVision. The products were a team effort; the measurement engine section is the part I built.'
 ---

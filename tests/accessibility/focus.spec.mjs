@@ -37,9 +37,7 @@ test('keyboard focus stays blue across navigation, search, artwork, and code', a
       accent,
     );
   }
-  const search = page.locator(
-    '.desktop-nav button:visible, .mobile-navigation button:visible',
-  );
+  const search = page.getByRole('button', { name: 'Search', exact: true });
   await search.press('Enter');
   await expect(page.locator('.search-input')).toBeFocused();
   await expect(page.locator('.search-input')).toHaveCSS(

@@ -383,7 +383,7 @@
     background-color: var(--color-paper);
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
-    scroll-padding-top: 28px;
+    scroll-padding-top: 72px;
   }
   body {
     margin: 0;
@@ -394,9 +394,9 @@
   :where(p, li, dd, figcaption) {
     text-wrap: pretty;
   }
-  :where(h1, h2, h3, h4) em {
+  :where(h1, h2, h3, h4, h5, h6) em {
     font-style: normal;
-    color: var(--color-accent);
+    color: inherit;
   }
   :where(
     a,
@@ -590,9 +590,68 @@ details[open] > summary .disclosure-icon-vertical {
 }
 
 /* Stronger wayfinding without increasing the weight of reading copy. */
-.desktop-nav [aria-current] {
+.header-icon-button {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+.header-icon-button[hidden] {
+  display: none;
+}
+.header-icon-button {
+  transition: color 150ms var(--ease-snappy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .header-icon-button:hover {
+    color: var(--color-accent);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .header-icon,
+  .header-sun-rays {
+    transform-origin: center;
+    transition: transform 240ms var(--ease-snappy);
+  }
+  .header-icon-button:hover .header-icon--search {
+    transform: rotate(-12deg) scale(1.12);
+  }
+  .header-icon-button:hover .header-sun-rays {
+    transform: rotate(22.5deg);
+  }
+  .header-icon-button:hover .header-icon--moon {
+    transform: rotate(-16deg);
+  }
+}
+.site-header[data-docked]::after {
+  content: '';
+  position: absolute;
+  inset-inline: 20px;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-line);
+  pointer-events: none;
+}
+@media (min-width: 781px) {
+  .site-header[data-docked]::after {
+    inset-inline: 32px;
+  }
+}
+@media (max-width: 299px) {
+  .site-header {
+    padding-inline: 16px;
+  }
+  .site-header[data-docked]::after {
+    inset-inline: 16px;
+  }
+}
+.site-header :is(.desktop-nav, .mobile-navigation) a {
   text-decoration-thickness: 2px;
-  text-underline-offset: 7px;
+  text-underline-offset: 4px;
 }
 .site-header:not(.absolute) .desktop-nav [aria-current] {
   text-decoration-color: var(--color-accent);
