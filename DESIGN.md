@@ -105,7 +105,7 @@ The homepage, writing index, and article pages at [Mellow](https://mellow.dev/) 
 
 Every page uses the same `.reading-shell`: a centered 704px outer shell, 20px mobile gutters, and 32px desktop gutters, giving a 640px desktop content track. Header, content, project images, and footer share its left edge. The desktop breakpoint remains 781px.
 
-The header begins 40px from the top on mobile and 128px on desktop, with 40px / 64px before the main content. The brand is 16px regular type. Desktop navigation contains Writing, Work, About, Search, and the theme control. Mobile retains the native Menu disclosure, which opens immediately below the header and supports Escape and outside dismissal. Targets remain at least 44px high.
+The header begins 40px from the top on mobile and 128px on desktop, with 40px / 64px before the main content. The brand is 16px regular type, with an attached period at the same size and no added gap. On hover, the wordmark turns blue and underlines. Desktop navigation contains Writing, Work, About, Search, and the theme control. Mobile retains the native Menu disclosure, which opens immediately below the header and supports Escape and outside dismissal. Targets remain at least 44px high.
 
 The footer has no dividing rule. Copyright, navigation, and the existing site note sit in a simple vertical flow. Footer destinations include Writing, Topics, RSS, Colophon, GitHub, LinkedIn, and Email.
 
