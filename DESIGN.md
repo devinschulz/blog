@@ -99,7 +99,7 @@ components:
 
 # Minimal personal site
 
-The homepage, writing index, and article pages at [Mellow](https://mellow.dev/) are the primary reference. The user wants quiet, minimal presentation across the site, including Work and case studies. A larger, bolder typography pass was rejected. Retain the existing DM Sans, neutral surfaces, blue accents, published content, images, and native navigation.
+The site uses quiet, minimal presentation throughout, including Work and case studies. A larger, bolder typography pass was rejected. Retain the existing DM Sans, neutral surfaces, blue accents, published content, images, and native navigation.
 
 ## Shared layout
 
