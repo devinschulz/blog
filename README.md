@@ -24,7 +24,7 @@ Deploy `dist/`, produced by `npm run build`. Production builds clean retired gen
 
 ## Design and interactions
 
-The site follows Mellow’s minimal single-column presentation across the homepage, writing archive, articles, Work, and case studies. A 704px outer shell gives a 640px desktop reading track shared by navigation, content, and footer. Titles stay at 20–24px, body copy at 16px, with self-hosted DM Sans and theme-aware neutral surfaces. Writing indexes show only publication dates and linked titles, without preview summaries, dividers, arrows, or a sidebar. Articles use a small native contents disclosure at every width. Original content, code examples, URLs, topic browsing, RSS, and historical dates are preserved.
+The site uses a minimal single-column layout across the homepage, writing archive, articles, Work, and case studies. A 704px outer shell gives a 640px desktop reading track shared by navigation, content, and footer. Titles stay at 20–24px, body copy at 16px, with self-hosted DM Sans and theme-aware neutral surfaces. Writing indexes show only publication dates and linked titles, without preview summaries, dividers, arrows, or a sidebar. Articles use a small native contents disclosure at every width. Original content, code examples, URLs, topic browsing, RSS, and historical dates are preserved.
 
 Work opens with a small heading and a personal paragraph linking to current Console work and earlier Checkout Studio work at Stripe. The three illustrated case studies follow in one column. The measurement demo link lives beside InVision. The biography has its own About page; LinkedIn appears there and in the shared footer alongside GitHub and Email. Shared work facts remain in `data/experience.yaml` and the Markdown export.
 
