@@ -210,6 +210,18 @@ for (const [source, destination, status] of redirects) {
   }
 }
 assert.deepEqual(errors, [], 'Broken internal links or assets');
+for (const [file, card] of [
+  ['index.html', 'home'],
+  ['work/index.html', 'work'],
+  ['about/index.html', 'about'],
+  ['colophon/index.html', 'colophon'],
+]) {
+  assert.equal(
+    cards.get(file),
+    card,
+    `${file}: needs its matching share image`,
+  );
+}
 // Home, case studies, and every article have their own share card.
 const signatures = [
   'index.html',

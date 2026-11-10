@@ -113,7 +113,7 @@ The footer has no dividing rule. Copyright, navigation, and the existing site no
 
 Use self-hosted DM Sans throughout and JetBrains Mono for code and measurement values. Work, About, and Writing index titles are 20px medium; article and case-study titles are 24px medium, and section headings generally 18px medium. Body text and writing links are 16px. Avoid giant display lettering, forced headline line breaks, decorative labels, and excessive tracking.
 
-Paper and Ink form a continuous page surface; the existing visitor-controlled dark theme uses Slate and Light Ink. Electric Blue remains the interaction accent, with Pale Electric Blue in dark mode. Titles and headings use a single text color throughout; do not accent individual words or phrases. Do not restore blue or fixed black header panels. Project screenshots and code retain their original supporting colors.
+Paper and Ink form a continuous page surface; the existing visitor-controlled dark theme uses Slate and Light Ink. Electric Blue remains the interaction accent, with Pale Electric Blue in dark mode. The favicon uses the same Slate tile, Light Ink lowercase “d”, and Pale Electric Blue period as the site identity, with matching browser and home-screen exports. Titles and headings use a single text color throughout; do not accent individual words or phrases. Do not restore blue or fixed black header panels. Project screenshots and code retain their original supporting colors.
 
 ## Writing
 
@@ -144,3 +144,9 @@ Search keeps the heading and query fixed while a single inner region scrolls res
 On precise hover devices, plain-text links turn blue and underline. Blue text links change to Ink and use a 2px underline. Writing-list titles gain a blue, stronger underline; dates remain quiet. Project titles underline and turn blue. Image links retain their small hover scale. These states do not depend on animation and do not create sticky touch hover effects.
 
 No graphics engine, canvas title effect, particles, water, fish, or automatic page decoration is loaded. Existing useful demonstrations and the optional Inspect mode remain. Respect reduced motion and preserve native content without JavaScript.
+
+## Sharing images
+
+Share images use the same minimal reading-page identity: a flat Slate (#202730) background, Light Ink (#eeefeb) titles, muted blue-gray (#adb7c4) supporting text, and Pale Electric Blue (#a2b3ff) for the wordmark period and site address. DM Sans is used throughout, with normal capitalization, regular metadata, medium titles, and tracking no tighter than −0.025em. Headlines always use one color. No waves, background graphics, oversized wordmarks, all-caps labels, or decorative dividing rules.
+
+Exports are 1200 × 630 with 80px horizontal margins. The wordmark sits above a left-aligned title and supporting text; the site address sits at the bottom. Article cards retain the full title, original date, topics, and archive status. Case-study cards pair the original project title and description with a contained screenshot. Home, Writing, Work, About, and Colophon have dedicated cards that reflect their actual page content. The generator fits and validates text before exporting, and Hugo publishes content-hashed JPEGs for sharing metadata.

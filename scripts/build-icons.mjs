@@ -3,6 +3,9 @@ import fs from 'node:fs';
 import { chromium } from '@playwright/test';
 
 const svg = fs.readFileSync('static/favicon.svg');
+const background = svg.toString().match(/<rect\b[^>]*fill="([^"]+)"/)?.[1];
+if (!background)
+  throw new Error('The favicon needs a solid background rectangle.');
 const browser = await chromium.launch();
 const rasters = new Map();
 try {
@@ -10,7 +13,7 @@ try {
   await page.setContent('<!doctype html><canvas></canvas>');
   for (const size of [16, 32, 48, 180]) {
     const data = await page.evaluate(
-      async ({ source, size }) => {
+      async ({ source, size, background }) => {
         const image = new Image();
         image.src = source;
         await image.decode();
@@ -19,13 +22,17 @@ try {
         const context = canvas.getContext('2d');
         // iOS applies its own corner mask and expects an opaque square.
         if (size === 180) {
-          context.fillStyle = '#2449ef';
+          context.fillStyle = background;
           context.fillRect(0, 0, size, size);
         }
         context.drawImage(image, 0, 0, size, size);
         return canvas.toDataURL('image/png').split(',')[1];
       },
-      { source: `data:image/svg+xml;base64,${svg.toString('base64')}`, size },
+      {
+        source: `data:image/svg+xml;base64,${svg.toString('base64')}`,
+        size,
+        background,
+      },
     );
     rasters.set(size, Buffer.from(data, 'base64'));
   }
@@ -61,7 +68,7 @@ fs.writeFileSync(
   svg
     .toString()
     .replace(/\s*<rect[^>]*\/>/, '')
-    .replaceAll('fill="#fff"', 'fill="#000"'),
+    .replaceAll(/fill="#[0-9a-fA-F]{3,8}"/g, 'fill="#000"'),
 );
 console.log(
   'Updated SVG, ICO, 16/32px PNG fallbacks, Apple touch icon, and Safari pinned-tab mask.',
