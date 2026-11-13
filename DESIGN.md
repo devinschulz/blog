@@ -123,7 +123,7 @@ A single shared writing-list partial serves the homepage, archive, and topic arc
 
 Articles use the shared column and a 24px headline. Headlines use normal wrapping, filling the available column before breaking instead of balancing line lengths. The header contains a return link, the original publication date, and linked topics. The visual description and reading-time row are omitted. Metadata, exports, and article bodies retain their content. A single native On this page disclosure replaces the desktop sidebar and works at every viewport width. Returning readers retain the optional Continue reading link; it never scrolls automatically and respects explicit fragment URLs and blocked storage.
 
-Article prose is 16px at 1.75 line height. Section headings are 18px; opening paragraphs use ordinary body type. Paragraph spacing is 24px. Code and figures fit the same column, with local horizontal code scrolling, copy controls, accessible labels, and original examples preserved. Archived articles keep one inline notice explaining their historical status. Related writing uses small text links rather than a large grid.
+Article prose is 16px at 1.75 line height. Section headings are 18px; opening paragraphs use ordinary body type. Paragraph spacing is 24px. Code and figures fit the same column, with local horizontal code scrolling, copy controls, accessible labels, and original examples preserved. Code captions show the language and copy control without a scrolling instruction. Archived articles keep one inline notice explaining their historical status. Related writing uses small text links rather than a large grid.
 
 ## Work and About
 

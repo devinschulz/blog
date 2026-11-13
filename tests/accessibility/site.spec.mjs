@@ -480,14 +480,13 @@ test('project previews work with keyboard and reduced motion', async ({
 
 test('article sections, code blocks, and archive navigation remain usable', async ({
   page,
-}, testInfo) => {
+}) => {
   await page.goto(
     '/blog/using-react-component-variants-to-compose-css-classes/',
   );
   await expect(page.locator('.article-hero h1')).toHaveText(
     'Using React Component Variants to Compose CSS Classes',
   );
-  const mobile = testInfo.project.name.startsWith('narrow');
   await page.locator('.article-layout summary').click();
   const contents = page.getByRole('navigation', {
     name: 'Article sections',
@@ -513,12 +512,9 @@ test('article sections, code blocks, and archive navigation remain usable', asyn
   await expect(more).toContainText(
     "Building a Chat Interface That Doesn't Fight Your Scroll Position",
   );
-  const firstCode = page.locator('.code-block').first();
-  if (mobile) {
-    await expect(firstCode.locator('[data-code-scroll-hint]')).toBeVisible();
-  } else {
-    await expect(firstCode.locator('[data-code-scroll-hint]')).toBeHidden();
-  }
+  await expect(page.locator('.article-body')).not.toContainText(
+    'Scroll horizontally',
+  );
   const nextArticle = more.locator('.related-post-link').first();
   const nextHref = await nextArticle.getAttribute('href');
   const nextTitle = await nextArticle.locator('span').first().innerText();

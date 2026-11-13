@@ -141,12 +141,5 @@ export default class extends Controller<HTMLElement> {
       this.finished =
         !!end && end.getBoundingClientRect().bottom <= innerHeight + 1;
     }
-    for (const code of this.element.querySelectorAll<HTMLElement>(
-      '.code-block',
-    )) {
-      const pre = code.querySelector('pre');
-      const hint = code.querySelector<HTMLElement>('[data-code-scroll-hint]');
-      if (pre && hint) hint.hidden = pre.scrollWidth <= pre.clientWidth + 1;
-    }
   }
 }
