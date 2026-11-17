@@ -2,24 +2,25 @@ import { test, expect } from '@playwright/test';
 
 const article = '/blog/using-react-component-variants-to-compose-css-classes/';
 
-async function expectLabelFits(copy) {
-  const layout = await copy
-    .locator('[data-code-target="label"]')
-    .evaluate((label) => {
-      const text = document.createRange();
-      text.selectNodeContents(label);
-      const bounds = text.getBoundingClientRect();
-      const frame = label.parentElement.getBoundingClientRect();
-      return {
-        lines: text.getClientRects().length,
-        contained:
-          bounds.left >= frame.left &&
-          bounds.right <= frame.right &&
-          bounds.top >= frame.top &&
-          bounds.bottom <= frame.bottom,
-      };
-    });
-  expect(layout).toEqual({ lines: 1, contained: true });
+async function expectIconButton(copy) {
+  await expect(copy.locator('[data-code-target="label"]')).toHaveClass(
+    'sr-only',
+  );
+  const layout = await copy.evaluate((button) => {
+    const frame = button.getBoundingClientRect();
+    const icon = [...button.querySelectorAll('svg')]
+      .find((element) => !element.hasAttribute('hidden'))
+      .getBoundingClientRect();
+    return {
+      touchTarget: frame.width >= 32 && frame.height >= 32,
+      contained:
+        icon.left >= frame.left &&
+        icon.right <= frame.right &&
+        icon.top >= frame.top &&
+        icon.bottom <= frame.bottom,
+    };
+  });
+  expect(layout).toEqual({ touchTarget: true, contained: true });
 }
 
 test('copy preserves code whitespace, confirms success, and can be repeated', async ({
@@ -40,11 +41,11 @@ test('copy preserves code whitespace, confirms success, and can be repeated', as
   const code = await block.locator('pre code').textContent();
   const copy = block.getByRole('button', { name: 'Copy TypeScript code' });
   await page.evaluate(() => document.fonts.ready);
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   await copy.focus();
   await page.keyboard.press('Enter');
   await expect(copy).toHaveText('Copied');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   await expect(block.getByRole('status')).toHaveText(
     'Code copied to clipboard.',
   );
@@ -52,7 +53,7 @@ test('copy preserves code whitespace, confirms success, and can be repeated', as
   await copy.click();
   expect(await page.evaluate(() => window.copiedCode)).toBe(code);
   await expect(copy).toHaveText('Copy');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   const second = page.locator('.code-block').nth(1);
   await second.getByRole('button', { name: 'Copy TypeScript code' }).click();
   expect(await page.evaluate(() => window.copiedCode)).toBe(
@@ -80,7 +81,7 @@ test('clipboard denial gives a manual recovery path and allows retry', async ({
   const copy = block.getByRole('button', { name: 'Copy TypeScript code' });
   await copy.click();
   await expect(copy).toHaveText('Retry');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   await expect(block.getByRole('status')).toBeVisible();
   await expect(block.getByRole('status')).toContainText('Select the code');
   await expect(block.locator('pre')).toHaveAttribute('tabindex', '0');
@@ -89,10 +90,10 @@ test('clipboard denial gives a manual recovery path and allows retry', async ({
   });
   await copy.click();
   await expect(copy).toHaveText('Copied');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
 });
 
-test('pending and success labels fit at normal and enlarged text sizes', async ({
+test('copy stays icon-only during pending and success at enlarged text sizes', async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -114,20 +115,20 @@ test('pending and success labels fit at normal and enlarged text sizes', async (
     .getByRole('button', { name: 'Copy TypeScript code' });
   await copy.click();
   await expect(copy).toHaveText('Copy…');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   await page.evaluate(() => window.finishCopy());
   await expect(copy).toHaveText('Copied');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   await expect(copy).toHaveText('Copy');
   await copy.evaluate((button) => {
     button.style.fontSize = '24px';
   });
   await copy.click();
   await expect(copy).toHaveText('Copy…');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
   await page.evaluate(() => window.finishCopy());
   await expect(copy).toHaveText('Copied');
-  await expectLabelFits(copy);
+  await expectIconButton(copy);
 });
 
 test('unsupported clipboard leaves native reading and code scrolling available', async ({
