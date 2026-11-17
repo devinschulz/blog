@@ -131,6 +131,36 @@ test('copy stays icon-only during pending and success at enlarged text sizes', a
   await expectIconButton(copy);
 });
 
+test('copy falls back to native selection without the Clipboard API', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: undefined,
+    });
+    document.execCommand = (command) => {
+      if (command !== 'copy') return false;
+      const input = document.querySelector('textarea');
+      window.copiedCode = input.value.slice(
+        input.selectionStart,
+        input.selectionEnd,
+      );
+      return true;
+    };
+  });
+  await page.goto(article);
+  const block = page.locator('.code-block').first();
+  const copy = block.getByRole('button', { name: 'Copy TypeScript code' });
+  await copy.focus();
+  await page.keyboard.press('Enter');
+  await expect(copy).toHaveText('Copied');
+  await expect(copy).toBeFocused();
+  expect(await page.evaluate(() => window.copiedCode)).toBe(
+    await block.locator('pre code').textContent(),
+  );
+});
+
 test('unsupported clipboard leaves native reading and code scrolling available', async ({
   page,
 }) => {
@@ -139,6 +169,7 @@ test('unsupported clipboard leaves native reading and code scrolling available',
       configurable: true,
       value: undefined,
     });
+    Object.defineProperty(document, 'execCommand', { value: undefined });
   });
   await page.goto(article);
   const block = page.locator('.code-block').first();

@@ -20,7 +20,9 @@ export default class extends Controller<HTMLElement> {
 
   override connect(): void {
     this.reset();
-    this.buttonTarget.hidden = !navigator.clipboard?.writeText;
+    this.buttonTarget.hidden =
+      typeof navigator.clipboard?.writeText !== 'function' &&
+      typeof document.execCommand !== 'function';
   }
 
   override disconnect(): void {
@@ -70,7 +72,11 @@ export default class extends Controller<HTMLElement> {
     this.labelTarget.textContent = 'Copy…';
 
     try {
-      await navigator.clipboard.writeText(code);
+      if (typeof navigator.clipboard?.writeText === 'function') {
+        await navigator.clipboard.writeText(code);
+      } else {
+        this.copyWithSelection(code);
+      }
       if (!this.element.isConnected || operation !== this.operation) return;
       this.labelTarget.textContent = 'Copied';
       this.copyIconTarget.setAttribute('hidden', '');
@@ -87,6 +93,24 @@ export default class extends Controller<HTMLElement> {
       if (this.element.isConnected && operation === this.operation) {
         this.buttonTarget.disabled = false;
       }
+    }
+  }
+
+  private copyWithSelection(code: string): void {
+    const focused = document.activeElement;
+    const input = document.createElement('textarea');
+    input.value = code;
+    input.readOnly = true;
+    input.className = 'fixed left-0 top-0 pointer-events-none opacity-0';
+    document.body.append(input);
+
+    try {
+      input.select();
+      if (!document.execCommand('copy')) throw new Error('Copy unavailable');
+    } finally {
+      input.remove();
+      if (focused instanceof HTMLElement)
+        focused.focus({ preventScroll: true });
     }
   }
 
