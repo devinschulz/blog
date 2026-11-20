@@ -31,6 +31,7 @@ export default defineConfig({
     {
       name: 'desktop-safari',
       testMatch: [
+        'text-highlights.spec.mjs',
         'header.spec.mjs',
         'chat-scroll.spec.mjs',
         'demo-loading.spec.mjs',
@@ -48,6 +49,7 @@ export default defineConfig({
     {
       name: 'mobile-safari',
       testMatch: [
+        'text-highlights.spec.mjs',
         'code.spec.mjs',
         'reading.spec.mjs',
         'theme.spec.mjs',

@@ -7,6 +7,31 @@
 @source "../../layouts";
 @source "../js";
 
+.code-block {
+  --code-background: #232831;
+  --code-caption-background: #1c2128;
+}
+
+:root[data-theme='dark'] .code-block {
+  --code-background: var(--color-paper);
+  --code-caption-background: color-mix(
+    in srgb,
+    var(--color-paper),
+    var(--color-raised)
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .code-block {
+    --code-background: var(--color-paper);
+    --code-caption-background: color-mix(
+      in srgb,
+      var(--color-paper),
+      var(--color-raised)
+    );
+  }
+}
+
 .search-popover {
   position: fixed;
   inset: clamp(24px, 12vh, 96px) 16px auto;

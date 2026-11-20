@@ -1,6 +1,10 @@
 {{- /* Resolve real image resources without rewriting historical code samples. */ -}}
 {{- $page := . -}}
 {{- $raw := trim .RawContent "\n" -}}
+{{- with resources.Get "examples/text-highlights/findTextRanges.ts" -}}
+  {{- $raw = replace $raw "{{< text-highlights-source >}}" (printf "```ts\n%s\n```" (strings.TrimSpace .Content)) -}}
+{{- end -}}
+{{- $raw = replace $raw "{{< text-highlights-demo >}}" (printf "[Try the text highlighting playground](%s#text-highlights-demo). Requires JavaScript and the CSS Custom Highlight API." .Permalink) -}}
 {{- /* Keep the running example's actual source in the Markdown export too. */ -}}
 {{- range findRE `\{\{< chat-scroll-source file="[^"]+" lang="[^"]+" >\}\}` $raw -}}
   {{- $path := replaceRE `^.*file="([^"]+)".*$` "$1" . -}}

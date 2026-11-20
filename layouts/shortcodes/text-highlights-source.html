@@ -1,0 +1,6 @@
+{{- with resources.Get "examples/text-highlights/findTextRanges.ts" -}}
+  {{- $markdown := printf "```ts\n%s\n```" (strings.TrimSpace .Content) -}}
+  {{- $html := $.Page.RenderString $markdown -}}
+  {{- $html = replaceRE `code-label-([0-9]+)` (printf "highlight-source-%d-$1" $.Ordinal) $html -}}
+  {{- $html | safeHTML -}}
+{{- end -}}

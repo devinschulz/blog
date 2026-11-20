@@ -1,0 +1,24 @@
+{{- $sample := `<p>A search result can cross <strong>bold text</strong>, include a <a href="#a-range-can-cross-element-boundaries">link</a>, and keep the original markup.</p>
+<p>Search highlights and annotations can cover the same text. Resize this passage to see both follow the line breaks.</p>` -}}
+<section id="text-highlights-demo" class="text-highlights-demo not-prose" aria-label="Text highlighting playground" data-text-highlights-demo>
+  <p data-highlight-fallback>Enable JavaScript in a browser with the CSS Custom Highlight API to try the playground. The sample text and implementation below remain readable without it.</p>
+  <form data-highlight-controls hidden>
+    <label for="highlight-query">Find text (case-sensitive)</label>
+    <input id="highlight-query" type="search" value="text" autocomplete="off" spellcheck="false" aria-describedby="highlight-help" data-highlight-query>
+    <p id="highlight-help">Try “cross bold text” to match across an element boundary.</p>
+    <label class="highlight-checkbox"><input type="checkbox" data-highlight-annotations> Show overlapping annotations</label>
+    <label for="highlight-width">Reading width</label>
+    <input id="highlight-width" type="range" min="55" max="100" value="100" data-highlight-width>
+  </form>
+  <div class="highlight-passage" data-highlight-passage>
+    {{ $sample | safeHTML }}
+  </div>
+  <p role="status" data-highlight-status></p>
+  <ul class="highlight-results" aria-label="Matching passages" data-highlight-results></ul>
+  <details>
+    <summary>See the original markup</summary>
+    <p data-highlight-integrity>The sample uses paragraphs, a strong element, and a link.</p>
+    {{- $html := .Page.RenderString (printf "```html\n%s\n```" $sample) -}}
+    {{- $html | replaceRE `code-label-([0-9]+)` (printf "highlight-demo-%d-$1" .Ordinal) | safeHTML -}}
+  </details>
+</section>

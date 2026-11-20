@@ -68,6 +68,12 @@
       {{ $chatScript := resources.Get "js/chat-scroll-demo.tsx" | js.Build (dict "target" "es2020" "minify" true "params" (dict) "defines" (dict "process.env.NODE_ENV" `"production"`)) | fingerprint }}
       <script data-cfasync="false" src="{{ $chatScript.RelPermalink }}" defer></script>
     {{ end }}
+    {{ if .HasShortcode "text-highlights-demo" }}
+      {{ $highlightStyles := resources.Get "css/text-highlights-demo.css" | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $highlightStyles.RelPermalink }}" integrity="{{ $highlightStyles.Data.Integrity }}" crossorigin="anonymous">
+      {{ $highlightScript := resources.Get "js/text-highlights-demo.ts" | js.Build (dict "target" "es2020" "minify" true) | fingerprint }}
+      <script data-cfasync="false" src="{{ $highlightScript.RelPermalink }}" defer></script>
+    {{ end }}
     {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .RelPermalink }}">{{ end }}
   </head>
   <body id="page-top" class="{{ if .IsHome }}is-home {{ end }}{{ if or .IsHome (eq .Section "blog") (eq .Section "tags") }}is-reading {{ end }}bg-paper font-sans text-[15px] leading-normal wrap-anywhere text-ink antialiased selection:bg-accent selection:text-paper desktop:text-base [&_button:not(:disabled)]:cursor-pointer">

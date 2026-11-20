@@ -1,0 +1,89 @@
+.text-highlights-demo {
+  margin-block: 2rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--color-line-strong);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.text-highlights-demo form:not([hidden]) {
+  display: grid;
+  gap: 0.625rem;
+}
+.text-highlights-demo input[type='search'] {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.35rem;
+  background: var(--color-raised);
+  color: var(--color-ink);
+  font: inherit;
+}
+.text-highlights-demo input[type='range'] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--color-accent);
+}
+.text-highlights-demo .highlight-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 44px;
+}
+.text-highlights-demo input[type='checkbox'] {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: none;
+  accent-color: var(--color-accent);
+}
+.text-highlights-demo :is(input, summary):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+.text-highlights-demo #highlight-help,
+.text-highlights-demo [role='status'],
+.text-highlights-demo [data-highlight-integrity] {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+.highlight-passage {
+  margin-block: 1.25rem;
+  font-size: 1rem;
+}
+.highlight-passage p + p {
+  margin-top: 0.75rem;
+}
+.highlight-passage a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+.highlight-results {
+  padding-left: 1.25rem;
+  list-style: disc;
+  margin-block: 0.75rem;
+}
+.highlight-results:empty {
+  display: none;
+}
+.text-highlights-demo summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+}
+::highlight(blog-text-search) {
+  background-color: #f7dd76;
+  color: #191919;
+}
+::highlight(blog-text-notes) {
+  background-color: #c7ddff;
+  color: #191919;
+  text-decoration: underline;
+}
+@media (forced-colors: active) {
+  ::highlight(blog-text-search),
+  ::highlight(blog-text-notes) {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
